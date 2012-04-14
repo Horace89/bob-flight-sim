@@ -8,6 +8,13 @@
 //				
 //------------------------------------------------------------------------------
 //I am told that this works... we shall see!
+#include <stddef.h>
+
+#ifdef __GNUC__
+#define _vsnprintf vsnprintf
+#define _snprintf snprintf
+#endif
+
 #define _XSTR(x)         #x
 #define TOSTR(x)        _XSTR(x)
 //__HERE__ is a string describing the current source file and line!
@@ -15,6 +22,10 @@
 #define	warnmsg(text)	message(__HERE__ "          \t       " text)
 #define TODO(msg)		message(__HERE__ "          \tTO DO: " msg)
 //
+#ifdef __GNUC__
+       #define DEBUG_NEW new
+#else
+
 #ifndef NDEBUG
 #ifndef	__BCPLUSPLUS__
 #undef new
@@ -35,6 +46,8 @@
 	#define DEBUG_NEW new
 #endif
 #define	new		DEBUG_NEW
+
+#endif
 
 //#define LOCAL_new(DEBUG_NEW_PARAMS)	new
 //#define	DEBUG_NEW_PARAMS (__FILE__, __LINE__)
@@ -63,7 +76,8 @@
 #endif
 
 #ifndef __BORLANDC__
-#pragma pack (1)
+/* winemaker: #pragma pack (1) */
+#include <pshpack1.h>
 #endif
 
 #ifndef	dosdefs_Included
@@ -164,7 +178,9 @@
 
 #endif
 
+#ifndef NULL
 #define	NULL	0
+#endif
 #define	_	[0]
 
 #define ZEROLOCK 0,0
@@ -238,33 +254,53 @@ IFShare,*IFShareP;
 
 #ifdef	__WATCOMC__
 	#pragma	aux	INT3	= 0xCC		// breakpoint 
-#else
-	#ifdef	__MSVC__
+
+#endif
+#ifdef	__MSVC__
 //	#include <stdio.h>
 //	#include <stdlib.h>
 //	extern FILE*	debugfile;
 
-#ifndef 	NDEBUG
+    #ifndef 	NDEBUG
 	#ifndef	_IHATEINT3_
 		#define	INT3 _asm {int 3}
 	#else
 		#define	INT3 _asm {nop}
 	#endif
-#else
+    #else
 	#define	INT3	_asm	{}
-#endif
-#ifndef 	NDEBUG
+    #endif
+
+  #ifndef 	NDEBUG
 	#define	NOP _asm {nop}
-#else
+  #else
 	#define	NOP	{}
-#endif
+  #endif
 
 //	#define	INT3 {fprintf(debugfile,"%s INT3()\n",__FILE__);fflush(debugfile);}
 //	#define	INT3 {;}
 	#ifdef	LOG__CON
 		static struct SSS{SSS(char*);} s_s_s(__HERE__ __DATE__ " " __TIME__);
 	#endif
-	#endif
+#endif
+#ifdef	__GNUC__
+    #ifndef     NDEBUG
+        #ifndef _IHATEINT3_
+          #include <signal.h>
+          #define INT3 raise(SIGINT)
+        #else
+                #define INT3 {}
+        #endif
+    #else
+        #define INT3    {}
+    #endif
+        #define NOP   {} 
+
+        #ifdef  LOG__CON
+                static struct SSS{SSS(char*);} s_s_s(__HERE__ __DATE__ " " __TIME__);
+        #endif
+
+
 #endif
 
 #ifdef __BCPLUSPLUS__
@@ -335,8 +371,10 @@ struct _SEQUENCE;
 struct	_iobuf;
 typedef	_iobuf	FILE;
 #else
+#ifndef __GNUC__
 struct	__iobuf;
 typedef	__iobuf	FILE;
+#endif
 #endif
 
 

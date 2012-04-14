@@ -8,6 +8,9 @@
 //TEMPCODE DAW 29/01/00 #include <objbase.h>
 #include <d3dtypes.h>
 
+#include "myangles.h"
+#include "dosdefs.h"
+
 #ifdef LIB3D_EXPORTS
 #define LIB3D_API __declspec(dllexport)
 #else
@@ -192,7 +195,18 @@ public:
 			UByte red;//green;
 			UByte alpha;//blue;
 		};
+		D3DCOLOR d3dcolor;
 	};
+#ifdef __GNUC__
+        inline operator D3DCOLOR()
+        {
+                return d3dcolor;
+        }
+        inline operator D3DCOLOR&()
+        {
+                return d3dcolor;
+        }
+#endif
 
 	inline operator ULong() 
 	{
@@ -227,6 +241,13 @@ public:
 		all = t;
 		return *this;
 	}
+#ifdef __GNUC__
+        inline R3DCOLOUR& operator&= (const ULong t)
+        {
+                all &= t;
+                return *this;
+        }
+#endif
 
 	// change to linear value frac distance between current col and other col
 	// doesn't do alpha
@@ -246,6 +267,7 @@ public:
 	}
 
 };
+
 
 enum Angles;
 const UWord NULL_LAND_TEXT_REF = 0xFFFF;
@@ -418,14 +440,14 @@ typedef struct Material
 		isMasked=MSK_NONE;
 		uniqueTextID = TIT_PLAIN+cc;
 		p[0]=p[1]=p[2]=NULL;
-		tsW[0]=tsW[1]=tsW[2]=NULL;
-		tsH[0]=tsH[1]=tsH[2]=NULL;
+		tsW[0]=tsW[1]=tsW[2]=0;
+		tsH[0]=tsH[1]=tsH[2]=0;
 	}
 	Material() 
 	{
 		p[0]=p[1]=p[2]=NULL;
-		tsW[0]=tsW[1]=tsW[2]=NULL;
-		tsH[0]=tsH[1]=tsH[2]=NULL;
+		tsW[0]=tsW[1]=tsW[2]=0;
+		tsH[0]=tsH[1]=tsH[2]=0;
 		isMasked=MSK_NONE;
 		f=0;
 		c=0;

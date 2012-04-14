@@ -82,14 +82,20 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //TempCode JON 20Oct00 #define _USRDLL
 //TempCode JON 20Oct00 #define LIB3D_EXPORTS
 //TempCode JON 20Oct00 #undef __WATCOMC__
-#include "math.h"
+//xor #include "math.h"
 #endif
 
+#include "math.h"
 //DEADCODE MS 02/02/00 typedef	bool	GUID;
-#include "dosdefs.h"
+//xor #include "dosdefs.h"
 #include <objbase.h>
 #include <stdio.h>
+
+#ifdef   __GNUC__
+#include <fstream>
+#else
 #include <fstream.h> // for filestream stuff..
+#endif
 //DEADCODE MS 02/02/00 #include <initguid.h>
 #include "ddraw.h"
 #include "d3d.h"
@@ -97,7 +103,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //DeadCode JON 27Sep00 //#define NON_LIN_Z_FIX
 //DeadCode JON 27Sep00 #define NON_LIN_Z_ADD
 #define _INSIDE_LIB3D_
-#include "Lib3D.h"
+#include "lib3d.h"
 #include "polyvert.h"
 #include "radix.h" 
 #include "alloc.h"				  
@@ -113,6 +119,10 @@ void  __cdecl operator delete(void* v,char const *,int)	{ operator delete(v);}
 //void  __cdecl operator delete[](void* v,char const *,int)	{ operator delete[](v);}
 #define	new	DEBUG_NEW
 #endif
+
+#ifdef   __GNUC__
+using namespace std;
+#endif
 //TEMPCODE JON 5/19/00 R3DVERTEX& R3DVERTEX::operator = ( const R3DVERTEX &source ) // 1/2 save...
 //TEMPCODE JON 5/19/00 {
 //TEMPCODE JON 5/19/00 	memcopy( this, &source, sizeof( R3DVERTEX ) );
@@ -120,8 +130,11 @@ void  __cdecl operator delete(void* v,char const *,int)	{ operator delete(v);}
 //TEMPCODE JON 5/19/00 }
 
 //#include "d3dxcore.h"
-
-void GetErrorDesc( HRESULT err, char* &desc );
+//#ifndef __GNUC__
+//void GetErrorDesc( HRESULT err, char* &desc );
+//#else
+void GetErrorDesc( HRESULT err, char* &desc ){}
+//#endif
 
 extern VOID GetDXVersion( DWORD* pdwDXVersion, DWORD* pdwDXPlatform );
 
@@ -540,7 +553,7 @@ private:
 		}
 	}
 
-	void OutDiagLine( char*t ... )										//JON 16/03/01
+	void OutDiagLine(const char*t ... )										//JON 16/03/01
 	{
 		if ( doDeviceDiags )
 		{
@@ -812,7 +825,8 @@ private:
 //DeadCode JON 13Oct00 	static SWord tableCode2[256];
 	static	ULong refCnt;
 	static	VPDESC vpDesc;
-	static	ULong	texturesTotalRAM;									//RJS 24Mar00
+									//RJS 24Mar00
+	static	DWORD	texturesTotalRAM;									//RJS 24Mar00
 
 //DEADCODE JON 5/25/00 	static	R3DVERTEX	vertArray[MAX_VERTICES];
 //DEADCODE JON 5/25/00 	static	R3DVERTEX2	vertArray2[MAX_VERTICES];
@@ -840,11 +854,15 @@ private:
 #ifndef _NOT_IN_SAMPLE
 	inline ULong SetToTopBit( ULong i )
 	{
+#ifdef __GNUC__
+        return( (bool)(i & (1<<31)) );
+#else
 		__asm
 		{
 			mov eax, i
 			sar eax, 31
 		}
+#endif
 	}
 #endif
 #pragma warning(default:4035) // turn the message back on then.
@@ -1004,10 +1022,14 @@ private:
 	//
 	void FloatToInt(SLong *int_pointer,D3DVALUE f) const
 	{
+#ifdef __GNUC__
+         *int_pointer=ceil(f/*+0.5*/);
+#else
 	 	__asm	fld		f;
 		__asm	mov		edx,int_pointer;
 		__asm	frndint;
 		__asm	fistp	dword ptr [edx];
+#endif
 	}
 	inline SLong FPTiny(D3DVALUE v) const
 	{
@@ -1543,7 +1565,7 @@ private:
 //	void	VertexSetCols( SVertex* sVertex, const D3DVERTEX* pv, const D3DCOLOR matCol );
 	void	SetVertexCol( SVertex* sVertex, const LIGHTFLAG localLF );	//JON 5/19/00
 
-	void	ClipSetCols(const SVertex* &vi,const SVertex* &vo,SVertex* &vc,const double &frac);
+	void	ClipSetCols(SVertex* &vi,SVertex* &vo,SVertex* &vc,double &frac);
 	typedef void (*ClipFunction)(SVertex*,SVertex*,SVertex*,const ULong);
 	SVertex*	DoClip( const SVertex* a, const SVertex* b, SVertex* out,ClipCode code, ClipFunction fn );
 	void	ClipToFront(SVertex*,SVertex*,SVertex*,const ULong);
@@ -1832,7 +1854,7 @@ Lib3D::DDDriver Lib3D::selectedDriver;
 bool Lib3D::fixZbuffer = false;
 //D3DVALUE Lib3D::zFactor;
 D3DVALUE SPolygon::zFactor;// = Lib3D::zFactor;
-ULong	Lib3D::texturesTotalRAM;									//RJS 24Mar00
+DWORD Lib3D::texturesTotalRAM;									//RJS 24Mar00   xor ULong -> DWORD
 AlphaBlendTypes	Lib3D::lastBlendType;
 D3DZBUFFERTYPE	Lib3D::prefZType;								//RJS 17May00
 
@@ -1860,6 +1882,10 @@ D3DZBUFFERTYPE	Lib3D::prefZType;								//RJS 17May00
 inline void SineCosine(const UWord rowanAngle,D3DVALUE* sineAngle,D3DVALUE* cosineAngle)
 {
 	D3DVALUE radianAngle=D3DVALUE(SWord(rowanAngle))*ROWANANG_TO_RADANG;
+#ifdef __GNUC__
+        *cosineAngle=cos(radianAngle);
+        *sineAngle=sin(radianAngle);
+#else
 	__asm	push	edx;
 	__asm	push	ebx;
 	__asm	mov		edx,sineAngle;
@@ -1870,10 +1896,15 @@ inline void SineCosine(const UWord rowanAngle,D3DVALUE* sineAngle,D3DVALUE* cosi
 	__asm	fstp	[dword ptr edx];
 	__asm	pop		ebx;
 	__asm	pop		edx;
+#endif
 }
 
 inline void SineCosine_Radian(const D3DVALUE radianAngle,D3DVALUE* sineAngle,D3DVALUE* cosineAngle)
 {
+#ifdef __GNUC__
+        *cosineAngle=cos(radianAngle);
+        *sineAngle=sin(radianAngle);
+#else
 	__asm	push	edx;
 	__asm	push	ebx;
 	__asm	mov		edx,sineAngle;
@@ -1884,6 +1915,7 @@ inline void SineCosine_Radian(const D3DVALUE radianAngle,D3DVALUE* sineAngle,D3D
 	__asm	fstp	[dword ptr edx];
 	__asm	pop		ebx;
 	__asm	pop		edx;
+#endif
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -1927,10 +1959,14 @@ inline SWord GET_BIT_POS32(DWORD bitField)
 //------------------------------------------------------------------------------
 inline D3DVALUE fpSqrt(D3DVALUE num)
 {
+#ifdef __GNUC__
+        return(sqrt(num));
+#else
    	__asm	fld 	num;
 	__asm	fsqrt;
 	__asm	fstp	num;
 	return num;
+#endif
 }
 
 //#pragma message (__HERE__ "inline me" )
@@ -2095,7 +2131,7 @@ inline void Lib3D::CALC_FOG(SPolygon *p1)
 		SVertex *pp=p1->pVertexList;
 		for (int q=p1->vertexcount;q>0;q--)
 		{
-			pp->specular&=0x00FFFFFF;
+			pp->specular &= 0x00FFFFFF;
 			SetColAlpha( pp->specular, fogTable[ (0x3FF&F2UL_Round( pp->hw*fogMul )) ] );
 			pp=pp->pNext;
 		}
@@ -2311,6 +2347,12 @@ inline UWord calcMWordRot( SWord shift )
 inline ULong __fastcall  MagicRotate(UByte shift, ULong val )
 {
 	ULong rv;
+#ifdef __GNUC__
+   shift &= 0x1f;
+   if (!shift) return(val);
+ 
+   return (val << shift) | (val >> (32 - shift));
+#else
 	__asm
 	{
 		mov edx, val
@@ -2321,11 +2363,17 @@ inline ULong __fastcall  MagicRotate(UByte shift, ULong val )
 		mov rv, edx
 	}
 	return rv;
+#endif
 }
 
 #pragma warning(disable:4035)  // don't tell me there is no return value
 ULong __fastcall	MaskAndRot(ULong value,UByte sh1,UByte sh2,UByte sh3,ULong mask1,ULong mask2,ULong mask3)
 {
+#ifdef __GNUC__
+ return ((MagicRotate(sh1,value)&mask1) |
+         (MagicRotate(sh2,value)&mask2) |
+         (MagicRotate(sh3,value)&mask3));
+#else
 	__asm
 	{
 												mov	edx,value
@@ -2343,6 +2391,7 @@ ULong __fastcall	MaskAndRot(ULong value,UByte sh1,UByte sh2,UByte sh3,ULong mask
 												and	edx,mask3
 		or	eax,edx
 	}
+#endif
 }
 #pragma warning(default:4035) // turn the message back on then.
 
@@ -2396,7 +2445,8 @@ inline HRESULT Lib3D::PerformSlowCopy(LPDIRECTDRAWSURFACE7 pDst,LPDIRECTDRAWSURF
 	ULong bmask=ddsdDst.ddpfPixelFormat.dwBBitMask&MagicRotate(bMShift,ddsdSrc.ddpfPixelFormat.dwBBitMask);
 
 	DWORD swidth=rect==NULL?ddsdSrc.dwWidth:rect->right-rect->left;
-	for (DWORD scale(1);swidth!=ddsdDst.dwWidth;scale<<=1,swidth>>=1);
+        DWORD scale=1;  //xor it was strange
+	for (scale;swidth!=ddsdDst.dwWidth;scale<<=1,swidth>>=1);
  
 	DWORD lPitch=ddsdSrc.lPitch*scale; // this does the y scaling
 
@@ -2680,8 +2730,9 @@ Lib3D::Lib3D()
 	gpD3DVB7=NULL;
 	gpD3DVBL7=NULL;													//RJS 17Apr00
 	lpD3DVB7=NULL;
-	pDDS7LandRT=NULL;													//JON 15Jun00
-	for (int i=MAX_VERTICES-1;i>=0;polyVerts[i]=i,i--);
+	pDDS7LandRT=NULL;                                               //JON 15Jun00
+	int i;
+	for (i=MAX_VERTICES-1;i>=0;polyVerts[i]=i,i--);
 	for (i=NUM_PALETTES-1;i>=0;normPalLookUp[i]=NULL,i--);
 	for (i=NUM_PALETTES-1;i>=0;maskPalLookUp[i]=NULL,i--);
 	for (i=NUM_PALETTES-1;i>=0;trnsPalLookUp[i]=NULL,i--);
@@ -2689,12 +2740,12 @@ Lib3D::Lib3D()
 	textureBlending=HINT_TRILINEAR;
 //TempCode JON 13Oct00 	BuildSqrtTable();
 	// fill the last vertex table with the dummy vertex.
-	for ( i=0; i<=MAX_DOPOINTS; i++ )
+	for (i=0; i<=MAX_DOPOINTS; i++ )
 	{
 		lastDoPoint[ i ] = &dummyVertex;	
 	}
 	// clear the texture table;
-	for ( i=MAX_TEXTURES-1;i>=0;i-- ) 
+	for (i=MAX_TEXTURES-1;i>=0;i-- ) 
 	{
 		textureTable[i]=NULL;
 	}
@@ -3224,7 +3275,7 @@ HRESULT Lib3D::GetRenderBitDepths(LPDIRECTDRAW7 pDD,ULong &renderBitDepths)
 void Lib3D::EnumerateDriverModes(DDDriver& ddDriver)
 {
 	LPDIRECTDRAW7 pDD;
-	ULong totalRAM,freeRAM;
+	DWORD totalRAM,freeRAM;
 	DDSCAPS2 ddscaps;
 	ZeroMemory(&ddscaps,sizeof(ddscaps));
 	ddscaps.dwCaps=DDSCAPS_VIDEOMEMORY|DDSCAPS_LOCALVIDMEM|DDSCAPS_3DDEVICE;
@@ -3424,8 +3475,8 @@ HRESULT	Lib3D::GetModes(const HDRIVER& hDriver,UIModes& uiModes)
 	uiModes.numModes=0;
 
 	SLong i=SLong(hDriver);
-
-	for (DDDriver *pDriver=pDrivers;i>0 && pDriver!=NULL;i--,pDriver=pDriver->pNext)
+        DDDriver *pDriver=pDrivers;
+	for (i;i>0 && pDriver!=NULL;i--,pDriver=pDriver->pNext)
 	{/*search for the driver required*/}
 
 	if (pDriver==NULL)
@@ -3499,13 +3550,14 @@ HRESULT	Lib3D::_SetDriverAndMode(const HDRIVER& hDriver,const HMODE& hMode,const
 	flags=Flags(0);
 	
 	SLong i=SLong(hDriver);
-	
-	for (DDDriver *pDriver=pDrivers;i>0 && pDriver!=NULL;i--,pDriver=pDriver->pNext);
+ 	DDDriver *pDriver=pDrivers;	
+	for (i;i>0 && pDriver!=NULL;i--,pDriver=pDriver->pNext);
 	if (pDriver==NULL)
 		return lastError=DDERR_INVALIDPARAMS;
 	
 	i=SLong(hMode);
-	for (DDMode *pMode=pDriver->pModes;i>0 && pMode!=NULL;i--,pMode=pMode->pNext);
+	DDMode *pMode=pDriver->pModes;
+	for (i;i>0 && pMode!=NULL;i--,pMode=pMode->pNext);
 	if (pMode==NULL)
 		return lastError=DDERR_INVALIDPARAMS;
 
@@ -3767,7 +3819,7 @@ HRESULT	Lib3D::_SetDriverAndMode(const HDRIVER& hDriver,const HMODE& hMode,const
 	DDSCAPS2 ddscaps;
 	ZeroMemory(&ddscaps,sizeof(ddscaps));
 	ddscaps.dwCaps=DDSCAPS_TEXTURE;
-	ULong	tmpFreeRAM;
+	DWORD	tmpFreeRAM;
 
 	//get available video memory to decide whether a mode should be allowed
 	pDD7->GetAvailableVidMem(&ddscaps,&texturesTotalRAM,&tmpFreeRAM);
@@ -6474,7 +6526,8 @@ HRESULT Lib3D::UploadAsDitherTexture( MAPDESC *pmap )
 
 	if (pmap->hTextureMap==0 || pmap->hTextureMap==NULL)
 	{
-		for (SLong j=MAX_TEXTURES-1;j>0 && textureTable[j]!=NULL;j--);
+		SLong j;
+		for (j=MAX_TEXTURES-1;j>0 && textureTable[j]!=NULL;j--);
 		if (!j)
 		{
 			CloseDown();
@@ -7274,7 +7327,8 @@ HRESULT Lib3D::SetMaterial(const HMATERIAL& hMaterial)
 		{
 			if (hLastMaterial.p[i]!=NULL && hLastMaterial.p[i]->hTextureMap==0 || textureTable[hLastMaterial.p[i]->hTextureMap]==NULL)
 			{
-				for (int j=MAX_TEXTURES-1;j>0 && textureTable[j]!=NULL;j--)
+				int j;
+				for (j=MAX_TEXTURES-1;j>0 && textureTable[j]!=NULL;j--)
 				{/* search for next free texture slot */}
 				if (!j)
 				{
@@ -7408,8 +7462,9 @@ HRESULT Lib3D::CreateTexture(MAPDESC* pMapDesc,const TCFLAGS& tcFlag)
 	hTextureMap=pMapDesc->hTextureMap;
 
 	if (hTextureMap==0 || textureTable[hTextureMap]==NULL)
-	{
-		for (SLong i=MAX_TEXTURES-1;i>256 && textureTable[i]!=NULL;i--);
+	{	
+		SLong i;
+		for (i=MAX_TEXTURES-1;i>256 && textureTable[i]!=NULL;i--);
 		if (i==256)
 		{
 			CloseDown();
@@ -7803,7 +7858,7 @@ HRESULT Lib3D::AllocateLandscapeTextures()
 	}
 
 	//check the ammount of available texture RAM for stored textures
-	ULong totalRAM,freeRAM;
+	DWORD totalRAM,freeRAM;
 	DDSCAPS2 ddscaps;
 	ZeroMemory(&ddscaps,sizeof(ddscaps));
 	ddscaps.dwCaps=DDSCAPS_TEXTURE;
@@ -8214,7 +8269,8 @@ HRESULT Lib3D::SetMaterial(UWord ht,MAPDESC *pmap)
 		hMaterial.tsH[1]=1.f/hMaterial.p[1]->h;
 		if (hMaterial.p[1]->hTextureMap==0 || textureTable[hMaterial.p[1]->hTextureMap]==NULL)
 		{
-			for (SLong j=MAX_TEXTURES-1;j>0 && textureTable[j]!=NULL;j--);
+			SLong j;
+			for (j=MAX_TEXTURES-1;j>0 && textureTable[j]!=NULL;j--);
 			if (!j)
 			{
 				CloseDown();
@@ -10513,7 +10569,7 @@ inline void Lib3D::SetVertexCol( SVertex* sVertex, const LIGHTFLAG localLF )
 //Date			Web 29 Mar 2000
 //				frav runs from in to out 0->1
 //------------------------------------------------------------------------------
-inline void Lib3D::ClipSetCols( const SVertex* &vi, const SVertex* &vo, SVertex* &vc, const double &frac )
+inline void Lib3D::ClipSetCols(SVertex* &vi, SVertex* &vo, SVertex* &vc, double &frac )
 {
 //DEADCODE JON 4/18/00 	if ( lightflag == LF_VERTEX )
 //DEADCODE JON 4/18/00 		return;
@@ -11029,13 +11085,14 @@ void Lib3D::GenericPolyClip(SPolygon *poly /*,ULong SizeOfVertex*/)
 	SVertex **polyA,**polyB;
 	SVertex **pCur,**pNxt;
 	SVertex *pV;
+	int i;
 
 	polyA=pCur=(SVertex**)Alloc(sizeof(SVertex*)*poly->vertexcount*2);
 	polyB=(SVertex**)Alloc(sizeof(SVertex*)*poly->vertexcount*2);
 
 	pV=poly->pVertexList;
 
-	for (int i=poly->vertexcount;i!=0;i--)
+	for (i=poly->vertexcount;i!=0;i--)
 	{
 		*pCur=pV;
 		pCur++;
@@ -11047,7 +11104,7 @@ void Lib3D::GenericPolyClip(SPolygon *poly /*,ULong SizeOfVertex*/)
 	ULong pntCnt=poly->vertexcount;
 
 	int limit=int(pntCnt)-1;
-
+	
 	for (i=0;i<limit;i++)
 	{
 	 	int j=i+1;
@@ -11181,13 +11238,14 @@ void Lib3D::PolyClipFrontBack(SPolygon *poly)
 	SVertex **polyA,**polyB;
 	SVertex **pCur,**pNxt;
 	SVertex *pV;
+	int i;
 
 	polyA=pCur=(SVertex**)Alloc(sizeof(SVertex*)*poly->vertexcount*2);
 	polyB=(SVertex**)Alloc(sizeof(SVertex*)*poly->vertexcount*2);
 
 	pV=poly->pVertexList;
 
-	for (int i=poly->vertexcount;i!=0;i--)
+	for (i=poly->vertexcount;i!=0;i--)
 	{
 		*pCur=pV;
 		pCur++;
@@ -12655,7 +12713,9 @@ HRESULT Lib3D::DrawCylinder(const HMATERIAL& hMaterial,	//texture
  	{
 //DeadCode RJS 10Aug00 		SWord	sin_ang,cos_ang;
 		Float	angle;
-
+#ifdef __GNUC__
+              angle=atan2(opposite,adjacent);
+#else
 		_asm
 		{
 			fld		opposite
@@ -12663,7 +12723,7 @@ HRESULT Lib3D::DrawCylinder(const HMATERIAL& hMaterial,	//texture
 			fpatan
 			fstp	angle
 		}
-
+#endif
 //DeadCode RJS 10Aug00 		angle *= 10430.37835047;
 //DeadCode RJS 10Aug00 		SWord	angleofcyl = SWord(angle)-16384;
 
@@ -12851,14 +12911,17 @@ HRESULT Lib3D::CylinderOffsets(	const DoPointStruc& vertex0,	//p0
  	{
 //DeadCode RJS 10Aug00 		SWord	sin_ang,cos_ang;
 		Float	angle;
-
-		_asm
-		{
-			fld		opposite
-			fld		adjacent
-			fpatan
-			fstp	angle
-		}
+#ifdef __GNUC__
+              angle=atan2(opposite,adjacent);
+#else
+                _asm
+                {
+                        fld             opposite
+                        fld             adjacent
+                        fpatan
+                        fstp    angle
+                }
+#endif
 
 //DeadCode RJS 10Aug00 		angle *= 10430.37835047;
 //DeadCode RJS 10Aug00 		SWord	angleofcyl = SWord(angle)-16384;
@@ -13099,7 +13162,7 @@ inline void MonoCls()
 #endif
 }
 
-inline void MonoPrintAt( int x, int y, char* txt )
+inline void MonoPrintAt( int x, int y, const char* txt )
 {
 #ifdef MONO_DEBUG
 	Mono_Text.PrintAt( x, y, (UByte*)txt );
@@ -13132,6 +13195,48 @@ inline void MonoPrintHex( int x, int y, ULong val )
 	Mono_Text.PrintAt( x, y, (UByte*)str );
 #endif
 }
+#ifdef __GNUC__
+ char * __cdecl _i64toa(
+     LONGLONG value, /* [I] Value to be converted */
+     char *str,      /* [O] Destination for the converted value */
+     int radix)      /* [I] Number base for conversion */
+ {
+     ULONGLONG val;
+     int negative;
+     char buffer[65];
+     char *pos;
+     int digit;
+ 
+     if (value < 0 && radix == 10) {
+         negative = 1;
+         val = -value;
+     } else {
+         negative = 0;
+         val = value;
+     } /* if */
+ 
+     pos = &buffer[64];
+     *pos = '\0';
+ 
+     do {
+         digit = val % radix;
+         val = val / radix;
+         if (digit < 10) {
+             *--pos = '0' + digit;
+         } else {
+             *--pos = 'a' + digit - 10;
+         } /* if */
+     } while (val != 0L);
+ 
+     if (negative) {
+         *--pos = '-';
+     } /* if */
+ 
+     memcpy(str, pos, &buffer[64] - pos + 1);
+     return str;
+ }
+#endif
+ 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CloseDown
 //Author		Paul.   
@@ -14277,9 +14382,10 @@ inline void Lib3D::ChangeRenderStateFog( float curFogStart, float curFogEnd )
 {
 
 	DWORD newStateBlocks[MAX_TEXTURE_OPTS];
-	for ( int i = 0; i < MAX_TEXTURE_OPTS; i++ )
+	for (int i = 0; i < MAX_TEXTURE_OPTS; i++ )
 	{
-		for ( int j = 0; j < i && stateBlocks[i] != stateBlocks[j]; j++ )
+		int j;
+		for (j = 0; j < i && stateBlocks[i] != stateBlocks[j]; j++ )
 		{ /*search for duplicate*/ }
 		if ( i != j )
 		{ //  a duplicate state block has been\found...
@@ -14293,9 +14399,9 @@ inline void Lib3D::ChangeRenderStateFog( float curFogStart, float curFogEnd )
 			lastError=pD3DDEV7->CreateStateBlock( D3DSBT_PIXELSTATE, &newStateBlocks[i] );
 		}
 	}
-	for ( i=0; i<MAX_TEXTURE_OPTS; i++ )
+	for (int ii=0; ii<MAX_TEXTURE_OPTS; ii++ )
 	{
-		stateBlocks[i] = newStateBlocks[i];
+		stateBlocks[ii] = newStateBlocks[ii];
 	}
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -15158,7 +15264,7 @@ void Lib3D::EnableFogging(bool fEnable)
 #endif
 }
 
-inline void getNextToken( char* token, fstream input )
+inline void getNextToken( char* token, fstream & input )
 {
 	input.get( token[0] );
 	while ( token[0] == ' ' || token[0] == '\t'|| token[0] == ','  )
@@ -15216,7 +15322,7 @@ HRESULT Lib3D::HandleNaffDriver()
 
 	struct CardToken
 	{
-		char* tokenStr;
+		const char* tokenStr;
 		int tokenVal;
 	};
 
@@ -15313,14 +15419,15 @@ HRESULT Lib3D::HandleNaffDriver()
 			if ( newToken[0] == '\n' )
 				break; // check for end of line.
 
-			for ( int i = 0; i < MAX_TOKEN; i++ )
+			int ii;
+			for (ii = 0; ii < MAX_TOKEN; ii++ )
 			{
-				if ( !strcmp( tokenList[i].tokenStr, newToken ) )
+				if ( !strcmp( tokenList[ii].tokenStr, newToken ) )
 				{
 					break;
 				}
 			}
-			switch( tokenList[i].tokenVal )
+			switch( tokenList[ii].tokenVal )
 			{
 			case DO_DIAGS:
 				OpenDiags();
@@ -15382,7 +15489,8 @@ HRESULT Lib3D::HandleNaffDriver()
 					ULong val;
 					input >> dec >> val;
 					DDTextureFormat* curr = supportedTextFmt;
-					for ( int i = 0; i < val && curr != NULL; i++ )
+                                        int i;
+					for (i = 0; i < val && curr != NULL; i++ )
 					{
 						curr = curr->next;
 					}
@@ -15419,7 +15527,8 @@ HRESULT Lib3D::HandleNaffDriver()
 							input.close();
 							return DDERR_GENERIC;
 						}
-						for ( int format = 0; format < sizeof( numberList ); format++ )
+						int format;
+						for (format = 0; format < sizeof( numberList ); format++ )
 						{ 
 							if ( !strcmp( numberList[format].tokenStr, newToken ) )
 							{
@@ -15536,7 +15645,7 @@ HRESULT Lib3D::HandleNaffDriver()
 		tickCountBuff = new LARGE_INTEGER[frameTimeBuffSize];
 		for ( int i = 0; i<frameTimeBuffSize; i++ )
 		{
-			tickCountBuff[i].QuadPart = 0i64;
+			tickCountBuff[i].QuadPart = 0L;
 			frameTimeBuff[i] = 0;
 		}
 	}
@@ -15894,124 +16003,6 @@ HRESULT Lib3D::TestPoly(const HMATERIAL& hMat)
 #define rdtsc _asm _emit 0x0f _asm _emit 0x31
 #define rdmsr _asm _emit 0x0f _asm _emit 0x32
 
-#pragma warning (disable : 4035)
-UWord cpu_id()
-{
-	_asm
-	{
-        push    ebx
-        push    ecx
-        push    edx
-        push    ebp
-        mov     ebp,esp
-        xor     dx,dx                   ; result = 0 (UNKNOWN)
-//**********************************************************************
-// The 486 test
-//
-//   Try toggling the ID bit in EFLAGS.  If the flag can't be toggled,
-//   it's a 486.
-//
-// Note:
-//   This one isn't completely reliable -- I've heard that the NexGen
-//   CPU's don't make it through this one even though they have all
-//   the Pentium instructions.
-//**********************************************************************
-        pushfd
-        pop     cx
-        pop     bx
-        mov     dl,4                    ;
-        mov     ax,bx                   ;
-        xor     al,20h                  ; flip EFLAGS ID bit
-        push    ax                      ;
-        push    cx                      ;
-        popfd                           ;
-        pushfd                          ;
-        pop     cx                      ;
-        pop     ax                      ;
-        and     al,20h                  ; check ID bit
-        xor     al,bl                   ; Q: did ID bit change?
-        jz      TestNpu                 ;   N: it's a 486
-
-//**********************************************************************
-// The Pentium+ tests
-//
-//   First, we issue a CPUID instruction with EAX=0 to get back the
-//   manufacturer's name string.  (We only check the first letter.)
-//
-//**********************************************************************
-        push    dx                      ;
-        xor     eax,eax                 ;
-        cpuid                           ;
-        pop     dx                      ;
-        cmp     bl,'G'                  ; Q: GenuineIntel?
-        jz      WhatPent                ;   Y: what kind?
-        or      dh,CYRIX                ; assume Cyrix for now
-        cmp     bl,'C'                  ;
-        jz      WhatPent                ;
-        xor     dh,(CYRIX OR AMD)       ;
-        cmp     bl,'A'                  ;
-        jz      WhatPent                ;
-        xor     dh,(AMD OR NEXGEN)      ;
-        cmp     bl,'N'                  ;
-        jz      WhatPent                ;
-        xor     dh,(NEXGEN OR UMC)      ; assume it's UMC
-        cmp     bl,'U'                  ;
-        jz      WhatPent                ;
-        xor     dh,UMC                  ; we don't know who made it!
-//**********************************************************************
-// The Pentium+ tests (part II)
-//
-//   This test simply gets the family information via the CPUID
-//   instruction
-//
-//**********************************************************************
-WhatPent:
-        push    edx                     ;
-        xor     eax,eax                 ;
-        inc     al                      ;
-        cpuid                           ;
-		xor		al,al
-		test	edx,CPUSUPP_TS
-		jz		NoRDTSC
-		or		al,CPU_TS
-NoRDTSC:
-		test	edx,CPUSUPP_MMX
-		jz		NoMMX
-		or		al,CPU_MMX
-NoMMX:
-        pop     edx                     ;
-		or		dh,al					; fill in rdtsc/mmx flags
-        and     ah,0fh                  ;
-        mov     dl,ah                   ; put family code in DL
-
-//**********************************************************************
-// The NPU test
-//
-//   We reset the NPU (using the non-wait versions of the instruction, of
-//   course!), put a non-zero value on the stack, then write the NPU
-//   status word to that stack location.  Then we check for zero, which
-//   is what would be there if there were an NPU.
-//
-//**********************************************************************
-TestNpu:
-        mov     esp,ebp                 ; restore stack
-        fninit                          ; init but don't wait
-        mov     ax,0EdEdh               ;
-        push    ax                      ; put non-zero value on stack
-		fnstsw  word ptr [ebp-2]        ; save NPU status word
-        pop     ax                      ;
-        or      ax,ax                   ; Q: was status = 0?
-        jnz     finish                  ;   N: no NPu
-        or      dh,HAS_NPU              ;   Y: has NPU
-finish:
-        mov     ax,dx                   ; put our return value in place
-        pop     ebp                     ; clean up stack
-        pop     edx                     ;
-        pop     ecx                     ;
-        pop     ebx                     ;
-	}
-}
-#pragma warning (default : 4035)
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CpuInfo
 //Author		Paul.   
@@ -16020,9 +16011,7 @@ finish:
 //------------------------------------------------------------------------------
 void Lib3D::CpuInfo()
 {
-	UWord cpuflags=cpu_id();
-	if (cpuflags&CPU_MMX)	flags=Flags(flags|F_MMX);
-	else					flags=Flags(flags&~F_MMX);
+	flags=Flags(flags|F_MMX);
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Lib3DCreate
@@ -16073,7 +16062,7 @@ BOOL APIENTRY DllMain(HANDLE hModule,DWORD  ul_reason_for_call,LPVOID lpReserved
 struct SErrorText
 {
 	HRESULT hrErrorCode;
-	char *errorDesc;
+	const char *errorDesc;
 }
 ErrorCodes[]=
 {
@@ -16268,7 +16257,7 @@ ErrorCodes[]=
 	{E_POINTER,							"IUNKNOWN: E_POINTER"},
 	{S_OK,								NULL}};
 
-void GetErrorDesc( HRESULT err, char* &desc )
+void GetErrorDesc( HRESULT err, const char* &desc )
 {
 	if ( err == 0 )
 	{
@@ -16276,8 +16265,8 @@ void GetErrorDesc( HRESULT err, char* &desc )
 	} else 
 	{
 		HRESULT cur = ErrorCodes[0].hrErrorCode;
-		for ( int i=0; cur != err && cur != S_OK; cur = ErrorCodes[++i].hrErrorCode )
-		{ /*search*/ }
+		int i;
+		for (i=0; cur != err && cur != S_OK; cur = ErrorCodes[++i].hrErrorCode );
 		
 		if ( cur == err )
 			desc = ErrorCodes[i].errorDesc;
@@ -16298,7 +16287,8 @@ HRESULT Lib3D::ChangeDisplaySettings(HWND hWnd,SWord width,SWord height,bool fSe
 		DEVMODE dmMode;
 		ZeroMemory(&dmMode,sizeof(DEVMODE));
 		dmMode.dmSize=sizeof(DEVMODE);
-		for (int i=0,f=0;(f=EnumDisplaySettings(NULL,i,&dmMode))!=0;i++)
+		int i,f;
+		for (i=0,f=0;(f=EnumDisplaySettings(NULL,i,&dmMode))!=0;i++)
 			if (dmMode.dmPelsWidth==width &&
 				dmMode.dmPelsHeight==height)
 				break;
@@ -16414,7 +16404,7 @@ ULong	Lib3D::GetFreeVideoMemory( void )
 	DDSCAPS2 ddscaps;
 	ZeroMemory(&ddscaps,sizeof(ddscaps));
 	ddscaps.dwCaps=DDSCAPS_TEXTURE;
-	ULong	freeRAM,totalAvail;
+        DWORD	freeRAM,totalAvail;
 
 	//get available video memory to decide whether a mode should be allowed
 	pDD7->GetAvailableVidMem(&ddscaps,&totalAvail,&freeRAM);
@@ -17954,6 +17944,7 @@ void Lib3D::GenericPolyClip2D(SPolygon *poly)
 	int newPntCnt=0;
 	int pntCnt=int(poly->vertexcount);
 	int limit;
+	int i;
 
 	int numTextures = poly->material.f;
 	SVertex **polyA,**polyB;
@@ -17965,7 +17956,7 @@ void Lib3D::GenericPolyClip2D(SPolygon *poly)
 
 	pV=poly->pVertexList;
 
-	for (int i=poly->vertexcount;i!=0;i--)
+	for (i=poly->vertexcount;i!=0;i--)
 	{
 		*pCur=pV;
 		pCur++;

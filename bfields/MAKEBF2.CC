@@ -476,7 +476,7 @@ struct	NoValInst:public	DataInst
 struct	FNameInst:public	DataInst
 {
 	TokenName*	filenumtext;
-	FNameInst()	{};
+	FNameInst()	{filenumtext=NULL;};
 	DataInst&	operator=(DataInst &src)
 	{	return(NoValInst&) (DataInst::operator =(src));}
 

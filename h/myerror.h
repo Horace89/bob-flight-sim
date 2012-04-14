@@ -21,10 +21,10 @@ class	 Error
 		~Error(void );
 
 //DeadCode JIM 02Jul96 		void Error::EmitSysErr(char *, ...);
-		Error& Error::ExitMode();
-		Error& Error::Say(char *, ...);
-		Error& Error::SayAndQuit(const char *, ...);
-		void Error::Quit();
+		Error& ExitMode();
+		Error& Say(char *, ...);
+		Error& SayAndQuit(const char *, ...);
+		void Quit();
 //#ifdef __MSVC__
 //#define Quit 
 //#define SayAndQuit 

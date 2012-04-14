@@ -81,7 +81,7 @@ public:
 	enum	GameSide	{SIDE_RAF, SIDE_LW};
 	static	GameSide	gameside;
 	RFullPanelDial(CWnd* pParent = NULL);   // standard constructor
-	RFullPanelDial::~RFullPanelDial();
+	~RFullPanelDial();
 	FullScreen* m_pStartScreen;	
 	void PositionRListBox();
 	CRect GetDialPosition(RDialog* dial, UINT dialID);
@@ -184,13 +184,13 @@ public:
 	void	ChangeFamilyAnim();
 
 	bool	OnFlyingClosed(RDialog*,int);
-	Bool RFullPanelDial::QuickMissionBlue();
-	Bool RFullPanelDial::QuickMissionRed();
-	Bool RFullPanelDial::QuickMissionDesc();
-	Bool RFullPanelDial::QuickMissionParameters();
+	Bool QuickMissionBlue();
+	Bool QuickMissionRed();
+	Bool QuickMissionDesc();
+	Bool QuickMissionParameters();
 
 
-	Bool RFullPanelDial::PaintShopDesc();
+	Bool PaintShopDesc();
 
 
 
@@ -290,7 +290,7 @@ public:
 	Bool	FragBackupOptions(FullScreen*&fs);
 	Bool	FragFly2(FullScreen*&fs);									//AMM 10Jul00
 	Bool	ReturnToMapAfterReview(FullScreen*&fs);
-	Bool	RFullPanelDial::ExitLastDay(FullScreen*&fs);
+	Bool	ExitLastDay(FullScreen*&fs);
 	Bool	Pseudo3D(FullScreen*&fs);
 	Bool	StartCampBackground(FullScreen*&fs);
 	Bool	StartCampObjectives(FullScreen*&fs);

@@ -115,6 +115,7 @@ __fastcall TBfieldForm::TBfieldForm(TComponent* Owner)
 		Persons2::uidbandmax[c]=j;
 	}	while (c<2||(int)Persons2::uidbandmax[c]!=0);
 	Persons2::pItem=WorldStuff::pItem;
+	fclose(f);
 }
 //---------------------------------------------------------------------------
 void __fastcall TBfieldForm::OpenForm()

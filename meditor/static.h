@@ -21,8 +21,8 @@ __published:	// IDE-managed Components
 private:	// User declarations
 public:		// User declarations
 	__fastcall TStaticForm(TComponent* Owner);
-	void	__fastcall TStaticForm::OpenForm();
-int __fastcall TStaticForm::FindNationality(UniqueID uid);
+	void	__fastcall OpenForm();
+int __fastcall FindNationality(UniqueID uid);
 
 };
 //---------------------------------------------------------------------------

@@ -855,7 +855,7 @@ void Persons2::InitGamePiece()
 		uidbandmax[c]=j;
 	}	while (c<2||uidbandmax[c]!=0);
 
-	
+	fclose(f);
 }
 
 void	Persons2::InitSubPiece()

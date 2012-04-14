@@ -835,7 +835,7 @@ void	DeadStream::SetWorldDead(WorldStuff* world)
 								b.PutByte(elts);
 								if (elts)
 									do{
-										assert	(elts--);
+										assert	(elts);elts--;
 										b.SetNextDeadElt(g.AnimDataByte(),g.PostLauncherDataSize(),g.PostLauncherDataLoc());
 									}while (g++);
 								assert(elts==0);
@@ -938,7 +938,7 @@ void	DeadStream::GetWorldDead(WorldStuff* world)
 				g.AnimDataByte()=first;
 				assert(datalen==0 || g.PostLauncherDataSize()==datalen);
 				memcpy(g.PostLauncherDataLoc(),src,datalen);
-				assert(count--);
+				assert(count);count--;
 			}while (g++);
 		}
 		else
@@ -1013,7 +1013,7 @@ void	DeadStream::GetWorldDead(WorldStuff* world)
 						g.AnimDataByte()=first;
 						assert(datalen==0 ||g.PostLauncherDataSize()==datalen);
 						memcpy(g.PostLauncherDataLoc(),src,datalen);
-						assert(count--);
+						assert(count);count--;
 					}while (g++);
 					lastuid=p->uniqueID.count+1;
 

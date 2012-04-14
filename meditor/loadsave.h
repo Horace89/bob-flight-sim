@@ -53,7 +53,7 @@ private:	// User declarations
 	FileModes filemode;
 	char* ext;
 	AnsiString		InputTitle;
-bool	TFileLoadSave::Able(TButton* b,bool setting);
+bool	Able(TButton* b,bool setting);
 public:		// User declarations
 //void	DefaultDirectory();
 	int		CurrDirNum;

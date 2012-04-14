@@ -230,14 +230,14 @@ public:
 
 	// change to linear value frac distance between current col and other col
 	// doesn't do alpha
-	inline void interpRGB( const R3DCOLOUR other, const double frac)
+	inline void interpRGB( const R3DCOLOUR & other, const double frac)
 	{
 		red+= UByte(double(other.red-red) * frac);
 		green+= UByte(double(other.green-green) * frac);
 		blue+= UByte(double(other.blue-blue) * frac);
 	}
 
-	inline void interpRGBA( const R3DCOLOUR other, const double frac)
+	inline void interpRGBA( const R3DCOLOUR & other, const double frac)
 	{
 		red+= UByte(double(other.red-red) * frac);
 		green+= UByte(double(other.green-green) * frac);
@@ -418,10 +418,14 @@ typedef struct Material
 		isMasked=MSK_NONE;
 		uniqueTextID = TIT_PLAIN+cc;
 		p[0]=p[1]=p[2]=NULL;
+		tsW[0]=tsW[1]=tsW[2]=NULL;
+		tsH[0]=tsH[1]=tsH[2]=NULL;
 	}
 	Material() 
 	{
 		p[0]=p[1]=p[2]=NULL;
+		tsW[0]=tsW[1]=tsW[2]=NULL;
+		tsH[0]=tsH[1]=tsH[2]=NULL;
 		isMasked=MSK_NONE;
 		f=0;
 		c=0;
@@ -778,7 +782,7 @@ public:
 		ry = ny;
 		rz = nz;
 	}
-	void setVertexCol( const R3DCOLOUR newCol ) // set a colour on the vertex - cannot be used in conjunction with normal info
+	void setVertexCol( const R3DCOLOUR & newCol ) // set a colour on the vertex - cannot be used in conjunction with normal info
 	{
 		color = newCol;
 #ifndef _NO_VERTEX_SHARING_HDR
@@ -915,6 +919,7 @@ public:
 
 	SVertex( void )	// constuctor
 	{
+	 pNext=NULL;
 #ifndef _NO_VERTEX_SHARING_HDR
 		identical = NULL;
 #endif
@@ -1116,7 +1121,7 @@ public:
 	virtual HRESULT GetSurfaceDesc(ROWANSURFACEDESC*)=0;
 
 	//3D interface methods
-	virtual	HRESULT BeginScene(const HRENDERTARGET)=0;
+	virtual	HRESULT BeginScene(const HRENDERTARGET &)=0;
 	virtual HRESULT End3DScene()=0;
 	virtual HRESULT EndScene()=0;
 	virtual HRESULT ClearTargetZ()=0;

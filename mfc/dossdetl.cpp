@@ -191,7 +191,10 @@ void DossierDetails::DosNotes()
 				string = IDS_RECONNREQUIRED;
 		}
 #ifndef	NDEBUG
+		if (trg)
+		{	
 		s->SetString(LoadResString(string)+CSprintf("\nDamage Levels: True: %i%% LWIntel: %i%%\n",trg->truestatus,trg->knownstatus));
+		}
 #else
 		s->SetString(LoadResString(string));
 #endif

@@ -58,7 +58,7 @@ LINK32=link.exe
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
 PostBuild_Desc=Copying
-PostBuild_Cmds=copy ..\..\release\english\boblang.dll ..\..\game\english\text
+PostBuild_Cmds=mkdir ..\..\game\english\text\	copy /y ..\..\release\english\boblang.dll ..\..\game\english\text
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "LEngRes - Win32 Debug"
@@ -89,7 +89,7 @@ LINK32=link.exe
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
 PostBuild_Desc=Copying resources
-PostBuild_Cmds=copy   ..\..\debug\english\boblang.dll   ..\..\game\english\text\ 
+PostBuild_Cmds=copy  /y  ..\..\debug\english\boblang.dll    ..\..\game\english\text\ 
 # End Special Build Tool
 
 !ENDIF 

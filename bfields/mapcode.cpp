@@ -457,7 +457,7 @@ void	PackageList::LoadGame(BIStream& bis)
 		if (pack[packnum].wpsused)
 			FixupAircraft(packnum);
 	Todays_Packages.SetVisibilityFlags();
-	delete buffer;
+	delete [] buffer;
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴

@@ -27,7 +27,7 @@ public:
 
 	LWTaskSummary(CWnd* pParent = NULL);   // standard constructor
 
-	void LWTaskSummary::Refresh();
+	void Refresh();
 
 	struct	SquadInfo
 	{

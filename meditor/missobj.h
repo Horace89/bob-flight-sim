@@ -40,10 +40,10 @@ __published:	// IDE-managed Components
 private:	// User declarations
 public:		// User declarations
 	__fastcall TMissionObjectivesForm(TComponent* Owner);
-	__fastcall TMissionObjectivesForm::OpenForm();
-	__fastcall TMissionObjectivesForm::InitForm();
-	__fastcall TMissionObjectivesForm::ProcessForm();
-	__fastcall TMissionObjectivesForm::RefreshForm();
+	__fastcall OpenForm();
+	__fastcall InitForm();
+	__fastcall ProcessForm();
+	__fastcall RefreshForm();
 
 
 

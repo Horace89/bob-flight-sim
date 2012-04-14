@@ -1498,7 +1498,7 @@ private:
 
 	void GetViewPort( D3DVALUE &sx, D3DVALUE &sy, D3DVALUE &cx, D3DVALUE &cy );	//JON 12Jun00
 
-	HRESULT Lib3D::SoftwareImageCopy( 
+	HRESULT SoftwareImageCopy( 
 		void* pSourceData,
 		int sourceWidth,
 		int sourceHeight,
@@ -1611,7 +1611,7 @@ private:
 //	void GetErrorDesc( HRESULT err, char* &desc );
 	HRESULT	_SetDriverAndMode(const HDRIVER&,const HMODE&,const HWND& );
 	HRESULT BackgroundImage( BITMAPFILEHEADER* pFile );
-	HRESULT _BeginScene(const HRENDERTARGET hRenderTarget);				//JON 4/19/00
+	HRESULT _BeginScene(const HRENDERTARGET & RenderTarget);				//JON 4/19/00
 
 	Lib3DPoint* _BeginPoly( const ULong vertexCount ); // the internal versions of this routine
 //	Lib3DPoint* _BeginFan( const ULong vertexCount ); // the internal versions of this routine
@@ -1620,7 +1620,7 @@ private:
 									const D3DVALUE u0,const D3DVALUE v0,	//texture coords for tl corner
 									const D3DVALUE u1,const D3DVALUE v1);	//texture coords for br corner )
 
-	HRESULT Lib3D::_DrawTransformedCylinder( const D3DVALUE fu0, const D3DVALUE fv0, const D3DVALUE fu1, const D3DVALUE fv1 ); // assumes poly is within currentPoly
+	HRESULT _DrawTransformedCylinder( const D3DVALUE fu0, const D3DVALUE fv0, const D3DVALUE fu1, const D3DVALUE fv1 ); // assumes poly is within currentPoly
 	HRESULT _SetProjectionMatrix(const Angles&,const D3DVALUE&,const D3DVALUE&,const D3DVALUE&,const bool justVisCheck = false);
 public:
 	Lib3D();
@@ -1646,7 +1646,7 @@ public:
 	HRESULT GetSurfaceDesc(ROWANSURFACEDESC*);
 
 	// 3D interface methods
-	HRESULT BeginScene(const HRENDERTARGET);
+	HRESULT BeginScene(const HRENDERTARGET &);
 	HRESULT End3DScene();
 	HRESULT EndScene();
 	HRESULT ClearTargetZ();
@@ -4169,7 +4169,7 @@ HRESULT Lib3D::GetSurfaceDesc(ROWANSURFACEDESC *pRowanSurface)
 //Date			Thu 11 Nov 1999
 //
 //------------------------------------------------------------------------------
-HRESULT Lib3D::BeginScene(const HRENDERTARGET hRenderTarget)
+HRESULT Lib3D::BeginScene(const HRENDERTARGET & hRenderTarget)
 {
 #ifdef	_SHAPE_DEBUG_
 	noPolysDebug = 0;
@@ -4238,7 +4238,7 @@ HRESULT Lib3D::BeginScene(const HRENDERTARGET hRenderTarget)
 //				Stripped out of above so it can be used from FlushAsBackground too
 //------------------------------------------------------------------------------
 //#pragma warnmsg( "inline me" )
-inline HRESULT Lib3D::_BeginScene(const HRENDERTARGET hRenderTarget)
+inline HRESULT Lib3D::_BeginScene(const HRENDERTARGET & hRenderTarget)
 {
 	flags=Flags(flags|F_INSCENE);
 
@@ -13110,7 +13110,7 @@ inline void MonoPrintVal( int x, int y, double val )
 {
 #ifdef MONO_DEBUG
 	static char str[20];
-	sprintf( str, "%d", val );
+	sprintf( str, "%f", val );
 	Mono_Text.PrintAt( x, y, (UByte*)str );
 #endif
 }

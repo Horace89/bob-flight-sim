@@ -227,7 +227,7 @@ class	fileman
 	enum	DirNameInd	{FIRSTdirnameind=0,MAXDIRIND=254,ALIASDIRIND=255};
 
 	#ifdef	_WINBASE_
-void	fileman::CDseekreadfilepos(HANDLE winhandle,int index,void* buffer,int sizecopy);
+void	CDseekreadfilepos(HANDLE winhandle,int index,void* buffer,int sizecopy);
 	#endif
 public:
 enum		{filenameindex=240,pathnamesize=256,fakefileoffset=800,fakefileindex=50};

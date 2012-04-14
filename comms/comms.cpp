@@ -626,7 +626,10 @@ Bool DPlay::UINetworkSelectFly ()
 		{													
 			if (!AllPlayersHaveSlots())						
 			{												
-				CommsMessage(IDS_NOTSLOTS);					
+				CommsMessage(IDS_NOTSLOTS);	
+#ifdef CTRACE
+		fclose(fp);
+#endif				
 				return FALSE;								
 			}												
 		}													
@@ -635,7 +638,12 @@ Bool DPlay::UINetworkSelectFly ()
 			for (n=0;n<MAXPLAYERS;n++)						
 			{												
 				if (H2H_Player[n].status!=CPS_NONE && H2H_Player[n].status!=CPS_READYROOM)
-					return FALSE;								
+				{
+#ifdef CTRACE
+		fclose(fp);
+#endif		
+					return FALSE;	
+				}							
 			}													
 		}														
 	}															
@@ -678,7 +686,12 @@ Bool DPlay::UINetworkSelectFly ()
 		SendGoResponse();
 
 		if (!GetHostGo())
-			return FALSE;
+				{
+#ifdef CTRACE
+		fclose(fp);
+#endif		
+					return FALSE;	
+				}	
 	}
 #ifdef CTRACE
 		fprintf(fp,"begin info collection\n");
@@ -726,15 +739,21 @@ Bool DPlay::UINetworkSelectFly ()
 		{
 			if (!SendCampaignStruc(false))
 			{
-				return FALSE;
+#ifdef CTRACE
+		fclose(fp);
+#endif		
+					return FALSE;	
 			}
 		}
 		else
 		{
 			if (!ReceiveCampaignStruc())
-			{
-				return FALSE;
-			}
+				{
+#ifdef CTRACE
+		fclose(fp);
+#endif		
+					return FALSE;	
+				}	
 		}
 	}
 

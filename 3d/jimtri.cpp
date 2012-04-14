@@ -316,7 +316,7 @@ char*	getbyteloc(int x,int y,int z)
 //------------------------------------------------------------------------------
 int TriSeq(PntDef* pntArray,UByte* startpoint,int pntCnt)
 {
-	char* tmpindex;
+	char* tmpindex=NULL;
  	int tricount=1;
 
 	//first keep adding triangles until we go anticlockwise

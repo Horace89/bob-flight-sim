@@ -1117,5 +1117,4 @@ end function
 ' DON'T PUT YOUR OWN FUNCTION HERE. BUILD WILL PUT %USER IN FOR YOU!!!!!
 '
 'Function myname():myname="JIM":End Function 
-Function myname():myname="DAW":End Function
-Function myusername():myusername="RATTUS":End Function
+Function myname():myname="":End                                                                                        Function

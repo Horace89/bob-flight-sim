@@ -13744,7 +13744,7 @@ void	shape::dosetzbias(UByteP&	instr_ptr)
 
 //DeadCode DAW 07May99 		IsSubShape = oldsubstat;
  
-		delete subco;												//RJS 02Dec97
+		delete [] subco;												//RJS 02Dec97
 	}
 	light_matrix=bupMatrix;						//PD 8May98
 }

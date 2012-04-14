@@ -18,11 +18,11 @@ __published:	// IDE-managed Components
 	void __fastcall SuperGroupGridMouseUp(TObject *Sender, TMouseButton Button,
 	TShiftState Shift, int X, int Y);
 private:	// User declarations
-void __fastcall TSuperGroups::Refresh();
+void __fastcall Refresh();
 
 public:		// User declarations
 	__fastcall TSuperGroups(TComponent* Owner);
-	  void __fastcall TSuperGroups::OpenForm();
+	  void __fastcall OpenForm();
 
 };
 //---------------------------------------------------------------------------

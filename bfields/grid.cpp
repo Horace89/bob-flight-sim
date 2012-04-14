@@ -285,7 +285,7 @@ bool Grid_Byte::load( char *filename )
 	long type;
 	fread( &type, 4, 1, fp );
 	if ( type != TYPE_BYTE )
-		return false;
+		{fclose(fp);return false;}
 
 	// load into a temporary header
 	long temp[80*80];
@@ -303,7 +303,7 @@ bool Grid_Byte::load( char *filename )
 	{
 		copyBlock( temp[i], i );
 	}
-
+    fclose(fp);
 	return true;
 }
 

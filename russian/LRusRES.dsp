@@ -8,12 +8,12 @@ CFG=LRusRes - Win32 Debug
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
 !MESSAGE 
-!MESSAGE NMAKE /f "LRusRES.MAK".
+!MESSAGE NMAKE /f "LRusRES.mak".
 !MESSAGE 
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "LRusRES.MAK" CFG="LRusRes - Win32 Debug"
+!MESSAGE NMAKE /f "LRusRES.mak" CFG="LRusRes - Win32 Debug"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
@@ -47,7 +47,7 @@ RSC=rc.exe
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
 # ADD BASE RSC /l 0x809 /d "NDEBUG"
-# ADD RSC /l 0x809 /i "..\mfc" /i "..\mfc\res" /d "NDEBUG"
+# ADD RSC /l 0x419 /i "..\mfc" /i "..\mfc\res" /d "NDEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
@@ -58,7 +58,7 @@ LINK32=link.exe
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
 PostBuild_Desc=Copying
-PostBuild_Cmds=copy ..\..\release\russian\boblang.dll ..\..\game\russian\text
+PostBuild_Cmds=copy /y ..\..\release\russian\boblang.dll ..\..\game\russian\text
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "LRusRes - Win32 Debug"
@@ -79,7 +79,7 @@ PostBuild_Cmds=copy ..\..\release\russian\boblang.dll ..\..\game\russian\text
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD BASE RSC /l 0x809 /d "_DEBUG"
-# ADD RSC /l 0x809 /i "..\mfc" /i "..\mfc\res" /d "_DEBUG"
+# ADD RSC /l 0x419 /i "..\mfc" /i "..\mfc\res" /d "_DEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
@@ -89,7 +89,7 @@ LINK32=link.exe
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
 PostBuild_Desc=Copying resources
-PostBuild_Cmds=copy   ..\..\debug\russian\boblang.dll   ..\..\game\russian\text\ 
+PostBuild_Cmds=copy  /y   ..\..\debug\russian\boblang.dll    ..\..\game\russian\text\ 
 # End Special Build Tool
 
 !ENDIF 

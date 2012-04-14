@@ -95,7 +95,7 @@ public:
 	afx_msg void OnClickedDis();
 	afx_msg void OnClickedFrag2();
 	afx_msg void EndDayReview();
- 	afx_msg void CMainToolbar::EndDayRouting();
+ 	afx_msg void EndDayRouting();
 
 	afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);
 	afx_msg void OnClickedAircraftalloc();

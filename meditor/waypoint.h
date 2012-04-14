@@ -125,38 +125,38 @@ __published:	// IDE-managed Components
 private:	// User declarations
 #ifdef   UNIQUEIDVALS_Included
 public:
-void __fastcall TWayPointForm::InsertWPAfter(UniqueID	prevu);
-void __fastcall TWayPointForm::InsertWPBefore(UniqueID	nextu);
-void __fastcall TWayPointForm::ReposEventWp(UniqueID u);
+void __fastcall InsertWPAfter(UniqueID	prevu);
+void __fastcall InsertWPBefore(UniqueID	nextu);
+void __fastcall ReposEventWp(UniqueID u);
 private:
-void __fastcall TWayPointForm::FindNewWPPos(UniqueID u);
-void __fastcall TWayPointForm::WPDelete(UniqueID curru);
+void __fastcall FindNewWPPos(UniqueID u);
+void __fastcall WPDelete(UniqueID curru);
 #endif
 //	 void __fastcall TWayPointForm::FindNewWPPos(RodsWayPoint*	wp,SLong prevx,SLong prevy,SLong prevz,
 //												SLong nextx,SLong nexty,SLong nextz,int percent);
 //	 void __fastcall TWayPointForm::WPDelete(RodsWayPoint*);
-	void	__fastcall TWayPointForm::FillRouteList();
-void	__fastcall TWayPointForm::FillWpActionList();
-void __fastcall TWayPointForm::RefreshWayPointForm();
+	void	__fastcall FillRouteList();
+void	__fastcall FillWpActionList();
+void __fastcall RefreshWayPointForm();
 //void __fastcall TWayPointForm::ReposEventWp(RodsWayPoint* Wp,int offset);
-void __fastcall TWayPointForm::AddEventButtons();
-void	__fastcall TWayPointForm::FillEventRangeList();
-void __fastcall TWayPointForm::SetMoveOnButtons();
-void __fastcall TWayPointForm::FixedOffsetEditMade();
-void __fastcall TWayPointForm::RandomOffsetEditMade();
-void __fastcall TWayPointForm::CalcVel(info_waypoint* W);
-void __fastcall TWayPointForm::CalcEta(info_waypoint* W);
-int __fastcall TWayPointForm::LegStartTime(info_waypoint* W);
-void __fastcall TWayPointForm::OnEtaChange();
-int __fastcall TWayPointForm::LegTime (int levelvel,info_waypoint* W);
-int __fastcall TWayPointForm::LegVel (int requiredtime,info_waypoint* W);
+void __fastcall AddEventButtons();
+void	__fastcall FillEventRangeList();
+void __fastcall SetMoveOnButtons();
+void __fastcall FixedOffsetEditMade();
+void __fastcall RandomOffsetEditMade();
+void __fastcall CalcVel(info_waypoint* W);
+void __fastcall CalcEta(info_waypoint* W);
+int __fastcall LegStartTime(info_waypoint* W);
+void __fastcall OnEtaChange();
+int __fastcall LegTime (int levelvel,info_waypoint* W);
+int __fastcall LegVel (int requiredtime,info_waypoint* W);
 #ifdef	ANGLES_Included             
-ANGLES __fastcall TWayPointForm::BestClimbwrtAlt(info_waypoint* W);
+ANGLES __fastcall BestClimbwrtAlt(info_waypoint* W);
 #endif
-void __fastcall TWayPointForm::InterceptandRange ();
-int  __fastcall TWayPointForm::FindVel( int& vel,info_waypoint* W);
-void __fastcall TWayPointForm::EtaUpdate();
-void __fastcall TWayPointForm::WpSpeedBtnClick(TObject *Sender);
+void __fastcall InterceptandRange ();
+int  __fastcall FindVel( int& vel,info_waypoint* W);
+void __fastcall EtaUpdate();
+void __fastcall WpSpeedBtnClick(TObject *Sender);
 
  
 
@@ -170,11 +170,11 @@ public:		// User declarations
 //	 RodsWayPoint* __fastcall TWayPointForm::InsertAfter(RodsWayPoint*	oldwp);
 //	void __fastcall TWayPointForm::InsertWPAfter(RodsWayPoint* wp );
 //	void __fastcall TWayPointForm::InsertWPBefore(RodsWayPoint* wp );
-	void	__fastcall TWayPointForm::ShowWpDialog(int X, int Y);
+	void	__fastcall ShowWpDialog(int X, int Y);
 
-void __fastcall TWayPointForm::PositionEvents();
-void __fastcall TWayPointForm::WpDelete();
-void __fastcall TWayPointForm::ResetTargetAction();
+void __fastcall PositionEvents();
+void __fastcall WpDelete();
+void __fastcall ResetTargetAction();
 	  
 bool WayPointFormEdits;
 	SLong	Range;

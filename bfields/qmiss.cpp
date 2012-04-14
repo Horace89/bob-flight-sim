@@ -107,7 +107,7 @@ QuickDef	CSQuick1::quickdef;
 #define	ES_ANDAGAIN		\2
 
 
-#define	ES_MAX			255
+#define	ES_MAX			256
 
 #define	ES(name)	TOSTR(\0)TOSTR(ES_##name)
 int lookupspace[ES_MAX]={0};
@@ -1197,15 +1197,18 @@ QuickDef	CSQuick1::quickmissions[]=
 
 int	main(int argc,char** argv)
 {
+	if (argc >1) {
 	int i;
-	for (i=0;CSQuick1::quickmissions[i].titlename;i++)
-	{}
+	for (i=0;CSQuick1::quickmissions[i].titlename;i++);
 	FILE* f=fopen(argv[1],"wb");
+      if (!f) return 1;
 	fwrite(CSQuick1::quickmissions,i+1,sizeof(QuickDef),f);
-	fwrite(lookupspace,256,4,f);
+	fwrite(lookupspace,sizeof(lookupspace),4,f);
 	fwrite(extrastrings,1,sizeof(extrastrings),f);
 	fclose(f);
 	return 0;
+	}
+	return 2;
 }
 #else
 QuickDef::QuickMissionArray	CSQuick1::quickmissions;

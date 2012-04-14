@@ -23,7 +23,7 @@ __published:	// IDE-managed Components
 private:	// User declarations
 public:		// User declarations
 	__fastcall TMissionTextDlg(TComponent* Owner);
-	void __fastcall TMissionTextDlg::OpenForm();
+	void __fastcall OpenForm();
 
 };
 //---------------------------------------------------------------------------

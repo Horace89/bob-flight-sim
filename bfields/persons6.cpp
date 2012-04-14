@@ -639,7 +639,7 @@ void	EnumStuff::convertstrings(char*keyword,char*leadchars,EnumCtrl& tokenlist,c
 void	EnumStuff::savestrings(char* prestring,char* midstring,char* poststring,EnumCtrl& tokenlist,char*fname,EnumCtrl& textlist)
 {   return;	//TEMPORARY CLUDGE SO THAT USING MISSION EDITOR DOESN'T LOSE NON-CONFORMANT STRINGS
 			//These strings can either be too long or they can contain quotes.
-            //"To be or not to be.. " 
+            //"To be or not to be.. "   !!!!! DRUGS
 	ofstream f(fname);
 	for (int i=tokenlist.min;i<tokenlist.max;i++)
     {

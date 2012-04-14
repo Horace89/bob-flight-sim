@@ -62,7 +62,7 @@ public:
 protected:
 	void	LWRefresh();
 	void	RAFRefresh();
-	CString RAFCombat::EnemyReport(StatsPerType* acarray,int c0,int c1);
+	CString EnemyReport(StatsPerType* acarray,int c0,int c1);
 //DeadCode JIM 23Oct00 	CString EnemyReport(int hurr, int spit, bool shownumbers);
 //DeadCode JIM 23Oct00 	CString EnemyReport(int* acarray, bool shownumbers);
 //DeadCode JIM 23Oct00 				int totalacseen[PT_HE59 - PT_GER_FLYABLE];

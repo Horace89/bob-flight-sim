@@ -697,7 +697,7 @@ struct	FNameInst:public	DataInst
 {
 	TokenName*	filenumtext;
 	DataInst*	filenumber;
-	FNameInst()	{};
+	FNameInst()	{filenumtext=NULL;filenumber=NULL;};
 	DataInst&	operator=(DataInst &src)
 	{	return(NoValInst&) (DataInst::operator =(src));}
 	void	SaveTxt(ufile	ofile,int depth);
@@ -1021,7 +1021,7 @@ void	FNameInst::PreSave2(ufile	/*ofile*/,int /*depth*/)
 			{
 				s=tokentext->TokenText();
 				printf("File name truncated. %s --> %c%c%c%c%c%c%c%c (%s)\n",
-					s,s[0],s[1],s[2],s[3],s[4],s[5],s[6],s[7],filenumtext->TokenText());
+					s.c_str(),s[0],s[1],s[2],s[3],s[4],s[5],s[6],s[7],filenumtext->TokenText());
 			}
 
 			sayout(ofile,depth,"File Equate",tokencode,filenumtext->TokenText(),tokentext->defined);

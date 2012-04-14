@@ -1597,7 +1597,7 @@ void RDialog::OnLButtonDown(UINT nFlags, CPoint p)
 					command=CRButtonCtrl::eventidClicked;
 				}
 				//launch the message
-				VARIANT Arg[4]={{0}};
+				VARIANT Arg[5]={{0}};
 				Arg[0].lVal=param1;
 				Arg[1].lVal=param2;
 				Arg[0].vt=Arg[1].vt=Arg[2].vt=Arg[4].vt=3;

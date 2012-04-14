@@ -543,6 +543,7 @@ class CPolyTree
 		ppf=0;
 		pBufferSpace=new UByte[BUFFER_SIZE];
 		pBufferCur=pBufferSpace;
+		pd3d=NULL;
 	}
 
 	~CPolyTree() 
@@ -9658,7 +9659,7 @@ void direct_3d::DumpXBuffer(XBuf& xb)
 			ULong dataLen=pi->wCount*pi->bSize;
 			pi++;
 			LPD3DPROCESSVERTICES vdp=(LPD3DPROCESSVERTICES)pi;
-			fprintf(debF,"\twFlags %d wStart %d wDest %d dwCount %d\n",
+			fprintf(debF,"\twFlags _ wStart %d wDest %d dwCount %d\n",
 				vdp->wStart,vdp->wDest,vdp->dwCount);
 			pi=LPD3DINSTRUCTION(ULong(pi)+dataLen);
 		}
@@ -15425,12 +15426,13 @@ void direct_3d::SaveVideoBuffer(DirectDP pdirectd)
 	bmih.biClrUsed=0;
 	bmih.biClrImportant=0;
 
+	if (pVideoBuf && pVideoBuf->pInsert)
+	{
+
 	const SLong _ScanWidth=pVideoBuf->imageWidth*3;
 
 	UByte* scanLine=new UByte[_ScanWidth];
 
-	if (pVideoBuf && pVideoBuf->pInsert)
-	{
 		LPSCREENRECORD pCur=pVideoBuf->pBegin;
 		const LPSCREENRECORD pFin=pVideoBuf->pInsert;
 		ULong uid=pVideoBuf->frameCounter;
@@ -15480,8 +15482,8 @@ void direct_3d::SaveVideoBuffer(DirectDP pdirectd)
 		}
 		while (pCur!=pFin);
 		pVideoBuf->frameCounter=uid;
-	}
 	delete[]scanLine;
+	}
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴

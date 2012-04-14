@@ -473,7 +473,7 @@ void	PackageList::SaveBin(Profile* profile,BOStream&file)
 					p2=p1/90,
 					p3=p2/90,
 					p4=p3/90;
-			char packstr[5];
+			char packstr[6];
 			packstr[0]=p0%90+34;
 			packstr[1]=p1%90+34;
 			packstr[2]=p2%90+34;
@@ -516,7 +516,7 @@ void	PackageList::SaveBin(Profile* profile,BOStream&file)
 					p2=p1/90,
 					p3=p2/90,
 					p4=p3/90;
-			char packstr[5];
+			char packstr[6];
 			packstr[0]=p0%90+34;
 			packstr[1]=p1%90+34;
 			packstr[2]=p2%90+34;

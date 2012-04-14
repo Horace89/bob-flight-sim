@@ -63,10 +63,10 @@ LINK32=link.exe
 # PROP Use_Debug_Libraries 1
 # PROP Output_Dir "\bob\debug\exe"
 # PROP Intermediate_Dir "\bob\Debug\utilobj"
+# PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /W3 /Gm /GX /Zi /O2 /Ob2 /I "..\h" /D "_DEBUG" /D "WIN32" /D "_CONSOLE" /D "_MBCS" /D "STAND_ALONE" /FR /FD /c
-# SUBTRACT CPP /YX /Yc /Yu
+# ADD CPP /nologo /W3 /Gm /GX /Zi /Od /I "..\h" /D "_DEBUG" /D "WIN32" /D "_CONSOLE" /D "_MBCS" /D "STAND_ALONE" /FR /FD /c
 # ADD BASE RSC /l 0x409 /d "_DEBUG"
 # ADD RSC /l 0x409 /d "_DEBUG"
 BSC32=bscmake.exe
@@ -75,6 +75,7 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept
 # ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept
+# SUBTRACT LINK32 /map
 # Begin Special Build Tool
 TargetPath=\bob\debug\exe\Itemgrid.exe
 SOURCE="$(InputPath)"
@@ -100,7 +101,7 @@ SOURCE=..\Ai\Grid.cpp
 
 !ELSEIF  "$(CFG)" == "ItemGrid - Win32 Debug"
 
-# ADD CPP /O2
+# ADD CPP /Od
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
@@ -116,7 +117,7 @@ SOURCE=.\ItemGrid.cpp
 
 !ELSEIF  "$(CFG)" == "ItemGrid - Win32 Debug"
 
-# ADD CPP /O2
+# ADD CPP /Od
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
@@ -132,7 +133,7 @@ SOURCE=..\Bfields\Persons2.cpp
 
 !ELSEIF  "$(CFG)" == "ItemGrid - Win32 Debug"
 
-# ADD CPP /O2
+# ADD CPP /Od
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
@@ -148,7 +149,7 @@ SOURCE=..\Bfields\Persons7.cpp
 
 !ELSEIF  "$(CFG)" == "ItemGrid - Win32 Debug"
 
-# ADD CPP /O2
+# ADD CPP /Od
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 

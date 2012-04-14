@@ -58,19 +58,20 @@ LINK32=link.exe
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
 PostBuild_Desc=Copying resources
-PostBuild_Cmds=copy  /y   ..\..\debug\italian\boblang.dll    ..\..\game\italian\text\ 
+PostBuild_Cmds=copy   /y    ..\..\debug\italian\boblang.dll     ..\..\game\italian\text\ 
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "LitaRes - Win32 Debug"
 
 # PROP Ignore_Export_Lib 0
-# ADD CPP /W3 /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS"
+# ADD CPP /W3 /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /FR
 # ADD BASE RSC /l 0x419
 # ADD RSC /l 0x410 /i "..\mfc" /i "..\mfc\res"
 BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 /machine:IX86
-# ADD LINK32 /nologo /subsystem:windows /dll /pdb:none /machine:I386 /out:"..\..\debug\italian/boblang.dll" /implib:"..\..\debug\italian/boblang.lib" /NOENTRY
+# ADD LINK32 /nologo /subsystem:windows /dll /pdb:none /debug /machine:I386 /out:"..\..\debug\italian/boblang.dll" /implib:"..\..\debug\italian/boblang.lib" /NOENTRY
+# SUBTRACT LINK32 /map
 
 !ENDIF 
 

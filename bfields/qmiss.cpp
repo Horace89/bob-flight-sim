@@ -87,7 +87,7 @@ int			CSQuick1::currquickfamily=-1;
 QuickDef	CSQuick1::quickdef;
 
 
-#ifdef	BOB_DEMO_VER													//RJS 30Jul00
+#ifdef	XOR_BOB_DEMO_VER													//RJS 30Jul00
 #define	FILDEMO(arg)	FIL_NULL
 #else
 #define	FILDEMO(arg)	arg

@@ -87,7 +87,7 @@ SOURCE="$(InputPath)"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MDd /W4 /Gm /GX /Zi /O2 /I "..\h" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /FR /FD /c
+# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I "..\h" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /FR /FD /c
 # SUBTRACT CPP /YX /Yc /Yu
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
@@ -99,6 +99,7 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
 # ADD LINK32 /nologo /base:"0x10800000" /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
+# SUBTRACT LINK32 /map
 # Begin Custom Build - Registering ActiveX Control...
 OutDir=\bob\Debug\exe
 TargetPath=\bob\Debug\exe\Rspinbut.ocx
@@ -398,15 +399,6 @@ InputPath=.\RSpinBut.lic
 # End Source File
 # End Target
 # End Project
-# Section RSpinBut : {7BF80981-BF32-101A-8BBB-00AA00300CAB}
-# 	2:5:Class:CPicture
-# 	2:10:HeaderFile:picture.h
-# 	2:8:ImplFile:picture.cpp
-# End Section
-# Section RSpinBut : {C3270E66-6D6B-11d6-A1F0-444553540000}
-# 	2:21:DefaultSinkHeaderFile:rspinbut1.h
-# 	2:16:DefaultSinkClass:CRSpinBut
-# End Section
 # Section RSpinBut : {C3270E64-6D6B-11d6-A1F0-444553540000}
 # 	2:5:Class:CRSpinBut
 # 	2:10:HeaderFile:rspinbut1.h
@@ -416,4 +408,13 @@ InputPath=.\RSpinBut.lic
 # 	2:5:Class:COleFont
 # 	2:10:HeaderFile:font.h
 # 	2:8:ImplFile:font.cpp
+# End Section
+# Section RSpinBut : {7BF80981-BF32-101A-8BBB-00AA00300CAB}
+# 	2:5:Class:CPicture
+# 	2:10:HeaderFile:picture.h
+# 	2:8:ImplFile:picture.cpp
+# End Section
+# Section RSpinBut : {C3270E66-6D6B-11d6-A1F0-444553540000}
+# 	2:21:DefaultSinkHeaderFile:rspinbut1.h
+# 	2:16:DefaultSinkClass:CRSpinBut
 # End Section

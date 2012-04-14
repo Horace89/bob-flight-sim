@@ -80,7 +80,7 @@ PreLink_Cmds=cl /nologo /G6 /Zp1 /DUSER#"%USER%" /MD /W3 /GX /O2 /I "\BOB\src\h"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /Zp1 /MDd /W4 /Gi /GX /ZI /Od /I "..\h" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /FR /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /Zp1 /MDd /W3 /Gi /GX /Zi /O2 /I "..\h" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /FR /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD BASE RSC /l 0x809 /d "_DEBUG" /d "_AFXDLL"
@@ -147,7 +147,7 @@ PreLink_Cmds=cl 000tools.cpp /c /nologo /W3 /GX /Zi /I "..\h"                   
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /Zp1 /MDd /W3 /Gi /GX /Zi /O2 /I "..\h" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /FR /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /Zp1 /MDd /W3 /Gi /GX /ZI /Od /I "..\h" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "BOB_DEMO_VER" /FR /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /Zp1 /MDd /W3 /Gi /GX /Zi /Od /I "..\h" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "BOB_DEMO_VER" /FR /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD BASE RSC /l 0x809 /d "_DEBUG" /d "_AFXDLL"
@@ -16544,7 +16544,7 @@ InputPath=..\Bfields\Battle.src
 "\BOB\src\bfieldsm.fil" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
 	if exist \BOB\src\bfieldsm.fil del \BOB\src\bfieldsm.fil 
 	if exist \BOB\src\bferr.txt del \BOB\src\bferr.txt 
-	start /w  ..\bfields # start /w /m ..\bfields 
+	start /w  ..\bfields 
 	echo :wait >wait.bat 
 	echo delay 1>>wait.bat 
 	echo if exist \BOB\src\bferr.txt goto end>>wait.bat 
@@ -16565,9 +16565,9 @@ InputPath=..\Bfields\Battle.src
 "\BOB\src\bfieldsm.fil" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
 	if exist \BOB\src\bfieldsm.fil del \BOB\src\bfieldsm.fil 
 	if exist \BOB\src\bferr.txt del \BOB\src\bferr.txt 
-	start /w /m ..\bfields 
+	start /w  ..\bfields 
 	echo :wait >wait.bat 
-	echo ping 1.1.1.1 -n 1 -w 1000 >>wait.bat 
+	echo delay 1>>wait.bat 
 	echo if exist \BOB\src\bferr.txt goto end>>wait.bat 
 	echo if not exist \BOB\src\bfieldsm.fil goto wait>>wait.bat 
 	echo :end>>wait.bat 
@@ -16609,7 +16609,7 @@ IntDir=\BOB\debug\obj
 InputPath=..\Master.fil
 
 "$(IntDir)\fmake.dep" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	start /w /m ..\fmake2 
+	start /w  ..\fmake2 
 	echo.>$(IntDir)\fmake.dep 
 	
 # End Custom Build
@@ -16622,7 +16622,7 @@ IntDir=\BOB\debug\ttobj
 InputPath=..\Master.fil
 
 "$(IntDir)\fmake.dep" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	start /w /m ..\fmake2 
+	start /w  ..\fmake2 
 	echo.>$(IntDir)\fmake.dep 
 	
 # End Custom Build
@@ -16635,7 +16635,7 @@ IntDir=\BOB\demodeb\obj
 InputPath=..\Master.fil
 
 "$(IntDir)\fmake.dep" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	start /w /m ..\fmake2 
+	start /w  ..\fmake2 
 	echo.>$(IntDir)\fmake.dep 
 	
 # End Custom Build
@@ -16725,7 +16725,7 @@ SOURCE=..\..\Debug\exe\Ukeylist.exe
 InputPath=..\..\Debug\exe\Ukeylist.exe
 
 "\BOB\game\keyboard\keyb3d.bin" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	start /w /m $(InputPath) \BOB\game\keyboard\keyb3d.bin
+	start /w  $(InputPath) \BOB\game\keyboard\keyb3d.bin
 
 # End Custom Build
 
@@ -16735,7 +16735,7 @@ InputPath=..\..\Debug\exe\Ukeylist.exe
 InputPath=..\..\Debug\exe\Ukeylist.exe
 
 "\BOB\game\keyboard\keyb3d.bin" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	start /w /m $(InputPath) \BOB\game\keyboard\keyb3d.bin
+	start /w  $(InputPath) \BOB\game\keyboard\keyb3d.bin
 
 # End Custom Build
 
@@ -16745,7 +16745,7 @@ InputPath=..\..\Debug\exe\Ukeylist.exe
 InputPath=..\..\Debug\exe\Ukeylist.exe
 
 "\BOB\game\keyboard\keyb3d.bin" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	start /w /m $(InputPath) \BOB\game\keyboard\keyb3d.bin
+	start /w  $(InputPath) \BOB\game\keyboard\keyb3d.bin
 
 # End Custom Build
 
@@ -16883,15 +16883,15 @@ SOURCE=..\..\backup\history.lst
 # End Source File
 # End Target
 # End Project
-# Section BOB : {78918644-A917-11D1-A1F0-444553540000}
-# 	2:5:Class:CRButton
-# 	2:10:HeaderFile:rbutton.h
-# 	2:8:ImplFile:rbutton.cpp
-# End Section
 # Section BOB : {C3270E64-6D6B-11D1-A1F0-444553540000}
 # 	2:5:Class:CRSpinBut
 # 	2:10:HeaderFile:rspinbut.h
 # 	2:8:ImplFile:rspinbut.cpp
+# End Section
+# Section BOB : {78918644-A917-11D1-A1F0-444553540000}
+# 	2:5:Class:CRButton
+# 	2:10:HeaderFile:rbutton.h
+# 	2:8:ImplFile:rbutton.cpp
 # End Section
 # Section BOB : {48814009-65AE-11D1-A1F0-444553540000}
 # 	2:21:DefaultSinkHeaderFile:rlistbox.h
@@ -16906,19 +16906,19 @@ SOURCE=..\..\backup\history.lst
 # 	2:21:DefaultSinkHeaderFile:rcombo.h
 # 	2:16:DefaultSinkClass:CRCombo
 # End Section
-# Section BOB : {5363BA22-D90A-11D1-A1F0-0080C8582DE4}
-# 	2:21:DefaultSinkHeaderFile:rradio.h
-# 	2:16:DefaultSinkClass:CRRadio
+# Section BOB : {505AEE44-6A66-11D1-A1F0-444553540000}
+# 	2:5:Class:CRScrlBar
+# 	2:10:HeaderFile:rscrlbar.h
+# 	2:8:ImplFile:rscrlbar.cpp
 # End Section
 # Section BOB : {499E2BE4-AC32-11D1-A1F0-444553540000}
 # 	2:5:Class:CREdit
 # 	2:10:HeaderFile:redit.h
 # 	2:8:ImplFile:redit.cpp
 # End Section
-# Section BOB : {505AEE44-6A66-11D1-A1F0-444553540000}
-# 	2:5:Class:CRScrlBar
-# 	2:10:HeaderFile:rscrlbar.h
-# 	2:8:ImplFile:rscrlbar.cpp
+# Section BOB : {5363BA22-D90A-11D1-A1F0-0080C8582DE4}
+# 	2:21:DefaultSinkHeaderFile:rradio.h
+# 	2:16:DefaultSinkClass:CRRadio
 # End Section
 # Section BOB : {461A1FE3-B81B-11D1-A1F0-444553540000}
 # 	2:21:DefaultSinkHeaderFile:redtbt.h
@@ -16932,49 +16932,49 @@ SOURCE=..\..\backup\history.lst
 # 	2:21:DefaultSinkHeaderFile:rtabs.h
 # 	2:16:DefaultSinkClass:CRTabs
 # End Section
-# Section BOB : {C3270E66-6D6B-11D1-A1F0-444553540000}
-# 	2:21:DefaultSinkHeaderFile:rspinbut.h
-# 	2:16:DefaultSinkClass:CRSpinBut
+# Section BOB : {78918646-A917-11D1-A1F0-444553540000}
+# 	2:21:DefaultSinkHeaderFile:rbutton.h
+# 	2:16:DefaultSinkClass:CRButton
 # End Section
 # Section BOB : {737CB0C7-B42B-11D1-A1F0-444553540000}
 # 	2:5:Class:CRCombo
 # 	2:10:HeaderFile:rcombo.h
 # 	2:8:ImplFile:rcombo.cpp
 # End Section
-# Section BOB : {78918646-A917-11D1-A1F0-444553540000}
-# 	2:21:DefaultSinkHeaderFile:rbutton.h
-# 	2:16:DefaultSinkClass:CRButton
+# Section BOB : {C3270E66-6D6B-11D1-A1F0-444553540000}
+# 	2:21:DefaultSinkHeaderFile:rspinbut.h
+# 	2:16:DefaultSinkClass:CRSpinBut
 # End Section
 # Section BOB : {7EBC74E3-0F3C-11D2-A1F0-0080C8582DE4}
 # 	2:5:Class:CRRadio
 # 	2:10:HeaderFile:rradio.h
 # 	2:8:ImplFile:rradio.cpp
 # End Section
-# Section BOB : {461A1FE1-B81B-11D1-A1F0-444553540000}
-# 	2:5:Class:CREdtBt
-# 	2:10:HeaderFile:redtbt.h
-# 	2:8:ImplFile:redtbt.cpp
-# End Section
 # Section BOB : {008F23E7-9243-11D1-A1F0-444553540000}
 # 	2:5:Class:CRTitle
 # 	2:10:HeaderFile:rtitle.h
 # 	2:8:ImplFile:rtitle.cpp
 # End Section
-# Section BOB : {C42BAC3B-CA3C-11D1-A1F0-444553540000}
-# 	2:5:Class:CRStatic
-# 	2:10:HeaderFile:rstatic.h
-# 	2:8:ImplFile:rstatic.cpp
+# Section BOB : {461A1FE1-B81B-11D1-A1F0-444553540000}
+# 	2:5:Class:CREdtBt
+# 	2:10:HeaderFile:redtbt.h
+# 	2:8:ImplFile:redtbt.cpp
+# End Section
+# Section BOB : {499E2BE6-AC32-11D1-A1F0-444553540000}
+# 	2:21:DefaultSinkHeaderFile:redit.h
+# 	2:16:DefaultSinkClass:CREdit
+# End Section
+# Section BOB : {505AEE46-6A66-11D1-A1F0-444553540000}
+# 	2:21:DefaultSinkHeaderFile:rscrlbar.h
+# 	2:16:DefaultSinkClass:CRScrlBar
 # End Section
 # Section BOB : {4A1E1984-8B31-11D1-A1F0-444553540000}
 # 	2:5:Class:CRTabs
 # 	2:10:HeaderFile:rtabs.h
 # 	2:8:ImplFile:rtabs.cpp
 # End Section
-# Section BOB : {505AEE46-6A66-11D1-A1F0-444553540000}
-# 	2:21:DefaultSinkHeaderFile:rscrlbar.h
-# 	2:16:DefaultSinkClass:CRScrlBar
-# End Section
-# Section BOB : {499E2BE6-AC32-11D1-A1F0-444553540000}
-# 	2:21:DefaultSinkHeaderFile:redit.h
-# 	2:16:DefaultSinkClass:CREdit
+# Section BOB : {C42BAC3B-CA3C-11D1-A1F0-444553540000}
+# 	2:5:Class:CRStatic
+# 	2:10:HeaderFile:rstatic.h
+# 	2:8:ImplFile:rstatic.cpp
 # End Section

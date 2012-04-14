@@ -87,7 +87,7 @@ SOURCE="$(InputPath)"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MDd /W4 /Gm /GX /Zi /O2 /I "\bob\src\h" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /FD /c
+# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I "\bob\src\h" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /FR /FD /c
 # SUBTRACT CPP /YX /Yc /Yu
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
@@ -99,6 +99,7 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
 # ADD LINK32 /nologo /base:"0x10500000" /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept /out:"/bob/Debug/exe/RRadio.ocx"
+# SUBTRACT LINK32 /map
 # Begin Custom Build - Registering ActiveX Control...
 OutDir=\bob\Debug\exe
 TargetPath=\bob\Debug\exe\RRadio.ocx

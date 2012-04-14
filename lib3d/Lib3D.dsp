@@ -70,8 +70,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "LIB3D_EXPORTS" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /G6 /Zp1 /MTd /W3 /Gm /GX /Zi /O2 /Ob2 /I "\bob\src\h" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "LIB3D_EXPORTS" /FR /FD /c
-# SUBTRACT CPP /YX /Yc /Yu
+# ADD CPP /nologo /G6 /Zp1 /MTd /W3 /Gm /GX /ZI /Od /I "\bob\src\h" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "LIB3D_EXPORTS" /FR /FD /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x809 /d "_DEBUG"
@@ -81,7 +80,8 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib dxguid.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib ddraw.lib /nologo /base:"0x10000000" /dll /map /debug /machine:I386 /pdbtype:sept /libpath:"\bob\src\lib"
+# ADD LINK32 winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib dxguid.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib ddraw.lib /nologo /base:"0x10000000" /dll /debug /machine:I386 /pdbtype:sept /libpath:"\bob\src\lib"
+# SUBTRACT LINK32 /map
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
 PostBuild_Cmds=copy .\cardbase.txt ..\..\game\cardbase.rc
@@ -99,15 +99,6 @@ PostBuild_Cmds=copy .\cardbase.txt ..\..\game\cardbase.rc
 # Begin Source File
 
 SOURCE=.\alloc.c
-
-!IF  "$(CFG)" == "Lib3D - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "Lib3D - Win32 Debug"
-
-# ADD CPP /Gm- /O2 /Ob2
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -130,28 +121,10 @@ SOURCE=.\flagsw.cpp
 # Begin Source File
 
 SOURCE=.\Getdxver.cpp
-
-!IF  "$(CFG)" == "Lib3D - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "Lib3D - Win32 Debug"
-
-# ADD CPP /Gm- /O2 /Ob2
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
 SOURCE=.\l3dguid.cpp
-
-!IF  "$(CFG)" == "Lib3D - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "Lib3D - Win32 Debug"
-
-# ADD CPP /Gm- /O2 /Ob2
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -162,8 +135,6 @@ SOURCE=.\Lib3D.cpp
 # ADD CPP /Z7 /Ob2
 
 !ELSEIF  "$(CFG)" == "Lib3D - Win32 Debug"
-
-# ADD CPP /Gm- /O2 /Ob2
 
 !ENDIF 
 
@@ -176,7 +147,7 @@ SOURCE=..\3d\Monotxt.cpp
 
 !ELSEIF  "$(CFG)" == "Lib3D - Win32 Debug"
 
-# ADD CPP /O2
+# ADD CPP /Od
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
@@ -185,15 +156,6 @@ SOURCE=..\3d\Monotxt.cpp
 # Begin Source File
 
 SOURCE=.\radix.c
-
-!IF  "$(CFG)" == "Lib3D - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "Lib3D - Win32 Debug"
-
-# ADD CPP /Gm- /O2 /Ob2
-
-!ENDIF 
-
 # End Source File
 # End Group
 # Begin Group "Header Files"

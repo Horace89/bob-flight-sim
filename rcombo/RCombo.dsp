@@ -87,7 +87,7 @@ SOURCE="$(InputPath)"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MDd /W4 /Gm /GX /Zi /O2 /I "\bob\src\h" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /FD /c
+# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I "\bob\src\h" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /FR /FD /c
 # SUBTRACT CPP /YX /Yc /Yu
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
@@ -99,6 +99,7 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
 # ADD LINK32 /nologo /base:"0x10200000" /subsystem:windows /dll /pdb:none /debug /machine:I386
+# SUBTRACT LINK32 /map
 # Begin Custom Build - Registering ActiveX Control...
 OutDir=\bob\Debug\exe
 TargetPath=\bob\Debug\exe\RCombo.ocx
@@ -452,11 +453,6 @@ SOURCE=.\ReadMe.txt
 # End Source File
 # End Target
 # End Project
-# Section RCombo : {737CB0C7-B42B-11d6-A1F0-444553540000}
-# 	2:5:Class:CRCombo
-# 	2:10:HeaderFile:rcombo1.h
-# 	2:8:ImplFile:rcombo1.cpp
-# End Section
 # Section RCombo : {48814009-65AE-11d6-A1F0-444553540000}
 # 	2:21:DefaultSinkHeaderFile:rlistbox.h
 # 	2:16:DefaultSinkClass:CRListBox
@@ -469,4 +465,9 @@ SOURCE=.\ReadMe.txt
 # Section RCombo : {737CB0C9-B42B-11d6-A1F0-444553540000}
 # 	2:21:DefaultSinkHeaderFile:rcombo1.h
 # 	2:16:DefaultSinkClass:CRCombo
+# End Section
+# Section RCombo : {737CB0C7-B42B-11d6-A1F0-444553540000}
+# 	2:5:Class:CRCombo
+# 	2:10:HeaderFile:rcombo1.h
+# 	2:8:ImplFile:rcombo1.cpp
 # End Section

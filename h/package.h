@@ -20,6 +20,8 @@
 
 
 #include	"bitcount.h"
+#include	"fileman.h"
+#include	"movement.h"
 enum FileNum;
 enum	Ranges;
 enum	SquadNum;
@@ -625,7 +627,13 @@ static	UniqueID	ReorderZero(UniqueID u);
 	//rdh{return 19;}			//can lose 3 aircraft before dropping to 3 flights
 							//If Mark really wants restocking then I suggest 
 							//setting a restocking max of 17 so you are fighting 
-	bool	PreLoad(int packnum,FileNum fil=FIL_NULL,const char* filename=NULL,bool copyprimary=false,bool copysecondaries=false,int	filecount=0);
+	bool	PreLoad(
+		            int packnum,
+					FileNum fil=(enum FileNum)FIL_NULL,
+					const char* filename=NULL,
+					bool copyprimary=false,
+					bool copysecondaries=false,
+					int	filecount=0);
 	void	Load(int packnum,FileNum fil=FIL_NULL,const char* filename=NULL,int filecount=0);
 	void	FixupAircraft(int packnum);	//post load
 	void	WipeAll();

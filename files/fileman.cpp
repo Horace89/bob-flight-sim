@@ -1932,9 +1932,9 @@ void fileman::InitFileSystem()
 	GlobalMemoryStatus(&memstats);
 	const blocksize=4096;
 	typedef	char k4[blocksize];
-	const MEMBLOCKSsize=(memstats.dwTotalPhys>20000000)?(memstats.dwTotalPhys/2):5000000;
-	if (MEMBLOCKSsize>memstats.dwAvailPhys+memstats.dwAvailPageFile)
-		_Error.ReallyEmitSysErr("Not Enough Virtual memory.\nWanted %iK, Got %iK phys and %iK virtual",
+	size_t MEMBLOCKSsize=(memstats.dwTotalPhys>20000000)?(memstats.dwTotalPhys/2):5000000;
+	if (MEMBLOCKSsize>(size_t)memstats.dwAvailPhys+(size_t)memstats.dwAvailPageFile)
+		_Error.ReallyEmitSysErr("Not Enough Virtual memory.\nWanted %uK, Got %uK phys and %uK virtual",
 								MEMBLOCKSsize/1024,memstats.dwAvailPhys/1024,memstats.dwAvailPageFile/1024);
 	int totalscore=0;
 #ifdef NOMEMTEST

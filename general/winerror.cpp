@@ -70,6 +70,8 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //Description    
 //------------------------------------------------------------------------------
 
+// xor #include "stdafx.h"
+
 #include	<stdio.h>
 #include	<stdlib.h>
 #include	<stdarg.h>
@@ -93,7 +95,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //DeadCode JIM 02Jul96 #include	<assert.h>											//ARM 26Jun96
 
-#include	<windows.h>											//ARM 20Jun96
+//#include	<windows.h>											//ARM 20Jun96
 //#include	"winmain.h"
 
 #include	"stub3d.h"
@@ -173,7 +175,7 @@ Error& Error::ExitMode()
 }
 Error& Error::Say(char *txt, ...)	
 {exitmsg=txt;return this _;}
-BOOL IsDebuggerPresent(VOID);
+//BOOL IsDebuggerPresent(VOID);
 int	Hell_Freezes_Over=0;
 Error& Error::SayAndQuit(const char *fmt, ...)
 {
@@ -206,11 +208,12 @@ static	char String [2048];												//RJS 8Nov00
 #endif
 
 //TEMP	DestroyWindow ( _Main.hWnd );
-#ifndef NDEBUG
+// xor #ifndef NDEBUG
 #define MODE	MB_RETRYCANCEL+MB_ICONSTOP+MB_APPLMODAL+MB_DEFBUTTON2
-#else
-#define MODE	MB_OK+MB_ICONSTOP+MB_APPLMODAL
-#endif
+// xor #else
+// xor #define MODE	MB_OK+MB_ICONSTOP+MB_APPLMODAL
+// xor #endif
+
 	if (MessageBox(NULL,String,exitmsg,MODE)
 			==IDRETRY)
 	{

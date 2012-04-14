@@ -18,11 +18,14 @@
 #define		F_COMMON
 #include	"Files.g"
 #include	"myangles.h"											//RDH 20Dec95
+#include	"savegame.h"
 //DEADCODE MS 02/02/00 #include	"flyinit.h"											//RDH 20Dec95
 #include	"worldinc.h"										//RDH 11Aug96
 //DEADCODE MS 02/02/00 #include	"debrief.h"
-#ifdef	PACKAGE_INCLUDED
+//#ifdef	PACKAGE_INCLUDED
 #include	"sky.h"
+
+//#endif //package_included
 
 #ifdef	DEFAULT_MISS_MAN
 //
@@ -60,8 +63,6 @@
 	#define	endstruct(subname)		}
 
 #endif
-
-#endif //package_included
 
 #define	DEFAULT_MISS_MAN 0
 struct	MissionType;

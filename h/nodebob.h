@@ -62,6 +62,7 @@
 	#define	ENDSTRUCT(subname)		};typedef subname	*subname##Ptr;
 #define ONLYFIELDI(Size,Type,name)	ONLYFIELD(Size,Type,name)
 #endif
+#include "package.h"
 //PUT CLEVER INSTANCING DERIVED TYPES HERE
 
 struct	TargetSateliteField;

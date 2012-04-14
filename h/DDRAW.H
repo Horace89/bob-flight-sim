@@ -1,12 +1,3 @@
-/*
-	The Battle of Britain Source Code.
-	Please see the document licence.doc for the full licence agreement
-	This file is copyright Empire Interactive 2001
-
-questions about this file may be asked at bob@rowansoftware.com a
-better place to ask is http://www.simhq.com/ or even :-
-http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum=Battle+of+Britain&number=40&DaysPrune=20&LastLogin=
-*/
 /*==========================================================================;
  *
  *  Copyright (C) 1994-1997 Microsoft Corporation.  All Rights Reserved.
@@ -85,41 +76,6 @@ extern "C" {
  */
 #if defined( _WIN32 ) && !defined( _NO_COM )
 
-#ifdef	INSTGUIDS
-	#ifndef	warnmsg
-		#define _XSTR(x)         #x
-		#define TOSTR(x)        _XSTR(x)
-		#define __HERE__	__FILE__ "(" TOSTR(__LINE__) "): "
-		#define	warnmsg(text)	message(__HERE__ text)
-		#pragma warnmsg("defining GUIDs")
-		#undef	warnmsg
-		#undef	TOSTR
-		#undef	_XSTR
-	#else
-		#pragma warnmsg("defining GUIDs")
-	#endif
-#else
-//DEADCODE JIM 07/02/00 #ifndef	GOTGUIDS
-//DEADCODE JIM 07/02/00 #pragma message("GUIDS not defined properly?")
-//DEADCODE JIM 07/02/00 #endif
-#endif
-//DEADCODE MS 02/02/00 
-//DEADCODE MS 02/02/00 #pragma message("Hello!!5")
-//DEADCODE MS 02/02/00 //DEFINE_GUID ==    EXTERN_C const GUID FAR name
-//DEADCODE MS 02/02/00 #ifndef	DEFINE_GUID
-//DEADCODE MS 02/02/00 #pragma message (__FILE__ "(99): DEFINE_GUID not defined!")
-//DEADCODE MS 02/02/00 #endif
-//DEADCODE MS 02/02/00 #ifndef	EXTERN_C
-//DEADCODE MS 02/02/00 #pragma message (__FILE__ "(99): DEFINE_GUID EXTERN_C not defined!")
-//DEADCODE MS 02/02/00 #endif
-//DEADCODE MS 02/02/00 #ifndef	FAR
-//DEADCODE MS 02/02/00 #pragma message (__FILE__ "(99): DEFINE_GUID FAR not defined!")
-//DEADCODE MS 02/02/00 #endif
-//DEADCODE MS 02/02/00 #ifndef	DEFINE_GUID
-//DEADCODE MS 02/02/00 #pragma message (__FILE__ "(99): DEFINE_GUID not defined!")
-//DEADCODE MS 02/02/00 #endif
-
-//DEADCODE MS 02/02/00 #pragma warnmsg(TOSTR(DEFINE_GUID( CLSID_DirectDraw,                  0xD7B70EE0,0x4340,0x11CF,0xB0,0x63,0x00,0x20,0xAF,0xC2,0xCD,0x35 )))
 DEFINE_GUID( CLSID_DirectDraw,                  0xD7B70EE0,0x4340,0x11CF,0xB0,0x63,0x00,0x20,0xAF,0xC2,0xCD,0x35 );
 DEFINE_GUID( CLSID_DirectDraw7,                 0x3c305196,0x50db,0x11d3,0x9c,0xfe,0x00,0xc0,0x4f,0xd9,0x30,0xc5 );
 DEFINE_GUID( CLSID_DirectDrawClipper,           0x593817A0,0x7DB3,0x11CF,0xA2,0xDE,0x00,0xAA,0x00,0xb9,0x33,0x56 );
@@ -289,15 +245,13 @@ typedef DDRGBA FAR *LPDDRGBA;
 /*
  * DDCOLORKEY
  */
-struct _DDCOLORKEY;
-struct _DDCOLORKEY
+typedef struct _DDCOLORKEY
 {
     DWORD       dwColorSpaceLowValue;   // low boundary of color space that is to
                                         // be treated as Color Key, inclusive
     DWORD       dwColorSpaceHighValue;  // high boundary of color space that is
                                         // to be treated as Color Key, inclusive
-};
-typedef _DDCOLORKEY DDCOLORKEY;
+} DDCOLORKEY;
 
 typedef DDCOLORKEY FAR* LPDDCOLORKEY;
 

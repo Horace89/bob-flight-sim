@@ -13,7 +13,7 @@
 //DEADCODE MS 31/01/00 #include	"text.h"
 #include	"ranges.h"
 //#include	"node.h"
-
+#include "package.h"
 enum	{	
 				MAXTNKWPINROUTE = 2
 
@@ -836,7 +836,7 @@ enum	SelectTargetMode	{STM_NORMAL,STM_LWAC,STM_RAFAC,STM_GROUND};
 //						historical sets
 //
 //////////////////////////////////////////////////////////////////////
-struct	Directives ;
+//struct	Directives ;
 #ifdef	PACKAGE_INCLUDED
 #include "flyinit.h" 
 #define	DIRECTIVES_DEFINED

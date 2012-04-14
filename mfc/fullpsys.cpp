@@ -87,6 +87,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include "vfw.h"
 #include	"miles.h"													//RJS 18Oct00
 
+#include "_mfc.h"
 //DeadCode JON 10Nov00 extern HINSTANCE	g_hinst;
 //DeadCode JON 10Nov00 extern HWND		g_hwndMCIWnd;
 

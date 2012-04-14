@@ -78,7 +78,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #ifdef _DEBUG														  //JIM 13/05/99
 	char* compiledate=__DATE__ " " __TIME__ " Debug! (" TOSTR(USER) ")";
 #else
-	char* compiledate=__DATE__ " " __TIME__ " (" TOSTR(USER) ")";
+	char* compiledate=__DATE__ " " __TIME__ " ( TOSTR(USER) )";
 #endif
 
 #define AFX_CDECL __cdecl

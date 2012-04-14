@@ -91,11 +91,8 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include <objbase.h>
 #include <stdio.h>
 
-#ifdef   __GNUC__
 #include <fstream>
-#else
-#include <fstream.h> // for filestream stuff..
-#endif
+
 //DEADCODE MS 02/02/00 #include <initguid.h>
 #include "ddraw.h"
 #include "d3d.h"
@@ -120,9 +117,9 @@ void  __cdecl operator delete(void* v,char const *,int)	{ operator delete(v);}
 #define	new	DEBUG_NEW
 #endif
 
-#ifdef   __GNUC__
+
 using namespace std;
-#endif
+
 //TEMPCODE JON 5/19/00 R3DVERTEX& R3DVERTEX::operator = ( const R3DVERTEX &source ) // 1/2 save...
 //TEMPCODE JON 5/19/00 {
 //TEMPCODE JON 5/19/00 	memcopy( this, &source, sizeof( R3DVERTEX ) );
@@ -854,15 +851,15 @@ private:
 #ifndef _NOT_IN_SAMPLE
 	inline ULong SetToTopBit( ULong i )
 	{
-#ifdef __GNUC__
+//#ifdef __GNUC__
         return( (bool)(i & (1<<31)) );
-#else
+/*#else
 		__asm
 		{
 			mov eax, i
 			sar eax, 31
 		}
-#endif
+#endif*/
 	}
 #endif
 #pragma warning(default:4035) // turn the message back on then.
@@ -1020,16 +1017,16 @@ private:
 	//
 	// Fast floating point to integer conversion
 	//
-	void FloatToInt(SLong *int_pointer,D3DVALUE f) const
+	inline void FloatToInt(SLong *int_pointer,D3DVALUE f) const
 	{
-#ifdef __GNUC__
+//#ifdef __GNUC__
          *int_pointer=ceil(f/*+0.5*/);
-#else
+/*#else
 	 	__asm	fld		f;
 		__asm	mov		edx,int_pointer;
 		__asm	frndint;
 		__asm	fistp	dword ptr [edx];
-#endif
+#endif*/
 	}
 	inline SLong FPTiny(D3DVALUE v) const
 	{
@@ -1882,10 +1879,10 @@ D3DZBUFFERTYPE	Lib3D::prefZType;								//RJS 17May00
 inline void SineCosine(const UWord rowanAngle,D3DVALUE* sineAngle,D3DVALUE* cosineAngle)
 {
 	D3DVALUE radianAngle=D3DVALUE(SWord(rowanAngle))*ROWANANG_TO_RADANG;
-#ifdef __GNUC__
+//#ifdef __GNUC__
         *cosineAngle=cos(radianAngle);
         *sineAngle=sin(radianAngle);
-#else
+/*#else
 	__asm	push	edx;
 	__asm	push	ebx;
 	__asm	mov		edx,sineAngle;
@@ -1896,15 +1893,15 @@ inline void SineCosine(const UWord rowanAngle,D3DVALUE* sineAngle,D3DVALUE* cosi
 	__asm	fstp	[dword ptr edx];
 	__asm	pop		ebx;
 	__asm	pop		edx;
-#endif
+#endif*/
 }
 
 inline void SineCosine_Radian(const D3DVALUE radianAngle,D3DVALUE* sineAngle,D3DVALUE* cosineAngle)
 {
-#ifdef __GNUC__
+//#ifdef __GNUC__
         *cosineAngle=cos(radianAngle);
         *sineAngle=sin(radianAngle);
-#else
+/*#else
 	__asm	push	edx;
 	__asm	push	ebx;
 	__asm	mov		edx,sineAngle;
@@ -1915,7 +1912,7 @@ inline void SineCosine_Radian(const D3DVALUE radianAngle,D3DVALUE* sineAngle,D3D
 	__asm	fstp	[dword ptr edx];
 	__asm	pop		ebx;
 	__asm	pop		edx;
-#endif
+#endif*/
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -1959,14 +1956,14 @@ inline SWord GET_BIT_POS32(DWORD bitField)
 //------------------------------------------------------------------------------
 inline D3DVALUE fpSqrt(D3DVALUE num)
 {
-#ifdef __GNUC__
+//#ifdef __GNUC__
         return(sqrt(num));
-#else
+/*#else
    	__asm	fld 	num;
 	__asm	fsqrt;
 	__asm	fstp	num;
 	return num;
-#endif
+#endif*/
 }
 
 //#pragma message (__HERE__ "inline me" )
@@ -12713,9 +12710,9 @@ HRESULT Lib3D::DrawCylinder(const HMATERIAL& hMaterial,	//texture
  	{
 //DeadCode RJS 10Aug00 		SWord	sin_ang,cos_ang;
 		Float	angle;
-#ifdef __GNUC__
+//#ifdef __GNUC__
               angle=atan2(opposite,adjacent);
-#else
+/*#else
 		_asm
 		{
 			fld		opposite
@@ -12723,7 +12720,7 @@ HRESULT Lib3D::DrawCylinder(const HMATERIAL& hMaterial,	//texture
 			fpatan
 			fstp	angle
 		}
-#endif
+#endif*/
 //DeadCode RJS 10Aug00 		angle *= 10430.37835047;
 //DeadCode RJS 10Aug00 		SWord	angleofcyl = SWord(angle)-16384;
 
@@ -12911,9 +12908,9 @@ HRESULT Lib3D::CylinderOffsets(	const DoPointStruc& vertex0,	//p0
  	{
 //DeadCode RJS 10Aug00 		SWord	sin_ang,cos_ang;
 		Float	angle;
-#ifdef __GNUC__
+//#ifdef __GNUC__
               angle=atan2(opposite,adjacent);
-#else
+/*#else
                 _asm
                 {
                         fld             opposite
@@ -12921,7 +12918,7 @@ HRESULT Lib3D::CylinderOffsets(	const DoPointStruc& vertex0,	//p0
                         fpatan
                         fstp    angle
                 }
-#endif
+#endif*/
 
 //DeadCode RJS 10Aug00 		angle *= 10430.37835047;
 //DeadCode RJS 10Aug00 		SWord	angleofcyl = SWord(angle)-16384;

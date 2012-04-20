@@ -11,7 +11,8 @@
 //#ifndef CEDITOR												//ARM 11Apr97
 //	#include	"display.h"										//DAW 15Apr96
 //#endif															//ARM 11Apr97
-class	 Error  
+#include	"stdio.h"										//DAW 15Apr96
+class	 Error
 {	//can't allow this to be half commented out!
 		FILE	*logfile;										//JIM 01Aug96
 

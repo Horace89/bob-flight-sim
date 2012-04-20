@@ -3980,6 +3980,7 @@ __readpmc (
 
 #else
 
+#pragma warning( disable : 4035 )
 FORCEINLINE
 DWORD64
 ReadPMC (
@@ -3992,6 +3993,7 @@ ReadPMC (
         rdpmc
     };
 }
+#pragma warning( default: 4035 )
 
 #endif
 
@@ -4011,6 +4013,7 @@ __rdtsc (
 #pragma intrinsic(__rdtsc)
 
 #else
+#pragma warning( disable : 4035 )
 
 FORCEINLINE
 DWORD64
@@ -4021,6 +4024,7 @@ ReadTimeStampCounter (
 {
     __asm rdtsc
 }
+#pragma warning( default : 4035 )
 
 #endif
 

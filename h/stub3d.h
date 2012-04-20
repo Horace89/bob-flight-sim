@@ -64,8 +64,10 @@ struct	WinMode
 };
 inline WinMode::Mode operator | (WinMode::Mode a,WinMode::Mode b)
 {return WinMode::Mode(int(a)|int(b));}
+
 inline WinMode::Mode operator + (WinMode::Mode a,WinMode::Mode b)
 {return a|b;}
+
 inline WinMode::Mode operator & (WinMode::Mode a,WinMode::Mask b)
 {return WinMode::Mode(int(a)&int(b));}
 inline WinMode::Mode operator & (WinMode::Mask a,WinMode::Mode b)

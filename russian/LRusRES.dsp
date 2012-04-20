@@ -90,7 +90,7 @@ LINK32=link.exe
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
 PostBuild_Desc=Copying resources
-PostBuild_Cmds=copy   /y    ..\..\debug\russian\boblang.dll     ..\..\game\russian\text\ 
+PostBuild_Cmds=mkdir   ..\..\game\russian\text\ 	copy    /y     ..\..\debug\russian\boblang.dll      ..\..\game\russian\text\ 
 # End Special Build Tool
 
 !ENDIF 

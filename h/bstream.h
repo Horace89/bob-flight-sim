@@ -51,7 +51,9 @@ CON	BIStream(char* fname): ifstream()	{open(fname,ios::in+ios::binary);}
 	BIStream &read(   unsigned int * __b ,int times=1)	{return (BIStream&)(istream::read((char*)__b,times*sizeof(unsigned int)));}
 	BIStream &read(    signed long * __b ,int times=1)	{return (BIStream&)(istream::read((char*)__b,times*sizeof(signed long)));}
 	BIStream &read(  unsigned long * __b ,int times=1)	{return (BIStream&)(istream::read((char*)__b,times*sizeof(unsigned long)));}
-	template	<class c>	BIStream&	Transfer(c* strucinst)	{return read((char*)strucinst,sizeof(c));}	
+#ifndef __BORLANDC__
+	template	<class c>     	BIStream&	Transfer(c* strucinst)	{return read((char*)strucinst,sizeof(c));}
+#endif
 };
 
 class	CString;
@@ -92,8 +94,9 @@ CON	BOStream(char* fname,Bool blockoverwrite=FALSE):ofstream()
 	BOStream &write(const   unsigned int * __b ,int times=1)	{return (BOStream&)(ostream::write((char*)__b,times*sizeof(unsigned int)));}
 	BOStream &write(const    signed long * __b ,int times=1)	{return (BOStream&)(ostream::write((char*)__b,times*sizeof(signed long)));}
 	BOStream &write(const  unsigned long * __b ,int times=1)	{return (BOStream&)(ostream::write((char*)__b,times*sizeof(unsigned long)));}
-	template	<class c>	BOStream&	Transfer(c* strucinst)	{return write((char*)strucinst,sizeof(c));}	
-
+#ifndef __BORLANDC__
+	template	<class c>	BOStream&	Transfer(c* strucinst)	{return write((char*)strucinst,sizeof(c));}
+#endif
 };
 
 inline	Bool	DeleteFile(char* fname)

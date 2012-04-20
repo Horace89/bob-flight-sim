@@ -5,8 +5,8 @@ VERSION = BCB.01
 BCB = $(MAKEDIR)\..
 !endif
 # ---------------------------------------------------------------------------
-PROJECT = Meditor.exe
-OBJFILES = Meditor.obj About.obj AcItem.obj Static.obj MissText.obj \
+PROJECT = MEDITOR.exe
+OBJFILES = MEDITOR.obj About.obj AcItem.obj Static.obj MissText.obj \
    afselect.obj missobj.obj SelTarg.obj GrndGrp.obj currshp.obj info.obj \
    Confirm.obj Precomp.obj itemcnt.obj bfform.obj \bob\src\BFIELDS\Meglobal.obj \
    \bob\src\BFIELDS\Persons6.obj \bob\src\BFIELDS\Persons5.obj \
@@ -25,13 +25,13 @@ DEFFILE =
 # ---------------------------------------------------------------------------
 CFLAG1 = -Od -w -k -r- -y -v -vi- -c -a4 -b- -w-par -w-inl -Vx -Ve -x -g255 \
    -j100
-CFLAG2 = -Ic:\bob\src\bfields;c:\bob\src\files;$(BCB)\bin;$(BCB)\examples\controls\source;$(BCB)\images\buttons;.\icons;$(BCB)\projects;$(BCB)\examples\controls;c:\;$(BCB)\images;.\wav;$(BCB)\include;$(BCB)\include\vcl;..\h; 
-PFLAGS = -AWinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE \
-   -Uc:\bob\src\bfields;c:\bob\src\files;$(BCB)\bin;$(BCB)\examples\controls\source;.\icons;$(BCB)\examples\controls;.\wav;$(BCB)\projects;$(BCB)\lib\obj;$(BCB)\lib \
-   -Ic:\bob\src\bfields;c:\bob\src\files;$(BCB)\bin;$(BCB)\examples\controls\source;$(BCB)\images\buttons;.\icons;$(BCB)\projects;$(BCB)\examples\controls;c:\;$(BCB)\images;.\wav;$(BCB)\include;$(BCB)\include\vcl;..\h; \
-   -v -$Y -$W -$O- -JPHNV -M     
-RFLAGS = -ic:\bob\src\bfields;c:\bob\src\files;$(BCB)\bin;$(BCB)\examples\controls\source;$(BCB)\images\buttons;.\icons;$(BCB)\projects;$(BCB)\examples\controls;c:\;$(BCB)\images;.\wav;$(BCB)\include;$(BCB)\include\vcl;..\h; 
-LFLAGS = -Lc:\bob\src\bfields;c:\bob\src\files;$(BCB)\bin;$(BCB)\examples\controls\source;.\icons;$(BCB)\examples\controls;.\wav;$(BCB)\projects;$(BCB)\lib\obj;$(BCB)\lib \
+CFLAG2 = -Ii:\bob\src\files;i:\bob\src\bfields;c:\bob\src\bfields;c:\bob\src\files;$(BCB)\bin;$(BCB)\examples\controls\source;$(BCB)\images\buttons;.\icons;$(BCB)\projects;$(BCB)\examples\controls;c:\;$(BCB)\images;.\wav;$(BCB)\include;$(BCB)\include\vcl;..\h; 
+PFLAGS = -Ui:\bob\src\files;i:\bob\src\bfields;c:\bob\src\bfields;c:\bob\src\files;$(BCB)\bin;$(BCB)\examples\controls\source;.\icons;$(BCB)\examples\controls;.\wav;$(BCB)\projects;$(BCB)\lib\obj;$(BCB)\lib \
+   -Ii:\bob\src\files;i:\bob\src\bfields;c:\bob\src\bfields;c:\bob\src\files;$(BCB)\bin;$(BCB)\examples\controls\source;$(BCB)\images\buttons;.\icons;$(BCB)\projects;$(BCB)\examples\controls;c:\;$(BCB)\images;.\wav;$(BCB)\include;$(BCB)\include\vcl;..\h; \
+   -AWinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE -v \
+   -$Y -$W -$O- -JPHNV -M     
+RFLAGS = -ii:\bob\src\files;i:\bob\src\bfields;c:\bob\src\bfields;c:\bob\src\files;$(BCB)\bin;$(BCB)\examples\controls\source;$(BCB)\images\buttons;.\icons;$(BCB)\projects;$(BCB)\examples\controls;c:\;$(BCB)\images;.\wav;$(BCB)\include;$(BCB)\include\vcl;..\h; 
+LFLAGS = -Li:\bob\src\files;i:\bob\src\bfields;c:\bob\src\bfields;c:\bob\src\files;$(BCB)\bin;$(BCB)\examples\controls\source;.\icons;$(BCB)\examples\controls;.\wav;$(BCB)\projects;$(BCB)\lib\obj;$(BCB)\lib \
    -Sc:0x80000 -aa -Tpe -x -v -V4.0 
 IFLAGS = -g 
 LINKER = tlink32

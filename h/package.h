@@ -22,6 +22,7 @@
 #include	"bitcount.h"
 #include	"fileman.h"
 #include	"movement.h"
+#include        "squad.h"
 enum FileNum;
 enum	Ranges;
 enum	SquadNum;
@@ -183,7 +184,7 @@ struct	Profile
 		RNEC_MAXLWBOMBERS=MAX_TARGETS,
 		RNEC_LWCLOSEESCORT=MAX_TARGETS,
 		RNEC_LWDETACHED_M1=MAX_TARGETS,
-		RNEC_LWRETURNESCORT=MAX_TARGETS+AM_PASTDETACHED-AM_DETACHED,
+		RNEC_LWRETURNESCORT=(int)MAX_TARGETS+(int)AM_PASTDETACHED-(int)AM_DETACHED,
 		RNEC_LWMAXBLANKEEND,
 		RNEC_LWMAXREQ,
 
@@ -518,7 +519,7 @@ inline int	operator-(const Profile::Squad* entry,Profile::SquadListRef& base)
 }
 struct	PackageList
 {
-	Profile	pack[Profile::MAX_PACKS + 1];				//the top one is reserved for comms red
+	Profile	pack[(int)Profile::MAX_PACKS + (int)1];				//the top one is reserved for comms red
 	bool		germanisauto;
 	bool		britishisauto;
 	int			nextraidnum,nextsortienum;

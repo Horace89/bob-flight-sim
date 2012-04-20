@@ -4,7 +4,7 @@
 #define	DEFAULT_BFNUMBER 0
 
 #include	"bfenum.h"
-
+#include        "stdio.h"
 
 
 

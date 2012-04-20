@@ -207,7 +207,7 @@ struct  UnresolvedUidNode
 
 
 
-#if  defined(__WATCOMC__) || defined (__MSVC__)
+#if  defined(__WATCOMC__) || defined (__MSVC__) || defined (__BORLANDC__)
 extern	ULong&	GR_firstobject;
 #endif
 #define	firstobject ((UniqueID&)GR_firstobject)

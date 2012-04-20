@@ -1643,7 +1643,7 @@ private:
 	HRESULT _SetProjectionMatrix(const Angles&,const D3DVALUE&,const D3DVALUE&,const D3DVALUE&,const bool justVisCheck = false);
 public:
 	Lib3D();
-	~Lib3D();
+	virtual ~Lib3D();
 
 	// standard IUnknown interface methods
 	HRESULT	QueryInterface(REFIID,LPVOID*);

@@ -179,7 +179,7 @@ void	EmitSysErrM(char* fmt,...)
 		getchar();
 	else
 	{
-		FILE* fil=fopen(Flag_On_SysErr,"wt");
+		FILE* fil=fopen(Flag_On_SysErr,"w");
 		fprintf(fil,"..\\%s(%i):",linesplits[linesplits],linesplits+linesplits);
 		vfprintf(fil,fmt,marker);
 		fprintf(fil,"\n");
@@ -3211,7 +3211,7 @@ void	interpretresponse(string	name)
 TokenName	*tokenname;
 UWord	bufname,bufline;
 file	ifile=readfile(name);
-ufile	globfile=fopen("h\\bfrefs.g",'t');
+ufile	globfile=fopen("h\\bfrefs.g",'w');
 	fprintf(globfile,"GlobalRef	BFieldGlobalTable[]=	{\n");
 	findspelling(ifile,tokenname);
 	if (tokenname->tokencode!=T_brktopen)
@@ -6384,7 +6384,7 @@ void	OpenDirFiles()
 	for (int i=0;i<256;i++)
 		if (Battle_Dirs[i].dirname)
 		{
-			if ((Battle_Dirs[i].openhandle=fopen(outname,'t'))==0)
+			if ((Battle_Dirs[i].openhandle=fopen(outname,'w'))==0)
 				EmitSysErr("Problems opening file lister: %s",outname);
 			fprintf(Battle_Dirs[i].openhandle,"[files]\n%i	dir.dir	//%s\n",
 				i,Battle_Dirs[i].dirname);
@@ -7364,7 +7364,7 @@ int	main(int	argc,string	argv[])
 	}
 	else
 	{
-		UIDlistfile=fopen("h\\uidvals.g",'t');
+		UIDlistfile=fopen("h\\uidvals.g",'w');
 		fprintf(UIDlistfile,"//----------------------------------------\n");
 		fprintf(UIDlistfile,"//Filename:	h\\uidvals.g\n");
 		fprintf(UIDlistfile,"//Made by:		Makebf\n");
@@ -7385,7 +7385,7 @@ int	main(int	argc,string	argv[])
 
 	CloseDirFiles();
 	if (argc>3)
-	 	treeroot->SaveTxt(outfile=writefile("TextFour.err",'t'),0);
+	 	treeroot->SaveTxt(outfile=writefile("TextFour.err",'w'),0);
 	else
 	 	treeroot->SaveTxt(outfile=NULL,0);
 	if (filenestlevel)	EmitSysErr("There were undefined symbols. Please investigate.");

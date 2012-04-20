@@ -69,7 +69,8 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include "TPaintWl.h"
 #include "..\h\dosdefs.h"
 #include	"monotxt2.h"
-#include "c:\program files\microsoft visual studio\vc98\include\zmouse.h"
+//#include "c:\program files\microsoft visual studio\vc98\include\zmouse.h"
+#include "..\h\zmouse.h"
 
 //---------------------------------------------------------------------------
 static inline TPaintBoxWithWheel *ValidCtrCheck()

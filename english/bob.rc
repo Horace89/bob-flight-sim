@@ -19299,7 +19299,7 @@ BEGIN
     IDS_QUICK_13            "Random Advantage"
     IDS_QUICK_14            "RAF Advantage"
     IDS_QUICK_15            "LUF Advantage"
-    IDS_QUICK_16            "????"
+IDS_QUICK_16  	"August 15th - Short Brothers Factory, Rochester."
     IDS_QUICK_17            "Dive Bomb Attack"
 END
 
@@ -19309,7 +19309,7 @@ BEGIN
     IDS_QUICK_13_DESC       "A British squadron has been vectored to engage an enemy fighter sweep.\n\nThe RAF force was slow to scramble so there is a possibility that they will not be in an advantageous position."
     IDS_QUICK_14_DESC       "RAF controllers have carefully vectored a Squadron to the rear of a force of Luftwaffe fighters, the perfect position to deliver an attack."
     IDS_QUICK_15_DESC       "A Luftwaffe fighter sweep has discovered an RAF patrol.\n\nThe German fighters have worked their way behind and are now ready to deliver a punishing attack."
-    IDS_QUICK_16_DESC       "Quick 16"
+IDS_QUICK_16_DESC  	"As part of larger raids in the day some 60 He111s of I and II KG 4 from Antwerp launched an attack on the Western Kentish port of Rochester, with fighter escort. Their targets were the aircraft factories.\nThe official report 'At Rochester very severe damage was caused by enemy aircraft. Pobjoy's Aircraft Factory and Short's Works were hit and a fire was caused at the latter by HE bombs. Serious damage to the plant and office buildings and to aircraft under construction took place and production is likely to be seriously affected.'\nProduction for the Stirling, Britain's first heavy bomber, was set back by three months.\n56 Squadron (Hurricanes) from North Weald and 64 Squadron (Spitfires) from Kenley intercepted some 20 miles before the bombers reached their targets. The RAF had difficulty in penetrating the Luftwaffe fighter screen, however, and the majority of bombers found their target."
     IDS_L_SKILL_NOVICE      "Novice"
     IDS_SKILL_POOR          "Poor"
     IDS_SKILL_REGULAR       "Regular"
@@ -22777,7 +22777,7 @@ BEGIN
     IDS_MISTINVALLEYS       "Mist in Valleys"
     IDS_NONE_WORD           "None"
     IDS_WINDGUSTS           "Wind Gusts"
-    IDS_WEATHEREFFECTS      "Weather Effects"
+IDS_WEATHEREFFECTS  	"Weather Detail"
     IDS_SORTBY              "Sort by:"
     IDS_AC                  "A/C"
     IDS_NEXT_PERIOD         "Next Session"
@@ -22959,7 +22959,7 @@ BEGIN
     IDS_ALT                 "Alt"
     IDS_MACH                "mach"
     IDS_HDG                 "Hdg"
-    IDS_THRUST              "Thrust"
+IDS_THRUST  	"Power"
     IDS_FRAMES_SEC          "Frames/sec"
 END
 
@@ -23197,7 +23197,7 @@ BEGIN
     IDS_VIEWINFO            "View Info"
     IDS_VIEWNOTAVAILABLE    "View Not Available"
     IDS_KEY0                "Key Sensitivity"
-    IDS_INSERTCD            "Please insert the Rowan's BoB CD."
+IDS_INSERTCD  	"Fatal error: The file in the title is missing.\nClose Bob from Task manager.\nPossible causes:\n1) Partly installed patch or you unzipped it without keeping the paths.\n2) You deleted a file.\n3) It is on the CD, pelase insert it."
     IDS_FILENOTEXIST        "File does not exist for reading(%x=%s)."
     IDUS_IMPACTTOGGLEON     "Impact on"
     IDUS_IMPACTTOGGLEOFF    "Impact off"
@@ -23215,7 +23215,7 @@ BEGIN
     IDS_MISSION_CONFIG      "Mission"
     IDS_FLIGHT_CONFIG       "Flight"
     IDS_VIEW_CONFIG         "Views"
-    IDS_3D_CONFIG           "3D"
+IDS_3D_CONFIG  	"GFX"
     IDS_CONTINUE_CONFIG     "Continue"
     IDS_SOUND_CONFIG        "Sound"
 END
@@ -23249,8 +23249,8 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_3DII                "3DII"
-    IDS_CONTROLLER_CONFIG   "Controller"
+IDS_3DII  	"More GFX"
+IDS_CONTROLLER_CONFIG  	"Controls"
     IDS_CONFIGGAME          "Sim Config"
     IDS_MACHINECONFIG       "PC Config"
     IDS_QUICKSHOTS          "Quick Shots"
@@ -23607,7 +23607,7 @@ BEGIN
     IDS_MAPSCALE            "Map Scale"
     IDS_INITIALZOOM         "Default  Zoom Level"
     IDS_SECONDZOOM          "Second Zoom Level"
-    IDS_WEATHERDIAL         "Weather"
+IDS_WEATHERDIAL  	"Weather Conditions"
     IDS_READINESSMINS       "Readiness, mins "
     IDS_MINIMUMAIRCRAFT     "Minimum Aircraft"
     IDS_MINIMUMPILOTS       "Minimum Pilots"
@@ -24018,8 +24018,8 @@ END
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_JIMLIST             "Jims lists start"
-    IDS_L_WEATHER_OFF       "All off"
-    IDS_WEATHER_CLOUDS      "Clouds on"
+IDS_L_WEATHER_OFF  	"Off"
+IDS_WEATHER_CLOUDS  	"On"
     IDS_WEATHER_RAIN        "Rain on"
     IDS_WEATHER_ON          "All on"
 END
@@ -24254,7 +24254,7 @@ BEGIN
     IDS_L_HIGHQUAL          "High"
     IDS_L_STEREO            "Stereo"
     IDS_3DSOUND             "3D Sound"
-    IDS_MAPSCREEN           "Map Screen"
+IDS_MAPSCREEN  	"Campaign Resolution"
     IDS_COLOURDEPTH         "Colour Depth"
     IDS_FRONTART            "Intro Artwork"
     IDS_MAPEVENTS           "Map Events"
@@ -24903,14 +24903,15 @@ BEGIN
     IDS_QUICK_21            "Front attack against Bombers"
     IDS_QUICK_22            "Rear attack against Bombers"
     IDS_QUICK_23            "Scattered Attackers, Scattered Escort"
-    IDS_QUICK_24            "N/A"
+IDS_QUICK_24  	"August 18th - Airfield Attacks- South Coast"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_QUICK_25            "N/A"
+IDS_QUICK_25  	"August 18th - Airfield Attacks- Kenley"
+
     IDS_QUICK_26            "Jul 19th - End of the Defiant"
-    IDS_QUICK_27            "N/A"
+IDS_QUICK_27  	"August 12th - The raid on Portsmouth and Ventnor"
     IDS_QUICK_28            "Aug 13th - Eagle Day"
     IDS_QUICK_29            "Sep 15th - Battle of Britain day"
     IDS_QUICK_30            "DEMO 1"
@@ -24928,10 +24929,10 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_QUICK_24_DESC       "N/A"
-    IDS_QUICK_25_DESC       "N/A"
+IDS_QUICK_24_DESC  	"The Luftwaffe was now targeting RAF airfields and infrastructure. On this date 111 (!) Ju87s from Normandy and Brittany, with Bf109s from JG27,53,2, were sent to destroy South Coast airfields. Around 14:30 22 Ju87s of I StG3 attacked Gosport, diving from 8,000 feet with escort from JG27 (Audembert). They were effective in hitting their target, but it was not a Fighter Command station.\n28 Ju87s of IIStG77 flying from St Malo targeted Ford. No 602 Squadron (Spitfires) had been scrambled to patrol over their base, Westhampnett. They spotted the Stukas 5 miles to the east and attacked from 3,000 feet. Within minutes, the JG27 escort arrived, as did No. 152 Squadron (Spitfires), coming north from the Isle of Wight.\n28 Ju87s of StG77 flying from Crepon attacked the Coastal Command station at Thorney Island. Hurricanes of 43 and 601 Squadrons intercepted. 5 Fleet Air Arm Blenheims 1Fs of 235 squadron also scrambled.\nThis was the last time the Ju87 flew over Britain."
+IDS_QUICK_25_DESC  	"On this date a number of different raids were coordinated.\n9 Do17s of 9 KG 76 from Cormeilles were to be a key part of a three-pronged attack, the objective to destroy Kenley. The attack was spearheaded by twelve Junkers 88s, followed by 27 Dornier 17s, all from KG 76. Bombing from high level, they planned to knock out the defences at Kenley and create havoc to allow a clear run for the low level attack to follow from the 9th Staffel who would attack at zero feet.\nHowever, the Observer Corps spotted the low-level Dorniers and raised the alert and the low level raid mistimed their arrival and arrived before the high level attack.\n64 and 615 Squadrons from Kenley were scrambled to high level. At Croydon the controller, sensing the situation, scrambled 111 Squadron’s Hurricanes to patrol at 2,000 feet ready to intercept the low level raiders head-on.\nA simultaneous attack was made from high level by 60 He111s of KG.4 against Biggin Hill. They were intercepted by 32 Squadron (Hurricanes)."
     IDS_QUICK_26_DESC       "Until this day, the Defiant had enjoyed some success in the fighter role.\n\nLuftwaffe pilots mistaking the Defiant for one of its counterparts, the Hurricane, would make rear attacks in full view of the Defiant's 4 gun turret.\n\nThe German's quickly learned to exploit the Defiant's lack of forward firepower by making low frontal attacks.\n\nOn this day a total massacre was only avoided due to the intervention of a Hurricane squadron.\n\nIt was enough to bring about the withdrawal of the Defiant from daylight operations."
-    IDS_QUICK_27_DESC       "N/A"
+IDS_QUICK_27_DESC  	"Attacks on the RAF's RDF 'eyes' were not generally followed through with enough determination to bring the system to its knees.\nOn this afternoon, 100 Ju 88s of the Edelweissgeschwader, KG51, escorted by Me 110s of Zerstoerergeschwader 76 and 2 flew from Normandy. Another 25 Me 109s of JG54 were despatched direct to the target area as top cover. As the main diversionary force turned north just south of Portsmouth, fifteen Ju 88s commanded by KG51’s Kommodore, Oberst Dr Fisser, broke away from the main attack and turned south-west in a shallow dive across Foreland on the eastern tip of the Isle of Weight, heading for Ventnor RDF station. Hurricanes of 213 squadron based at Exeter led by Hector McGregor arrived on the scene followed closely followed by Spitfires from 152 squadron. The only cover for the bombers was a scattering of distant Me 110s. Meanwhile 266, 609 Spitfire squadrons and 43, 145, 257 and 615 Hurricane squadrons were vectored to Portsmouth. The ensuing clash was fierce."
     IDS_QUICK_28_DESC       "Eagle Day saw the start of a new campaign directed inland against fighter command.\nBad weather in the morning resulted in abortive raids.\n\nIn the afternoon, as conditions cleared, numerous raids were inbound along a 40 mile stretch of the Dorset coast.\n\n40 Ju88s and an escort sweep of 30 Me 110s on the west flank tried to hit Portland but were hindered by 3 RAF Squadrons.\n\n3 Ju88 Gruppen opposed by 24 fighters pushed through to Southampton and caused heavy damage.\n\n30 Ju87 heading to Middle Wallop were smashed by the station's Spitfire Squadron."
     IDS_QUICK_29_DESC       "This day saw a final defeat for the Luftwaffe forces at the moment they expected the British defence to fold.\n\n2 massive raids launched against London were met in force by rested and re-deployed Squadrons.\n\nThe bombers were slowly stripped of their escort as they neared their target.\n\nThere they were hit head-on by 4 Hurricane Squadrons as the Duxford Wing wheeled in across the flank.\n\nAs the shattered formations of Bombers retreated in disarray there was no doubt that the RAF were stronger than ever."
     IDS_QUICK_30_DESC       "2 gruppen of bombers are approaching Southampton. Each gruppe consists of 3 staffel of bombers closely escorted by 3 staffel of fighters.\nYou have the opportunity to fly in any aircraft from the lead staffel of either wave.\n\nThe RAF response consists of 2 squadrons of fighters.\nYou can fly any of these aircraft.\n\nYou can alter the number of flights that appear in each staffel or squadron."

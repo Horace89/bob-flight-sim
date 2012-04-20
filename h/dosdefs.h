@@ -370,11 +370,11 @@ struct _SEQUENCE;
 #ifdef	__MSVC__
 struct	_iobuf;
 typedef	_iobuf	FILE;
-#else
-#ifndef __GNUC__
-struct	__iobuf;
-typedef	__iobuf	FILE;
-#endif
+//#else
+//#ifndef __GNUC__
+//struct	__iobuf;
+//typedef	__iobuf	FILE;
+//#endif
 #endif
 
 

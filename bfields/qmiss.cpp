@@ -87,11 +87,7 @@ int			CSQuick1::currquickfamily=-1;
 QuickDef	CSQuick1::quickdef;
 
 
-#ifdef	XOR_BOB_DEMO_VER													//RJS 30Jul00
-#define	FILDEMO(arg)	FIL_NULL
-#else
 #define	FILDEMO(arg)	arg
-#endif
 
 
 
@@ -126,50 +122,6 @@ QuickDef	CSQuick1::quickmissions[]=
 {	//NOTE: THIS STUFF IS NOW COMPILED EXTERNALLY TO THE PROGRAM AND LOADED ON DEMAND
 	//SAVES 39K AND ALLOWS EXTERNAL UPGRADING!
 
-#ifdef	BOB_DEMO_VER
-
-#pragma message(__HERE__ "Mark:  Add your demo missions here...")
-
-//-----------------------------------------------------------------------------
-//DEMO MISSION 1
-	{
-		IDS_DEMOMISSIONS,IDS_QUICK_30,IDS_QUICK_30_DESC,
-		{
-			{	{	{PT_SPIT_A,4,SKILL_HERO,FT_18000,IDS_UN_CAP,Q::QFD_FIXED_PLAYER} },
-				{	{PT_SPIT_B,4,SKILL_HERO,FT_16000,IDS_UN_CAP,Q::QFD_FIXED_PLAYER+Q::QFD_ALLOW_ZERO_FL} }
-			},
-			{	{	{PT_DO17,2,SKILL_VETERAN,FT_15000,IDS_UN_FB_STRIKE,Q::QFD_FIXED_PLAYER} },
-				{	{PT_ME109,3,SKILL_VETERAN,0,IDS_UN_ESCORT_DUTY,Q::QFD_FIXED_PLAYER+Q::QFD_ALLOW_ZERO_FL} },
-				{	{PT_DO17,2,SKILL_VETERAN,FT_16000,IDS_UN_FB_STRIKE,Q::QFD_FIXED_PLAYER} },
-				{	{PT_ME109,3,SKILL_VETERAN,0,IDS_UN_ESCORT_DUTY,Q::QFD_FIXED_PLAYER+Q::QFD_ALLOW_ZERO_FL} }
-			}
-		},
-		BLUE,0,0,0,
-		FIL_QUICKMISSION_33,FIL_QUICKMISSION_33,0,2,  //currmissnum, altmissnum, weather,time//RDH 27Mar00
-		{IDS_TT_DOCKS},	//IDS_INDUSTRY},
-		{	{UID_DK_Southampton}
-		},
-		UID_DK_Southampton
-	},
-
-//DeadCode MS 08Aug00 //-----------------------------------------------------------------------------
-//DeadCode MS 08Aug00 //DEMO MISSION 2
-//DeadCode MS 08Aug00 	{
-//DeadCode MS 08Aug00 		IDS_DEMOMISSIONS,IDS_QUICK_2,IDS_QUICK_2_DESC,
-//DeadCode MS 08Aug00 		{	
-//DeadCode MS 08Aug00 			{	{	{PT_SPIT_A,1,SKILL_VETERAN,FT_3000,IDS_UN_CAP,Q::QFD_BRIT_LONE} }	},
-//DeadCode MS 08Aug00 			{	{	{PT_ME109,1,SKILL_VETERAN,FT_3000,IDS_UN_CAP,Q::QFD_GERM_LONE} }	}
-//DeadCode MS 08Aug00 		},
-//DeadCode MS 08Aug00 		BLUE,0,0,0,
-//DeadCode MS 08Aug00 		FIL_QUICKMISSION_34,FIL_QUICKMISSION_34,0,2,  //currmissnum, altmissnum, weather,time//RDH 27Mar00
-//DeadCode MS 08Aug00 		{ IDS_GROUP10AF,IDS_SUPPLYPOINT,IDS_CONFIGIGNORED},
-//DeadCode MS 08Aug00 		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_DEBDEN,UID_AF_KENLEY},	
-//DeadCode MS 08Aug00 			{UID_AF_Marck,UID_AF_Abbeville,UID_AF_Wissant,UID_AF_LeHarve},
-//DeadCode MS 08Aug00 			{UID_AF_HAWKINGE,UID_AF_GRAVESEND},
-//DeadCode MS 08Aug00 		},
-//DeadCode MS 08Aug00 		UID_AF_TANGMERE
-//DeadCode MS 08Aug00 	},
-#endif
 
 //-----------------------------------------------------------------------------
 //BASIC TRAINING : takeoff
@@ -1191,7 +1143,50 @@ QuickDef	CSQuick1::quickmissions[]=
 //DEADCODE DAW 19/11/99 		},
 //DEADCODE DAW 19/11/99 		UID_NODE_sinuiju
 //DEADCODE DAW 19/11/99 	},
+
 #endif
+#pragma message(__HERE__ "Mark:  Add your demo missions here...")
+
+//-----------------------------------------------------------------------------
+//DEMO MISSION 1
+	{
+		IDS_DEMOMISSIONS,IDS_QUICK_30,IDS_QUICK_30_DESC,
+		{
+			{	{	{PT_SPIT_A,4,SKILL_HERO,FT_18000,IDS_UN_CAP,Q::QFD_FIXED_PLAYER} },
+				{	{PT_SPIT_B,4,SKILL_HERO,FT_16000,IDS_UN_CAP,Q::QFD_FIXED_PLAYER+Q::QFD_ALLOW_ZERO_FL} }
+			},
+			{	{	{PT_DO17,2,SKILL_VETERAN,FT_15000,IDS_UN_FB_STRIKE,Q::QFD_FIXED_PLAYER} },
+				{	{PT_ME109,3,SKILL_VETERAN,0,IDS_UN_ESCORT_DUTY,Q::QFD_FIXED_PLAYER+Q::QFD_ALLOW_ZERO_FL} },
+				{	{PT_DO17,2,SKILL_VETERAN,FT_16000,IDS_UN_FB_STRIKE,Q::QFD_FIXED_PLAYER} },
+				{	{PT_ME109,3,SKILL_VETERAN,0,IDS_UN_ESCORT_DUTY,Q::QFD_FIXED_PLAYER+Q::QFD_ALLOW_ZERO_FL} }
+			}
+		},
+		BLUE,0,0,0,
+		FIL_QUICKMISSION_33,FIL_QUICKMISSION_33,0,2,  //currmissnum, altmissnum, weather,time//RDH 27Mar00
+		{IDS_TT_DOCKS},	//IDS_INDUSTRY},
+		{	{UID_DK_Southampton}
+		},
+		UID_DK_Southampton
+	},
+
+//DeadCode MS 08Aug00 //-----------------------------------------------------------------------------
+//DeadCode MS 08Aug00 //DEMO MISSION 2
+//DeadCode MS 08Aug00 	{
+//DeadCode MS 08Aug00 		IDS_DEMOMISSIONS,IDS_QUICK_2,IDS_QUICK_2_DESC,
+//DeadCode MS 08Aug00 		{	
+//DeadCode MS 08Aug00 			{	{	{PT_SPIT_A,1,SKILL_VETERAN,FT_3000,IDS_UN_CAP,Q::QFD_BRIT_LONE} }	},
+//DeadCode MS 08Aug00 			{	{	{PT_ME109,1,SKILL_VETERAN,FT_3000,IDS_UN_CAP,Q::QFD_GERM_LONE} }	}
+//DeadCode MS 08Aug00 		},
+//DeadCode MS 08Aug00 		BLUE,0,0,0,
+//DeadCode MS 08Aug00 		FIL_QUICKMISSION_34,FIL_QUICKMISSION_34,0,2,  //currmissnum, altmissnum, weather,time//RDH 27Mar00
+//DeadCode MS 08Aug00 		{ IDS_GROUP10AF,IDS_SUPPLYPOINT,IDS_CONFIGIGNORED},
+//DeadCode MS 08Aug00 		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_DEBDEN,UID_AF_KENLEY},	
+//DeadCode MS 08Aug00 			{UID_AF_Marck,UID_AF_Abbeville,UID_AF_Wissant,UID_AF_LeHarve},
+//DeadCode MS 08Aug00 			{UID_AF_HAWKINGE,UID_AF_GRAVESEND},
+//DeadCode MS 08Aug00 		},
+//DeadCode MS 08Aug00 		UID_AF_TANGMERE
+//DeadCode MS 08Aug00 	},
+
 	{NULL,NULL,999}				//terminator!!!!!!!!!!!
 };
 

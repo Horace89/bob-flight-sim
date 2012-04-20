@@ -144,29 +144,29 @@ BfieldDesc*		Persons2::bfdesc=NULL;
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 
 
-//DeadCode MS 28Oct100 void	Persons2::FixupRouteOwner(UniqueID	owner,UniqueID route)
-//DeadCode MS 28Oct100 {
-//DeadCode MS 28Oct100 	while (route)
-//DeadCode MS 28Oct100 	{
-//DeadCode MS 28Oct100 		info_waypoint* W=*ConvertPtrUID(route);
-//DeadCode MS 28Oct100 
-//DeadCode MS 28Oct100 		if (W->Status.size!=WAYPOINTSIZE)
-//DeadCode MS 28Oct100 			W->owner=owner;
-//DeadCode MS 28Oct100 		W->position.EvalW(W->World);
-//DeadCode MS 28Oct100 		if (W->target.Evaluate()!=ENABLE_COMPLEX_VAL)
-//DeadCode MS 28Oct100 		{
-//DeadCode MS 28Oct100 			Coords3D	t;
-//DeadCode MS 28Oct100 			UIDExpr	u;
-//DeadCode MS 28Oct100 			u.val=W->target.Evaluate();
-//DeadCode MS 28Oct100 			u.EvalW(t);
-//DeadCode MS 28Oct100 			W->World.X+=t.X;//ME +MissionEditor->zoomiconsize;
-//DeadCode MS 28Oct100 			W->World.Y+=t.Y;
-//DeadCode MS 28Oct100 			W->World.Z+=t.Z;//ME -MissionEditor->zoomiconsize;
-//DeadCode MS 28Oct100 		}
-//DeadCode MS 28Oct100 		W->owner=owner;
-//DeadCode MS 28Oct100 		route=W->nextwp;
-//DeadCode MS 28Oct100 	}
-//DeadCode MS 28Oct100 }
+void	Persons2::FixupRouteOwner(UniqueID	owner,UniqueID route)
+{
+	while (route)
+	{
+		info_waypoint* W=*ConvertPtrUID(route);
+
+		if (W->Status.size!=WAYPOINTSIZE)
+			W->owner=owner;
+		W->position.EvalW(W->World);
+		if (W->target.Evaluate()!=ENABLE_COMPLEX_VAL)
+		{
+			Coords3D	t;
+			UIDExpr	u;
+			u.val=W->target.Evaluate();
+			u.EvalW(t);
+			W->World.X+=t.X;//ME +MissionEditor->zoomiconsize;
+			W->World.Y+=t.Y;
+			W->World.Z+=t.Z;//ME -MissionEditor->zoomiconsize;
+		}
+		W->owner=owner;
+		route=W->nextwp;
+	}
+}
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		make_airgrp

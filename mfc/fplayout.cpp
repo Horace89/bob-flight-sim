@@ -236,7 +236,7 @@ FullScreen RFullPanelDial::title=
 		{IDS_NONE},
 		{IDS_NONE},
 		{IDS_NONE},
-		{IDS_NOT_REPLAY}	//DISABLEDEMO}
+		{IDS_NONE}	//DISABLEDEMO}
 #endif
 	},
 	TitleInit

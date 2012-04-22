@@ -251,14 +251,14 @@ void RFullPanelDial::LaunchSmacker(int dialID,FileNum smackerID)
 			File_Man.MakeRoomFor(-10000000);
 			File_Man.DiscardDirList(smackerID);
 			Bool exist=File_Man.ExistNumberedFile(smackerID);
-#ifdef	BOB_DEMO_VER
+//#ifdef	BOB_DEMO_VER
 			if (!exist)		  //demo can live without videos
 			{
 				pleasestartthissmacker=FIL_NULL;
 				PostMessage(WM_SELECTTAB,0,0);
 			}
 			else
-#endif
+//#endif
 			{
 
 //DeadCode JIM 19Oct00 MCIWNDF_NOAUTOSIZEWINDOW	Will not change the dimensions of an MCIWnd window when the image size changes. 

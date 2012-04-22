@@ -318,7 +318,7 @@ void CRTickBoxCtrl::OnDraw(
 		if (artnum)
 		{
 			pData = (BYTE*)parent->SendMessage(WM_GETFILE,artnum,NULL);
-			if (pData[0]=='B' && pData[1]=='M') // checks if its a bitmap file
+			if (pData && pData[0]=='B' && pData[1]=='M') // checks if its a bitmap file
 			{
 				// now render it...
 				BITMAPFILEHEADER* pFile=(BITMAPFILEHEADER*)pData;

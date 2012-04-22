@@ -1580,7 +1580,7 @@ SampleRec*	Sound::LoadSample(FileNum	thefile, Bool inUI)
 
 				tmpaddress = getdata(theblock);
 				size = getsize(theblock);
-
+				if (!size) return(NULL);
 				// Make sure the sample in memory is secure...
 				#ifdef __DOS__
 				result = VMM_lock(tmpaddress, size);

@@ -107,6 +107,7 @@ class MonoText Mono_Text;
 //------------------------------------------------------------------------------
 void MonoText::ClsMono()
 {
+/*
 #ifndef NDEBUG													//DAW 13Nov96
 	UWord	temp;
 
@@ -126,6 +127,7 @@ void MonoText::ClsMono()
 		}
 	}
 #endif
+*/
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -208,6 +210,7 @@ void MonoText::Print(UByte* text,SLong length)
 //------------------------------------------------------------------------------
 void MonoText::TextOutMono(UByte* string)
 {
+/*
 #ifndef NDEBUG													//DAW 13Nov96
 	UWord  temp;
 
@@ -254,6 +257,7 @@ void MonoText::TextOutMono(UByte* string)
 		}
 	}
 #endif
+*/
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴

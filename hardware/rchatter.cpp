@@ -504,9 +504,9 @@ RadioMessageP	RadioChatter::CreateMessage(ItemPtr	caller,
 //------------------------------------------------------------------------------
 RadioOnz*	RadioChatter::PhraseFactors(int	thePhrase)
 {
-	thePhrase &= 0xFF00;
-	thePhrase >>= 8;
-
+       thePhrase &= 0xFF00;
+       thePhrase >>= 8;
+	if (thePhrase>=PhraseSize) thePhrase=0; //xor looks like script was loaded badly
 	return &PhraseToFile[thePhrase];
 }
 
@@ -2230,7 +2230,8 @@ RadioSampleRec*	RadioChatter::LoadSample(	RadioMessageP	MessPtr,
 	if (samplesAllowed)
 	{
 		int				pfile = thephrase>>8;
-		int				pelement = thephrase & 0xFF;				//RJS 12Feb99
+                                                if (pfile>=PhraseSize) pfile=0;  //need assert here
+		int                             pelement = thephrase & 0xFF;				//RJS 12Feb99
 		SLong			fileindex = PhraseToFile[pfile].mainFileName & FILENUMMASK;//RJS 12Feb99
 		SLong			voiceoffset = MessPtr->theVoice + MessPtr->IsExcited + MessPtr->randomvoice;//RJS 17May99
 		SLong			thedir = rootChatDir + (voiceoffset<<8);				//RJS 08Apr99
@@ -2619,8 +2620,8 @@ UWordP	RadioChatter::GetScript(SLong	scriptno,RadioMessageP MessPtr,PhraseTables
 				theScripts.ScriptTable = (ULongP) getdata(theblock);
 			}
 		}
-	 	assert(theScripts.ScriptTable);
-
+	 	if(theScripts.ScriptTable) //x0r check why zero here, without full resources?
+	 	{
 		ULong	scriptptr = theScripts.ScriptTable[scriptno-1];
 		ULong	isscript = scriptptr & 0x80000000;
 
@@ -2633,6 +2634,7 @@ UWordP	RadioChatter::GetScript(SLong	scriptno,RadioMessageP MessPtr,PhraseTables
 		}
 		else
 			singlephrase = (PhraseTables) scriptptr;
+                }
 	}
 #endif
 
@@ -3296,14 +3298,19 @@ void	MESSAGE_STRUC::ProcessUserMessage()
 //------------------------------------------------------------------------------
 ULong	RadioChatter::PhraseToResource(SLong	thePhrase)
 {
-	return (PhraseToFile[thePhrase>>8].idsresourcename+(thePhrase&0xFF));
+        int i=thePhrase>>8;
+	if (i >= PhraseSize) i=0;
+        return (PhraseToFile[i].idsresourcename+(thePhrase&0xFF));
 }
 
 ULong	RadioChatter::PanelPhraseToResource(SLong	thePhrase)
 {
 	if ((thePhrase&0xFF00)==PHRASE_IDSFUDGE)
-		return IDSFudgeTable[thePhrase&0xFF];
-
+                {
+                int i=thePhrase&0xFF;
+                if (i >= (sizeof(IDSFudgeTable)/sizeof(ULong))) i=0;
+                return IDSFudgeTable[i];
+		}
 	return PhraseToResource(thePhrase);
 }
 
@@ -6735,20 +6742,26 @@ void	RadioChatter::ProcessVoice(const MESSAGE_STRUC&	msg)
 VoiceType	RadioChatter::GetVoice(const ScriptTables&	theScript, const VoiceType& theVoice)
 {
 	VoiceType	newVoice = theVoice;
+        	fileblock	*theblock;
 
 	if (newVoice != VOICE_SILENT)										//RJS 26Oct00
 	{
 		if (!theScripts.voiceBlock)
 		{
-			fileblock	*theblock = new fileblock (FIL_RCHAT_SCRIPT_VOICES);
+			theblock = new fileblock (FIL_RCHAT_SCRIPT_VOICES);
 			if (theblock)
 			{
 				theScripts.voiceBlock = theblock;
 				theScripts.voicePtr = ULongP(getdata(theblock));
 			}
+                        else
+                        {
+                           newVoice = VOICE_SILENT;
+                           theScripts.voicePtr=NULL;
+                        }
 		}
 
-		if (theScript && (theScript & 0xFFFF0000))
+		if (theblock && theScript && theScripts.voicePtr && (theScript & 0xFFFF0000))
 		{
 			ULong	voxMask = theScripts.voicePtr[(theScript & 0xFFFF)-1];
 			if ((voxMask & (1<<theVoice)) == 0)

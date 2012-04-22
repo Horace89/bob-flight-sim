@@ -311,7 +311,7 @@ void CREditCtrl::OnDraw(
 			int	offsetx=short(offsets & 0x0000FFFF)+parentrect.left-rect.left;
 			int	offsety=short((offsets & 0xFFFF0000)>>16)+parentrect.top-rect.top;
 			pData = (BYTE*)parent->SendMessage(WM_GETFILE,artnum,NULL);
-			if (pData[0]=='B' && pData[1]=='M') // checks if its a bitmap file
+			if (pData && pData[0]=='B' && pData[1]=='M') // checks if its a bitmap file
 			{
 				// now render it...
 				BITMAPFILEHEADER* pFile=(BITMAPFILEHEADER*)pData;

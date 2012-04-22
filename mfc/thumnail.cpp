@@ -186,7 +186,7 @@ void CThumbnail::DrawScaledBitmap(CDC * pDC, FileNum filenum, int left,int top,i
 {
 	fileblock picture(filenum);
 	BYTE* pData=(BYTE*)getdata(picture);
-	if (pData[0]=='B' && pData[1]=='M') // checks if its a bitmap file
+	if (pData && pData[0]=='B' && pData[1]=='M') // checks if its a bitmap file
 	{
 		// now render it...
 		BITMAPFILEHEADER* pFile=(BITMAPFILEHEADER*)pData;

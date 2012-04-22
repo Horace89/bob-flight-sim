@@ -24,12 +24,20 @@
 inline	int	LockExchange(int* loc,int newval=0)
 {
 	int rv;
+static int * _eip;
     #ifndef    __BCPLUSPLUS__
 	_asm	{	mov		eax,newval
 				mov		ebx,loc
 				xchg	ds:[ebx],eax
 				mov		rv,eax
 			}
+       if (rv==0 && newval==1) // x0r remove this!
+              _asm   {
+		   call foo
+foo:
+    pop _eip
+              
+                 }
     #else
     rv=0; 
     #endif

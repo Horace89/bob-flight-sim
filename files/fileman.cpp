@@ -85,7 +85,8 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 #define		F_GRAFIX											//JIM 01Aug96
 
-//#define	DUMP_USED_FILES	"\\bob\\filelist.txt"
+//x0r
+#define	DUMP_USED_FILES	"filelist.txt"
 
 #include	<windows.h>
 #include	"dosdefs.h"
@@ -938,7 +939,7 @@ string	fileman::namenumberedfile(FileNum	MyFile)
 	string		dirlister=(string)	fb.getdata();
 
 //DeadCode DAW 25Feb97 	INT3();
-	if (dirlister[0]==0)										//DAW 25Feb97
+	if (!dirlister || dirlister[0]==0)										//DAW 25Feb97
 		return("//");
 	assert(  (dirlister[0]) ,"Not expecting concatenated directory here!" );
 	assert(  (dirlister[12]==0),"Not expecting hand built file-list here!");
@@ -947,7 +948,8 @@ string	fileman::namenumberedfile(FileNum	MyFile)
 	int		fnum=((int)MyFile & (int)FILENUMMASK)<<4;
 
 	if (fb.getsize() && (fnum>fb.getsize()))
-		_Error.EmitSysErr("File number (%04X) past end of Dir.Dir file!",MyFile);
+		{return("//");
+		_Error.EmitSysErr("File number (%04X) past end of Dir.Dir file!",MyFile);}
 	if (dirnum(MyFile)==assumefakedir && (int(MyFile)&255)==fakefileindex)
 	{	//fake long file name potential
 		memcpy(namedirdir+fakefileoffset-filenameindex,pathname,filenameindex);
@@ -990,7 +992,8 @@ bool	BLOCKCHILD=false;
 FILE*	fileman::opennumberedfile(FileNum	MyFile)
 {
 FILE*	retval=easyopennumberedfile(MyFile);
-	while (!retval)
+//xor	while (!retval)
+	if (!retval)
 	{
     char* path=pathnameptr;
     if (dirnum(MyFile)==assumefakedir && ((int)MyFile&255)==fakefileindex)
@@ -1011,7 +1014,15 @@ FILE*	retval=easyopennumberedfile(MyFile);
 		string.LoadString(IDS_INSERTCD);
 //			HWND upperwnd=HWND_BOTTOM;
 //			::SetWindowPos(m_hWnd,upperwnd,0,0,0,0,SWP_NOACTIVATE+SWP_NOMOVE+SWP_NOSIZE);
+                string+=(CString)" "+(CString)fname;
 
+		if (!retval && errhandle)
+		{
+			fputs("File not found: ",errhandle);
+			fputs(fname,errhandle);
+			fputc('\n',errhandle);
+		}
+/*
 		if(MessageBox(NULL,string,fname,MB_RETRYCANCEL|MB_SYSTEMMODAL|MB_TOPMOST|MB_SETFOREGROUND|MB_ICONHAND)
 			==IDCANCEL)
 		{
@@ -1020,20 +1031,21 @@ FILE*	retval=easyopennumberedfile(MyFile);
 				_Error.ReallyEmitSysErr(string,
 							 MyFile,pathnameptr);
 		}
+*/
 //DeadCode AMM 09Jul99 		while (LockExchange(&interlocker,1))
 //DeadCode AMM 09Jul99 		{Sleep(0);}
 		pathnameptr=n;
 		strcpy(pathnameptr,buffer);
     #else
-
+/*
 				_Error.ReallyEmitSysErr("File not found: %04x=%s",
 							 MyFile,path);
-
+*/
 	#endif
 		BLOCKCHILD=false;
 		retval=easyopennumberedfile(MyFile);
-		if (retval)
-			InvalidateRect(NULL,NULL,NULL);
+//		if (retval)
+//			InvalidateRect(NULL,NULL,NULL);
 	}
 		return(retval);
 }
@@ -1181,9 +1193,9 @@ FILE*	filehandle;
 	fileblockdata=NULL;
 	if (BLOCKCHILD) //RDH 08/07/99
 		return; //RDH 08/07/99
-
+//processlock=false;
 	if (processlock)
-	{
+	{ //x0r locking here
 //		(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'M';
 		while(LockExchange(&interlocker,1))
 			Sleep(20);
@@ -1242,6 +1254,9 @@ FILE*	filehandle;
 //						(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'m';
 						LockExchange(&interlocker,0);
 					}
+					if (!filehandle) 
+                                             {FILEMAN.fileloadedthisframe=FALSE;link->deletedirchain(MyFile);link->datasize=0;return;}
+
 					FILEMAN.fileloadedthisframe=TRUE;
 					link->datasize=		FILEMAN.getfilesize(filehandle);
 					if (!link->datasize)

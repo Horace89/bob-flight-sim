@@ -1300,7 +1300,7 @@ void	QuickDef::trans(void* &dataarea,ULong& datasize)
 		while (*findtext==0) 
 			findtext++;
 		char* text=(char*)findtext;
-		assert(*text=='\0');
+//x0r		assert(*text=='\0');
 		while (text[1]!=0)
 		{
 			tablestart[text[1]]=text+2;

@@ -70,6 +70,7 @@
 	#define	uidvals_included
 	#include	"bfcommon.h"
 #include	"bfields\persons.cpp"
+	#include	<string>
 
 //DeadCode JIM 05Jun96 	#include	"dosdefs.h"
 //DeadCode JIM 05Jun96 	#include	<stdio.h>
@@ -1015,7 +1016,7 @@ void	FNameInst::PreSave2(ufile	/*ofile*/,int /*depth*/)
 		RECURSECHK
 		{
 			sayout(ofile,depth,"File Name",tokencode,tokentext->TokenText(),tokentext->defined);
-			string s=tokentext->TokenText();
+			std::string s=tokentext->TokenText();
 			while (*s && *s!='.') s++;
 			if (s-tokentext->TokenText()>8)
 			{

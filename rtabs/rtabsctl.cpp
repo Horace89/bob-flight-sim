@@ -240,6 +240,7 @@ BOOL CRTabsCtrl::CRTabsCtrlFactory::GetLicenseKey(DWORD dwReserved,
 
 CRTabsCtrl::CRTabsCtrl()
 {
+	m_hLowTabIcon=NULL; m_hHighTabIcon=NULL; //x0r
 	InitializeIIDs(&IID_DRTabs, &IID_DRTabsEvents);
 	m_iCurrentSelection=0;
 	m_firstTab=NULL;
@@ -249,7 +250,7 @@ CRTabsCtrl::CRTabsCtrl()
 //	m_hHighContinueIcon=(HICON)LoadImage(AfxGetInstanceHandle(),MAKEINTRESOURCE(IDI_TAB),IMAGE_ICON,400,31,LR_DEFAULTCOLOR);
 //	m_TabUp.LoadBitmap(IDB_TABUP);
 //	m_TabDown.LoadBitmap(IDB_TABDOWN);
-	ASSERT(m_hLowTabIcon!=NULL && m_hHighTabIcon!=NULL);
+//x0r	ASSERT(m_hLowTabIcon!=NULL && m_hHighTabIcon!=NULL);
 	m_bHorzAlign=FALSE;
 	m_bInit=TRUE;
 	m_FontNum=0;

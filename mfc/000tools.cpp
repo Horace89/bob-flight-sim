@@ -69,7 +69,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //currently not using precompiled headers!
 //#include    "stdafx.h"
 //#define FULL_MEMORY_CHECKING
-#include	"000tools.h"
+//x0r #include	"000tools.h"
 #ifndef USER
 #define USER NONE
 #endif
@@ -90,6 +90,7 @@ typedef LPCSTR LPCTSTR;
 #define _T(x)       __T(x)
 void AFX_CDECL AfxTrace(LPCTSTR lpszFormat, ...);
 #ifdef _DEBUG
+
 #define TRACE0(sz)              ::AfxTrace(_T("%s"), _T(sz))
 
 #include "dosdefs.h"

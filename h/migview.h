@@ -5,7 +5,7 @@
 #include "MIGDoc.h"
 #include "MapDlg.h"	// Added by ClassView
 #include "FullPane.h"
-//#include "rscrlbar.h"
+#include "rscrlbar.h"
 #include "globdefs.h"
 
 class	ItemBase;
@@ -212,11 +212,11 @@ protected:
 	void DrawTextInIcon(IconsUI	f,UniqueID	i);
 //DEADCODE DAW 29/01/00 	void PlotMainRoute(CDC* pDC,SupplyLine* SL, int red, int green, int blue);
 	void PlotDebugInfo(CDC* pDC);
-	void PlotAirfields(CDC* pDC);
 	void PlotSupplyingRoutes(CDC* pDC);
 	void DrawLine(CDC* pDC, int wx,int wz,int &px1, int &py1,int &px2,int &py2, 
 		int scrollx,int scrolly, int red, int green, int blue, int width);
 public:
+	void PlotAirfields(CDC* pDC);
 	bool m_bridgesChecked;
 	bool m_airstripsChecked;
 //	bool m_bDontUpdateBitmaps;

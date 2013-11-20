@@ -79,6 +79,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //DEADCODE JIM 08/06/00     __int64 QuadPart;
 //DEADCODE JIM 08/06/00 } LARGE_INTEGER;
 //#include	"stdafx.h"
+#define NOATL
 #include	"dosdefs.h"
 #include	"monotxt.h"
 #include	"Mytime.h"

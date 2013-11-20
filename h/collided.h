@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 //Filename       collided.h
-//System         
-//Author         Paul.   
+//System
+//Author         Paul.
 //Date           Thu 21 Mar 1996
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	COLLIDED_Included
 #define	COLLIDED_Included
@@ -21,11 +21,11 @@
 
 class	Collide
 {
-	typedef	Bool (Collide::*CollRtnPtr) (	MovingItemPtr,
+	typedef	Bool (*CollRtnPtr) (	MovingItemPtr,
 											itemptr,
 											vector&
 											);
-	typedef	Bool (Collide::CollRtn)  	(	MovingItemPtr,
+	typedef	Bool (CollRtn)  	(	MovingItemPtr,
 											itemptr,
 											vector&
 											);
@@ -53,7 +53,7 @@ class	Collide
 					RIGHT_WING_TOUCH,
 					TAIL_TOUCH									//RJS 13Jan99
 					};
-				
+
 
 		void	SetWorld	(WorldStuff* );
 
@@ -68,7 +68,7 @@ class	Collide
 							 itemptr,
 							 vector&
 							 );									//RJS 02Oct96
-		
+
 		Bool	CollisionTest  (MovingItemPtr,
 								itemptr&,
 								vector&,

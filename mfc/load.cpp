@@ -66,8 +66,8 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //
 
 #include "stdafx.h"
-#include <io.h>
 #include "mig.h"
+#include <io.h>
 #include "Load.h"
 #include "savegame.h"		
 

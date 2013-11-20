@@ -5,17 +5,21 @@
 #ifndef	FILE_Included
 #define	FILE_Included
 
+#ifdef __MSVC__
+
 #ifndef F_COMMON
 #ifndef F_GRAFIX
 #ifndef F_SOUNDS
 #ifndef F_BATTLE
-	#define F_COMMON
-	#define F_GRAFIX
-	#define F_SOUNDS
+//	#define F_COMMON
+//	#define F_GRAFIX
+//	#define F_SOUNDS
 	#define F_BATTLE
 #endif
 #endif
 #endif
+#endif
+
 #endif
 
 enum	FileNum

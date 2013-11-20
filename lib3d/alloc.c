@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 //Filename       alloc.c
-//System         
-//Author         Paul.   
+//System
+//Author         Paul.
 //Date           Tue 4 Jan 2000
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #include <stdlib.h>
 #include "alloc.h"
@@ -34,7 +34,7 @@ char *AllocSetToAlignment(char *c)
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		AllocInit
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 4 Jan 2000
 //
 //------------------------------------------------------------------------------
@@ -55,20 +55,20 @@ alloc_handle_t *AllocInit(void )
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		AllocSetPool
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 4 Jan 2000
 //
 //------------------------------------------------------------------------------
-alloc_handle_t *AllocSetPool(alloc_handle_t *new)
+alloc_handle_t *AllocSetPool(alloc_handle_t *new_handle)
 {
 	alloc_handle_t *old;
 	old=(alloc_handle_t*)root;
-	root=(alloc_hdr_t*)new;
+	root=(alloc_hdr_t*)new_handle;
  	return old;
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Alloc
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 4 Jan 2000
 //
 //------------------------------------------------------------------------------
@@ -105,7 +105,7 @@ char *Alloc(int size)
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		AllocDiscard
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 4 Jan 2000
 //
 //------------------------------------------------------------------------------
@@ -117,7 +117,7 @@ void AllocDiscard(char *last)
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		AllocResetPool
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 4 Jan 2000
 //
 //------------------------------------------------------------------------------
@@ -128,7 +128,7 @@ void AllocResetPool(void )
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		AllocFreePool
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 4 Jan 2000
 //
 //------------------------------------------------------------------------------

@@ -8,6 +8,9 @@
 #ifndef	BOXCOL_Included
 #define	BOXCOL_Included
 
+#include "shapes.h"
+#include "3ddefs.h"
+
 #define	DEFAULT_BOXCOL 0
 
 #define	MaxEffects	32											//RJS 06Jun99

@@ -1,12 +1,18 @@
 //------------------------------------------------------------------------------
 //Filename       cstring.h
-//System         
+//System
 //Author         Robert Slater
 //Date           Wed 27 Jan 1999
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	CSTRING_Included
 #define	CSTRING_Included
+
+//#include<windows.h>
+#ifndef PASCAL
+//    #warning PASCAL
+	#define PASCAL  __stdcall
+#endif
 
 #define	DEFAULT_CSTRING 0
 
@@ -25,11 +31,13 @@
 class	CDumpContext;
 class	CArchive;
 
+#ifndef __GNUC__
 #ifndef _TCHAR_DEFINED
 typedef char TCHAR, *PTCHAR;
 typedef unsigned char TBYTE , *PTBYTE ;
 #define _TCHAR_DEFINED
 #endif /* !_TCHAR_DEFINED */
+#endif
 
 #ifndef VOID
 #define VOID void
@@ -100,6 +108,53 @@ typedef char *  va_list;
 #endif
 #endif
 
+
+#if 1 //(_MSC_VER > 1200)
+//#define _AFX
+#include "stdafx.h"
+#include <afxstr.h>
+
+#undef TRUE
+#undef FALSE
+#define	TRUE	BOOL_TRUE
+#define	TRUEST	BOOL_TRUE
+#define	FALSE	BOOL_FALSE
+
+/*
+#include <stdstring.h>
+typedef CStdStringA CString;
+
+
+#include <string>
+class CString:public std::string
+{
+operator LPCTSTR ( ) const
+ {return this->c_str();}
+
+bool IsEmpty()
+{return this->empty();}
+
+void LoadString(int id)
+{
+  LPTSTR lp;
+  LoadString(GetModuleHandle(NULL), id, lp, 0);
+  (*this)=lp;
+}
+
+void Format()
+{
+  char buffer [50];
+  sprintf(buffer, format, 
+}
+
+};
+*/
+
+//#include <atlstr.h>
+//#include <cstringt.h>
+//template class __declspec(dllimport) CStringT<TCHAR, StrTraitMFC<TCHAR, ChTraitsCRT<TCHAR> > >;
+//template class __declspec(dllimport) CSimpleStringT<TCHAR>;
+#else
 
 struct CStringData
 {
@@ -371,6 +426,8 @@ _AFX_INLINE bool AFXAPI operator>=(const CString& s1, LPCTSTR s2)
 	{ return s1.Compare(s2) >= 0; }
 _AFX_INLINE bool AFXAPI operator>=(LPCTSTR s1, const CString& s2)
 	{ return s2.Compare(s1) <= 0; }
+#endif
+
 #endif
 
 #endif

@@ -428,7 +428,7 @@ static bool	GotSameDevices()
 void	SController::BuildEnumerationTables()
 {
 	useddevices=2;
-	const middleaxes=20;
+	const int middleaxes=20;
 	usedaxes=middleaxes;
 	firstaxes=middleaxes;
 	LPDIRECTINPUT	DIdev;
@@ -1602,7 +1602,7 @@ void SController::OnDestroy()
 //DeadCode DAW 22Dec98 	return TRUE;  // return TRUE unless you set the focus to a control
 //DeadCode DAW 22Dec98 	              // EXCEPTION: OCX Property Pages should return FALSE
 //DeadCode DAW 22Dec98 }
-static SetDZCombo(SController::CRCombo* combo,int level,int midlevel)
+static void SetDZCombo(SController::CRCombo* combo,int level,int midlevel)
 {
 	int index=0;
 	if (level>=midlevel)

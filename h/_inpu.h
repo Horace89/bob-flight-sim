@@ -6,7 +6,7 @@
 //DEADCODE DAW 27/05/99 
 //DEADCODE DAW 27/05/99 #endif
 #include "dosdefs.h"
-#include <windows.h>
+//#include <windows.h>
 #define F_BATTLE
 #include "files.g"
 

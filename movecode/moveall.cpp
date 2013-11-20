@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -64,7 +64,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //------------------------------------------------------------------------------
 //Filename       moveall.cpp
-//System         
+//System
 //Author         Jim Taylor
 //Date           Thu 15 Feb 1996
 //Description    The code which moves all the items in the world
@@ -76,7 +76,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 	#define F_COMMON
 	#define F_GRAFIX
 	#define F_BATTLE
-#include	"files.g"  
+#include	"files.g"
 //TEMPCODE DAW 13/04/00 #include	"textref.h"
 #include	"world.h"
 #include	"worldinc.h"
@@ -157,11 +157,11 @@ void AFX_CDECL AfxTrace(LPCTSTR lpszFormat, ...);
 //Author		Jim Taylor
 //Date			Thu 15 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void mobileitem::MoveAll(WorldStuff& world)
@@ -178,7 +178,7 @@ void mobileitem::MoveAll(WorldStuff& world)
 #ifdef	_FRAMECOUNT_
 	UWord cw=GETFPCW();
 	::AfxTrace("Frame: %d\n",frameCount++);
-	SETFPCW(cw);	
+	SETFPCW(cw);
 #endif
 }
 
@@ -187,11 +187,11 @@ void mobileitem::MoveAll(WorldStuff& world)
 //Author		Martin Alderton
 //Date			Wed 20 Mar 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransientItem::MoveAllTrans(WorldStuff& world)
@@ -205,11 +205,11 @@ static UByte dontmove=0;
 //Author		Jim Taylor
 //Date			Thu 15 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void mobileitem::MoveList(MobileItemPtr entry,WorldStuff& world)
@@ -279,12 +279,12 @@ void mobileitem::MoveList(MobileItemPtr entry,WorldStuff& world)
 //DeadCode JIM 3Aug00 		else
 //DeadCode JIM 3Aug00 			oldsector=-1;
 
-		assert (entry!=Persons2::PlayerGhostAC)
+		assert (entry!=Persons2::PlayerGhostAC);
 		if((entry == Persons2::PlayerSeenAC) && (Persons2::PlayerSeenAC->classtype->aerobaticfactor != AEROBATIC_LOW))
 		{
 // Set fake engine sound...
 
-// should go in here to keep ghostac upto date 
+// should go in here to keep ghostac upto date
 
 #ifdef DEBUGMOVE
 			if (_Replay.Record || _Replay.Playback || _DPlay.Implemented)
@@ -327,7 +327,7 @@ void mobileitem::MoveList(MobileItemPtr entry,WorldStuff& world)
 //DeadCode AMM 3Aug00 				Persons2::PlayerGhostAC->pitch.a,
 //DeadCode AMM 3Aug00 				Persons2::PlayerGhostAC->roll.a,
 //DeadCode AMM 3Aug00 				Persons2::PlayerGhostAC->vel_);
-//DeadCode AMM 3Aug00 
+//DeadCode AMM 3Aug00
 //DeadCode AMM 3Aug00 			fclose(g);
 
 			_DPlay.BackupGhost();
@@ -354,7 +354,7 @@ void mobileitem::MoveList(MobileItemPtr entry,WorldStuff& world)
 //DeadCode AMM 11Jul00 					fprintf(fp,"ID=%x if=%d mc=%d man=%d H=%d P=%d R=%d V=%d \n",
 
 //DeadCode AMM 25Jul00 					UWord u=0;
-//DeadCode AMM 25Jul00 					
+//DeadCode AMM 25Jul00
 //DeadCode AMM 25Jul00 					if (((AirStrucPtr)entry)->ai.unfriendly)
 //DeadCode AMM 25Jul00 						u=entry->uniqueID.count;
 
@@ -393,7 +393,7 @@ void mobileitem::MoveList(MobileItemPtr entry,WorldStuff& world)
 
 					if (!mobileitem::currworld->vp->Accel())
 					{
-// not in accel predict 
+// not in accel predict
 // make other players ac props turn....
 
 						AirStrucPtr	ac = AirStrucPtr(entry);			//RJS 12Jul00
@@ -469,28 +469,28 @@ void mobileitem::MoveList(MobileItemPtr entry,WorldStuff& world)
 				{
 					// Fake engine sound for bombers...
 					AircraftAnimData*	adptr = (AircraftAnimData*)Persons2::PlayerSeenAC->Anim;	//RJS 11May00
-					static EngineInfo	enginedesc;						
+					static EngineInfo	enginedesc;
 
 					enginedesc.power = (Persons2::PlayerSeenAC->fly.rpm*255)/Persons2::PlayerSeenAC->classtype->maxrpm;
 					if (enginedesc.power > 255)	enginedesc.power = 255;
 
 					enginedesc.rpm_engine = Persons2::PlayerSeenAC->fly.rpm;
 					enginedesc.rpm_starter = 0;
-					enginedesc.rattle = adptr->ENGINELEFT;			
+					enginedesc.rattle = adptr->ENGINELEFT;
 					enginedesc.cockpitnobble = 0;
 					enginedesc.velocity = Persons2::PlayerSeenAC->vel_;	//RJS 9Jun00
 					enginedesc.xoffset = 0;
 
 					_Miles.PlayEngine(Persons2::PlayerSeenAC,enginedesc,enginedesc);
-			 
+
 					int gunnerammo = adptr->weaponlaunchers[SHAPE.GetRearGunner_Index()].LoadedStores;
-					OverLay.SetInfoLineVals(Persons2::PlayerSeenAC->vel_ * 0.001, gunnerammo, Persons2::PlayerSeenAC->World.Y * (3.2808 / 100), Persons2::PlayerSeenAC->hdg / 182, Persons2::PlayerSeenAC->fly.thrustpercent); 
+					OverLay.SetInfoLineVals(Persons2::PlayerSeenAC->vel_ * 0.001, gunnerammo, Persons2::PlayerSeenAC->World.Y * (3.2808 / 100), Persons2::PlayerSeenAC->hdg / 182, Persons2::PlayerSeenAC->fly.thrustpercent);
 
 //DEADCODE CSB 11Oct00						PolyPitAnimData*	ppadptr = (PolyPitAnimData*)Persons2::PlayerSeenAC->Anim;
 //DEADCODE CSB 11Oct00						int		totalammo = ppadptr->actotalammoleft;
 
 //DEADCODE CSB 11Oct00				 		OverLay.SetInfoLineVals(Persons2::PlayerSeenAC->vel_ * 0.001, totalammo, Persons2::PlayerSeenAC->World.Y * (3.2808 / 100), Persons2::PlayerSeenAC->hdg / 182, Persons2::PlayerSeenAC->fly.thrustpercent); 	//RJS 5Oct00
-					
+
 					_DPlay.CheckGhost();
 					_DPlay.UpdateBomberGhost();
 					_DPlay.BackupGhost();
@@ -572,11 +572,11 @@ void mobileitem::MoveList(MobileItemPtr entry,WorldStuff& world)
 //Author		Jim Taylor
 //Date			Thu 15 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DEADCODE JIM 31/05/00 #ifndef	NDEBUG
@@ -626,7 +626,7 @@ if((entry == Persons2::PlayerGhostAC->follower) || (entry == Persons2::PlayerSee
 							case AT_DO17:		PrintString(47, y, "DO17 ");	break;
 							case AT_HE59:		PrintString(47, y, "HE59 ");	break;
 						}
-					
+
 					switch(ac->ai.manoeuvre)
 					{
 						case MANOEUVRE_SELECT:				PrintString(52, y, "SELECT ");				break;
@@ -705,7 +705,7 @@ if((entry == Persons2::PlayerGhostAC->follower) || (entry == Persons2::PlayerSee
 				y++;
 			}
 	}
-*/			
+*/
 /*
 	if( (entry->Status.size==AIRSTRUCSIZE) && ((entry == Persons2::PlayerGhostAC) || (entry == Persons2::PlayerGhostAC)))
 	{
@@ -721,7 +721,7 @@ if((entry == Persons2::PlayerGhostAC->follower) || (entry == Persons2::PlayerSee
 			case GROUND_CORNERUPTO:		    PrintString(60, 2, "G GROUND_TAXI  ");     break;
 			case GROUND_CORNERTURN:		    PrintString(60, 2, "G GROUND_TAXI  ");     break;
 			case AUTO_TELLLEADER:		PrintString(60, 2, "G AUTO_TELLLEADER  ");     break;
-															  
+
 			case AUTO_SPIRAL2GROUND:	PrintString(60, 2, "G AUTO_SPIRAL2GROUND  ");     break;
 			case AUTO_RESURRECT:		PrintString(60, 2, "G AUTO_RESURRECT  ");     break;
 			case AUTO_DEATHSEQUENCE:	PrintString(60, 2, "G AUTO_DEATHSEQUENCE  ");     break;
@@ -729,7 +729,7 @@ if((entry == Persons2::PlayerGhostAC->follower) || (entry == Persons2::PlayerSee
 			case AUTO_TRAININGACM:	    PrintString(60, 2, "G AUTO_TRAININGACM  ");     break;
 			case AUTO_CRASHSKID:		PrintString(60, 2, "G AUTO_CRASHSKID  ");     break;
 			case AUTO_CRASHROLL:		PrintString(60, 2, "G AUTO_CRASHROLL  ");     break;
-															  
+
 			case AUTO_BOMB:             PrintString(60, 2, "G AUTO_BOMB  ");     break;
 			case AUTO_COVER:            PrintString(60, 2, "G AUTO_COVER  ");     break;
 			case AUTO_STRAFFE:          PrintString(60, 2, "G AUTO_STRAFFE  ");     break;
@@ -737,7 +737,7 @@ if((entry == Persons2::PlayerGhostAC->follower) || (entry == Persons2::PlayerSee
 			case AUTO_RECONN:           PrintString(60, 2, "G AUTO_RECONN  ");     break;
 			case AUTO_ARTSPOT:          PrintString(60, 2, "G AUTO_ARTSPOT  ");     break;
 			case AUTO_HITWATER:		    PrintString(60, 2, "G AUTO_HITWATER  ");     break;
-															  
+
 			case AUTO_TRACKINGBOGIE:	PrintString(60, 2, "G AUTO_TRACKINGBOGIE  ");     break;
 			case AUTO_TRACKINGBANDIT:   PrintString(60, 2, "G AUTO_TRACKINGBANDIT  ");     break;
 			case AUTO_PRECOMBAT:		PrintString(60, 2, "G AUTO_PRECOMBAT  ");     break;
@@ -759,7 +759,7 @@ if((entry == Persons2::PlayerGhostAC->follower) || (entry == Persons2::PlayerSee
 			case AUTO_TAKEOFF:          PrintString(60, 3, "S AUTO_TAKEOFF  ");     break;
 			case GROUND_TAXI:		    PrintString(60, 3, "S GROUND_TAXI  ");     break;
 			case AUTO_TELLLEADER:		PrintString(60, 3, "S AUTO_TELLLEADER  ");     break;
-															  
+
 			case AUTO_SPIRAL2GROUND:	PrintString(60, 3, "S AUTO_SPIRAL2GROUND  ");     break;
 			case AUTO_RESURRECT:		PrintString(60, 3, "S AUTO_RESURRECT  ");     break;
 			case AUTO_DEATHSEQUENCE:	PrintString(60, 3, "S AUTO_DEATHSEQUENCE  ");     break;
@@ -767,7 +767,7 @@ if((entry == Persons2::PlayerGhostAC->follower) || (entry == Persons2::PlayerSee
 			case AUTO_TRAININGACM:	    PrintString(60, 3, "S AUTO_TRAININGACM  ");     break;
 			case AUTO_CRASHSKID:		PrintString(60, 3, "S AUTO_CRASHSKID  ");     break;
 			case AUTO_CRASHROLL:		PrintString(60, 3, "S AUTO_CRASHROLL  ");     break;
-															  
+
 			case AUTO_BOMB:             PrintString(60, 3, "S AUTO_BOMB  ");     break;
 			case AUTO_COVER:            PrintString(60, 3, "S AUTO_COVER  ");     break;
 			case AUTO_STRAFFE:          PrintString(60, 3, "S AUTO_STRAFFE  ");     break;
@@ -775,7 +775,7 @@ if((entry == Persons2::PlayerGhostAC->follower) || (entry == Persons2::PlayerSee
 			case AUTO_RECONN:           PrintString(60, 3, "S AUTO_RECONN  ");     break;
 			case AUTO_ARTSPOT:          PrintString(60, 3, "S AUTO_ARTSPOT  ");     break;
 			case AUTO_HITWATER:		    PrintString(60, 3, "S AUTO_HITWATER  ");     break;
-															  
+
 			case AUTO_TRACKINGBOGIE:	PrintString(60, 3, "S AUTO_TRACKINGBOGIE  ");     break;
 			case AUTO_TRACKINGBANDIT:   PrintString(60, 3, "S AUTO_TRACKINGBANDIT  ");     break;
 			case AUTO_PRECOMBAT:		PrintString(60, 3, "S AUTO_PRECOMBAT  ");     break;
@@ -820,7 +820,7 @@ if((entry == Persons2::PlayerGhostAC->follower) || (entry == Persons2::PlayerSee
 			{
 				if(currac->PlayerInGroup())
 				{
-					if(!currac->Status.deadtime) 
+					if(!currac->Status.deadtime)
 						PrintVar(0, currac->fly.callnum, "%.0f ", FP(currac->ai.flyingskill));
 					else
 						PrintString(0, currac->fly.callnum, "**DEAD**");
@@ -828,56 +828,56 @@ if((entry == Persons2::PlayerGhostAC->follower) || (entry == Persons2::PlayerSee
 				else if(currac->vel)
 				{
 					if(currac->classtype->visible == SPIT)
-						if(!currac->Status.deadtime) 
+						if(!currac->Status.deadtime)
 							PrintVar(10, currac->fly.callnum, "SPIT %.0f ", FP(currac->ai.flyingskill));
 						else
 							PrintString(10, currac->fly.callnum, "**DEAD**");
 
 					if(currac->classtype->visible == F84)
-						if(!currac->Status.deadtime) 
+						if(!currac->Status.deadtime)
 							PrintVar(20, currac->fly.callnum, "F84 %.0f ", FP(currac->ai.flyingskill));
 						else
 							PrintString(20, currac->fly.callnum, "**DEAD**");
 
 					if(currac->classtype->visible == F80)
-						if(!currac->Status.deadtime) 
+						if(!currac->Status.deadtime)
 							PrintVar(30, currac->fly.callnum, "F80 %.0f ", FP(currac->ai.flyingskill));
 						else
 							PrintString(30, currac->fly.callnum, "**DEAD**");
 
 					if(currac->classtype->visible == F51)
-						if(!currac->Status.deadtime) 
+						if(!currac->Status.deadtime)
 							PrintVar(40, currac->fly.callnum, "F51 %.0f ", FP(currac->ai.flyingskill));
 						else
 							PrintString(40, currac->fly.callnum, "**DEAD**");
 
 					if(currac->classtype->visible == B26)
-						if(!currac->Status.deadtime) 
+						if(!currac->Status.deadtime)
 							PrintVar(50, currac->fly.callnum, "B26 %.0f ", FP(currac->ai.flyingskill));
 						else
 							PrintString(50, currac->fly.callnum, "**DEAD**");
 
 					if(currac->classtype->visible == B29)
-						if(!currac->Status.deadtime) 
+						if(!currac->Status.deadtime)
 							PrintVar(60, currac->fly.callnum, "B29 %.0f ", FP(currac->ai.flyingskill));
 						else
 							PrintString(60, currac->fly.callnum, "**DEAD**");
 
 					if(currac->classtype->visible == MIG15)
-						if(!currac->Status.deadtime) 
+						if(!currac->Status.deadtime)
 							PrintVar(70, currac->fly.callnum, "M15 %.0f ", FP(currac->ai.flyingskill));
 						else
 							PrintString(70, currac->fly.callnum, "**DEAD**");
 
 					if(currac->classtype->visible == CMIG15)
-						if(!currac->Status.deadtime) 
+						if(!currac->Status.deadtime)
 							PrintVar(70, currac->fly.callnum, "M15 %.0f ", FP(currac->ai.flyingskill));
 						else
 							PrintString(70, currac->fly.callnum, "**DEAD**");
 
 					if(currac->classtype->visible == B26)
 						PrintVar(57, currac->fly.callnum, "%.0f ", FP(currac->vel * 0.1));
-	
+
 				}
 			}
 
@@ -889,7 +889,7 @@ if((entry == Persons2::PlayerGhostAC->follower) || (entry == Persons2::PlayerSee
 												 && (currac->ai.unfriendly->Status.size == AIRSTRUCSIZE)
 												 && (AirStrucPtr(currac->ai.unfriendly)->PlayerInGroup())) )
 //DEADCODE RDH 23/06/99 		if  (		(		(currac->fly.callname == 3)		//hot shot f86 = 3
-//DEADCODE RDH 23/06/99 						||	(currac->fly.callname == 5)		//hot shot mig		
+//DEADCODE RDH 23/06/99 						||	(currac->fly.callname == 5)		//hot shot mig
 //DEADCODE RDH 23/06/99 					)
 //DEADCODE RDH 23/06/99 					&&	(currac->fly.callnum <= 8)
 //DEADCODE RDH 23/06/99 			)
@@ -917,14 +917,14 @@ if((entry == Persons2::PlayerGhostAC->follower) || (entry == Persons2::PlayerSee
 			{
 
 				if(currac->ai.unfriendly) PrintVar(77, line, "v%.0f", FP(AirStrucPtr(currac->ai.unfriendly)->fly.callnum));
-				if(currac->ai.attacker) 
+				if(currac->ai.attacker)
 					PrintVar(73, line, "a%.0f", FP(AirStrucPtr(currac->ai.attacker)->fly.callnum));
 				else
 					PrintVar(73, line, "a%.0f", FP(0));
 
 				PrintVar(10, line, "Vel %.1f      ", FP(currac->vel / 10.0));
 				PrintVar(20, line, "Range %.0f      ", FP(currac->Range / 100.0));
-				
+
 				if(currac->ai.simpleacm) PrintString(32, line, "simple    ");
 				else			 PrintString(32, line, "COMPLEX   ");
 
@@ -1017,11 +1017,11 @@ if((entry == Persons2::PlayerGhostAC->follower) || (entry == Persons2::PlayerSee
 					FP fAttack = (trg.X - my.X) * currac->velx + (trg.Y - my.Y) * currac->vely + (trg.Z - my.Z) * currac->velz;
 					fAttack *= 100.0 / FP(currac->vel * Range);
 
-					PrintVar(59, line, "*%.0f ", fAttack);  
+					PrintVar(59, line, "*%.0f ", fAttack);
 				}
 
 				PrintVar(64, line, "f%.0f ", FP(currac->ai.combatskill));
-				PrintVar(68, line, "m%.0f ", FP(currac->ai.morale));  
+				PrintVar(68, line, "m%.0f ", FP(currac->ai.morale));
 			}
 		}
 	}
@@ -1088,16 +1088,16 @@ if((entry == Persons2::PlayerGhostAC->follower) || (entry == Persons2::PlayerSee
 		((AirStrucPtr) *entry)->Move().AutoCrashSkid();				//RDH 12Sep96
 		break;
 	case AUTO_CRASHONEWHEEL:
-		((AirStrucPtr) *entry)->Move().AutoCrashOneWheel();	
+		((AirStrucPtr) *entry)->Move().AutoCrashOneWheel();
 		break;
 	case AUTO_CRASHNOSE:
-		((AirStrucPtr) *entry)->Move().AutoCrashNose();	
+		((AirStrucPtr) *entry)->Move().AutoCrashNose();
 		break;
 	case AUTO_CRASHFLIP:
-		((AirStrucPtr) *entry)->Move().AutoCrashFlip();	
+		((AirStrucPtr) *entry)->Move().AutoCrashFlip();
 		break;
 	case AUTO_CRASHTUMBLE:
-		((AirStrucPtr) *entry)->Move().AutoCrashTumble();	
+		((AirStrucPtr) *entry)->Move().AutoCrashTumble();
 		break;
 	case AUTO_WAIT4TIME:												//CSB 6Jul00
 		((AirStrucPtr) *entry)->Move().AutoWait4Time();					//CSB 6Jul00
@@ -1111,7 +1111,7 @@ if((entry == Persons2::PlayerGhostAC->follower) || (entry == Persons2::PlayerSee
 	case AUTO_NOPPILOT:
 //DeadCode AMM 01Dec98 		if (entry=Persons2::PlayerSeenAC)
 
-		
+
 //DEADCODE RDH 28/04/99 		if (entry->uniqueID.count>RedAcBAND && entry->uniqueID.count<BlueAcBANDEND)
 //DEADCODE RDH 28/04/99 			UByteP(0xB0000)[2*entry->uniqueID.count&0xfff]='N';
 //DeadCode JIM 28Apr99 			UByteP(0xB0000)[2*entry->uniqueID.count&0xfff]='N';
@@ -1204,11 +1204,11 @@ if((entry == Persons2::PlayerGhostAC->follower) || (entry == Persons2::PlayerSee
 //Author		Jim Taylor
 //Date			Thu 15 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 extern void	CheckE3();
@@ -1221,9 +1221,9 @@ void TransientItem::MoveTransList(TransientItemPtr entry,WorldStuff& world)
 		if (entry->movecode != MOBILE_NOPPILOT)						//RJS 09Dec98
 		{
 			UWord	oldsector=	world.GetSector(*entry);			//PD 25Jun96
-	
+
 			MoveTransItem(entry,world);
-	
+
 			if (oldsector!=world.GetSector(*entry))					//PD 25Jun96
 			{
 				world.RemoveFromSector((TransientItemPtr)entry,oldsector);
@@ -1244,11 +1244,11 @@ void TransientItem::MoveTransList(TransientItemPtr entry,WorldStuff& world)
 //Author		Jim Taylor
 //Date			Thu 15 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransientItem::MoveTransItem(TransientItemPtr entry,WorldStuff& world)//PD 26Apr96
@@ -1333,11 +1333,11 @@ void TransientItem::MoveTransItem(TransientItemPtr entry,WorldStuff& world)//PD 
 //Author		Jim Taylor
 //Date			Thu 15 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void AirStruc::AddToList()
@@ -1369,7 +1369,7 @@ void TransientItem::AddToList()
 	nexttrans=TransientList;
 	TransientList=this;
 
-// transients have ID equal to frame when launched. When a collision occurs the player 
+// transients have ID equal to frame when launched. When a collision occurs the player
 // who processes the collision (owner of transient) send a message indicating that all
 // transients with that frame number launched by him should be removed from the world
 
@@ -1386,7 +1386,7 @@ void TransientItem::AddToList()
 	if ((Launcher==Persons2::PlayerSeenAC && !_Replay.Playback)
 	|| (!_DPlay.Implemented && !_Replay.Record && !_Replay.Playback))
 	{
-// comms/replay off or player launched 
+// comms/replay off or player launched
 // if replay is turned on then these bullets will cause collisions to be recorded
 // even though bullets are not seen on replay
 
@@ -1402,7 +1402,7 @@ void TransientItem::AddToList()
 
 // if this hits player then collision will be sent if in record or comms. Other collisions do
 // not need to be sent as they are AI against AI, or AI against comms player in which case
-// that player will send his own collision info packets. 
+// that player will send his own collision info packets.
 
 // if this hits a player then check CommsOwner ID. If it is me then trasmit, otherwise ignore.
 
@@ -1426,7 +1426,7 @@ void TransientItem::AddToList()
 //DeadCode JIM 07Oct96   	{
 //DeadCode JIM 07Oct96  		temp=TransientList;
 //DeadCode JIM 07Oct96  		TransientList=*this;
-//DeadCode JIM 07Oct96  
+//DeadCode JIM 07Oct96
 //DeadCode JIM 07Oct96  		TransientList->nexttrans=temp;
 //DeadCode JIM 07Oct96   	}
 
@@ -1438,11 +1438,11 @@ void TransientItem::AddToList()
 //Author		Jim Taylor
 //Date			Thu 5 Dec 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //TextSnip0	WayPoint::GetWpName()
@@ -1458,20 +1458,20 @@ void TransientItem::AddToList()
 //}
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ExecuteWayPointAction
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 19 Feb 1996
 //
 //Description	Now pseudo recursive. Compiler should optimise to itteration.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	mobileitem::ExecuteWayPointAction ()
 {
 //TEMP	Persons_2.PossibleEvent(currworld,waypoint,this);
-	if (	Status.size==AIRSTRUCSIZE 
+	if (	Status.size==AIRSTRUCSIZE
 		&&	AirStrucPtr(*this)->fly.numinsag>1)
 	{
 		AirStrucPtr(*this)->SAG().SAGWPAction();
@@ -1654,7 +1654,7 @@ void	mobileitem::DoWayPointAction (AutoMoveCodeTypeSelect	oldmove,WayPointPtr	ol
 		case	wpstartloopno:										  //JIM 19/03/99
 			action=MidLoopWayPoint();								//JIM 30Jul96
 		break;												//JIM 30Jul96
-		
+
 		case	wpforcebreakloop:
 			ForceBreakLoopWayPoint();
 		break;
@@ -1720,7 +1720,7 @@ void	mobileitem::DoWayPointAction (AutoMoveCodeTypeSelect	oldmove,WayPointPtr	ol
 					}
 				}
 			}
-			
+
 //DeadCode CSB 5Oct00 			if((AC == Persons2::PlayerGhostAC) || (AC == Persons2::PlayerSeenAC))
 //DeadCode CSB 5Oct00 				OverLay.CancelAccel();
 			movecode = AUTO_LANDING;
@@ -1729,7 +1729,7 @@ void	mobileitem::DoWayPointAction (AutoMoveCodeTypeSelect	oldmove,WayPointPtr	ol
 			AirStrucPtr AC = *this;
 			AC->ai.ManStep = 0;
 			AC->SetManoeuvreTime(0);
-			
+
 			if(AC->formpos == 0)
 			{
 				AirStrucPtr ThePlayer = AC->PlayerInGroup();
@@ -1747,11 +1747,11 @@ void	mobileitem::DoWayPointAction (AutoMoveCodeTypeSelect	oldmove,WayPointPtr	ol
 							windrep = SCRIPT_CALLEE_SURFACEWIND_BEARINGNO_SPEED_GUSTS;
 						else
 							windrep = SCRIPT_CALLEE_SURFACEWIND_BEARINGNO_SPEED;
-					
+
 					_Radio.TriggerMsg(MESSAGE_STRUC(windrep, MSG_STATUSRESPONSE_DELAY_LP_RPT, VOICE_TOWER, NULL, AC));
 				}
 			}
-			
+
 			if(AC->classtype->aerobaticfactor == AEROBATIC_LOW)
 			{
 				bool sentmessage = false;
@@ -1774,13 +1774,13 @@ void	mobileitem::DoWayPointAction (AutoMoveCodeTypeSelect	oldmove,WayPointPtr	ol
 					}
 				}
 			}
-				
+
 			break;
 		}
 
 		case	wp_start_cas:
 //DEADCODE JIM 16/11/99 			NextWayPoint();
-//DEADCODE JIM 16/11/99 			if (	(AirStrucPtr(*this)->duty&DUTYMASK)==DC_CAS 
+//DEADCODE JIM 16/11/99 			if (	(AirStrucPtr(*this)->duty&DUTYMASK)==DC_CAS
 //DEADCODE JIM 16/11/99 				&& (AirStrucPtr(*this)->duty&ACTIONCODE)!=DA_CAP
 //DEADCODE JIM 16/11/99 				)
 //DEADCODE JIM 16/11/99 				AirStrucPtr(*this)->SetToCAS(true);
@@ -1823,15 +1823,15 @@ void	mobileitem::DoWayPointAction (AutoMoveCodeTypeSelect	oldmove,WayPointPtr	ol
 //Author		Jim Taylor
 //Date			Sun 21 Jul 1996
 //
-//Description	
+//Description
 //				Basically does equivalents to auto movecode for player
 //
 //				Checks if manual is on course and has reached waypoints
 //				Checks for all break off
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	AirStruc::CheckManualCourse()
@@ -1886,7 +1886,7 @@ PrintVar(0, 3, "Heading  %.0f ", FP(UWord(HdgIntercept) / 182));
 					leadac->slowdownleader = TRUE;
 					if(fly.leadflight)
 						fly.leadflight->slowdownleader = TRUE;
-					int r = (int)FSqrt(Range / METRES500);				//CSB 07/06/99	
+					int r = (int)FSqrt(Range / METRES500);				//CSB 07/06/99
 					if(ai.desiredrange)									  //JIM 18/05/99
 					if(r > ai.desiredrange)								  //JIM 18/05/99
 					{
@@ -1902,7 +1902,7 @@ PrintVar(0, 3, "Heading  %.0f ", FP(UWord(HdgIntercept) / 182));
 					ai.desiredrange = r;										  //JIM 18/05/99
 
 				}
-	
+
 				if((!(leadac->fly.pModel->FrameCount & 0xFF)) && (leadac->Distance3DSquared(&World) < FP(METRES15) * FP(METRES15)))
 					_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_NOTTHATCLOSE, MSG_FORMATIONFLYING_RPT, leadac, NULL, this));
 			}
@@ -1920,7 +1920,7 @@ PrintVar(0, 3, "Heading  %.0f ", FP(UWord(HdgIntercept) / 182));
 					{
 						thiswpworld.X += waypoint->target->World.X;
 //DeadCode CSB 12Sep00 						thiswpworld.Y += waypoint->target->World.Y;
-						thiswpworld.Z += waypoint->target->World.Z;	
+						thiswpworld.Z += waypoint->target->World.Z;
 					}
 					thiswpworld.Y = World.Y;
 					FP dist2wp = Distance3DSquared(&thiswpworld);
@@ -1940,14 +1940,14 @@ PrintVar(0, 3, "Heading  %.0f ", FP(UWord(HdgIntercept) / 182));
 							{
 								nextwpworld.X += nextwp->target->World.X;
 	//DeadCode CSB 12Sep00 							nextwpworld.Y += nextwp->target->World.Y;
-								nextwpworld.Z += nextwp->target->World.Z;	
+								nextwpworld.Z += nextwp->target->World.Z;
 							}
 							nextwpworld.Y = World.Y;
 							FP dist2apart =		FP(nextwpworld.X - thiswpworld.X) * FP(nextwpworld.X - thiswpworld.X)
 											+	FP(nextwpworld.Z - thiswpworld.Z) * FP(nextwpworld.Z - thiswpworld.Z);
 							FP dist2next = Distance3DSquared(&nextwpworld);
 							if(		((dist2wp < dist2apart * 0.05) && (dist2next < dist2apart))
-								/*||	(dist2next < dist2wp)*/	) 
+								/*||	(dist2next < dist2wp)*/	)
 								ExecuteWayPointAction();
 						}
 						else
@@ -1987,7 +1987,7 @@ PrintVar(0, 3, "Heading  %.0f ", FP(UWord(HdgIntercept) / 182));
 						}
 			}
 		}
-		
+
 		case AUTO_TRAININGFORMATION:
 		{
 			static bool finished;
@@ -2041,10 +2041,10 @@ PrintVar(0, 3, "Heading  %.0f ", FP(UWord(HdgIntercept) / 182));
 		}
 	}
 }
-		
+
 //DeadCode CSB 12Sep00 	ANGLES	currintercept,originalintercept;
 //DeadCode CSB 12Sep00 	SLong	range,dprange;
-//DeadCode CSB 12Sep00 
+//DeadCode CSB 12Sep00
 //DeadCode CSB 12Sep00 	COORDS3D* dp;
 //DeadCode CSB 12Sep00 	if (movecode==AUTO_PRECOMBAT)
 //DeadCode CSB 12Sep00 		if (ai.unfriendly==NULL)
@@ -2059,9 +2059,9 @@ PrintVar(0, 3, "Heading  %.0f ", FP(UWord(HdgIntercept) / 182));
 //DeadCode CSB 12Sep00 				movecode=AUTO_FOLLOWWP;
 //DeadCode CSB 12Sep00 		else
 //DeadCode CSB 12Sep00 		{
-//DeadCode CSB 12Sep00 
+//DeadCode CSB 12Sep00
 //DeadCode CSB 12Sep00 			dp=&ai.unfriendly->World;
-//DeadCode CSB 12Sep00 
+//DeadCode CSB 12Sep00
 //DeadCode CSB 12Sep00 			dprange=METRES500;
 //DeadCode CSB 12Sep00 			InterceptandRange (dp);
 //DeadCode CSB 12Sep00 			if (Range>dprange)
@@ -2092,7 +2092,7 @@ PrintVar(0, 3, "Heading  %.0f ", FP(UWord(HdgIntercept) / 182));
 //DeadCode CSB 12Sep00 //DeadCode CSB 1Aug00 					((AirStrucPtr)ai.unfriendly)->ai.attacker=NULL;
 //DeadCode CSB 12Sep00 //DeadCode CSB 1Aug00 				ai.unfriendly=NULL;
 //DeadCode CSB 12Sep00 			}
-//DeadCode CSB 12Sep00 
+//DeadCode CSB 12Sep00
 //DeadCode CSB 12Sep00 		if (ai.unfriendly)
 //DeadCode CSB 12Sep00 		{
 //DeadCode CSB 12Sep00 			InterceptandRange (dp=&ai.unfriendly->World);
@@ -2113,7 +2113,7 @@ PrintVar(0, 3, "Heading  %.0f ", FP(UWord(HdgIntercept) / 182));
 //DeadCode CSB 12Sep00 				{
 //DeadCode CSB 12Sep00 					ai.manoeuvre=MANOEUVRE_TOPCOVER;
 //DeadCode CSB 12Sep00 				}
-//DeadCode CSB 12Sep00 
+//DeadCode CSB 12Sep00
 //DeadCode CSB 12Sep00 			return;
 //DeadCode CSB 12Sep00 		}
 //DeadCode CSB 12Sep00 	}
@@ -2137,7 +2137,7 @@ PrintVar(0, 3, "Heading  %.0f ", FP(UWord(HdgIntercept) / 182));
 //DeadCode CSB 12Sep00 //DEADCODE CSB 14/02/00 		}
 //DeadCode CSB 12Sep00 //DEADCODE CSB 14/02/00 		OverLay.CancelAccel();
 //DeadCode CSB 12Sep00 //DEADCODE CSB 14/02/00 		range = 1;		//CSB 13/07/99	Force it to fail later test
-//DeadCode CSB 12Sep00 //DEADCODE CSB 14/02/00 		dprange = 0;	//CSB 13/07/99	
+//DeadCode CSB 12Sep00 //DEADCODE CSB 14/02/00 		dprange = 0;	//CSB 13/07/99
 //DeadCode CSB 12Sep00 //DEADCODE CSB 14/02/00 	}
 //DeadCode CSB 12Sep00 	elseif (!FlyEscortTo())
 //DeadCode CSB 12Sep00 	{	//followwp
@@ -2160,14 +2160,14 @@ PrintVar(0, 3, "Heading  %.0f ", FP(UWord(HdgIntercept) / 182));
 //DeadCode CSB 12Sep00 //TempCode JIM 14Nov96 			originalintercept=(ANGLES)(HdgIntercept+ANGLES_180Deg);	//still have old intercept
 //DeadCode CSB 12Sep00 //TempCode JIM 14Nov96 		}
 //DeadCode CSB 12Sep00 //TempCode JIM 14Nov96 //complicates dp calculation
-//DeadCode CSB 12Sep00 
+//DeadCode CSB 12Sep00
 //DeadCode CSB 12Sep00 	}
-//DeadCode CSB 12Sep00 	else if(!Status.deadtime)	//CSB 09/06/99	
+//DeadCode CSB 12Sep00 	else if(!Status.deadtime)	//CSB 09/06/99
 //DeadCode CSB 12Sep00 	{	//followwp wing
 //DeadCode CSB 12Sep00 		AirStrucPtr leadac=Leader();
 //DeadCode CSB 12Sep00 		if (!leadac)
 //DeadCode CSB 12Sep00 			leadac=fly.leadflight;
-//DeadCode CSB 12Sep00 
+//DeadCode CSB 12Sep00
 //DeadCode CSB 12Sep00 		InterceptandRange (dp=PositionWRTLeader ());
 //DeadCode CSB 12Sep00 		range=Range;
 //DeadCode CSB 12Sep00 		currintercept=originalintercept=HdgIntercept;
@@ -2179,7 +2179,7 @@ PrintVar(0, 3, "Heading  %.0f ", FP(UWord(HdgIntercept) / 182));
 //DeadCode CSB 12Sep00 			if (fly.leadflight)
 //DeadCode CSB 12Sep00 				fly.leadflight->slowdownleader=TRUE;
 //DeadCode CSB 12Sep00 //DeadCode CSB 07/06/99				int r=range/METRES250;	  //7 bits=12800 metres
-//DeadCode CSB 12Sep00 			int r = (int)FSqrt(range/METRES500);				//CSB 07/06/99	
+//DeadCode CSB 12Sep00 			int r = (int)FSqrt(range/METRES500);				//CSB 07/06/99
 //DeadCode CSB 12Sep00 			if (ai.desiredrange)									  //JIM 18/05/99
 //DeadCode CSB 12Sep00 				if (r>ai.desiredrange)								  //JIM 18/05/99
 //DeadCode CSB 12Sep00 					if(r < 2)
@@ -2191,15 +2191,15 @@ PrintVar(0, 3, "Heading  %.0f ", FP(UWord(HdgIntercept) / 182));
 //DeadCode CSB 12Sep00 					else
 //DeadCode CSB 12Sep00 						_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_GETCLOSER, MSG_FORMATIONFLYING_RPT, leadac, NULL, this));
 //DeadCode CSB 12Sep00 			ai.desiredrange=r;										  //JIM 18/05/99
-//DeadCode CSB 12Sep00 
+//DeadCode CSB 12Sep00
 //DeadCode CSB 12Sep00 		}
 //DeadCode CSB 12Sep00 		else
 //DeadCode CSB 12Sep00 			information=IF_NEAR_POS;
-//DeadCode CSB 12Sep00 
+//DeadCode CSB 12Sep00
 //DeadCode CSB 12Sep00 		if((!(leadac->fly.pModel->FrameCount & EVERY256cs)) && (leadac->Distance3DSquared(&World) < FP(METRES15) * FP(METRES15)))
 //DeadCode CSB 12Sep00 			_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_NOTTHATCLOSE, MSG_FORMATIONFLYING_RPT, leadac, NULL, this));
 //DeadCode CSB 12Sep00 	}
-//DeadCode CSB 12Sep00 
+//DeadCode CSB 12Sep00
 //DeadCode CSB 12Sep00 	//now what?
 //DeadCode CSB 12Sep00 	if (range<dprange)											//JIM 20Aug96
 //DeadCode CSB 12Sep00 	{	//reached waypoint near enough							//JIM 20Aug96
@@ -2270,7 +2270,7 @@ PrintVar(0, 3, "Heading  %.0f ", FP(UWord(HdgIntercept) / 182));
 //DeadCode CSB 12Sep00 //DEADCODE RJS 16/11/99 			}
 //DeadCode CSB 12Sep00 //DEADCODE RJS 16/11/99 		}
 //DeadCode CSB 12Sep00 	}
-//DeadCode CSB 12Sep00 
+//DeadCode CSB 12Sep00
 //DeadCode CSB 12Sep00 	if(movecode == AUTO_TRAININGFORMATION)
 //DeadCode CSB 12Sep00 	{
 //DeadCode CSB 12Sep00 		static bool finished;
@@ -2280,22 +2280,22 @@ PrintVar(0, 3, "Heading  %.0f ", FP(UWord(HdgIntercept) / 182));
 //DeadCode CSB 12Sep00 		const FP baddist2  = FP(METRES500) * FP(METRES500);
 //DeadCode CSB 12Sep00 		const FP goodscore   = 0.8;
 //DeadCode CSB 12Sep00 		const FP badscore    = 0.5;
-//DeadCode CSB 12Sep00 
+//DeadCode CSB 12Sep00
 //DeadCode CSB 12Sep00 		if((!_Replay.Playback) && (Persons2::PlayerSeenAC->fly.pModel->FirstCycle))
 //DeadCode CSB 12Sep00 		{
 //DeadCode CSB 12Sep00 			finished = false;
 //DeadCode CSB 12Sep00 			timeinform = 0;
 //DeadCode CSB 12Sep00 			SetManoeuvreTime(totaltime);
 //DeadCode CSB 12Sep00 		}
-//DeadCode CSB 12Sep00 
+//DeadCode CSB 12Sep00
 //DeadCode CSB 12Sep00 		AirStrucPtr lead = FindFormpos0();
 //DeadCode CSB 12Sep00 		if((!finished) && (lead) && (lead != this))
 //DeadCode CSB 12Sep00 		{
 //DeadCode CSB 12Sep00 			despos = *PositionWRTLeader();
 //DeadCode CSB 12Sep00 			FP dist2 = Distance3DSquared(&despos);
-//DeadCode CSB 12Sep00 
+//DeadCode CSB 12Sep00
 //DeadCode CSB 12Sep00 //DEADCODE CSB 02/03/00 PrintVar(60, 20, "Dist %.0f ", FP(FSqrt(dist2) * 0.01));
-//DeadCode CSB 12Sep00 
+//DeadCode CSB 12Sep00
 //DeadCode CSB 12Sep00 			if(dist2 > baddist2)
 //DeadCode CSB 12Sep00 			{
 //DeadCode CSB 12Sep00 				_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_WHATHELLDOING, MSG_STATUS, lead, NULL, this));
@@ -2303,10 +2303,10 @@ PrintVar(0, 3, "Heading  %.0f ", FP(UWord(HdgIntercept) / 182));
 //DeadCode CSB 12Sep00 			}
 //DeadCode CSB 12Sep00 			else if(dist2 < gooddist2)
 //DeadCode CSB 12Sep00 				timeinform += Timer_Code.FRAMETIME;
-//DeadCode CSB 12Sep00 
+//DeadCode CSB 12Sep00
 //DeadCode CSB 12Sep00 //DEADCODE CSB 02/03/00 PrintVar(60, 21, "Good %.0f ", FP(timeinform * 0.01));
 //DeadCode CSB 12Sep00 //DEADCODE CSB 02/03/00 PrintVar(60, 22, "Time %.0f ", FP(manoeuvretime * 0.01));
-//DeadCode CSB 12Sep00 
+//DeadCode CSB 12Sep00
 //DeadCode CSB 12Sep00 			if(!TimeLeft())
 //DeadCode CSB 12Sep00 			{
 //DeadCode CSB 12Sep00 				FP score = timeinform / totaltime;
@@ -2316,7 +2316,7 @@ PrintVar(0, 3, "Heading  %.0f ", FP(UWord(HdgIntercept) / 182));
 //DeadCode CSB 12Sep00 					_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_NOTBAD, MSG_STATUS, lead, NULL, this));
 //DeadCode CSB 12Sep00 				else
 //DeadCode CSB 12Sep00 					_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_NOTGOOD, MSG_STATUS, lead, NULL, this));
-//DeadCode CSB 12Sep00 
+//DeadCode CSB 12Sep00
 //DeadCode CSB 12Sep00 				finished = true;
 //DeadCode CSB 12Sep00 			}
 //DeadCode CSB 12Sep00 		}

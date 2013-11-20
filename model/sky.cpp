@@ -343,7 +343,7 @@ Bool Atmosphere::Ambient (FP ypos, FP& density, FP& temp, FP& pres)
 
 	temp += (Temp0 - 288.15);
 
-	density = Density0 * pow(TempRatio, 4.14);
+	density = Density0 * pow((double)TempRatio, (double)4.14);
 
 	pres = density * 287 * temp;
 

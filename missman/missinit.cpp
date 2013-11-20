@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -111,7 +111,7 @@ startinst(CampaignPackages, CampaignConvoy_Def)
 	/*garbage*/		sizeof(CampaignPackages),
 	/*introsmack*/		FIL_VID_PHASE1BEGINS,
 	/*IntroQuarterArt*/	FIL_NULL,
-	
+
 	/*playerhomebase*/	UID_AF_Abbeville,							//MS 06Apr99
 	/*playertakeoff*/	UID_AF_Abbeville,							//MS 06Apr99
 	/*firsttime*/	true,
@@ -141,7 +141,7 @@ startinst(CampaignPackages, CampaignConvoy_Def)
 	/*directives*/
 	{
 		{//LW
-			/*userprofiles*/	
+			/*userprofiles*/
 			{
 				{
 					/*escortmethods*/		{0,4,32,32},		//MS 16Nov00
@@ -184,14 +184,14 @@ startinst(CampaignPackages, CampaignConvoy_Def)
  				/*targetlines*/
 				{		/*attached,detached, flags,			bombersperraid*/	/*acproportions*/
 					{	0.0},
-					
+
 				},
 				{0}
 			},
 			/*histdir*/
 			{
 				{//LWHISTORICALPHASE1A
-//TempCode MS 30Aug00  						//targetlines 	
+//TempCode MS 30Aug00  						//targetlines
 //TempCode MS 30Aug00 						{	/*attached,detached, flags,	  2ndtrg,	bombers*/		/*me109,me110, ju87, do17, ju88, he111,  */
 //TempCode MS 30Aug00 /*RECON		*/				{	0.0, 1.0,	  Flags::NONE,0,	1,					{0.0, 0.0, 0.0, 0.0, 0.0, 0.0}},
 //TempCode MS 30Aug00 /*AIRFIELDS	*/				{	0.0, 1.0,	  Flags::FIGHTERSSTRAFFE,0,	30,			{0.0, 0.0, 0.0, 0.0, 0.0, 0.0}},
@@ -210,7 +210,7 @@ startinst(CampaignPackages, CampaignConvoy_Def)
 //TempCode MS 30Aug00 						/*arrivalminsseperation*/	15,		//2=coordinated;15 is consecutive.
 //TempCode MS 30Aug00 						/*ju87*/			Directives::LW::JU_ANY,
 //TempCode MS 30Aug00 						/*escort*/			0.50
- 						//targetlines 	
+ 						//targetlines
 						{	/*attached,detached, flags,	  2ndtrg,	bombers*/		/*me109,me110, ju87, do17, ju88, he111,  */
 /*RECON		*/				{	0.0, 1.0,	  Flags::NONE,0,	1,					{0.0, 0.0, 0.0, 0.0, 0.0, 0.0}},
 /*AIRFIELDS	*/				{	0.0, 1.0,	  Flags::NONE,0,	30,					{0.0, 0.0, 0.0, 0.0, 0.0, 0.0}},
@@ -528,13 +528,13 @@ startinst(CampaignPackages, CampaignConvoy_Def)
  						/*targetlines*/
 						{	/*attached,detached, flags,			secondarytrg,			bombersperraid*/		/*me109,me110, ju87, do17, ju88, he111,  */
 /*RECON		*/				{	1.0, 0.0,	  Flags::NONE,0,	1,					{0.0, 0.0, 0.0, 0.0, 0.0, 0.0}},
-/*AIRFIELDS	*/				{	1.0, 0.0,	  Flags::NONE,0,	40,					{0.0, 1.0, 0.0, 0.0, 0.0, 0.5}},	
+/*AIRFIELDS	*/				{	1.0, 0.0,	  Flags::NONE,0,	40,					{0.0, 1.0, 0.0, 0.0, 0.0, 0.5}},
 /*DOCKS		*/				{	1.0, 0.0,	  Flags::NONE,0,	30,					{0.0, 0.0, 0.0, 0.0, 0.0, 0.0}},
 /*RADARS	*/				{	1.0, 0.0,	  Flags::NONE,0,	30,					{0.0, 0.0, 0.0, 0.0, 0.0, 0.0}},
 /*CONVOYS	*/				{	1.0, 0.0,	  Flags::NONE,0,	30,					{0.0, 0.0, 0.0, 0.0, 0.0, 0.0}},
 /*LONDON	*/				{	1.0, 0.0,	  Flags::NONE,0,	30,					{0.0, 0.0, 0.0, 0.0, 0.0, 0.0}},
 /*FACTORIES	*/				{	1.0, 0.0,	  Flags::NONE,0,	40,					{1.0, 0.0, 0.0, 1.0, 1.0, 0.5}},
-/*SWEEPS	*/				{	1.0, 0.0,	  Flags::NONE,0,	30,					{0  , 0  , 0  , 0  , 0  , 0  }},	
+/*SWEEPS	*/				{	1.0, 0.0,	  Flags::NONE,0,	30,					{0  , 0  , 0  , 0  , 0  , 0  }},
 /*RESTING	*/				{	1.0, 0.0,	  Flags::NONE,0,	30,					{0.0, 0.0, 1.0, 0.0, 0.0, 0.0}},
 						},
 						/*reconn*/			{0,0,false,false,PT_ME110},
@@ -806,7 +806,7 @@ startinst(CampaignPackages, CampaignConvoy_Def)
 //TempCode MS 28Oct00 						/*formation*/		FTW_RAFVIC
 //TempCode MS 28Oct00 					},
 //TempCode MS 28Oct00 				},
-			},	
+			},
 			{/*current*/
 				/*sanctioned*/												Directives::RAF::MTB_ANTIALL-Directives::RAF::MTB_ANTISWEEP,
 				/*approach*/												AM::AM_INTERCEPT,
@@ -948,7 +948,7 @@ startinst(CampaignStatic, CampaignRadar_Def)
 	/*garbage*/		sizeof(CampaignStatic),
 	/*introsmack*/		FIL_VID_PHASE2BEGINS,
 	/*IntroQuarterArt*/	FIL_NULL,
-	
+
 	/*playerhomebase*/	UID_AF_Caffiers,							//MS 19Aug96
 	/*playertakeoff*/	UID_AF_Caffiers,							//MS 19Aug96
 	/*firsttime*/	true,
@@ -983,7 +983,7 @@ startinst(CampaignStatic, CampaignAirfields_Def)
 	/*garbage*/		sizeof(CampaignStatic),
 	/*introsmack*/		FIL_VID_PHASE3BEGINS,
 	/*IntroQuarterArt*/	FIL_NULL,
-	
+
 	/*playerhomebase*/	UID_AF_Caffiers,							//MS 19Aug96
 	/*playertakeoff*/	UID_AF_Caffiers,							//MS 19Aug96
 	/*firsttime*/	true,
@@ -1017,7 +1017,7 @@ startinst(CampaignStatic, CampaignBlitz_Def)
 	/*garbage*/		sizeof(CampaignStatic),
 	/*introsmack*/		FIL_VID_PHASE4BEGINS,
 	/*IntroQuarterArt*/	FIL_NULL,
-	
+
 	/*playerhomebase*/	UID_AF_Caffiers,							//MS 19Aug96
 	/*playertakeoff*/	UID_AF_Caffiers,							//MS 19Aug96
 	/*firsttime*/	true,
@@ -1050,7 +1050,7 @@ endinst(CampaignStatic, CampaignBlitz_Def);
 //DEADCODE RDH 03/04/00 	/*garbage*/		sizeof(CampaignStatic),
 //DEADCODE RDH 03/04/00 	/*introsmack*/		FIL_VID_PHASE4BEGINS,
 //DEADCODE RDH 03/04/00 	/*IntroQuarterArt*/	FIL_NULL,
-//DEADCODE RDH 03/04/00 	
+//DEADCODE RDH 03/04/00
 //DEADCODE RDH 03/04/00 	/*playerhomebase*/	UID_AF_Caffiers,							//MS 19Aug96
 //DEADCODE RDH 03/04/00 	/*playertakeoff*/	UID_AF_Caffiers,							//MS 19Aug96
 //DEADCODE RDH 03/04/00 	/*firsttime*/	true,
@@ -1070,21 +1070,21 @@ endinst(CampaignStatic, CampaignBlitz_Def);
 //DEADCODE RDH 03/04/00 	/*currentplayerslot*/	0,
 //DEADCODE RDH 03/04/00 	/*name*/				"Name",
 //DEADCODE RDH 03/04/00 	/*aircraftname*/		"Silver Eagle",
-//DEADCODE RDH 03/04/00 
+//DEADCODE RDH 03/04/00
 //DEADCODE RDH 03/04/00 //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 //DEADCODE RDH 03/04/00 //THIS SECTION WILL BE IN FINAL VERSION, IS COMMENTED OUT WHEN TESTING
 //DEADCODE RDH 03/04/00 /*front*/				{UID_NULL},//UID_SdBlPyongtaek,UID_SdRdWonju,UID_StKangnung},
-//DEADCODE RDH 03/04/00 
+//DEADCODE RDH 03/04/00
 //DEADCODE RDH 03/04/00 	/*camp_win_anim*/	 FIL_NULL,
 //DEADCODE RDH 03/04/00 	/*camp_lost_anim*/	 FIL_NULL,
-//DEADCODE RDH 03/04/00 
+//DEADCODE RDH 03/04/00
 //DEADCODE RDH 03/04/00 endinst(CampaignStatic, CampaignSpring_Def);
 
 startinst(CampaignStatic, CampaignScramble_Def)
 	/*garbage*/		sizeof(CampaignStatic),
 	/*introsmack*/		FIL_VID_PHASE4BEGINS,
 	/*IntroQuarterArt*/	FIL_NULL,
-	
+
 	/*playerhomebase*/	UID_AF_Caffiers,							//MS 19Aug96
 	/*playertakeoff*/	UID_AF_Caffiers,							//MS 19Aug96
 	/*firsttime*/	true,
@@ -1154,12 +1154,13 @@ Campaign&	Campaign::operator=(CampaignBase*	b)
 	char	*s=(char*)b,
 			*t=(char*)this;
 
-	for (int i=b->garbage;i--;)
+	int i;
+	for ( i=b->garbage;i--;)
 		*t++=*s++;
 	s=(char*)&CampaignConvoy_Def + b->garbage;
-	for (i=CampaignConvoy_Def.garbage-b->garbage;i--;)
+	for ( i=CampaignConvoy_Def.garbage-b->garbage;i--;)
 		*t++=*s++;
-	for (i=sizeof(Campaign)-CampaignConvoy_Def.garbage;i--;)
+	for ( i=sizeof(Campaign)-CampaignConvoy_Def.garbage;i--;)
 		*t++=0;
 	garbage=sizeof(Campaign);
 	CampaignInit();
@@ -1218,7 +1219,7 @@ void	Campaign::CampaignInit()
 //DEADCODE DAW 24/11/99 	HidSkills s=SKILL_REGULARSKILL_VETERANPOTENTIAL_GOODPOTENTIAL_VERYGOOD;
 //DEADCODE DAW 24/11/99 	directives.ResetForNewCampaign();
 //DEADCODE JIM 16/11/99 	SupplyTree::ResetForNewCampaign();
-	Dead_Stream.ClrWorldDead();	
+	Dead_Stream.ClrWorldDead();
 //TEMPCODE JIM 29/02/00 	Squad_Diary.EmptyDiary();
 
 	Todays_Packages.WipeAll();
@@ -1250,7 +1251,7 @@ void	Campaign::CampaignInit()
 	}
 
 	Save_Data.mapfilters|=FILT_LWTARGETLINES;
-	
+
 	Save_Data.mapfilters|=FILT_RAFSAG;
 	Save_Data.mapfilters|=FILT_LWSAG;
 
@@ -1273,7 +1274,7 @@ void	Campaign::CampaignInit()
 //DEADCODE DAW 29/01/00 	autogen = true;
 //DEADCODE DAW 29/01/00 	autodisplay = true;
 //DEADCODE DAW 29/01/00 }
-//DEADCODE DAW 29/01/00 
+//DEADCODE DAW 29/01/00
 //DEADCODE DAW 29/01/00 void Campaign::AddDebriefData(Debrief::SquadKills& src, Debrief::SquadKills& dest)
 //DEADCODE DAW 29/01/00 {
 //DEADCODE DAW 29/01/00 	for (Debrief::Types i = Debrief::REDAC; i < Debrief::TARG_MAX; i++)
@@ -1286,7 +1287,7 @@ void	Campaign::CampaignInit()
 //DEADCODE DAW 29/01/00 		for (SquadSelect j = PT_SPIT_A; j < (PT_GER_FLYABLE); j++)
 //DEADCODE DAW 29/01/00 			dest[j][i] = 0;
 //DEADCODE DAW 29/01/00 }
-//DEADCODE DAW 29/01/00 
+//DEADCODE DAW 29/01/00
 //DEADCODE DAW 29/01/00 int Campaign::StoresDestroyedForNodeRoute(SupplyNode* node)
 //DEADCODE DAW 29/01/00 {
 //DEADCODE DAW 29/01/00 	int stores_destroyed=0;
@@ -1305,18 +1306,18 @@ void	Campaign::CampaignInit()
 //DEADCODE DAW 29/01/00 //DEADCODE JIM 16/11/99 	}
 //DEADCODE DAW 29/01/00 	return (stores_destroyed);
 //DEADCODE DAW 29/01/00 }
-//DEADCODE DAW 29/01/00 
+//DEADCODE DAW 29/01/00
 //DEADCODE DAW 29/01/00 void Campaign::BattleLossesForNode(SupplyNode* node, int& redlosses, int& bluelosses)
 //DEADCODE DAW 29/01/00 {
 //DEADCODE DAW 29/01/00 	redlosses = 0;
 //DEADCODE DAW 29/01/00 	bluelosses = 0;
 //DEADCODE DAW 29/01/00 //DEADCODE JIM 16/11/99 	TeamDef::Team blueforce;
-//DEADCODE DAW 29/01/00 //DEADCODE JIM 16/11/99 
+//DEADCODE DAW 29/01/00 //DEADCODE JIM 16/11/99
 //DEADCODE DAW 29/01/00 //DEADCODE JIM 16/11/99 	if	(node->supplyline->initiative==REDATTACKING)
 //DEADCODE DAW 29/01/00 //DEADCODE JIM 16/11/99 		blueforce = TeamDef::HOME;
 //DEADCODE DAW 29/01/00 //DEADCODE JIM 16/11/99 	else
 //DEADCODE DAW 29/01/00 //DEADCODE JIM 16/11/99 		blueforce = TeamDef::AWAY;
-//DEADCODE DAW 29/01/00 //DEADCODE JIM 16/11/99 
+//DEADCODE DAW 29/01/00 //DEADCODE JIM 16/11/99
 //DEADCODE DAW 29/01/00 //DEADCODE JIM 16/11/99 	for (int i=0;i<node->supplyline->groundbattle.usedteams;i++)
 //DEADCODE DAW 29/01/00 //DEADCODE JIM 16/11/99 	{
 //DEADCODE DAW 29/01/00 //DEADCODE JIM 16/11/99 		if (node->supplyline->groundbattle.teamlist[i].team==blueforce)
@@ -1335,8 +1336,8 @@ bool	Campaign::ChkEndCampaign()
 //DEADCODE JIM 16/11/99 	{
 //DEADCODE JIM 16/11/99 		retval = true;
 //DEADCODE JIM 16/11/99 	}
-//DEADCODE JIM 16/11/99 
-//DEADCODE JIM 16/11/99 
+//DEADCODE JIM 16/11/99
+//DEADCODE JIM 16/11/99
 //DEADCODE JIM 16/11/99 	{
 //DEADCODE JIM 16/11/99 		int msn = curr_msn;
 //DEADCODE JIM 16/11/99 		if (currdate <= lastdate)
@@ -1346,7 +1347,7 @@ bool	Campaign::ChkEndCampaign()
 //DEADCODE JIM 16/11/99 //DEADCODE DAW 18/06/99 		SupplyNode* node = SupplyTree::FindSupplyNodeForNodeItem(missions[msn].target);
 //DEADCODE JIM 16/11/99 		SupplyTree::Supply2UID rel;
 //DEADCODE JIM 16/11/99 		SupplyNode*	node=SupplyTree::FindSupplyNodeForItem(missions[msn].target,&rel);
-//DEADCODE JIM 16/11/99 
+//DEADCODE JIM 16/11/99
 //DEADCODE JIM 16/11/99 		switch (Miss_Man.currcampaignnum)
 //DEADCODE JIM 16/11/99 		{
 //DEADCODE JIM 16/11/99 			case MissMan::F80_CAMPAIGN:
@@ -1357,7 +1358,7 @@ bool	Campaign::ChkEndCampaign()
 //DEADCODE JIM 16/11/99 					/**/wincamp = true;
 //DEADCODE JIM 16/11/99 					retval = true;
 //DEADCODE JIM 16/11/99 				}
-//DEADCODE JIM 16/11/99 
+//DEADCODE JIM 16/11/99
 //DEADCODE JIM 16/11/99 				break;
 //DEADCODE JIM 16/11/99 			}
 //DEADCODE JIM 16/11/99 			case MissMan::F51_CAMPAIGN:
@@ -1371,7 +1372,7 @@ bool	Campaign::ChkEndCampaign()
 //DEADCODE JIM 16/11/99 					/**/wincamp = true;
 //DEADCODE JIM 16/11/99 					retval = true;
 //DEADCODE JIM 16/11/99 				}
-//DEADCODE JIM 16/11/99 
+//DEADCODE JIM 16/11/99
 //DEADCODE JIM 16/11/99 				break;
 //DEADCODE JIM 16/11/99 			}
 //DEADCODE JIM 16/11/99 			case MissMan::F84_CAMPAIGN:
@@ -1393,9 +1394,9 @@ bool	Campaign::ChkEndCampaign()
 //DEADCODE JIM 16/11/99 					case SupplyTree::S2U_ROUTE2:
 //DEADCODE JIM 16/11/99 						currlevel=node->route[rel-SupplyTree::S2U_ROUTE0]->attackstats.damagelevel;
 //DEADCODE JIM 16/11/99 					break;
-//DEADCODE JIM 16/11/99 				}	
-//DEADCODE JIM 16/11/99 				if (currlevel >= 40)							
-//DEADCODE JIM 16/11/99 					curr_score ++; 
+//DEADCODE JIM 16/11/99 				}
+//DEADCODE JIM 16/11/99 				if (currlevel >= 40)
+//DEADCODE JIM 16/11/99 					curr_score ++;
 //DEADCODE JIM 16/11/99 				if (curr_score >= winscore)
 //DEADCODE JIM 16/11/99 				{
 //DEADCODE JIM 16/11/99 					/**/wincamp = true;
@@ -1411,7 +1412,7 @@ bool	Campaign::ChkEndCampaign()
 //DEADCODE JIM 16/11/99 					retval = true;
 //DEADCODE JIM 16/11/99 				else
 //DEADCODE JIM 16/11/99 					retval = false;
-//DEADCODE JIM 16/11/99 
+//DEADCODE JIM 16/11/99
 //DEADCODE JIM 16/11/99 				//decided later
 //DEADCODE JIM 16/11/99 				break;
 //DEADCODE JIM 16/11/99 			}
@@ -1422,7 +1423,7 @@ bool	Campaign::ChkEndCampaign()
 }
 //////////////////////////////////////////////////////////////////////
 //
-// Function:    SetMissionConditions 
+// Function:    SetMissionConditions
 // Date:		29/01/00
 // Author:		DAW
 //
@@ -1437,7 +1438,7 @@ void Atmosphere::SetMissionTemp (SWord month)
 	FP		delta;
 	FP		hr12 = SECSPERDAY/2;
 
-	
+
 
 	maxtemp = maxt[month];
 	mintemp = mint[month];
@@ -1474,12 +1475,12 @@ void Atmosphere::SetMissionPress (SWord month)
 		Press0 = 999 - TempVar;
 	}
 
-	ContrailBandCentre = FEET2CM(32000);		//CSB 10/06/99	
-	ContrailBandWidth = FEET2CM(4000);	//CSB 10/06/99	
+	ContrailBandCentre = FEET2CM(32000);		//CSB 10/06/99
+	ContrailBandWidth = FEET2CM(4000);	//CSB 10/06/99
 
-	FP ChanceBad = 0.5 + 0.5 * FCos(month * 6.2831853 / 12.0);		//CSB 02/07/99	
-	ChanceBad = 819.2 + 8192.0 * ChanceBad;						//CSB 02/07/99	
-	if(Math_Lib.rnd() > ChanceBad)									//CSB 02/07/99	
+	FP ChanceBad = 0.5 + 0.5 * FCos(month * 6.2831853 / 12.0);		//CSB 02/07/99
+	ChanceBad = 819.2 + 8192.0 * ChanceBad;						//CSB 02/07/99
+	if(Math_Lib.rnd() > ChanceBad)									//CSB 02/07/99
 //DeadCode CSB 02/07/99		if (Press0 > 1000)
 	{
 		Conditions = 0;
@@ -1519,7 +1520,7 @@ void Atmosphere::SetMissionConditions ()
 	SetMissionClouds();
 
 	SetMissionWind(month);
- 
+
 	SWord Latitude = 51;												//RDH 25/02/00
 	SetMissionDawnDusk(Latitude, MMC.currdate, MMC.dawntime, MMC.dusktime);
 }
@@ -1530,7 +1531,7 @@ void Atmosphere::SetMissionConditions ()
 // Date:		29/01/00
 // Author:		DAW
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	Campaign::NextMission()
@@ -1546,7 +1547,7 @@ void	Campaign::NextMission()
 //DeadCode JIM 18Oct00 	UpdatePlayerLog();
 //DEADCODE JIM 16/11/99 	SupplyTree::UpDateAttacksStructure();
 //DEADCODE JIM 16/11/99 	SupplyTree::RemoveDestroyedStores();
-	
+
 
 
 //handle debrief counters and data
@@ -1607,10 +1608,10 @@ void	Campaign::NextMission()
 //DEADCODE RDH 12/06/99 		{
 //DEADCODE RDH 12/06/99 			curr_msn++;
 //DEADCODE RDH 12/06/99 			currdate =	 missions[curr_msn].msn_date;
-//DEADCODE RDH 12/06/99 
+//DEADCODE RDH 12/06/99
 //DEADCODE RDH 12/06/99 		}else
 //DEADCODE RDH 12/06/99 			currdate += SECSPERDAY;
-//DEADCODE RDH 12/06/99 
+//DEADCODE RDH 12/06/99
 //DEADCODE RDH 12/06/99 	}
 
 
@@ -1628,13 +1629,13 @@ void	Campaign::NextMission()
 //DEADCODE DAW 24/11/99 {
 //DEADCODE DAW 24/11/99 	for (int i = 0;i < 2; i++)
 //DEADCODE DAW 24/11/99 		SwapPilot(groupnum, src+i, dest+i);
-//DEADCODE DAW 24/11/99 
+//DEADCODE DAW 24/11/99
 //DEADCODE DAW 24/11/99 }
 //DEADCODE DAW 24/11/99 void Campaign::SwapFlight(int groupnum, int src, int dest)
 //DEADCODE DAW 24/11/99 {
 //DEADCODE DAW 24/11/99 	for (int i = 0;i < 4; i +=2)
 //DEADCODE DAW 24/11/99 		SwapElement(groupnum, src+i, dest+i);
-//DEADCODE DAW 24/11/99 
+//DEADCODE DAW 24/11/99
 //DEADCODE DAW 24/11/99 }
 void	Campaign::ModifySkill(int groupnum, int daysonduty)
 {
@@ -1651,7 +1652,7 @@ void	Campaign::ModifySkill(int groupnum, int daysonduty)
 //DEADCODE DAW 24/11/99 			{
 //DEADCODE DAW 24/11/99 				change = 0.5 + change * pilot.morale/MORALE_TOPMORALE;
 //DEADCODE DAW 24/11/99 				pilot.SetBigFlySkill(((int)pilot.BigFlyingSkill() + (int)change));
-//DEADCODE DAW 24/11/99 				
+//DEADCODE DAW 24/11/99
 //DEADCODE DAW 24/11/99 			}
 //DEADCODE DAW 24/11/99 			change = pilot.BigCombatPotential() - pilot.BigCombatSkill();
 //DEADCODE DAW 24/11/99 			if (change > 0)
@@ -1659,10 +1660,10 @@ void	Campaign::ModifySkill(int groupnum, int daysonduty)
 //DEADCODE DAW 24/11/99 				change = 0.5 + change * pilot.morale/MORALE_TOPMORALE;
 //DEADCODE DAW 24/11/99 				pilot.SetBigCombSkill(pilot.BigCombatSkill() +(int)change);
 //DEADCODE DAW 24/11/99 			}
-//DEADCODE DAW 24/11/99 
+//DEADCODE DAW 24/11/99
 //DEADCODE DAW 24/11/99 		}
 //DEADCODE DAW 24/11/99 	}
-//DEADCODE DAW 24/11/99 
+//DEADCODE DAW 24/11/99
 }
 void	Campaign::RotateFlightsCheck()
 {
@@ -1686,11 +1687,11 @@ void	Campaign::RotateFlightsCheck()
 //DEADCODE DAW 24/11/99 //DEADCODE JIM 13/07/99 				/**/Active_Pilots[24*j+k].dayssincerest++;
 //DEADCODE DAW 24/11/99 			for (int k=16; k <23;k++)
 //DEADCODE DAW 24/11/99 				/**/Active_Pilots[24*j+k].dayssincerest = 0;
-//DEADCODE DAW 24/11/99 
+//DEADCODE DAW 24/11/99
 //DEADCODE DAW 24/11/99 			/**/squad[j].lastrotatedate = currdate;
-//DEADCODE DAW 24/11/99 
+//DEADCODE DAW 24/11/99
 //DEADCODE DAW 24/11/99 		}
-//DEADCODE DAW 24/11/99 
+//DEADCODE DAW 24/11/99
 //DEADCODE DAW 24/11/99 	}
 }
 void	Campaign::ReplenishAcStock()
@@ -1712,9 +1713,9 @@ void	Campaign::ReplenishAcStock()
 //DEADCODE DAW 24/11/99 	{
 //DEADCODE DAW 24/11/99 		/**/this->squad[minsquad].ac_total_avail += acrequired;
 //DEADCODE DAW 24/11/99 		DisDayEntry(Debrief::NAME, UID_BrRdYalu, Debrief::T_Replenish_H);
-//DEADCODE DAW 24/11/99 
+//DEADCODE DAW 24/11/99
 //DEADCODE DAW 24/11/99 	}
-//DEADCODE DAW 24/11/99 
+//DEADCODE DAW 24/11/99
 }
 void	Campaign::RotateMiGSquadron(int squad)
 {
@@ -1730,7 +1731,7 @@ void	Campaign::RotateMiGSquadron(int squad)
 //DEADCODE DAW 24/11/99 		for (int i = (WRAPMIGSQUADRONS+1); i < MAXMIGSQUADRONS;i++)
 //DEADCODE DAW 24/11/99 			/**/migsquad[i].startdate = currdate + SECSPERDAY *21 +
 //DEADCODE DAW 24/11/99 									(WRAPMIGSQUADRONS+2 - i) * SECSPERDAY * 14;
-//DEADCODE DAW 24/11/99 
+//DEADCODE DAW 24/11/99
 //DEADCODE DAW 24/11/99 	}
 //DEADCODE DAW 24/11/99 //DEADCODE RDH 21/06/99 		if	(/**/migsquad[squad].agglevel == AL_TRAINING)
 //DEADCODE DAW 24/11/99 			/**/DisDayEntry(Debrief::NAME, UID_Null, Debrief::T_SquadRotate_H);
@@ -1747,7 +1748,7 @@ void	Campaign::ChkRotateMiGSquadrons()
 //DEADCODE DAW 24/11/99 			RotateMiGSquadron(0);
 //DEADCODE DAW 24/11/99 		else
 //DEADCODE DAW 24/11/99 			RotateMiGSquadron(1);
-//DEADCODE DAW 24/11/99 
+//DEADCODE DAW 24/11/99
 //DEADCODE DAW 24/11/99 	}
 
 }
@@ -1774,7 +1775,7 @@ void	Campaign::NextDay()
 //DEADCODE RDH 10/01/00 		/**/DisDayEntry(Debrief::NAME, UID_Null, Debrief::D_BritsArrive_H);
 //DEADCODE RDH 10/01/00 	if (currdate == (OCT8th1950 + SECSPERDAY))						  //RDH 14/06/99
 //DEADCODE RDH 10/01/00 		/**/DisDayEntry(Debrief::NAME, UID_Null, Debrief::D_AlJolson_H);
-//DEADCODE RDH 10/01/00 
+//DEADCODE RDH 10/01/00
 //DEADCODE RDH 10/01/00 	int i;
 //DEADCODE RDH 10/01/00 	ChkRotateMiGSquadrons();
 //DEADCODE RDH 10/01/00 	for (i = 0; i < 2; i++)
@@ -1819,19 +1820,19 @@ void	Campaign::NextDay()
 //DEADCODE DAW 25/11/99 			case MissMan::F86_CAMPAIGN:
 //DEADCODE DAW 25/11/99 			{
 //DEADCODE DAW 24/11/99 				squad = PT_F86A;
-//DEADCODE DAW 24/11/99 				if (this->squad[PT_F86E].ac_total_avail < 16)	
-//DEADCODE DAW 24/11/99 					this->squad[PT_F86E].ac_total_avail = 16;	
+//DEADCODE DAW 24/11/99 				if (this->squad[PT_F86E].ac_total_avail < 16)
+//DEADCODE DAW 24/11/99 					this->squad[PT_F86E].ac_total_avail = 16;
 //DEADCODE DAW 25/11/99 				break;
 //DEADCODE DAW 25/11/99 			}
 //DEADCODE DAW 25/11/99 		}
-//DEADCODE DAW 24/11/99 		if (this->squad[squad].ac_total_avail < 16)	
-//DEADCODE DAW 24/11/99 			this->squad[squad].ac_total_avail = 16;	
+//DEADCODE DAW 24/11/99 		if (this->squad[squad].ac_total_avail < 16)
+//DEADCODE DAW 24/11/99 			this->squad[squad].ac_total_avail = 16;
 //DEADCODE RDH 10/01/00 	}
-//DEADCODE RDH 10/01/00 
+//DEADCODE RDH 10/01/00
 //DEADCODE RDH 10/01/00 	RotateFlightsCheck();
-//DEADCODE JIM 16/11/99 	SupplyTree::NodeReview (); 
+//DEADCODE JIM 16/11/99 	SupplyTree::NodeReview ();
 //DEADCODE JIM 16/11/99 	Dead_Stream.ReviveWorld();
-//DEADCODE RDH 10/01/00 
+//DEADCODE RDH 10/01/00
 //DEADCODE RDH 10/01/00 	if (Miss_Man.currcampaignnum == Miss_Man.F86_CAMPAIGN)							  //RDH 14/06/99
 //DEADCODE RDH 10/01/00 	{																  //RDH 14/06/99
 //DEADCODE RDH 10/01/00 		directives.B29avail = true;									  //RDH 14/06/99 //RDH 14/06/99
@@ -1878,7 +1879,7 @@ void	Campaign::NextDay()
 //DEADCODE DAW 29/01/00 {
 //DEADCODE DAW 29/01/00 	int j = 0;
 //DEADCODE DAW 29/01/00 	while	(j < Debrief::DISISITFORTODAY)
-//DEADCODE DAW 29/01/00 
+//DEADCODE DAW 29/01/00
 //DEADCODE DAW 29/01/00 	{
 //DEADCODE DAW 29/01/00 		debrief.disday[j].typeflag = 0;
 //DEADCODE DAW 29/01/00 		debrief.disday[j].msgowner = 0;
@@ -1908,7 +1909,7 @@ void	Campaign::NextDay()
 //DEADCODE DAW 29/01/00 //DEADCODE DAW 25/11/99 		for (int i=PT_MIG15;i<PT_VEHICLES;i++)
 //DEADCODE DAW 29/01/00 //DEADCODE DAW 25/11/99 		{
 //DEADCODE DAW 29/01/00 //DEADCODE DAW 25/11/99 			debrief.playerqmcounts[SquadSelect(i)]=0;
-//DEADCODE DAW 29/01/00 //DEADCODE DAW 25/11/99 		}	
+//DEADCODE DAW 29/01/00 //DEADCODE DAW 25/11/99 		}
 //DEADCODE DAW 29/01/00 //DEADCODE DAW 25/11/99 		debrief.playertotals[(SquadSelect)MMC.playersquadron][Debrief::SORTIES]++;	  //JIM 13/07/99
 //DEADCODE DAW 29/01/00 //DEADCODE DAW 25/11/99 //		UByte		role;
 //DEADCODE DAW 29/01/00 //DEADCODE DAW 25/11/99 //		UByte		dummy;
@@ -1917,7 +1918,7 @@ void	Campaign::NextDay()
 //DEADCODE DAW 29/01/00 //DEADCODE DAW 25/11/99 //		ONLYFIELD(UWord,	UniqueID, 	target1);
 //DEADCODE DAW 29/01/00 //DEADCODE DAW 25/11/99 //		ONLYFIELD(UWord,	UniqueID,	target2);
 //DEADCODE DAW 29/01/00 //DEADCODE DAW 25/11/99 	}
-//DEADCODE DAW 29/01/00 
+//DEADCODE DAW 29/01/00
 //DEADCODE DAW 29/01/00 }
 //DEADCODE DAW 29/01/00 void	Campaign::UpdateAllDis()
 //DEADCODE DAW 29/01/00 {
@@ -1929,9 +1930,9 @@ void	Campaign::NextDay()
 //DEADCODE DAW 29/01/00 				i++;
 //DEADCODE DAW 29/01/00 		if (i >= Debrief::DISISALLTOOMUCH)
 //DEADCODE DAW 29/01/00 			i = 0;
-//DEADCODE DAW 29/01/00 		
+//DEADCODE DAW 29/01/00
 //DEADCODE DAW 29/01/00 		if (debrief.currperiod == 0)
-//DEADCODE DAW 29/01/00 		{//don't keep adding date heading if no message is added 
+//DEADCODE DAW 29/01/00 		{//don't keep adding date heading if no message is added
 //DEADCODE DAW 29/01/00 			int previ = i;
 //DEADCODE DAW 29/01/00 			previ--;
 //DEADCODE DAW 29/01/00 			if (previ < 0)
@@ -1945,7 +1946,7 @@ void	Campaign::NextDay()
 //DEADCODE DAW 29/01/00 			if (i >= Debrief::DISISALLTOOMUCH)
 //DEADCODE DAW 29/01/00 				i = 0;
 //DEADCODE DAW 29/01/00 		}
-//DEADCODE DAW 29/01/00 
+//DEADCODE DAW 29/01/00
 //DEADCODE DAW 29/01/00 		int j = 0;
 //DEADCODE DAW 29/01/00 		while	(		(j < Debrief::DISISITFORTODAY)
 //DEADCODE DAW 29/01/00 					&&	(debrief.disday[j].msgtextid != 0)
@@ -1964,7 +1965,7 @@ void	Campaign::NextDay()
 //DEADCODE DAW 29/01/00 }
 //DeadCode JIM 18Oct00 void	Campaign::UpdatePlayerLog()
 //DeadCode JIM 18Oct00 {
-//DeadCode JIM 18Oct00 //DEADCODE DAW 29/01/00 
+//DeadCode JIM 18Oct00 //DEADCODE DAW 29/01/00
 //DeadCode JIM 18Oct00 //DEADCODE DAW 29/01/00 	{
 //DeadCode JIM 18Oct00 //DEADCODE DAW 29/01/00 		int day = MMC.debrief.currlogday;
 //DeadCode JIM 18Oct00 //DEADCODE DAW 29/01/00 		int period = MMC.debrief.currperiod;
@@ -1986,7 +1987,7 @@ void	Campaign::NextDay()
 //DeadCode JIM 18Oct00 //DEADCODE JIM 16/11/99 			return (SupplyTree::dissmackers[i].file);
 //DeadCode JIM 18Oct00 //DEADCODE JIM 16/11/99 	}
 //DeadCode JIM 18Oct00 	return (FIL_NULL);
-//DeadCode JIM 18Oct00 
+//DeadCode JIM 18Oct00
 //DeadCode JIM 18Oct00 }
 
 //DEADCODE DAW 29/01/00 void	Campaign::DisDayEntry(Debrief::TypeFlag type, int msgowner, int msgtextid)
@@ -1996,7 +1997,7 @@ void	Campaign::NextDay()
 //DEADCODE DAW 29/01/00 				&&	(debrief.disday[i].msgtextid != 0)
 //DEADCODE DAW 29/01/00 			)
 //DEADCODE DAW 29/01/00 	{
-//DEADCODE DAW 29/01/00 		if (	debrief.disday[i].msgtextid==msgtextid 
+//DEADCODE DAW 29/01/00 		if (	debrief.disday[i].msgtextid==msgtextid
 //DEADCODE DAW 29/01/00 			&&	debrief.disday[i].typeflag == type
 //DEADCODE DAW 29/01/00 			&&	debrief.disday[i].msgowner == msgowner)
 //DEADCODE DAW 29/01/00 			return;
@@ -2024,27 +2025,27 @@ void	Campaign::NextDay()
 //DeadCode JIM 18Oct00 }
 //DeadCode JIM 18Oct00 void Campaign::KillPilot(int pilot, pilotstatus status)
 //DeadCode JIM 18Oct00 {
-//DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 	
+//DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99
 //DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 	if (/**/dead_pilots[/**/nextdeadpilot].lastdate != 0)
 //DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 			 /**/ripdate = /**/dead_pilots[/**/nextdeadpilot].lastdate;
 //DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 	/**/dead_pilots[/**/nextdeadpilot].name = /**/Active_Pilots[pilot].name;
 //DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 	/**/dead_pilots[/**/nextdeadpilot].kills = /**/Active_Pilots[pilot].kills;
 //DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 	/**/dead_pilots[/**/nextdeadpilot].rank = /**/Active_Pilots[pilot].rank;
 //DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 	/**/dead_pilots[/**/nextdeadpilot].lastdate = /**/currdate;
-//DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 
+//DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99
 //DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 	/**/dead_pilots[/**/nextdeadpilot].status =  status;
-//DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 
+//DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99
 //DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 	MakeNewPilot(pilot);
-//DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 
+//DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99
 //DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 	/**/nextdeadpilot++;
 //DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 	if	(/**/nextdeadpilot >= CASUALTYLIST)
 //DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 		/**/nextdeadpilot = 0;
 //DeadCode JIM 18Oct00 }
-//DeadCode JIM 18Oct00 
+//DeadCode JIM 18Oct00
 //DeadCode JIM 18Oct00 void	Campaign::MoveDeadPilots()
 //DeadCode JIM 18Oct00 {
 //DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 		for(int pilot=0;pilot<119;pilot++)
-//DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 		{  	
+//DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 		{
 //DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 			if (/**/Active_Pilots[pilot].status >= IS_DEAD)
 //DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 			{
 //DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 				int groupnum = pilot/24;
@@ -2057,12 +2058,12 @@ void	Campaign::NextDay()
 //DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 						 KillPilot(pilot, /**/Active_Pilots[pilot].status);
 //DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 			}
 //DeadCode JIM 18Oct00 //DEADCODE DAW 24/11/99 		}
-//DeadCode JIM 18Oct00 
+//DeadCode JIM 18Oct00
 //DeadCode JIM 18Oct00 }
 
 //DeadCode JIM 18Oct00 void	Campaign::SetCurrMission (MissionType* newmission)
 //DeadCode JIM 18Oct00 {
-//DeadCode JIM 18Oct00 
+//DeadCode JIM 18Oct00
 //DeadCode JIM 18Oct00 //	PilotType	temppilot;
 //DeadCode JIM 18Oct00 //	SWord i,j;
 //DeadCode JIM 18Oct00 //	currmission = newmission;
@@ -2073,10 +2074,10 @@ void	Campaign::NextDay()
 //DeadCode JIM 18Oct00 //	Math_Lib.high_sin_cos((ANGLES)(wind.direction + ANGLES_180Deg),sinwind,coswind);
 //DeadCode JIM 18Oct00 //	wind.velx = wind.speed * sinwind/ ANGLES_FRACT;
 //DeadCode JIM 18Oct00 //	wind.velz = wind.speed * coswind/ ANGLES_FRACT;
-//DeadCode JIM 18Oct00 
+//DeadCode JIM 18Oct00
 //DeadCode JIM 18Oct00 //	currdate = currmission->missiondate;
 //DeadCode JIM 18Oct00 //	currtime = currmission->timeofday;
-//DeadCode JIM 18Oct00 
+//DeadCode JIM 18Oct00
 //DeadCode JIM 18Oct00 //	switch (Miss_Man.currcampaignnum)
 //DeadCode JIM 18Oct00 //	{
 //DeadCode JIM 18Oct00 //		case MissMan::PEACETALKCAMPAIGN:
@@ -2102,16 +2103,16 @@ void	Campaign::NextDay()
 //DeadCode JIM 18Oct00 //killed 24/6/98
 //DeadCode JIM 18Oct00 //				for (i=0;i<MAX_PACKAGE_NUM;i++)
 //DeadCode JIM 18Oct00 //					 package[i].familytype = PFT_NULL;
-//DeadCode JIM 18Oct00 
-//DeadCode JIM 18Oct00 
+//DeadCode JIM 18Oct00
+//DeadCode JIM 18Oct00
 //DeadCode JIM 18Oct00 //DeadCode JIM 06Nov96				dawntime = NOVEMBERDAWNTIME;
 //DeadCode JIM 18Oct00 //DeadCode JIM 06Nov96				dusktime = NOVEMBERDUSKTIME;
 //DeadCode JIM 18Oct00 //				break;
 //DeadCode JIM 18Oct00 //			}
 //DeadCode JIM 18Oct00 //	}
 //DeadCode JIM 18Oct00 //DEAD	playerbfield =	newmission->playerbf;
-//DeadCode JIM 18Oct00 
-//DeadCode JIM 18Oct00 
+//DeadCode JIM 18Oct00
+//DeadCode JIM 18Oct00
 //DeadCode JIM 18Oct00 //killed 24/6/98
 //DeadCode JIM 18Oct00 //	if (	(Miss_Man.currcampaignnum != MissMan::SO51_CAMPAIGN)//RDH 02Apr97
 //DeadCode JIM 18Oct00 //		)														//RDH 02Apr97
@@ -2143,11 +2144,11 @@ void	Campaign::NextDay()
 //Author		Jim
 //Date			Mon 5 Jun 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 float& LastWeekReview::DecayingLossRate(PlaneTypeSelect	actype)
@@ -2158,11 +2159,11 @@ float& LastWeekReview::DecayingLossRate(PlaneTypeSelect	actype)
 	case	PT_SPIT_B:	return rafloss[0];
 	case	PT_HURR_A:
 	case	PT_HURR_B:	return rafloss[1];
-	case	PT_ME109:	return lwloss[0];	
-	case	PT_ME110:	return lwloss[1];	
-	case	PT_JU87:	return lwloss[2];	
-	case	PT_DO17:	
-	case	PT_JU88:	
+	case	PT_ME109:	return lwloss[0];
+	case	PT_ME110:	return lwloss[1];
+	case	PT_JU87:	return lwloss[2];
+	case	PT_DO17:
+	case	PT_JU88:
 	case	PT_HE111:;
 	}
 	return lwloss[3];
@@ -2202,7 +2203,7 @@ int LastWeekReview::Note(enum PlaneTypeSelect pt,enum PeriodReview::ReviewType r
 {
 	if (delta==0)
 		return 0;
-	TypeStats* record;int offset;
+	TypeStats* record=raf;int offset=0;
 	switch(pt)
 	{
 	default_neverreferenced;
@@ -2268,7 +2269,7 @@ int LastWeekReview::Note(enum PlaneTypeSelect claimer,enum PlaneTypeSelect claim
 	case	PT_HURR_B:	rv=KILL1;	break;
 	default:;
 	}
-	return Note(claimer,rv,delta);	
+	return Note(claimer,rv,delta);
 }
 
 void	LastWeekReview::ClearToday()

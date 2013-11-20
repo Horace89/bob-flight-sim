@@ -407,7 +407,7 @@ CString		GetShapeName(ShapeNum s)
 
 CString		GetElementName(ShapeNum s,int elt)
 {
-	return GetShapeName(s)+" "+CString('a'+elt);
+	return GetShapeName(s)+" "+CString((char)('a'+elt));
 
 }
 //			C		Dn	|	En		F
@@ -552,7 +552,7 @@ CRect	Place(PosnControl px,PosnControl py,int x,int y,RDialog* parent)
 	return CRect(x,y,x2,y2);
 }
 
-char*	trunc(char* s,int l)
+char*	trunc(char* s,size_t l)
 {
 	if (s==NULL)
 		return s;

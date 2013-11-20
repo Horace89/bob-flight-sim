@@ -15,7 +15,8 @@
 #endif // _MSC_VER >= 1000
 #include	"UniqueID.h"
 #include	"shapenum.g"
-//#include "RSpinBut.h"
+#include "RSpinBut.h"
+#include	"rcombo.h"
 
 //obviously, a number of these reference each other
 class	ItemBase;
@@ -44,7 +45,7 @@ CString		CSprintf(const char* format,...);
 
 enum	{TARGETFIELDWIDTH = 124, SQUADRONPLUSFIELDWIDTH = 100};
 
-class CRComboExtra : public CRCombo  
+class CRComboExtra : public CRCombo
 {
 public:
 	CRComboExtra();
@@ -53,7 +54,7 @@ public:
 	CRComboExtra*	SetList(int resstart,int rescount);
 	CRComboExtra*	SetIndex(int index);
 	int	GetIndex();
-	CRComboExtra*	Clear();	
+	CRComboExtra*	Clear();
 };
 
 class CRSpinButExtra : public CRSpinBut
@@ -65,7 +66,7 @@ public:
 	CRSpinButExtra*	SetList(int resstart,int rescount);
 	CRSpinButExtra*	SetIndex(int index);
 	int	GetIndex();
-	CRSpinButExtra*	Clear();	
+	CRSpinButExtra*	Clear();
 };
 
 enum	{
@@ -128,9 +129,8 @@ public:
 
 
 };
-char*	trunc(char* s,int l);
+char*	trunc(char* s,size_t l);
 
 
 
 #endif // !defined(AFX_RCOMBOX_H__E28400A1_FEC1_11D1_9FD6_D0EC00C10000__INCLUDED_)
-

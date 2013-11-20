@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lib3D", "Lib3D.vcproj", "{6397CD60-51D8-459A-8AC5-7B59FF74A04A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6397CD60-51D8-459A-8AC5-7B59FF74A04A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6397CD60-51D8-459A-8AC5-7B59FF74A04A}.Debug|Win32.Build.0 = Debug|Win32
+		{6397CD60-51D8-459A-8AC5-7B59FF74A04A}.Release|Win32.ActiveCfg = Release|Win32
+		{6397CD60-51D8-459A-8AC5-7B59FF74A04A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

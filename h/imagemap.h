@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 //Filename       imagemap.h
-//System         
+//System
 //Author         Martin Alderton
 //Date           Mon 9 Oct 1995
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	imageMap_Included
 #define	imageMap_Included
@@ -12,6 +12,7 @@
 	#include	"FileMan.h"										//PD 06Nov95
 
 	#include	"bitfield.h"									//PD 25Aug96
+#include	"3ddefs.h"
 
 #define MaxNumberOfImageMaps 512								//RJS 11Jul97
 #define MaxMapDirs 			16									//DAW 27Oct98
@@ -45,9 +46,9 @@ class	 ImageMap
 																//DAW 27Oct98
 	SuperMap		superimagemaptable[MaxMapDirs];				//DAW 27Oct98
 	SWord			supercnt;									//DAW 27Oct98
-	
+
 	friend	class	fileblock;
-	
+
 //DeadCode DAW 27Oct98 	ImageMapDesc	*imagemaptable;
 
 	SLong			total_image_mem;							//PD 06Jun96
@@ -75,9 +76,9 @@ class	 ImageMap
 			void 	LoadImageMapPtrs();
  			ImageMapDescPtr	GetImageMapPtrDontLoad(ImageMapNumber imagemap_number)
 			{	//Returns NULL if not loaded							//JIM 15Dec00
-				UWord	real_imagemap_number = imagemap_number & 0x7FFF; 
+				UWord	real_imagemap_number = imagemap_number & 0x7FFF;
 				UWord	file_no = real_imagemap_number & 0xFF;
-				UWord	dir_no = real_imagemap_number >> 8; 
+				UWord	dir_no = real_imagemap_number >> 8;
 				return	superimagemaptable[dir_no].imagemaptable[file_no];
 			}
 
@@ -86,7 +87,7 @@ class	 ImageMap
 			SLong	ImageMapMemUsed()	{return total_image_mem;};//PD 06Jun96
 			void	InitImageMaps();							//DAW 27Oct98
 			void 	UnLoadImageMaps();							//RJS 14Jun99
-		
+
 	private:
 			Bool 	LoadImageMap(SuperMap*,UWord,Bool,Bool	skipmap=FALSE);//DAW 27Oct98
 			void 	UnLoadImageMap(ImageMapNumber);

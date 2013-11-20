@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -64,10 +64,10 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //------------------------------------------------------------------------------	//CSB 19/04/00
 //Filename       keyfly.cpp
-//System         
+//System
 //Author         R. Hyde && A. McRae from Jan 97
 //Date           Mon 30 Oct 1995
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #define F_GRAFIX												//DAW 05Aug96
 #define F_COMMON
@@ -123,14 +123,14 @@ SLong	const SMALLTHRUSTSTEP =1;
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetKeyCommon
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 31 Oct 1995
 //
 //Description	f
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ManualPilot::GetKeyCommon(AirStrucPtr const ControlledAC)
@@ -166,17 +166,17 @@ PrintVar(40, 16, "Raw Ailn %.0f  ", (FP)ControlledAC->fly.aileron);
 PrintVar(40, 17, "Raw Rudd %.0f  ", (FP)ControlledAC->fly.rudder);
 #endif
 
-	if(_Analogue.tune[AU_ELEVATOR].mode == AM_REALISTIC)	
+	if(_Analogue.tune[AU_ELEVATOR].mode == AM_REALISTIC)
 		ApplyDeadZone (ControlledAC, ControlledAC->fly.elevator, pModel->Elevator, _Analogue.tune[AU_ELEVATOR].deadzones);
 	else
 		ApplyDeadZone2(ControlledAC, ControlledAC->fly.elevator, pModel->Elevator, _Analogue.tune[AU_ELEVATOR].deadzones);
 
-	if(_Analogue.tune[AU_AILERON].mode == AM_REALISTIC)	
+	if(_Analogue.tune[AU_AILERON].mode == AM_REALISTIC)
 		ApplyDeadZone (ControlledAC, ControlledAC->fly.aileron,  pModel->Aileron,  _Analogue.tune[AU_AILERON].deadzones);
 	else
 		ApplyDeadZone2(ControlledAC, ControlledAC->fly.aileron,  pModel->Aileron,  _Analogue.tune[AU_AILERON].deadzones);
 
-	if(_Analogue.tune[AU_RUDDER].mode == AM_REALISTIC)	
+	if(_Analogue.tune[AU_RUDDER].mode == AM_REALISTIC)
 		ApplyDeadZone (ControlledAC, ControlledAC->fly.rudder,   pModel->Rudder,   _Analogue.tune[AU_RUDDER].deadzones);
 	else
 		ApplyDeadZone2(ControlledAC, ControlledAC->fly.rudder,   pModel->Rudder,   _Analogue.tune[AU_RUDDER].deadzones);
@@ -187,7 +187,7 @@ PrintVar(40, 17, "Raw Rudd %.0f  ", (FP)ControlledAC->fly.rudder);
 	pModel->Rudder = temp * pModel->Rudder;
 
 	SecondaryControls (ControlledAC2);
-	
+
 	if(Save_Data.flightdifficulty[FD_SPINS])
 	{
 		if(pModel->BombingPhase == 1)
@@ -300,14 +300,14 @@ PrintVar(73, temp, "%.0f", FP(pModel->Elevator));
 	}
 
 	SWord DeltaThrustpercent = ControlledAC->fly.thrustpercent - pModel->ModelThrottle;
-	if((DeltaThrustpercent > 1) || (DeltaThrustpercent < -1)) 
+	if((DeltaThrustpercent > 1) || (DeltaThrustpercent < -1))
 	{
 		ThrottleSettingChanged = TRUE;
 		pModel->ModelThrottle = ControlledAC->fly.thrustpercent;
 	}
 
 	FP DeltaPropSetting = ControlledAC->fly.propsetting - pModel->ModelPropSetting;
-	if((DeltaPropSetting >= 1) || (DeltaPropSetting < -1)) 
+	if((DeltaPropSetting >= 1) || (DeltaPropSetting < -1))
 	{
 		PropSettingChanged = TRUE;
 		pModel->ModelPropSetting = ControlledAC->fly.propsetting;
@@ -338,7 +338,7 @@ PrintVar(73, temp, "%.0f", FP(pModel->Elevator));
 			if(pEngine->ThrottleSetting < 0)
 				pEngine->ThrottleSetting += 101;
 			else
-				if(ThrottleSettingChanged)	
+				if(ThrottleSettingChanged)
 					pEngine->ThrottleSetting = pModel->ModelThrottle;
 
 			if(pEngine->PropSetting < 0)
@@ -346,17 +346,17 @@ PrintVar(73, temp, "%.0f", FP(pModel->Elevator));
 			else
 				if(PropSettingChanged)
 					pEngine->PropSetting = FP(pModel->ModelPropSetting) * 0.01;
-//DEADCODE CB 12/11/99 
+//DEADCODE CB 12/11/99
 //DEADCODE CB 12/11/99 			PrintVar(65+pEngine->pThrustPoint->Pos.x / 50, 22, "ET %.0f ", FP(pEngine->ThrottleSetting));
 //DEADCODE CB 12/11/99 			PrintVar(65+pEngine->pThrustPoint->Pos.x / 50, 23, "EP %.2f ", FP(pEngine->PropSetting));
 //DEADCODE CB 12/11/99 			PrintVar(65+pEngine->pThrustPoint->Pos.x / 50, 24, "%.0f ",    FP(pEngine->Speed * 954.9));
 		}
-	
+
 //DEADCODE CB 12/11/99 	PrintVar(60, 20, "AT %.0f ", FP(ControlledAC->fly.thrustpercent));
 //DEADCODE CB 12/11/99 	PrintVar(70, 20, "MT %.0f ", FP(pModel->ModelThrottle));
 //DEADCODE CB 12/11/99 	PrintVar(60, 21, "AP %.0f ", FP(ControlledAC->fly.propsetting));
 //DEADCODE CB 12/11/99 	PrintVar(70, 21, "MP %.0f ", FP(pModel->ModelPropSetting));
-	
+
 	if(Save_Data.flightdifficulty[FD_ENGINEMANAGMENT])
 		GetComplexEngineKeys(ControlledAC);
 #ifdef PRINT_STICK_RUDDER
@@ -370,14 +370,14 @@ if(ControlledAC->fly.pModel->EngineList->List.pNextItem)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetComplexEngineKeys
-//Author		Craig Beeston													
+//Author		Craig Beeston
 //Date			Thu 02 Dec 1999
-//																		
+//
 //Description	Processes the fake keypresses generated by the interactive cockpit
-//																		
-//Inputs																
-//																		
-//Returns	
+//
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 void ManualPilot::GetComplexEngineKeys(AirStrucPtr const ControlledAC)
@@ -560,7 +560,7 @@ void ManualPilot::GetComplexEngineKeys(AirStrucPtr const ControlledAC)
 
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
-//Procedure		ApplyDeadZone															 
+//Procedure		ApplyDeadZone
 //Author		Craig Beeston														     _
 //Date			Wed 16 Dec 1998													   |    /
 //																				   |   /
@@ -568,14 +568,14 @@ void ManualPilot::GetComplexEngineKeys(AirStrucPtr const ControlledAC)
 //																			    /` |
 //Inputs																	   /   |
 //																			 _/    |
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ManualPilot::ApplyDeadZone(AirStrucPtr const ControlledAC, SWord SrcVal, int& DstVal, SWord DeadZone)
 {
 	FP val  = SrcVal;
 	FP sign = 1;
-	if(SrcVal < 0) 
+	if(SrcVal < 0)
 	{	val *= -1;	sign *= -1;	}
 
 	FP smooth = val / DeadZone - 0.5;
@@ -589,8 +589,8 @@ void ManualPilot::ApplyDeadZone(AirStrucPtr const ControlledAC, SWord SrcVal, in
 
 	val = sign * (val - DeadZone) / (32768.0 - 2.0 * DeadZone) * 32767.0 * smooth;
 	MODLIMIT(val, 32767);
-	
-	const fDamping = 1;
+
+	const int fDamping = 1;
 	val = (DstVal * (fDamping - 1) + val) / fDamping;
 	DstVal = SWord(val);
 }
@@ -605,7 +605,7 @@ void ManualPilot::ApplyDeadZone(AirStrucPtr const ControlledAC, SWord SrcVal, in
 //				Damping added										   /` |
 //Inputs															  /   |
 //																	_|    |
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ManualPilot::ApplyDeadZone2(AirStrucPtr const ControlledAC, SWord SrcVal, int& DstVal, SWord DeadZone)
@@ -619,7 +619,7 @@ void ManualPilot::ApplyDeadZone2(AirStrucPtr const ControlledAC, SWord SrcVal, i
 	MODMAXMIN(val, 0, 1);
 	val = val * val * 32767.0 * sign;
 
-	const fDamping = 1;
+	const int fDamping = 1;
 	val = (DstVal * (fDamping - 1) + val) / fDamping;
 	DstVal = SWord(val);
 }
@@ -632,9 +632,9 @@ void ManualPilot::ApplyDeadZone2(AirStrucPtr const ControlledAC, SWord SrcVal, i
 //
 //Description	Central deadzone, Then linear for bottom 2/3 giving 1/3 output, then steep curve towards limits
 //				See "Craig\\C:\CSB\Joystick_Filter.xls"
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ManualPilot::ApplyDeadZone3(AirStrucPtr const ControlledAC, SWord SrcVal, int& DstVal, SWord DeadZone)
@@ -643,7 +643,7 @@ void ManualPilot::ApplyDeadZone3(AirStrucPtr const ControlledAC, SWord SrcVal, i
 	UWord StartLinear = 5 * DeadZone;
 	UWord LinearBase  = 3 * DeadZone;
 	UWord StartCurve2 = 21845;	//	2/3 * 32768
-	UWord EndCurve2	  = 32767 - DeadZone; 
+	UWord EndCurve2	  = 32767 - DeadZone;
 
 	SWord SrcSign, SrcAbs;
 	if(SrcVal >= 0)	{SrcAbs =  SrcVal;	SrcSign =  1;}
@@ -656,7 +656,7 @@ void ManualPilot::ApplyDeadZone3(AirStrucPtr const ControlledAC, SWord SrcVal, i
 	}
 
 	if(SrcAbs >= EndCurve2)		//Top End Dead Region
-	{	
+	{
 		DstVal = 32767 * SrcSign;
 		return;
 	}
@@ -686,14 +686,14 @@ void ManualPilot::ApplyDeadZone3(AirStrucPtr const ControlledAC, SWord SrcVal, i
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetRPMABKeys
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 31 Oct 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ManualPilot::GetRPMABKeys(AirStrucPtr const ControlledAC)
@@ -710,7 +710,7 @@ void	ManualPilot::GetRPMABKeys(AirStrucPtr const ControlledAC)
 
 		if (Key_Tests.KeyPress3d (RPM_BIG_DOWN))
  			ControlledAC->fly.thrustpercent -= BIGTHRUSTSTEP;
- 
+
  		if((Key_Tests.KeyPress3d(RPM_UP)) || ((Key_Tests.KeyHeld3d(RPM_UP)) && (!(ControlledAC->fly.pModel->FrameCount & 0x07))))
 			ControlledAC->fly.thrustpercent += SMALLTHRUSTSTEP;
 
@@ -738,19 +738,19 @@ void	ManualPilot::GetRPMABKeys(AirStrucPtr const ControlledAC)
 
 			if (Key_Tests.KeyPress3d (RPM_50))
  				ControlledAC->fly.thrustpercent = 50;
- 
+
 			if (Key_Tests.KeyPress3d (RPM_60))
  				ControlledAC->fly.thrustpercent = 60;
- 
+
 			if (Key_Tests.KeyPress3d (RPM_70))
  				ControlledAC->fly.thrustpercent = 70;
- 
+
 			if (Key_Tests.KeyPress3d (RPM_80))
  				ControlledAC->fly.thrustpercent = 80;
 
 			if (Key_Tests.KeyPress3d (RPM_90))
  				ControlledAC->fly.thrustpercent = 90;
- 
+
 			if (Key_Tests.KeyPress3d (RPM_00))
 			{
 				ControlledAC->fly.thrustpercent = 100;
@@ -762,14 +762,14 @@ void	ManualPilot::GetRPMABKeys(AirStrucPtr const ControlledAC)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SensitivityMsg
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 3 Dec 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ManualPilot::SensitivityMsg(AirStrucPtr const ControlledAC)
@@ -800,14 +800,14 @@ void	ManualPilot::SensitivityMsg(AirStrucPtr const ControlledAC)
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetStickKeys
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 30 Oct 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ManualPilot::GetStickKeys (AirStrucPtr const ControlledAC)
@@ -909,11 +909,11 @@ void	ManualPilot::GetStickKeys (AirStrucPtr const ControlledAC)
 					cntstick_f = 0;
 					cntstick_b = 0;
 				}
-				elseif (ControlledAC->fly.elevator < -Delta1) 
+				elseif (ControlledAC->fly.elevator < -Delta1)
 					ControlledAC->fly.elevator += Delta1;
 
 				elseif(ControlledAC->fly.elevator > Delta1)
-					ControlledAC->fly.elevator -= Delta1; 
+					ControlledAC->fly.elevator -= Delta1;
 			}
 		}
 		if(KeyPressed)
@@ -950,11 +950,11 @@ void	ManualPilot::GetStickKeys (AirStrucPtr const ControlledAC)
 					cntstick_l = 0;
 					cntstick_r = 0;
 				}
-				elseif (ControlledAC->fly.aileron < -Delta2) 
+				elseif (ControlledAC->fly.aileron < -Delta2)
 					ControlledAC->fly.aileron += Delta2;
 
 				elseif(ControlledAC->fly.aileron > Delta2)
-					ControlledAC->fly.aileron -= Delta2; 
+					ControlledAC->fly.aileron -= Delta2;
 			}
 		}
 		if(KeyPressed)
@@ -991,11 +991,11 @@ void	ManualPilot::GetStickKeys (AirStrucPtr const ControlledAC)
 					cntrudder_l = 0;
 					cntrudder_r = 0;
 				}
-				elseif (ControlledAC->fly.rudder < -Delta2) 
+				elseif (ControlledAC->fly.rudder < -Delta2)
 					ControlledAC->fly.rudder += Delta2;
 
 				elseif(ControlledAC->fly.rudder > Delta2)
-					ControlledAC->fly.rudder -= Delta2; 
+					ControlledAC->fly.rudder -= Delta2;
 			}
 		}
 		if(KeyPressed)
@@ -1023,11 +1023,11 @@ void	ManualPilot::GetStickKeys (AirStrucPtr const ControlledAC)
 //DeadCode MS 3Oct00 		const dEle  = 4000;		const sEle1	= 4;		const sEle2	= 1;
 //DeadCode MS 3Oct00 		const dAil  = 1;		const sAil1 = 1;		const sAil2	= 1;
 //DeadCode MS 3Oct00 		const dRud  = 4;		const sRud1	= 4;		const sRud2	= 1;
-	
-		const dEle  = 4000;		const sEle1	= 4;		const sEle2	= 1;
-		const dAil  = 1;		const sAil1 = 1;		const sAil2	= 1;
-		const dRud  = 1;		const sRud1	= 1;		const sRud2	= 1;
-	
+
+		const int dEle  = 4000;		const int sEle1	= 4;		const int sEle2	= 1;
+		const int dAil  = 1;		const int sAil1 = 1;		const int sAil2	= 1;
+		const int dRud  = 1;		const int sRud1	= 1;		const int sRud2	= 1;
+
 
 		if ((ail!=-0x8000) && (cntstick_r == 0)&& (cntstick_l == 0))
 		{
@@ -1124,10 +1124,10 @@ void	ManualPilot::GetStickKeys (AirStrucPtr const ControlledAC)
 
 			if (Key_Tests.KeyPress3d (MINPROPPITCH))
 				ControlledAC->fly.propsetting = 100;
-			
+
 			if((Key_Tests.KeyHeld3d(PROPPITCHDOWN)) && (!(ControlledAC->fly.pModel->FrameCount & 0x01)))
 				ControlledAC->fly.propsetting++;
-			
+
 			if((Key_Tests.KeyHeld3d(PROPPITCHUP)) && (!(ControlledAC->fly.pModel->FrameCount & 0x01)))
 				ControlledAC->fly.propsetting--;
 
@@ -1144,9 +1144,9 @@ void	ManualPilot::GetStickKeys (AirStrucPtr const ControlledAC)
 //
 //Description	Flaps, slats, gear etc.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ManualPilot::SecondaryControls (AirStrucPtr const ControlledAC2)
@@ -1176,7 +1176,7 @@ void ManualPilot::SecondaryControls (AirStrucPtr const ControlledAC2)
 		pAeroDevice->Action (ControlledAC2, AeroDevice::CT_KEYS);
 		pAeroDevice = pAeroDevice->List.NextItem ();
 	}
-	
+
 	if( (Key_Tests.KeyPress3d (EMERGENCYGEAR)) && (!pModel->EmergencyGearUsed) )
 	{
 		for(pAeroDevice = pModel->DeviceList; pAeroDevice; pAeroDevice = pAeroDevice->List.NextItem())
@@ -1248,10 +1248,10 @@ void ManualPilot::SecondaryControls (AirStrucPtr const ControlledAC2)
 //DeadCode CSB 03/12/99		{
 //DeadCode CSB 03/12/99			SLong temptrim = pModel->MaxAileronTrim;
 //DeadCode CSB 03/12/99			SLong delta = _Interactive.GetDelta(INST_AILERON, temptrim);
-//DeadCode CSB 03/12/99	
+//DeadCode CSB 03/12/99
 //DeadCode CSB 03/12/99			temptrim += (delta * pModel->MaxAileronTrim)>>7;
 //DeadCode CSB 03/12/99			MODLIMIT(temptrim, pModel->MaxAileronTrim);
-//DeadCode CSB 03/12/99	
+//DeadCode CSB 03/12/99
 //DeadCode CSB 03/12/99			pModel->MaxAileronTrim = temptrim;
 //DeadCode CSB 03/12/99		}
 
@@ -1271,17 +1271,17 @@ void ManualPilot::SecondaryControls (AirStrucPtr const ControlledAC2)
 		switch(pModel->EngineSelected)
 		{
 			case ES_PORT:
-				pModel->EngineSelected = ES_STBD; 
+				pModel->EngineSelected = ES_STBD;
 //DEADCODE CSB 02/03/00 				PrintString(75, 24, "STBD");
 				_Radio.TriggerMsg(MESSAGE_STRUC(PHRASE_STARBOARD, MSG_HIPRIORITY,Manual_Pilot.ControlledAC2,NULL,NULL));
 				break;
 			case ES_STBD:
-				pModel->EngineSelected = ES_BOTH; 
+				pModel->EngineSelected = ES_BOTH;
 //DEADCODE CSB 02/03/00 				PrintString(75, 24, "BOTH");
 				_Radio.TriggerMsg(MESSAGE_STRUC(PHRASE_BOTH, MSG_HIPRIORITY,Manual_Pilot.ControlledAC2,NULL,NULL));
 				break;
 			case ES_BOTH:
-				pModel->EngineSelected = ES_PORT; 
+				pModel->EngineSelected = ES_PORT;
 //DEADCODE CSB 02/03/00 				PrintString(75, 24, "PORT");
 				_Radio.TriggerMsg(MESSAGE_STRUC(PHRASE_PORT, MSG_HIPRIORITY,Manual_Pilot.ControlledAC2,NULL,NULL));
 				break;

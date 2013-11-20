@@ -1,21 +1,23 @@
 //------------------------------------------------------------------------------
 //Filename       modvec.h
-//System         
+//System
 //Author         Andrew McRae
 //Date           Mon 6 Jan 1997
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	MODVEC_Included
 #define	MODVEC_Included
 
+#include <math.h>
 #define	DEFAULT_MODVEC 0
 
-#define F1PIE2	1.570796326795
-#define FPIE	3.14159265359
-#define F3PIE2	4.712388980385
-#define F2PIE	6.28318530718
+const double F1PIE2	=1.570796326795;
+//const double F1PIE2	=M_PI_2;
+const double FPIE	= M_PI;
+const double F3PIE2=	4.712388980385;
+const double F2PIE=	6.28318530718;
 
-#define FANGLE_330	5.759586532
+const double FANGLE_330	= 5.759586532;
 
 //enum {MIN_TEMP = 255, MAX_TEMP = 310};
 //typedef double FP, *PFP;
@@ -230,7 +232,7 @@ inline FP FCos(FP n)
 /*inline FP FPATan(FP opp,FP adj)
 {
 	FP	ans;
-	_asm 
+	_asm
 	{
 		fld		opp
 		fld		adj

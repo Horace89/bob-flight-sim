@@ -1,13 +1,14 @@
 //------------------------------------------------------------------------------
 //Filename       palette.h
-//System         
-//Author         Paul.   
+//System
+//Author         Paul.
 //Date           Tue 4 Jul 1995
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	palette_Included
 #define	palette_Included
 
+#include "dosdefs.h"
 typedef	char PAL[256*3*8];										//RJS 19Mar98
 
 typedef	SWord	ColourRange;

@@ -7,6 +7,7 @@
 // RDialog.h : header file
 //
 #include "globdefs.h"
+#include "rcombox.h"
 
 //#define F_SOUNDS
 #define F_BATTLE
@@ -33,12 +34,12 @@ CRect	Place(PosnControl px,PosnControl py,int x=0,int y=0,RDialog* parent=NULL);
 struct	HideEdgeControl
 {
 	enum	EdgeCtrl
-	{	
+	{
 		ALIGN_MIN=		0,		//align with parent top/left
 		ALIGN_MAX=		1,		//align with parent bot/right
 		ALIGN_SPLIT=	2,		//align with splitter bar in parent
 		ALIGN_STRETCH=	4,		//coordinate is a proportion of starting coordinate
-		ALIGN_MASK=		0x0f,	
+		ALIGN_MASK=		0x0f,
 
 		OCCLUDE_SCROLL=		0x00,	//will add scroll bars if box is smaller than child
 		OCCLUDE_INSIDE=		0x10,	//parent may be smaller than child, but no scroll bars
@@ -54,10 +55,10 @@ struct	HideEdgeControl
 		ACTIONS_MASK=		0xf00,
 	};
 };
-inline HideEdgeControl::EdgeCtrl operator | 
+inline HideEdgeControl::EdgeCtrl operator |
 (HideEdgeControl::EdgeCtrl a,HideEdgeControl::EdgeCtrl b)
 {return HideEdgeControl::EdgeCtrl(int(a)|int(b));}
-inline HideEdgeControl::EdgeCtrl operator + 
+inline HideEdgeControl::EdgeCtrl operator +
 (HideEdgeControl::EdgeCtrl a,HideEdgeControl::EdgeCtrl b)
 {return (a|b);}
 
@@ -105,7 +106,7 @@ protected:
 
 struct DialList:DialBox
 {
-   
+
 	DialList(DialBox& d,const DialBox& d0,
 			const DialBox& d1=*(DialBox*)NULL,
 			const DialBox& d2=*(DialBox*)NULL,
@@ -128,7 +129,7 @@ struct DialList:DialBox
 		diallist[9]=NULL;
 		childtype=CLUMP;
 	}
-protected:
+//x0r protected:
 	DialList(const DialBox& d0,
 			const DialBox& d1,
 			const DialBox& d2,
@@ -167,10 +168,10 @@ struct	IdEntry
 						{idtype=T_GAP;}
 						{idtype=T_IDT;}
 					}
-	IdEntry(const char* s) :	textnum(0) 
+	IdEntry(const char* s) :	textnum(0)
 			{idtype=T_CHAR;textstr=s;}
 
-	IdEntry(CString s)		:	textnum(0) 
+	IdEntry(CString s)		:	textnum(0)
 			{idtype=T_CHAR;textstr=s;}
 
 };
@@ -260,14 +261,15 @@ struct VTabBox:HTabBox
 const CRect RECT_MIN = CRect(0,0,50,20);
 const CRect RECT_MAX = CRect(0,0,0x7FFF,0x7FFF);
 
-
-inline	CString	LoadResString(int resnum)
+CString	LoadResString(int resnum);
+/*
+CString	LoadResString(int resnum)
 {
 	CString s;
 	s.LoadString(resnum);
 	return s;
 };
-
+*/
 struct	RString
 {
 	int	resnum;
@@ -291,15 +293,15 @@ struct	DialogLinks
 	enum	{MAX_CHILD_DIALS=16};
 	RDialog*	*loggedchild;			//Other dialogs launched by this dialog
 	RDialog*	*loggedchildlauncher;	//The pane on this dialog that launched
-	CRToolBar	*loggedparenttool;	
+	CRToolBar	*loggedparenttool;
 	RDialog*	loggedparent;			//The dialog that launched this dialog
-	RDialog*	loggedparentlauncher;	//The pane of this dialog that wants ParentClosed message. 
+	RDialog*	loggedparentlauncher;	//The pane of this dialog that wants ParentClosed message.
 	DialogLinks()	{loggedchild=loggedchildlauncher=NULL;loggedparent=loggedparentlauncher=NULL;loggedparenttool=NULL;}
 };
 //
 //	Design fault:	CWnd* list/button can't be statically initialised because
 //		the parent sheet address is not known until it is launched.
-//	Solution:		Implement button as a member reference pointer, and access 
+//	Solution:		Implement button as a member reference pointer, and access
 //		via "(this->*button)". The reference offset can be defined at compile time.
 //
 struct PolyOutLine
@@ -316,7 +318,7 @@ struct	PolyList
 {
 	PolyOutLine::MyControl list;
 	PolyOutLine*	first;
-	PolyOutLine*	current; 
+	PolyOutLine*	current;
 	float		scale;
 	PolyList()	{list=NULL;current=first=NULL;scale=1;}
 	~PolyList();
@@ -414,7 +416,7 @@ public:
 	virtual	void	DoPaint(CDC* pDC);
 	void	OnOK( );
 	void	OnCancel( );
-	void	DDX_Control(CDataExchange* pDX,int	dialid,CWnd&	m_dial);		
+	void	DDX_Control(CDataExchange* pDX,int	dialid,CWnd&	m_dial);
 	PolyList	polylist;
 	static 	IconDescUI	AXicondesc;
 
@@ -434,7 +436,7 @@ public:
 	void	GlobalRefreshData();
 	void	MakeChildrenVisible(bool);
 private:
-	
+
 	int		ModScroll(UINT id,UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 	static RDialog*	MakeParentDialog(CRect& e,RDialog* parent,DialBox* tree);
 	RDialog*	AddChildren(const DialBox*const* diallist,int X2flag=0,CRect& rect=*(CRect*)NULL);
@@ -453,7 +455,7 @@ public:
 	RDialog* AddPanel(RDialog* dial,int X2flag,CRect rect,FileNum artnum=FIL_NULL, const Edges& e=Edges(EDGE::ALIGN_MIN,EDGE::ALIGN_MIN,EDGE::ALIGN_MAX,EDGE::ALIGN_MAX));
 	RDialog* AddPanel(const DialBox* diallist,int X2flag,CRect rect);
 	void UpdateTitle();
-	RDialog* InDialAncestor()	
+	RDialog* InDialAncestor()
 	{
 		if (parent)// && dragstate!=DRAG_DIALOG && dragstate!=DRAG_INIT)
 			return parent->InDialAncestor();
@@ -466,13 +468,13 @@ public:
 	void AttachTabToTabControl(const struct IdEntry *const list);
 	void AttachRelevantSplitterBars();
 //	void InitArtwork(FileNum art);
-	static	RDialog*	MakeTopDialog(CRect& e,DialList& tree)	
+	static	RDialog*	MakeTopDialog(CRect& e,DialList& tree)
 		{return MakeParentDialog(e,NULL,&tree);}
-	static	RDialog*	MakeTopDialog(CRect& e,DialBox& tree)	
+	static	RDialog*	MakeTopDialog(CRect& e,DialBox& tree)
 		{return MakeParentDialog(e,NULL,&tree);}
-	RDialog*	MakeDialog(CRect& e,DialList& tree) 
+	RDialog*	MakeDialog(CRect& e,DialList& tree)
 		{return MakeParentDialog(e,this,&tree);}
-	RDialog*	MakeDialog(CRect& e,DialBox& tree) 
+	RDialog*	MakeDialog(CRect& e,DialBox& tree)
 		{return MakeParentDialog(e,this,&tree);}
 	// Generated message map functions
 public:
@@ -559,7 +561,7 @@ public:
 localname*	operator +(realname*p)	{return localname##Ptr(p);}	\
 localname&	operator +(realname&p)	{return (localname&)(p);}
 
-		
+
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 

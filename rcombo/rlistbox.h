@@ -5,6 +5,8 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CRListBox wrapper class
+#ifndef _CRListBox_H_
+#define _CRListBox_H_
 
 class CRListBox : public CWnd
 {
@@ -179,3 +181,5 @@ public:
 	void SetRowColour(long row, long RGBcolour);
 	void SetIcon(long filenum, short row, short column);
 };
+
+#endif

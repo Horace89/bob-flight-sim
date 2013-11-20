@@ -52,4 +52,4 @@ protected:
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_HINTBOX_H__3F900B41_43D7_11D2_A5A3_0040052179B6__INCLUDED_)
-
+

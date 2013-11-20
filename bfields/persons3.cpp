@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -70,7 +70,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //
 	//DON'T WRITE INCLUDE FILES HERE, PUT THEM IN BFCOMMON
 	#include	"dosdefs.h"
-	#include	"myerror.h"						   
+	#include	"myerror.h"
 	#include	"worldinc.h"
 	#include	"bfnumber.h"
 	#include	"bfcommon.h"											//AMM 5Sep00
@@ -85,7 +85,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include	"model.h"
 #include "ai.h"
 #include "contlist.h"
-#include	"globrefs.h"	
+#include	"globrefs.h"
 #include "nodebob.h"
 #include	"sqddiary.h"
 #include	"winmove.h"													//RJS 12Oct00
@@ -104,7 +104,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //					GR_Pack_PlayerSquad,
 //					GR_Pack_PlayerPos
 
-					
+
 	extern	ULong	GR_Pack_Sq_Used[PT_GER_NONFLY+1];	//inc Yak
 //DEADCODE JIM 09/12/99 	AirStrucPtr	Persons3::migsq[2];
 //Nationality		defaultside=NAT_GREEN;
@@ -156,10 +156,10 @@ Persons3::SagExpansionCounter		Persons3::sagexpcounts[PT_VEHICLES]=
 	/*me 110*/	{1, METRES10KM},								//CSB 27Jul00
 	/*ju 87*/	{1, METRES10KM},								//CSB 27Jul00
 	/*bombers*/	{1, METRES5000}									//CSB 27Jul00
-	
+
 };
 int  Persons3::SagExpansionCounter::highdemandrange;
-int  Persons3::SagExpansionCounter::totalexpanded;	
+int  Persons3::SagExpansionCounter::totalexpanded;
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -180,13 +180,13 @@ int  Persons3::SagExpansionCounter::totalexpanded;
 //TOS_INAIR:
 //{		//place in approximate location
 //		if (can't make ETA to first waypoint + 1 min for takeoff seq)
-//			place proportionally on route to first waypoint 
+//			place proportionally on route to first waypoint
 //		else
 //		if (is wave leader)
 //			try each waypoint in turn until time used up
 //			if past engage waypoint
 //				dice roll encounter with target
-//			if past last waypoint, 
+//			if past last waypoint,
 //				place 1 mile north of last waypoint
 //			else
 //				place proportionally between waypoints
@@ -206,10 +206,10 @@ int  Persons3::SagExpansionCounter::totalexpanded;
 //TOS_TAKENOFF:
 //{		//place close to airfield
 //		place in formation at altitude between RUNWAY1..RUNWAY0 *100m*(GR-time)/15)
-//			pointing towards first waypoint	
+//			pointing towards first waypoint
 //}
 //TOS_TAKINGOFF:
-//{		//place some just in front 
+//{		//place some just in front
 //		place (GR-time)/15 flights in formation at altitude on RUNWAY1
 //			pointing towards first waypoint
 //		place 1 flight on TAKEOFFL/TAKEOFFW - should be player's flight
@@ -224,7 +224,7 @@ int  Persons3::SagExpansionCounter::totalexpanded;
 //2		Move towards TAXI1 at 40m every 15 seconds On reaching TAXI1, phase 5
 //TOS_NEXTFLIGHTS
 //3		Hold until player gone
-//4		Move towards TAXI0 at 40m every 15 seconds. On reaching TAXI0, phase 6 
+//4		Move towards TAXI0 at 40m every 15 seconds. On reaching TAXI0, phase 6
 //
 //5		Move all way to TAXI0 over ?15? seconds. On time up, phase 6
 //
@@ -282,7 +282,7 @@ inline ANGLES GetTakeOffOffset(AirStrucPtr currac,Coords3D& startpos,Coords3D& r
 		run0.Y=METRES1000;
 		startpos.Z=startpos.Y=0;
 		startpos.X=-METRES30*position;
-		return ANGLES_0Deg;			
+		return ANGLES_0Deg;
 	}
 	else
 	{
@@ -314,7 +314,7 @@ inline ANGLES GetTakeOffOffset(AirStrucPtr currac,Coords3D& startpos,Coords3D& r
 // Date:		09/12/99
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 UniqueID	Persons3::Make3dAC(PlaneTypeSelect type)
@@ -370,14 +370,14 @@ void	Persons3::Reset3dAC(AirStruc*	currac,PlaneTypeSelect type)
 	currac->waypoint=NULL;
 	currac->information = IF_OUT_POS;								  //CSB 05/01/00
 	currac->vel_=0;
-	currac->vel_x =0;					
-	currac->vel_y =0;					
+	currac->vel_x =0;
+	currac->vel_y =0;
 	currac->vel_z =0;
 //DEADCODE JIM 10/12/99 	currac->fly.vel_cms = 	0;
-	currac->fly.cpitch = ANGLES_0Deg;		
-	currac->fly.aileron = 0;						
-	currac->fly.elevator = 0;					
-	currac->fly.rudder = 0;						
+	currac->fly.cpitch = ANGLES_0Deg;
+	currac->fly.aileron = 0;
+	currac->fly.elevator = 0;
+	currac->fly.rudder = 0;
 	currac->weap.ShootDelay=0;
 	currac->fly.callname=0;
 	currac->fly.callnum=0;
@@ -425,15 +425,15 @@ void	Persons3::Reset3dAC(AirStruc*	currac,PlaneTypeSelect type)
 //Author		Jim Taylor
 //Date			Mon 16 Jun 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DEADCODE JIM 09/12/99 static	SByte	Skill_Per_Period[]=
-//DEADCODE JIM 09/12/99 //		day0	day1	day2	day3	day4	day5	day6	day7	day8	
+//DEADCODE JIM 09/12/99 //		day0	day1	day2	day3	day4	day5	day6	day7	day8
 //DEADCODE JIM 09/12/99 {22,	0,1,2,	2,3,3,	4,4,4,	5,5,5,	5,4,4,	3,3,2,	2,1,1,	0,0,0};
 
 void	Persons3::make_airgrp(info_airgrp& I)
@@ -595,7 +595,7 @@ void	Persons3::make_airgrp(info_airgrp& I)
 			bool	isSGT=false;
 			if (currac->uniqueID.count<RealAcBAND)
 				isSGT=true;
-			
+
 			if ((v1=I.homebase.Evaluate(estformpos))==ENABLE_COMPLEX_VAL)
 			{
 				if (firstac && firstac!=currac)
@@ -653,13 +653,13 @@ void	Persons3::make_airgrp(info_airgrp& I)
 				}
 				else
 				{
-					
+
 					if ((formationleaderflights[v2]&0xff)>12)
 					{
 						formationleaderflights[v2]=(formationleaderflights[v2]&0xff00)+0x100;
 					}
 					if (formationleaderflights[v2]>=0x100)
-					{  
+					{
 						squadrec=&Node_Data[SquadNum(squadrec->squadron+(formationleaderflights[v2]>>8))];
 //DeadCode RJS 10Nov00 						squadrec+=(formationleaderflights[v2]>>8);
 						v1=squadnum=squadrec->squadron;
@@ -690,10 +690,10 @@ void	Persons3::make_airgrp(info_airgrp& I)
 				}
 
 				if (I.leader.Evaluate()!=ENABLE_COMPLEX_VAL)
-				{	
+				{
 					if (I.leader.Evaluate()==0)
 					{
-						//flleadac=NULL;		//already is...	
+						//flleadac=NULL;		//already is...
 						if (!isSGT)
 							firstac=*ConvertPtrUID(prevflightleader);
 						else
@@ -732,15 +732,15 @@ void	Persons3::make_airgrp(info_airgrp& I)
 				currac->waypoint=firstac->waypoint;
 
 			currac->information = IF_OUT_POS;						  //CSB 05/01/00
-			currac->vel_x =0;					
-			currac->vel_y =0;					
-			currac->vel_z =0;					
-			currac->fly.cpitch = ANGLES_0Deg;		
-			currac->fly.aileron = 0;						
-			currac->fly.elevator = 0;					
-			currac->fly.rudder = 0;						
+			currac->vel_x =0;
+			currac->vel_y =0;
+			currac->vel_z =0;
+			currac->fly.cpitch = ANGLES_0Deg;
+			currac->fly.aileron = 0;
+			currac->fly.elevator = 0;
+			currac->fly.rudder = 0;
 			currac->fly.numinsag = 0;								  //CSB 24/01/00
-			 
+
 			currac->weap.ShootDelay=0;
 
 
@@ -805,7 +805,7 @@ void	Persons3::make_airgrp(info_airgrp& I)
 					}
 				}
 			}
-				
+
 			{
 				currac->ai.pilotnum=ai_info::PROPER_PILOT_MAX+v1;
 
@@ -857,7 +857,7 @@ void	Persons3::make_airgrp(info_airgrp& I)
 
 			currac->sentexpanded=FALSE;
 			currac->sentcontracted=FALSE;
-	
+
 
 			if (isSGT)
 			{
@@ -866,7 +866,7 @@ void	Persons3::make_airgrp(info_airgrp& I)
 			else
 			{
 				instancesAC[v2]++;
-			}	
+			}
 
 			HP	hp;
 			if (!I.attitude.EvalA(hp))
@@ -884,7 +884,7 @@ void	Persons3::make_airgrp(info_airgrp& I)
 					currac->shape=currac->GetDrawShape();				//RJS 12Oct00
 //DeadCode RJS 12Oct00 					currac->shape=currac->classtype->visible;
 				else
-				{}	
+				{}
 			else
 				currac->shape=(ShapeNum)v1;
 
@@ -928,7 +928,7 @@ void	Persons3::make_airgrp(info_airgrp& I)
 			}
 			else
 				usedval = drec;
-			
+
 			currac->ai.diaryptr = Squad_Diary.GetDiaryPtr(usedval);
 			if (drec == 0xFFFFFFFF)
 				currac->ai.diaryptr->noaclaunched++;
@@ -938,8 +938,8 @@ void	Persons3::make_airgrp(info_airgrp& I)
 //temp for flight model tuning, rdh
 //auto ac
 //rdh 25nov			currac->ai.morale = MORALE_GOOD;		//MORALE_POOR;
-//			currac->ai.morale 	= MORALE_TOPMORALE;		
-			
+//			currac->ai.morale 	= MORALE_TOPMORALE;
+
 //RDH 18/02/99
 			if (currac->nationality == NAT_RED)
 			{
@@ -988,7 +988,7 @@ void	Persons3::make_airgrp(info_airgrp& I)
 //DEADCODE JIM 14/01/00 				if ( d && (d->lnchrtype & LT_MASK) == LT_MOVEGUN )
 //DEADCODE JIM 14/01/00 					*Three_Dee.livelist+=currac;
 //DEADCODE JIM 14/01/00 			}
-//DEADCODE JIM 14/01/00 
+//DEADCODE JIM 14/01/00
 
 			if (firstobject==IllegalSepID)
 				firstobject=currac->uniqueID.count;
@@ -1012,7 +1012,7 @@ void	Persons3::make_airgrp(info_airgrp& I)
 //DEADCODE JIM 17/01/00 			if (isSGT)
 //DEADCODE JIM 17/01/00 			{
 //DEADCODE JIM 17/01/00 				setposition(currac,I.position,TRUE);
-//DEADCODE JIM 17/01/00 
+//DEADCODE JIM 17/01/00
 //DEADCODE JIM 17/01/00 			}
 //DEADCODE JIM 17/01/00 			else
 			if (estformpos==0)
@@ -1031,7 +1031,7 @@ void	Persons3::make_airgrp(info_airgrp& I)
 					UWord uid=currac->uniqueID.count;
 					UWord wid;
 					UWord trg;
-					
+
 					if (currac->waypoint)
 					{
 						wid=currac->waypoint->uniqueID.count;
@@ -1088,7 +1088,7 @@ void	Persons3::make_airgrp(info_airgrp& I)
 					if (I.movecode.Evaluate()!=AUTOSAG_WAITTAKEOFF)
 					{
 					//move next waypoint forward 1 for main force & 2 for escort
-						I.wpref=UID_NULL;	
+						I.wpref=UID_NULL;
 						WayPointPtr w=currac->waypoint;
 						if (w->skipunder==UID_NULL)
 							w=w->next;
@@ -1124,7 +1124,7 @@ void	Persons3::make_airgrp(info_airgrp& I)
 //DEADCODE JON 6/6/00 						blockStr[0] = '1'+char((x/64)%8);
 //DEADCODE JON 6/6/00 						::AfxTrace("Currac homebase block position: %s\n", blockStr );
 //DEADCODE JON 6/6/00 					}
-//DEADCODE JON 6/6/00 
+//DEADCODE JON 6/6/00
 //DeadCode CSB 26Jun00 					currac->World.Y=Land_Scape.GetGroundLevel(currac->ai.homebase,NULL,true)+currac->classtype->deckshunt;
 //DeadCode CSB 18Oct00 					currac->World.Y=Land_Scape.GetGroundLevel(currac->World,NULL,true)+currac->classtype->deckshunt;	//CSB 26Jun00
 					currac->fly.pModel->GroundHeight = currac->ai.homebase->World.Y;
@@ -1160,8 +1160,8 @@ void	Persons3::make_airgrp(info_airgrp& I)
 			}
 			else
 			{
-				if(		(firstac->movecode==AUTO_WAIT4TIME) 
-					||	(firstac->movecode==AUTO_TAKEOFF) 
+				if(		(firstac->movecode==AUTO_WAIT4TIME)
+					||	(firstac->movecode==AUTO_TAKEOFF)
 					||	(firstac->movecode==AUTO_TRAININGTAKEOFF)	)	//CSB 06/03/00
 				{
 					currac->vel_ = currac->vel_x = currac->vel_y = currac->vel_z = 0;
@@ -1226,7 +1226,7 @@ void	Persons3::make_airgrp(info_airgrp& I)
 //DEADCODE DAW 08/03/00 						currac->ai.eventlog=
 //DEADCODE DAW 08/03/00 							eventloglist=
 //DEADCODE DAW 08/03/00 								new EventLog (eventloglist);
-//DEADCODE DAW 08/03/00 				
+//DEADCODE DAW 08/03/00
 //DEADCODE DAW 08/03/00 				eventloglist->nat=currac->nationality;			//JIM 30Sep96
 //DEADCODE DAW 08/03/00 				if (I.leader.Evaluate()==ENABLE_COMPLEX_VAL)
 //DEADCODE DAW 08/03/00 				{
@@ -1293,9 +1293,9 @@ void	Persons3::make_airgrp(info_airgrp& I)
 //DeadCode JIM 12Oct00 //DeadCode CSB 4Oct00 						pilotmarking+=('V'-'M')*1600;
 //DeadCode JIM 12Oct00 //DeadCode CSB 4Oct00 					else
 //DeadCode JIM 12Oct00 //DeadCode CSB 4Oct00 						pilotmarking+=('W'-'R')*1600;
-//DeadCode JIM 12Oct00 
-//DeadCode JIM 12Oct00 
-//DeadCode JIM 12Oct00 
+//DeadCode JIM 12Oct00
+//DeadCode JIM 12Oct00
+//DeadCode JIM 12Oct00
 //DeadCode JIM 12Oct00 				}
 //DeadCode JIM 12Oct00 				else
 					pilotmarking=squadrec->markingscheme
@@ -1323,7 +1323,7 @@ void	Persons3::make_airgrp(info_airgrp& I)
 					SetLoc(-I.uid.Evaluate(),currac->uniqueID.count); //also need to fix references
 					useUID(currac,UniqueID(I.uid.Evaluate()));
 			}
-			
+
 			currac->AddToList();
 
 			//set up for next in squadron
@@ -1372,9 +1372,9 @@ void	Persons3::make_airgrp(info_airgrp& I)
 //
 //Description	Fixes to squadron engagement logic for forward references
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Persons3::fixupengagements(AirStrucPtr	firstac)
@@ -1452,12 +1452,12 @@ void	Persons3::fixupengagements(AirStrucPtr	eyeF,AirStrucPtr trg)
 //Author		Jim Taylor
 //Date			Wed 18 Jun 1997
 //
-//Description	
+//Description
 //
 //Inputs		if I.useexistingWP then evaluate that to get UID to link in!
 //				no other vars will be filled in.
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 enum	{WP_SKIP_BASE=UID_BIT14,WP_SKIP_GROUP=64,WP_SKIP_WAVE_BASE=UID_BIT15};
@@ -1536,7 +1536,7 @@ UniqueID	Persons3::make_waypoint(info_waypoint& I)
 			else
 			switch (-v1)
 			{
-				case	SGR_WPC_TakeOff:	nextwpname=WPNAME_TakeOff;	break;	
+				case	SGR_WPC_TakeOff:	nextwpname=WPNAME_TakeOff;	break;
 				case	SGR_WPC_Target:		nextwpname=WPNAME_Target;	break;
 				case	SGR_WPC_PatrolS:	nextwpname=WPNAME_PatrolS;	break;
 				case	SGR_WPC_PatrolE:	nextwpname=WPNAME_PatrolE;	break;
@@ -1578,7 +1578,7 @@ UniqueID	Persons3::make_waypoint(info_waypoint& I)
 				setpointer((ItemBase**)&newwaypoint->target,UniqueID(v1));	//JIM 17Jul00
 			else															//JIM 17Jul00
 				newwaypoint->target=(Item*)tmpwp;	//DIRTY CLUDGE!!!				//JIM 17Jul00
-			
+
 			if ((int)newwaypoint->target==-1)
 				NOP;
 			if((int)newwaypoint->target!=-1 && newwaypoint->target->World.Y == 0)															//CSB 5Oct00
@@ -1733,7 +1733,7 @@ void	Persons3::FixWavesToLastRoute()
 // Date:		23/03/00
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	Persons3::FixUpWaypointsToGroup(int grpnum,int wavenum,UniqueID route,UniqueID leader,int numinflight, AirStrucPtr leaderptr)	//RJS 10Nov00
@@ -1808,7 +1808,8 @@ void	Persons3::FixUpWaypointsToGroup(int grpnum,int wavenum,UniqueID route,Uniqu
 					{
 						UniqueID SGT=airfieldalias->uniqueID.count;
 						ItemPtr q=airfieldalias;
-						for (int i=RunwaySBAND;i<RunwayEBAND;i++)
+						int i;
+						for (i=RunwaySBAND;i<RunwayEBAND;i++)
 						{
 							ItemPtr p=Persons2::ConvertPtrUID(UniqueID(i));
 							if (p && p->SGT==SGT)
@@ -1842,11 +1843,11 @@ void	Persons3::FixUpWaypointsToGroup(int grpnum,int wavenum,UniqueID route,Uniqu
 //Author		Jim Taylor
 //Date			Wed 18 Jun 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int	Persons3::make_itemgroupcount(EventVal& E)
@@ -1866,7 +1867,7 @@ void	Persons3::make_itemS(info_itemS& I,bool enabled)
 	}
 //DEADCODE JON 07/03/00 	if (I.band.Evaluate()==BritAAASiteBAND && Math_Lib.rnd()>GR_AAALevel64K)
 //DEADCODE JON 07/03/00 		return;	//Discard some AAA sites if low activity!!!!
-//DEADCODE JON 07/03/00 
+//DEADCODE JON 07/03/00
 //DEADCODE JIM 16/11/99 	if (I.band.Evaluate()==RedAAALargeBAND)
 //DEADCODE JIM 16/11/99 	{	//this may be quite painful!
 //DEADCODE JIM 16/11/99 		assert (I.SGT);
@@ -1902,7 +1903,7 @@ void	Persons3::make_itemS(info_itemS& I,bool enabled)
 //DeadCode RJS 11Sep00 	{
 //DeadCode RJS 11Sep00 		// Set anim for bridge shape....
 //DeadCode RJS 11Sep00 		// ... and fill it in for animation
-//DeadCode RJS 11Sep00 
+//DeadCode RJS 11Sep00
 //DeadCode RJS 11Sep00 		if (SHAPE.SetAnimData(tmpitem,0) == sizeof(ExplodeAnimData))
 //DeadCode RJS 11Sep00 		{
 //DeadCode RJS 11Sep00 			ExplodeAnimData*	adptr = (ExplodeAnimData*) tmpitem->Anim;
@@ -1932,11 +1933,11 @@ void	Persons3::make_itemS(info_itemS& I,bool enabled)
 //Author		Jim Taylor
 //Date			Wed 18 Jun 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Persons3::make_gndgrp(info_grndgrp& I)
@@ -2037,9 +2038,9 @@ FormationItemPtr
 				}
 
 			if ((v1=I.type.Evaluate(estformpos))==ENABLE_COMPLEX_VAL)
-				currtruck->classtype=Plane_Type_Translate[PT_ATruck]_;
+				currtruck->classtype=Plane_Type_Translate[PT_ATruck][0];
 			else
-				currtruck->classtype=Plane_Type_Translate[(v1)]_;
+				currtruck->classtype=Plane_Type_Translate[(v1)][0];
 
 			if ((v1=I.shape.Evaluate(estformpos))==ENABLE_COMPLEX_VAL)
 				currtruck->shape=currtruck->classtype->visible;
@@ -2057,7 +2058,7 @@ FormationItemPtr
 //DEADCODE CSB 08/11/99 			currtruck->velhori =0;												//RDH 26Feb96
 
 			FormOrDefault(currtruck->vel_,int,vel,VEL_10KT);//5 m/s or 10mph
-			
+
 			setpointer((ItemBasePtr*)&currtruck->waypoint,I.wpref);
 			currtruck->roll=ANGLES_0Deg;										//JIM 21Oct96
 			currtruck->pitch=ANGLES_180Deg;										//JIM 21Oct96
@@ -2091,7 +2092,7 @@ FormationItemPtr
 					AddToWorld(currtruck);
 				}
 				else
-					setposition(currtruck,I.position,TRUE);			
+					setposition(currtruck,I.position,TRUE);
 			else
 				setfollowerposition(currtruck);
 			HP	hp;
@@ -2103,7 +2104,7 @@ FormationItemPtr
 			else
 			{
 				if ( currtruck->pitch == ANGLES_180Deg )
-					SetAngles (currtruck);						
+					SetAngles (currtruck);
 			}
 			logUID(currtruck);
 			if (I.uid.Evaluate() !=ENABLE_COMPLEX_VAL && I.uid.Evaluate()<0)
@@ -2112,7 +2113,7 @@ FormationItemPtr
 					useUID(currtruck,UniqueID(I.uid.Evaluate()));
 			}
 			currtruck->AddToList();
-				
+
 			estformpos+=(InForm)1;
 			prevtruck=currtruck;
 		}
@@ -2127,11 +2128,11 @@ FormationItemPtr
 //Author		Jim Taylor
 //Date			Wed 18 Jun 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Persons3::make_events(info_event_ptr&	I,ItemBasePtr P)
@@ -2146,7 +2147,7 @@ void	Persons3::make_events(info_event_ptr&	I,ItemBasePtr P)
 //DEADCODE JIM 17/03/99 		info_event_ptr I=J;
 //DEADCODE JIM 17/03/99 	while (I)
 //DEADCODE JIM 17/03/99 	{
-//DEADCODE JIM 17/03/99 
+//DEADCODE JIM 17/03/99
 //DEADCODE JIM 17/03/99 		EventRecPtr	newevent;
 //DEADCODE JIM 17/03/99 		int count=10;
 //DEADCODE JIM 17/03/99 		int bfnum;
@@ -2173,7 +2174,7 @@ void	Persons3::make_events(info_event_ptr&	I,ItemBasePtr P)
 //DEADCODE JIM 17/03/99 					BITSET(usedevents,bfnum&255);
 //DEADCODE JIM 17/03/99 			}
 //DEADCODE JIM 17/03/99 		} while (bfnum==ENABLE_COMPLEX_VAL && count--);
-//DEADCODE JIM 17/03/99 
+//DEADCODE JIM 17/03/99
 //DEADCODE JIM 17/03/99 		int i=I->usedsetvals;
 //DEADCODE JIM 17/03/99 		if (bfnum!=ENABLE_COMPLEX_VAL)
 //DEADCODE JIM 17/03/99 		{
@@ -2183,7 +2184,7 @@ void	Persons3::make_events(info_event_ptr&	I,ItemBasePtr P)
 //DEADCODE JIM 17/03/99 		}
 //DEADCODE JIM 17/03/99 		else
 //DEADCODE JIM 17/03/99 			newevent=new EventRec (P,i);
-//DEADCODE JIM 17/03/99 
+//DEADCODE JIM 17/03/99
 //DEADCODE JIM 17/03/99 		int v1;
 //DEADCODE JIM 17/03/99 		newevent->eventwstart=
 //DEADCODE JIM 17/03/99 			newevent->eventwend=0;
@@ -2193,15 +2194,15 @@ void	Persons3::make_events(info_event_ptr&	I,ItemBasePtr P)
 //DEADCODE JIM 17/03/99 			newevent->eventwstart+=v1*60*100;
 //DEADCODE JIM 17/03/99 		if ((v1=I->starth.Evaluate())!=ENABLE_COMPLEX_VAL)
 //DEADCODE JIM 17/03/99 			newevent->eventwstart+=v1*60*60*100;
-//DEADCODE JIM 17/03/99 
+//DEADCODE JIM 17/03/99
 //DEADCODE JIM 17/03/99 		if ((v1=I->wins.Evaluate())!=ENABLE_COMPLEX_VAL)
 //DEADCODE JIM 17/03/99 			newevent->eventwend+=v1*100;
 //DEADCODE JIM 17/03/99 		if ((v1=I->winm.Evaluate())!=ENABLE_COMPLEX_VAL)
 //DEADCODE JIM 17/03/99 			newevent->eventwend+=v1*60*100;
 //DEADCODE JIM 17/03/99 		if ((v1=I->winh.Evaluate())!=ENABLE_COMPLEX_VAL)
 //DEADCODE JIM 17/03/99 			newevent->eventwend+=v1*60*60*100;
-//DEADCODE JIM 17/03/99 
-//DEADCODE JIM 17/03/99 	
+//DEADCODE JIM 17/03/99
+//DEADCODE JIM 17/03/99
 //DEADCODE JIM 17/03/99 		while (--i>=0)
 //DEADCODE JIM 17/03/99 		{
 //DEADCODE JIM 17/03/99 			newevent->eventlist[i].Index=I->setvals[i].index;
@@ -2211,11 +2212,11 @@ void	Persons3::make_events(info_event_ptr&	I,ItemBasePtr P)
 //DEADCODE JIM 17/03/99 			newevent->eventwend+=newevent->eventwstart+Timer_Code.realtime;
 //DEADCODE JIM 17/03/99 		if (newevent->eventwstart)								//JIM 14Aug96
 //DEADCODE JIM 17/03/99 			newevent->eventwstart+=Timer_Code.realtime;
-//DEADCODE JIM 17/03/99 
+//DEADCODE JIM 17/03/99
 //DEADCODE JIM 17/03/99 		I=(info_event_ptr)I->next;
 //DEADCODE JIM 17/03/99 	}
 //DEADCODE JIM 17/03/99 	}
-//DEADCODE JIM 17/03/99 
+//DEADCODE JIM 17/03/99
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -2223,11 +2224,11 @@ void	Persons3::make_events(info_event_ptr&	I,ItemBasePtr P)
 //Author		Jim Taylor
 //Date			Wed 18 Jun 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Persons3::make_setval(EventVar& es)
@@ -2244,13 +2245,13 @@ void	Persons3::make_setval(EventVar& es)
 //Author		Jim Taylor
 //Date			Wed 18 Jun 1997
 //
-//Description	
+//Description
 //
 //Inputs		t is one of:
-//						T_comment	
+//						T_comment
 //						T_name
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DEADCODE JIM 25/03/99 extern	MissionType CustomMission;
@@ -2332,9 +2333,9 @@ Bool	Persons3::make_agname(string src,int len,info_airgrp&)
 //Author		Jim Taylor
 //Date			Wed 18 Jun 1997
 //
-//Description	
+//Description
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Persons3::used_globref(int index)
@@ -2363,7 +2364,7 @@ void	Persons3::used_globref(int index)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		setangles
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 26 Feb 1996
 //
 //Description
@@ -2403,7 +2404,7 @@ void	Persons3::SetAngles (FormationItemPtr	newmob)
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		setangles
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 26 Feb 1996
 //
 //Description
@@ -2542,7 +2543,7 @@ COORDS3D*	Persons3::setfolloweroffset(AirStrucPtr	newac)
 //DEADCODE JIM 10/12/99 			newac->fly.vel_cms = 	0;							//RDH 30Sep96
 //			newac->fly.vel_mms = 	0;							//RDH 30Sep96
 			return NULL;
-		}	
+		}
 		else
 		if (newac->fly.leadflight)
 			return	newac->PositionWRTLeader();
@@ -2555,7 +2556,7 @@ COORDS3D*	Persons3::setfolloweroffset(AirStrucPtr	newac)
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //
-//	UID forward reference fixup 
+//	UID forward reference fixup
 //
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -2565,11 +2566,11 @@ COORDS3D*	Persons3::setfolloweroffset(AirStrucPtr	newac)
 //Author		Jim Taylor
 //Date			Tue 17 Jun 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Persons3::setfollowerposition(AirStrucPtr it)
@@ -2640,12 +2641,12 @@ Bool Persons3::setposition( ItemBase* it, EventVal& pos, Bool addtoworld)
 //Date			Fri 12 Jan 1996
 //
 //Description	Set the pointer to the item with the uid.
-//				If the item does not yet exist then the 
+//				If the item does not yet exist then the
 //				pointer is noted until the UID is available.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void		Persons3::setpointer(ItemBasePtr	*targitemptr,UniqueID	srcuid)
@@ -2659,11 +2660,11 @@ void		Persons3::setpointer(ItemBasePtr	*targitemptr,UniqueID	srcuid)
 //Author		Robert Slater
 //Date			Tue 13 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 UnresolvedUidNode**	Persons2::searchtree(UniqueID srcuid,UnresolvedUidNode **nextnode)
@@ -2694,11 +2695,11 @@ UnresolvedUidNode**	Persons2::searchtree(UniqueID srcuid,UnresolvedUidNode **nex
 //Author		Robert Slater
 //Date			Tue 13 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Persons3::adduidrequest(ItemBasePtr *trgitemptr,UniqueID srcuid)
@@ -2766,7 +2767,7 @@ void	Persons3::adduidrequest(UnresolvedUidNode *newnode,UniqueID srcuid)
 			// Add to the greater node, and shuffle if it is occupied
 			newnode->more = thenode->more;
 			thenode->more = newnode;
-			
+
 		}
 		else
 		{
@@ -2788,15 +2789,15 @@ void	Persons3::adduidrequest(UnresolvedUidNode *newnode,UniqueID srcuid)
 //Description	Logs that the given item pointer needs fixing up when the
 //				given unique id item is loaded.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Persons3::logpointercopy(ItemBasePtr *trgitemptr,UniqueID srcuid)
 {
 //DeadCode JIM 20Oct00 	UILogType	request = ptrcopy;
-   
+
 	adduidrequest(trgitemptr,srcuid);
 
 	*trgitemptr=(ItemBasePtr)-1;
@@ -2811,9 +2812,9 @@ void	Persons3::logpointercopy(ItemBasePtr *trgitemptr,UniqueID srcuid)
 //				If 'addwhenfilled' is set then item is added to world when data
 //				transfer is complete.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Persons3::logworldcopy(ItemBasePtr targitem,UniqueID srcUID,Bool	addwhenfilled)
@@ -2858,9 +2859,9 @@ void	Persons3::logsetangles(FormationItemPtr targitem,UniqueID srcUID,UILogType 
 //
 //Description	puts item in uid lookup and sets pointers
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Persons3::logUID(ItemBasePtr	selecteditem)
@@ -2870,13 +2871,14 @@ void	Persons3::logUID(ItemBasePtr	selecteditem)
 //DeadCode JIM 20Oct00 	if (selecteditem->uniqueID.count==0x012e)
 //DeadCode JIM 20Oct00 	{
 //DeadCode JIM 20Oct00 		int bp=0;
-//DeadCode JIM 20Oct00 
+//DeadCode JIM 20Oct00
 //DeadCode JIM 20Oct00 	}
 
 	theuid = selecteditem->uniqueID.count;
-
-	assert(pItem[theuid]==NULL&&"UID already used!");
-	assert(pItem[theuid]==0&&"Reused!");
+    bobassert(theuid>=0,"x0r it should be positive");
+	
+	bobassert(pItem[theuid]==NULL,"UID already used!");
+	bobassert(pItem[theuid]==0,"Reused!");
 	pItem[theuid] = selecteditem;
 }
 
@@ -3042,7 +3044,7 @@ Bool	Persons3::useUID(ItemBasePtr	selecteditem,UniqueID theuid)
 					break;
 					}
 				}
-			
+
 				// Tidy tree...
 
 				nextnode = thenode->more;
@@ -3077,12 +3079,12 @@ Bool	Persons3::useUID(ItemBasePtr	selecteditem,UniqueID theuid)
 //Description	Checks if any outstanding UIDs on the tree.
 //				If there are, we try to fix them up properly.
 //
-//				If there are still some left 
+//				If there are still some left
 //				then return TRUE so the caller can raise an error code
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 
@@ -3150,7 +3152,7 @@ void Persons3::InitGamePiece()
 		Pack_PlayerPos=MMC.playeracnum;
 	}
 
-	for (i=0;i<MAXCALLNAMES;i++)
+	for (int i=0;i<MAXCALLNAMES;i++)
 		callsignnamecount[i]=1;
     ClearGlobrefStaticVars();
 //DEADCODE DAW 08/03/00 	while (eventloglist)
@@ -3162,7 +3164,7 @@ void Persons3::InitGamePiece()
 
 //	ClrMessage(UserMsg::NOMSG);									//JIM 23Oct96
 
-	for (i=0;i<32;i++)
+	for (int i=0;i<32;i++)
 		usedevents[i]=0;
 	mobileitem::MobileList=NULL;
 	mobileitem::ACList=NULL;
@@ -3175,7 +3177,7 @@ void Persons3::InitGamePiece()
 //		GR_FriendlyScoutSquad=
 //			GR_EnemyChargeSquad=
 //				GR_FriendlyChargeSquad=JastaAnon;
-			
+
 }
 void	Persons3::InitSubPiece()
 {
@@ -3205,7 +3207,7 @@ void Persons3::EndSubPiece()
 		shapefield=NULL;
 	}
 }
-  
+
 void Persons3::FinishSetPiece()
 {
 	_Replay.DumpData("finish.txt");
@@ -3270,7 +3272,7 @@ void Persons3::FinishSetPiece()
 
 // create extra instance of Airstruc, if one does not already exist.
 
-// GhostAC is one used by AI. 
+// GhostAC is one used by AI.
 // SeenAC is one seen and moved by player.
 
 // Deltas sent are difference between predictor and actual movement
@@ -3289,7 +3291,7 @@ void Persons3::FinishSetPiece()
 
 		Persons2::PlayerSeenAC=newac;
 		newac=NULL;
-		
+
 	}
 
 //DeadCode AMM 23Jul98 	if (_Replay.Playback)
@@ -3311,9 +3313,9 @@ void Persons3::FinishSetPiece()
 	Persons2::PlayerGhostAC->Anim=ANIM_NULL;
 
 	Persons2::PlayerSeenAC->AddToList();
-	
+
 	if(		(!Persons2::PlayerSeenAC->formpos)
-		&&	(!Persons2::PlayerSeenAC->fly.expandedsag) 
+		&&	(!Persons2::PlayerSeenAC->fly.expandedsag)
 		&&	(!Art_Int.Remove(Persons2::PlayerSeenAC))		) //CSB 04/02/00
 		_Error.SayAndQuit("Cant remove seenac");
 
@@ -3322,7 +3324,7 @@ void Persons3::FinishSetPiece()
 	myworld->RemoveFromWorld(Persons2::PlayerGhostAC);
 	myworld->AddToWorld(Persons2::PlayerSeenAC);
 
-// need to remove ghostac from aclist 
+// need to remove ghostac from aclist
 
 	AirStrucPtr Me = *AirStruc::ACList;
 
@@ -3344,8 +3346,8 @@ void Persons3::FinishSetPiece()
 		else
 			_Error.SayAndQuit("cant remove ac from aclist");
 	}
-	
-// nobble UID pointer!							 
+
+// nobble UID pointer!
 
 	pItem[Persons2::PlayerGhostAC->uniqueID.count]=NULL;
 
@@ -3358,11 +3360,11 @@ void Persons3::FinishSetPiece()
 //Author		Jim Taylor
 //Date			Mon 8 Jan 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void		Persons3::AddToWorld(ItemPtr	tmpitem)
@@ -3405,9 +3407,9 @@ void		Persons3::AddToWorld(ItemPtr	tmpitem)
 //
 //Description	Various coded methods for colouring squadrons.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //////////////////////////////////////////////////////////////////////
@@ -3416,7 +3418,7 @@ void		Persons3::AddToWorld(ItemPtr	tmpitem)
 // Date:		13/03/00
 // Author:		DAW
 //
-//Description: 
+//Description:
 // THE MAIN CODE GENERATES
 //		HIJK MNOP RSTU
 //I want to skip vowels:
@@ -3506,7 +3508,7 @@ void	AirStruc::SetLettering(int lettering)
 // Date:		13/03/00
 // Author:		DAW
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	Persons3::ColourRulePlayerSquadron(AirStrucPtr	newac,FormationIndex formpos,UByte* s,int pilotmarking,UWord* damagetable)
@@ -3548,7 +3550,7 @@ void	Persons3::ColourRulePlayerSquadron(AirStrucPtr	newac,FormationIndex formpos
 		UpdateLog(newac,0,EventLog::TAKEOFF);
 	}
 	else
-		Manual_Pilot.InitManualPilotSub(newac);			//rdh 9/6 
+		Manual_Pilot.InitManualPilotSub(newac);			//rdh 9/6
 	Float	fuelchange=1.0;
 	if (damagetable[QMD_FUELKILOS]!=0xffff)
 	{
@@ -3601,7 +3603,7 @@ void	Persons3::FreeRoutes()
 		RouteHdr*	tmphdr2=tmphdr->next;
 		delete tmphdr;
 		tmphdr=tmphdr2;
-	}	
+	}
 	ContourList::FreeList();
 
 }
@@ -3627,14 +3629,14 @@ void	Persons3::FreeEvents()
 //
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		PreScanBF
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 12 Aug 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Persons3::PreScanBF(FileNum f)
@@ -3655,11 +3657,11 @@ void	Persons3::PreScanBF(FileNum f)
 //Author		Robert Slater
 //Date			Fri 2 Apr 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Persons3::AddPreLoadFXShapes()
@@ -3711,10 +3713,10 @@ void	Persons3::AddPreLoadFXShapes()
 // Date:		09/12/99
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
-static float weights[]= {	 1.0,1.0,1.0,1.0,1.0,1.0,	0.5,0.6,0.3,	0.1	};	
+static float weights[]= {	 1.0,1.0,1.0,1.0,1.0,1.0,	0.5,0.6,0.3,	0.1	};
 void	Persons3::ExpandPilotedFlights()
 {
 	{for (int i=0;i<=PT_GER_NONFLY;i++)
@@ -3733,7 +3735,7 @@ void	Persons3::ExpandPilotedFlights()
 //	ME110	60%
 //	Spit	100%
 //	Hurr	100%
-//Any A/C type that has less instances left than we want to add gets it's number of instances 
+//Any A/C type that has less instances left than we want to add gets it's number of instances
 //7) Repeat (6) until no types less than required outstanding
 //8) Apply remainder to aircraft that are left using same weighting.
 	MobileItem::currworld=myworld;
@@ -3750,7 +3752,7 @@ void	Persons3::ExpandPilotedFlights()
 
 	if (pilotedaircraft && pilotedaircraft->uniqueID.count<SagBANDEND)
 	{
-		sagexpcounts[pilotedaircraft->classtype->planetext].numavailable+=24;	
+		sagexpcounts[pilotedaircraft->classtype->planetext].numavailable+=24;
 		//need to get some allocated to other combatants...
 	}
 	for (i=0;i<=PT_GER_NONFLY;i++)
@@ -3765,7 +3767,7 @@ void	Persons3::ExpandPilotedFlights()
 			instancesSAG[i]=is;
 	}
 	for (i=0;i<=PT_GER_NONFLY;i++)
-		availablerealaircraft-=sagexpcounts[i].numavailable;	
+		availablerealaircraft-=sagexpcounts[i].numavailable;
 	bool donesome;
 	forever
 	{
@@ -3825,7 +3827,7 @@ void	Persons3::ExpandPilotedFlights()
 			for(AirStrucPtr ld = pilotedaircraft->fly.expandedsag; ld; ld = ld->fly.nextflight)
 				for(AirStrucPtr ac = ld; ac; ac = ac->Follower())
 				{
-					const COMBATRADIUS = 50000;
+					const unsigned int COMBATRADIUS = 50000;
 
 					mobileitem::currworld->RemoveFromWorld(ac);		//RJS 27Oct00
 

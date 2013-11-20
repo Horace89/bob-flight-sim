@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //Filename       analogue.h
-//System         
+//System
 //Author         Jim Taylor
 //Date           Thu 14 Mar 1996
 //Description    Rowan DirectX joystick interface header.
@@ -31,7 +31,7 @@
 #ifndef AXIS_USES
 #define	AXIS_USES
 //DeadCode CSB 06/04/99	enum	DeadZones	{DZ_SMALL = 1024, DZ_MEDIUM = 2048, DZ_LARGE = 3096};
-enum	DeadZones	{DZ_SMALL = 512, DZ_MEDIUM = 1536, DZ_LARGE = 3072};	//CSB 06/04/99	
+enum	DeadZones	{DZ_SMALL = 512, DZ_MEDIUM = 1536, DZ_LARGE = 3072};	//CSB 06/04/99
 enum	AnalogMode	{ AM_ARCADE, AM_REALISTIC,
 						 AM_LOW, AM_MEDIUM, AM_HIGH, AM_ABSOULTE};
 enum	AxisUses		{	AU_UNUSED=-1,AU_UNASSIGNED=-1,
@@ -43,7 +43,7 @@ enum	AxisUses		{	AU_UNUSED=-1,AU_UNASSIGNED=-1,
 						  	AU_WALKSPEED=14,AU_WALKTURN,
 							AU_FLAPS=16,AU_BRAKE,AU_TRIM_ELEV,AU_ABSTEPS,
 
-							AU_THROTTLE2=20,AU_PROPPITCH, AU_PROPPITCH2, 
+							AU_THROTTLE2=20,AU_PROPPITCH, AU_PROPPITCH2,
 
 							AU_MIN=0,AU_MAX=31,AU_ILLEGAL=127,
 							MAXFORCEAXES=10	//list of FF actuator GUIDs
@@ -75,7 +75,7 @@ typedef PVOID HANDLE;
 //DEADCODE DAW 29/01/00 #ifndef IN_SAGMOVE
 //DEADCODE DAW 29/01/00 typedef HANDLE HINSTANCE ;
 //DEADCODE DAW 29/01/00 #endif
-//DEADCODE DAW 29/01/00 
+//DEADCODE DAW 29/01/00
 #endif
 
 
@@ -124,7 +124,7 @@ struct	RunTimeDevDesc
 //						or _Analogue.ForceName.SetX(reduced parmeters)
 //						or _Analogue.ForceName.SetZ(reduced parmeters)
 //
-//Inputs		
+//Inputs
 //------------------------------------------------------------------------------
 struct	FF_Push
 {
@@ -169,7 +169,7 @@ struct	FF_Stiff
 	IDirectInputDevice2A* dev;
 	LPDIRECTINPUTEFFECT pStiffX,pStiffY;
 	FF_Stiff()	{pStiffX=pStiffY=NULL;}
-	void	Init(IDirectInputDevice2A* d);	
+	void	Init(IDirectInputDevice2A* d);
 	bool	Set(SWord cx,SWord cz,SWord sx,SWord sz);
 	bool	SetX(SWord centre,SWord size);
 	bool	SetZ(SWord centre,SWord size);
@@ -207,11 +207,11 @@ typedef	axisconfigpage	*	const	axisconfigpages;
 //------------------------------------------------------------------------------
 //Author		Jim Taylor
 //Date			Thu 14 Mar 1996
-//Modified	
+//Modified
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //------------------------------------------------------------------------------
 class	Inst3d;
 class	BOStream;
@@ -219,7 +219,7 @@ class	BIStream;
 class	CRCombo;
 class	ViewPoint;
 	enum	AllowAliasing	{
-							AA_NONE=0,		AA_GUNNER_JOYVIEW,		AA_THROTTLE2_PROP1,		AA_UI_PAN,	
+							AA_NONE=0,		AA_GUNNER_JOYVIEW,		AA_THROTTLE2_PROP1,		AA_UI_PAN,
 								AA_TT_REVERSE,	//this is a cludge: 1 bit flag to say axis is reversed...
 								AA_PAIR_MAX,AA_AA_SETUP
 							};
@@ -264,7 +264,7 @@ public:
 
 	static	  AliassingOption	Aliassing_List[],*Aliassing_Table[];
 	AllowAliasing	curraliasingmode,currUIaliasingmode;
-//DEADCODE JIM 19/06/00 	SWord		deadzones[(int)AU_MAX]; 
+//DEADCODE JIM 19/06/00 	SWord		deadzones[(int)AU_MAX];
 //DEADCODE JIM 19/06/00 	SWord		mode[(int)AU_MAX];
 //DEADCODE JIM 19/06/00 	bool		reverse[(int)AU_MAX];							//AMM 28Mar100
 	UByte FF_gun, FF_buffet, FF_aerodynamic, FF_airframe;				//CSB 17Aug00
@@ -272,7 +272,7 @@ public:
 	SWord		axisscales[+AU_MAX+1];
 	SWord		axisdeltas[+AU_MAX+1];
 	int			ForceAxes[MAXFORCEAXES];//list of FF actuator GUIDs
-	RunTimeDevDesc	
+	RunTimeDevDesc
 				runtimedevices[MAXDEVICES];
 	IDirectInputA*	DIdev;
 	FF_Push		FFpush;

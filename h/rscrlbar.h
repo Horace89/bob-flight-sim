@@ -5,6 +5,9 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CRScrlBar wrapper class
+#ifndef rscrlbar_INCLUDED
+#pragma once
+#define rscrlbar_INCLUDED
 
 class CRScrlBar : public CWnd
 {
@@ -50,9 +53,10 @@ public:
 	BOOL GetUseMessagesInsteadOfEvents();
 	void SetUseMessagesInsteadOfEvents(BOOL);
 	long GetFileNumOffset();
-//	void SetFileNumOffset(long);
+	void SetFileNumOffset(long);
 
 // Operations
 public:
 	void Move(long left, long top, long right, long bottom);
 };
+#endif

@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -93,8 +93,8 @@ Error::~Error(void) {}
 void fileblock::makefileblock(enum FileNum,void (__cdecl*)(void * &,unsigned long &),unsigned long,unsigned long,bool) {}
 void GlobRefExpr::Save(struct _iobuf *,char *,int,enum EnumListNames) {}
 ItemBasePtr		WorldStuff::pItem[PITEMTABLESIZE];
-class Error & __cdecl Error::SayAndQuit(char const *,...) { return *this; }
-class Error & __cdecl Error::Say(char *,...) { return *this; }
+class Error & Error::SayAndQuit(const char *,...) { return *this; }
+class Error & Error::Say(char *,...) { return *this; }
 class Error &  Error::ExitMode(void) { return *this; }
 class Error  _Error;
 unsigned long fake = 0;
@@ -162,12 +162,12 @@ struct lowresItem
 
 int itemListSize = 1000;
 int itemListPos = 0;
-lowresItem *itemList; 
+lowresItem *itemList;
 Grid_Byte radarMap;
 int numLowLevel = 0;
 int numHighLevel = 0;
 
-void  Persons4::make_itemS(info_itemS &I,bool enabled) 
+void  Persons4::make_itemS(info_itemS &I,bool enabled)
 {
 	int uid_v;
 
@@ -180,11 +180,11 @@ void  Persons4::make_itemS(info_itemS &I,bool enabled)
 		{
 		case CityBAND:
 		case TownBAND:
-		case NavigationBAND: 
-		case	LUF_FighterLF2BAND:		
-		case	LUF_FighterLF3BAND:		
-		case	LUF_BomberLF2BAND:		
-		case	LUF_BomberLF3BAND:		
+		case NavigationBAND:
+		case	LUF_FighterLF2BAND:
+		case	LUF_FighterLF3BAND:
+		case	LUF_BomberLF2BAND:
+		case	LUF_BomberLF3BAND:
 			if ( itemListPos == itemListSize )
 			{
 				printf( "error - run out of space for items, please recompile with a bigger value for itemListSize\n" );
@@ -223,7 +223,7 @@ int main(int argc, char* argv[])
 {
 	// load in the file.
 	FILE *fp;
-//	if ( (fp=fopen( "c:\\bob\\game\\bfields\\MAINMIG.BF", "rb" )) == NULL ) 
+//	if ( (fp=fopen( "c:\\bob\\game\\bfields\\MAINMIG.BF", "rb" )) == NULL )
 //	{
 //		printf( "Unable to load bfields\\MAINMIG.BF\n" );
 //		return -1; // it hasn't worked 4 some reason...
@@ -235,9 +235,10 @@ int main(int argc, char* argv[])
 	switch (argc)
 	{
 		case 3:
-			strcpy(outDir,argv[2]);
+			strncpy(outDir,argv[2],256);
 			{ // check 4 trailing \ and remove
-				for ( int i=0; outDir[i+1] !=0; i++ )
+			    int i;
+				for (i=0; outDir[i+1] !=0; i++ )
 				{ /*search*/ }
 				if ( outDir[i] == '\\' )
 					outDir[i--] = 0;
@@ -245,7 +246,7 @@ int main(int argc, char* argv[])
 			}
 		case 2:
 			fname = argv[1];
-		case 1:		
+		case 1:
 			break;
 		default:
 			printf( "wrong number of arguments, possible args [inputfile] [outputdir], defaults are present\n");
@@ -253,7 +254,7 @@ int main(int argc, char* argv[])
 			break;
 	}
 
-	if ( (fp=fopen( fname, "rb" )) == NULL ) 
+	if ( (fp=fopen( fname, "rb" )) == NULL )
 	{
 		printf( "Unable to load %s\n", fname );
 		return -1; // it hasn't worked 4 some reason...
@@ -273,7 +274,7 @@ int main(int argc, char* argv[])
 
 	strcpy(&outDir[outSize],"\\sea.grd");
 	radarMap.load( outDir );
-	
+
 	Persons5 persons;
 	persons.processData( theData );
 	delete []theData;
@@ -283,7 +284,7 @@ int main(int argc, char* argv[])
 			"Saving them on grid as %s\n", numLowLevel, numHighLevel, outDir );
 	radarMap.save( outDir );
 
-	
+
 	printf( "creating nearest UID map for radiochatter from %i named UID's\n", itemListPos );
 	if ( itemListPos == 0 )
 	{

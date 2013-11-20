@@ -57,4 +57,3 @@ public:
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_RSPLTBAR_H__995B1B02_CE08_11D1_A1F0_0080C8582DE4__INCLUDED_)
-

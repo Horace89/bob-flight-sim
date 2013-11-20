@@ -4,7 +4,7 @@
 //
 // Created:     12/01/99 by JIM
 //
-// Description: 
+// Description:
 //
 ////////////////////////////////////////////////////////////////////////
 #ifndef	PACKAGE_INCLUDED
@@ -13,18 +13,28 @@
 //
 //This defines everything that we don't want in battlefield file
 //if packages are supposed to be reusable.
-//There may be an instance of it at the top of the BF, 
+//There may be an instance of it at the top of the BF,
 //but we will often override it.
 //
 //Globrefs required to manage waypoint system:
 
+#ifdef _AFXDLL
+#include	"cstring.h"
+#else
+class CString;
+#endif
 
 #include	"bitcount.h"
 #include	"fileman.h"
 #include	"movement.h"
 #include        "squad.h"
+#include	"ranges.h"
+#include	"dosdefs.h"
+#include	"bitfield.h"
+#include "uniqueid.h"
+
 enum FileNum;
-enum	Ranges;
+//enum	Ranges;
 enum	SquadNum;
 enum	FormationTypeIndex;
 enum	BFieldWaypointActions;
@@ -38,7 +48,7 @@ struct	info_waypoint;
 class	BOStream;
 class	BIStream;
 enum	SquadNum;
-class	CString;
+//x0r it is a template class	CString;
 
 enum	SavedGlobrefs
 {
@@ -90,11 +100,11 @@ enum	SavedGlobrefs
 
 
 };
-struct	Profile					
+struct	Profile
 {
-	enum	{MAXRAFPLANNEDSQUADRONS = 32, MAXRAFPATROLS = 30,MAXLWPLANNEDSTAFFELN = 96}; 
+	enum	{MAXRAFPLANNEDSQUADRONS = 32, MAXRAFPATROLS = 30,MAXLWPLANNEDSTAFFELN = 96};
 	enum	{MAX_PACKS=512,MAX_TARGETS=10,MAX_NEGTARGETS=3,MAX_SQUADS=96};
-	enum	AttackMethod	
+	enum	AttackMethod
 	{
 	AM_RAF=0,			AM_PATROL=0,AM_INTERCEPT,
 	AM_FIELD_MIN=8,
@@ -110,16 +120,16 @@ struct	Profile
 	AM_GOODLIMIT=40
 	};
 	typedef MakeField<AttackMethod, AM_FIELD_MIN,AM_FIELD_MAX> AttackMethodField;
-	enum	PackageStatus	
+	enum	PackageStatus
 	{	//squad status	//tote status
 		PS_SPARE,		PS_OFFBASE=PS_SPARE,
 		PS_ORDER_30,
-		PS_AT_30,	
+		PS_AT_30,
 		PS_ORDER_5,
-		PS_AT_5,	
+		PS_AT_5,
 		PS_ORDER_2,
 		PS_AT_2,
-		PS_PLANNING,	
+		PS_PLANNING,
 		PS_PLANNED,		PS_ORDER_ONPOSITION=PS_PLANNED,
 		PS_PLAN_30,
 		PS_PLAN_5,
@@ -127,7 +137,7 @@ struct	Profile
 		PS_ACTIVE_MIN,
 		PS_TAKINGOFF,
 		PS_FORMING,
-		PS_INCOMING,	
+		PS_INCOMING,
 		PS_TARGETAREA,	PS_INPOSITION=PS_TARGETAREA,
 		PS_DETAILRAID,
 		PS_ENEMYSIGHTED,
@@ -234,9 +244,9 @@ struct	Profile
 				ULong	numacoriginal:4,			//Unchanged from launch
 						numacleft:4,				//Left+ditched=original
 						numacditched:4,
-						numacrecoveredlow:4,		//these don't go in ditched or reduce left 
+						numacrecoveredlow:4,		//these don't go in ditched or reduce left
 						numacrecoveredmed:4,		//recoveredmed+recoveredbad+pilotslost<=ditched
-						numacrecoveredbad:4,		
+						numacrecoveredbad:4,
 						numpilotslost:4,
 						leaderlost:1,
 
@@ -270,7 +280,7 @@ struct	Profile
 		operator FormationTypeIndex()	{return formtype;}
 		void	operator=(FormationTypeIndex);
 	};
-	struct	SquadListRef	
+	struct	SquadListRef
 	{	//Pretends to be pointer to an array of Squad (above)
 		SquadList*	pointer;
 		Squad&		Squadron(int);
@@ -279,7 +289,7 @@ struct	Profile
 		int			Max();
 		operator	int()	{return Max();}
 //DEADCODE DAW 26/01/00 		operator	++();
- 		Free();
+ 		void Free();
 		Squad*		Find(int	squadnum);
 		bool		AllInStatus(PackageStatus);
 		bool		AnyInStatus(PackageStatus);
@@ -304,7 +314,7 @@ struct	Profile
 			};
  	struct	RaidNumEntry
  	{
-					
+
  		UWord	raidnum;			//Initially 0=not detected
  		UByte	squadliststart;
  		UByte	detector;		//0=undetected,1=eye,64-127=RAF a/c
@@ -324,9 +334,9 @@ struct	Profile
 
 		RaidNumEntry()	{alertlevel=detector=0;}
 	};
- 	RaidNumEntry*	raidnumentries;	
+ 	RaidNumEntry*	raidnumentries;
 	ULong	firstsquaddiaryentry;
-					//max 13: 10 bomber targs + close,high,return escort. 
+					//max 13: 10 bomber targs + close,high,return escort.
 	int	RaidNumEntriesMinSq(int entry)	{return raidnumentries[entry].squadliststart;}
 	int	RaidNumEntriesMaxSq(int entry);	//this is more complicated
 	SquadListRef		squadlist;	//Pointer to array of Squad
@@ -397,7 +407,7 @@ struct	Profile
 	void	FixPackageStatus();
 	void	SetGlobRefsForRoute(UniqueID wpuid);
 	void	RepositionSubWaypoints(UniqueID wpuid);
-	bool	Profile::Remove109ReturnWP();
+	bool	Remove109ReturnWP();
 	bool	Insert109ReturnWP(int distbackcm);
 	bool	RemoveOverExtendedFlights();
 public:
@@ -411,11 +421,11 @@ public:
 //DEADCODE JIM 31/03/00 	void	SetACTypesFromGeneric();
 	static	UniqueID MakeInterceptWP(SavedGlobrefs a,SavedGlobrefs b,int percent,UniqueID next,SavedGlobrefs as=(SavedGlobrefs)-1,int relalt=0,BFieldWaypointActions action=wpacnoactionno);
 	static	UniqueID MakeInterceptWP(SavedGlobrefs a,SavedGlobrefs b,Ranges distance,UniqueID next,SavedGlobrefs as=(SavedGlobrefs)-1,int deltaalt=0,BFieldWaypointActions action=wpacnoactionno);
-	static int	CalcTime(COORDS3D* last,const COORDS3D* wp,int type, int esctype, SWord StoresDrag);							//CSB 18/06/99	
+	static int	CalcTime(COORDS3D* last,const COORDS3D* wp,int type, int esctype, SWord StoresDrag);							//CSB 18/06/99
 
 	static int	ValidateTime(CString* buffer, int packnum, int wavenum);
 
-	static int	CalcFuel(COORDS3D* last,const COORDS3D* wp,int escorteetype,int escortertype, SWord StoresDrag);	//CSB 18/06/99	
+	static int	CalcFuel(COORDS3D* last,const COORDS3D* wp,int escorteetype,int escortertype, SWord StoresDrag);	//CSB 18/06/99
 	bool CalcWPTimes();
 	void	CalcRangeBrgFromPrev(UniqueID wpuid, ULong& range, ULong& brg);
 	int FindEarliestPrimaryTargetETA(int& absrvtime, int& slowestsq);
@@ -423,17 +433,17 @@ public:
 	void CalcWPRelTimes(int sqnum, int& targettime, int& rvtime);
 	int CalcWPAbsTimes(int absrvtime, int slowestsq);
 
-	bool CalcFuel(int sqnum,  UniqueID wpuid, int& reqfueltime, int& fueltime);	
-	bool CalcFuel(int sqnum, int trgnum,  UniqueID wpuid, int& reqfueltime, int& fueltime);	
-	Float Calc109FuelShortCut(int sqnum);	
-	SquadNum CalcFuel(UniqueID uid, int& strikereqfueltime, int& escortreqfueltime,bool usetargets=true);	
-	static	bool Profile::NonLeadElementSet(int applyflight, int applyelt);
+	bool CalcFuel(int sqnum,  UniqueID wpuid, int& reqfueltime, int& fueltime);
+	bool CalcFuel(int sqnum, int trgnum,  UniqueID wpuid, int& reqfueltime, int& fueltime);
+	Float Calc109FuelShortCut(int sqnum);
+	SquadNum CalcFuel(UniqueID uid, int& strikereqfueltime, int& escortreqfueltime,bool usetargets=true);
+	static	bool NonLeadElementSet(int applyflight, int applyelt);
 
 	static	Float RelDensity(SLong alt);
 
 	static int CalcHoriAndClimbTime(const struct COORDS3D * last,const struct COORDS3D * wp,SLong& horitime,SLong& climbtime,int type, int esctype, SWord StoresDrag);	//CSB 18/06/99
-	static	bool GetPackageFromWP(UniqueID req_wpuid,int& pack,int& squad=*(int*)NULL,int& target=*(int*)NULL);
-	static	int Profile::WPType(UniqueID u);
+	static	bool GetPackageFromWP(UniqueID req_wpuid,int& pack,int& squad=*(int*)nullptr,int& target=*(int*)nullptr);
+	static	int WPType(UniqueID u);
 
 	int		DecodePackage(string packstr,bool decodebinary); //returns num flights. -ve if other targets
 	void	SetTargetUIDs(bool	fixconvoys=false);
@@ -496,14 +506,14 @@ public:
 	void	DeleteNumerousSquadrons(BetterRule	br, int delsq=100);
 	int		FirstSquadofMethod(Profile::AttackMethod attackmethod);
 	int		FirstSquadNotofMethod(Profile::AttackMethod attackmethod);
-	void	CompleteSquadron(Profile::AttackMethod attackmethod);	
+	void	CompleteSquadron(Profile::AttackMethod attackmethod);
 	void	CompleteGroup(Profile::AttackMethod attackmethod, int currsquads);
 	void	ResetAcNumbers(Profile::AttackMethod attackmethod, int orggrp, int reqgrp, int deltaac);
 	void	RAFResetAcNumbers(Profile::BetterRule betterrule, int orgsq, int reqsq, int newnumac);
 	BetterRule	 FindBetterRule();
 	BetterRule	 RAFFindBetterRule();
 	bool	IncreaseSubSquadronToSquadron(Profile::AttackMethod attackmethod);
-	void	Profile::ChangeStrikeAcType(int actype);
+	void	ChangeStrikeAcType(int actype);
 	void	ShareSecondaries(UniqueID* u,int alt);	//copies table and sets number
 	void	ShareSecondaries(int numsec);			//devides evenly between number
 	void	ReShareSecondaries();					//gets current number of targets
@@ -589,7 +599,7 @@ static	UniqueID	ReorderZero(UniqueID u);
 	int		NewPackage(UniqueID targ,Nationality nat, Profile::AttackMethod duty,int initialbombers=-1,Profile::BetterRule br=Profile::BR_WIDESTPOSSIBLE,int mainalt=0,int* actypecounts=NULL);
 	bool	PackageHasBeenEdited();
 //DEADCODE DAW 24/11/99 	void	ProfileFlightsRequired(int pack, int& mb, int& f80,int& f84,int& f51,int& fb,int& f, int& f86a, int& f86b, int& b26, int& b29); //RDH 16/03/99
-//DEADCODE DAW 24/11/99 	void	FlightsAvailable(int pack, int& a_mb, int& a_f80,int& a_f84,int& a_f51,int& a_fb,int& a_f, 
+//DEADCODE DAW 24/11/99 	void	FlightsAvailable(int pack, int& a_mb, int& a_f80,int& a_f84,int& a_f51,int& a_fb,int& a_f,
 //DEADCODE DAW 24/11/99 			int& a_f86a, int& a_f86b, int& a_b26, int& a_b29); //RDH 16/03/99
 
 //DEADCODE DAW 24/11/99 	void	DeleteNonRedoPackages();
@@ -626,15 +636,9 @@ static	UniqueID	ReorderZero(UniqueID u);
 //DEADCODE JIM 13/01/00 	int	SquadACUsed(int squadnum);
 //DEADCODE JIM 13/01/00 	int SquadACAvail(int squadnum);	//every squadron initially has 19 aircraftso they
 	//rdh{return 19;}			//can lose 3 aircraft before dropping to 3 flights
-							//If Mark really wants restocking then I suggest 
-							//setting a restocking max of 17 so you are fighting 
-	bool	PreLoad(
-		            int packnum,
-					FileNum fil=(enum FileNum)FIL_NULL,
-					const char* filename=NULL,
-					bool copyprimary=false,
-					bool copysecondaries=false,
-					int	filecount=0);
+							//If Mark really wants restocking then I suggest
+							//setting a restocking max of 17 so you are fighting
+	bool	PreLoad(int packnum,FileNum fil=FIL_NULL,const char* filename=NULL,bool copyprimary=false,bool copysecondaries=false,int	filecount=0);
 	void	Load(int packnum,FileNum fil=FIL_NULL,const char* filename=NULL,int filecount=0);
 	void	FixupAircraft(int packnum);	//post load
 	void	WipeAll();

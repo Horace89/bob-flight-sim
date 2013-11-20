@@ -10,7 +10,7 @@
 #ifndef _D3DTYPES_H_
 #define _D3DTYPES_H_
 
-#include <windows.h>
+//#include <windows.h>
 
 #include <float.h>
 #include "ddraw.h"

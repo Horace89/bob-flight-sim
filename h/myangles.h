@@ -178,7 +178,7 @@ class ANGLES;
 /**/ struct ANGLESInst
 /**/ {
 /**/ 	SWord	a;
-/**/ 
+/**/    
 /**/ 	ANGLESInst& operator=(Angles i) {a=i;return *this;}	
 /**/	int operator +() const {return (int)(UWord)a;}
 /**/	//operator ANGLES&() const	{return *(ANGLES*)this;}
@@ -188,7 +188,7 @@ class ANGLES;
 /**/ class ANGLES : public ANGLESInst
 /**/ {
 /**/ public:
-/**/	ANGLES()		{};
+/**/	ANGLES()		{a=0;};
 /**/
 /**/	ANGLES(const Angles i)	{a=(SWord)i;}
 /**/

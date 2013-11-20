@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -64,7 +64,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //------------------------------------------------------------------------------
 //Filename       savebin.cpp
-//System         
+//System
 //Author         Jim Taylor
 //Date           Wed 8 Jul 1998
 //Description    Saves the package in binary
@@ -72,7 +72,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include	"dosdefs.h"
 #include	"stdio.h"
 #define	F_COMMON
-#define F_GRAFIX	
+#define F_GRAFIX
 #include	"files.g"
 #include	"fileman.h"
 //DEADCODE JIM 30/11/99 #include	"node.h"
@@ -177,12 +177,12 @@ UniqueID	PackageList::ReorderNoCheck(UniqueID u)
 //note wave/group screwup.
 //DEADCODE DAW 24/11/99 static const char* savegroupstringnew="\nW%iG%iS%iF%i=C%iT%iA%i:";
 //DEADCODE DAW 24/11/99 static const char* loadgroupstringold=  "G%iW%iS%iF%i=C%iT%iA%i:%n";
-//DEADCODE DAW 24/11/99 static const char* loadgroupstringnew=  "W%iG%iS%iF%i=C%iT%iA%i:%n"; 
+//DEADCODE DAW 24/11/99 static const char* loadgroupstringnew=  "W%iG%iS%iF%i=C%iT%iA%i:%n";
 //
 //DEADCODE DAW 24/11/99 static const Profile::TargetDescript	emptydesc={UID_NULL};
-static const char* line1out=	
-	"Package battlefield: Duty %i %i, Squads %i, Raids: %i, WPs %i, Takeoff,Target,Dogleg %05x,%05x,%05x, Times %09x,%09x\n";	
-static const char* line1in=		
+static const char* line1out=
+	"Package battlefield: Duty %i %i, Squads %i, Raids: %i, WPs %i, Takeoff,Target,Dogleg %05x,%05x,%05x, Times %09x,%09x\n";
+static const char* line1in=
 	"Package battlefield: Duty %i %i, Squads %i, Raids: %i, WPs %i, Takeoff,Target,Dogleg %05x,%05x,%05x, Times %09x,%09x%n";
 static const char* line2out=	"Secondaries: %05x+%05x %05x+%05x %05x+%05x %05x+%05x %05x+%05x %05x+%05x %05x+%05x %05x+%05x %05x+%05x\n";
 static const char* line2in=		"Secondaries: %05x+%05x %05x+%05x %05x+%05x %05x+%05x %05x+%05x %05x+%05x %05x+%05x %05x+%05x %05x+%05x%n";
@@ -283,7 +283,7 @@ int	Profile::DecodePackage(string packstr,bool decodeprimary)
 //DeadCode CRAIG 30Oct100 		squad->status=PackageStatus(status);
 //DeadCode CRAIG 30Oct100 		squad->fuelleft=fuel;
 //DeadCode CRAIG 30Oct100 		packstr+=offset;
-//DeadCode CRAIG 30Oct100 		while (*packstr++!='\n')	
+//DeadCode CRAIG 30Oct100 		while (*packstr++!='\n')
 //DeadCode CRAIG 30Oct100 		{}
 	}
 	if (flights==1)
@@ -292,7 +292,7 @@ int	Profile::DecodePackage(string packstr,bool decodeprimary)
 		sscanf(packstr,lollyin,&lollyval,&offset);
 		squadlist.SetAcBitsFirstSquad(lollyval);
 		packstr+=offset;
-		while (*packstr++!='\n')	
+		while (*packstr++!='\n')
 		{}
 	}
 	if (raidnumentries)
@@ -361,7 +361,7 @@ void	Profile::TargetDesc::SetTargetFromSGTBandOff()
 }
 void	Profile::TargetDesc::SetSGTBandOffFromTarget()
 {
-	
+
 	ItemPtr p;
 	p = NULL;
 	if (currentid <= IllegalBAND)
@@ -425,7 +425,7 @@ void	Profile::SetTargetUIDs(bool	fixconvoys)
 
 void	PackageList::SaveBin(Profile* profile,BOStream&file)
 {
-	if (!profile->route) 
+	if (!profile->route)
 		profile->wpsused=0;
 	int numraids=0;
 	if (profile->raidnumentries)
@@ -456,7 +456,7 @@ void	PackageList::SaveBin(Profile* profile,BOStream&file)
 
 //DeadCode JIM 20Oct00 	int loopcount=0;	//increase for any fixed fields....
 	int maxsq=profile->squadlist;
-	for (i=0;i<maxsq;i++)
+	for (int i=0;i<maxsq;i++)
 	{
 		Profile::Squad squadbuff=profile->squadlist[i];					//JIM 29Oct00
 		if (profile->packagestatus!=Profile::PS_COMPLETE)
@@ -489,22 +489,22 @@ void	PackageList::SaveBin(Profile* profile,BOStream&file)
 //DeadCode CRAIG 30Oct100 				ReorderNoCheck(squad.instance), +squad.squadnum, +squad.formtype, squad.diaryentry, squad.numbers, squad.fightperiods,
 //DeadCode CRAIG 30Oct100 				+squad.targetindex, squad.takeofftime, squad.lastwptime,
 //DeadCode CRAIG 30Oct100 				+squad.method, +squad.submethod, +squad.status, squad.fuelleft
-//DeadCode CRAIG 30Oct100 
+//DeadCode CRAIG 30Oct100
 //DeadCode CRAIG 30Oct100 				);
 //DeadCode CRAIG 30Oct100 		else
 //DeadCode CRAIG 30Oct100 			file<<CSprintf(linesqout,
 //DeadCode CRAIG 30Oct100 				0, +squad.squadnum, +squad.formtype, squad.diaryentry, squad.numbers,
 //DeadCode CRAIG 30Oct100 				+squad.targetindex, squad.takeofftime, squad.lastwptime,
 //DeadCode CRAIG 30Oct100 				+squad.method, +squad.submethod, +squad.status, squad.fuelleft
-//DeadCode CRAIG 30Oct100 
+//DeadCode CRAIG 30Oct100
 //DeadCode CRAIG 30Oct100 				);
-//DeadCode CRAIG 30Oct100 
+//DeadCode CRAIG 30Oct100
 	}
 	if (maxsq==1)
 	{
 		file<<CSprintf(lollyout,profile->squadlist.AcBitsFirstSquad());
 	}
-	for (i=0;i<numraids;i++)
+	for (int i=0;i<numraids;i++)
 	{
 		file<<"Rd: ";
 		ULong* raidptr=(ULong*)&profile->raidnumentries[i];				//JIM 29Oct00
@@ -541,12 +541,12 @@ void	PackageList::SaveBin(Profile* profile,BOStream&file)
 			Profile::Squad& squad=profile->squadlist[0];
 
 			//AirGroup
-			// T_inform:	
+			// T_inform:
 			// T_inwing:
-			// T_duty:	
-			// T_form:	
-			// T_pos:		
-			// T_route:		only leader 
+			// T_duty:
+			// T_form:
+			// T_pos:
+			// T_route:		only leader
 			// T_itemA:
 			// T_leader: - new in this position!
 
@@ -554,17 +554,17 @@ void	PackageList::SaveBin(Profile* profile,BOStream&file)
 			SaveRouteBin(profile->route,file);
 			profile->SaveAirItemBin(&squad,profile->route,file);
 		}
-		for (i=1;i<maxsq;i++)
+		for (int i=1;i<maxsq;i++)
 		{
 			Profile::Squad& squad=profile->squadlist[i];
 
 			//AirGroup
-			// T_inform:	
+			// T_inform:
 			// T_inwing:
-			// T_duty:	
-			// T_form:	
-			// T_pos:		
-			// T_route:		only leader 
+			// T_duty:
+			// T_form:
+			// T_pos:
+			// T_route:		only leader
 			// T_itemA:
 			// T_leader: - new in this position!
 			info_airgrp *a=*Persons2::ConvertPtrUID(squad.instance);
@@ -572,7 +572,7 @@ void	PackageList::SaveBin(Profile* profile,BOStream&file)
 			if (a->leader.Evaluate()==ENABLE_COMPLEX_VAL || ReorderZero(UniqueID(a->leader.Evaluate())))
 			{
 				file<<C T_airgrp <<C T_linklist <<C 7;
-				file<<C T_leader; 
+				file<<C T_leader;
 				if (a->leader.Evaluate()!=ENABLE_COMPLEX_VAL)
 					Expr::putint(ReorderZero(UniqueID(a->leader.Evaluate())),file);
 				else
@@ -705,10 +705,10 @@ void	Profile::SaveAirItemBin(Profile::Squad* squad,UniqueID route,BOStream&file)
 {
 	info_airgrp *a=*Persons2::ConvertPtrUID(squad->instance);
 // T_route:		done
-// T_inform:	
+// T_inform:
 // T_inwing:
-// T_duty:	
-// T_form:	
+// T_duty:
+// T_form:
 // T_position:
 // T_waypoint:	numeric index into current route
 //DEADCODE DAW 21/02/00 	file <<C (T_inwing);a->inwing.Save(file,NULL);
@@ -725,7 +725,7 @@ void	Profile::SaveAirItemBin(Profile::Squad* squad,UniqueID route,BOStream&file)
 	file <<C (T_pos);a->position.Save(file,NULL);
 //DEADCODE JIM 14/01/00 	if (a->form.Evaluate()<SQUAD_FLATV)
 //DEADCODE JIM 14/01/00 		a->form=SQUAD_FLATV;
-	file <<C (T_form);a->form.Save(file,NULL); 
+	file <<C (T_form);a->form.Save(file,NULL);
 
 	int i=0;
 	UniqueID wpref=a->wpref;
@@ -811,11 +811,11 @@ void	Profile::SaveAirItemBin(Profile::Squad* squad,UniqueID route,BOStream&file)
 		for(int i=0;&squadlist[i]!=squad;i++)
 			if (squadlist[i].squadnum==squad->squadnum)
 				offset+=4;
-		Expr::putint(offset,file);                         
+		Expr::putint(offset,file);
 	}
 
 	file<<C(T_bombs);
-	if (	(squad->method&Profile::AM_GROUPMASK)==Profile::AM_LWPACKS 
+	if (	(squad->method&Profile::AM_GROUPMASK)==Profile::AM_LWPACKS
 		&&	squad->status<Profile::PS_DETAILRAID
 		&&	squad->method!=Profile::AM_RECON		)
 		Expr::putint(0,file);
@@ -865,7 +865,7 @@ void GlobRefExpr::	Save( BOStream& f, char *, int, EnumListNames )
 {
 	f<<C T_mainprog;
 	putint(globrefind,f);
-	
+
 }
 void UIDExpr::		Save( BOStream& f, char *, int, EnumListNames )
 {

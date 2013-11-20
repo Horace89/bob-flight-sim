@@ -535,7 +535,7 @@ volatile int progressind=0;
 RDialog*	RDialog::AddChildren(const DialBox*const* diallist,int X2flag,CRect& rect)			  
 {
 	int	usedy=homesize.Height();
-	RDialog* dial;
+	RDialog* dial=NULL;
 
 	progressind++;
 	progress[progressind]='X';
@@ -2629,6 +2629,7 @@ void RDialog::UpdateTitle()
 
 int	ScaleTranslate(int input,bool isy)
 {
+	/*return(input);*/ //x0r
 	int	high=511,low=0,mid=256,currval=scalinglookup[mid][isy][1];
 	if (input>scalinglookup[high][isy][1])
 	{
@@ -2814,7 +2815,7 @@ int RDialog::RMessageBox(UINT TitleID, UINT MessageID, UINT Button0ID, UINT Butt
 }
 int RDialog::RMessageBox(CString TitleID, CString MessageID, UINT Button0ID, UINT Button1ID, UINT Button2ID, FileNum art)
 {
-	assert(!messageboxopen," - Message box already open?");
+	assert(!messageboxopen /*," - Message box already open?"*/);
 	messageboxopen=true;
 	if (!m_pMessageBox)
 		m_pMessageBox=new RMdlDlg;

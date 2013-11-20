@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -76,14 +76,13 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //	TogglePaused(bool)
 //	ToggleAccel(bool)
 //	DeleteWorld()
-//	
-//	WinMode:	
-//		FullScreen/Windowed/DualScreen 
+//
+//	WinMode:
+//		FullScreen/Windowed/DualScreen
 //							0x0000,0x1000,0x2000
 //		Accelerated			0x000=no,0x100=yes,
-//							0x10n=specific card									
+//							0x10n=specific card
 //							0x1m0=specific mode
-
 
 #include	"stdafx.h"
 #include	<afxmt.h>
@@ -93,7 +92,6 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 #include	"stub3d.h"
 #include	"gameset.h"
-#include	"keytest.h"
 
 
 #include	"hardpasm.h"
@@ -134,8 +132,18 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include "grid.h"
 #include "monotxt.h"
 #include "fastmath.h"
+#include	"keytest.h"
+
+#include "files.g"
+#include <iostream>
+
 enum	{BUFFERED_KEYS=100};
 
+#define DDEFINE_GUID(name, l, w1, w2, b1, b2, b3, b4, b5, b6, b7, b8) \
+        const GUID name \
+                = { l, w1, w2, { b1, b2,  b3,  b4,  b5,  b6,  b7,  b8 } }
+
+DDEFINE_GUID(IID_ILib3D,0x11038561, 0x95e1, 0x11d3, 0x87, 0x95, 0x0, 0x40, 0x5, 0x2c, 0x1f, 0x45);
 
 #ifndef	NDEBUG
 //#define	DBGMEMTEST
@@ -145,7 +153,7 @@ enum	{BUFFERED_KEYS=100};
 
 //#define COMMSTIMERDEBUG
 
-//extern ULong 
+//extern ULong
 //		GR_FriendlyScoutType00,									//JIM 09Apr96
 //		GR_Quit3DNow,
 //		GR_OkToQuit3DNow;
@@ -181,7 +189,8 @@ extern	KeyMapping	*Debug3dMapTable;
 // *********************************** Jon's debug timer stuff *******************************************
 #define DO_TIMER_DIAGS
 #ifdef DO_TIMER_DIAGS
-#include <fstream.h> // for filestream stuff..
+#include <fstream> // for filestream stuff..
+
 int timerBufferI = 0;
 //tempcode JON 21/03/01	const int TIMER_BUFFER_SIZE = 500;
 //tempcode JON 21/03/01	LARGE_INTEGER timerBufferIn[TIMER_BUFFER_SIZE];
@@ -199,11 +208,11 @@ Mast3d::Mast3d()
 	TIMECAPS tcaps;
 	timeGetDevCaps ( &tcaps, sizeof (TIMECAPS));
 
-	UINT delay=Timer_Code.FRAMETIME*10; // want millisecs 
+	UINT delay=Timer_Code.FRAMETIME*10; // want millisecs
 	timeBeginPeriod (REQUIREDTIMEPERIOD);	  //timeEndPeriod
 
-	uTimerID = timeSetEvent (delay, REQUIREDTIMEPERIOD, Master_3d.StaticTimeProc, (int)&Master_3d, TIME_PERIODIC); //AMM 25/11/99
-	
+	uTimerID = timeSetEvent (delay, REQUIREDTIMEPERIOD, &Mast3d::StaticTimeProc, (int)&Master_3d, TIME_PERIODIC); //AMM 25/11/99
+
 	currinst=NULL;
 //DeadCode JIM 20Oct00 	int mv=0;
 	ticknum=0;
@@ -218,7 +227,7 @@ void Mast3d::Init(HINSTANCE			Hinst,HWND				Hwind)
 	MainInit();
 	if (FAILED(DirectInputCreate(hinst, DIRECTINPUT_VERSION, &g_lpDI, NULL)))
 		_Error.EmitSysErr("Can't access DirectInput!");
-			;;;;;//ERROR 
+			;;;;;//ERROR
 
 }
 
@@ -248,7 +257,7 @@ void	Mast3d::MainInit(void)
  	_Miles.Init((ULong)winst);											//RJS 02Nov98
 	_Radio.Init();														//RJS 16Aug00
 
-	if ( g_lpLib3d->Initialise(winst, fastMath.fastSqrtTable ) != S_OK ) 
+	if ( g_lpLib3d->Initialise(winst, fastMath.fastSqrtTable ) != S_OK )
 	{
 		_Error.ReallyEmitSysErr("Unable to find suitable DirectX 7.0 or later 3D Driver");
 	}
@@ -270,14 +279,14 @@ void	Mast3d::MainInit(void)
 //		delete Whole_Screen;
 
 //		Whole_Screen->DD.hWnd = hwind;
- //		if(	Whole_Screen->Init(NULL) == FALSE)	
+ //		if(	Whole_Screen->Init(NULL) == FALSE)
   //			_Error.EmitSysErr(__FILE__":Failed to initialise screen record\n");
 //	}
 	Grid_Base::OpenGridFiles();
 
 //Resources tell me which language now, and they haven't been loaded yet!	OverLay.FindLanguage();										//RJS 07Dec00
 }
-	
+
 //////////////////////////////////////////////////////////////////////
 struct	Post3DInfo
 {
@@ -326,7 +335,7 @@ Mast3d::~Mast3d()
 void	Mast3d::Stop()
 {
 	if (uTimerID)
-		timeKillEvent(uTimerID); 
+		timeKillEvent(uTimerID);
 	uTimerID=0;
 }
 
@@ -343,7 +352,7 @@ Inst3d::Inst3d(bool flag)
 	// clear my timer stores.
 	for ( int i = 0; i<gameSettings.m_dwTimerBufferSize; i++ )
 	{
-		timerBufferIn[i].QuadPart = timerBufferOut[i].QuadPart = 0i64;
+		timerBufferIn[i].QuadPart = timerBufferOut[i].QuadPart = 0;
 	}
 #endif
 
@@ -412,12 +421,12 @@ Inst3d::Inst3d()
 	{
 	for ( int i = 0; i<gameSettings.m_dwTimerBufferSize; i++ )
 	{
-		timerBufferIn[i].QuadPart = timerBufferOut[i].QuadPart = 0i64;
+		timerBufferIn[i].QuadPart = timerBufferOut[i].QuadPart = 0;
 	}
 	}
 #endif
 
-	
+
 	_DPlay.SimulateExitKey = FALSE;										//RJS 20Oct00
 
 	_Miles.KillAll();													//RJS 6Oct00
@@ -471,11 +480,11 @@ Inst3d::Inst3d()
 	{
 		_Replay.Record=TRUE;
 	}
-	
+
 	_Replay.SuperHeaderStored=false;
-	
+
 //TEMP	_Miles.DiscardMusic();	//previous debrief may be playing?
-//	Three_Dee.livelist=NULL;	//AAA list 
+//	Three_Dee.livelist=NULL;	//AAA list
 	Art_Int.CleanUp();			//A/C recognition list
 
 	timeofday = 11*60*60*100;										//PD 19Jan99
@@ -520,14 +529,14 @@ Inst3d::Inst3d()
 
 	_MsgBuffer.SetPlayer(Persons2::PlayerGhostAC,Persons2::PlayerSeenAC);//RJS 05May00
 	_Radio.Enter3D(true);												//RJS 17May00
- 
+
 	if(Persons2::PlayerSeenAC->fly.expandedsag)
 		Persons2::PlayerSeenAC->PreExpandSags(Persons_2.baseSAGshape + 1);
 
 	for(int i=0; i < Art_Int.ACARRAYSIZE * 2; i++)	//CSB 06/07/99	
  		Art_Int.VisibleCheck();
 
-	for(i = 0; i < 10 * AaaMainList::SUBLISTSIZE; i++)								//CSB 14Aug00
+	for(int i = 0; i < 10 * AaaMainList::SUBLISTSIZE; i++)								//CSB 14Aug00
 		(*Three_Dee.livelist).sleeplist.Event();									//CSB 14Aug00
 
 	//Restore miles flags...
@@ -686,7 +695,7 @@ Inst3d::~Inst3d()
 //DeadCode JIM 06Oct96 	Persons_2.TankEndMission();
 //	Whole_Screen->SetMouseImage(1);
 	}
-	else 
+	else
 		Persons4::ShutDownViewFromMap();
 
 	delete	livelist;
@@ -735,7 +744,7 @@ Inst3d::~Inst3d()
 //TEMP	_Miles.FreeSamples();										//RJS 04Oct96
 	_Miles.ResetSoundFlags();									//DAW 01Sep98
 	if (!mapview) Art_Int.CleanUp();
-	delete world;
+	//x0r delete world;
 	MobileItem::SetWorld(NULL);
 
 	OverLay.pCurScr=OverLay.pNewScr=NULL;
@@ -787,19 +796,19 @@ Inst3d::~Inst3d()
 		LARGE_INTEGER frequency;
 		QueryPerformanceFrequency( &frequency );
 		LARGE_INTEGER freqms;
-		freqms.QuadPart = frequency.QuadPart/1000i64;
-		fstream timeFile;
-		timeFile.open( "AI_Timings.txt", ios::out );
+		freqms.QuadPart = frequency.QuadPart/1000.0;
+		std::fstream timeFile;
+		timeFile.open( "AI_Timings.txt", std::ios::out  );
 		if ( timeFile.is_open() )
-		{	
+		{
 			timeFile << "Perfromance counter frequency " << To::str(frequency) << " ticks per second\n";
 			int last = -1;
 			int term = timerBufferI++;
 			timerBufferI%=gameSettings.m_dwTimerBufferSize;
 			while ( timerBufferI !=term )
 			{
-				timeFile 
-					<< To::str(timerBufferIn[timerBufferI]) << " <-In" 
+				timeFile
+					<< To::str(timerBufferIn[timerBufferI]) << " <-In"
 					<< " \tOut: " << To::str(timerBufferOut[timerBufferI])
 					<< " \tDiff: " << To::str(timerBufferOut[timerBufferI].QuadPart - timerBufferIn[timerBufferI].QuadPart )
 					<< " ticks - \t"
@@ -809,7 +818,7 @@ Inst3d::~Inst3d()
 					<< " ms";
 				if ( last !=-1 )
 				{
-					timeFile 
+					timeFile
 						<< " \tGapTime: " << To::str(timerBufferIn[timerBufferI].QuadPart - timerBufferIn[last].QuadPart)
 						<< " ticks - \t"
 						<< To::str((timerBufferIn[timerBufferI].QuadPart - timerBufferIn[last].QuadPart)/freqms.QuadPart)
@@ -834,9 +843,9 @@ Inst3d::~Inst3d()
 
 bool	Inst3d::InThe3D()
 {
-	
-	for (Inst3d*	t=Master_3d.currinst;t;t=t->nextinst)	
-	{	 
+
+	for (Inst3d*	t=Master_3d.currinst;t;t=t->nextinst)
+	{
 		for (View3d*	v=t->viewedwin;v;v=v->nextview)
 			if (v->drawing)	// &&  v->mode!=NONE)
 				return TRUE;
@@ -846,7 +855,7 @@ bool	Inst3d::InThe3D()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ReleaseDirectX
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 25 Jan 1999
 //------------------------------------------------------------------------------
 void Inst3d::ReleaseDirectX()
@@ -868,7 +877,7 @@ void Inst3d::ReleaseDirectX()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		RestoreDirectX
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 25 Jan 1999
 //------------------------------------------------------------------------------
 void Inst3d::RestoreDirectX()
@@ -877,7 +886,7 @@ void Inst3d::RestoreDirectX()
 
 ///////////////////////////////////////////////////////////////////////
 View3d::View3d(Inst3d* ofinst,HWND newwin,CWnd* d):
-	coords(0,0,0,0),E(NULL)
+	coords(0,0,0,0),E(NULL),doneframe(FALSE)
 
 {
 //DeadCode RJS 18May98 	_Miles.Init((ULong)newwin);									//RJS 03Apr98
@@ -1066,7 +1075,7 @@ int	View3d::MakePassive(WinMode	v,const CRect& pos,bool flag,bool flag2)
 			break;
 		NODEFAULT;
 	}
-	
+
 	Master_3d.g_lpLib3d->AllocateLandscapeTextures();
 	_Miles.SetDirectSoundWindow((ULong)Master_3d.winst);
 
@@ -1075,7 +1084,7 @@ int	View3d::MakePassive(WinMode	v,const CRect& pos,bool flag,bool flag2)
 
 //	Whole_Screen->InitDirectDraw ();
 //	Whole_Screen->Init(v,coords.left,coords.top,coords.right,coords.bottom);
-	
+
 	View_Point=new ViewPoint(Master_3d.g_lpLib3d,this);
 
 	Squad_Diary.Enter3D(View_Point);							//RJS 29Feb00
@@ -1103,7 +1112,7 @@ int	View3d::MakePassive(WinMode	v,const CRect& pos,bool flag,bool flag2)
 //DEADCODE PD 03/12/99 	Land_Scape.currscreen=Whole_Screen;
 	OverLay.LoaderScreen(0+64);									//PD 02Mar99
 	Three_Dee.Init3D(Master_3d.g_lpLib3d,View_Point);					//RJS 19Nov98
-	if (flag2) 
+	if (flag2)
 		Land_Scape.RefreshLandscape();
 	Three_Dee.ResetPalette();									//RJS 24Oct96
 	doneframe=TRUE;		//forces frametime to zero
@@ -1149,7 +1158,7 @@ int	View3d::MakeResize(WinMode	v,const CRect& pos)
 			SetSystemPaletteUse(dcTmp,SYSPAL_STATIC);
 			ReleaseDC(window,dcTmp);
 		}
-		//make or convert to new diasplay 
+		//make or convert to new diasplay
 
 
 		v=mode;
@@ -1157,14 +1166,14 @@ int	View3d::MakeResize(WinMode	v,const CRect& pos)
 	//else no change
 
 	return 1;
-}	 
+}
 //////////////////////////////////////////////////////////////////////
 //
 // Function:    WhatAliasModes
 // Date:		04/09/00
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 bool	Analogue::WhatAliasModes(AllowAliasing& aliassingUI,AllowAliasing& aliassing,ViewPoint* newwin)
@@ -1186,7 +1195,7 @@ bool	Analogue::WhatAliasModes(AllowAliasing& aliassingUI,AllowAliasing& aliassin
 			if (Manual_Pilot.ControlledAC2->classtype->planetext==PT_ME110)
 				aliassing=AA_THROTTLE2_PROP1;
 	}
-	 
+
 	if (OverLay.pNewScr)
 	{
 		aliassingUI=AA_UI_PAN;
@@ -1211,7 +1220,7 @@ View3d* Inst3d::Interactive(View3d* newwin)
 	TRACE("Interactive entry\n");
 	View3d* rv=interactive?viewedwin:NULL;
 	interactive=(newwin!=NULL);
-	if (newwin)	
+	if (newwin)
 	{
 		View3d** vw=&viewedwin;
 		while (*vw!=newwin)
@@ -1232,14 +1241,14 @@ View3d* Inst3d::Interactive(View3d* newwin)
 //DeadCode AMM 27Jul00 			{
 //DeadCode AMM 27Jul00 				if (_Analogue.IsTaskShiftedMouse(AU_GUNP))
 //DeadCode AMM 27Jul00 					Key_Tests.SetMouseShiftMode(SHIFTED);
-//DeadCode AMM 27Jul00 
+//DeadCode AMM 27Jul00
 //DeadCode AMM 27Jul00 				if (_Analogue.IsTaskShiftedJoystick(AU_GUNP))
 //DeadCode AMM 27Jul00 					Key_Tests.SetJoystickShiftMode(SHIFTED);
 //DeadCode AMM 27Jul00 			}
 
 //DeadCode AMM 27Jul00 // mouse in replay playback is AU_UI_X, AU_UI_Y, which are locked to cockpit,
 //DeadCode AMM 27Jul00 // so lock to shifteed mode for cockpit?
-//DeadCode AMM 27Jul00 
+//DeadCode AMM 27Jul00
 //DeadCode AMM 27Jul00 			if (_Replay.Playback)
 //DeadCode AMM 27Jul00 			{
 //DeadCode AMM 27Jul00 				Key_Tests.SetMouseShiftMode(SHIFTED);
@@ -1264,8 +1273,8 @@ View3d* Inst3d::Interactive(View3d* newwin)
 //			TRACE("Interactive setup success4\n");
 							DIPROPDWORD	buffsize={{sizeof(DIPROPDWORD),sizeof(DIPROPHEADER),0,DIPH_DEVICE},BUFFERED_KEYS};
 							DIDEVCAPS DIDevCaps={sizeof(DIDEVCAPS)};
-							Master_3d.g_lpDIDevice->GetCapabilities(&DIDevCaps); 
-							//DIDC_ATTACHED   DIERR_INVALIDPARAM 
+							Master_3d.g_lpDIDevice->GetCapabilities(&DIDevCaps);
+							//DIDC_ATTACHED   DIERR_INVALIDPARAM
 							Master_3d.g_lpDIDevice->SetProperty(DIPROP_BUFFERSIZE,&buffsize.diph);
 							if (!FAILED(Master_3d.g_lpDIDevice->SetEventNotification(Master_3d.htable[Master_3d.EVENT_KEYS])))
 							{
@@ -1301,10 +1310,10 @@ View3d* Inst3d::Interactive(View3d* newwin)
 				Master_3d.g_lpDIDevice->Release();
 				Master_3d.g_lpDIDevice=NULL;
 //				*(char*)0xb0000='0';
-									
+
 //				TRACE("Interactive removal exit\n");
 			}
-		}	 
+		}
 	return rv;
 }
 ///////////////////////////////////////////////////////////////////////
@@ -1416,10 +1425,10 @@ void Inst3d::OnKeyInput()
 		return;
 	DIDEVICEOBJECTDATA	keys[BUFFERED_KEYS];
 	DWORD	dwItems=BUFFERED_KEYS;
-//DeadCode JON 22Oct00 	int		rv= 
-		IDirectInputDevice_GetDeviceData( 
-			Master_3d.g_lpDIDevice,sizeof(DIDEVICEOBJECTDATA), 
-			keys,&dwItems,0); 
+//DeadCode JON 22Oct00 	int		rv=
+		IDirectInputDevice_GetDeviceData(
+			Master_3d.g_lpDIDevice,sizeof(DIDEVICEOBJECTDATA),
+			keys,&dwItems,0);
 	for(DIDEVICEOBJECTDATA*	key=keys;dwItems;dwItems--,key++)
 	{
 		int keynum=key->dwOfs;
@@ -1428,7 +1437,7 @@ void Inst3d::OnKeyInput()
 			OnKeyDown(keynum);
 		else
 			OnKeyUp(keynum);
-	}						   
+	}
 }
 void	Inst3d::OnKeyDown(int keynum)
 {
@@ -1448,14 +1457,14 @@ void	Inst3d::OnKeyDown(int keynum)
 //DeadCode AMM 27Jul00 				if (commonkeymaps->currshifts==KEYSH_BN_Msg)
 //DeadCode AMM 27Jul00 				{
 //DeadCode AMM 27Jul00 					commonkeymaps->currshifts=0;
-//DeadCode AMM 27Jul00 
+//DeadCode AMM 27Jul00
 //DeadCode AMM 27Jul00 // clear chat entry box
 //DeadCode AMM 27Jul00 					OverLay.pNewScr=OverLay.pCurScr=NULL;
 //DeadCode AMM 27Jul00 				}
 //DeadCode AMM 27Jul00 				else
 //DeadCode AMM 27Jul00 				{
 //DeadCode AMM 27Jul00 					commonkeymaps->currshifts=KEYSH_BN_Msg;
-//DeadCode AMM 27Jul00 
+//DeadCode AMM 27Jul00
 //DeadCode AMM 27Jul00 // since we have gone into chat mode, display chat entry box
 //DeadCode AMM 27Jul00 					OverLay.SetToCommsChatScr();
 //DeadCode AMM 27Jul00 				}
@@ -1478,7 +1487,7 @@ void	Inst3d::OnKeyDown(int keynum)
 	}
 }
 void	Inst3d::OnKeyUp(int keynum)
-{	//release	
+{	//release
 	UWord*	indtable=commonkeymaps->mappings[keynum];
 	for (int ent=8;ent;ent--)
 	{
@@ -1503,7 +1512,7 @@ void	Inst3d::OnKeyUp(int keynum)
 //DeadCode AMM 27Jul00 					}
 //DeadCode AMM 27Jul00 					else
 //DeadCode AMM 27Jul00 					{
-//DeadCode AMM 27Jul00 						commonkeymaps->currshifts=0;	
+//DeadCode AMM 27Jul00 						commonkeymaps->currshifts=0;
 //DeadCode AMM 27Jul00 					}
 //DeadCode AMM 27Jul00 				}
 			}
@@ -1538,7 +1547,7 @@ UINT AFX_CDECL View3d::drawloop(LPVOID THISTHIS)
 //DeadCode RJS 27Aug98 				_Miles.SetVP(This->View_Point);					//RJS 26Feb98
 //Dead 				_Miles.ProcessSpot(This->View_Point);			//RJS 25May99
 //Dead				_Radio.ProcessMessages(This->View_Point->FrameTime());			//RJS 01Apr99
- 
+
 //DeadCode AMM 8Sep00 				static UWord doit=0;							//AMM 07Jul99
 //DeadCode AMM 8Sep00 				static UWord stage=0;							//AMM 07Jul99
 
@@ -1548,7 +1557,7 @@ UINT AFX_CDECL View3d::drawloop(LPVOID THISTHIS)
 //DeadCode AMM 8Sep00 				{												//AMM 07Jul99
 //DeadCode AMM 8Sep00 					UByte num=256/_DPlay.CurrPlayers;
 //DeadCode AMM 8Sep00 					num*=_DPlay.NumPlayersSynched;
-//DeadCode AMM 8Sep00 
+//DeadCode AMM 8Sep00
 				else
 				{
 					if (_DPlay.resyncbar)
@@ -1566,7 +1575,7 @@ UINT AFX_CDECL View3d::drawloop(LPVOID THISTHIS)
 //DeadCode RJS 2Nov00 					SHAPE.GenerateProbeTrails();								//RJS 08Apr99
 //DeadCode RJS 2Nov00 					SHAPE.KillVapourStreamDeadList();							//RJS 08Apr99
 //DeadCode RJS 2Nov00 					Trans_Obj.RemoveDeadListFromWorld(This->inst->world);
-//DeadCode RJS 2Nov00 
+//DeadCode RJS 2Nov00
 //DeadCode RJS 2Nov00 					if (_Replay.Playback && _Replay.processsmokes)
 //DeadCode RJS 2Nov00 						_Replay.UpdateSmokeInfo();
 //DeadCode RJS 2Nov00 				}												//DAW 22Jun99
@@ -1578,7 +1587,7 @@ UINT AFX_CDECL View3d::drawloop(LPVOID THISTHIS)
 //DeadCode RJS 2Nov00 							This->Paused(FALSE);
 //DeadCode RJS 2Nov00 					}
 //DeadCode RJS 2Nov00 				}
-//DeadCode RJS 2Nov00 
+//DeadCode RJS 2Nov00
 //DeadCode RJS 2Nov00 				This->BlockTick(FALSE);
 
 				OverLay.screenshot.VideoShot(Master_3d.g_lpLib3d);
@@ -1681,14 +1690,14 @@ void	View3d::SetEndDraw(DrawState d)
 	if (drawing==D_YES)
 		if (!E)
 			E=new CEvent();
-	drawing=d;	
+	drawing=d;
 }
 int	View3d::WaitEndDraw(DrawState d,int timeoutmilisec)
 {
 	if (drawing==D_YES)
 		if (!E)
 			E=new CEvent();
-	drawing=d;	
+	drawing=d;
 	if (E)
 		if (!E->Lock(timeoutmilisec))
 			return false;
@@ -1740,9 +1749,9 @@ void CALLBACK Mast3d::StaticTimeProc(UINT uID, UINT uMsg, DWORD dwUser, DWORD dw
 		}
 
  // whilst player is entering 3d cannot rely on any piece of code to process
- // packets so process any here. This is needed so that players can enter game 
+ // packets so process any here. This is needed so that players can enter game
  // whilst host is entering 3d
- 
+
  		if (_DPlay.firsttimein && _DPlay.Host)
  		{
  			_DPlay.ProcessPlayerMessages();
@@ -1806,7 +1815,7 @@ void Mast3d::TimeProc(UINT uID, UINT uMsg, DWORD dw1, DWORD dw2 )
 				bt+=LockExchange(&inst->blockticks);
 				bt=LockExchange(&inst->blockticks,bt);
 			}
-		}	
+		}
 		else
 		{
 			if (currinst && currinst->viewedwin)
@@ -1815,7 +1824,7 @@ void Mast3d::TimeProc(UINT uID, UINT uMsg, DWORD dw1, DWORD dw2 )
 			inst->DoMoveCycle();
 		}
 	}
-} 
+}
 
 WINBASEAPI
 BOOL
@@ -1839,7 +1848,8 @@ void	Inst3d::DoMoveCycle()
 	bool	timeout=false;
 //DEADCODE RDH 12/07/99 	ULong num=1;
 	OverLay.accelcountdown=1;
-	for (View3d* view=viewedwin;view;view=view->nextview)
+	View3d* view;
+	for ( view=viewedwin;view;view=view->nextview)
 	{
 		_Miles.SetListener(view->View_Point);						//RJS 12Jan00
 
@@ -1872,7 +1882,7 @@ void	Inst3d::DoMoveCycle()
 					if (view->lastrealframetime<MAX_ACCEL_FRAME)
 					{
 						accelframes++;
-						if (	accelframes>10 
+						if (	accelframes>10
 							&& (OverLay.keyFlags&KF_ACCELFRAMESMASK)!=KF_SLOWACCEL
 							&& (OverLay.keyFlags&KF_ACCELFRAMESMASK)<KF_BESTACCEL)
 						{
@@ -1954,19 +1964,19 @@ void	Inst3d::DoMoveCycle()
 				}
 				if(		(!Paused()) && (Key_Tests.KeyPress3d(ACCELKEY))
 					&&	(Persons2::PlayerSeenAC) && (Persons2::PlayerSeenAC->movecode == AUTO_FOLLOWWP)
-					&&	(Persons2::PlayerSeenAC->fly.fuel_content[0] + Persons2::PlayerSeenAC->fly.fuel_content[1] + 
+					&&	(Persons2::PlayerSeenAC->fly.fuel_content[0] + Persons2::PlayerSeenAC->fly.fuel_content[1] +
 						 Persons2::PlayerSeenAC->fly.fuel_content[2] + Persons2::PlayerSeenAC->fly.fuel_content[3] > 0)	)
 				{
 					if (!_DPlay.Implemented)
 					{
-						if (!Accel())		
+						if (!Accel())
 						{
 							Accel(TRUE);
 							OverLay.TriggerMessage(COverlay::ACCELMESS);
 							Manual_Pilot.AutoToggle(ManualPilot::AUTOACCEL_WAYPT);
 							UByte okey=(OverLay.keyFlags&~KF_ACCELFRAMESMASK)+KF_SLOWACCEL;
 							OverLay.keyFlags=okey;
-						}	
+						}
 						else
 						{
 							Accel(FALSE);
@@ -2030,7 +2040,7 @@ void	Inst3d::DoMoveCycle()
 			}
 			AllowAliasing mainmode,uimode;
 			if (	Master_3d.g_lpDIDevice								//JIM 2Nov00
-				&&	_Analogue.WhatAliasModes(uimode,mainmode,view->View_Point) 
+				&&	_Analogue.WhatAliasModes(uimode,mainmode,view->View_Point)
 				&& !Key_Tests.KeyHeld3d(MOUSEMODETOGGLE)
 				&& !Key_Tests.KeyHeld3d(MENUSELECT)
 				&& !_DPlay.SimulateExitKey
@@ -2044,7 +2054,7 @@ void	Inst3d::DoMoveCycle()
 //DeadCode JIM 31Aug00 					Key_Tests.SetJoystickShiftMode(NORMAL);
 //DeadCode JIM 31Aug00 				else
 //DeadCode JIM 31Aug00 					Key_Tests.SetJoystickShiftMode(SHIFTED);
-//DeadCode JIM 31Aug00 
+//DeadCode JIM 31Aug00
 //DeadCode JIM 31Aug00 				_Analogue.SetAllAxesFromBackup();
 //DeadCode JIM 31Aug00 				_Analogue.Initialise((int)Master_3d.winst,(int)Master_3d.hinst,Key_Tests.mshift,Key_Tests.jshift,true);
 //DeadCode JIM 31Aug00 			}
@@ -2059,7 +2069,7 @@ void	Inst3d::DoMoveCycle()
 //DEADCODE AMM 25/02/00 					Key_Tests.jshift=false;
 //DEADCODE AMM 25/02/00 				else
 //DEADCODE AMM 25/02/00 					Key_Tests.jshift=true;
-//DEADCODE AMM 25/02/00 
+//DEADCODE AMM 25/02/00
 //DEADCODE AMM 25/02/00 				_Analogue.Initialise((int)Master_3d.winst,(int)Master_3d.hinst,Key_Tests.mshift,Key_Tests.jshift);
 
 //DeadCode AMM 10Oct00 				if (!_DPlay.ResyncPhase)
@@ -2084,7 +2094,7 @@ void	Inst3d::DoMoveCycle()
 
 			UByte okey=OverLay.keyFlags;
 			OverLay.keyFlags&=KF_ACCELFRAMESMASK;
-			
+
 			if (!_DPlay.Implemented)
 			{
 				if (okey&KF_PAUSEOFF)		Paused(FALSE);
@@ -2099,7 +2109,7 @@ void	Inst3d::DoMoveCycle()
 			}
 			else if (okey&KF_ACCELON)	Accel(TRUE);
 
-			if (Accel()) 
+			if (Accel())
 			{
 				if ( view->View_Point && view->View_Point->drawSpecialFlags )	//JON 3Oct00
 				{	// can't be in replay - no need to test - we must be in the map screen
@@ -2108,7 +2118,7 @@ void	Inst3d::DoMoveCycle()
 				{														//JON 3Oct00
 //DeadCode CSB 4Oct00 #ifdef NDEBUG
 					OverLay.accelcountdown=(okey&KF_ACCELFRAMESMASK)<<2;	//Max value is 60 moves/timer call
-//DeadCode CSB 4Oct00 #else			
+//DeadCode CSB 4Oct00 #else
 //DeadCode CSB 4Oct00 					OverLay.accelcountdown=(okey&KF_ACCELFRAMESMASK)<<3;	//Max value is 60 moves/timer call
 //DeadCode CSB 4Oct00 #pragma warnmsg("************************")
 //DeadCode CSB 4Oct00 #pragma warnmsg("**** 3D ACCEL = x 8 **** //CSB 08/06/00")
@@ -2150,7 +2160,7 @@ void	Inst3d::DoMoveCycle()
 		{
 			MoveCycle(world);									//AMM 11May99
 			if (OverLay.accelcountdown)
-				if (	Key_Tests.KeyPress3d(RPM_00) 
+				if (	Key_Tests.KeyPress3d(RPM_00)
 					||	Key_Tests.KeyPress3d(RESETVIEW)
 					||	Key_Tests.KeyPress3d(PADLOCKTOG)
 					||	Key_Tests.KeyPress3d(SHOOT)
@@ -2251,13 +2261,13 @@ void	Inst3d::MoveCycle(WorldStuff* worldref)					//AMM 11May99
 //DeadCode AMM 9Aug00 			if (GETPREC()!=3)
 //DeadCode AMM 9Aug00 				INT3;
 #endif
-		
+
 		while (num--)											//AMM 06Oct98
 		{
 			MobileItem::WinMove(timeofday,worldref);
 
 			if (_Replay.replayskip)								//RJS 08Nov99
-			{	
+			{
 				if (viewedwin)
 				{
 					View3d* view=viewedwin;
@@ -2317,7 +2327,7 @@ void	Inst3d::BlockTick(Bool setit)
 	if (!mapview)
 	{
 	if (setit)
-	{		
+	{
 		int bt=LockExchange(&blocktick,1);
 		while (bt==1)
 		{

@@ -9,6 +9,7 @@
 ////////////////////////////////////////////////////////////////////////
 #ifndef	INFOITEM_INCLUDED
 #define	INFOITEM_INCLUDED
+#include "uiicons.h"
 struct	info_event;
 typedef	info_event* info_event_ptr;
 
@@ -57,7 +58,7 @@ struct	info_event
 	SWord	used_redac,used_blueac;
 	SWord	used_redmob,used_bluemob;
 	SWord	used_statics,used_waypoints;
-	
+
 	int	usedsetvals,allsetvals;
 	info_event()	{	usedsetvals=allsetvals=0;
 						used_redac=used_blueac=
@@ -78,7 +79,7 @@ struct	info_event
 	info_event_suicide_ptr next;
 
 
-				
+
 }
 #endif
 ;
@@ -102,7 +103,7 @@ struct	info_base
 					:hdgitem //changed from Item to allow "pointed" things.
 {
 
-///	UniqueID	SGT;	
+///	UniqueID	SGT;
 	UWord	 	bfieldindex;			//no							//JIM 8Nov00
 //DeadCode JIM 8Nov00 	UByte 		extra;					//no
 EventVal	uid,						//not saved for aircraft	//negative for key waypoints
@@ -111,7 +112,7 @@ protected:
 	info_base()	{SGT=UID_Null;(int&)Next=-1;bfieldindex=1023;}
 public:
 	enum	VisibilityConditionSlot	 {VCS_BEFORE=0,VCS_AFTER,VCS_ICON,VCS_TABLESIZE};
-	enum	VisibilityCondition 
+	enum	VisibilityCondition
 			{	VC_KNOWN=2,VC_DRAWN=4,VC_DRAWNLAST=1,
 				VC_ALL=7,
 				VC_REFRESHMASK=7,VC_DRAWMASK=6,	VC_NODRAW=2,
@@ -119,12 +120,12 @@ public:
 			};
 
 };
-					
+
 struct	info_itemS
 					:info_base//,info_debug
 {
 	info_event_suicide_ptr events;
-EventVal	band,						//not set up	
+EventVal	band,						//not set up
 			shape,						//not set up
 			attitude;					//not set up
 		info_itemS()	{Status.size=ITEMSIZE;}
@@ -174,9 +175,9 @@ EventVal	band,						//not set up
 	}
 #endif
 };
-#ifndef __BCPLUSPLUS__
-enum	SavedGlobrefs;
-#endif
+//#ifndef __BCPLUSPLUS__
+//enum	SavedGlobrefs;
+//#endif
 struct	info_waypoint
 					:info_base//,info_debug
 {
@@ -300,9 +301,9 @@ EventVal	inform,						//saved
 
 };
 struct	Profile;
-#ifndef	__BCPLUSPLUS__
-enum	IconsUI;
-#endif
+//#ifndef	__BCPLUSPLUS__
+//enum	IconsUI;
+//#endif
 struct	info_airgrp
 					:info_grndgrp
 {
@@ -348,7 +349,7 @@ int			usedpaintrules;
 ;
 //DEADCODE DAW 08/03/00 struct	EventLog;
 //DEADCODE DAW 08/03/00 typedef	EventLog	*EventLogPtr;
-//DEADCODE DAW 08/03/00 
+//DEADCODE DAW 08/03/00
 //DEADCODE DAW 08/03/00 struct	EventEntry
 //DEADCODE DAW 08/03/00 {
 //DEADCODE DAW 08/03/00  	ULong		launchtime;
@@ -365,11 +366,11 @@ int			usedpaintrules;
 //DEADCODE DAW 08/03/00 	UByte		hits;	//kills for air groups... hits for damaged ground
 //DEADCODE DAW 08/03/00 	UByte		losses;
 //DEADCODE DAW 08/03/00 	UByte		encsize;
-//DEADCODE DAW 08/03/00 
+//DEADCODE DAW 08/03/00
 //DEADCODE DAW 08/03/00 	UWord		place;
 //DEADCODE DAW 08/03/00 	ONLYFIELD(UWord,UniqueID,homebase);
 //DEADCODE DAW 08/03/00 	ONLYFIELD(UByte,PlaneTypeSelect,encounteredtype);
 //DEADCODE DAW 08/03/00 	ONLYFIELD(UByte,PlaneTypeSelect,escorttype);
-//DEADCODE DAW 08/03/00 	
+//DEADCODE DAW 08/03/00
 //DEADCODE DAW 08/03/00 };
 #endif

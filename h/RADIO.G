@@ -7,6 +7,7 @@
 //------------------------------------------------------------------------------
 #ifndef	RADIO_Included
 #define	RADIO_Included
+#include "raddef.h"
 
 #define	DEFAULT_RADIO 0
 

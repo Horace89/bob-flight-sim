@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -64,15 +64,15 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //------------------------------------------------------------------------------
 //Filename       formatn.cpp
-//System         
-//Author         R. Hyde 
+//System
+//Author         R. Hyde
 //Date           Wed 17 Jan 1996
 //Description
 //
 //For FC:	Each in-flight formation needs 5 followers.
 //			Each interflight formation needs a leader and 4 followers
 //
-//For MiG:	
+//For MiG:
 //	For Blues	- max 4 flights of [2 elts of 2 ac]
 //		Each in-flight form has 3 followers
 //		Follower position 3 is relative to position 2 while (2) is alive
@@ -81,17 +81,17 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //	For Reds	- max 25 aircraft - max 8 fl and max 8 aircraft per flight?
 //		Each in flight form needs 7 followers
 //		Each interflight form needs 1 for leader & 7 followers
-//	If the migs are going to throw a ruse, 
+//	If the migs are going to throw a ruse,
 //		the ruse aircraft are a second group.
 //
 //Special:
-//	If 1 or 2 groups are escorting others of the same aircraft type, 
+//	If 1 or 2 groups are escorting others of the same aircraft type,
 //	and the same formation type,
-//	then I want them to all fly in formation with each other, 
+//	then I want them to all fly in formation with each other,
 //	not in escort formation.
 //
 //For BoB:
-//	Each squadron flies in a formation as before, But extra bits in the formation define 
+//	Each squadron flies in a formation as before, But extra bits in the formation define
 //	how the squadron files as a group with other squadrons.
 //	The following fields work together to define how the squadron forms up together
 //		FORMTYPE_WING	=	0x0007,
@@ -152,7 +152,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //15:	5s
 //
 
-static FormationType 
+static FormationType
 //PASS2
 Form_RAFVIC =
 {
@@ -206,7 +206,7 @@ Form_SCWARM =
 		//THIS EXTRA ENTRY IS FOR FINGER4-PAIR
 		//While the other entries are relative to the flight leader,
 		//In finger 4 the second wingman is relative to the lead wingman!!!
-		{	FT_750,ANGLES_110Deg,METRES00},	
+		{	FT_750,ANGLES_110Deg,METRES00},
 	}
 },
 //PASS1
@@ -374,7 +374,7 @@ VForm_LWVIC_VIC=
 		{	FT_900,ANGLES_240Deg,FT_100},
 	}
 },
-//PASS3		
+//PASS3
 VForm_LWVIC_ECHL=
 {
 	4,
@@ -988,7 +988,7 @@ EForm_DEFBOX=		//above/below to make a cube
 		{	FT_1000,ANGLES_240Deg,METRES00},
 	}
 },
-EForm_DEFWEAVE	=	
+EForm_DEFWEAVE	=
 {
 	3,
 	{
@@ -1283,36 +1283,36 @@ EForm_MT_AB_FAR=
 		{	METRES800,ANGLES_0Deg,-FT_1000},
 	}
 },
-EForm_BRITVIC	=	
+EForm_BRITVIC	=
 {
 	3,
-	{										//leader index is irrelivent  
-		{	FT_750,ANGLES_110Deg,FT_200},	//index 0                     
-		{	FT_750,ANGLES_250Deg,FT_200},	//index 1                     
+	{										//leader index is irrelivent
+		{	FT_750,ANGLES_110Deg,FT_200},	//index 0
+		{	FT_750,ANGLES_250Deg,FT_200},	//index 1
 	}
 },
-EForm_BRITVIC2	=	
+EForm_BRITVIC2	=
 {
 	3,
-	{										//leader index is irrelivent  
-		{	FT_1500,ANGLES_110Deg,FT_400},	//index 0                     
-		{	FT_1500,ANGLES_250Deg,FT_400},	//index 1                     
+	{										//leader index is irrelivent
+		{	FT_1500,ANGLES_110Deg,FT_400},	//index 0
+		{	FT_1500,ANGLES_250Deg,FT_400},	//index 1
 	}
 },
-EForm_BRITVIC3	=	
+EForm_BRITVIC3	=
 {
 	3,
-	{										//leader index is irrelivent  
-		{	FT_500,ANGLES_180Deg,FT_400},	//index 0                     
-		{	FT_1000,ANGLES_180Deg,FT_400},	//index 1                     
+	{										//leader index is irrelivent
+		{	FT_500,ANGLES_180Deg,FT_400},	//index 0
+		{	FT_1000,ANGLES_180Deg,FT_400},	//index 1
 	}
 },
-EForm_BRITVIC4	=	
+EForm_BRITVIC4	=
 {
 	3,
-	{										//leader index is irrelivent  
-		{	FT_1500,ANGLES_145Deg,FT_500},	//index 0                     
-		{	FT_1500,ANGLES_235Deg,FT_500},	//index 1                     
+	{										//leader index is irrelivent
+		{	FT_1500,ANGLES_145Deg,FT_500},	//index 0
+		{	FT_1500,ANGLES_235Deg,FT_500},	//index 1
 	}
 },
 //DeadCode JIM 15Sep00 EForm_BRITASTERN=
@@ -1326,9 +1326,9 @@ EForm_BRITVIC4	=
 //DeadCode JIM 15Sep00 EForm_BRITABREST=
 //DeadCode JIM 15Sep00 {
 //DeadCode JIM 15Sep00 	3,
-//DeadCode JIM 15Sep00 	{											
-//DeadCode JIM 15Sep00 		{	FT_1000,ANGLES_90Deg,FT_100},		
-//DeadCode JIM 15Sep00 		{	FT_1000,ANGLES_270Deg,FT_100},		
+//DeadCode JIM 15Sep00 	{
+//DeadCode JIM 15Sep00 		{	FT_1000,ANGLES_90Deg,FT_100},
+//DeadCode JIM 15Sep00 		{	FT_1000,ANGLES_270Deg,FT_100},
 //DeadCode JIM 15Sep00 	}
 //DeadCode JIM 15Sep00 },
 //DeadCode JIM 15Sep00 EForm_BRITABOVE=
@@ -1343,7 +1343,7 @@ EForm_BRITVIC4	=
 ///////////////////////
 ENDLIST={0};
 
-ExtFormationType	 
+ExtFormationType
 TakeOff_FormationWing=
 {
 	20435,
@@ -1403,8 +1403,8 @@ Truck_VFormation=
 		{	FT_70,ANGLES_100Deg,0},
 		{	FT_70,ANGLES_260Deg,0}
 	}
-	
-	
+
+
 },
 Truck_LineFormation=
 {
@@ -1468,10 +1468,10 @@ Ship_Formation1=
 ;
 SingleFormation	Ground_Formations [] =
 {
-	&Truck_VFormation.formationtype,	
-	&Truck_LineFormation.formationtype,	
+	&Truck_VFormation.formationtype,
+	&Truck_LineFormation.formationtype,
 	&Ship_Formation1.formationtype,
-	&Truck_LineFormation.formationtype	
+	&Truck_LineFormation.formationtype
 };
 
 
@@ -1496,7 +1496,7 @@ SingleFormation	Aircraft_Formations [] =
 SingleFormation	Squadron_Formations [] =
 {
 &VForm_RAFVIC_VIC,		&VForm_LWVIC_VIC,			&VForm_FLAT5_VIC,		&VForm_SCWARM_VIC,
-	&VForm_BSCRWARM_VIC,		&VForm_FINGER_VIC,		&VForm_RAFTAIL_VIC,		&VForm_MAL_VIC,	
+	&VForm_BSCRWARM_VIC,		&VForm_FINGER_VIC,		&VForm_RAFTAIL_VIC,		&VForm_MAL_VIC,
 &VForm_RAFVIC_ECHL,		&VForm_LWVIC_ECHL,			&VForm_FLAT5_ECHL,		&VForm_SCWARM_ECHL,
 	&VForm_BSCRWARM_ECHL,		&VForm_FINGER_ECHL,		&VForm_RAFTAIL_ECHL,	&VForm_MAL_ECHL,
 &VForm_RAFVIC_ECHR,		&VForm_LWVIC_ECHR,			&VForm_FLAT5_ECHR,		&VForm_SCWARM_ECHR,
@@ -1508,97 +1508,97 @@ SingleFormation	Squadron_Formations [] =
 &VForm_RAFVIC_DIAMOND,	&VForm_LWVIC_DIAMOND,		&VForm_FLAT5_DIAMOND,	&VForm_SCWARM_DIAMOND,
 	&VForm_BSCRWARM_DIAMOND,	&VForm_FINGER_DIAMOND,	&VForm_RAFTAIL_DIAMOND,	&VForm_MAL_DIAMOND,
 &VForm_RAFVIC_BOX,		&VForm_LWVIC_BOX,			&VForm_FLAT5_BOX,		&VForm_SCWARM_BOX,
-	&VForm_BSCRWARM_BOX,		&VForm_FINGER_BOX,		&VForm_RAFTAIL_BOX,		&VForm_MAL_BOX,	
+	&VForm_BSCRWARM_BOX,		&VForm_FINGER_BOX,		&VForm_RAFTAIL_BOX,		&VForm_MAL_BOX,
 &VForm_RAFVIC_WEAVE,	&VForm_LWVIC_WEAVE,			&VForm_FLAT5_WEAVE,		&VForm_SCWARM_WEAVE,
-	&VForm_BSCRWARM_WEAVE,		&VForm_FINGER_WEAVE,	&VForm_RAFTAIL_WEAVE,	&VForm_MAL_WEAVE	
+	&VForm_BSCRWARM_WEAVE,		&VForm_FINGER_WEAVE,	&VForm_RAFTAIL_WEAVE,	&VForm_MAL_WEAVE
 };
 
 //
 SingleFormation	Escort_Formations[]	= //Now 3dimensional
 {	//Across index is FORMTYPE_WING
 //FTI_DEFAULT//	FTW_RAFVIC				FTW_LWVIC				FTW_FLAT5				FTW_SCWARM				FTW_BSCRWARM			FTW_FINGER				FTW_RAFTAIL				FTW_MAL
-/*FTS_VIC*/		&EForm_BRITVIC,			&EForm_DEFVIC, 			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			
-/*FTS_ECHL*/	&EForm_BRITVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFECHL,			&EForm_DEFECHL,			&EForm_DEFECHL,			&EForm_DEFECHL,			&EForm_DEFECHL,			
-/*FTS_ECHR*/	&EForm_BRITVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFECHR,			&EForm_DEFECHR,			&EForm_DEFECHR,			&EForm_DEFECHR,			&EForm_DEFECHR,			
-/*FTS_ABREST*/	&EForm_BRITVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFABREST,		&EForm_DEFABREST,		&EForm_MT_LEFTRIGHT,	&EForm_DEFABREST,		&EForm_DEFABREST,		
-/*FTS_ASTERN*/	&EForm_BRITVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFASTERN,		&EForm_DEFASTERN,		&EForm_MT_BACKFRONT,	&EForm_DEFASTERN,		&EForm_DEFASTERN,		
-/*FTS_DIAMOND*/	&EForm_BRITVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,		
-/*FTS_BOX*/		&EForm_BRITVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFBOX,			&EForm_DEFBOX,			&EForm_DEFBOX,			&EForm_DEFBOX,			&EForm_DEFBOX,			
-/*FTS_WEAVE*/	&EForm_BRITVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFWEAVE,		&EForm_DEFWEAVE,		&EForm_DEFWEAVE,		&EForm_DEFWEAVE,		&EForm_DEFWEAVE,		
+/*FTS_VIC*/		&EForm_BRITVIC,			&EForm_DEFVIC, 			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,
+/*FTS_ECHL*/	&EForm_BRITVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFECHL,			&EForm_DEFECHL,			&EForm_DEFECHL,			&EForm_DEFECHL,			&EForm_DEFECHL,
+/*FTS_ECHR*/	&EForm_BRITVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFECHR,			&EForm_DEFECHR,			&EForm_DEFECHR,			&EForm_DEFECHR,			&EForm_DEFECHR,
+/*FTS_ABREST*/	&EForm_BRITVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFABREST,		&EForm_DEFABREST,		&EForm_MT_LEFTRIGHT,	&EForm_DEFABREST,		&EForm_DEFABREST,
+/*FTS_ASTERN*/	&EForm_BRITVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFASTERN,		&EForm_DEFASTERN,		&EForm_MT_BACKFRONT,	&EForm_DEFASTERN,		&EForm_DEFASTERN,
+/*FTS_DIAMOND*/	&EForm_BRITVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,
+/*FTS_BOX*/		&EForm_BRITVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFBOX,			&EForm_DEFBOX,			&EForm_DEFBOX,			&EForm_DEFBOX,			&EForm_DEFBOX,
+/*FTS_WEAVE*/	&EForm_BRITVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFWEAVE,		&EForm_DEFWEAVE,		&EForm_DEFWEAVE,		&EForm_DEFWEAVE,		&EForm_DEFWEAVE,
 
 //FTI_ASTERN//	FTW_RAFVIC				FTW_LWVIC				FTW_FLAT5				FTW_SCWARM				FTW_BSCRWARM			FTW_FINGER				FTW_RAFTAIL				FTW_MAL
-/*FTS_VIC*/		&EForm_BRITVIC2,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_ASTERNVIC,		&EForm_ASTERNVIC,	
-/*FTS_ECHL*/	&EForm_BRITVIC2,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_ASTERNECHL,		&EForm_ASTERNECHL,	
-/*FTS_ECHR*/	&EForm_BRITVIC2,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_ASTERNECHR,		&EForm_ASTERNECHR,		
-/*FTS_ABREST*/	&EForm_BRITVIC2,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_ASTERNABREST,	&EForm_ASTERNABREST,	
-/*FTS_ASTERN*/	&EForm_BRITVIC2,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_ASTERNASTERN,	&EForm_ASTERNASTERN,	
-/*FTS_DIAMOND*/	&EForm_BRITVIC2,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_ASTERNDIAMOND,	&EForm_ASTERNDIAMOND,	
-/*FTS_BOX*/		&EForm_BRITVIC2,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_ASTERNBOX,		&EForm_ASTERNBOX,		
-/*FTS_WEAVE*/	&EForm_BRITVIC2,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_ASTERNWEAVE,		&EForm_ASTERNWEAVE,		
+/*FTS_VIC*/		&EForm_BRITVIC2,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_ASTERNVIC,		&EForm_ASTERNVIC,
+/*FTS_ECHL*/	&EForm_BRITVIC2,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_ASTERNECHL,		&EForm_ASTERNECHL,
+/*FTS_ECHR*/	&EForm_BRITVIC2,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_ASTERNECHR,		&EForm_ASTERNECHR,
+/*FTS_ABREST*/	&EForm_BRITVIC2,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_ASTERNABREST,	&EForm_ASTERNABREST,
+/*FTS_ASTERN*/	&EForm_BRITVIC2,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_ASTERNASTERN,	&EForm_ASTERNASTERN,
+/*FTS_DIAMOND*/	&EForm_BRITVIC2,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_ASTERNDIAMOND,	&EForm_ASTERNDIAMOND,
+/*FTS_BOX*/		&EForm_BRITVIC2,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_ASTERNBOX,		&EForm_ASTERNBOX,
+/*FTS_WEAVE*/	&EForm_BRITVIC2,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_MT_BACKFRONT,	&EForm_ASTERNWEAVE,		&EForm_ASTERNWEAVE,
 
 //FTI_ABREST//	FTW_RAFVIC				FTW_LWVIC				FTW_FLAT5				FTW_SCWARM				FTW_BSCRWARM			FTW_FINGER				FTW_RAFTAIL				FTW_MAL
-/*FTS_VIC*/		&EForm_BRITVIC3,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_MT_LR_FAR,		&EForm_MT_LR_FAR,		&EForm_MT_LR_FAR,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		
-/*FTS_ECHL*/	&EForm_BRITVIC3,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_MT_LR_FAR,   	&EForm_MT_LR_FAR,		&EForm_MT_LEFTRIGHT,	&EForm_ABRESTECHL,		&EForm_ABRESTECHL,		
-/*FTS_ECHR*/	&EForm_BRITVIC3,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_MT_LR_FAR,		&EForm_MT_LR_FAR,		&EForm_MT_LEFTRIGHT,	&EForm_ABRESTECHR,		&EForm_ABRESTECHR,		
-/*FTS_ABREST*/	&EForm_BRITVIC3,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_MT_LR_FAR,		&EForm_MT_LR_FAR,		&EForm_MT_LEFTRIGHT,	&EForm_ABRESTABREST,	&EForm_ABRESTABREST,	
-/*FTS_ASTERN*/	&EForm_BRITVIC3,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_MT_LEFTRIGHT,	&EForm_MT_LEFTRIGHT,	&EForm_MT_LEFTRIGHT,	&EForm_ABRESTASTERN,	&EForm_ABRESTASTERN,	
-/*FTS_DIAMOND*/	&EForm_BRITVIC3,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_MT_LR_FAR,		&EForm_MT_LR_FAR,		&EForm_MT_LEFTRIGHT,	&EForm_ABRESTDIAMOND,	&EForm_ABRESTDIAMOND,	
-/*FTS_BOX*/		&EForm_BRITVIC3,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_MT_LR_FAR,		&EForm_MT_LR_FAR,		&EForm_MT_LEFTRIGHT,	&EForm_ABRESTBOX,		&EForm_ABRESTBOX,		
-/*FTS_WEAVE*/	&EForm_BRITVIC3,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_MT_LR_FAR,		&EForm_MT_LR_FAR,		&EForm_MT_LEFTRIGHT,	&EForm_ABRESTWEAVE,		&EForm_ABRESTWEAVE,		
+/*FTS_VIC*/		&EForm_BRITVIC3,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_MT_LR_FAR,		&EForm_MT_LR_FAR,		&EForm_MT_LR_FAR,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,
+/*FTS_ECHL*/	&EForm_BRITVIC3,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_MT_LR_FAR,   	&EForm_MT_LR_FAR,		&EForm_MT_LEFTRIGHT,	&EForm_ABRESTECHL,		&EForm_ABRESTECHL,
+/*FTS_ECHR*/	&EForm_BRITVIC3,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_MT_LR_FAR,		&EForm_MT_LR_FAR,		&EForm_MT_LEFTRIGHT,	&EForm_ABRESTECHR,		&EForm_ABRESTECHR,
+/*FTS_ABREST*/	&EForm_BRITVIC3,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_MT_LR_FAR,		&EForm_MT_LR_FAR,		&EForm_MT_LEFTRIGHT,	&EForm_ABRESTABREST,	&EForm_ABRESTABREST,
+/*FTS_ASTERN*/	&EForm_BRITVIC3,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_MT_LEFTRIGHT,	&EForm_MT_LEFTRIGHT,	&EForm_MT_LEFTRIGHT,	&EForm_ABRESTASTERN,	&EForm_ABRESTASTERN,
+/*FTS_DIAMOND*/	&EForm_BRITVIC3,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_MT_LR_FAR,		&EForm_MT_LR_FAR,		&EForm_MT_LEFTRIGHT,	&EForm_ABRESTDIAMOND,	&EForm_ABRESTDIAMOND,
+/*FTS_BOX*/		&EForm_BRITVIC3,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_MT_LR_FAR,		&EForm_MT_LR_FAR,		&EForm_MT_LEFTRIGHT,	&EForm_ABRESTBOX,		&EForm_ABRESTBOX,
+/*FTS_WEAVE*/	&EForm_BRITVIC3,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_MT_LR_FAR,		&EForm_MT_LR_FAR,		&EForm_MT_LEFTRIGHT,	&EForm_ABRESTWEAVE,		&EForm_ABRESTWEAVE,
 
 //FTI_ABOVE//	FTW_RAFVIC				FTW_LWVIC				FTW_FLAT5				FTW_SCWARM				FTW_BSCRWARM			FTW_FINGER				FTW_RAFTAIL				FTW_MAL
-/*FTS_VIC*/		&EForm_BRITVIC4,		&EForm_ABOVEVIC,		&EForm_ABOVEVIC,		&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_ABOVEVIC,		&EForm_ABOVEVIC,	
-/*FTS_ECHL*/	&EForm_BRITVIC4,		&EForm_ABOVEVIC,		&EForm_ABOVEVIC,		&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_ABOVEECHL,		&EForm_ABOVEECHL,		
-/*FTS_ECHR*/	&EForm_BRITVIC4,		&EForm_ABOVEVIC,		&EForm_ABOVEVIC,		&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_ABOVEECHR,		&EForm_ABOVEECHR,		
-/*FTS_ABREST*/	&EForm_BRITVIC4,		&EForm_ABOVEVIC,		&EForm_ABOVEVIC,		&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_ABOVEABREST,		&EForm_ABOVEABREST,		
-/*FTS_ASTERN*/	&EForm_BRITVIC4,		&EForm_ABOVEVIC,		&EForm_ABOVEVIC,		&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_ABOVEASTERN,		&EForm_ABOVEASTERN,		
-/*FTS_DIAMOND*/	&EForm_BRITVIC4,		&EForm_ABOVEVIC,		&EForm_ABOVEVIC,		&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_ABOVEDIAMOND,	&EForm_ABOVEDIAMOND,	
-/*FTS_BOX*/		&EForm_BRITVIC4,		&EForm_ABOVEVIC,		&EForm_ABOVEVIC,		&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_ABOVEBOX,		&EForm_ABOVEBOX,		
-/*FTS_WEAVE*/	&EForm_BRITVIC4,		&EForm_ABOVEVIC,		&EForm_ABOVEVIC,		&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_ABOVEWEAVE,		&EForm_ABOVEWEAVE,		
+/*FTS_VIC*/		&EForm_BRITVIC4,		&EForm_ABOVEVIC,		&EForm_ABOVEVIC,		&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_ABOVEVIC,		&EForm_ABOVEVIC,
+/*FTS_ECHL*/	&EForm_BRITVIC4,		&EForm_ABOVEVIC,		&EForm_ABOVEVIC,		&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_ABOVEECHL,		&EForm_ABOVEECHL,
+/*FTS_ECHR*/	&EForm_BRITVIC4,		&EForm_ABOVEVIC,		&EForm_ABOVEVIC,		&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_ABOVEECHR,		&EForm_ABOVEECHR,
+/*FTS_ABREST*/	&EForm_BRITVIC4,		&EForm_ABOVEVIC,		&EForm_ABOVEVIC,		&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_ABOVEABREST,		&EForm_ABOVEABREST,
+/*FTS_ASTERN*/	&EForm_BRITVIC4,		&EForm_ABOVEVIC,		&EForm_ABOVEVIC,		&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_ABOVEASTERN,		&EForm_ABOVEASTERN,
+/*FTS_DIAMOND*/	&EForm_BRITVIC4,		&EForm_ABOVEVIC,		&EForm_ABOVEVIC,		&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_ABOVEDIAMOND,	&EForm_ABOVEDIAMOND,
+/*FTS_BOX*/		&EForm_BRITVIC4,		&EForm_ABOVEVIC,		&EForm_ABOVEVIC,		&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_ABOVEBOX,		&EForm_ABOVEBOX,
+/*FTS_WEAVE*/	&EForm_BRITVIC4,		&EForm_ABOVEVIC,		&EForm_ABOVEVIC,		&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_MT_ABOVEBELOW,	&EForm_ABOVEWEAVE,		&EForm_ABOVEWEAVE,
 
 //
 //TempCode MS 30May00 SingleFormation	Escort_Formations[]	= //Now 3dimensional
 //TempCode MS 30May00 {	//Across index is FORMTYPE_WING
 //TempCode MS 30May00 //FTI_DEFAULT//FTW_RAFVIC			FTW_LWVIC				FTW_FLAT5				FTW_SCWARM				FTW_BSCRWARM			FTW_FINGER				FTW_RAFTAIL				FTW_MAL
-//TempCode MS 30May00 /*FTS_VIC*/	&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			
-//TempCode MS 30May00 /*FTS_ECHL*/	&EForm_DEFECHL,			&EForm_DEFECHL,			&EForm_DEFECHL,			&EForm_DEFECHL,			&EForm_DEFECHL,			&EForm_DEFECHL,			&EForm_DEFECHL,			&EForm_DEFECHL,			
-//TempCode MS 30May00 /*FTS_ECHR*/		&EForm_DEFECHR,			&EForm_DEFECHR,			&EForm_DEFECHR,			&EForm_DEFECHR,			&EForm_DEFECHR,			&EForm_DEFECHR,			&EForm_DEFECHR,			&EForm_DEFECHR,			
-//TempCode MS 30May00 /*FTS_ABREST*/			&EForm_DEFABREST,		&EForm_DEFABREST,		&EForm_DEFABREST,		&EForm_DEFABREST,		&EForm_DEFABREST,		&EForm_DEFABREST,		&EForm_DEFABREST,		&EForm_DEFABREST,		
-//TempCode MS 30May00 /*FTS_ASTERN*/				&EForm_DEFASTERN,		&EForm_DEFASTERN,		&EForm_DEFASTERN,		&EForm_DEFASTERN,		&EForm_DEFASTERN,		&EForm_DEFASTERN,		&EForm_DEFASTERN,		&EForm_DEFASTERN,		
-//TempCode MS 30May00 /*FTS_DIAMOND*/					&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,		
-//TempCode MS 30May00 /*FTS_BOX*/							&EForm_DEFBOX,			&EForm_DEFBOX,			&EForm_DEFBOX,			&EForm_DEFBOX,			&EForm_DEFBOX,			&EForm_DEFBOX,			&EForm_DEFBOX,			&EForm_DEFBOX,			
-//TempCode MS 30May00 /*FTS_WEAVE*/							&EForm_DEFWEAVE,		&EForm_DEFWEAVE,		&EForm_DEFWEAVE,		&EForm_DEFWEAVE,		&EForm_DEFWEAVE,		&EForm_DEFWEAVE,		&EForm_DEFWEAVE,		&EForm_DEFWEAVE,		
-//TempCode MS 30May00 
+//TempCode MS 30May00 /*FTS_VIC*/	&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,			&EForm_DEFVIC,
+//TempCode MS 30May00 /*FTS_ECHL*/	&EForm_DEFECHL,			&EForm_DEFECHL,			&EForm_DEFECHL,			&EForm_DEFECHL,			&EForm_DEFECHL,			&EForm_DEFECHL,			&EForm_DEFECHL,			&EForm_DEFECHL,
+//TempCode MS 30May00 /*FTS_ECHR*/		&EForm_DEFECHR,			&EForm_DEFECHR,			&EForm_DEFECHR,			&EForm_DEFECHR,			&EForm_DEFECHR,			&EForm_DEFECHR,			&EForm_DEFECHR,			&EForm_DEFECHR,
+//TempCode MS 30May00 /*FTS_ABREST*/			&EForm_DEFABREST,		&EForm_DEFABREST,		&EForm_DEFABREST,		&EForm_DEFABREST,		&EForm_DEFABREST,		&EForm_DEFABREST,		&EForm_DEFABREST,		&EForm_DEFABREST,
+//TempCode MS 30May00 /*FTS_ASTERN*/				&EForm_DEFASTERN,		&EForm_DEFASTERN,		&EForm_DEFASTERN,		&EForm_DEFASTERN,		&EForm_DEFASTERN,		&EForm_DEFASTERN,		&EForm_DEFASTERN,		&EForm_DEFASTERN,
+//TempCode MS 30May00 /*FTS_DIAMOND*/					&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,		&EForm_DEFDIAMOND,
+//TempCode MS 30May00 /*FTS_BOX*/							&EForm_DEFBOX,			&EForm_DEFBOX,			&EForm_DEFBOX,			&EForm_DEFBOX,			&EForm_DEFBOX,			&EForm_DEFBOX,			&EForm_DEFBOX,			&EForm_DEFBOX,
+//TempCode MS 30May00 /*FTS_WEAVE*/							&EForm_DEFWEAVE,		&EForm_DEFWEAVE,		&EForm_DEFWEAVE,		&EForm_DEFWEAVE,		&EForm_DEFWEAVE,		&EForm_DEFWEAVE,		&EForm_DEFWEAVE,		&EForm_DEFWEAVE,
+//TempCode MS 30May00
 //TempCode MS 30May00 //FTI_ASTERN//FTW_RAFVIC			FTW_LWVIC				FTW_FLAT5				FTW_SCWARM				FTW_BSCRWARM			FTW_FINGER				FTW_RAFTAIL				FTW_MAL
-//TempCode MS 30May00 /*FTS_VIC*/	&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,	
-//TempCode MS 30May00 /*FTS_ECHL*/	&EForm_ASTERNECHL,		&EForm_ASTERNECHL,		&EForm_ASTERNECHL,		&EForm_ASTERNECHL,		&EForm_ASTERNECHL,		&EForm_ASTERNECHL,		&EForm_ASTERNECHL,		&EForm_ASTERNECHL,	
-//TempCode MS 30May00 /*FTS_ECHR*/		&EForm_ASTERNECHR,		&EForm_ASTERNECHR,		&EForm_ASTERNECHR,		&EForm_ASTERNECHR,		&EForm_ASTERNECHR,		&EForm_ASTERNECHR,		&EForm_ASTERNECHR,		&EForm_ASTERNECHR,		
-//TempCode MS 30May00 /*FTS_ABREST*/			&EForm_ASTERNABREST,	&EForm_ASTERNABREST,	&EForm_ASTERNABREST,	&EForm_ASTERNABREST,	&EForm_ASTERNABREST,	&EForm_ASTERNABREST,	&EForm_ASTERNABREST,	&EForm_ASTERNABREST,	
-//TempCode MS 30May00 /*FTS_ASTERN*/				&EForm_ASTERNASTERN,	&EForm_LWV_A_A,			&EForm_ASTERNASTERN,	&EForm_ASTERNASTERN,	&EForm_ASTERNASTERN,	&EForm_ASTERNASTERN,	&EForm_ASTERNASTERN,	&EForm_ASTERNASTERN,	
-//TempCode MS 30May00 /*FTS_DIAMOND*/					&EForm_ASTERNDIAMOND,	&EForm_ASTERNDIAMOND,	&EForm_ASTERNDIAMOND,	&EForm_ASTERNDIAMOND,	&EForm_ASTERNDIAMOND,	&EForm_ASTERNDIAMOND,	&EForm_ASTERNDIAMOND,	&EForm_ASTERNDIAMOND,	
-//TempCode MS 30May00 /*FTS_BOX*/							&EForm_ASTERNBOX,		&EForm_ASTERNBOX,		&EForm_ASTERNBOX,		&EForm_ASTERNBOX,		&EForm_ASTERNBOX,		&EForm_ASTERNBOX,		&EForm_ASTERNBOX,		&EForm_ASTERNBOX,		
-//TempCode MS 30May00 /*FTS_WEAVE*/							&EForm_ASTERNWEAVE,		&EForm_ASTERNWEAVE,		&EForm_ASTERNWEAVE,		&EForm_ASTERNWEAVE,		&EForm_ASTERNWEAVE,		&EForm_ASTERNWEAVE,		&EForm_ASTERNWEAVE,		&EForm_ASTERNWEAVE,		
-//TempCode MS 30May00 
+//TempCode MS 30May00 /*FTS_VIC*/	&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,		&EForm_ASTERNVIC,
+//TempCode MS 30May00 /*FTS_ECHL*/	&EForm_ASTERNECHL,		&EForm_ASTERNECHL,		&EForm_ASTERNECHL,		&EForm_ASTERNECHL,		&EForm_ASTERNECHL,		&EForm_ASTERNECHL,		&EForm_ASTERNECHL,		&EForm_ASTERNECHL,
+//TempCode MS 30May00 /*FTS_ECHR*/		&EForm_ASTERNECHR,		&EForm_ASTERNECHR,		&EForm_ASTERNECHR,		&EForm_ASTERNECHR,		&EForm_ASTERNECHR,		&EForm_ASTERNECHR,		&EForm_ASTERNECHR,		&EForm_ASTERNECHR,
+//TempCode MS 30May00 /*FTS_ABREST*/			&EForm_ASTERNABREST,	&EForm_ASTERNABREST,	&EForm_ASTERNABREST,	&EForm_ASTERNABREST,	&EForm_ASTERNABREST,	&EForm_ASTERNABREST,	&EForm_ASTERNABREST,	&EForm_ASTERNABREST,
+//TempCode MS 30May00 /*FTS_ASTERN*/				&EForm_ASTERNASTERN,	&EForm_LWV_A_A,			&EForm_ASTERNASTERN,	&EForm_ASTERNASTERN,	&EForm_ASTERNASTERN,	&EForm_ASTERNASTERN,	&EForm_ASTERNASTERN,	&EForm_ASTERNASTERN,
+//TempCode MS 30May00 /*FTS_DIAMOND*/					&EForm_ASTERNDIAMOND,	&EForm_ASTERNDIAMOND,	&EForm_ASTERNDIAMOND,	&EForm_ASTERNDIAMOND,	&EForm_ASTERNDIAMOND,	&EForm_ASTERNDIAMOND,	&EForm_ASTERNDIAMOND,	&EForm_ASTERNDIAMOND,
+//TempCode MS 30May00 /*FTS_BOX*/							&EForm_ASTERNBOX,		&EForm_ASTERNBOX,		&EForm_ASTERNBOX,		&EForm_ASTERNBOX,		&EForm_ASTERNBOX,		&EForm_ASTERNBOX,		&EForm_ASTERNBOX,		&EForm_ASTERNBOX,
+//TempCode MS 30May00 /*FTS_WEAVE*/							&EForm_ASTERNWEAVE,		&EForm_ASTERNWEAVE,		&EForm_ASTERNWEAVE,		&EForm_ASTERNWEAVE,		&EForm_ASTERNWEAVE,		&EForm_ASTERNWEAVE,		&EForm_ASTERNWEAVE,		&EForm_ASTERNWEAVE,
+//TempCode MS 30May00
 //TempCode MS 30May00 //FTI_ABREST//FTW_RAFVIC			FTW_LWVIC				FTW_FLAT5				FTW_SCWARM				FTW_BSCRWARM			FTW_FINGER				FTW_RAFTAIL				FTW_MAL
-//TempCode MS 30May00 /*FTS_VIC*/	&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		
-//TempCode MS 30May00 /*FTS_ECHL*/	&EForm_ABRESTECHL,		&EForm_ABRESTECHL,		&EForm_ABRESTECHL,		&EForm_ABRESTECHL,		&EForm_ABRESTECHL,		&EForm_ABRESTECHL,		&EForm_ABRESTECHL,		&EForm_ABRESTECHL,		
-//TempCode MS 30May00 /*FTS_ECHR*/		&EForm_ABRESTECHR,		&EForm_ABRESTECHR,		&EForm_ABRESTECHR,		&EForm_ABRESTECHR,		&EForm_ABRESTECHR,		&EForm_ABRESTECHR,		&EForm_ABRESTECHR,		&EForm_ABRESTECHR,		
-//TempCode MS 30May00 /*FTS_ABREST*/			&EForm_ABRESTABREST,	&EForm_ABRESTABREST,	&EForm_ABRESTABREST,	&EForm_ABRESTABREST,	&EForm_ABRESTABREST,	&EForm_ABRESTABREST,	&EForm_ABRESTABREST,	&EForm_ABRESTABREST,	
-//TempCode MS 30May00 /*FTS_ASTERN*/				&EForm_ABRESTASTERN,	&EForm_ABRESTASTERN,	&EForm_ABRESTASTERN,	&EForm_ABRESTASTERN,	&EForm_ABRESTASTERN,	&EForm_ABRESTASTERN,	&EForm_ABRESTASTERN,	&EForm_ABRESTASTERN,	
-//TempCode MS 30May00 /*FTS_DIAMOND*/					&EForm_ABRESTDIAMOND,	&EForm_ABRESTDIAMOND,	&EForm_ABRESTDIAMOND,	&EForm_ABRESTDIAMOND,	&EForm_ABRESTDIAMOND,	&EForm_ABRESTDIAMOND,	&EForm_ABRESTDIAMOND,	&EForm_ABRESTDIAMOND,	
-//TempCode MS 30May00 /*FTS_BOX*/							&EForm_ABRESTBOX,		&EForm_ABRESTBOX,		&EForm_ABRESTBOX,		&EForm_ABRESTBOX,		&EForm_ABRESTBOX,		&EForm_ABRESTBOX,		&EForm_ABRESTBOX,		&EForm_ABRESTBOX,		
-//TempCode MS 30May00 /*FTS_WEAVE*/							&EForm_ABRESTWEAVE,		&EForm_ABRESTWEAVE,		&EForm_ABRESTWEAVE,		&EForm_ABRESTWEAVE,		&EForm_ABRESTWEAVE,		&EForm_ABRESTWEAVE,		&EForm_ABRESTWEAVE,		&EForm_ABRESTWEAVE,		
-//TempCode MS 30May00 
+//TempCode MS 30May00 /*FTS_VIC*/	&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,		&EForm_ABRESTVIC,
+//TempCode MS 30May00 /*FTS_ECHL*/	&EForm_ABRESTECHL,		&EForm_ABRESTECHL,		&EForm_ABRESTECHL,		&EForm_ABRESTECHL,		&EForm_ABRESTECHL,		&EForm_ABRESTECHL,		&EForm_ABRESTECHL,		&EForm_ABRESTECHL,
+//TempCode MS 30May00 /*FTS_ECHR*/		&EForm_ABRESTECHR,		&EForm_ABRESTECHR,		&EForm_ABRESTECHR,		&EForm_ABRESTECHR,		&EForm_ABRESTECHR,		&EForm_ABRESTECHR,		&EForm_ABRESTECHR,		&EForm_ABRESTECHR,
+//TempCode MS 30May00 /*FTS_ABREST*/			&EForm_ABRESTABREST,	&EForm_ABRESTABREST,	&EForm_ABRESTABREST,	&EForm_ABRESTABREST,	&EForm_ABRESTABREST,	&EForm_ABRESTABREST,	&EForm_ABRESTABREST,	&EForm_ABRESTABREST,
+//TempCode MS 30May00 /*FTS_ASTERN*/				&EForm_ABRESTASTERN,	&EForm_ABRESTASTERN,	&EForm_ABRESTASTERN,	&EForm_ABRESTASTERN,	&EForm_ABRESTASTERN,	&EForm_ABRESTASTERN,	&EForm_ABRESTASTERN,	&EForm_ABRESTASTERN,
+//TempCode MS 30May00 /*FTS_DIAMOND*/					&EForm_ABRESTDIAMOND,	&EForm_ABRESTDIAMOND,	&EForm_ABRESTDIAMOND,	&EForm_ABRESTDIAMOND,	&EForm_ABRESTDIAMOND,	&EForm_ABRESTDIAMOND,	&EForm_ABRESTDIAMOND,	&EForm_ABRESTDIAMOND,
+//TempCode MS 30May00 /*FTS_BOX*/							&EForm_ABRESTBOX,		&EForm_ABRESTBOX,		&EForm_ABRESTBOX,		&EForm_ABRESTBOX,		&EForm_ABRESTBOX,		&EForm_ABRESTBOX,		&EForm_ABRESTBOX,		&EForm_ABRESTBOX,
+//TempCode MS 30May00 /*FTS_WEAVE*/							&EForm_ABRESTWEAVE,		&EForm_ABRESTWEAVE,		&EForm_ABRESTWEAVE,		&EForm_ABRESTWEAVE,		&EForm_ABRESTWEAVE,		&EForm_ABRESTWEAVE,		&EForm_ABRESTWEAVE,		&EForm_ABRESTWEAVE,
+//TempCode MS 30May00
 //TempCode MS 30May00 //FTI_ABOVE//FTW_RAFVIC			FTW_LWVIC				FTW_FLAT5				FTW_SCWARM				FTW_BSCRWARM			FTW_FINGER				FTW_RAFTAIL				FTW_MAL
-//TempCode MS 30May00 /*FTS_VIC*/	&EForm_ABOVEVIC,	&EForm_ABOVEVIC,	&EForm_ABOVEVIC,	&EForm_ABOVEVIC,	&EForm_ABOVEVIC,	&EForm_ABOVEVIC,	&EForm_ABOVEVIC,	&EForm_ABOVEVIC,	
-//TempCode MS 30May00 /*FTS_ECHL*/	&EForm_ABOVEECHL,		&EForm_ABOVEECHL,		&EForm_ABOVEECHL,		&EForm_ABOVEECHL,		&EForm_ABOVEECHL,		&EForm_ABOVEECHL,		&EForm_ABOVEECHL,		&EForm_ABOVEECHL,		
-//TempCode MS 30May00 /*FTS_ECHR*/		&EForm_ABOVEECHR,		&EForm_ABOVEECHR,		&EForm_ABOVEECHR,		&EForm_ABOVEECHR,		&EForm_ABOVEECHR,		&EForm_ABOVEECHR,		&EForm_ABOVEECHR,		&EForm_ABOVEECHR,		
-//TempCode MS 30May00 /*FTS_ABREST*/			&EForm_ABOVEABREST,		&EForm_ABOVEABREST,		&EForm_ABOVEABREST,		&EForm_ABOVEABREST,		&EForm_ABOVEABREST,		&EForm_ABOVEABREST,		&EForm_ABOVEABREST,		&EForm_ABOVEABREST,		
-//TempCode MS 30May00 /*FTS_ASTERN*/				&EForm_ABOVEASTERN,		&EForm_ABOVEASTERN,		&EForm_ABOVEASTERN,		&EForm_ABOVEASTERN,		&EForm_ABOVEASTERN,		&EForm_ABOVEASTERN,		&EForm_ABOVEASTERN,		&EForm_ABOVEASTERN,		
-//TempCode MS 30May00 /*FTS_DIAMOND*/					&EForm_ABOVEDIAMOND,	&EForm_ABOVEDIAMOND,	&EForm_ABOVEDIAMOND,	&EForm_ABOVEDIAMOND,	&EForm_ABOVEDIAMOND,	&EForm_ABOVEDIAMOND,	&EForm_ABOVEDIAMOND,	&EForm_ABOVEDIAMOND,	
-//TempCode MS 30May00 /*FTS_BOX*/							&EForm_ABOVEBOX,		&EForm_ABOVEBOX,		&EForm_ABOVEBOX,		&EForm_ABOVEBOX,		&EForm_ABOVEBOX,		&EForm_ABOVEBOX,		&EForm_ABOVEBOX,		&EForm_ABOVEBOX,		
-//TempCode MS 30May00 /*FTS_WEAVE*/							&EForm_ABOVEWEAVE,		&EForm_ABOVEWEAVE,		&EForm_ABOVEWEAVE,		&EForm_ABOVEWEAVE,		&EForm_ABOVEWEAVE,		&EForm_ABOVEWEAVE,		&EForm_ABOVEWEAVE,		&EForm_ABOVEWEAVE,		
-//TempCode MS 30May00 
+//TempCode MS 30May00 /*FTS_VIC*/	&EForm_ABOVEVIC,	&EForm_ABOVEVIC,	&EForm_ABOVEVIC,	&EForm_ABOVEVIC,	&EForm_ABOVEVIC,	&EForm_ABOVEVIC,	&EForm_ABOVEVIC,	&EForm_ABOVEVIC,
+//TempCode MS 30May00 /*FTS_ECHL*/	&EForm_ABOVEECHL,		&EForm_ABOVEECHL,		&EForm_ABOVEECHL,		&EForm_ABOVEECHL,		&EForm_ABOVEECHL,		&EForm_ABOVEECHL,		&EForm_ABOVEECHL,		&EForm_ABOVEECHL,
+//TempCode MS 30May00 /*FTS_ECHR*/		&EForm_ABOVEECHR,		&EForm_ABOVEECHR,		&EForm_ABOVEECHR,		&EForm_ABOVEECHR,		&EForm_ABOVEECHR,		&EForm_ABOVEECHR,		&EForm_ABOVEECHR,		&EForm_ABOVEECHR,
+//TempCode MS 30May00 /*FTS_ABREST*/			&EForm_ABOVEABREST,		&EForm_ABOVEABREST,		&EForm_ABOVEABREST,		&EForm_ABOVEABREST,		&EForm_ABOVEABREST,		&EForm_ABOVEABREST,		&EForm_ABOVEABREST,		&EForm_ABOVEABREST,
+//TempCode MS 30May00 /*FTS_ASTERN*/				&EForm_ABOVEASTERN,		&EForm_ABOVEASTERN,		&EForm_ABOVEASTERN,		&EForm_ABOVEASTERN,		&EForm_ABOVEASTERN,		&EForm_ABOVEASTERN,		&EForm_ABOVEASTERN,		&EForm_ABOVEASTERN,
+//TempCode MS 30May00 /*FTS_DIAMOND*/					&EForm_ABOVEDIAMOND,	&EForm_ABOVEDIAMOND,	&EForm_ABOVEDIAMOND,	&EForm_ABOVEDIAMOND,	&EForm_ABOVEDIAMOND,	&EForm_ABOVEDIAMOND,	&EForm_ABOVEDIAMOND,	&EForm_ABOVEDIAMOND,
+//TempCode MS 30May00 /*FTS_BOX*/							&EForm_ABOVEBOX,		&EForm_ABOVEBOX,		&EForm_ABOVEBOX,		&EForm_ABOVEBOX,		&EForm_ABOVEBOX,		&EForm_ABOVEBOX,		&EForm_ABOVEBOX,		&EForm_ABOVEBOX,
+//TempCode MS 30May00 /*FTS_WEAVE*/							&EForm_ABOVEWEAVE,		&EForm_ABOVEWEAVE,		&EForm_ABOVEWEAVE,		&EForm_ABOVEWEAVE,		&EForm_ABOVEWEAVE,		&EForm_ABOVEWEAVE,		&EForm_ABOVEWEAVE,		&EForm_ABOVEWEAVE,
+//TempCode MS 30May00
 
 };
 FormationType*	GetEscortTable(FormationTypeIndex formationtype)
@@ -1609,9 +1609,9 @@ FormationType*	GetEscortTable(FormationTypeIndex formationtype)
 }
 
 //assume bomber cruise of 100 m/s
-//delta: time, horiz, vert 
+//delta: time, horiz, vert
 //POSITIVE delta time means arrive that much EARLY
-static	
+static
 struct WayPointOffsetBigTable
 {
 	WayPointOffset	list;
@@ -1623,65 +1623,65 @@ WPO_ESCFLIGHT=
 {{	{
 	{0,0,						0},
 	{0,0,						0+FT_500 },
-	{0,0,						0+FT_1000},                   
+	{0,0,						0+FT_1000},
 	{0,METRES2000,				0},
 	{0,METRES2000,				0+FT_500 },
-	{0,METRES2000,				0+FT_1000},                   
-	{0,-METRES2000,				0},	
+	{0,METRES2000,				0+FT_1000},
+	{0,-METRES2000,				0},
 	{0,-METRES2000,				0+FT_500 },
-	{0,-METRES2000,				0+FT_1000}, 
-	
+	{0,-METRES2000,				0+FT_1000},
+
 	{-5*SECS100,0,				FT_500},
 	{-5*SECS100,0,				FT_500+FT_500 },
-	{-5*SECS100,0,				FT_500+FT_1000},              
+	{-5*SECS100,0,				FT_500+FT_1000},
 	{-5*SECS100,METRES2000,				FT_500},
 	{-5*SECS100,METRES2000,				FT_500+FT_500 },
-	{-5*SECS100,METRES2000,				FT_500+FT_1000},      
+	{-5*SECS100,METRES2000,				FT_500+FT_1000},
 	{-5*SECS100,-METRES2000,				FT_500},
 }},
 {
 	{-5*SECS100,-METRES2000,				FT_500+FT_500 },
-	{-5*SECS100,-METRES2000,				FT_500+FT_1000},  
+	{-5*SECS100,-METRES2000,				FT_500+FT_1000},
 
 	{-10*SECS100,0,				FT_1000},
 	{-10*SECS100,0,				FT_1000+FT_500 },
-	{-10*SECS100,0,				FT_1000+FT_1000},             
+	{-10*SECS100,0,				FT_1000+FT_1000},
 	{-10*SECS100,METRES2000,				FT_1000},
 	{-10*SECS100,METRES2000,				FT_1000+FT_500 },
-	{-10*SECS100,METRES2000,				FT_1000+FT_1000}, 
+	{-10*SECS100,METRES2000,				FT_1000+FT_1000},
 	{-10*SECS100,-METRES2000,				FT_1000},
 	{-10*SECS100,-METRES2000,				FT_1000+FT_500 },
-	{-10*SECS100,-METRES2000,				FT_1000+FT_1000}, 
+	{-10*SECS100,-METRES2000,				FT_1000+FT_1000},
 
 	{-15*SECS100,0,				FT_1500},
 	{-15*SECS100,0,				FT_1500+FT_500 },
-	{-15*SECS100,0,				FT_1500+FT_1000},             
+	{-15*SECS100,0,				FT_1500+FT_1000},
 	{-15*SECS100,METRES2000,				FT_1500},
 	{-15*SECS100,METRES2000,				FT_1500+FT_500 },
-	{-15*SECS100,METRES2000,				FT_1500+FT_1000}, 
+	{-15*SECS100,METRES2000,				FT_1500+FT_1000},
 	{-15*SECS100,-METRES2000,				FT_1500},
 	{-15*SECS100,-METRES2000,				FT_1500+FT_500 },
-	{-15*SECS100,-METRES2000,				FT_1500+FT_1000}, 
-													                                                                                                             
+	{-15*SECS100,-METRES2000,				FT_1500+FT_1000},
+
 	{-20*SECS100,0,				FT_2000},
 	{-20*SECS100,0,				FT_2000+FT_500 },
-	{-20*SECS100,0,				FT_2000+FT_1000},             
+	{-20*SECS100,0,				FT_2000+FT_1000},
 	{-20*SECS100,METRES2000,				FT_2000},
 	{-20*SECS100,METRES2000,				FT_2000+FT_500 },
-	{-20*SECS100,METRES2000,				FT_2000+FT_1000}, 
+	{-20*SECS100,METRES2000,				FT_2000+FT_1000},
 	{-20*SECS100,-METRES2000,				FT_2000},
 	{-20*SECS100,-METRES2000,				FT_2000+FT_500 },
-	{-20*SECS100,-METRES2000,				FT_2000+FT_1000}, 
+	{-20*SECS100,-METRES2000,				FT_2000+FT_1000},
 
 	{-25*SECS100,0,				FT_2500},
 	{-25*SECS100,0,				FT_2500+FT_500 },
-	{-25*SECS100,0,				FT_2500+FT_1000},             
+	{-25*SECS100,0,				FT_2500+FT_1000},
 	{-25*SECS100,METRES2000,				FT_2500},
 	{-25*SECS100,METRES2000,				FT_2500+FT_500 },
-	{-25*SECS100,METRES2000,				FT_2500+FT_1000},             
+	{-25*SECS100,METRES2000,				FT_2500+FT_1000},
 	{-25*SECS100,-METRES2000,				FT_2500},
 	{-25*SECS100,-METRES2000,				FT_2500+FT_500 },
-	{-25*SECS100,-METRES2000,				FT_2500+FT_1000},          
+	{-25*SECS100,-METRES2000,				FT_2500+FT_1000},
 	{0,0,				FT_2500},	//64 entries
 }};
 
@@ -1798,23 +1798,23 @@ WPO_MAINFL=
 //TempCode MS 25Oct00 	{0,				0,						0},
 //TempCode MS 25Oct00 	{-10*SECS100,	0,						FT_500},
 //TempCode MS 25Oct00 	{-20*SECS100,	0,						FT_1000},
-//TempCode MS 25Oct00 
+//TempCode MS 25Oct00
 //TempCode MS 25Oct00 	{-35*SECS100,	0,						FT_1000},
 //TempCode MS 25Oct00 	{-45*SECS100,	0,						FT_1500},
 //TempCode MS 25Oct00 	{-55*SECS100,	0,						FT_2000},
-//TempCode MS 25Oct00 
+//TempCode MS 25Oct00
 //TempCode MS 25Oct00 	{-70*SECS100,	0,						FT_2000},
 //TempCode MS 25Oct00 	{-80*SECS100,	0,						FT_2500},
 //TempCode MS 25Oct00 	{-90*SECS100,	0,						FT_3000},
-//TempCode MS 25Oct00 
+//TempCode MS 25Oct00
 //TempCode MS 25Oct00 	{-105*SECS100,	0,						FT_3000},
 //TempCode MS 25Oct00 	{-115*SECS100,	0,						FT_3500},
 //TempCode MS 25Oct00 	{-125*SECS100,	0,						FT_4000},
-//TempCode MS 25Oct00 
+//TempCode MS 25Oct00
 //TempCode MS 25Oct00 	{-140*SECS100,	0,						FT_4000},
 //TempCode MS 25Oct00 	{-150*SECS100,	0,						FT_4500},
 //TempCode MS 25Oct00 	{-160*SECS100,	0,						FT_5000},
-//TempCode MS 25Oct00 
+//TempCode MS 25Oct00
 //TempCode MS 25Oct00 	{-175*SECS100,	0,						FT_5000},
 
 	{0,				0,						0},
@@ -2007,13 +2007,13 @@ WPO_LATE=
 	{-110*SECS100,METRES1000,	METRES50},
 	{-110*SECS100,-METRES1000,	METRES50},
 }};
-WayPointOffset		
+WayPointOffset
 WayPointOffsets_Escort=
 {{	//A plus time means "ahead by"
 	{0,+METRES10,0},				//FTIP_GRUPII	=	0x0000,
 	{0,0,0},						//FTIP_GRUPIII&lead group=0x0040,
 	{+10*SECS100,0,METRES10},		//FTIP_ASTERN	=	0x0080,	//escort positions and alternate formation
-	{-10*SECS100,0,-METRES10},		//FTIP_AHEAD	=	0x00c0,	   
+	{-10*SECS100,0,-METRES10},		//FTIP_AHEAD	=	0x00c0,
 	{0,-METRES200,0},				//FTIP_LEFT	=	0x0100,
 	{0,+METRES200,0},				//FTIP_RIGHT	=	0x0140,
 	{0,0,+METRES50},				//FTIP_ABOVE	=	0x0180,
@@ -2034,16 +2034,16 @@ WayPointOffsets_Escort=
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetFollower_xyz
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 26 Feb 1996
 //
 //Description	Fills despos with desired location
 //				THIS MUST BE BASED ON WING LEADER, NOT SQUAD LEADER//JIM 02Aug96
-//				Otherwise, in 2 wings that are trying to come 
+//				Otherwise, in 2 wings that are trying to come
 //				together the followers will stay loose.
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 	//Want no effect to F86 which has 52 in this shape size field.
@@ -2113,14 +2113,14 @@ COORDS3D*	Item::Formation_xyz(ANGLES hdg,FormationType* formtype,int formindex)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetFlightLeader_xyz
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 26 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void AirStruc::GetFlightLeader_xyz (FormationTypeIndex	formationtype, FormationItemPtr leader)

@@ -1,16 +1,21 @@
 //------------------------------------------------------------------------------
 //Filename       fileman.h
-//System         
+//System
 //Author         Jim Taylor
 //Date           Thu 21 Sep 1995
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	FILEMAN_Included
 #define	FILEMAN_Included
 
 
-#include	"myError.h"
 #include	"files.g"											//JIM 07Nov95
+
+#include <windows.h>
+//#include <afxwin.h>
+
+#include	"myerror.h"
+
 //DeadCode PD 29Oct96 #include	"mscdex.h"
 
 struct RequestHeader; struct CDComm; struct dir_entry;
@@ -150,7 +155,7 @@ public:
 				ULong blocksize=0x7fffffffL,
 				ULong offset=0L
 				)
- {	assert(MyFile,"is zero!");makefileblock(MyFile,MyTrans,blocksize,offset,true);	}
+ {	bobassert(MyFile,"is zero!");makefileblock(MyFile,MyTrans,blocksize,offset,true);	}
 
 
 private:
@@ -205,8 +210,8 @@ inline  void*	getdata(fileblockptr	fb)	{return(fb->getdata());};
 
 
 //typedef	uword	dirindex;
-const	MAXDIRENTRIES		=	256;
-const	MAXCDFILEENTRIES 	=	2;  							//PD 18Nov96
+const	size_t MAXDIRENTRIES		=	256;
+const	size_t MAXCDFILEENTRIES 	=	2;  							//PD 18Nov96
 
 
 /////////////////////////////////////////////////////////
@@ -239,7 +244,7 @@ FileNum		currfilenum;
 fileblockptr
 			currfileblock;		//Future optimisation: keep hold of last file
 fileblock*	filrootblock;
-void		*dirfakeblock,		//Temporary:	Fake cacheing of  defaults 
+void		*dirfakeblock,		//Temporary:	Fake cacheing of  defaults
 			*dirrootblock;		//Temporary:	Fake cacheing of ROOTS.DIR
 ULong		currfilesize;
 FILE*		currfilehandle;
@@ -264,7 +269,7 @@ string		pathnameptr;
 		CON	OpenFile()	{number=INVALIDFILENUM;}
 	};
 
-#ifdef _WINBASE_
+//x0r #ifdef _WINBASE_
 	struct CDOpenFile : public OpenFileBase						//PD 18Nov96
 	{
 		CDOpenFile() {number=INVALIDFILENUM;handle=NULL;maxfilesize=0;winhandle=INVALID_HANDLE_VALUE;}
@@ -279,7 +284,7 @@ string		pathnameptr;
 			seekingtoposition;
 		CDCurrOpenFile() {currindex=0;actualindex=-1;}
 	};
-#endif
+//#endif
 
 	struct	dirfileentry
 	{
@@ -289,12 +294,11 @@ string		pathnameptr;
 	dirindex		parentdir;
 	fileblocklink	*freedfiles,
 					*openfiles;
-	
+
 	OpenFile		openfile;
 	dirfileentry();
 	};
 
-	dirfileentry	direntries[MAXDIRENTRIES];					//PD 18Nov96
 	CDOpenFile* 	cdfiles;	//[MAXCDFILEENTRIES];									//PD 18Nov96
 	CDCurrOpenFile*	cdfile;										//PD 18Nov96
 
@@ -320,6 +324,7 @@ string		pathnameptr;
 //Old_Code PD 18Nov96 		Bool	CDgetthedata;									//PD 04Nov96
 
 public:															//JIM 10May96
+	dirfileentry	direntries[MAXDIRENTRIES];					//PD 18Nov96
 void		InitFileSystem();
 void		makerootdirlist();									//JIM 10May96
 //void		CDSetup(string);									//PD 30Oct96
@@ -402,7 +407,7 @@ int	assumefakedir;
 	static	void	translatedirlist(void*	&dataarea,ULong&	datalengthin);
 };
 
-class	FileMan:protected fileman	
+class	FileMan:/* x0r protected*/ public fileman
 {
 	friend	class	dirlist;
 public:
@@ -474,16 +479,14 @@ private:
 	SLong		numfiles;
 public:
 	~dirlist();
-	
+
 	dirlist(FileNum d);
 	dirlist(FileNum d,char* wild);
 	dirlist(char* path,char* wild);
 	operator	int		()		{return (int)numfiles;}
 	char* operator	[](int i)
 		{
-		#ifdef	assert
-			assert(i<=numfiles,"wild enum too high");
-		#endif
+			bobassert(i<=numfiles,"wild enum too high");
 			return &filelist[i*(int)FNAMESIZE];
 		}
 	char*	operator+(char *);

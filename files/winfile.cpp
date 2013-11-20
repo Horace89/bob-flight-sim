@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -63,15 +63,15 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 */
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
-//Procedure		
-//Author		Paul.   
+//Procedure
+//Author		Paul.
 //Date			Mon 4 Nov 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 
@@ -128,7 +128,7 @@ char* 	readblockbuffer=(char*)(((int)readblockbufferbase+2047)&-2048);
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CDSeek
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 29 Oct 1996
 //
 //Description	Interface to MSCDEX via int 2Fh funtion 15h subfunction 10h
@@ -140,7 +140,8 @@ char* 	readblockbuffer=(char*)(((int)readblockbufferbase+2047)&-2048);
 //------------------------------------------------------------------------------
 UWord fileman::CDSeek(ULong seekpos)
 {
-	for (int fileindex=0;cdfile->number!=cdfiles[fileindex].number;fileindex++)
+    int fileindex;
+	for (fileindex=0;cdfile->number!=cdfiles[fileindex].number;fileindex++)
 	{
 		if (fileindex>=MAXCDFILEENTRIES)
 			_Error.EmitSysErr("Invalid CD filenumber");
@@ -160,7 +161,7 @@ UWord fileman::CDSeek(ULong seekpos)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SetupAreaFiles
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 18 Nov 1996
 //
 //Description	Opens and sets up the data structures required to
@@ -168,7 +169,7 @@ UWord fileman::CDSeek(ULong seekpos)
 //
 //Inputs		areafiles = ptr to a list of the four area file numbers required
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void fileman::SetupAreaFiles(FileNum* areafiles)
@@ -205,14 +206,14 @@ void fileman::SetupAreaFiles(FileNum* areafiles)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CloseAreaFiles
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 18 Nov 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void fileman::CloseAreaFiles()
@@ -239,14 +240,14 @@ void fileman::CloseAreaFiles()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		resetCDfile
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 18 Nov 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void fileman::resetCDfile(FileNum myfile)
@@ -255,8 +256,8 @@ void fileman::resetCDfile(FileNum myfile)
 	{
 		//requested file is not the current one
 		//make the requested file the current file
-
-		for (int fileindex=0;;fileindex++)
+        int fileindex;
+		for (fileindex=0;;fileindex++)
 		{
 			if (fileindex==MAXCDFILEENTRIES)
 				_Error.EmitSysErr("Requested CD file is not in the current area");
@@ -276,24 +277,24 @@ void fileman::resetCDfile(FileNum myfile)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		loadCDfile
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 18 Nov 1996
 //
-//Description	
+//Description
 //
 //Inputs		myfile = CD landscape file number
 //				length = length of block to load
 //				offset = index into the file to load the block from
 //				skipread = 	TRUE means do skip reads and waits (default)
-//							FALSE means just load the block immediately	
+//							FALSE means just load the block immediately
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void* fileman::loadCDfile(FileNum myfile,SLong length,SLong offset,Bool skipread)
 {
-	if (length>ULong(readblockbufferbase+65536)-ULong(readblockbuffer))
-		_asm {int 3}
+//	x0r if (length>ULong(readblockbufferbase+65536)-ULong(readblockbuffer))
+	//	_asm {int 3}
 
 	pingcount=0;
 	void*	retval = NULL;
@@ -400,14 +401,14 @@ void* fileman::loadCDfile(FileNum myfile,SLong length,SLong offset,Bool skipread
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		pingCD
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 17 Dec 1996
 //
 //Description	Read 1 cd block and increment the current head position
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void fileman::pingCD()
@@ -450,7 +451,7 @@ void fileman::pingCD()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CDseekreadfilepos
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 24 Sep 1998
 //------------------------------------------------------------------------------
 void	fileman::CDseekreadfilepos(HANDLE winhandle,int index,void* buffer,int sizecopy)
@@ -468,7 +469,7 @@ void	fileman::CDseekreadfilepos(HANDLE winhandle,int index,void* buffer,int size
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		setcdsavedata
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 25 Sep 1998
 //------------------------------------------------------------------------------
 void fileman::setcdsavedata()

@@ -87,7 +87,7 @@ typedef FullScreen::Align ALIGN;
 	/*4*/	{IDS_2D,&twodoptions},				\
 	/*5*/	{IDS_BLANK},				\
 	/*6*/	{IDS_SIM, &flightoptions},				\
-	/*7*/	{IDS_CONTINUE_CONFIG,NULL,PreferencesExitPath}						\
+	/*7*/	{IDS_CONTINUE_CONFIG,NULL,&RFullPanelDial::PreferencesExitPath}						\
 	}
 
 #define	SIMOPTIONSTITLE\
@@ -98,7 +98,7 @@ typedef FullScreen::Align ALIGN;
 	/*3*/	{IDS_VIEW_CONFIG,&vieweroptions},		 \
 	/*4*/	{IDS_GESCHWADERLIST},/*IDS_BLANK},*/				\
 	/*5*/	{IDS_MACHINE, &options3d},				\
-	/*6*/	{IDS_CONTINUE_CONFIG,NULL,PreferencesExitPath}						\
+	/*6*/	{IDS_CONTINUE_CONFIG,NULL,&RFullPanelDial::PreferencesExitPath}						\
   	}
 
 #define	OPTIONSXY640	15,5
@@ -138,7 +138,7 @@ FullScreen RFullPanelDial::options3d=
 	},
 	FullScreen::Align::HORIZ,// + FullScreen::Align::HORIZ,
 	OPTIONSTITLE,
-	Options3dInit
+	&RFullPanelDial::Options3dInit
 };
 //#define	OPTIONSXY640	15,5
 //#define	OPTIONSXY800	10,10
@@ -172,7 +172,7 @@ FullScreen RFullPanelDial::gameoptions=
 	},
 	FullScreen::Align::HORIZ,// + FullScreen::Align::HORIZ,
 	SIMOPTIONSTITLE,
-	GameOptionsInit
+	&RFullPanelDial::GameOptionsInit
 };
 
 FullScreen RFullPanelDial::missionoptions=
@@ -201,7 +201,7 @@ FullScreen RFullPanelDial::missionoptions=
 	},
 	FullScreen::Align::HORIZ,// + FullScreen::Align::HORIZ,
 	SIMOPTIONSTITLE,
-	MissionOptionsInit
+	&RFullPanelDial::MissionOptionsInit
 };
 
 FullScreen RFullPanelDial::options3d2=
@@ -230,7 +230,7 @@ FullScreen RFullPanelDial::options3d2=
 	},
 	FullScreen::Align::HORIZ,// + FullScreen::Align::HORIZ,
 	OPTIONSTITLE,
-	Options3d2Init
+	&RFullPanelDial::Options3d2Init
 };
 
 FullScreen RFullPanelDial::vieweroptions=
@@ -259,7 +259,7 @@ FullScreen RFullPanelDial::vieweroptions=
 	},
 	FullScreen::Align::HORIZ,// + FullScreen::Align::HORIZ,
 	SIMOPTIONSTITLE,
-	ViewerOptionsInit
+	&RFullPanelDial::ViewerOptionsInit
 };
 
 FullScreen RFullPanelDial::soundoptions=
@@ -288,7 +288,7 @@ FullScreen RFullPanelDial::soundoptions=
 	},
 	FullScreen::Align::HORIZ,// + FullScreen::Align::HORIZ,
 	OPTIONSTITLE,
-	SoundOptionsInit
+	&RFullPanelDial::SoundOptionsInit
 };
 FullScreen RFullPanelDial::twodoptions=
 {
@@ -316,7 +316,7 @@ FullScreen RFullPanelDial::twodoptions=
 	},
 	FullScreen::Align::HORIZ,// + FullScreen::Align::HORIZ,
 	OPTIONSTITLE,
-	TwoDOptionsInit
+	&RFullPanelDial::TwoDOptionsInit
 };
 FullScreen RFullPanelDial::flightoptions=
 {
@@ -344,7 +344,7 @@ FullScreen RFullPanelDial::flightoptions=
 	},
 	FullScreen::Align::HORIZ,// + FullScreen::Align::HORIZ,
 	SIMOPTIONSTITLE,
-	FlightOptionsInit
+	&RFullPanelDial::FlightOptionsInit
 };
 
 FullScreen RFullPanelDial::controloptions=
@@ -373,7 +373,7 @@ FullScreen RFullPanelDial::controloptions=
 	},
 	FullScreen::Align::HORIZ,// + FullScreen::Align::HORIZ,
 	OPTIONSTITLE,
-	ControlOptionsInit
+	&RFullPanelDial::ControlOptionsInit
 };
 
 ////////////////////////////////////////////////////////////////////////

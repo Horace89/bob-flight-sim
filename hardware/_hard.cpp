@@ -63,7 +63,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 */
 
 
-#include "_HARD.h"
+#include "_hard.h"
 //#include "..\HARDWARE\Ddrwinit.cpp"
 //#include "..\HARDWARE\Hardpub.cpp"
 //#include "..\HARDWARE\Hardwin.cpp"

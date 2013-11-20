@@ -84,6 +84,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 	#include	"Polygon.H"									//PD 13Mar96
 	#include	"flymodel.H"									//RJS 07May97
 #include "monotxt.h"
+#include "shapes.h"
 
 btree::ObjectRec btree::objectRec;
 

@@ -14,12 +14,13 @@
 #include	"ImageMap.h"										//ARM 05Aug96
 #include	"display.h"											//ARM 05Aug96
 #include	"Areatype.h"										//jon
+#include	"worldinc.h"
 
-#define	MAX_RECORD_COUNT	256
+const size_t	MAX_RECORD_COUNT	=256;
 #define	DEFAULT_LANDSCAP 0
-#define TILE_REZ_LIMIT_ITEM 1
+const int TILE_REZ_LIMIT_ITEM =1;
 
-#define	MAX_CRATERS	128											//RJS 18Nov99
+const size_t	MAX_CRATERS	=128;											//RJS 18Nov99
 
 const	int	CloudsAt5000ft	= 0x028B0A;							//PD 11Oct96
 const	int CloudsAt10000ft	= 2*CloudsAt5000ft;					//PD 11Oct96
@@ -33,7 +34,7 @@ enum	CloudAlt {CH_5Kft=0,CH_10Kft,CH_15Kft};
 
 //new bits-n-pieces for time of day/bad weather effects
 
-#define	MAX_STOMPERS	8										//RJS 30Nov99
+const size_t	MAX_STOMPERS	=8;										//RJS 30Nov99
 																//RJS 30Nov99
 struct	StompyMapType											//RJS 30Nov99
 {																//RJS 30Nov99
@@ -189,7 +190,7 @@ struct SLightingRGB
 	SLayerRGB	staticAmbientCollo,staticAmbientColhi,staticAmbientColamb;		/* Ambient lighting value
 																				for non-light shaded
 																				shapes					*/
-//DeadCode JON 2Nov00 	SLayerRGB	cockpitAmbientCollo,cockpitAmbientColhi,cockpitAmbientColamb;	/* Ambient light for internal 
+//DeadCode JON 2Nov00 	SLayerRGB	cockpitAmbientCollo,cockpitAmbientColhi,cockpitAmbientColamb;	/* Ambient light for internal
 //DeadCode JON 2Nov00 																				cockpit view */
 //DeadCode JON 2Nov00 	SLayerRGB	effectsAmbientCollo,effectsAmbientColhi,effectsAmbientColamb;	/* Ambient light for explosions */
 
@@ -203,13 +204,13 @@ struct SLightingRGB
 };
 
 //------------------------------------------------------------------------------
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 6 Nov 1995
-//Modified	
+//Modified
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //------------------------------------------------------------------------------
 class CDataBlock;
 //DEAD class Heap<landvertex>;
@@ -251,7 +252,7 @@ struct	HorizGridOffsets
 	{
 		return ( x != hx || z != hz );
 	}
-	
+
 	inline void set( const int& x, const int& z )
 	{
 		jx = x;
@@ -286,13 +287,13 @@ class LandScape
 	SLong		craterCnt;										//RJS 18Nov99
 
 	SmkCloudDesc*	smkList;									//RJS 23May00
-	
+
 	struct fPos
 	{
 		float x,y,z;
 	};
 
-	
+
 public:
 	enum MigLandConsts{
 
@@ -365,8 +366,8 @@ public:
 						//the hemisphere
 		_numSegs=32		//number of horizontal segments
 						//in the hemisphere
-						//NOTE: ((_numBands+1)*_numSegs)+1 
-						//		must be less than or equal 
+						//NOTE: ((_numBands+1)*_numSegs)+1
+						//		must be less than or equal
 						//		to 257
 #endif
 	};
@@ -425,7 +426,7 @@ private:
 	void RenderSheep(const UByte* pDS,ULong sheepCount,const COORDS3D& view, const PointDef* inptDefs);	//JON 24Oct00
 
 	void DrawCloudLayer( const int hx, const int hz, D3DVECTOR* pos, const bool clockWise );	//JON 25Sep00
- 
+
 	SLightingRGB	*pDawn, *pDay, *pDusk, *pNite/*, *pBadW, *pMapL*/;	//JON 2Nov00
 
 	HorizGridOffsets gridOffs;
@@ -440,7 +441,7 @@ private:
 
 	struct RouteData;
 
-		
+
 	RouteData* pRouteData;
 
 //DeadCode JON 12Sep00 	UByte* gridCorners;
@@ -544,8 +545,8 @@ private:
 	animptr	CloudAnimP;											//RJS 21Apr99
 	bool	smokePlaneOn;										//RJS 15Feb00
 
-	LandScape::LandScape();
-	LandScape::~LandScape();
+	LandScape();
+	~LandScape();
 
 	Bool SetLighting(SLong);									//RJS 15Jun99
 
@@ -643,17 +644,17 @@ private:
 					const ULong,
 					const COORDS3D&,
 					const TileElement& gridElement,
-					const ImageMapDescPtr seaptr, 
+					const ImageMapDescPtr seaptr,
 					SWord seaAnimOffset);
 	void _HiRezTile(
 					const UByte* pDS,
 					const ULong dataLen,
 					const COORDS3D& view,
 					const HTEXT& hTexture,
-					const bool doDither, 
-					const bool doRaises, 
+					const bool doDither,
+					const bool doRaises,
 					const bool doHirez,
-					const ImageMapDescPtr seaptr, 
+					const ImageMapDescPtr seaptr,
 					const SWord seaAnimOffset,
 					const bool doItems);	//JON 26Jul00
 	void LoRezTile(UByte*&,ULong&,COORDS3D&,const HTEXT&);
@@ -712,7 +713,7 @@ private:
 	#define TILE_WH 33
 	#define TILE_OFFX ((TILE_WH-1)>>2)
 	#define TILE_OFFZ (TILE_OFFX*TILE_WH)
-	#define COORDS_SHIFT 12
+//	#define COORDS_SHIFT 12
 
 	#define OLD_TL	0
 	#define OLD_TR	1

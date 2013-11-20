@@ -64,7 +64,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 // RTitleCtl.cpp : Implementation of the CRTitleCtrl ActiveX Control class.
 
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "RTitle.h"
 #include "RTitleC.h"
 #include "RTitleP.h"

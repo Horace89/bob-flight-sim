@@ -344,7 +344,7 @@ void BoBFrag::ResetPlayerEntry(int plyrpos)
 	{
 		squadinfo.currfrag->pilotentries[i].playerallowed      = true; 
 	
-		if (squadinfo.currfrag->pilotentries[i].playerinslot == true)
+		if (squadinfo.currfrag->pilotentries[i].playerinslot == true) //x0r Unitialized here
 		{
 //			squadinfo.currfrag->pilotentries[i].playerslotname = NULL;
 			squadinfo.currfrag->pilotentries[i].playerinslot = false;
@@ -398,7 +398,8 @@ int	BoBFrag::GetPreviousSquadronNumber(int pos)
 
 void BoBFrag::SetPlayersPositionCamp(int plyrpos)
 {
-	int side=GetSideAndSetFrag(),j,curr=0;
+	int side=GetSideAndSetFrag(),curr=0;
+	int j=0;
 
 	if (plyrpos>=0)
 	{

@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -64,7 +64,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //------------------------------------------------------------------------------
 //Filename       fileman.cpp
-//System         
+//System
 //Author         Jim Taylor
 //Date           Tue 8 Aug 1995
 //Description    File management module for new engine
@@ -94,7 +94,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include	"myerror.h"
 #include 	<stdio.h>
 #include    <string.h>
-#include    <direct.h>	
+#include    <direct.h>
 #include	"mymath.h"
 #include	"fileman.h"
 //#include	"myAngles.h"
@@ -147,7 +147,7 @@ char	namedirdir[2048]={'D','I','R','.','D','I','R',0,	 		0,0,0,0,0,0,0,0,
 
 int	(*fileman::MemFailPFU) (unsigned)=NULL;
 int	interlocker=0;
-#ifdef	__MSVC__	
+#ifdef	__MSVC__
 //inline	int	LockExchange(int* loc,int newval=0)
 //{
 //	int rv;
@@ -175,15 +175,15 @@ FileMan	File_Man;
 //Author		Jim Taylor
 //Date			Thu 28 Mar 1996
 //
-//Description	
+//Description
 //Basic constructor for fileman. Only caled once - what a waste!
 //
-//Inputs		
-// 
-//Returns	
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
-struct	CDOpenFile	
+struct	CDOpenFile
 {int i;};
 CON	fileman::fileman()
 {
@@ -204,7 +204,7 @@ CON	fileman::fileman()
 //	makerootdirlist();
 //DeadCode JIM 24Oct96 	makerootdirlist();
 #ifdef	__MSVC__
-	MemFailPFU=_set_new_handler(MyMemFailPFU);
+ 	MemFailPFU=_set_new_handler(MyMemFailPFU);
 #endif
 
 	cdfiles=new CDOpenFile[MAXCDFILEENTRIES];
@@ -217,11 +217,11 @@ CON	fileman::fileman()
 //Author		Jim Taylor
 //Date			Thu 28 Mar 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DES	fileman::~fileman()
@@ -294,7 +294,7 @@ void	fileman::makerootdirlist()
 static char	worker[1250];
 		dirfakeblock=worker;
 //	First, find some hardware locations
-const	HERE=0,EXE=2,CD=70,PARAM=135;
+const int	HERE=0,EXE=2,CD=70,PARAM=135;
 		worker[0]='.';worker[1]=0;
 		Getexedirectory(&worker[EXE]);		//Directory containing executable
 		GetCDdirectory(&worker[CD]);		//hardware CD drive location
@@ -399,7 +399,7 @@ ULong	datalength=datalengthin;
 
 dirindex	dirnum,parentnum;
 ULong	mathret;
-	while (	(*datascan<'0')	  ||	(*datascan>'9'))
+	while ((datalength>0) && (	(*datascan<'0')	  ||	(*datascan>'9')))
 	{
 		datascan++;
 		datalength--;
@@ -415,7 +415,7 @@ ULong	mathret;
 		if (mathret>255)
 			_Error.EmitSysErr("Dir num %i too high!",mathret);
 		dirnum=(dirindex) mathret;
-		while (*datascan<=' ')
+		while ((datalength>0) && (*datascan<=' '))
 		{
 			datascan++;
 			datalength--;
@@ -429,7 +429,7 @@ ULong	mathret;
 			parentnum=(dirindex) mathret;
 			if (parentnum==dirnum)
 				parentnum=RAMCACHEHANDLEDIR;
-			while (*datascan<=' ')
+			while ((datalength>0) && (*datascan<=' '))
 			{
 				datascan++;
 				datalength--;
@@ -439,26 +439,26 @@ ULong	mathret;
 			parentnum=RAMCACHEHANDLEDIR;
 		//copy the text field which is the directory name
 int		pathstart=outind;
-		if (datascan[0]=='"')
+		if ((datalength>0) && datascan[0]=='"')
 			do{
 				outptr[outind++]=*++datascan;
 				datalength--;
-			}while (datascan[1]!='"');
+			}while ((datalength>1) && datascan[1]!='"');
 		else
-			while (*datascan>' ')
+			while ((datalength>0) && (*datascan>' '))
 			{
 				outptr[outind++]=*(datascan++);
 				datalength--;
 			}
 		outptr[outind++]=0;
 		//skip to end of line
-		while (*datascan!='\n')
+		while ((datalength>0) && (*datascan!='\n'))
 		{
 			datascan++;
 			datalength--;
 		}
 		//skip to useful data on next line, assuming we haven't run out!
-		while (	(*datascan<'0') &&	(datalength>0))
+		while ((datalength>0) && (*datascan<'0'))
 		{
 			datascan++;
 			datalength--;
@@ -470,7 +470,7 @@ int		pathstart=outind;
 		{
 			if (dirnum>16)
 				_Error.EmitSysErr("Base directory over 16");
-		} 
+		}
 		else
 		{
 			if (FILEMAN.direntries[parentnum].driverfile==INVALIDFILENUM)
@@ -505,7 +505,7 @@ int		pathstart=outind;
 
 
 //At this point, we want to make a copy from dataarea to outptr
-//For all the direntries referencing the .DIR file num 
+//For all the direntries referencing the .DIR file num
 //and not null name ptr then we can patch the name pointer
 //Finally return a pointer to the new area in order to delete the old area.
 //
@@ -532,7 +532,7 @@ int		outind=0,
 
 //DeadCode JIM 06Nov95 dirindex	dirnum;
 //Skip leading garbage...
-	while (	(*datascan<'0')	  ||	(*datascan>'9'))
+	while ((datalength>0) &&( (*datascan<'0')	  ||	(*datascan>'9') ))
 	{
 		datascan++;
 		datalength--;
@@ -543,54 +543,54 @@ int		outind=0,
 
 //First read in the line:
 		//get first number field
-		while (	(*datascan>='0') &&	(*datascan<='9'))
+		while ((datalength>0) && (*datascan>='0') &&	(*datascan<='9'))
 		{
 			datascan++;
 			datalength--;
 		}
 		//find second
-		while (	(*datascan<=' '))
+		while ((datalength>0) && (*datascan<=' '))
 		{
 			datascan++;
 			datalength--;
 		}
 
 		//if second field is numeric then read that
-		if ((*datascan<='9')&&(*datascan>='0'))
+		if ((datalength>0) && (*datascan<='9')&&(*datascan>='0'))
 		{
-			while (	(*datascan>='0') &&	(*datascan<='9'))
+			while ((datalength>0) &&(*datascan>='0') &&	(*datascan<='9'))
 			{
 				datascan++;
 				datalength--;
 			}
 			//find 3rd field
-			while (*datascan<=' ')
+			while ((datalength>0) && (*datascan<=' '))
 			{
 				datascan++;
 				datalength--;
 			}
 		}
 		//copy the text field which is the directory name
-		if (datascan[0]=='"')
+		if ((datalength>0) && datascan[0]=='"')
 			do{
 				outptr[outind++]=*++datascan;
 				datalength--;
-			}while (datascan[1]!='"');
+			}while ((datalength>1) && datascan[1]!='"');
 		else
-			while (*datascan>' ')
+			while ((datalength>0) && (*datascan>' '))
 			{
 				outptr[outind++]=*(datascan++);
 				datalength--;
 			}
 		outptr[outind++]=0;
 		//skip to end of line
-		while (*datascan!='\n')
+		while ((datalength>0) && (*datascan!='\n'))
 		{
 			datascan++;
 			datalength--;
 		}
 		//skip to useful data on next line, assuming we haven't run out!
-		while (	(*datascan<'0') &&	(datalength>0))
+		while ((datalength>0) &&	(*datascan<'0'))
 		{
 			datascan++;
 			datalength--;
@@ -608,7 +608,7 @@ int		outind=0,
 
 
 //At this point, we want to make a copy from dataarea to outptr
-//For all the direntries referencing the .DIR file num 
+//For all the direntries referencing the .DIR file num
 //and not null name ptr then we can patch the name pointer
 //Finally return a pointer to the new area in order to delete the old area.
 //
@@ -641,7 +641,7 @@ fileblockptr	fileman::loaddirlist(FileNum	filenum)
 //	differently (yuck!)
 //
 //////////////////////////////////////////////////////////////////////
-const	PATHSTEPCHARS	=	128;
+const	int PATHSTEPCHARS	=	128;
 
 void	fileman::makedirectoryname(dirindex	reqdir,int	pathend)
 {
@@ -770,7 +770,7 @@ void	fixmanualdirnum(void*	&srcdata,ULong& srcsize)
 {
 string	srcchar=(string)	srcdata;
 //If area is zero length then need to build list by wildcard
-	assert 	((srcsize) , "=0=wildcard - not implemented");
+	bobassert 	(srcsize , "=0=wildcard - not implemented");
 //If first byte is zero then it is a concatenated directory
 	//else
 //Old_Code DAW 24Feb97 	assert	((srcchar[0])&&("=0=concatenated - not implemented"));
@@ -802,7 +802,7 @@ ULong	indexer=0;
 		indexer=entries*16;
 
 //Allocate: Temporary cheat.. not changing data areas, so wasting a little space. File must be oversize enough to accomodate 16 bytes per filename
-		assert((indexer<=srcsize),"Storing back at present!");
+		bobassert(indexer<=srcsize,"Storing back at present!");
 string	outchar=srcchar;
 //DeadCode JIM 20Oct00 void*		outstart=srcdata;
 
@@ -894,10 +894,14 @@ string	fileman::namenumberedfilelessfail(FileNum	MyFile)
 	string		dirlister=(string)	fb.getdata();
 
 //DeadCode DAW 25Feb97 	INT3();
-	if (dirlister[0]==0)										//DAW 25Feb97
+    assert(dirlister);
+	if (dirlister==NULL)										//DAW 25Feb97
 		return("//");
-	assert(  (dirlister[0]) , "Not expecting concatenated directory here!" );
-	assert(  (dirlister[12]==0),
+
+	if (dirlister[0]==NULL)										//DAW 25Feb97
+		return("//");
+	bobassert(  (dirlister[0]) , "Not expecting concatenated directory here!" );
+	bobassert(  (dirlister[12]==0),
 		  "Not expecting hand built file-list here!"
 		 );
 
@@ -939,16 +943,17 @@ string	fileman::namenumberedfile(FileNum	MyFile)
 	string		dirlister=(string)	fb.getdata();
 
 //DeadCode DAW 25Feb97 	INT3();
+    assert(dirlister);
 	if (!dirlister || dirlister[0]==0)										//DAW 25Feb97
 		return("//");
-	assert(  (dirlister[0]) ,"Not expecting concatenated directory here!" );
-	assert(  (dirlister[12]==0),"Not expecting hand built file-list here!");
+	bobassert(  (dirlister[0]) ,"Not expecting concatenated directory here!" );
+	bobassert(  (dirlister[12]==0),"Not expecting hand built file-list here!");
 	currfilenum=MyFile;
 
 	int		fnum=((int)MyFile & (int)FILENUMMASK)<<4;
 
 	if (fb.getsize() && (fnum>fb.getsize()))
-		{return("//");
+		{//x0r revert return("//");
 		_Error.EmitSysErr("File number (%04X) past end of Dir.Dir file!",MyFile);}
 	if (dirnum(MyFile)==assumefakedir && (int(MyFile)&255)==fakefileindex)
 	{	//fake long file name potential
@@ -974,7 +979,7 @@ string	fileman::namenumberedfile(FileNum	MyFile)
 			fputc('\n',errhandle);
 		}
 
-	
+
 		return(pathnameptr);
 	}
 }
@@ -999,7 +1004,7 @@ FILE*	retval=easyopennumberedfile(MyFile);
     if (dirnum(MyFile)==assumefakedir && ((int)MyFile&255)==fakefileindex)
     	path=namedirdir+fakefileoffset-filenameindex+(pathnameptr-pathname);
     #ifdef __MSVC__
-    	CString string;
+    	CString tstring;
 		char* n=pathnameptr;
 		char buffer[1000];
 		strcpy(buffer,pathnameptr);
@@ -1011,10 +1016,10 @@ FILE*	retval=easyopennumberedfile(MyFile);
 //DEADCODE RDH 20/05/99 		if(MessageBox(Master_3d.winst,"Please insert correct media for above file",fname,MB_RETRYCANCEL)
 //DEADCODE RDH 20/05/99 			==IDCANCEL)
 		BLOCKCHILD=true;
-		string.LoadString(IDS_INSERTCD);
+		tstring.LoadString(IDS_INSERTCD);
 //			HWND upperwnd=HWND_BOTTOM;
 //			::SetWindowPos(m_hWnd,upperwnd,0,0,0,0,SWP_NOACTIVATE+SWP_NOMOVE+SWP_NOSIZE);
-                string+=(CString)" "+(CString)fname;
+                tstring+=(CString)" "+(CString)fname;
 
 		if (!retval && errhandle)
 		{
@@ -1023,12 +1028,12 @@ FILE*	retval=easyopennumberedfile(MyFile);
 			fputc('\n',errhandle);
 		}
 /*
-		if(MessageBox(NULL,string,fname,MB_RETRYCANCEL|MB_SYSTEMMODAL|MB_TOPMOST|MB_SETFOREGROUND|MB_ICONHAND)
+		if(MessageBox(NULL,String,fname,MB_RETRYCANCEL|MB_SYSTEMMODAL|MB_TOPMOST|MB_SETFOREGROUND|MB_ICONHAND)
 			==IDCANCEL)
 		{
-				string.LoadString(IDS_FILENOTEXIST);
+				tstring.LoadString(IDS_FILENOTEXIST);
 
-				_Error.ReallyEmitSysErr(string,
+				_Error.ReallyEmitSysErr(tstring,
 							 MyFile,pathnameptr);
 		}
 */
@@ -1057,9 +1062,9 @@ FILE*	retval=easyopennumberedfile(MyFile);
 //
 //Description	Returns TRUE is the file is part of a concatinated dir.dir
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	fileman::IsConcatinatedFile(FileNum	MyFile)
@@ -1075,9 +1080,9 @@ Bool	fileman::existnumberedfile(FileNum	MyFile)
 {
 	for (fileblocklink	**search=&FILEMAN.direntries[dirnum(MyFile)].freedfiles;
 		*search;
-		search=&search _->dir.next
+		search=&search[0]->dir.next
 		)
-		if (search _->filenum==MyFile)
+		if (search[0]->filenum==MyFile)
 			return TRUE;
 		string	name=namenumberedfilelessfail(MyFile);
 		if (name==NULL || name[0]==0 || name[1]==0)
@@ -1125,7 +1130,7 @@ ULong	fileman::readfileblock(
 void	fileman::closefile(FILE*	filehandle)
 {
 //	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'{';
-	fclose(filehandle);	
+	fclose(filehandle);
 //	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'}';
 
 }
@@ -1193,9 +1198,9 @@ FILE*	filehandle;
 	fileblockdata=NULL;
 	if (BLOCKCHILD) //RDH 08/07/99
 		return; //RDH 08/07/99
-//processlock=false;
+
 	if (processlock)
-	{ //x0r locking here
+	{ //x0r freeze here
 //		(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'M';
 		while(LockExchange(&interlocker,1))
 			Sleep(20);
@@ -1207,15 +1212,15 @@ FILE*	filehandle;
 
 		if (di==RAMCACHEHANDLEDIR)
 		{
-			assert(blocksize!=0 && blocksize!=0x7fffffff,": Must set a size for RAM blocks");
+			bobassert(blocksize!=0 && blocksize!=0x7fffffff,": Must set a size for RAM blocks");
 			if (processlock)
 			{
 //				(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'m';
 				LockExchange(&interlocker,0);
 			}
 			link->datasize=blocksize;
-			assert(blocksize,"Must provide data size for RAMBUFFER");
-			assert(MyTrans,"Must provide translate fn for RAMBUFFER");
+			bobassert(blocksize,"Must provide data size for RAMBUFFER");
+			bobassert(MyTrans,"Must provide translate fn for RAMBUFFER");
 			FILEMAN.MakeRoomFor(blocksize);
 			fileblockdata = new voidbigblock [blocksize];
 		}
@@ -1232,7 +1237,7 @@ FILE*	filehandle;
 				link->datasize=blocksize;
 				FILEMAN.seekfilepos(filehandle,offset);
 				FILEMAN.direntries[di].openfile.currfileindex=offset+blocksize;
-				assert(FILEMAN.direntries[di].openfile.currfileindex<=FILEMAN.direntries[di].openfile.maxfilesize,"Past end of file");
+				bobassert(FILEMAN.direntries[di].openfile.currfileindex<=FILEMAN.direntries[di].openfile.maxfilesize,"Past end of file");
 			}
 			else
 			{
@@ -1254,9 +1259,10 @@ FILE*	filehandle;
 //						(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'m';
 						LockExchange(&interlocker,0);
 					}
-					if (!filehandle) 
+// x0r code start
+					if (!filehandle)
                                              {FILEMAN.fileloadedthisframe=FALSE;link->deletedirchain(MyFile);link->datasize=0;return;}
-
+// x0r code end
 					FILEMAN.fileloadedthisframe=TRUE;
 					link->datasize=		FILEMAN.getfilesize(filehandle);
 					if (!link->datasize)
@@ -1272,7 +1278,7 @@ FILE*	filehandle;
 						FILEMAN.direntries[di].openfile.handle=filehandle;
 						FILEMAN.direntries[di].openfile.maxfilesize=link->datasize;
 						FILEMAN.direntries[di].openfile.currfileindex=offset+blocksize;
-	
+
 						if (offset>link->datasize)
 							_Error.EmitSysErr("Index past end of file");
 						link->datasize=blocksize;
@@ -1282,7 +1288,7 @@ FILE*	filehandle;
 								FILEMAN.seekfilepos(filehandle,offset);
 					}
 					else
-						assert((offset==0),"Can only use offset if buffer smaller than file!");
+						bobassert((offset==0),"Can only use offset if buffer smaller than file!");
 				}
 			}
             #if	defined(__WATCOMC__) || defined (__MSVC__)
@@ -1306,7 +1312,7 @@ FILE*	filehandle;
 				_Error.EmitSysErr("Failed to allocate memory for file load "
 									"(file %x, size %d)",
 									MyFile,link->datasize);
-            #if	defined(__WATCOMC__) || defined (__MSVC__)
+   /*         #if	defined(__WATCOMC__) || defined (__MSVC__)
 			#ifndef NDEBUG
 			SLong ft=eip();
 			if (	*((SLong*)fileblockdata-3) >=b4
@@ -1317,7 +1323,7 @@ FILE*	filehandle;
 				gotnewfix=TRUE;
 			}
 			#endif
-            #endif
+            #endif   */
 			if (!FILEMAN.readfileblock(filehandle,fileblockdata,link->datasize))
 				filehandle=filehandle;
 			if (FILEMAN.direntries[di].openfile.number!=MyFile)
@@ -1350,6 +1356,7 @@ FILE*	filehandle;
 	if (link)
 		robtotalfilememused += link->datasize;
 #endif
+	assert(fileblockdata);
 }
 ////////////////////////////////////////////////////////
 //	I sometimes need to make a block of data look like a fileblock
@@ -1363,6 +1370,7 @@ FILE*	filehandle;
 {
 	link=NULL;
 	fileblockdata=dataarea;
+	assert(fileblockdata);
 }
 
 //	fileblock::fileblock(fileblock& srcblock)
@@ -1381,6 +1389,7 @@ FILE*	filehandle;
 	link=srcblockptr->link;
 	srcblockptr->link=NULL;
 	fileblockdata=srcblockptr->fileblockdata;
+	assert(fileblockdata);
 	srcblockptr->fileblockdata=NULL;
 	delete srcblockptr;
 }
@@ -1423,7 +1432,7 @@ DES	fileblock::~fileblock()
 //TempCode JIM 29Mar96 		}
 //TempCode JIM 29Mar96 //		assert(search&&"deleted unknown area???!!!");
 //TempCode JIM 29Mar96 		search[0]->nextindir=nextindir;
-//TempCode JIM 29Mar96 
+//TempCode JIM 29Mar96
 //TempCode JIM 29Mar96 		search=&FILEMAN.direntries[reqdir].freedfiles;
 //TempCode JIM 29Mar96 		while (*search)
 //TempCode JIM 29Mar96 		{
@@ -1446,9 +1455,9 @@ DES	fileblock::~fileblock()
 //
 //Description	Is this file already loaded?
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	fileman::loadednumberedfile(FileNum filenum,int offset)
@@ -1459,10 +1468,10 @@ fileblocklink	**search=&direntries[reqdir].freedfiles;
 fileblocklink	*s2;
 	while (*search)
 	{
-		if (search _->filenum==filenum)
-			if (search _->fileoffset==offset)
+		if (search[0]->filenum==filenum)
+			if (search[0]->fileoffset==offset)
 				return(TRUE);
-		search=&search _->dir.next;
+		search=&search[0]->dir.next;
 	}
 	return	FALSE;
 }
@@ -1471,11 +1480,11 @@ fileblocklink	*s2;
 //Author		Jim Taylor
 //Date			Mon 1 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void*	fileblocklink::makelink(FileNum filenum,ULong fileoffset,ULong size,fileblocklink*&link)
@@ -1486,13 +1495,13 @@ fileblocklink	**search=&FILEMAN.direntries[reqdir].freedfiles;
 fileblocklink	*s2;
 	while (*search)
 	{
-		if (search _->filenum==filenum)
-			if (search _->fileoffset==fileoffset)
+		if (search[0]->filenum==filenum)
+			if (search[0]->fileoffset==fileoffset)
 			{	//as good as found a match if not asked for all.
-				assert(	(fileoffset==0 || search _->datasize==size)
+				bobassert(	(fileoffset==0 || search[0]->datasize==size)
 						,"Indexed part of file with different size!");
 				link=s2=*search;
-				//remove from free list, 
+				//remove from free list,
 //DeadCode JIM 20Oct00 				fileblocklink **tmp = &FILEMAN.allfreedfiles;
 				s2->dir.remove(s2);
 				s2->heap.remove(s2);
@@ -1507,9 +1516,9 @@ fileblocklink	*s2;
 			}
 			else
 			{
-				filehandle=search _->filehandle;
+				filehandle=search[0]->filehandle;
 			}
-		search=&search _->dir.next;
+		search=&search[0]->dir.next;
 	}
 	s2=FILEMAN.direntries[reqdir].openfiles;
 	while (s2)
@@ -1542,11 +1551,11 @@ fileblocklink	*s2;
 //Author		Jim Taylor
 //Date			Mon 1 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	fileblocklink::breaklink()
@@ -1566,15 +1575,15 @@ Bool	fileblocklink::breaklink()
 			//insert in freed lists:
 			//First, the directory list:
 			fileblocklink	**search=&FILEMAN.direntries[dirnum(filenum)].freedfiles;
-			while (*search && search _->filenum<=filenum)
-				search=& search _->dir.next;
+			while (*search && search[0]->filenum<=filenum)
+				search=& search[0]->dir.next;
 			dir.insert(this,*search);
 
 			//Next, the full list
 //DeadCode JIM 20Oct00 			fileblocklink **tmp = &FILEMAN.allfreedfiles;
 			search = & FILEMAN.allfreedfiles;
-			while (*search && search _->datasize<=datasize+500)
-				search=& search _->heap.next;
+			while (*search && search[0]->datasize<=datasize+500)
+				search=& search[0]->heap.next;
 			heap.insert(this,*search);
 			return(TRUE);
 		}
@@ -1608,9 +1617,9 @@ fileblocklink	*search=FILEMAN.direntries[reqdir].freedfiles;
 //
 //Description	Actually throw it away... how sad!
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	fileblocklink::deletelink(ULong size)
@@ -1693,7 +1702,7 @@ void	fileman::MakeRoomFor(int delta)
 ////////////////////////////////////////////////////////
 //DeadCode JIM 21Sep95 ULong	fileblock::getsize()
 //DeadCode JIM 21Sep95 	{return(datasize);}
-//DeadCode JIM 21Sep95 
+//DeadCode JIM 21Sep95
 //DeadCode JIM 21Sep95 ////////////////////////////////////////////////////////
 //DeadCode JIM 21Sep95 void*	fileblock::getdata()
 //DeadCode JIM 21Sep95 	{return(fileblockdata);}
@@ -1737,9 +1746,9 @@ Bool	fileman::quitonfailalloc=TRUE;
 //Description	System callback if alloc can't be made
 //				Return TRUE if alloc attempt should be repeated
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int	fileman::MyMemFailPFU(unsigned s)
@@ -1769,9 +1778,9 @@ int	fileman::MyMemFailPFU(unsigned s)
 //Description	variants for using file system or using raw pathname.
 //				wildcard is optional. *.* assumed.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 CON	dirlist::dirlist(FileNum d):
@@ -1929,11 +1938,11 @@ DES	dirlist::~dirlist()
 //Author		Jim Taylor
 //Date			Tue 3 Oct 1995
 //
-//Description	Initialise the file handling system. Will eventually 
+//Description	Initialise the file handling system. Will eventually
 //				handle graphics library selection.
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void fileman::InitFileSystem()
@@ -1945,7 +1954,7 @@ void fileman::InitFileSystem()
 #endif
 	MEMORYSTATUS	memstats={sizeof(MEMORYSTATUS)};
 	GlobalMemoryStatus(&memstats);
-	const blocksize=4096;
+	const size_t blocksize=4096;
 	typedef	char k4[blocksize];
 	size_t MEMBLOCKSsize=(memstats.dwTotalPhys>20000000)?(memstats.dwTotalPhys/2):5000000;
 	if (MEMBLOCKSsize>(size_t)memstats.dwAvailPhys+(size_t)memstats.dwAvailPageFile)
@@ -2000,7 +2009,7 @@ void fileman::InitFileSystem()
 
 	//set up CD file access
 
-//TempCode PD 08Oct98 
+//TempCode PD 08Oct98
 	driveletter='F';	//InitCDFS();
 
 //	return(TRUE);
@@ -2014,9 +2023,9 @@ void fileman::InitFileSystem()
 //
 //Description	return the base directory number
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 dirindex fileman::getbasedir(dirindex	d)						//DAW 24Sep96
@@ -2034,22 +2043,22 @@ dirindex fileman::getbasedir(dirindex	d)						//DAW 24Sep96
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		filesindir
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Thu 31 Jul 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int	fileman::filesindir(FileNum MyFile)
 {
 fileblock	fb=readfilelist(dirnum(MyFile));
 string		dirlister=(string)	fb.getdata();
-			assert(  (dirlister[0]) ,"Not expecting concatenated directory here!" );
-			assert(  (dirlister[12]==0),"Not expecting hand built file-list here!");
+			bobassert(  (dirlister[0]) ,"Not expecting concatenated directory here!" );
+			bobassert(  (dirlister[12]==0),"Not expecting hand built file-list here!");
 return	(fb.getsize()>>4);
 }
 
@@ -2163,7 +2172,7 @@ string	FileMan::namenumberedfilelessfail(FileNum f)
 	return rv;
 }
 void	FileMan::InitFileSystem()
-{	
+{
 	fileman::InitFileSystem();
 }
 

@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //Filename       makebf.CC
-//System         
+//System
 //Author         Jim Taylor
 //Date           Thu 23 Nov 1995
 //Description    Tool to make battlefields!
@@ -22,7 +22,7 @@
 //valuesequence::
 //		"{"	 typeassignment	"," typeassignment ... "}"
 //
-//Formally, this is 
+//Formally, this is
 //valuesequence::
 //		"{" typeassignmentlist
 //typeassignmentlist::
@@ -46,7 +46,7 @@
 //These are referenced from the dictionary which uses an alphatree for sorting
 //There is also a pointer to the 'big cheese' battlefield LinkInst
 //
-//The whole thing is output using pre-traversal. 
+//The whole thing is output using pre-traversal.
 //IntInst forms the leaf nodes, LinkInst forms the joins, and Chain is identifiers.
 //
 //Some important branch patterns:
@@ -64,11 +64,18 @@
 //setUID:		references back to dictionary, and has integerinst
 //
 //------------------------------------------------------------------------------
+#define NOATL
 #ifndef	SOURCE
 #define	SOURCE
+//#include <myerror.h>
+#include <cassert>
+#include <cstdio>
+#include <cstdarg>
+#include <cstdlib>
+
 void* __cdecl operator new(unsigned int nSize,const char* FileName, int nLine)
 { return operator new (nSize);}
-void  __cdecl operator delete(void* v,char const *,int)	
+void  __cdecl operator delete(void* v,char const *,int)
 { operator delete(v);}
 
 	#define	UNIQUEIDVALS_Included
@@ -86,6 +93,27 @@ enum	UniqueID
 	#define	 NOWORLDINCASSERT
 	#include	"bfcommon.h"
 //#include	"bfields\persons2.cpp"
+
+#undef EmitSysErr
+#undef	EmitWarning
+#define	EmitSysErr		SayBF
+#define	EmitWarning		SayBF
+
+#define	Assert(expr)	      ((expr)?((void)0):(SayBF("Assert failed: " #expr " " __FILE__ " %i",__LINE__),((void)0)))
+
+#define	default_neverreferencedBF	default:	SayBF("Just referenced never-reference default " __FILE__ " %i",__LINE__);break
+
+inline void	SayBF( const char * format, ... )
+{
+  va_list args;
+  va_start (args, format);
+  vfprintf (stderr, format, args);
+  va_end (args);
+  fprintf (stderr, "\n");
+  getc(stdin);
+  exit((int)1);
+  
+}
 
 //DeadCode JIM 05Jun96 	#include	"dosdefs.h"
 //DeadCode JIM 05Jun96 	#include	<stdio.h>
@@ -160,8 +188,8 @@ struct	FLineSplits
 }	linesplits={{0,"Internal",0},10,1};	//preprogram split 0 for "internal"
 
 
-#undef	EmitSysErr
-void	EmitSysErrM(char* fmt,...)
+//#undef	EmitSysErr
+void	EmitSysErrBFM(char* fmt,...)
 {
 	if (UIDlistfile)
 	{
@@ -171,7 +199,7 @@ void	EmitSysErrM(char* fmt,...)
 	va_list	marker;
 	va_start(marker,fmt);
 	printf("Error : " /*"code: %s(%i). Reading:"*/ " %s(%i)\n",
-				linesplits[linesplits],linesplits+linesplits);				
+				linesplits[linesplits],linesplits+linesplits);
 //				/*filename,line,*/ names[currsrcfname],currsrcfline);
 	vprintf(fmt,marker);
 	printf("\n");
@@ -193,7 +221,7 @@ void	EmitWarningM(char* fmt,...)
 	va_list	marker;
 	va_start(marker,fmt);
 	printf("Warning: " /*"code: %s(%i); read:"*/ " %s(%i):",
-				linesplits[linesplits],linesplits+linesplits);				
+				linesplits[linesplits],linesplits+linesplits);
 	vprintf(fmt,marker);
 	printf("\n");
 }
@@ -202,13 +230,11 @@ void	EmitWarningM(char* fmt,...)
 //TempCode JIM 29Nov95 {	//This is to stop message with no parameters getting % commands expanded!
 //TempCode JIM 29Nov95 	char*	fred[2]={"%s",message};
 //TempCode JIM 29Nov95 	EmitSysErr(__LINE__ , (char*) fred , __FILE__ ,  fred[0]);
-//TempCode JIM 29Nov95 
+//TempCode JIM 29Nov95
 //TempCode JIM 29Nov95 }
 
-#define	EmitSysErr		printf("Source line: " __FILE__ "(%i)\n", __LINE__ ),EmitSysErrM
-#define	EmitWarning		printf("Source line: " __FILE__ "(%i)\n", __LINE__ ),EmitWarningM
 
-	
+
 char*	FLineSplits::operator	[]	(int i)
 {
 	return	Split(i).filename;
@@ -285,16 +311,16 @@ struct
 //TempCode MS 25Mar96 enum	ScreenXY	{SXYOrdMIN=0x00000000,SXYOrdMAX=0xffffffff};
 //TempCode MS 25Mar96 enum	WH	{WHOrdMIN=-32767,WHOrdMAX=32767};
 //TempCode MS 25Mar96 enum	ScreenWH	{SWHOrdMIN=0x00000000,SWHOrdMAX=0xffffffff};
-//TempCode MS 25Mar96 
+//TempCode MS 25Mar96
 //TempCode MS 25Mar96 inline	ScreenXY	operator,(XY	X,int Y)
 //TempCode MS 25Mar96 {return(ScreenXY) (	((ULong)X&0x0000FFFF)	|	(((ULong)Y&0x0000FFFF)<<16)	);}
-//TempCode MS 25Mar96 
+//TempCode MS 25Mar96
 //TempCode MS 25Mar96 inline	ScreenWH	operator,(WH	X,int Y)
 //TempCode MS 25Mar96 {return(ScreenWH) (	((ULong)X&0x0000FFFF)	|	(((ULong)Y&0x0000FFFF)<<16)	);}
-//TempCode MS 25Mar96 
+//TempCode MS 25Mar96
 //TempCode MS 25Mar96 inline	SLong	X(ScreenXY S)	{return	 (SLong)(SWord)(S&0x0000FFFF);}
 //TempCode MS 25Mar96 inline	SLong	Y(ScreenXY S)	{return	 (SLong)(SWord)((S>>16)&0x0000FFFF);}
-//TempCode MS 25Mar96 
+//TempCode MS 25Mar96
 //TempCode MS 25Mar96 inline	SLong	W(ScreenWH S)	{return	 (SLong)(SWord)(S&0x0000FFFF);}
 //TempCode MS 25Mar96 inline	SLong	H(ScreenWH S)	{return	 (SLong)(SWord)((S>>16)&0x0000FFFF);}
 
@@ -314,16 +340,12 @@ struct	RecurseChk
 }*	RecurseChk::base=NULL;
 #define	RECURSECHK		RecurseChk recursechk(this);if(recursechk)
 //------------------------------------------------------------------------------
-//Enhanced error messaging. __FILE__ and __LINE__ are inserted using 
+//Enhanced error messaging. __FILE__ and __LINE__ are inserted using
 //inline functuions, so they should be accurate!
 //
 
 
 //Need to stop expansion of any accidental %x in the expression
-#define	Assert(expr)	((expr)?((void)0):(EmitSysErr("Assert failed: " #expr),((void)0)))
-//#define	Assert(expr)	((void)0)
-#define	NAssert(expr)	((expr)?(EmitSysErr("Assert succeeded: " #expr),((void)0)):((void)0))
-//#define	NAssert(expr)	((void)0)
 
 //------------------------------------------------------------------------------
 
@@ -341,7 +363,7 @@ typedef struct	DataInst	*DataRef;
 
 struct	TokenName:public	TokenInit
 {
-	int			srcfline;			
+	int			srcfline;
 	DataRef		instance;
 
 	string	TokenText();
@@ -550,7 +572,7 @@ TokenInit	fixedtokens[]=
 //not done these yet...
 //			T_briefID
 //			T_type,T_duty,T_form,T_move,
-		
+
 //------------------------------------------------------------------------------
 		{"",U_punctuation,T_unknown}
 	};
@@ -805,7 +827,7 @@ struct	DataInst
 {
 	TokenName*	tokentext;
 	string	TokenText()	{if (tokentext) return tokentext->TokenText(); else return NULL;}//JIM 18Jul97
-	Defined	Defined()	{if (tokentext) return tokentext->defined; else return D_defused;}//JIM 18Jul97
+	Defined	Defined_func()	{if (tokentext) return tokentext->defined; else return D_defused;}//JIM 18Jul97
 	TokenCode	tokencode;//was:7
 virtual	void	SaveTxt(ufile	ofile,int depth)=0;
 virtual	void	PreSave(ufile	ofile,int depth)=0;
@@ -922,11 +944,11 @@ DataInst&	operator=(DataInst &src)
 //Author		Jim Taylor
 //Date			Fri 5 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 	void	LinkInst::PreSave(ufile	ofile,int depth)
@@ -992,11 +1014,12 @@ DataInst&	operator=(DataInst &src)
 					Assert(tmplink&&"memory!");
 
 					strcpy(wordbuff,"UI_");
-					strcat(wordbuff,ltoa(newuidcount,buffer,10));
+					sprintf(buffer,"%l",newuidcount);
+					strcat(wordbuff,buffer);
 
 					findspelling(wordbuff,newtoken);
 
-					tmplink->dataref = 
+					tmplink->dataref =
 						newtoken->instance = itemlevel_setUID(NULL,newtoken);
 
 					newtoken->defined=D_defined;
@@ -1024,11 +1047,11 @@ DataInst&	operator=(DataInst &src)
 //Author		Jim Taylor
 //Date			Fri 5 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	LinkInst::PreSave2(ufile	ofile,int	depth)
@@ -1057,7 +1080,7 @@ void	LinkInst::PreSave2(ufile	ofile,int	depth)
 			{
 				switch(parentcode)
 				{
-				default_neverreferenced;
+				default_neverreferencedBF;
 				case T_itemA:
 					uidval = RealAcBAND;
 				break;
@@ -1074,7 +1097,7 @@ void	LinkInst::PreSave2(ufile	ofile,int	depth)
 			}
 
 			// Search table for UID
-			
+
 			uidindex = -1;
 			count = 0;
 
@@ -1154,11 +1177,11 @@ void	FNameInst::PreSave2(ufile	/*ofile*/,int /*depth*/)
 //Author		Jim Taylor
 //Date			Thu 4 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 	void	FNameInst::SaveTxt(ufile	ofile,int depth)
@@ -1211,9 +1234,9 @@ void	FNameInst::PreSave2(ufile	/*ofile*/,int /*depth*/)
 			LinkInst*	This=this;
 			do{
 				if (This->tokencode==T_linklist)
-					sayout(ofile,depth,"Link",This->tokencode,This->TokenText(),This->Defined());
+					sayout(ofile,depth,"Link",This->tokencode,This->TokenText(),This->Defined_func());
 				else
-					sayout(ofile,depth,"Bad Link",This->tokencode,This->TokenText(),This->Defined());
+					sayout(ofile,depth,"Bad Link",This->tokencode,This->TokenText(),This->Defined_func());
 				if (This->sibling)
 					wordbuff[depth]='|';
 				else
@@ -1247,11 +1270,11 @@ void	FNameInst::PreSave2(ufile	/*ofile*/,int /*depth*/)
 //Author		Jim Taylor
 //Date			Fri 5 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 	void	IntegerInst::SaveBin(ufile	ofile,int /*depth*/)
@@ -1284,11 +1307,11 @@ void	FNameInst::PreSave2(ufile	/*ofile*/,int /*depth*/)
 //Author		Jim Taylor
 //Date			Thu 4 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 	DataInst*	ChainInst::FindNode(TokenCode	t,int	level)
@@ -1348,7 +1371,7 @@ DataInst*		tmpptr = This->dataref->FindNode(t,level-1);
 
 			This = This->sibling;
 		}
-			
+
 		return(NULL);
 	}
 
@@ -1357,11 +1380,11 @@ DataInst*		tmpptr = This->dataref->FindNode(t,level-1);
 //Author		Jim Taylor
 //Date			Thu 4 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 LinkInst&	LinkInst::operator=(LinkInst &src)
@@ -1432,9 +1455,9 @@ int	i=0;
 //
 //Description	Searches tree for T_filename
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 UFILE*		FindFileNameInBF(LinkInst*	ref)
@@ -1498,11 +1521,11 @@ UFILE*		FindFileNameInBF(LinkInst*	ref)
 //				1) We don't save anything if we have an empty file
 //						-unless its a bfsave - in which case we open the file!
 //				2) We cope with LinkInst here to reduce the data output
-// 						
 //
-//Inputs		
 //
-//Returns	
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 	void	ChainInst::SaveBin(ufile	ofile,int depth)
@@ -1529,9 +1552,9 @@ UFILE*		FindFileNameInBF(LinkInst*	ref)
 			default:
 				EmitSysErr("Not expecting that symbol in chain node: %s",getcodename(tokencode));
 			}
-		elseif (tokencode==T_everything)
+		else if (tokencode==T_everything)
 			dataref->SaveBin(ofile,depth+1);
-		elseif (tokencode==T_bfsave)
+		else if (tokencode==T_bfsave)
 		{	//need to find a filename entry
 			UFILE*		MyTmpFile=FindFileNameInBF((LinkInst*) dataref);
 //DeadCode JIM 04Apr96 string		filename=FindFileNameInBF((LinkInst*) dataref);
@@ -1543,15 +1566,15 @@ UFILE*		FindFileNameInBF(LinkInst*	ref)
 //DeadCode JIM 04Apr96 					while ((*t2!='\"') && *(t2) && (*t2!='\''))	t2++;
 //DeadCode JIM 04Apr96 					t2[0]=0;
 //DeadCode JIM 04Apr96 				}
-//DeadCode JIM 04Apr96 
+//DeadCode JIM 04Apr96
 //DeadCode JIM 04Apr96 ufile			MyTmpFile=writefile(filename,'b');
-				//save length info		
+				//save length info
 					fprintf(MyTmpFile,"BATTLEFIELD %s\032\n",(string) (__DATE__));
 					fputc(0,MyTmpFile);
 					fputc(T_bfsave,MyTmpFile);
 					fputc(T_linklist,MyTmpFile);
 					fputc(CountLinkInsts((LinkInst*) dataref),MyTmpFile);
-	
+
 				dataref->SaveBin(MyTmpFile,depth+1);
 				fclose(MyTmpFile);
 //??				topwsrcfname--;
@@ -1644,7 +1667,7 @@ Bool	scantoword(ufile	ifile,UsageType	usage,TokenCode tokencode)
 void	GetTypeAndValue(ufile	ifile,
 		TokenName* &type,TokenName* &newname,TokenName* &value,TokenName* &sep)
 	Parses lines in following formats to return type, newname, value and sep:
-		type newname = value ,		
+		type newname = value ,
 		type newname = value }
 		type newname = value *
 		type newname = {			-->value=sep={
@@ -1658,7 +1681,7 @@ Bool	getlistseparator(TokenCode	*sep)
 
 void	setupnewnamereference(tokencode *newname,DataInst* &retval);
 	Handle an assignment to a type on return from it's creation
-	If name already exists then first record of retval is 
+	If name already exists then first record of retval is
 	copied into existing space and deleted. Retval ptr is modified.
 
 DataInst*	initchainref(TokenName *pvalue,TokenCode	T)
@@ -1667,7 +1690,7 @@ DataInst*	initchainref(TokenName *pvalue,TokenCode	T)
 void	ProcessEnumStatement(ufile	ifile)
 	Processes body of enum statement after enum keyword.
 	Only handles registered enums. Ignores rest.
-	
+
 void	ProcessConstStatement(ufile	ifile)
 	Processes body of const statement after const keyword.
 	Only handles registered enums. Ignores rest.
@@ -1728,11 +1751,11 @@ int	fileend;
 //Author		Jim Taylor
 //Date			Tue 5 Dec 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	setwritefile(char* path)
@@ -1766,12 +1789,12 @@ ufile	writefile(char*	name,char mode,char* dirname)
 	filebuff[i++]=0;
 	ufile	myfile=fopen(filebuff,mode);
 	if (myfile==NULL)
-		EmitSysErr("Error opening file!");
+		EmitSysErr("Error opening file! %s",filebuff);
 	return(myfile);
 }
 //------------------------------------------------------------------------------
 struct	TokenSpell:public	DataInst
-{		
+{
 	TokenName*	spelling[256];
 
 	TokenSpell()
@@ -1792,7 +1815,7 @@ void	SaveTxt(ufile	ofile,int	depth)
 		int i=' '-1;
 		while (++i<'~')
 			if (spelling[i-' '])
-			{	
+			{
 			 	sayout(ofile,depth,(char*) (&i),tokencode,spelling[i-' ']->TokenText(),D_defused);
 				spelling[i-' ']->SaveTxt(ofile,depth+1);
 			}
@@ -1849,7 +1872,7 @@ newtoken=NULL;
 				compchar=newname[++compcharnum];
 			}
 		//any one of 3 end conditions may have occured.
-	
+
 //		if (compchar) compchar-=32;
 		if (spellhunt->spelling[compchar]==NULL)	//need to create an entry
 			return(FALSE);
@@ -1891,12 +1914,12 @@ char*
 //Description	Finds a spelling in the dictionary and adds if necessary
 //				Integers and negative integers make a new integerinst record
 //				hooked off the statictoken dictionary entry.
-//				Negated symbols require looking up the symbol 
+//				Negated symbols require looking up the symbol
 //				and then creating a negated equivalent
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	findspelling(char*	newname,TokenName*	&newtoken)	//returns TRUE if already known
@@ -2002,17 +2025,17 @@ int		base=(compchar=='0')?8:10;
 				compchar=newname[++compcharnum];
 			}
 		//any one of 3 end conditions may have occured.
-	
+
 		if (	(compchar==0)										//end of source
 			&&	(spellhunt->spelling[0])							//entry in dictionary
 			&&	(spellhunt->spelling[0]->tokentext[compcharnum]==0)	//that is ended here
 			)
 		{
-			newtoken=spellhunt->spelling[0];		
+			newtoken=spellhunt->spelling[0];
 			return(TRUE);
 		}
 //		if (compchar) compchar-=32;
-	
+
 		if (spellhunt->spelling[compchar]==NULL)	//need to create an entry
 		{
 			newtoken=spellhunt->spelling[compchar]=new TokenName;Assert(newtoken&&"memory!");
@@ -2054,7 +2077,7 @@ int		base=(compchar=='0')?8:10;
 	//		if (compchar) compchar-=32;
 		} while (compchar==oldspellingletter);
 
-		//now, the common letters have been shared. 
+		//now, the common letters have been shared.
 		//add newname to current spellhunt
 		spellhunt->spelling[compchar]=newtoken=new TokenName;	Assert(newtoken&&"memory!");
 		spellhunt->spelling[compchar]->tokentext=safetext(newname);
@@ -2085,7 +2108,7 @@ TokenName	*newtoken;
 	newtoken->instance=NULL;
 }
 
-	
+
 void	addfixedspellings()
 {
 TokenInit	*newtoken=fixedtokens;
@@ -2101,7 +2124,7 @@ TokenInit	*newtoken=fixedtokens;
 //
 //Description	Strips out any whitespace characters, and counts carriage returns
 //
-//Inputs		
+//Inputs
 //
 //Returns		returns FALSE if EOF read
 //				returns TRUE if more symbols to follow
@@ -2144,10 +2167,10 @@ string	p1=whitechars;
 //				because the caller should know when to expect EOF,
 //				but not yet!
 //				Negation of symbols is not handled here.
-//				
-//Inputs		
 //
-//Returns	
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 string	getword(file	ifile)
@@ -2167,7 +2190,7 @@ string 	outbuf=wordbuff;
 		myword=outbuf;
 		//test for punctuation (ok... spc/tab in there as well!)
 string	p1=endchars;
-		while ((c!=*p1) && *p1) p1++;	
+		while ((c!=*p1) && *p1) p1++;
 		if (*p1)
 		{	//punctuation only 1 char long...
 			*(outbuf++)=c;
@@ -2175,7 +2198,7 @@ string	p1=endchars;
 			return (myword);
 		}
 		else
-		{	
+		{
 			for(;;)
 			{	//build string up to next punctuation or white
 				*(outbuf++)=c;
@@ -2202,9 +2225,9 @@ string			p1=endchars;
 //				Intended for error recovery.
 //				Not very useful in practice, unfortunately.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	scantoword(file	ifile,UsageType	usage,TokenCode tokencode)
@@ -2230,9 +2253,9 @@ TokenName	*tokenname;
 //
 //Description	Simpler version of gettypeandvalue for use with Setval
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	GetValue(file	ifile,TokenName* &type,TokenName* &newname,TokenName* &value,TokenName* &sep)
@@ -2256,13 +2279,13 @@ void	GetValue(file	ifile,TokenName* &type,TokenName* &newname,TokenName* &value,
 		if (type->tokencode==T_unknown)
 			EmitSysErr("Type name was expected. Encountered undefined %s",
 				type->TokenText());
-			//to support the next 2 options, type-->sep, NULL-->type, 
+			//to support the next 2 options, type-->sep, NULL-->type,
 			//and cope with type=NULL in callers.
-		elseif (type->tokencode==T_brktclose)
+		else if (type->tokencode==T_brktclose)
 			EmitSysErr("Type name expected but got '}'. Empty braces not supported");
-		elseif (type->tokencode==T_comma)
+		else if (type->tokencode==T_comma)
 			EmitSysErr("Type name expected but got ','. Empty fields not supported");
-		elseif (type->tokencode==T_brktopen)
+		else if (type->tokencode==T_brktopen)
 		{
 			value=sep=type;
 			newname=NULL;
@@ -2272,9 +2295,9 @@ void	GetValue(file	ifile,TokenName* &type,TokenName* &newname,TokenName* &value,
 				type->TokenText());
 	else
 	{	//got typename look for optional name=
-		//even if I get a new name, 
+		//even if I get a new name,
 		//if it is followed by , or } then it is a forward reference
-		//So, the correct logic is: 
+		//So, the correct logic is:
 		//Get the next symbol to newname
 		//If it is an opening bracket then newname-->sep-->value;return
  		//Get the next symbol to sep
@@ -2320,7 +2343,7 @@ void	GetValue(file	ifile,TokenName* &type,TokenName* &newname,TokenName* &value,
 //Author		Jim Taylor
 //Date			Tue 28 Nov 1995
 //
-//Description	
+//Description
 //				This routine processes:				into:
 //				value	of known enum type	,/}		value	NULL	value  sep
 //				type value ,/}						type	NULL	value  sep
@@ -2329,9 +2352,9 @@ void	GetValue(file	ifile,TokenName* &type,TokenName* &newname,TokenName* &value,
 //				type name = {						type	name	T_brktopen
 //				TYPE	=	{
 //				TYPE	=	value	,/}
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	GetTypeAndValue(file	ifile,TokenName* &type,TokenName* &newname,TokenName* &value,TokenName* &sep)
@@ -2356,7 +2379,7 @@ void	GetTypeAndValue(file	ifile,TokenName* &type,TokenName* &newname,TokenName* 
 		if (type->tokencode==T_unknown)
 			EmitSysErr("Type name was expected. Encountered undefined %s",
 				type->TokenText());
-			//to support the next 2 options, type-->sep, NULL-->type, 
+			//to support the next 2 options, type-->sep, NULL-->type,
 			//and cope with type=NULL in callers.
 		elseif (type->tokencode==T_brktclose)
 			EmitSysErr("Type name expected but got '}'. Empty braces not supported");
@@ -2367,9 +2390,9 @@ void	GetTypeAndValue(file	ifile,TokenName* &type,TokenName* &newname,TokenName* 
 				type->TokenText());
 	else
 	{	//got typename look for optional name=
-		//even if I get a new name, 
+		//even if I get a new name,
 		//if it is followed by , or } then it is a forward reference
-		//So, the correct logic is: 
+		//So, the correct logic is:
 		//Get the next symbol to newname
 		//If it is an opening bracket then newname-->sep-->value;return
  		//Get the next symbol to sep
@@ -2447,7 +2470,7 @@ void	GetTypeAndValue(file	ifile,TokenName* &type,TokenName* &newname,TokenName* 
 //
 //Description	eats list separator symbol if necessary
 //
-//Inputs		
+//Inputs
 //
 //Returns		TRUE	if end of list '}'
 //				FALSE 	if separator ','
@@ -2470,13 +2493,13 @@ Bool	getlistseparator(file	ifile,TokenName	*sep)
 //Author		Jim Taylor
 //Date			Tue 28 Nov 1995
 //
-//Description	Defines a default chain for a symbol 
+//Description	Defines a default chain for a symbol
 //				that is referenced before it is defined
 //
 //Inputs		pvalue		Dictionary entry to modify
 //				T			Tokencode to assign
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	initchainref(TokenName *pvalue,TokenCode	T)
@@ -2497,9 +2520,9 @@ DataInst*	initchainref(TokenName *pvalue,TokenCode	T)
 //Date			Tue 28 Nov 1995
 //
 //Description	Handle an assignment to a type on return from it's creation
-//				If name already exists then first record of retval is 
-//				copied into existing space and deleted. 
-//Inputs		
+//				If name already exists then first record of retval is
+//				copied into existing space and deleted.
+//Inputs
 //
 //Returns		Modifies retval pointer to a copy of same data.
 //
@@ -2545,9 +2568,9 @@ void	setupnewnamereference(TokenName *newname,DataInst* &retval)
 //
 //Description	Check for repeated toggle or blocker toggle
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int	repeattest(int	bitlist,int	toggle,int	blocker,char* group,char* tokentext)
@@ -2566,11 +2589,11 @@ else
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ProcessEnumStatement(file	ifile)
@@ -2688,7 +2711,7 @@ int			lastval=0;
 					oldspelling=findspelling(nextword,newword);
 				}
 			}
-		}			
+		}
 	}
 }
 
@@ -2700,9 +2723,9 @@ int			lastval=0;
 //Description	Sorts the Unique ID table and sets up a corresponding maximums
 //				table.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 
@@ -2715,19 +2738,19 @@ void	sortuidtable()
 	do
 	{
 		found = FALSE;
-	
+
 		for (counter = 0; counter < uidtablesize-1; counter ++)
 		 	if (uidtable1[counter] > uidtable1[counter+1])
 		 	{
 		 		// Swap...
-			 		
+
 				tempno = uidtable1[counter+1];
 		 		uidtable1[counter+1] = uidtable1[counter];
 		 		uidtable1[counter] = tempno;
-			 
+
 				found = TRUE;
 		 	}
-			else 
+			else
 			if (uidtable1[counter] == uidtable1[counter+1])
 			{
 				for (int co2=counter+1;co2<uidtablesize-1;co2++)
@@ -2757,7 +2780,7 @@ void	sortuidtable()
 //				const	type	name=value,name=value;
 //				already parsed the const keyword
 //				need to distinguish , and ;
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ProcessConstStatement(file	ifile)
@@ -2840,7 +2863,7 @@ TokenName
 				nextword=getword(ifile);
 				if (findspelling(nextword,newword))
 					EmitSysErr("Const enum already defined: %s",nextword);
-}	}		} 
+}	}		}
 
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -2848,11 +2871,11 @@ TokenName
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	interpretenums(file	ifile)
@@ -2886,7 +2909,7 @@ TokenName
 //				and adds name to dictionary.
 //				Note: if name is in wordbuff it will be safely copied.
 //				Otherwise the caller must create a unique name string.
-//Inputs		
+//Inputs
 //
 //Structure created:
 //
@@ -2906,7 +2929,7 @@ char		*permname, *permshape;
 
 
 	// Make strings permanent
-	
+
 	if (name)
 	{
 		permname = new char[strlen(name)+1];	Assert(permname&&"memory!");
@@ -2960,7 +2983,7 @@ char		*permname, *permshape;
 		tmplink->dataref=NULL;
 	tmplink->tokentext=NULL;
 									//;;3dsref->link->shape->int
-									//;;E-I		TL			
+									//;;E-I		TL
 									//;;TC
 									//;;
 
@@ -2981,14 +3004,14 @@ char		*permname, *permshape;
 	tmpchain->tokentext=NULL;
 									//;;3dsref->	link->shape->int
 									//;;			link->pos->abs->link
-									//;;						TC	TL				
+									//;;						TC	TL
 									//;;
 
 	tmplink->dataref=
 		tmpchain=new ChainInst(T_x);	Assert(tmpchain&&"memory!");
 	tmpchain->tokentext=NULL;
-	
-	
+
+
 	tmpchain->dataref=
 		tmpint=new IntegerInst;	Assert(tmpint&&"memory!");
 	tmpint->tokentext=NULL;
@@ -3034,10 +3057,10 @@ char		*permname, *permshape;
 
 	tmpint->value=Z;
 									//;;3dsref->	link->shape->int
-									//;;			link->pos->abs->link->X->int   
+									//;;			link->pos->abs->link->X->int
 									//;;							link->Y->int
 									//;;							link->Z->int
-									//;;						  	TL	  TC TI	
+									//;;						  	TL	  TC TI
 
 }
 
@@ -3048,9 +3071,9 @@ char		*permname, *permshape;
 //
 //Description	Makes an emum association to an internal type keyword
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	addassocenum(string name,TokenCode T)
@@ -3069,17 +3092,17 @@ TokenName	*entry;
 //Author		Jim Taylor
 //Date			Thu 30 Nov 1995
 //
-//Description	Constructs a sequence in the form below and increments int 
+//Description	Constructs a sequence in the form below and increments int
 //				T->global->int
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	addglobalentry(ufile gf,string	name,TokenCode T)
 {
-static	globaltableentry=0;
+static	int globaltableentry=0;
 ChainInst	*tmpchain;
 IntegerInst		*tmpint;
 TokenName	*entry;
@@ -3146,7 +3169,7 @@ TokenCode	tokentype;
 		if (tokenname->tokencode!=T_comma)
 			EmitSysErr("Expecting comma, but got %s",
 				tokenname->TokenText());
-	}			
+	}
 	fclose(ifile);
 }
 
@@ -3190,7 +3213,7 @@ TokenCode	tokentype;
 		if (tokenname->tokencode!=T_comma)
 			EmitSysErr("Expecting comma, but got %s",
 				tokenname->TokenText());
-	}			
+	}
 	fclose(ifile);
 }
 
@@ -3199,11 +3222,11 @@ TokenCode	tokentype;
 //Author		Jim Taylor
 //Date			Tue 5 Dec 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	interpretresponse(string	name)
@@ -3212,6 +3235,8 @@ TokenName	*tokenname;
 UWord	bufname,bufline;
 file	ifile=readfile(name);
 ufile	globfile=fopen("h\\bfrefs.g",'w');
+     if (!globfile) 
+         EmitSysErr("Can't open h\bfrefs.g");
 	fprintf(globfile,"GlobalRef	BFieldGlobalTable[]=	{\n");
 	findspelling(ifile,tokenname);
 	if (tokenname->tokencode!=T_brktopen)
@@ -3276,9 +3301,9 @@ fclose(globfile);
 //Description	Setval syntax is:
 //					Setval	{global,src}
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	bfsave_setval(file	ifile,TokenName	*pvalue)
@@ -3396,11 +3421,11 @@ TokenCode	globalcode,sourcecode;
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_bfsave(file	ifile,TokenName	*pvalue)
@@ -3492,13 +3517,13 @@ UWord	LevelBackup=Current_Level;
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	A group of items. 
-//				This may only contain SimpleItem 
+//Description	A group of items.
+//				This may only contain SimpleItem
 //				and pos abs assignments - which are not linked
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_itemgrp(file	ifile,TokenName	*pvalue)
@@ -3574,11 +3599,11 @@ LPair	 	list;
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_gndgrp(file	ifile,TokenName	*pvalue)
@@ -3651,11 +3676,11 @@ enum		XClusive
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_airgrp(file	ifile,TokenName	*pvalue)
@@ -3742,9 +3767,9 @@ enum		XClusive
 //				This may only contain WayPoint
 //				and pos abs assignments - which are not linked
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_route(file	ifile,TokenName	*pvalue)
@@ -3811,11 +3836,11 @@ ChainInst*
 //Author		Jim Taylor
 //Date			Wed 29 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	itemlevel_setUID(file	/*ifile*/,TokenName	*pvalue)
@@ -3846,11 +3871,11 @@ ChainInst*
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_itemS(file	ifile,TokenName	*pvalue)
@@ -3959,11 +3984,11 @@ enum		XClusive
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_itemG(file	ifile,TokenName	*pvalue)
@@ -4078,10 +4103,10 @@ enum		XClusive
 //
 //Description	Want to fill in a pointer to an item...
 //				I assume that has already been built
-//				Actually, at this stage all I can do is insert a chain 
-//Inputs		
+//				Actually, at this stage all I can do is insert a chain
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_attacker(file	ifile,TokenName	*pvalue)
@@ -4191,11 +4216,11 @@ ChainInst*
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_itemA(file	ifile,TokenName	*pvalue)
@@ -4365,11 +4390,11 @@ enum		XClusive
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_waypoint(file	ifile,TokenName	*pvalue)
@@ -4499,11 +4524,11 @@ enum		XClusive
 //Author		Jim Taylor
 //Date			Tue 9 Jan 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_event(file	ifile,TokenName	*pvalue)
@@ -4570,11 +4595,11 @@ enum		XClusive
 //Author		Jim Taylor
 //Date			Tue 9 Jan 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_time	(file	ifile,TokenName	*pvalue,TokenCode T_T)
@@ -4638,9 +4663,9 @@ enum		XClusive
 //				Pos	itemS/itemG/itemA		--> pos {abs item}
 //				pos{abs,rel,att}
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_pos(file	ifile,TokenName	*pvalue)
@@ -4754,17 +4779,17 @@ ChainInst*	retval=new ChainInst(T_pos);	Assert(retval&&"memory!");
 	return(list.Code(T_T,pvalue));
 	}
 }
-					   
+
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		referenceonly_abs
 //Author		Jim Taylor
 //Date			Wed 29 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DeadCode JIM 22Apr96 DataInst*	referenceonly_abs(file	ifile,TokenName	*pvalue)
@@ -4781,9 +4806,9 @@ ChainInst*	retval=new ChainInst(T_pos);	Assert(retval&&"memory!");
 //
 //Description	accept 3ds,item
 //					or {abs,x,y,z}... abs disables x and z and v.v.
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_abs(file	ifile,TokenName	*pvalue)
@@ -4830,7 +4855,7 @@ ChainInst*	retval=new ChainInst(T_pos);	Assert(retval&&"memory!");
   		targptr->dataref = pvalue->instance;
 
 		((ChainInst*) retval->dataref)->dataref= targptr;
-		
+
 //DeadCode RJS 09Feb96 		((ChainInst*) retval->dataref)->dataref=pvalue->instance;
 		return(retval);
 	}
@@ -4918,11 +4943,11 @@ ChainInst*	retval=new ChainInst(T_pos);	Assert(retval&&"memory!");
 //Date			Mon 27 Nov 1995									//JIM 08Feb96
 //
 //Description	Relative coord modification
-//				
 //
-//Inputs		
 //
-//Returns	
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_icpt(file	ifile,TokenName	*pvalue)
@@ -4984,11 +5009,11 @@ LPair	 	list;
 //Date			Mon 27 Nov 1995
 //
 //Description	Relative coord modification
-//				
 //
-//Inputs		
 //
-//Returns	
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_rel(file	ifile,TokenName	*pvalue)
@@ -5113,11 +5138,11 @@ enum		XClusive
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_att(file	ifile,TokenName	*pvalue)
@@ -5200,11 +5225,11 @@ enum		XClusive
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_squadron(file	ifile,TokenName	*pvalue)
@@ -5278,11 +5303,11 @@ enum		XClusive
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_paintscheme(file	ifile,TokenName	*pvalue)
@@ -5295,11 +5320,11 @@ DataInst*	toplevel_paintscheme(file	ifile,TokenName	*pvalue)
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DeadCode JIM 31Jul96 DataInst*	toplevel_paintscheme(file	ifile,TokenName	*pvalue)
@@ -5320,12 +5345,12 @@ DataInst*	toplevel_paintscheme(file	ifile,TokenName	*pvalue)
 //Description	Process the declaration of an enum value
 //				returns an enum value chain or an integer value
 //				integer value must be converted to enum value chain
-//				
+//
 //				Syntax for Random and Select is done here:
 //				{Random	steps,base,stepsize}
 //				{Select	selvar,base,stepsize}
-//				If any of the types if the fields are not int, 
-//				then they must be the same type. 
+//				If any of the types if the fields are not int,
+//				then they must be the same type.
 //				The returned tree will be of this type
 //
 //				type ->	sel/rnd	-->	link -> steps/selvar
@@ -5483,11 +5508,11 @@ TokenCode	selcode=T_unknown,	conttype=T_count,
 //Author		Jim Taylor
 //Date			Wed 20 Mar 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_enumorint(file	ifile,TokenName *pvalue,TokenCode T)
@@ -5520,11 +5545,11 @@ DataRef	tmpenumval=toplevel_enumval(ifile,pvalue,T);
 //Author		Jim Taylor
 //Date			Wed 20 Mar 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_enumorangle(file	ifile,TokenName *pvalue,TokenCode T)
@@ -5597,9 +5622,9 @@ int bracount=1;
 //
 //Description	how many in a wing?
 //				this is an enumerated or integer value
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_inwing(file	ifile,TokenName	*pvalue)
@@ -5612,11 +5637,11 @@ DataInst*	toplevel_inwing(file	ifile,TokenName	*pvalue)
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_inform(file	ifile,TokenName	*pvalue)
@@ -5629,11 +5654,11 @@ DataInst*	toplevel_inform(file	ifile,TokenName	*pvalue)
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_skill(file	ifile,TokenName	*pvalue)
@@ -5646,11 +5671,11 @@ DataInst*	toplevel_skill(file	ifile,TokenName	*pvalue)
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_morale(file	ifile,TokenName	*pvalue)
@@ -5663,11 +5688,11 @@ DataInst*	toplevel_morale(file	ifile,TokenName	*pvalue)
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_character(file	ifile,TokenName	*pvalue)
@@ -5686,11 +5711,11 @@ DataRef	tmpenumval=toplevel_enumval(ifile,pvalue,T_character);
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_damage(file	ifile,TokenName	*pvalue)
@@ -5703,11 +5728,11 @@ DataInst*	toplevel_damage(file	ifile,TokenName	*pvalue)
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_bombs(file	ifile,TokenName	*pvalue)
@@ -5720,11 +5745,11 @@ DataInst*	toplevel_bombs(file	ifile,TokenName	*pvalue)
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_vel(file	ifile,TokenName	*pvalue)
@@ -5737,11 +5762,11 @@ DataInst*	toplevel_vel(file	ifile,TokenName	*pvalue)
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_level(file	ifile,TokenName	*pvalue)
@@ -5776,11 +5801,11 @@ DataRef	tmpenumval=toplevel_enumval(ifile,pvalue,T_level);
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_x(file	ifile,TokenName	*pvalue)
@@ -5793,11 +5818,11 @@ DataInst*	toplevel_x(file	ifile,TokenName	*pvalue)
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_y(file	ifile,TokenName	*pvalue)
@@ -5810,11 +5835,11 @@ DataInst*	toplevel_y(file	ifile,TokenName	*pvalue)
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_z(file	ifile,TokenName	*pvalue)
@@ -5827,11 +5852,11 @@ DataInst*	toplevel_z(file	ifile,TokenName	*pvalue)
 //Author		Jim Taylor
 //Date			Thu 30 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_range(file	ifile,TokenName	*pvalue)
@@ -5843,11 +5868,11 @@ DataInst*	toplevel_range(file	ifile,TokenName	*pvalue)
 //DeadCode DAW 08Apr96 //Author		Jim Taylor
 //DeadCode DAW 08Apr96 //Date			Thu 30 Nov 1995
 //DeadCode DAW 08Apr96 //
-//DeadCode DAW 08Apr96 //Description	
+//DeadCode DAW 08Apr96 //Description
 //DeadCode DAW 08Apr96 //
-//DeadCode DAW 08Apr96 //Inputs		
+//DeadCode DAW 08Apr96 //Inputs
 //DeadCode DAW 08Apr96 //
-//DeadCode DAW 08Apr96 //Returns	
+//DeadCode DAW 08Apr96 //Returns
 //DeadCode DAW 08Apr96 //
 //DeadCode DAW 08Apr96 //------------------------------------------------------------------------------
 //DeadCode DAW 08Apr96 DataInst*	toplevel_vel(file	ifile,TokenName	*pvalue)
@@ -5859,11 +5884,11 @@ DataInst*	toplevel_range(file	ifile,TokenName	*pvalue)
 //Author		Jim Taylor
 //Date			Thu 30 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_rangepc(file	ifile,TokenName	*pvalue)
@@ -5875,11 +5900,11 @@ DataInst*	toplevel_rangepc(file	ifile,TokenName	*pvalue)
 //Author		Jim Taylor
 //Date			Thu 30 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_count(file	ifile,TokenName	*pvalue)
@@ -5891,11 +5916,11 @@ DataInst*	toplevel_count(file	ifile,TokenName	*pvalue)
 //Author		Jim Taylor
 //Date			Thu 30 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_hours(file	ifile,TokenName	*pvalue)
@@ -5907,11 +5932,11 @@ DataInst*	toplevel_hours(file	ifile,TokenName	*pvalue)
 //Author		Jim Taylor
 //Date			Thu 30 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_mins(file	ifile,TokenName	*pvalue)
@@ -5923,11 +5948,11 @@ DataInst*	toplevel_mins(file	ifile,TokenName	*pvalue)
 //Author		Jim Taylor
 //Date			Thu 30 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_secs(file	ifile,TokenName	*pvalue)
@@ -5939,11 +5964,11 @@ DataInst*	toplevel_secs(file	ifile,TokenName	*pvalue)
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_UIDband(file	ifile,TokenName	*pvalue)
@@ -5961,11 +5986,11 @@ DataRef	tmpenumval=toplevel_enumval(ifile,pvalue,T_UIDband);
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_briefID(file	ifile,TokenName	*pvalue)
@@ -5983,11 +6008,11 @@ DataRef	tmpenumval=toplevel_enumval(ifile,pvalue,T_briefID);
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_nation(file	ifile,TokenName	*pvalue)
@@ -6005,11 +6030,11 @@ DataRef	tmpenumval=toplevel_enumval(ifile,pvalue,T_nation);
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_shape(file	ifile,TokenName	*pvalue)
@@ -6032,11 +6057,11 @@ DataRef	tmpenumval=toplevel_enumval(ifile,pvalue,T_shape);
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_type(file	ifile,TokenName	*pvalue)
@@ -6054,11 +6079,11 @@ DataRef	tmpenumval=toplevel_enumval(ifile,pvalue,T_type);
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_duty(file	ifile,TokenName	*pvalue)
@@ -6076,11 +6101,11 @@ DataRef	tmpenumval=toplevel_enumval(ifile,pvalue,T_duty);
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_form(file	ifile,TokenName	*pvalue)
@@ -6098,11 +6123,11 @@ DataRef	tmpenumval=toplevel_enumval(ifile,pvalue,T_form);
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_move(file	ifile,TokenName	*pvalue)
@@ -6120,11 +6145,11 @@ DataRef	tmpenumval=toplevel_enumval(ifile,pvalue,T_move);
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	numeric_event(file	ifile,TokenName	*pvalue)
@@ -6154,11 +6179,11 @@ DataRef	tmpenumval=toplevel_enumval(ifile,pvalue,T_event);
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_wpact(file	ifile,TokenName	*pvalue)
@@ -6180,11 +6205,11 @@ DataInst*	toplevel_apply(file	ifile,TokenName	*pvalue,TokenCode code)
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_bearing(file	ifile,TokenName	*pvalue)
@@ -6197,29 +6222,29 @@ DataInst*	toplevel_bearing(file	ifile,TokenName	*pvalue)
 //DeadCode JIM 20Mar96 //Author		Jim Taylor
 //DeadCode JIM 20Mar96 //Date			Mon 27 Nov 1995
 //DeadCode JIM 20Mar96 //
-//DeadCode JIM 20Mar96 //Description	
+//DeadCode JIM 20Mar96 //Description
 //DeadCode JIM 20Mar96 //
-//DeadCode JIM 20Mar96 //Inputs		
+//DeadCode JIM 20Mar96 //Inputs
 //DeadCode JIM 20Mar96 //
-//DeadCode JIM 20Mar96 //Returns	
+//DeadCode JIM 20Mar96 //Returns
 //DeadCode JIM 20Mar96 //
 //DeadCode JIM 20Mar96 //------------------------------------------------------------------------------
 //DeadCode JIM 20Mar96 DataInst*	toplevel_hdg(file	ifile,TokenName	*pvalue)
 //DeadCode JIM 20Mar96 {
 //DeadCode JIM 20Mar96 	return(toplevel_enumorangle(ifile,pvalue,T_hdg));
 //DeadCode JIM 20Mar96 }
-//DeadCode JIM 20Mar96 
+//DeadCode JIM 20Mar96
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		toplevel_pitch
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_pitch(file	ifile,TokenName	*pvalue)
@@ -6232,11 +6257,11 @@ DataInst*	toplevel_pitch(file	ifile,TokenName	*pvalue)
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_roll(file	ifile,TokenName	*pvalue)
@@ -6249,11 +6274,11 @@ DataInst*	toplevel_roll(file	ifile,TokenName	*pvalue)
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DataInst*	toplevel_dirname(TokenName*&evalue,TokenName	*pvalue)
@@ -6373,9 +6398,9 @@ DataInst*	toplevel_fname(TokenName*&evalue,TokenName	*pvalue)
 //
 //Description	Opens all the directory .FIL files in parallel
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	OpenDirFiles()
@@ -6405,11 +6430,11 @@ void	CloseDirFiles()
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	processbfieldtext(file	ifile)
@@ -6427,9 +6452,9 @@ DataInst	*retval;
 	{
 		GetTypeAndValue(ifile,type,newname,value,sep);
 		if (	newname==NULL			//The intent is to be able to name things at the top level
-			&& type->tokencode!=T_bfsave		
+			&& type->tokencode!=T_bfsave
 			&& type->tokencode!=T_fname
-			&& type->tokencode!=T_level		
+			&& type->tokencode!=T_level
 			&& type->tokencode!=T_include
 			&& value->tokencode!=T_unknown	//The intent is to forward reference at the top level
 			)
@@ -6628,9 +6653,9 @@ string				t2=filename++;
 
 		setupnewnamereference(newname,retval);
 		if (retval)	treelist.Add(retval);
- 		
 
-		//called code will discard up to and including close bracket, 
+
+		//called code will discard up to and including close bracket,
 		//but I need to handle ",".
 		//Currently, called routines can't read or modify sep.
 		//To implement * {...} they must read sep=*
@@ -6652,9 +6677,9 @@ string				t2=filename++;
 //
 //Description	This is the basic bfield processor
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	processbfieldtext(string name)
@@ -6669,17 +6694,17 @@ void	processbfieldtext(string name)
 //
 //Description	Informs whether the required tokencode has been found,
 //				with regards to the current item of text.
-//				If true, it returns the next item of text.	
+//				If true, it returns the next item of text.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	checktoken(file	ifile, string text, TokenCode requiredcode)
 {
 	TokenName	*tokenname;
-	
+
 	if (	testspelling(text,tokenname)
 		&& (tokenname->tokencode == requiredcode)	)
 	{
@@ -6697,9 +6722,9 @@ Bool	checktoken(file	ifile, string text, TokenCode requiredcode)
 //
 //Description	Checks if text is a number, and returns sign
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	isnumeric(string numtext, char &sign)
@@ -6741,9 +6766,9 @@ Bool	isnumeric(string numtext, char &sign)
 //
 //Description	Converts text to an integer
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int		texttoint(string text)
@@ -6798,7 +6823,7 @@ int		texttoint(string text)
 	else
 		EmitSysErr("Failed to convert to number : %s", text);
 
-		
+
 	return(coreno);
 }
 
@@ -6807,11 +6832,11 @@ int		texttoint(string text)
 //Author		Robert Slater
 //Date			Thu 1 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 string	striptilltoken(file	ifile, TokenCode requiredcode)
@@ -6833,9 +6858,9 @@ string	striptilltoken(file	ifile, TokenCode requiredcode)
 //
 //Description	Extracts a single line of vertex points
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	pullvertex(file	ifile, int &x, int &y, int &z)
@@ -6847,7 +6872,7 @@ void	pullvertex(file	ifile, int &x, int &y, int &z)
 
 	x = 0; y = 0; z = 0;
 
-	text = striptilltoken(ifile,T_vertex);	
+	text = striptilltoken(ifile,T_vertex);
 
 	Assert (isnumeric(text,sign));
 	{
@@ -6886,9 +6911,9 @@ void	pullvertex(file	ifile, int &x, int &y, int &z)
 //
 //Description	Extracts a single line of face information
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 string	pullfaceline(file	ifile, int &a, int &b, int &c)
@@ -6930,7 +6955,7 @@ string	pullfaceline(file	ifile, int &a, int &b, int &c)
 
 			Assert (	checktoken(ifile,text,T_c)
 					&&	(text[0] == ':')		  	);
-				c = texttoint(getword(ifile));	 
+				c = texttoint(getword(ifile));
 
 			text = getword(ifile);
 
@@ -6940,7 +6965,7 @@ string	pullfaceline(file	ifile, int &a, int &b, int &c)
 			if (text[0] == ':')
 			{
 				material = temp = getword(ifile);
-			
+
 				// Remove quotes & full stops...
 
 				count = 0;
@@ -6951,7 +6976,7 @@ string	pullfaceline(file	ifile, int &a, int &b, int &c)
 					material = ++temp;
 				while (*temp!=0 && *temp!='"' && *temp!='.') temp++;
 				*temp=0;
-								
+
 //				if (	testspelling(material,token)
 //					&&	(token->tokencode == T_shape)	)
 //				{
@@ -6980,9 +7005,9 @@ string	pullfaceline(file	ifile, int &a, int &b, int &c)
 //
 //Description	Creates a list of all the vertices
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	pullvertices(file	ifile, int noverts, Coordinates* &vertlist)
@@ -6992,7 +7017,7 @@ void	pullvertices(file	ifile, int noverts, Coordinates* &vertlist)
 
 	vertlist = new Coordinates[noverts];	Assert(vertlist&&"memory!");
 
-	
+
 	// Clear header and garbage
 
 	striptilltoken(ifile,T_vertex);
@@ -7015,9 +7040,9 @@ void	pullvertices(file	ifile, int noverts, Coordinates* &vertlist)
 //
 //Description	Creates a list of all the faces
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 string	pullfaces(file	ifile, int nofaces, Connections* &facelist)
@@ -7028,8 +7053,8 @@ string	pullfaces(file	ifile, int nofaces, Connections* &facelist)
 
 	facelist = new Connections[nofaces];	Assert(facelist&&"memory!");
 
-	
-	// Clear header and garbage 
+
+	// Clear header and garbage
 
 	striptilltoken(ifile,T_face);
 
@@ -7068,11 +7093,11 @@ string	pullfaces(file	ifile, int nofaces, Connections* &facelist)
 //Author		Robert Slater
 //Date			Wed 31 Jan 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	checkforroute(Connections *facelist, int nofaces, int noverts)
@@ -7092,22 +7117,22 @@ Bool	checkforroute(Connections *facelist, int nofaces, int noverts)
 
 		number = facelist[count].a;
 
-	   	if (	(number == facelist[count-1].a) 
-			||	(number == facelist[count-1].b) 
+	   	if (	(number == facelist[count-1].a)
+			||	(number == facelist[count-1].b)
 			||	(number == facelist[count-1].c)	)
 					common = common + 1;
 
 		number = facelist[count].b;
 
-	   	if (	(number == facelist[count-1].a) 
-			||	(number == facelist[count-1].b) 
+	   	if (	(number == facelist[count-1].a)
+			||	(number == facelist[count-1].b)
 			||	(number == facelist[count-1].c)	)
 					common = common + 2;
 
 		number = facelist[count].c;
 
-	   	if (	(number == facelist[count-1].a) 
-			||	(number == facelist[count-1].b) 
+	   	if (	(number == facelist[count-1].a)
+			||	(number == facelist[count-1].b)
 			||	(number == facelist[count-1].c)	)
 					common = common + 4;
 
@@ -7121,10 +7146,10 @@ Bool	checkforroute(Connections *facelist, int nofaces, int noverts)
 		case 2:
 		{
 			// Rotate left if B is common
-		
+
 			prev1 = facelist[count].a;
 			prev2 = facelist[count].c;
-			
+
 			facelist[count].a = facelist[count].b;
 			facelist[count].b = prev2;
 			facelist[count].c = prev1;
@@ -7133,10 +7158,10 @@ Bool	checkforroute(Connections *facelist, int nofaces, int noverts)
 		case 4:
 		{
 			// Rotate right	if C is common
-			
+
 			prev1 = facelist[count].b;
 			prev2 = facelist[count].a;
-			
+
 			facelist[count].a = facelist[count].c;
 			facelist[count].b = prev2;
 			facelist[count].c = prev1;
@@ -7145,7 +7170,7 @@ Bool	checkforroute(Connections *facelist, int nofaces, int noverts)
 		default:
 			isroute = FALSE;
 		}
-		
+
 	}
 
 	// Cater for Face0...
@@ -7160,7 +7185,7 @@ Bool	checkforroute(Connections *facelist, int nofaces, int noverts)
 		{
 			prev1 = facelist[0].a;
 			prev2 = facelist[0].c;
-			
+
 			facelist[0].a = facelist[0].b;
 			facelist[0].b = prev2;
 			facelist[0].c = prev1;
@@ -7169,12 +7194,12 @@ Bool	checkforroute(Connections *facelist, int nofaces, int noverts)
 		number = facelist[0].b;
 
 		// Rotate right	if B is common
-	   
+
 		if (number == facelist[1].a)
 		{
 			prev1 = facelist[0].b;
 			prev2 = facelist[0].a;
-			
+
 			facelist[0].a = facelist[0].c;
 			facelist[0].b = prev2;
 			facelist[0].c = prev1;
@@ -7185,21 +7210,21 @@ Bool	checkforroute(Connections *facelist, int nofaces, int noverts)
 	return(isroute);
 
 }
-	
+
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		get3dsentry
 //Author		Robert Slater
 //Date			Tue 30 Jan 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	get3dsentry(file	ifile)
-{	
+{
 	char		name[80], *nexttext, letter;
 	char		nvertstext[80], nfacestext[80];
 	Bool		finished, route;
@@ -7254,8 +7279,8 @@ void	get3dsentry(file	ifile)
 		}
 		else
 			add3dsentry(name, vertex[0].x, vertex[0].y, vertex[0].z, material);
-																
-		delete []material;										
+
+		delete []material;
 		delete []face;
 		delete []vertex;
 	}
@@ -7308,14 +7333,14 @@ void	studiointerpreter(file	ifile)
 //Author		Jim Taylor
 //Date			Mon 27 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
-int	main(int	argc,string	argv[])
+int	main(int	argc,char*	argv[])
 {
 
 //TempCode JIM 04Dec95 	FirstSpell.SaveTxt(stdout,0);
@@ -7418,11 +7443,11 @@ TopLevel: The top level is not named. Only T_bfsave generates data directly.
 		T_itemS:SimpleItem,T_itemG:GroundItem,
 		T_itemA:Aircraft,T_waypoint:WayPoint,
 		T_target:Target,T_pos:Posn,
-		T_abs:Abs,T_rel:Rel,				 
+		T_abs:Abs,T_rel:Rel,
 		T_att:Attitude,
 		T_inwing:NumInWing,T_inform:NumInForm,
 		T_skill:Skill,T_damage:Damage,
-		T_level:Level,						 
+		T_level:Level,
 		T_x:X,T_y:Y,T_z:Z,
 		T_UIDband:UIDBand,T_briefID:BriefID,
 		T_nation:Side,T_shape:Shape,T_type:Type,
@@ -7529,7 +7554,7 @@ T_abs:Abs
 	}
 
 T_rel:Rel,
-	{	
+	{
 		T_icpt:Intercept,
 		T_rel:Rel,T_target:Target,
 		T_itemG:ItemGroup,T_itemA:Aircraft,	- src hdg/pitch info

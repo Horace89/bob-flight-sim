@@ -432,7 +432,6 @@ static	Bool	TokenSpell::findspelling(char*	newname,TokenName*	&newtoken)	//retur
 		statictoken.srcfname=(UWord) currsrcfname;
 		statictoken.instance=new IntegerInst;
 		
-		Assert(statictoken.instance&&"memory!");
 
 		if (compchar=='-')
 		{
@@ -503,7 +502,6 @@ int		base=(compchar=='0')?8:10;
 		{
 			newtoken=spellhunt->spelling[compchar] = new TokenName;
 			
-			Assert(newtoken&&"memory!");
 
 			newtoken->tokentext = safetext(newname);
 			newtoken->srcfline = (UWord) currsrcfline;
@@ -528,13 +526,11 @@ int		base=(compchar=='0')?8:10;
 			compcharnum++;
 	TokenSpell*
 			newspellpage=new TokenSpell;
-			Assert(newspellpage&&"memory!");
 
 			oldspellingletter=targ[compcharnum];
 			if (oldspellingletter)	oldspellingletter-=32;
 			newspellpage->spelling[oldspellingletter]=spellhunt->spelling[compchar];
 			spellhunt->spelling[compchar]=new TokenName;
-			Assert(spellhunt->spelling[compchar]&&"memory!");
 
 			spellhunt->spelling[compchar]->tokentext=safetext(newname);
 			spellhunt->spelling[compchar]->tokencode=T_sortentry;
@@ -550,7 +546,6 @@ int		base=(compchar=='0')?8:10;
 		//now, the common letters have been shared. 
 		//add newname to current spellhunt
 		spellhunt->spelling[compchar]=newtoken=new TokenName;
-		Assert(newtoken&&"memory!");
 
 		spellhunt->spelling[compchar]->tokentext=safetext(newname);
 		spellhunt->spelling[compchar]->tokencode=T_unknown;
@@ -579,7 +574,6 @@ char*	TokenSpell::safetext(char* oldtext)
 		return(oldtext);
 char*
 	retval=new char [strlen(oldtext)+1];
-	Assert(retval&&"Memory!");
 	strcpy(retval,oldtext);
 	return(retval);
 }

@@ -72,6 +72,12 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //
 //////////////////////////////////////////////////////////////////////
 #define	INITGUID
-#define	LIB3D_Included	//the GUID is outside (it always was)
+//#define	LIB3D_Included	//the GUID is outside (it always was)
+
+#define NOATL
+
+//#include <atlbase.h>
+//#include <afxwin.h>
+
 #include <objbase.h>
 #include "lib3d.h"

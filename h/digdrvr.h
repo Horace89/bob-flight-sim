@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 //Filename       digdrvr.h
-//System         
+//System
 //Author         Andy McMaster
 //Date           Fri 15 Oct 1999
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	DIGDRVR_Included
 #define	DIGDRVR_Included
@@ -11,6 +11,7 @@
 #define	DEFAULT_DIGDRVR 0
 
 #include <dsound.h>
+#include <dosdefs.h>
 
 class Sample;
 struct	ListenerStruc;

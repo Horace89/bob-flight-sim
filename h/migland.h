@@ -1,12 +1,13 @@
 //------------------------------------------------------------------------------
 //Filename       migland.h
-//System         
-//Author         Paul.   
+//System
+//Author         Paul.
 //Date           Wed 14 Jan 1998
-//Description    
+//Description
 //------------------------------------------------------------------------------
 
 #ifndef	MIGLAND_Included
+#define	MIGLAND_Included
 
 //#define DEBUG_LANDSCAPE
 //#define DO_LANDSCAPE_SKIPS
@@ -14,15 +15,17 @@
 const int _altitudeScale=4;									//PD 24Aug98
 const int _altitudeShift=2;												//JON 9Aug00
 
-#define	MIGLAND_Included
 #include	"files.g"
 #include	"myangles.h"
-
+#include <cassert>
 #include	"3ddefs.h"
+#include	"viewsel.h"
+#include "MathASM.h"
 
 const int MAX_NUM_EDGES = 512;//256;
 
 class	Display;
+
 
 typedef struct 	ImageMap_Desc									//PD 01Aug96
 				ImageMapDesc,									//PD 01Aug96
@@ -47,7 +50,7 @@ struct SmallPoint
 	{
 		x = UByte(ULong(p0.x+p1.x+p2.x)/3UL);
 		z = UByte(ULong(p0.z+p1.z+p2.z)/3UL);
-		alt = UWord(ULong(p0.alt+p1.alt+p2.alt)/3UL);		
+		alt = UWord(ULong(p0.alt+p1.alt+p2.alt)/3UL);
 	}
 };
 
@@ -71,9 +74,76 @@ struct	NormalList
 	UByte	count;
 };
 
+struct AltPointsHdr
+{
+	UByte	vertexCount,
+			topEdgePoints,
+			rightEdgePoints,
+			bottomEdgePoints,
+			leftEdgePoints,
+			hasCliffs;			// Just a 1bit flag needed here...	//JON 16Aug00
+	ULong	edgePointsStart;
+	ULong	edgeListStart;
+	ULong	polyDataStart;
+	ULong	edgeCount;
+	SLong	minAlt,maxAlt;
+	ULong	checksum;
+	int	Checksum()
+	{
+//DeadCode JIM 15Aug00 Rewrote this checksum to get a more 'interesting' number
+#define SH	<<
+//DeadCode MS 15Aug00 define the fillowing for a less unique number the way it used to be
+//#define	SH +0*
+		return (	(vertexCount SH 4)+
+					(topEdgePoints SH 10)+
+					(rightEdgePoints SH 14)+
+					(bottomEdgePoints SH 18)+
+					(leftEdgePoints SH 22)+
+					(edgeCount SH 24)+
+					(edgePointsStart)+
+					(edgeListStart SH 1)+
+					(polyDataStart SH 2)
+				);
+#undef SH
+	}
+
+	void	MakeChecksum()
+	{
+		checksum=	Checksum();
+	}
+	bool	CheckChecksum()
+	{
+		return checksum==Checksum()?true:false;
+	}
+};
+
+
+static AltPointsHdr invalidHdr =
+{
+	0,//UByte	vertexCount,
+	0,//		topEdgePoints,
+	0,//		rightEdgePoints,
+	0,//		bottomEdgePoints,
+	0,//		leftEdgePoints,
+	0,//		hasCliffs;			// Just a 1bit flag needed here...	//JON 16Aug00
+	0,//ULong	edgePointsStart;
+	0,//ULong	edgeListStart;
+	0,//ULong	polyDataStart;
+	0,//ULong	edgeCount;
+	0,0,//SLong	minAlt,maxAlt;
+	0xFADE//anything none zero//ULong	checksum;
+};
+
+struct DataRecord{
+	void* pData;
+	ULong dataLen;
+	ULong x,z;
+	void setInvalid() { pData=&invalidHdr;/*dataLen = 0xFFFFFFFF;*/ }
+//DeadCode JON 9Oct00 	bool isValid() { return (dataLen != 0xFFFFFFFF); }
+};
+
 #ifdef	IN_MIGLAND_CPP
 
-#include "MathASM.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -100,7 +170,7 @@ template<class Object> class CAllocator
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CAllocator
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 3 Dec 1997
 //------------------------------------------------------------------------------
 template<class Object> CAllocator<Object>::CAllocator(UWord sz)
@@ -111,7 +181,7 @@ template<class Object> CAllocator<Object>::CAllocator(UWord sz)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Alloc
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 3 Dec 1997
 //------------------------------------------------------------------------------
 template<class Object> Object* CAllocator<Object>::Alloc(UWord cnt)
@@ -126,7 +196,7 @@ template<class Object> Object* CAllocator<Object>::Alloc(UWord cnt)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Reset
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 3 Dec 1997
 //------------------------------------------------------------------------------
 template<class Object> UWord CAllocator<Object>::Reset()
@@ -157,7 +227,7 @@ public:
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CBlockAllocator
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Dec 1997
 //------------------------------------------------------------------------------
 template<class Object> CBlockAllocator<Object>::CBlockAllocator(int sz)
@@ -174,7 +244,7 @@ template<class Object> CBlockAllocator<Object>::CBlockAllocator(int sz)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CBlockAllocator
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Dec 1997
 //------------------------------------------------------------------------------
 template<class Object> CBlockAllocator<Object>::~CBlockAllocator()
@@ -191,7 +261,7 @@ template<class Object> CBlockAllocator<Object>::~CBlockAllocator()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Alloc
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Dec 1997
 //------------------------------------------------------------------------------
 template<class Object> Object* CBlockAllocator<Object>::Alloc()
@@ -209,7 +279,7 @@ template<class Object> Object* CBlockAllocator<Object>::Alloc()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Free
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Dec 1997
 //------------------------------------------------------------------------------
 template<class Object> void CBlockAllocator<Object>::Free(Object* pObj)
@@ -228,7 +298,7 @@ template<class Object> void CBlockAllocator<Object>::Free(Object* pObj)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Reset
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Dec 1997
 //------------------------------------------------------------------------------
 template<class Object> void CBlockAllocator<Object>::Reset()
@@ -262,6 +332,8 @@ typedef struct SeekStruc
 	SeekStruc()	{pNext=NULL;}
 }
 *SeekStrucP;
+
+
 
 class CRectangularCache
 {
@@ -461,7 +533,7 @@ template<class HashObject> void CCircularCache<HashObject>::skipToNextFFFF()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		operator*
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 4 Dec 1997
 //------------------------------------------------------------------------------
 template<class HashObject> UByte CCircularCache<HashObject>::operator*()
@@ -475,7 +547,7 @@ template<class HashObject> UByte CCircularCache<HashObject>::operator*()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		operator++
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 4 Dec 1997
 //------------------------------------------------------------------------------
 template<class HashObject> UByte* CCircularCache<HashObject>::operator++()
@@ -491,7 +563,7 @@ template<class HashObject> UByte* CCircularCache<HashObject>::operator++()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		operator++
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 4 Dec 1997
 //------------------------------------------------------------------------------
 template<class HashObject> UByte* CCircularCache<HashObject>::operator++(int)
@@ -509,7 +581,7 @@ template<class HashObject> UByte* CCircularCache<HashObject>::operator++(int)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		operator+=
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 8 Dec 1997
 //------------------------------------------------------------------------------
 template<class HashObject> UByte* CCircularCache<HashObject>::operator+=(int a)
@@ -579,10 +651,11 @@ template<class HashObject> void CCircularCache<HashObject>::GetEntry(	HashObject
 		{
 			//Discard from the head of the buffer
 			bool bufferEmpty=false;
-			do 
+			do
 			{
 				bool foundEntry=false;
-				for (int j=0;j<maxEntries;j++)
+				size_t j=0;
+				for (j=0;j<maxEntries;j++)
 				{
 					foundEntry=pRecords[j].inBuffer?true:foundEntry;
 					if (pRecords[j].pStart==pStart)	break;
@@ -603,8 +676,8 @@ template<class HashObject> void CCircularCache<HashObject>::GetEntry(	HashObject
 	#endif
 
 		//Find a record that can be re-used
-
-		for (int j=0;j<maxEntries&&pRecords[j].inBuffer==true;j++);
+        size_t j=0;
+		for (j=0;j<maxEntries&&pRecords[j].inBuffer==true;j++);
 		pRecords[j].hObj=hObj;
 		pRecords[j].inBuffer=true;
 		pRecords[j].pStart=pFin;
@@ -712,7 +785,7 @@ template<class Object> CCircularBlockCache<Object>::~CCircularBlockCache()
 template<class Object> void CCircularBlockCache<Object>::DeleteHead()
 {
 	Object* pDataBlk=(Object*)(pHead+4);//Get ptr to stored element
-	pDataBlk->~Object();				//Call its destructor code	
+	pDataBlk->~Object();				//Call its destructor code
 	pHead=(UByte*)*(ULong*)pHead;		//Get the next ptr
 }
 
@@ -791,7 +864,7 @@ template<class Object> Object* CCircularBlockCache<Object>::Alloc(ULong sz)
 				else
 				{
 					DeleteHead();
-					//Test for completely empty buffer and reset 
+					//Test for completely empty buffer and reset
 					//accordingly
 					if (pHead==NULL)
 					{
@@ -1084,12 +1157,12 @@ public:
 
 class CMigFMan
 {
-private:
 public:
-	enum
+/*x0r	enum
 	{
-		COORDS_SHIFT=17
+		COORDS_SHIFT=17,
 	};
+*/
 	CMigFMan(){
 		FileNum areaFiles[]={FIL_AREAN_NUM,FIL_AREAE_NUM};
 
@@ -1102,13 +1175,14 @@ public:
 	UByte* getdata(CMigFile& migFile,CDecompressData& migDecomp,ULong x,ULong z)
 	{
 		UByte* rv=migFile.GetData(x,z);
-//DeadCode JON 14Sep00 		assert(rv);														
+//DeadCode JON 14Sep00 		assert(rv);
 		return rv;
 	}
 };
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
+
 #undef new
 class CCacheBlock
 {
@@ -1131,11 +1205,11 @@ private:
 	CDataBlock*		pData;
 
 public:
-	CCacheBlock(int wx=0,int wz=0) 
+	CCacheBlock(int wx=0,int wz=0)
 	{
 		wx>>=COORD_SCALE;
-		wz>>=COORD_SCALE; 
-		blockWx=SWord(wx); 
+		wz>>=COORD_SCALE;
+		blockWx=SWord(wx);
 		blockWz=SWord(wz);
 
 		pParent=
@@ -1176,9 +1250,9 @@ private:
 	CPrimaryDB*	pData;
 
 public:
-	CPrimaryCB(int wx=0,int wz=0,int rez=0) 
+	CPrimaryCB(int wx=0,int wz=0,int rez=0)
 	{
-		blockWx=SWord(wx>>COORD_SCALE); 
+		blockWx=SWord(wx>>COORD_SCALE);
 		blockWz=SWord(wz>>COORD_SCALE);
 		resolution=UWord(rez);
 		pParent=pNorth=pEast=NULL;
@@ -1385,7 +1459,7 @@ private:
 
 	SLong GetAltitude(COORDS3D&,UByte* pAreaType=NULL,bool fReallyGetData=false);
 	SLong GetRoughAltitude(SLong,SLong,SLong);
-	inline UByte GetAreaType();
+	UByte GetAreaType();
 	void GetShadowAngles(COORDS3D&,ANGLES,ANGLES&,ANGLES&);
 
 	void ResetDecompCount() {blocksDecompressed=0;}
@@ -1393,72 +1467,7 @@ private:
 	void	FreeTextures();
 };
 
-struct AltPointsHdr
-{
-	UByte	vertexCount,
-			topEdgePoints,
-			rightEdgePoints,
-			bottomEdgePoints,
-			leftEdgePoints,
-			hasCliffs;			// Just a 1bit flag needed here...	//JON 16Aug00
-	ULong	edgePointsStart;
-	ULong	edgeListStart;
-	ULong	polyDataStart;
-	ULong	edgeCount;
-	SLong	minAlt,maxAlt;
-	ULong	checksum;
-	int	Checksum() 
-	{
-//DeadCode JIM 15Aug00 Rewrote this checksum to get a more 'interesting' number
-#define SH	<<
-//DeadCode MS 15Aug00 define the fillowing for a less unique number the way it used to be
-//#define	SH +0*
-		return (	(vertexCount SH 4)+	
-					(topEdgePoints SH 10)+
-					(rightEdgePoints SH 14)+
-					(bottomEdgePoints SH 18)+
-					(leftEdgePoints SH 22)+
-					(edgeCount SH 24)+
-					(edgePointsStart)+
-					(edgeListStart SH 1)+
-					(polyDataStart SH 2)
-				);
-#undef SH
-	}
 
-	void	MakeChecksum() 
-	{
-		checksum=	Checksum();
-	}
-	bool	CheckChecksum()
-	{
-		return checksum==Checksum()?true:false;
-	}
-};
-
-static AltPointsHdr invalidHdr = 
-{
-	0,//UByte	vertexCount,
-	0,//		topEdgePoints,
-	0,//		rightEdgePoints,
-	0,//		bottomEdgePoints,
-	0,//		leftEdgePoints,
-	0,//		hasCliffs;			// Just a 1bit flag needed here...	//JON 16Aug00
-	0,//ULong	edgePointsStart;
-	0,//ULong	edgeListStart;
-	0,//ULong	polyDataStart;
-	0,//ULong	edgeCount;
-	0,0,//SLong	minAlt,maxAlt;
-	0xFADE//anything none zero//ULong	checksum;
-};
-
-struct DataRecord{
-	void* pData;
-	ULong dataLen;
-	ULong x,z;
-	void setInvalid() { pData=&invalidHdr;/*dataLen = 0xFFFFFFFF;*/ }
-//DeadCode JON 9Oct00 	bool isValid() { return (dataLen != 0xFFFFFFFF); }
-};
 
 #endif
 

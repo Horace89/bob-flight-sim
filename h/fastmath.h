@@ -1,14 +1,15 @@
 //------------------------------------------------------------------------------
 //Filename       fastmath.h
-//System         
-//Author         Paul.   
+//System
+//Author         Paul.
 //Date           Mon 8 Nov 1999
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	FASTMATH_Included
 #define	FASTMATH_Included
 
 #include <d3dtypes.h>
+#include <cmath>
 
 #define	DEFAULT_FASTMATH 0
 
@@ -82,12 +83,12 @@ private:
     		// and an exponent of 0, stored as 127
     	    s.i=(i<<8)|(0x7F<<23);
     		s.f=(R3DVALUE)fpSqrt(s.f);
-    
+
 		    // Take the square root then strip the first 7 bits of
     		// the mantissa into the table
      		fastSqrtTable[i+0x8000]=(s.i&0x7FFFFF);
-    
-    		// Repeat the process, this time with an exponent of 1, 
+
+    		// Repeat the process, this time with an exponent of 1,
     		// stored as 128
 		    s.i=(i<<8)|(0x80<<23);
     		s.f=(R3DVALUE)fpSqrt(s.f);
@@ -104,7 +105,7 @@ private:
 			square=FastSqrt(square);
 			tableCode2[x]=(SWord)square;
 		}
-		for (x=0;x<256;x++)
+		for (SLong x=0;x<256;x++)
 			for (SLong z=0;z<256;z++)
 			{
 				R3DVALUE square=R3DVALUE(x)*R3DVALUE(x)+R3DVALUE(z)*R3DVALUE(z);
@@ -124,7 +125,7 @@ public:
     	return r*(2.0f-p*r);
 	}
 	//
-	// Fast normal value to byte 
+	// Fast normal value to byte
 	//
 	inline SLong FPNormToByte(const R3DVALUE p) const
 	{
@@ -168,10 +169,10 @@ public:
 	 	//Check for inv sqrt(0)
 		if (FP_BITS(n)==0)
 			return 0.0f;
-		
+
 		FP_BITS(n)=fastSqrtTable[(FP_BITS(n)>>8)&0xFFFF]|
 			((((FP_BITS(n)-0x3F800000)>>1)+0x3F800000)&0x7F800000);
-		
+
 		SLong i=2*FP_ONE_BITS-*(SLong*)&n;
 
 		R3DVALUE r=*(R3DVALUE*)&i;
@@ -227,7 +228,7 @@ public:
 		in_f = f + _23_BASE_ADD;
 		if ( (out_l&0xFFFFFF00) != (0x4B000000) )
 			return (255-(out_l>>16))&0xFF;
-	
+
 		return out_l&0xFF;
 	}
 

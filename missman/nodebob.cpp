@@ -84,6 +84,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 #include "movement.h"
 #include "package.h"
+
 #include "nodebob.h"
 #undef	nodebob_DEFINED_17_11_1999
 #include "nodebob.h"
@@ -169,8 +170,6 @@ UID_DUMMY	=UID_NULL;
 			 	DR_Convoy={100,1},
 			 	DR_dummy;
 
-	II_Target	mytargets=
-	{{UID_NULL}};
 
 
 	II_TargetSateliteField	NodeData::satelites[]=
@@ -6330,8 +6329,6 @@ HistoricInfo	NodeData::historicinfo=
 	{HI::NOFLY,HI::OVERCAST,HI::NOFLY}, 			//September 14th
 	{HI::CLEAR,HI::CLEAR,HI::CLEAR}, 				//September 15th
 
-
-
 }};
 
 
@@ -6356,7 +6353,7 @@ void	NodeData::ClearTargetTable()
 {
 	for (int i=0;i<SUBTABLESIZE;i++)
 		delete[] TargetPointers[i];
-	for (i=0;i<SUBTABLESIZE;i++)
+	for (int i=0;i<SUBTABLESIZE;i++)
 		TargetPointers[i]=NULL;
 }
 DES		NodeData::~NodeData()
@@ -6367,8 +6364,14 @@ DES		NodeData::~NodeData()
 
 Target&	NodeData::GetTarget(UniqueID index)
 {
-	int indexhi=index/SUBTABLESIZE;
-	int	indexlo=index%SUBTABLESIZE;
+	//assert(index>=0);
+	if (index<0)
+		return	*(Target*)NULL;
+	unsigned int indexhi=index/SUBTABLESIZE;
+	unsigned int	indexlo=index%SUBTABLESIZE;
+	if (indexhi>=SUBTABLESIZE)
+		return	*(Target*)NULL;
+//	assert(indexhi<SUBTABLESIZE);
 	TargetPtr*	subtable=TargetPointers[indexhi];
 	if (subtable==NULL)
 		return	*(Target*)NULL;
@@ -6583,7 +6586,7 @@ Squadron&	NodeData::operator [](SquadNum sq)
 //DEADCODE DAW 18/02/00 }
 
 
-#define	SUBCALL(routine)	assert(this)	\
+#define	SUBCALL(routine)	assert(this);	\
 	if (squadron>=SQ_LW_START)				 \
 		return GruppenPtr(this)->routine;		\
 	else									   \
@@ -6593,13 +6596,14 @@ PlaneTypeSelect	Squadron::AcType()
 {
 	SUBCALL(AcType())
 }
-inline	CString	LoadResString(int resnum)
+CString	LoadResString(int resnum);
+/*
 {
 	CString s;
 	s.LoadString(resnum);
 	return s;
 };
-
+*/
 CString Squadron::CallName()
 {
 	if (squadron<SQ_LW_START)
@@ -6630,6 +6634,7 @@ bool Squadron::Busy()
 
 PlaneTypeSelect	BritSquadron::AcType()
 {
+	assert(actype<=PT_BADMAX);
 	return PlaneTypeSelect(actype);
 }
 
@@ -7219,7 +7224,8 @@ void	NodeData::UpgradeAircraftTypes()
 		if (datefromstart&1)
 			fromtype=PT_HURR_A,totype=PT_HURR_B; 
 		int	lowestac=100,lowestacind=-1;
-		for (int i=0;squadron[i].squadron;i++)
+		int i;
+		for (i=0;squadron[i].squadron;i++)
 		{
 			if (squadron[i].actype==fromtype)
 				if (squadron[i].acavail<lowestac)
@@ -7573,8 +7579,9 @@ static PlaneTypeSelect	G_13[]={PT_SPIT_A,PT_SPIT_A,PT_HURR_A,PT_HURR_A,PT_VEHICL
 //////////////////////////////////////////////////////////////////////
 void	NodeData::StartOfDay()
 {
-#ifndef BOB_DEMO_VER
+//#ifndef BOB_DEMO_VER
 	MMC.currperiodtime = MORNINGPERIODSTART;
+#ifndef BOB_DEMO_VER
 	{for (int i=0;squadron[i].squadron;i++)
 	{
 		TargetFighterField* tf=Node_Data[squadron[i].homeairfield];	
@@ -7595,9 +7602,12 @@ void	NodeData::StartOfDay()
 		}
 	}}
 	AircraftRepairs4Hour();
+#endif
+
 	MMC.thisweekreview.ClearToday();
 
 	MMC.Sky.SetMissionConditions();										//JON 28Jul00
+#ifndef BOB_DEMO_VER
 
 	bool	dosay;int reqstr;
 	//extra overnight aircraft to group 13
@@ -7634,6 +7644,7 @@ void	NodeData::StartOfDay()
 		}
 	}
 //DEADCODE RDH 06/04/00 	UpgradeAircraftTypes();
+#endif
 }
 void NodeData::SetRAFPeriodStatus(Squadron::PeriodStatus ps)
 {
@@ -7644,7 +7655,7 @@ void NodeData::SetRAFPeriodStatus(Squadron::PeriodStatus ps)
 		Node_Data.squadron[i].periodstatus = ps;
 		i++;
 	}
-#endif
+//#endif
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -7658,12 +7669,13 @@ void NodeData::SetRAFPeriodStatus(Squadron::PeriodStatus ps)
 //////////////////////////////////////////////////////////////////////
 void	NodeData::FourHourPeriod(bool	endofday)
 {
-#ifndef BOB_DEMO_VER
+//#ifndef BOB_DEMO_VER
 	if (MMC.currtime>=AFTERNOONPERIODSTART)								//AM 10Oct00
 		MMC.currperiodtime  = AFTERNOONPERIODSTART;						//AM 10Oct00
 	else																//AM 10Oct00
 		MMC.currperiodtime = MIDDAYPERIODSTART;							//AM 10Oct00
 	MMC.Sky.SetMissionConditions();										//JON 28Jul00
+#ifndef BOB_DEMO_VER
 	Dead_Stream.ReviveWorld(1,0);///*CSB*/1,0);
 	CheckDamage(Dead_Stream);
 	int i;

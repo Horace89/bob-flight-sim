@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 //Filename       gear.h
-//System         
+//System
 //Author         Andrew McRae
 //Date           Thu 27 Feb 1997
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #include "aerodev.h"
 
@@ -79,7 +79,7 @@ public:
 
 
 	void CalcLegForce_Reaction(AirStrucPtr const ControlledAC, UByte* Texture);
-	void Gear::CalcTyreSideForce (AirStrucPtr const ControlledAC, FP TotalReaction, FP forcex, UByte Texture);
+	void CalcTyreSideForce (AirStrucPtr const ControlledAC, FP TotalReaction, FP forcex, UByte Texture);
 	Gear (PMODEL, GEAR_IDENT);
 	~Gear ();
 

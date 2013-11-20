@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -64,7 +64,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //------------------------------------------------------------------------------
 //Filename       impact.cpp
-//System         
+//System
 //Author         Robert Slater
 //Date           Thu 25 Nov 1999
 //Description    Special collision for SAGS & BALLOONS
@@ -76,7 +76,10 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include	"3dcom.h"
 #include	"mymath.h"
 #include	"impact.h"
-
+#include	"persons2.h"
+#include	"transite.h"
+#include	"flymodel.h"
+#include	"savegame.h"
 
 Impact	Fake_Damage;											//RJS 05/04/00
 
@@ -87,18 +90,18 @@ Impact	Fake_Damage;											//RJS 05/04/00
 //Author		Robert Slater
 //Date			Thu 25 Nov 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SLong Impact::GetDamageLoc(ShapeNum theShape, animptr&	animdata)
 {
 	ShapeDescPtr	sdptr = SHAPESTUFF.GetShapePtr(theShape);
 	SLong			firstDamageByte = sdptr->DamageOffset;				//CSB 3Nov00
-	
+
 	if (firstDamageByte)												//CSB 3Nov00
 	{
 // Unfortunately we can only guarantee the 1st 5 damage elements will exist within the shape!
@@ -112,16 +115,16 @@ SLong Impact::GetDamageLoc(ShapeNum theShape, animptr&	animdata)
 			totaldamage+=adptr[k];
 
 		int damageto=Math_Lib.rnd(totaldamage);
-	
+
 		totaldamage= adptr[firstDamageByte];							//CSB 3Nov00
 
-		for (k=firstDamageByte;k<lastDamageByte-1;k++)							//CSB 3Nov00
+		for (int k=firstDamageByte;k<lastDamageByte-1;k++)							//CSB 3Nov00
 		{
 			if (totaldamage<damageto)
 			{
 				damindex = k;
 				break;
-			}		
+			}
 			totaldamage+= adptr[k+1];
 		}
 
@@ -140,9 +143,9 @@ SLong Impact::GetDamageLoc(ShapeNum theShape, animptr&	animdata)
 //
 //Description	We want type and amount of damage passed in....
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Impact::HitGroupElement(ItemPtr	theItem, ItemPtr	theShooter, SLong index, SLong amount, SLong damagetype)
@@ -162,7 +165,7 @@ void Impact::HitGroupElement(ItemPtr	theItem, ItemPtr	theShooter, SLong index, S
 		{
 //DEADCODE RJS 5/10/00 			UByte	oldamount = adptr[damageloc];
 //DEADCODE RJS 5/10/00 			SLong	newdamage = SLong(oldamount) + amount;
-//DEADCODE RJS 5/10/00 
+//DEADCODE RJS 5/10/00
 //DEADCODE RJS 5/10/00 			if (newdamage > BS_DEAD)
 //DEADCODE RJS 5/10/00 				newdamage = BS_DEAD;
 
@@ -176,11 +179,11 @@ void Impact::HitGroupElement(ItemPtr	theItem, ItemPtr	theShooter, SLong index, S
 //Author		Robert Slater
 //Date			Fri 26 Nov 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Impact::CollideAircraft(AirStrucPtr	ac1, AirStrucPtr ac2)
@@ -204,9 +207,9 @@ void Impact::CollideAircraft(AirStrucPtr	ac1, AirStrucPtr ac2)
 //
 //Description	May cause a problem for REPLAY
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 bool Impact::HitGroup(ItemPtr	theItem, ItemPtr	theShooter, SLong amount, SLong damagetype)
@@ -225,7 +228,7 @@ bool Impact::HitGroup(ItemPtr	theItem, ItemPtr	theShooter, SLong amount, SLong d
 		{
 //DEADCODE RJS 5/10/00 			UByte	oldamount = adptr[damageloc];
 //DEADCODE RJS 5/10/00 			SLong	newdamage = SLong(oldamount) + amount;
-//DEADCODE RJS 5/10/00 
+//DEADCODE RJS 5/10/00
 //DEADCODE RJS 5/10/00 			if (newdamage > BS_DEAD)
 //DEADCODE RJS 5/10/00 				newdamage = BS_DEAD;
 
@@ -245,9 +248,9 @@ bool Impact::HitGroup(ItemPtr	theItem, ItemPtr	theShooter, SLong amount, SLong d
 //
 //Description	May cause a problem for REPLAY
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Impact::HitAircraft(ItemPtr	theItem, ItemPtr	theShooter, SLong amount, SLong damagetype)
@@ -277,11 +280,11 @@ void Impact::HitAircraft(ItemPtr	theItem, ItemPtr	theShooter, SLong amount, SLon
 //Author		Robert Slater
 //Date			Tue 12 Sep 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Impact::TestForBalloon(ItemPtr	theItem)
@@ -303,7 +306,7 @@ void	Impact::TestForBalloon(ItemPtr	theItem)
 			}
 			else
 			{
-				if (sdptr->AnimDataSize == SIMPLEAIRCRAFTANIM)	
+				if (sdptr->AnimDataSize == SIMPLEAIRCRAFTANIM)
 				{
 					SimpleAircraftAnimData*	adptr = (SimpleAircraftAnimData*)ac->Anim;
 					damptr = &adptr->RIGHTWINGIN;
@@ -313,7 +316,7 @@ void	Impact::TestForBalloon(ItemPtr	theItem)
 			if (damptr)													//RJS 20Oct00
 				SHAPE.ForceDamage(ac,theItem,damptr,BS_DEAD);			//RJS 20Oct00
 		}
-		
+
 		theItem = theItem->Next;
 	}
 }
@@ -323,11 +326,11 @@ void	Impact::TestForBalloon(ItemPtr	theItem)
 //Author		Robert Slater
 //Date			Tue 12 Sep 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 bool	Impact::CheapCol(ItemPtr	trg, ItemPtr hitter)

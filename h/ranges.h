@@ -1,16 +1,16 @@
 //------------------------------------------------------------------------------
 //Filename       ranges.h
-//System         
-//Author         R. Hyde 
+//System
+//Author         R. Hyde
 //Date           Wed 17 Jan 1996
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	RANGES_Included
 #define	RANGES_Included
 
 #define	DEFAULT_RANGES 0
 
-
+#include "dosdefs.h"
 
 
 
@@ -128,8 +128,8 @@ enum 	Ranges
 	METRES6000 = 600000,										//MS 06Jun96
 	METRES7000 = 700000,										//MS 14Aug96
 	METRES8000 = 800000,
-	KM1 =		 100000,			
-	KM10 =		1000000,			
+	KM1 =		 100000,
+	KM10 =		1000000,
 	METRES10KM =1000000,
 	METRES15KM =1500000,
 	METRES20KM =2000000,
@@ -173,7 +173,7 @@ enum 	Ranges
 //DeadCode DAW 02Apr96 	NEGFT_100 = 0,
 //DeadCode DAW 02Apr96 	NEGFT_500 = 0,
 //DeadCode DAW 02Apr96 	NEGFT_1000 = 0,
-//DeadCode DAW 02Apr96 	NEGFT_2000 = 0,	
+//DeadCode DAW 02Apr96 	NEGFT_2000 = 0,
 
 //1 ft = 30.48 													//MS 21Jan00
 
@@ -313,14 +313,14 @@ enum 	Ranges
 	FT_24000 = 731520,											//ARM 28Aug97
 	FT_25000 = 762000,											//ARM 28Aug97
 	FT_27500 = 838210,												  //CSB 10/01/00
-	FT_30000 = 914400,	
+	FT_30000 = 914400,
 	FT_35000 = 1066800,											//ARM 20Aug97
-	FT_34000 = 1036333,										//CSB 01/07/99	
+	FT_34000 = 1036333,										//CSB 01/07/99
 	FT_40000 = 1219200,												  //RDH 30/06/99
 	FT_45000 = 1371600,
 
 	FT_60000 = 1828800,											//ARM 15May97
-	
+
 	HIGHESTGROUND = 100000,												//CSB 22/03/00
 
 	FT_SPAN01	=	960,
@@ -381,7 +381,7 @@ enum 	Ranges
 inline Float operator * (Ranges a,Ranges b)	{return Float(a)*Float(b);}
 
 enum	Velocities	//Please feel free to add to this set...
-{  
+{
 	VEL_1MMS	=	10,
 	VEL_1CMS	=	100,
 	VEL_1MS		=	10000,

@@ -68,4 +68,4 @@ protected:
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_SQVIEW_H__9F450AC1_56E4_11D2_9FD5_D0EC00C10000__INCLUDED_)
-
+

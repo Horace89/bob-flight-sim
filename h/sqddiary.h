@@ -64,7 +64,7 @@ class	BIStream;
 class	BOStream;
 class	MinAnimData;
 class	ViewPoint;
-class	CString;														//RJS 9Nov00
+// it is a template class	CString;														//RJS 9Nov00
 
 // Gruppen Record...
 

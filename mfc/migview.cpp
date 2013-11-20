@@ -90,6 +90,8 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include "uiicons.h"
 #include	"monotxt.h"
 #include	"miles.h"													//RJS 6Oct00
+#include "FILES.G"
+
 //Supposedly in the windows header file. Ho hum!
 #define FIELDOFFSET(type, field)    ((int)&(((type *)0)->field))
 
@@ -1757,7 +1759,7 @@ void CMIGView::PlotAirfields(CDC* pDC)
 		pDC->SelectObject(&pen);
 	}
 
-	for (i=1;Node_Data.gruppe[i].squadron;i++)
+	for (int i=1;Node_Data.gruppe[i].squadron;i++)
 	{
 		CPen pen2 (PS_SOLID,1,RGB(pr,pg,pb));
 		pDC->SelectObject(&pen2);
@@ -1939,7 +1941,8 @@ void CMIGView::InvalidateRoute(int	pack,bool iconsaswell,bool squadsaswell)
 		PlotMainRoute(NULL,pack,false,UID_NULL);
 		for (int group=0,maxgroup=Todays_Packages[pack].squadlist;group<maxgroup;group++)
 			PlotTakeOffRoute(NULL, pack,  group, false,UID_NULL);
-		for (int t=-2;t<0;t++)
+		int t;
+		for ( t=-2;t<0;t++)
 			PlotTargetRoute(NULL, pack,  t, false,UID_NULL);
 		for (;Todays_Packages[pack].packagetarget[t];t++)
 			PlotTargetRoute(NULL, pack,  t, false,UID_NULL);
@@ -2211,6 +2214,7 @@ void	PackageList::SetVisibilityFlags()
 			bool	needdetection=	isRAF!=(Todays_Packages.localplayer==NAT_RAF);
 
 			int		compareindex=FIELDOFFSET(Squadron,squadron.value);
+//x0r			int		compareindex=FIELDOFFSET(Squadron,squadron);
 			if (!isRAF && Save_Data.lwplots==PL_GESH)
 					compareindex=FIELDOFFSET(Gruppen,wadernum);
 			UByte	comparevalue;
@@ -3288,8 +3292,8 @@ void CMIGView::UpdateBitmaps(CDC* pDC,CRect bounds)
 //	pDC = m_mapdlg.GetDC();
 	HDC hDC;
 	hDC = pDC->GetSafeHdc( );  // gets and stores handle of mapdlg DC	
-	assert(areax==1 || startx<areax)
-	assert(areay==1 || starty<areay)
+	assert(areax==1 || startx<areax);
+	assert(areay==1 || starty<areay);
 	int sstartx=max((m_scrollpoint.x+rect.left)/zoomsquaresize,0);
 	int sstarty=max((m_scrollpoint.y+rect.top)/zoomsquaresize,0);
 	int endx=min((m_scrollpoint.x+rect.right+zoomsquaresize-1)/zoomsquaresize,areax);

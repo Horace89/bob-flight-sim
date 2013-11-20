@@ -75,7 +75,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include	"viewsel.h"
 #include	"animmove.h"
 #include	"3dcom.h"
-
+#include "shapes.h"
 AnimControl Anim_Control;
 
 void	ANIMCONTROLSTRUC::SetAnim(AnimMoves pre, AnimMoves trans, AnimMoves post, SWord tokumtime)

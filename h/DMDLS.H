@@ -19,7 +19,7 @@ typedef long PERCENT;   /* Per.. cent! */
 typedef LONGLONG REFERENCE_TIME;
 typedef REFERENCE_TIME *LPREFERENCE_TIME;
 
-#ifndef MAKE_FOURCC
+#ifndef MAKEFOURCC
 #define MAKEFOURCC(ch0, ch1, ch2, ch3)                              \
                 ((DWORD)(BYTE)(ch0) | ((DWORD)(BYTE)(ch1) << 8) |   \
                 ((DWORD)(BYTE)(ch2) << 16) | ((DWORD)(BYTE)(ch3) << 24 ))

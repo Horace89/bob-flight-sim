@@ -154,7 +154,7 @@ static RadioOnz	PhraseToFile[]=
 	FIL_NULL,0,1,0
 };
 
-const int PhraseSize=sizeof(PhraseToFile)/sizeof(RadioOnz) - 1;
+const size_t PhraseSize=sizeof(PhraseToFile)/sizeof(RadioOnz) - 1;
 static FileNum	rootChatDir = FIL_DIR_RCHAT_RAFPLAYR;
 
 

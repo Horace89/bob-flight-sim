@@ -102,7 +102,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include	"flymodel.h"
 #include 	"mymath.h"
 //#include 	"e:\CBuilder\CBuilder\INCLUDE\Math.h"
-#include 	"\Program Files\Borland\CBuilder\INCLUDE\Math.h"
+#include 	<math.h>
 //#include 	"$(BCB)\include\Math.h"
 #include 	"mytime.h"
 

@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -65,7 +65,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //------------------------------------------------------------------------------
 //Filename       globrefs.cpp
-//System         
+//System
 //Author         Jim Taylor
 //Date           Tue 19 Mar 1996
 //Description    Main program interface to global refs table
@@ -75,12 +75,12 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //				Internal references can also communicate between battlefields,
 //				either by generous luck, or in the events system.
 //				External references are when the battlefield has access to a
-//				variable in the main program. It may be setting the value as a 
+//				variable in the main program. It may be setting the value as a
 //				flag to the program, or reading a value set by the main program.
 //				Internal references are declared in this file
-//				External references are fixed up in this file using #define 
+//				External references are fixed up in this file using #define
 //				or reference variables to fix the globref name to the real name.
-//				I need a mechanism which allows this to be controlled. 
+//				I need a mechanism which allows this to be controlled.
 //				I think this definitely means using #defines.
 //
 //	To be honest, direct referencing in-game variables is out of favour,
@@ -103,7 +103,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //Intenal variables that are hidden:
 //
 enum	{MAX_PACK_TARG=25};
-ULong	
+ULong
 		GR_WPP_Rendevous=0,		//set and cleared directly by package routes
 		GR_WPP_Ingress=0,
 		GR_WPP_Target=0,
@@ -117,7 +117,7 @@ ULong
 		GR_WPC_Egress=0,
 		GR_WPC_Disperse=0,
 
-		GR_Pack_Target[10]={0},
+		GR_Pack_Target[MAX_PACK_TARG]={0},
 		GR_Pack_Targ[MAX_PACK_TARG][2]={0},
 		GR_Pack_Sq_Used[PT_GER_NONFLY+1]={0},		//inc Yak
 		GR_Pack_Home[8]={0},
@@ -163,23 +163,44 @@ ULong
 	reftoG(pre##6##mid,pre2[6]),	\
 	reftoG(pre##7##mid,pre2[7])
 
-#define	pair(pre,pre2)	\
+#define	bobpair(pre,pre2)	\
 	pre##0=pre2[0],		\
 	pre##1=pre2[1]
 
 #define	pair04(pre,mid,pre2)	\
-	pair(pre##0##mid,pre2##0]),	\
-	pair(pre##1##mid,pre2##1]),	\
-	pair(pre##2##mid,pre2##2]),	\
-	pair(pre##3##mid,pre2##3]),	\
-	pair(pre##4##mid,pre2##4])
+	bobpair(pre##0##mid,pre2[0]),	\
+	bobpair(pre##1##mid,pre2[1]),	\
+	bobpair(pre##2##mid,pre2[2]),	\
+	bobpair(pre##3##mid,pre2[3]),	\
+	bobpair(pre##4##mid,pre2[4])
+
+#define	pair041(pre,mid,pre2)	\
+	bobpair(pre##0##mid,pre2[10]),	\
+	bobpair(pre##1##mid,pre2[11]),	\
+	bobpair(pre##2##mid,pre2[12]),	\
+	bobpair(pre##3##mid,pre2[13]),	\
+	bobpair(pre##4##mid,pre2[14])
+
+#define	pair042(pre,mid,pre2)	\
+	bobpair(pre##0##mid,pre2[20]),	\
+	bobpair(pre##1##mid,pre2[21]),	\
+	bobpair(pre##2##mid,pre2[22]),	\
+	bobpair(pre##3##mid,pre2[23]),	\
+	bobpair(pre##4##mid,pre2[24])
 
 #define	pair59(pre,mid,pre2)	\
-	pair(pre##5##mid,pre2##5]),	\
-	pair(pre##6##mid,pre2##6]),	\
-	pair(pre##7##mid,pre2##7]),	\
-	pair(pre##8##mid,pre2##8]),	\
-	pair(pre##9##mid,pre2##9])
+	bobpair(pre##5##mid,pre2[5]),	\
+	bobpair(pre##6##mid,pre2[6]),	\
+	bobpair(pre##7##mid,pre2[7]),	\
+	bobpair(pre##8##mid,pre2[8]),	\
+	bobpair(pre##9##mid,pre2[9])
+
+#define	pair591(pre,mid,pre2)	\
+	bobpair(pre##5##mid,pre2[15]),	\
+	bobpair(pre##6##mid,pre2[16]),	\
+	bobpair(pre##7##mid,pre2[17]),	\
+	bobpair(pre##8##mid,pre2[18]),	\
+	bobpair(pre##9##mid,pre2[19])
 
 
 typedef	ULong&	ULongRef;
@@ -201,13 +222,14 @@ static	ULongRef
 			refto8(GR_Scram_G,GR_Scram_Squad,_Squad),
 			refto5(GR_Pack_Sq,GR_Pack_Sq_Used,_Used),
 //DEADCODE RJS 15/02/00 			refto8(GR_Pack_Sq,GR_Pack_Home,_Home),
-			pair04(GR_Pack_Targ_F,_E,GR_Pack_Targ[),
-			pair59(GR_Pack_Targ_F,_E,GR_Pack_Targ[),
-			pair04(GR_Pack_Targ_F1,_E,GR_Pack_Targ[1),
-			pair59(GR_Pack_Targ_F1,_E,GR_Pack_Targ[1),
-			pair04(GR_Pack_Targ_F2,_E,GR_Pack_Targ[2)
+			pair04(GR_Pack_Targ_F,_E,GR_Pack_Targ),
+			pair59(GR_Pack_Targ_F,_E,GR_Pack_Targ),
+			pair041(GR_Pack_Targ_F1,_E,GR_Pack_Targ),
+			pair591(GR_Pack_Targ_F1,_E,GR_Pack_Targ),
+			pair042(GR_Pack_Targ_F2,_E,GR_Pack_Targ)
 //DEADCODE RJS 15/02/00 			reftoW(GR_Pack_TakeTime_W,G,GR_Pack_TakeTime)
 			;
+
 
 #define pass 1
 #include	"globrefs.h"
@@ -240,7 +262,7 @@ void	Persons2::ClearGlobrefStaticVars()	//InitSetPiece
 {
 	for (int i=SGR_WPP_TakeOff;i<=SGR_WPP_Msg9;i++)
 		Persons2::SetLoc(i,0);
-	for (i=E_first_Static;i<E_static_END;i++)
+	for (int i=E_first_Static;i<E_static_END;i++)
 		names[i]=0;
 
 }
@@ -253,13 +275,13 @@ void	Persons2::ClearGlobrefGlobalVars()	//When safe generally
 		GR_Scram_Skill[i]=0,
 		GR_Scram_Squad[i]=0;
 	}
-	for (i=0;i<MAX_PACK_TARG;i++)
+	for (int i=0;i<MAX_PACK_TARG;i++)
 		GR_Pack_Target[i]=0;
-	for (i=0;i<=PT_GER_NONFLY;i++)
+	for (int i=0;i<=PT_GER_NONFLY;i++)
 		GR_Pack_Sq_Used[i]=0;
-	for (i=E_first_Global;i<E_global_END;i++)
+	for (int i=E_first_Global;i<E_global_END;i++)
 		names[i]=0;
-} 
+}
 
 //------------------------------------------------------------------------------
 //  References to variables in the main game
@@ -268,11 +290,11 @@ void	Persons2::ClearGlobrefGlobalVars()	//When safe generally
 //TEMP
 //#define	GR_Cam_ViewTarg		View_Point.bfviewtarg,0,0
 //#define	GR_Cam_ViewMode		View_Point.bfviewmode,0,0
-//#define	GR_Cam_CutType		View_Point.bfcuttype,0,0	
-//#define	GR_Cam_PanRate		View_Point.bfpanrate,0,0	
-//#define	GR_Cam_Zoom			View_Point.bfzoom,0,0		
-//#define	GR_Cam_Heading		View_Point.bfheading,0,0	
-//#define	GR_Cam_Pitch		View_Point.bfpitch,0,0		
+//#define	GR_Cam_CutType		View_Point.bfcuttype,0,0
+//#define	GR_Cam_PanRate		View_Point.bfpanrate,0,0
+//#define	GR_Cam_Zoom			View_Point.bfzoom,0,0
+//#define	GR_Cam_Heading		View_Point.bfheading,0,0
+//#define	GR_Cam_Pitch		View_Point.bfpitch,0,0
 //#define	GR_Cam_RollRate		View_Point.bfrollrate,0,0
 //#define	GR_Cam_RotateRate	View_Point.bfrotaterate,0,0
 //#define	GR_Cam_CamItem 		View_Point.bfcamitem,0,0
@@ -305,8 +327,8 @@ void	Persons2::ClearGlobrefGlobalVars()	//When safe generally
 //#define GR_Sample_Pan		_Miles.soundtoplay.pan,0,0
 //static	ULong
 //	GR_Sample_Play	,
-//	GR_Sample_Volume,	
-//	GR_Sample_Pan	;	
+//	GR_Sample_Volume,
+//	GR_Sample_Pan	;
 
 //------------------------------------------------------------------------------
 //Make the actual list:

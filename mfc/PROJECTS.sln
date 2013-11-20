@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Projects", "PROJECTS.vcproj", "{A92CAE51-7B90-4E2C-BEFB-0903535706C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		DemoDebug|Win32 = DemoDebug|Win32
+		DemoRelease|Win32 = DemoRelease|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A92CAE51-7B90-4E2C-BEFB-0903535706C3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A92CAE51-7B90-4E2C-BEFB-0903535706C3}.Debug|Win32.Build.0 = Debug|Win32
+		{A92CAE51-7B90-4E2C-BEFB-0903535706C3}.DemoDebug|Win32.ActiveCfg = DemoDebug|Win32
+		{A92CAE51-7B90-4E2C-BEFB-0903535706C3}.DemoDebug|Win32.Build.0 = DemoDebug|Win32
+		{A92CAE51-7B90-4E2C-BEFB-0903535706C3}.DemoRelease|Win32.ActiveCfg = DemoRelease|Win32
+		{A92CAE51-7B90-4E2C-BEFB-0903535706C3}.DemoRelease|Win32.Build.0 = DemoRelease|Win32
+		{A92CAE51-7B90-4E2C-BEFB-0903535706C3}.Release|Win32.ActiveCfg = Release|Win32
+		{A92CAE51-7B90-4E2C-BEFB-0903535706C3}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

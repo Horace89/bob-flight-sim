@@ -64,7 +64,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 // RTitlePpg.cpp : Implementation of the CRTitlePropPage property page class.
 
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "RTitle.h"
 #include "RTitleP.h"
 

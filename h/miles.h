@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 //Filename       Sound.h
-//System         
+//System
 //Author         Robert Slater
 //Date           Fri 1 Mar 1996
-//Description	Header file for the Sound midi and sample library    
+//Description	Header file for the Sound midi and sample library
 //------------------------------------------------------------------------------
 #ifndef	Sound_Included
 #define	Sound_Included
@@ -17,8 +17,8 @@ typedef SequenceStruct *TuneStrucP;
 struct	MusicRequest;
 struct	SampleLibrary;
 struct	SampleRec;
-struct	PlayingRec;		
-struct	StatusRec;											
+struct	PlayingRec;
+struct	StatusRec;
 struct	SampleRequest;
 typedef PlayingRec *SQueuePtr;									//RJS 17Oct97
 typedef SLong     HTIMER;            // Handle to timer
@@ -319,7 +319,7 @@ void	Init(ULong newwin)		{StartUpSound(newwin);}			//RJS 13Mar98
 void	StartUpSound(ULong);									//RJS 13Mar98
 void	SetVP(mobileitem*);										//RJS 21May98
 void	ShutDownSound();
-///////////////////			
+///////////////////
 
 //TempCode RJS 08Nov99 #ifdef __DOS__													//ARM 02Aug96
 //TempCode RJS 08Nov99 DES		~Sound()	{ShutDownSound();}
@@ -368,7 +368,7 @@ void		reporterror(int	eno, char	*text=NULL);
 SampleRec*	LoadSample(FileNum	thefile,Bool inUI=FALSE);				//RJS 25May99
 //DeadCode RJS 16Oct97 SQueuePtr	FindFreeHandler(int	priority, int	spos, ItemBasePtr	sampleitem, SQueuePtr &oldqueue, UByte	looplength=2);//RJS 16Oct97
 //DeadCode RJS 17Oct97 void		OverrideSample(SQueuePtr, FileNum	thefile, SLong	vol=-1, SLong	pan=0, SLong	newfreq=-1);//RJS 17Oct97
-SLong		ClipVolume(SLong	maxvol, SLong	vol);								
+SLong		ClipVolume(SLong	maxvol, SLong	vol);
 inline void	ClipVolume(SLong& theVol);									//RJS 14Sep00
 SLong		ClipPan(SLong	pan);
 void		FreeSamples();

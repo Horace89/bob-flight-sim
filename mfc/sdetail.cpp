@@ -217,7 +217,7 @@ BOOL CSDetail::OnInitDialog()
 	combo=GETDLGITEM(IDC_CBO_RESOLUTIONS);
 
 	selected=0;
-	for (i=0;i<uiModes.numModes;i++)
+	for (int i=0;i<uiModes.numModes;i++)
 	{
 		if (uiModes.mode[i].hMode==Save_Data.hMode)
 		{

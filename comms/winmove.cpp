@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -70,15 +70,15 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 #define IDIRECTPLAY2_OR_GREATER
 #define	F_COMMON
-#include	"DOSDefs.h"	
+#include	"DOSDefs.h"
 #include	"WorldInc.h"
 #include	"UniqueID.h"
 #include	"flymodel.h"
 #include	"ai.h"
-#include 	<windows.h>
-#include 	<windowsx.h>
-#include 	<mmsystem.h>
-#include	"dplay.h"
+//#include 	<windows.h>
+//#include 	<windowsx.h>
+//#include 	<mmsystem.h>
+//#include	"dplay.h"
 #include	"savegame.h"
 #include	"misssub.h"
 #include	"comms.h"
@@ -94,8 +94,8 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include	"transite.h"
 #include	"3dcom.h"
 #include	"3dcode.h"
-#include	"lstream.h"											
-#include	"aaa.h" 
+#include	"lstream.h"
+#include	"aaa.h"
 #include	"collided.h"
 #include	<stdio.h>
 #include	<stdlib.h>
@@ -103,7 +103,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include	"speed.h"
 #include	"monotxt.h"
 #include	"keytest.h"
-#include	"miles.h"	
+#include	"miles.h"
 #include	"aggrgtor.h"
 #include	"replay.h"
 #include	"myerror.h"
@@ -151,7 +151,7 @@ AirStruc* Persons2::PlayerGhostAC=NULL;
 AirStruc* Persons2::PlayerSeenAC=NULL;
 
 
-Aggregator	_Agg ; 
+Aggregator	_Agg ;
 Replay	_Replay;
 
 #ifdef TIMERTIME
@@ -267,7 +267,7 @@ bool	DPlay::CommsGameSync()
 			if (!ReceiveSyncPackets())
 				return false;
 
-#ifdef SYNCDATA 
+#ifdef SYNCDATA
 			FILE* fp=fopen("resync.txt","at");
 			fprintf(fp,"resync OK CP=%d\n",_DPlay.CurrPlayers);
 			fclose(fp);
@@ -296,12 +296,12 @@ bool	DPlay::CommsGameSync()
 			if (!SyncCommsWorld())
 				return false;
 
-#ifdef SYNCDATA 
+#ifdef SYNCDATA
 			FILE* fp=fopen("resync.txt","at");
 			fprintf(fp,"worldsyncphase OK CP=%d\n",_DPlay.CurrPlayers);
 			fclose(fp);
 #endif
-			WorldSyncPhase=FALSE;								
+			WorldSyncPhase=FALSE;
 			InitBuffers();
 			if (Host)
 			{
@@ -314,7 +314,7 @@ bool	DPlay::CommsGameSync()
 		{
 			InitGameVars();
 
-#ifdef SYNCDATA 
+#ifdef SYNCDATA
 			FILE* fp=fopen("resync.txt","at");
 			fprintf(fp,"initgame vars OK CP=%d\n",_DPlay.CurrPlayers);
 			fclose(fp);
@@ -332,8 +332,8 @@ bool	DPlay::CommsGameSync()
 		if (!synched)
 		{
 			if (!InitSyncPhase())
-				return false; 
-#ifdef SYNCDATA 
+				return false;
+#ifdef SYNCDATA
 			FILE* fp=fopen("resync.txt","at");
 			fprintf(fp,"initsyncphase OK CP=%d\n",_DPlay.CurrPlayers);
 			fclose(fp);
@@ -344,7 +344,7 @@ bool	DPlay::CommsGameSync()
 		{
 			if (!SecondSyncPhase())
 				return false;
-#ifdef SYNCDATA 
+#ifdef SYNCDATA
 			FILE* fp=fopen("resync.txt","at");
 			fprintf(fp,"2ndsyncphase OK CP=%d\n",_DPlay.CurrPlayers);
 			fclose(fp);
@@ -361,7 +361,7 @@ bool	DPlay::CommsGameSync()
 //------------------------------------------------------------------------------
 void mobileitem::WinMove (int timeofday,WorldStuff* worldref)
 {
-#ifdef WINTIME	
+#ifdef WINTIME
  	static ULong lasttime=timeGetTime();
 	static ULong total=0;
 	static ULong num=1;
@@ -392,7 +392,7 @@ void mobileitem::WinMove (int timeofday,WorldStuff* worldref)
 		lasttimertime=timeGetTime();
 #endif
 // Set random list position
-	
+
 		_DPlay.SetRandomListPos();
 
 // do this after random numbers have been synched!!!
@@ -409,16 +409,16 @@ void mobileitem::WinMove (int timeofday,WorldStuff* worldref)
 		if (_DPlay.ResyncPhase)
 			return;
 
-// need to sync random numbers again as launching weapons will use random numbers 
+// need to sync random numbers again as launching weapons will use random numbers
 // differently!
 
 		_DPlay.SetRandomListPos();
 
-// move function 
+// move function
 
 		DosMove (timeofday,worldref);
 
-		timeofday+=Timer_Code.FRAMETIME; 
+		timeofday+=Timer_Code.FRAMETIME;
 		_Replay.SetTimeOfDay(timeofday);
 
 // make packet (if its time to send one)
@@ -500,7 +500,7 @@ void mobileitem::WinMove (int timeofday,WorldStuff* worldref)
  			if (!_Replay.LoadDeltas())
 			{
 				{
-					_Replay.PlaybackPaused=TRUE;		
+					_Replay.PlaybackPaused=TRUE;
 					OverLay.pCurScr=OverLay.pNewScr=&OverLay.replayScr;
 					return; // dont do dosmove if paused......
 				}
@@ -513,7 +513,7 @@ void mobileitem::WinMove (int timeofday,WorldStuff* worldref)
 #endif
 		}
 
-// sync random numbers after packets have been processed as things like launching bullets 
+// sync random numbers after packets have been processed as things like launching bullets
 // will cause extra random numbers to be used before AI etc
 
 		_DPlay.BackupGhost();
@@ -535,16 +535,16 @@ void mobileitem::WinMove (int timeofday,WorldStuff* worldref)
 #endif
 		if ( timeofday > 60*60*24*100 )
 			timeofday-=60*60*24*100;
-		_Replay.SetTimeOfDay(timeofday);				
+		_Replay.SetTimeOfDay(timeofday);
 
 // the storing and loading of block headers must be done after the movecycle,
-//but before the next set of load/store deltas. This is so that in the record 
+//but before the next set of load/store deltas. This is so that in the record
 //and playback the flow of data is always
 //	block header, deltas, move
 // if the record was, blockheader, store deltas , movecycle and then later on
 // store deltas, block header, movecycle, things become out of step.
 
-		if (_Replay.Record)								
+		if (_Replay.Record)
 		{
 			if (_Replay.StoreHeader)
 			{
@@ -636,13 +636,13 @@ void mobileitem::WinMove (int timeofday,WorldStuff* worldref)
 				_Replay.DelayedGearUp=false;
 				_DPlay.SendAccelGearUpMessage();
 			}
-		}	
+		}
 	}
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		StorePacket
-//Description	
+//Description
 //				Store packet in buffer
 //------------------------------------------------------------------------------
 void DPlay::StorePacket (LPAGGSENDPACKET AggPacket)
@@ -652,11 +652,11 @@ void DPlay::StorePacket (LPAGGSENDPACKET AggPacket)
 	SWord	targetcount;
 	SLong	sub;
 
-	AGGSENDPACKET packet;	
+	AGGSENDPACKET packet;
 
 // expand sent packet into full packet
 
-	ExpandAggPacket(&packet, AggPacket);			
+	ExpandAggPacket(&packet, AggPacket);
 
 #ifdef FILELOGS
 			FILE* fp=fopen("aggpack.txt","at");
@@ -698,8 +698,8 @@ void DPlay::StorePacket (LPAGGSENDPACKET AggPacket)
 // players ack aggregators packets. This is because even if a player is not in an aggregated
 // packet, he still wants the other players packets. So if the players were acking their
 // own packets, an aggregated packet with a player absent that goes missing will not be acked
-// by the player who was absent. This would cause the aggregators buffer to overflow because 
-// it expects an ack from all players. 
+// by the player who was absent. This would cause the aggregators buffer to overflow because
+// it expects an ack from all players.
 
 
  	RecPackBuffer.GetNext()->packet=packet.Count;
@@ -884,7 +884,7 @@ void DPlay::ProcessDeltaPacket (LPACPACKET lpAcPacket,ULong slot)
 			{
 			case PIDC_PACKETERROR:
 			case PIDC_INITPACK:
-// packets which dont have valid deltas, ignore 
+// packets which dont have valid deltas, ignore
 
 				break;
 			default:
@@ -994,7 +994,7 @@ void DPlay::ResurrectMe (AirStrucPtr ac,bool suicide)
 				}
 			}
 		}
-	}	
+	}
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -1017,11 +1017,11 @@ void DPlay::ResurrectAircraft (AirStrucPtr ControlledAC, Bool Forced)
 //------------------------------------------------------------------------------
 void DPlay::RepairAircraft (AirStrucPtr ac)
 {
-	_Miles.StopItemSamples(ac);											
-	_Miles.SetEngine();													
+	_Miles.StopItemSamples(ac);
+	_Miles.SetEngine();
 
-	if (ac->Status.size!=AirStrucSize)							
-		_Error.SayAndQuit("Repair ac not aircraftsize");		
+	if (ac->Status.size!=AirStrucSize)
+		_Error.SayAndQuit("Repair ac not aircraftsize");
 
 	ULong n;
 
@@ -1032,14 +1032,14 @@ void DPlay::RepairAircraft (AirStrucPtr ac)
 	{
 		if (AllocPacket [n] == ac->uniqueID.count)
 		{
-			if (!SHAPE.ResetAnimData_NewShape(ac,ac->_GetDrawShape(),ac->weap.Weapons))	
+			if (!SHAPE.ResetAnimData_NewShape(ac,ac->_GetDrawShape(),ac->weap.Weapons))
 				_Error.SayAndQuit("Wrong anim data");
-		
+
 			break;
 		}
 	}
 
-	ac->fly.redeffect = 0;	
+	ac->fly.redeffect = 0;
 	Land_Scape.blackingout = 0;
 	Land_Scape.whitingout = 0;
 
@@ -1054,13 +1054,13 @@ void DPlay::RepairAircraft (AirStrucPtr ac)
 		ac->weap.FuelDumped = FALSE; // allow rip stores again
 	}
 
-	MinAnimData* mad = (MinAnimData* )ac->Anim;					
+	MinAnimData* mad = (MinAnimData* )ac->Anim;
 	mad->itemstate = ALIVE;
 	mad->IsInvisible=0;
 
-	ac->fly.pModel->CrashTime = 0;								
+	ac->fly.pModel->CrashTime = 0;
 
-	Trans_Obj.SetTotalAmmo(ac);									
+	Trans_Obj.SetTotalAmmo(ac);
 
 	int slot=UID2Slot(ac->uniqueID.count);
 	if (slot<MAXPLAYERS)
@@ -1080,7 +1080,7 @@ void DPlay::InitResurrect (AirStrucPtr ac)
 	{
 		hitResurrect = false;
 
-		ac->movecode = AUTO_RESURRECT;	
+		ac->movecode = AUTO_RESURRECT;
 
 		if (ac == Persons2::PlayerSeenAC)
 		{
@@ -1109,13 +1109,13 @@ static char* GetMoveCode(AutoMoveCodeTypeSelect a)
 	case AUTO_TAKEOFF:          return "AUTO_TAKEOFF, ";
 	case GROUND_TAXI:		    return "GROUND_TAXI, ";
 	case AUTO_TELLLEADER:		return "AUTO_TELLLEADER,	 ";
-		                                              
+
 	case AUTO_SPIRAL2GROUND:	return "AUTO_SPIRAL2GROUND,	 ";
 	case AUTO_RESURRECT:		return "AUTO_RESURRECT,		 ";
 	case AUTO_DEATHSEQUENCE:	return "AUTO_DEATHSEQUENCE,	 ";
 	case AUTO_CRASHSKID:		return "AUTO_CRASHSKID,		 ";
 	case AUTO_CRASHROLL:		return "AUTO_CRASHROLL,		 ";
-		                                              
+
 	case AUTO_BOMB:             return "AUTO_BOMB, ";
 	case AUTO_COVER:            return "AUTO_COVER, ";
 	case AUTO_STRAFFE:          return "AUTO_STRAFFE, ";
@@ -1123,7 +1123,7 @@ static char* GetMoveCode(AutoMoveCodeTypeSelect a)
 	case AUTO_RECONN:           return "AUTO_RECONN, ";
 	case AUTO_ARTSPOT:          return "AUTO_ARTSPOT, ";
 	case AUTO_HITWATER:		    return "AUTO_HITWATER,		 ";
-		                                              
+
 	case AUTO_TRACKINGBOGIE:	return "AUTO_TRACKINGBOGIE,	 ";
 	case AUTO_TRACKINGBANDIT:   return "AUTO_TRACKINGBANDIT, ";
 	case AUTO_PRECOMBAT:		return "AUTO_PRECOMBAT,		 ";
@@ -1143,7 +1143,7 @@ void mobileitem::DosMove (int timeofday,WorldStuff* worldref)
 {
 // Set fx random numbers...
 
-	if (_DPlay.Implemented)												
+	if (_DPlay.Implemented)
 	{
 		_DPlay.damageRandom = _DPlay.effectRandom = 32768;
 	}
@@ -1163,7 +1163,7 @@ void mobileitem::DosMove (int timeofday,WorldStuff* worldref)
 	Art_Int.CollisionCheck();
 
 #ifndef EMIT_HM_DATA
-	mobileitem::MoveAll(world);	
+	mobileitem::MoveAll(world);
 #endif
 
 	if (Three_Dee.livelist)
@@ -1171,11 +1171,11 @@ void mobileitem::DosMove (int timeofday,WorldStuff* worldref)
 
 	TransientItem::MoveAllTrans(world);
 
-	if (	(Persons2::PlayerSeenAC->classtype->aerobaticfactor != AEROBATIC_LOW)	
-		&&	!Persons2::PlayerSeenAC->Status.deadtime								)	
+	if (	(Persons2::PlayerSeenAC->classtype->aerobaticfactor != AEROBATIC_LOW)
+		&&	!Persons2::PlayerSeenAC->Status.deadtime								)
 	{
-		Persons2::PlayerGhostAC->CheckManualCourse();					  
-		//other code may change these in ghost							  
+		Persons2::PlayerGhostAC->CheckManualCourse();
+		//other code may change these in ghost
 		Persons2::PlayerSeenAC->waypoint=Persons2::PlayerGhostAC->waypoint;
 		Persons2::PlayerSeenAC->leader=Persons2::PlayerGhostAC->leader;
 		Persons2::PlayerSeenAC->follower=Persons2::PlayerGhostAC->follower;
@@ -1183,7 +1183,7 @@ void mobileitem::DosMove (int timeofday,WorldStuff* worldref)
 		Persons2::PlayerSeenAC->fly.leadflight=Persons2::PlayerGhostAC->fly.leadflight;
 		Persons2::PlayerSeenAC->ai.unfriendly=Persons2::PlayerGhostAC->ai.unfriendly;
 		Persons2::PlayerSeenAC->overview_slowdownleader = Persons2::PlayerGhostAC->overview_slowdownleader;	//CSB 08/07/99
-		Persons2::PlayerSeenAC->formation = Persons2::PlayerGhostAC->formation;	
+		Persons2::PlayerSeenAC->formation = Persons2::PlayerGhostAC->formation;
 		Persons2::PlayerSeenAC->overview_movecode=Persons2::PlayerGhostAC->overview_movecode;
 		Persons2::PlayerSeenAC->formpos=Persons2::PlayerGhostAC->formpos;
 		Persons2::PlayerSeenAC->information<<=Persons2::PlayerGhostAC->information;
@@ -1191,7 +1191,7 @@ void mobileitem::DosMove (int timeofday,WorldStuff* worldref)
 		Persons2::PlayerSeenAC->ai.ManStep<<=Persons2::PlayerGhostAC->ai.ManStep;
 	}
 
-	if (!_Replay.Playback) 
+	if (!_Replay.Playback)
 	{
 		if(Persons2::PlayerSeenAC->classtype->aerobaticfactor == AEROBATIC_LOW)
 		{
@@ -1237,12 +1237,12 @@ void mobileitem::DosMove (int timeofday,WorldStuff* worldref)
 			world.RemoveFromSector(Persons2::PlayerSeenAC,oldsector);
 			world.AddToWorld(Persons2::PlayerSeenAC);
 		}
-		Persons2::PlayerSeenAC->uniqueID.changed = FALSE;		
+		Persons2::PlayerSeenAC->uniqueID.changed = FALSE;
 	}
 
 // collisions against non-transient items
 
-	if (!_Replay.Playback)					
+	if (!_Replay.Playback)
 	{
 		Trans_Obj.PilotedACHit();					//make this last - 4 comms
 	}
@@ -1251,30 +1251,30 @@ void mobileitem::DosMove (int timeofday,WorldStuff* worldref)
 		Persons2::PlayerSeenAC->fly.pModel->EmitHMData(Manual_Pilot.ControlledAC2);
 	#endif
 
-	if (!_Replay.Playback)												
+	if (!_Replay.Playback)
 	{
-		if (Manual_Pilot.controlmode==ManualPilot::MANUAL)				
-			Trans_Obj.ControlKeybWeap(Persons2::PlayerSeenAC,world);	
+		if (Manual_Pilot.controlmode==ManualPilot::MANUAL)
+			Trans_Obj.ControlKeybWeap(Persons2::PlayerSeenAC,world);
 		else
-			_Miles.StopShooting();							
+			_Miles.StopShooting();
 
 		//We do still want to be able to eject when we want to...
-		if (Key_Tests.KeyPress3d(EJECTPILOT))				
+		if (Key_Tests.KeyPress3d(EJECTPILOT))
  		{
 			if (!Persons2::PlayerSeenAC->fly.pModel->GearTouched)
 			{
-				MinAnimData*	mad = (MinAnimData*)Persons2::PlayerSeenAC->Anim;	
-				if (	!mad->IsInvisible								
-					&&	(mad->itemstate != DEAD)	)					
+				MinAnimData*	mad = (MinAnimData*)Persons2::PlayerSeenAC->Anim;
+				if (	!mad->IsInvisible
+					&&	(mad->itemstate != DEAD)	)
 				{
  					if (_DPlay.Implemented)
 					{
 						if (_DPlay.GameType>DPlay::TEAMPLAY)
- 							_DPlay.NewSpecial(DPlay::PIDC_EJECT);			
+ 							_DPlay.NewSpecial(DPlay::PIDC_EJECT);
 					}
 					else if (_Replay.Record)
 					{
-						_DPlay.NewSpecial(DPlay::PIDC_EJECT);			
+						_DPlay.NewSpecial(DPlay::PIDC_EJECT);
 					}
  					else
 	 					Trans_Obj.LaunchCanopyEject(Persons2::PlayerSeenAC,world);
@@ -1283,11 +1283,11 @@ void mobileitem::DosMove (int timeofday,WorldStuff* worldref)
 
 		}
 	}
-	timerseed=0; 
-	//other code (weapons) may change these in seen							  
+	timerseed=0;
+	//other code (weapons) may change these in seen
 
-	if(Persons2::PlayerSeenAC->classtype->aerobaticfactor != AEROBATIC_LOW)	
-	{																	
+	if(Persons2::PlayerSeenAC->classtype->aerobaticfactor != AEROBATIC_LOW)
+	{
 		Persons2::PlayerGhostAC->waypoint=		Persons2::PlayerSeenAC->waypoint;
 		Persons2::PlayerGhostAC->leader=		Persons2::PlayerSeenAC->leader;
 		Persons2::PlayerGhostAC->follower=		Persons2::PlayerSeenAC->follower;
@@ -1295,15 +1295,15 @@ void mobileitem::DosMove (int timeofday,WorldStuff* worldref)
 		Persons2::PlayerGhostAC->fly.leadflight=Persons2::PlayerSeenAC->fly.leadflight;
 		Persons2::PlayerGhostAC->ai.unfriendly=Persons2::PlayerSeenAC->ai.unfriendly;
 		Persons2::PlayerGhostAC->overview_slowdownleader = Persons2::PlayerSeenAC->overview_slowdownleader;	
-		Persons2::PlayerGhostAC->formation = Persons2::PlayerSeenAC->formation;	
+		Persons2::PlayerGhostAC->formation = Persons2::PlayerSeenAC->formation;
 		Persons2::PlayerGhostAC->overview_movecode=Persons2::PlayerSeenAC->overview_movecode;
 		Persons2::PlayerGhostAC->formpos=Persons2::PlayerSeenAC->formpos;
 		Persons2::PlayerGhostAC->information<<=Persons2::PlayerSeenAC->information;
 		Persons2::PlayerGhostAC->ai.manoeuvre<<=Persons2::PlayerSeenAC->ai.manoeuvre;
 		Persons2::PlayerGhostAC->ai.ManStep<<=Persons2::PlayerSeenAC->ai.ManStep;
-	}																	
+	}
 
-	Trans_Obj.UpdateRaids();									
+	Trans_Obj.UpdateRaids();
 
 	_DPlay.BombCheck(Persons2::PlayerSeenAC);
 }
@@ -1315,7 +1315,7 @@ void mobileitem::DosMove (int timeofday,WorldStuff* worldref)
 Bool DPlay::SendPacketToAggregator(LPACPACKET lpAcPacket)
 {
 	myDPID To=aggID,From=myDPlayID;
-	HRESULT res; 
+	HRESULT res;
 
 	res=lpDP4->SendEx(From,To,DPSEND_ASYNC|DPSEND_NOSENDCOMPLETEMSG,lpAcPacket,sizeof(ACPACKET),0,0,NULL,NULL);
 
@@ -1351,7 +1351,7 @@ void SendInitPacket ()
 		HRESULT res;
 		char* Buffer;
 		ULong BufLen;
-		Bool gotone; 
+		Bool gotone;
 
 		if (_DPlay.Joining)
 		{
@@ -1359,7 +1359,7 @@ void SendInitPacket ()
 
 			p.PacketID=PID_RANDREQUEST;
 			_DPlay.SendMessageToGroup((char*)&p,sizeof(GENERIC));
-				
+
 // get initial random numbers
 
 			while (_DPlay.ReceiveNextMessageToMe(Buffer,BufLen,From,DPRECEIVE_TOPLAYER))
@@ -1393,7 +1393,7 @@ void SendInitPacket ()
 				}
 			}
 
-			for (int sq=0;sq<=PT_GER_NONFLY;sq++)				
+			for (int sq=0;sq<=PT_GER_NONFLY;sq++)
 				GR_Pack_Sq_Used[sq]=0;
 
 			Math_Lib.ResetRndCount();
@@ -1404,7 +1404,7 @@ void SendInitPacket ()
 		if (_DPlay.Host)
 		{
 // Send Random List
-			
+
 			for (n=0; n<(RNDPACKETSIZE - 2); n++)
 				RndPacket[n] = Math_Lib.GetRndLookUp(n);
 
@@ -1430,7 +1430,7 @@ void SendInitPacket ()
 
 			ULong now=timeGetTime();
 
-			CommsTimeout time(now,_DPlay.CommsTimeoutLength); 
+			CommsTimeout time(now,_DPlay.CommsTimeoutLength);
 
 			while (!gotone)
 			{
@@ -1477,7 +1477,7 @@ void SendInitPacket ()
 // need to clear squads used here. It is done by host when determining new BField,
 // but as guests only process BFields it will not get done, so do it here for all.
 
-		for (int sq=0;sq<=PT_GER_NONFLY;sq++)		
+		for (int sq=0;sq<=PT_GER_NONFLY;sq++)
 			GR_Pack_Sq_Used[sq]=0;
 	}
 	else
@@ -1557,7 +1557,7 @@ FileNum Persons3::FindCommsNextBf (BattlefieldType& bfctrl)
 			bfctrl=(BattlefieldType)_Replay.currentry->bfctrl;
 			_Replay.SetGlobRefs(_Replay.currentry->list);
 			_Replay.currentry=_Replay.currentry->next;
-			_DPlay.SetRandomListPos();	
+			_DPlay.SetRandomListPos();
 		}
 		else
 		{
@@ -1608,7 +1608,7 @@ FileNum Persons3::FindCommsNextBf (BattlefieldType& bfctrl)
 			}
 
 			Bool gotone=FALSE;
-			
+
 			ULong now=timeGetTime();
 			CommsTimeout time(now,_DPlay.CommsTimeoutLength*6);
 
@@ -1678,7 +1678,7 @@ void SendInit2Packet ()
 	_DPlay.DeleteMyAIACPositionToSendList();
 
 // set up AI CommsOwners (in replay/single player all AI owners are me)
-	
+
 	_DPlay.InitialiseOwners();
 
 	if (_DPlay.Implemented)
@@ -1711,7 +1711,7 @@ void SendInit2Packet ()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CopyPacket
-//Description	Add contents of an aircraft packet onto AirStruc 
+//Description	Add contents of an aircraft packet onto AirStruc
 //------------------------------------------------------------------------------
 void DPlay::CopyPacket (AirStrucPtr AC, LPACPACKET lpAcPacket)
 {
@@ -1751,13 +1751,13 @@ void DPlay::CopyPacket (AirStrucPtr AC, LPACPACKET lpAcPacket)
 	ADDDELTAS(lpAcPacket->Roll,AC->roll.a,shift)
 
 	if (lpAcPacket->Heading>127)
-	{								 
-		val=-((lpAcPacket->Heading-128)<<shift);	  
-	}								   
-	else								
-	{									 
-		val=lpAcPacket->Heading<<shift;					  
-	}									   
+	{
+		val=-((lpAcPacket->Heading-128)<<shift);
+	}
+	else
+	{
+		val=lpAcPacket->Heading<<shift;
+	}
 
 	AC->fly.dhdg=val/RateDivider;
 	AC->fly.cpitch=AC->pitch;
@@ -1771,7 +1771,7 @@ void DPlay::CopyPacket (AirStrucPtr AC, LPACPACKET lpAcPacket)
 		val=+((lpAcPacket->Velocity_)<<lpAcPacket->Shift);
 	}
 
-	SLong newvel=abs(val)<<_Replay.velshifttest;
+	SLong newvel=SLong(abs(val))<<_Replay.velshifttest;
 
 	if (val<0)
 		newvel=-newvel;
@@ -1796,7 +1796,7 @@ void DPlay::MakeDeltaPacket (LPBASICPACKET packet)
 
 #define MAKEDELTAS(src,dest,shift)	  \
 	{								   \
-		val=(abs(src))>>shift;			\
+		val=SLong(abs(src))>>shift;			\
 		if (val!=0 && src<0)			 \
 		{								  \
 			val|=128;					   \
@@ -1846,7 +1846,7 @@ void DPlay::UpdateDeltas(LPACPACKET lpAcPacket)
 
 	val=GetVal(lpAcPacket->Velocity_,shiftfactor);
 
-	SLong newvel=abs(val)<<_Replay.velshifttest;
+	SLong newvel=SLong(abs(val))<<_Replay.velshifttest;
 
 	if (val<0)
 		newvel=-newvel;
@@ -1862,7 +1862,7 @@ void DPlay::UpdatePredictedAC(LPACPACKET lpAcPacket)
 {
 	UByte	shiftfactor=lpAcPacket->Shift;
 	SLong	val;
-	
+
 	val=GetVal(lpAcPacket->X,shiftfactor);
 
 	Persons2::PlayerGhostAC->World.X+=val;
@@ -1876,7 +1876,7 @@ void DPlay::UpdatePredictedAC(LPACPACKET lpAcPacket)
 	val=GetVal(lpAcPacket->Heading,shiftfactor);
 	Persons2::PlayerGhostAC->hdg.a+=val;
 
-	Persons2::PlayerGhostAC->fly.dhdg=val/RateDivider;		
+	Persons2::PlayerGhostAC->fly.dhdg=val/RateDivider;
 
 	val=GetVal(lpAcPacket->Pitch,shiftfactor);
 	Persons2::PlayerGhostAC->pitch.a+=val;
@@ -1886,7 +1886,7 @@ void DPlay::UpdatePredictedAC(LPACPACKET lpAcPacket)
 
 	val=GetVal(lpAcPacket->Velocity_,shiftfactor);
 
-	SLong newvel=abs(val)<<_Replay.velshifttest;
+	SLong newvel=SLong(abs(val))<<_Replay.velshifttest;
 
 	if (val<0)
 		newvel=-newvel;
@@ -1947,7 +1947,7 @@ UByte	DPlay::MakeCollPacket(LPBASICPACKET packet,UByte index)
 // bottom 8 bits of shooter in byte 5
 
 	UByte ID;
-	
+
 #ifndef NDEBUG
 	if (CollBuffer.GetCurr()->str>63)
 		INT3;
@@ -1991,7 +1991,7 @@ UByte	DPlay::MakeCollPacket(LPBASICPACKET packet,UByte index)
 
 #ifndef NDEBUG
 	UWord uid,shooteruid;
-	UWord offset;												
+	UWord offset;
 	UByte type;
 	UWord temp;
 
@@ -2052,11 +2052,11 @@ void	DPlay::NewBullet (ULong num, ULong index)
 	{
 // instead of causing an error if table is full, overwrite oldest entry ?????
 
- 		if(BulletBuffer.NumEntries()>=BufferSize)			
-		{	
+ 		if(BulletBuffer.NumEntries()>=BufferSize)
+		{
 			BulletBuffer.UpdateCurr();
 		}
-		 
+
  		BulletBuffer.GetNext()->num=num;
  		BulletBuffer.GetNext()->index=index;
 
@@ -2076,7 +2076,7 @@ void	DPlay::NewBullet (ULong num, ULong index)
 //------------------------------------------------------------------------------
 void DPlay::PredictMove(AirStruc* ac)
 {
-	SLong bvx,bvy,bvz; 
+	SLong bvx,bvy,bvz;
 	bool	store=false;
 
 // backup current vels as the ones that of calculated here are used only for
@@ -2191,10 +2191,10 @@ void DPlay::AddDeltas(AirStruc* AC, Bool sign, UByte caller)
 // this is OK, though if the deltas get this large then something has probably
 // gone wrong
 
-		if(Deltas.Velocity>2147483647)								  
+		if(Deltas.Velocity>2147483647)
 		{
 			INT3;
-			Deltas.Velocity-=2147483648;							 
+			Deltas.Velocity-=2147483648;
 		}
 	}
 	else
@@ -2241,10 +2241,10 @@ void DPlay::AddDeltas(AirStruc* AC, Bool sign, UByte caller)
 
 		Deltas.Velocity-=AC->vel_;;
 
-		if(Deltas.Velocity<-2147483647)								 
+		if(Deltas.Velocity<-2147483647)
 		{
 			INT3;
-			Deltas.Velocity+=2147483648;							 
+			Deltas.Velocity+=2147483648;
 		}
 	}
 }
@@ -2254,7 +2254,7 @@ void DPlay::AddDeltas(AirStruc* AC, Bool sign, UByte caller)
 //Date			Wed 26 Feb 1997
 //Description	determines shift byte to apply to deltas
 //				this is done by looking at the highest value and detemining
-//				how much of a shift is required to bring the most sig. bit 
+//				how much of a shift is required to bring the most sig. bit
 //				into specified number of bits
 //------------------------------------------------------------------------------
 UByte DPlay::MakeShiftValue()
@@ -2265,13 +2265,13 @@ UByte DPlay::MakeShiftValue()
 
 // get biggest absolute number
 
- 	maxnum=max(abs(Deltas.Velocity>>_Replay.velshifttest),abs(Deltas.Roll.a));
+ 	maxnum=max(ULong(abs(Deltas.Velocity>>_Replay.velshifttest)),ULong(abs(Deltas.Roll.a)));
 
-	maxnum=max(maxnum,abs(Deltas.Heading.a));
-	maxnum=max(maxnum,abs(Deltas.Pitch.a));
-	maxnum=max(maxnum,abs(Deltas.lastpos.Z));
-	maxnum=max(maxnum,abs(Deltas.lastpos.X));
-	maxnum=max(maxnum,abs(Deltas.lastpos.Y));
+	maxnum=max(maxnum,ULong(abs(Deltas.Heading.a)));
+	maxnum=max(maxnum,ULong(abs(Deltas.Pitch.a)));
+	maxnum=max(maxnum,ULong(abs(Deltas.lastpos.Z)));
+	maxnum=max(maxnum,ULong(abs(Deltas.lastpos.X)));
+	maxnum=max(maxnum,ULong(abs(Deltas.lastpos.Y)));
 
 // determine highestbit
 
@@ -2458,25 +2458,25 @@ void DPlay::SendGonePacket()
 //Date			Mon 12 May 1997
 //Inputs		dplayID of player who has left, whether player was in 3d
 //------------------------------------------------------------------------------
-void DPlay::ProcessPlayerGone(ULong playerDPID,Bool in3d) 
+void DPlay::ProcessPlayerGone(ULong playerDPID,Bool in3d)
 {
 	ULong n,slot=0;
 
 	if (in3d)
 	{
-// if I'm not in 3D dont do this 
+// if I'm not in 3D dont do this
 
 		if ((H2H_Player+mySlot)->status!=CPS_3D)
-			return;												
+			return;
 
 		slot=DPID2Slot(playerDPID);
 
 		if (slot==MAXPLAYERS)
 			return;
 
-// this is necesary												
-		if (H2H_Player[slot].status!=CPS_3D)					
-			return;												
+// this is necesary
+		if (H2H_Player[slot].status!=CPS_3D)
+			return;
 
 // ensure that multiple player gone messages dont cause problem
 
@@ -2485,7 +2485,7 @@ void DPlay::ProcessPlayerGone(ULong playerDPID,Bool in3d)
 		if(CurrPlayers)
 			CurrPlayers--;
 
-		(H2H_Player+slot)->status=CPS_READYROOM;						
+		(H2H_Player+slot)->status=CPS_READYROOM;
 
 		UniqueID thisid=UID_Null;
 
@@ -2515,7 +2515,7 @@ void DPlay::ProcessPlayerGone(ULong playerDPID,Bool in3d)
 
 					MinAnimData* mad = (MinAnimData* )thisac->Anim;
 					mad->itemstate = DEAD;
-					mad->IsInvisible=1;				
+					mad->IsInvisible=1;
 
 					if (thisac == Persons2::PlayerSeenAC)
 						Manual_Pilot.controlmode=ManualPilot::PILOTDEAD;
@@ -2541,7 +2541,7 @@ void DPlay::ProcessPlayerGone(ULong playerDPID,Bool in3d)
 		if (slot==MAXPLAYERS)
 			return;
 
-		if(Host)		
+		if(Host)
 		{
 			lpDP4->DestroyPlayer(playerDPID);
 		}
@@ -2562,7 +2562,7 @@ void DPlay::ProcessPlayerGone(ULong playerDPID,Bool in3d)
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CommitSuicide
 //Date			Thu 19 Jun 1997
-//Description	If player has been killed, then allow an immediate 
+//Description	If player has been killed, then allow an immediate
 //				resurrect, to stop tedious decent to ground
 //------------------------------------------------------------------------------
 void	DPlay::CommitSuicide()
@@ -2579,9 +2579,9 @@ void	DPlay::CommitSuicide()
 // errors in deltas
 
 			CheckSeen();
-			AddDeltas(Persons2::PlayerSeenAC,FALSE,5); 
+			AddDeltas(Persons2::PlayerSeenAC,FALSE,5);
 			ResurrectMe(Persons2::PlayerSeenAC,true);
-			AddDeltas(Persons2::PlayerSeenAC,TRUE,5); 
+			AddDeltas(Persons2::PlayerSeenAC,TRUE,5);
 			BackupSeen();
 		}
 	}
@@ -2635,7 +2635,7 @@ void	DPlay::SendResyncMessage()
 	gac->World.X=sac->World.X;
 	gac->World.Y=sac->World.Y;
 	gac->World.Z=sac->World.Z;
- 
+
 	gac->hdg.a=sac->hdg.a;
 	gac->pitch.a=sac->pitch.a;
 	gac->roll.a=sac->roll.a;
@@ -2765,12 +2765,12 @@ Bool	DPlay::ReceiveSyncPackets()
 		needed=ActivePlayers^(1<<mySlot);
 
 		SendResyncMessage();
-#ifdef SYNCDATA 
+#ifdef SYNCDATA
 		fprintf(fp,"Sent resync message. Needed=%d\n",needed);
 #endif
 		now=timeGetTime();
 	}
-	
+
 	while (ReceiveNextMessageToMe(Buffer,BufLen,from,DPRECEIVE_TOPLAYER))
 	{
 		if (from==DPID_SYSMSG)
@@ -2781,7 +2781,7 @@ Bool	DPlay::ReceiveSyncPackets()
 		{
 			packet=(LPACSTATEPACKET)Buffer;
 
-			if (packet->PacketID==PID_RESYNC) 
+			if (packet->PacketID==PID_RESYNC)
 			{
 // update ac postion etc
 
@@ -2790,7 +2790,7 @@ Bool	DPlay::ReceiveSyncPackets()
 				if (n!=MAXPLAYERS)
 				{
 					ProcessResyncPacket(packet,n);
-#ifdef SYNCDATA 
+#ifdef SYNCDATA
 					fprintf(fp,"received resync packet from slot %d\n",n);
 					fprintf(fp,"resyncsgot=%d\n",resyncsgot);
 #endif
@@ -2811,7 +2811,7 @@ Bool	DPlay::ReceiveSyncPackets()
 
 		if (joiningplayerslot>=0)
 		{
-			if (GameType<COMMSQUICKMISSION)							
+			if (GameType<COMMSQUICKMISSION)
 				GetBattlePosition(joiningplayerslot);
 
 			if (joiningplayerslot==mySlot)
@@ -2828,7 +2828,7 @@ Bool	DPlay::ReceiveSyncPackets()
 
 		resyncsgot=0;
 		needed=0;
-#ifdef SYNCDATA 
+#ifdef SYNCDATA
 		fprintf(fp,"resync OK\n");
 		fclose(fp);
 #endif
@@ -2843,7 +2843,7 @@ Bool	DPlay::ReceiveSyncPackets()
 
 		if (Host)
 		{
-#ifdef SYNCDATA 
+#ifdef SYNCDATA
 			fprintf(fp,"timeout\n");
 			fflush(fp);
 #endif
@@ -2852,7 +2852,7 @@ Bool	DPlay::ReceiveSyncPackets()
 			BeginSyncPhase();
 		}
 	}
-#ifdef SYNCDATA 
+#ifdef SYNCDATA
 		fclose(fp);
 #endif
 
@@ -2904,7 +2904,7 @@ Bool	DPlay::InitSyncPhase()
 	DWORD	BufferLen;
 	char* Buffer;
 	DPID	From=0;
-	static first=true;
+	static bool first=true;
 
 	if (ResetSync)
 	{
@@ -2995,14 +2995,14 @@ Bool	DPlay::InitSyncPhase()
 	num=0;
 	for (n=0;n<MAXPLAYERS;n++)
 	{
-		if (packet.player[n].IDCode==PIDC_DUMMYPACKET)	
+		if (packet.player[n].IDCode==PIDC_DUMMYPACKET)
 		{
 			num++;
 #ifdef SYNCDATA
 			fprintf(sp,"received DUMMYPACKET from %d\n",n);
 #endif
 		}
-#ifdef SYNCDATA 
+#ifdef SYNCDATA
 		else
 		{
 			fprintf(sp,"received %d from %d\n",packet.player[n].IDCode,n);
@@ -3031,20 +3031,20 @@ Bool	DPlay::InitSyncPhase()
 				if (packet.Count<=FrameCount)
 				{
 // if we have got too far ahead
-// I mean behind!!!! If packet received has a higher frame number than current frame 
+// I mean behind!!!! If packet received has a higher frame number than current frame
 // we have no chance of getting in!!
 
 					if ((abs)(FrameCount-packet.Count)>10)
 					{
 						FrameCount=packet.Count;
-						IgnoreFrameIncs=6; 
+						IgnoreFrameIncs=6;
 					}
 					else
 					{
 						if (IgnoreFrameIncs==0)
 						{
 							FrameCount++;
-							IgnoreFrameIncs=6; 
+							IgnoreFrameIncs=6;
 						}
 						else
 						{
@@ -3055,12 +3055,12 @@ Bool	DPlay::InitSyncPhase()
 				else
 				{
 // initial big catchup
-					if (first)									
-					{											
-						first=false;							
-						FrameCount=packet.Count+1;				
-					}											
-					else										
+					if (first)
+					{
+						first=false;
+						FrameCount=packet.Count+1;
+					}
+					else
 					if (IgnoreFrameIncs==0)
 					{
 						FrameCount=packet.Count;
@@ -3081,7 +3081,7 @@ Bool	DPlay::InitSyncPhase()
  	fprintf(fp,"INITSYNCPHASE SUCCESSFUL\n");
  	fclose(fp);
 #endif
-			IgnoreFrameIncs=6; 
+			IgnoreFrameIncs=6;
 			FrameCount++;
 			synched=TRUE;
 
@@ -3170,7 +3170,7 @@ Bool	DPlay::SecondSyncPhase()
 	FILE* dp=fopen("aggpack.txt","at");
 	fprintf(dp,"Agg frame%d My Frame%d\n",
 		packet.Count,FrameCount);
-		
+
 	for (n=0;n<MAXPLAYERS;n++)
 	{
 		if (ActivePlayers&1<<n)
@@ -3189,14 +3189,14 @@ Bool	DPlay::SecondSyncPhase()
 	num=0;
 	for (n=0;n<MAXPLAYERS;n++)
 	{
-		if (packet.player[n].IDCode==PIDC_INITPACK)		
+		if (packet.player[n].IDCode==PIDC_INITPACK)
 		{
 			num++;
 #ifdef SYNCDATA
 			fprintf(sp,"received INITPACK from %d\n",n);
 #endif
 		}
-#ifdef SYNCDATA 
+#ifdef SYNCDATA
 		else
 		{
 			fprintf(sp,"received %d from %d\n",packet.player[n].IDCode,n);
@@ -3213,7 +3213,7 @@ Bool	DPlay::SecondSyncPhase()
 
 		FrameCount++;
 
-		PacketBuffer.GetCurr()->Count=packet.Count+1;	
+		PacketBuffer.GetCurr()->Count=packet.Count+1;
 
 		for (n=0;n<MAXPLAYERS;n++)
 		{
@@ -3286,7 +3286,7 @@ void	DPlay::MakeAndSendPacket()
 // a player delta is sent, resulting in warping. Use this flag to indicate that after every
 // all packets for a single AI AC have been sent, send a player packet
 
-	static bool GuaranteedDeltaSend=true; 
+	static bool GuaranteedDeltaSend=true;
 	ACPACKET	SendPacket;
 
 	ZeroMemory (&SendPacket,sizeof(ACPACKET));
@@ -3319,7 +3319,7 @@ void	DPlay::MakeAndSendPacket()
 
 // update deltas with sent values
 
-		UpdateDeltas(&SendPacket);				
+		UpdateDeltas(&SendPacket);
 	}
 // send acks
 
@@ -3335,13 +3335,13 @@ void	DPlay::MakeAndSendPacket()
 		if (RecPackBuffer.NumEntries()>0)
 		{
 // problem when a large buffer send 2 resend packets at once and the Acks for these get
-// put into the same packet, which then gets lost itself, no more chances. So spread 
+// put into the same packet, which then gets lost itself, no more chances. So spread
 // Acks for the same packet over 2 packets to try and get info through
 
  			if (RecPackBuffer.GetCurr()->packet!=SendPacket.Ack1)
  			{
  				SendPacket.Ack2=RecPackBuffer.GetCurr()->packet;
- 
+
  				RecPackBuffer.UpdateCurr();
  			}
 		}
@@ -3381,7 +3381,7 @@ void	DPlay::MakeAndSendPacket()
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ProcessInfoPackets
 //Date			Tue 31 Mar 1998
-//Description	Get any non aggregated packets and process them 
+//Description	Get any non aggregated packets and process them
 //------------------------------------------------------------------------------
 void	DPlay::ProcessInfoPackets()
 {
@@ -3609,13 +3609,13 @@ Bool	DPlay::JoinGame()
 		}
 	}
 
-	ULong	squads[PT_GER_NONFLY+1];	 
+	ULong	squads[PT_GER_NONFLY+1];
 
 	if (GameType<COMMSQUICKMISSION)
 	{
 		FillCSQuickStruc();
 
-// position 
+// position
 
 		for (n=0;n<=PT_GER_NONFLY;n++)
 		{
@@ -3629,9 +3629,9 @@ Bool	DPlay::JoinGame()
 		}
 	}
 
-	if (!SendMyPlayerInfo(false))								
-		return FALSE;											
-					 
+	if (!SendMyPlayerInfo(false))
+		return FALSE;
+
 // no need to receive save game, the one initially should still be valid
 
 
@@ -3775,7 +3775,7 @@ void	DPlay::InitBuffers()
 			{
 				HistPosBuffer[n].InitBuffer();
 				HistPosBuffer[n].SetTempCurr();
-				do 
+				do
 				{
 					HistPosBuffer[n].GetTemp()->Pos.X=ac->World.X;
 					HistPosBuffer[n].GetTemp()->Pos.Y=ac->World.Y;
@@ -3789,7 +3789,7 @@ void	DPlay::InitBuffers()
 					HistPosBuffer[n].GetTemp()->OK=false;
 
 					HistPosBuffer[n].UpdateTemp();
-				} 
+				}
 				while (HistPosBuffer[n].GetTemp()!=HistPosBuffer[n].GetCurr());
 			}
 
@@ -3851,7 +3851,7 @@ void	DPlay::ResetDeltas()
 UByte	DPlay::ProcessCollisionPacket(UByteP ptr, AirStrucPtr sender, ULong slot)
 {
 	UWord uid,shooteruid;
-	UWord offset;													
+	UWord offset;
 	UByte type;
 	UByte str;
 	UWord temp;
@@ -3941,10 +3941,10 @@ UByte	DPlay::ProcessCollisionPacket(UByteP ptr, AirStrucPtr sender, ULong slot)
 		  		SHAPE.AddToCollisionList(uid,offset,type,str);
 			}
 		}
-		else 												
-		{													
+		else
+		{
 			SHAPE.AddToCollisionList(uid,offset,type,str);
-		}												
+		}
 	}
 
 	if (_DPlay.Implemented && Persons2::PlayerSeenAC->Status.deaded)
@@ -4005,7 +4005,7 @@ UByte	DPlay::ProcessSpecialPacket(UByteP ptr, AirStrucPtr AC, ULong slot)
 
 	case PIDC_DEATHMOVEEFFECT:
 		ProcessDeathMoveEffectPacket(ptr);
-		break;				  
+		break;
 
 	case PIDC_OWNERCHANGE:
 		ProcessOwnerChangePacket(ptr);
@@ -4026,13 +4026,13 @@ UByte	DPlay::ProcessSpecialPacket(UByteP ptr, AirStrucPtr AC, ULong slot)
 	case PIDC_SHAPECHANGE:
 		ProcessNewShapePacket(ptr);
 		break;
-		
+
 	case PIDC_ACCELGEARUP:
 		ProcessAccelGearUpPacket();
 		break;
 
-	case PIDC_NEWWP:											
-		ProcessNewWPPacket(ptr,AC);							
+	case PIDC_NEWWP:
+		ProcessNewWPPacket(ptr,AC);
 		break;
 
 	case PIDC_SECONDARYAERODEVICES:
@@ -4080,15 +4080,15 @@ SLong	DPlay::GetVal(UByte src,UByte shift)
 #define MAXRNDINCS 64
 void	DPlay::SetRandomListPos()
 {
-	static x=0;
+//	static x=0;
 	UWord rndincs;
 
 //Fixed RND() so it doesn't exceed this limit
-	rndincs = Math_Lib.GetRndCount ();							
-	if (rndincs > MAXRNDINCS)									
-		rndincs = 0;											
-	else														
-		rndincs = MAXRNDINCS - rndincs;							
+	rndincs = Math_Lib.GetRndCount ();
+	if (rndincs > MAXRNDINCS)
+		rndincs = 0;
+	else
+		rndincs = MAXRNDINCS - rndincs;
 
 	for (;rndincs > 0; rndincs--)
 		Math_Lib.rnd();
@@ -4103,12 +4103,12 @@ void	DPlay::SetRandomListPos()
 //------------------------------------------------------------------------------
 Bool	DPlay::PossTransmitColl(ItemPtr target, ItemPtr hitter,SLong &send)
 {
-	send = 0;												
+	send = 0;
 
 	if (_DPlay.CommsOrReplay() || _Replay.Playback)
 	{
 // bullets only at the moment
-						
+
  		if (hitter && hitter->Status.size==TransientSize)
 		{
 			TransientItemPtr t=(TransientItemPtr)(hitter);
@@ -4121,7 +4121,7 @@ Bool	DPlay::PossTransmitColl(ItemPtr target, ItemPtr hitter,SLong &send)
 				{
 // never send packets in playback
 
-// if I am involved in collision then return TRUE so that collision is not processed, 
+// if I am involved in collision then return TRUE so that collision is not processed,
 //but because send is 0 nothing will be done and packet will arrive to deal with me,
 // otherwise, do collision as normal
 
@@ -4153,7 +4153,7 @@ Bool	DPlay::PossTransmitColl(ItemPtr target, ItemPtr hitter,SLong &send)
 				{
 // comms game
 // send packet if bullet is against me or I launched it
-// unless bullet against me was launched by an AI AC with a comms owner 
+// unless bullet against me was launched by an AI AC with a comms owner
 // other than me, in which case that player will send packet
 
 					if ((AirStrucPtr)(t->Launcher)==Persons2::PlayerSeenAC
@@ -4192,20 +4192,20 @@ Bool	DPlay::PossTransmitColl(ItemPtr target, ItemPtr hitter,SLong &send)
 		{
 // collision with something else
 
-			// log this collision too...						
-			if ((AirStrucPtr)target==Persons2::PlayerSeenAC		
-				|| (AirStrucPtr)hitter==Persons2::PlayerSeenAC)	
-			{													
-				if (!_Replay.Playback)							
-				{												
-					send = 2;									
-				}												
-				return TRUE;									
-			}													
-		}														
+			// log this collision too...
+			if ((AirStrucPtr)target==Persons2::PlayerSeenAC
+				|| (AirStrucPtr)hitter==Persons2::PlayerSeenAC)
+			{
+				if (!_Replay.Playback)
+				{
+					send = 2;
+				}
+				return TRUE;
+			}
+		}
 	}
 
-	return FALSE;												
+	return FALSE;
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -4224,7 +4224,7 @@ void	DPlay::NewCollision2 (UWord id, UWord offset, UByte type, UByte str, Unique
 // instead of causing an error if table is full, overwrite oldest entry ?????
 
 			if(CollBuffer.NumEntries()>=BufferSize)
-			{	
+			{
 				CollBuffer.UpdateCurr();
 
 				while (CollBuffer.GetCurr()->IDCode==PIDC_DONTSEND && CollBuffer.GetCurr()!=CollBuffer.GetNext())
@@ -4308,7 +4308,7 @@ void	DPlay::MakeExtraPacket(LPBASICPACKET packet,Bool replay)
 {
 // New packet. Fit in as much additional data as possible into the extra 5 bytes
 // Priority is: collision, UIDS (wingman command), special, bullet
-// Once first lot of data is put into packet, see how many bytes are left and see if 
+// Once first lot of data is put into packet, see how many bytes are left and see if
 // more can be added.
 
 	bool more=true;
@@ -4349,7 +4349,7 @@ void	DPlay::MakeExtraPacket(LPBASICPACKET packet,Bool replay)
 			length=MakeBulletPacket(packet,index);
 			madebullet=true;
 		}
-		else 
+		else
 		{
 // nothing else will fit in
 
@@ -4357,7 +4357,7 @@ void	DPlay::MakeExtraPacket(LPBASICPACKET packet,Bool replay)
 			{
 				MakeEmptyPacket(packet,index);
 			}
-			
+
 			more=false;
 		}
 
@@ -4372,7 +4372,7 @@ void	DPlay::MakeExtraPacket(LPBASICPACKET packet,Bool replay)
 		MakeControlSurfacePacket(packet);
 	}
 
-// if we have not sent a bullet packet and there are some avilable then 
+// if we have not sent a bullet packet and there are some avilable then
 // squeeze into 4 spare bits in shiftfactor...
 
 	if (BulletBuffer.NumEntries() && !madebullet)
@@ -4396,14 +4396,14 @@ void	DPlay::NewSpecial(ULong id,UByte byte1, UByte byte2, UByte byte3, UByte byt
 	{
 // instead of causing an error if table is full, overwrite oldest entry ?????
 
-		if(SpecBuffer.NumEntries()>=BufferSize)			
+		if(SpecBuffer.NumEntries()>=BufferSize)
 		{
 			SpecBuffer.UpdateCurr();
 
 			while (SpecBuffer.GetCurr()->IDCode==PIDC_DONTSEND && SpecBuffer.GetCurr()!=SpecBuffer.GetNext())
 				SpecBuffer.UpdateCurr();
 		}
-		 
+
 		SpecBuffer.GetNext()->IDCode=id;
 		SpecBuffer.GetNext()->spec1=byte1;
 		SpecBuffer.GetNext()->spec2=byte2;
@@ -4436,7 +4436,7 @@ UByte	DPlay::MakeBulletPacket(LPBASICPACKET packet, UByte index)
 
 	*ptr+=((BulletBuffer.GetCurr()->num)&3)<<4;
 
-#ifdef NDEBUG 
+#ifdef NDEBUG
 	if (BulletBuffer.GetCurr()->index>15)
 		INT3;
 #endif
@@ -4473,7 +4473,7 @@ UByte	DPlay::ProcessBulletPacket(UByteP ptr, AirStrucPtr AC)
 		num=(IDCode>>4)&0x03;
 		index=IDCode&0x0f;;
 
-		item=(ItemPtr)AC; 
+		item=(ItemPtr)AC;
 
 		weap=SHAPE.DirectWeaponLauncher(item,index,shape,xpos,ypos,zpos,MuzVel,MuzDel,ltype);
 		if (weap)
@@ -4487,8 +4487,8 @@ UByte	DPlay::ProcessBulletPacket(UByteP ptr, AirStrucPtr AC)
 				Trans_Obj.ClearWeaponChain((mobileitem*)item);
 				Trans_Obj.LaunchWeapon(true,(AirStrucPtr)item,weap,index,xpos,ypos,zpos,world,MuzVel,MuzDel);
 
-				if (oldStores && !weap->LoadedStores)					
-					weap->LoadedStores = weap->Stores;					
+				if (oldStores && !weap->LoadedStores)
+					weap->LoadedStores = weap->Stores;
 			}
 		}
 	}
@@ -4555,7 +4555,7 @@ void	DPlay::SetScore(AirStrucPtr victim, ItemPtr hitter)
 	Nationality myn=Persons2::PlayerSeenAC->nationality;
 
 	AirStrucPtr shooter=NULL;
-	
+
    	if (hitter)
 	{
 		shooter=(AirStrucPtr)hitter;
@@ -4669,7 +4669,7 @@ void	DPlay::NewAeroDevAction(UByte devID,SWord Attractor)
 //------------------------------------------------------------------------------
 void	DPlay::ProcessPlayerSlotRequest(char* message,ULong from)
 {
-	if (Host) 
+	if (Host)
 	{
 // step through H2H_Player struc and see if anybody has this slot. If not then fill
 // in slot and send a message to all players indicating that player has taken this slot
@@ -4696,14 +4696,14 @@ void	DPlay::ProcessPlayerSlotRequest(char* message,ULong from)
 			}
 		i++;
 	}
-	
+
 	SLOTPOSPACK s;
 
 	s.PlayerID=from;
 	s.PacketID=PID_SLOTINFOUPDATE;
 	s.squadron=squadnum;
 	s.position=pos;
-	
+
 	if (slotfree)
 	{
 		s.Slot=1;
@@ -4717,7 +4717,7 @@ void	DPlay::ProcessPlayerSlotRequest(char* message,ULong from)
 		}
 		UpdateFrag=TRUE;
 
-// update ready room 
+// update ready room
 
 		DisplayInfo=TRUE;
 	}
@@ -4813,7 +4813,7 @@ Bool	DPlay::SlotFree(int pos, int squadron)
 			{
 				if  (		(H2H_Player[i].squadron == squadron)
 					&&		(H2H_Player[i].position == pos)
-					&& 		(H2H_Player[i].status!=CPS_NONE)	 
+					&& 		(H2H_Player[i].status!=CPS_NONE)
 
 				)
 				{
@@ -4863,7 +4863,7 @@ void	DPlay::ProcessSlotInfoUpdate(char* pack)
 
 	UpdateFrag=TRUE;
 
-// update ready room 
+// update ready room
 
 	DisplayInfo=TRUE;
 }
@@ -4889,7 +4889,7 @@ Bool	DPlay::GetGameDetails()
 
 	SendCSRequest();
 
-	{										
+	{
 		if (!GetCS())
 		{
 #ifndef NDEBUG
@@ -4897,7 +4897,7 @@ Bool	DPlay::GetGameDetails()
 #endif
 			return FALSE;
 		}
-	}										
+	}
 
 	if (GameType>TEAMPLAY)
 	{
@@ -4938,7 +4938,7 @@ void	DPlay::SendGameDetailsRequest()
 
 	while (!SendRequestMessage((char*)&pack,sizeof(GAMEDETAILS)))
 	{
-		ULong end=timeGetTime()+100; 
+		ULong end=timeGetTime()+100;
 
 		while (timeGetTime()<end)
 		{
@@ -4997,7 +4997,7 @@ void	DPlay::ResetDeadPlayers(AirStrucPtr ac)
 //Date			Tue 27 Oct 1998
 //Description	If player is joining a game then put ac near others.
 //				This is an average of all the other players ac positions
-//				plus 10000 above the highest already in so that no 
+//				plus 10000 above the highest already in so that no
 //				collision occurs.
 //------------------------------------------------------------------------------
 void	DPlay::GetBattlePosition(UByte joiningslot)
@@ -5050,7 +5050,7 @@ void	DPlay::GetBattlePosition(UByte joiningslot)
 // make sure flight model knows whats going on
 
 			Persons2::PlayerSeenAC->fly.pModel->UpdateModel(Persons2::PlayerSeenAC);
-		}	
+		}
 	}
 
 	UWord	newsector=	world.GetSector(ac);
@@ -5110,7 +5110,7 @@ Bool	DPlay::SwitchAIACToPlayerAC(AirStrucPtr AC, ULong slot)
 	AC->uniqueID.commsmove=TRUE;
 	AllocPacket[slot]=AC->uniqueID.count;
 
-// need to update historical buffer. just fill up with ac position. it will be the same 
+// need to update historical buffer. just fill up with ac position. it will be the same
 // on all machines and doesnt need to be massively accurate for AAA.
 
 	FillHistBuffer(AC,slot);
@@ -5126,7 +5126,7 @@ void	DPlay::NewWingmanCommand(UByte decision, UByte option, UniqueID trg)
 {
 	UniqueID id1,id2;
 
-#ifndef NDEBUG 
+#ifndef NDEBUG
 // decision is 7 bits 0-100 really
 // option is 4 bits 0-9
 
@@ -5152,12 +5152,12 @@ UByte	DPlay::ProcessWingmanCommand(UniqueID id1, UniqueID id2, ULong slot)
 	AirStrucPtr caller,callee;
 
 // caller/callee is always ghostac now
-	
+
 	if (_DPlay.Implemented)
 	{
-		AirStrucPtr ac=(AirStrucPtr)Persons2::ConvertPtrUID((UniqueID)AllocPacket[slot]); 
-		if (ac==Persons2::PlayerSeenAC) 
-			ac=Persons2::PlayerGhostAC; 
+		AirStrucPtr ac=(AirStrucPtr)Persons2::ConvertPtrUID((UniqueID)AllocPacket[slot]);
+		if (ac==Persons2::PlayerSeenAC)
+			ac=Persons2::PlayerGhostAC;
 		caller=callee=ac;
 	}
 	else
@@ -5165,7 +5165,7 @@ UByte	DPlay::ProcessWingmanCommand(UniqueID id1, UniqueID id2, ULong slot)
 		caller=callee=(AirStrucPtr)Persons2::PlayerGhostAC;
 	}
 
-	item* target=Persons2::ConvertPtrUID(id1);			
+	item* target=Persons2::ConvertPtrUID(id1);
 
 	if (target==Persons2::PlayerSeenAC)
 		target=Persons2::PlayerGhostAC;
@@ -5583,7 +5583,7 @@ void	DPlay::DeleteEntryFromAIACPositionsList(LPACPOSENTRY p,UByte slot)
 			temp1=temp1->next;
 			temp=temp->next;
 		}
-		
+
 		if (temp1)
 		{
 			temp=temp1->next;
@@ -5721,7 +5721,7 @@ void	DPlay::SendACDetails()
 			packsize=sizeof(ULong)
 					+(2*sizeof(UWord))
 					+sizeof(ASPRIMARYVALUES)
-					+sizeof(MIPRIMARYVALUES);			
+					+sizeof(MIPRIMARYVALUES);
 
 	// put info into packet
 
@@ -5823,7 +5823,7 @@ void	DPlay::SendACDetails()
 			delete [] realpack;
 
 // if we are sending other players positions dont send anim, that will
-// have already been sent by player 
+// have already been sent by player
 
 			if (!ac->uniqueID.commsmove)
 			{
@@ -5842,7 +5842,7 @@ void	DPlay::SendACDetails()
  	SendNumAnims(numanimpacks,PID_NUMACANIMS);
 	Sleep(SENDPAUSE);
 
-// send anim data 
+// send anim data
 
 	ac=*AirStruc::ACList;
 
@@ -5927,7 +5927,7 @@ Bool	DPlay::GetACDetails()
 			SyncData.acstage++;
 		}
 		break;
-		 
+
 	case 3:
 
 		if (need!=0)
@@ -6064,7 +6064,7 @@ Bool	DPlay::GetMobDetails()
 		SyncData.mobstage++;
 		break;
 
-	case 1:	 
+	case 1:
 
 		if (need!=0)
 		{
@@ -6083,7 +6083,7 @@ Bool	DPlay::GetMobDetails()
 
 		break;
 
-	case 2:	 
+	case 2:
 
 		if (GetNumAnims(PID_NUMMOBANIMS,need))
 		{
@@ -6158,7 +6158,7 @@ Bool	DPlay::GetSyncData(ULong type,ULong need,ULong& got)
 				if (got==need)
 					return TRUE;
 			}
-			else 
+			else
 			{
 				ProcessPlayerMessage(buffer,buflen,from);
 			}
@@ -6166,7 +6166,7 @@ Bool	DPlay::GetSyncData(ULong type,ULong need,ULong& got)
 	}
 	if (got==need)
 		return TRUE;
-	
+
 	return FALSE;
 }
 
@@ -6266,7 +6266,7 @@ void	DPlay::ProcessACData(UByteP pack)
 	}
 
 
-	_Replay.ResetSecondaryFMValues(ac);						
+	_Replay.ResetSecondaryFMValues(ac);
 
 	UWord	newsector=world.GetSector(ac);
 	if (newsector!=oldsector)
@@ -6390,7 +6390,7 @@ Bool	DPlay::GetAllAnims(ULong type, ULong need, ULong& got)
 
 				item=(ItemPtr)Persons2::ConvertPtrUID(id);
 
-				if (item) 
+				if (item)
 					ProcessAnimPack(pack,item);
 
 				got++;
@@ -6539,7 +6539,7 @@ void	DPlay::ProcessAnimPack(UByteP datapack,ItemPtr item)
 	newshape=*(UWord*)datapack;
 	datapack+=sizeof(UWord);
 
-	item->shape=(ShapeNum)newshape;	 
+	item->shape=(ShapeNum)newshape;
 
 	if (item->Status.size==AirStrucSize)
 		pack=((AirStrucPtr)item)->weap.Weapons;
@@ -6555,7 +6555,7 @@ void	DPlay::ProcessAnimPack(UByteP datapack,ItemPtr item)
 
 
 // need to set up shape anim
-// have to do this because item may have changed shape on other m/c and sent anim for that 
+// have to do this because item may have changed shape on other m/c and sent anim for that
 // shape, so set up shape before applying anim
 
 // set up shape as well in case AC has exploded etc
@@ -6640,7 +6640,7 @@ Bool	DPlay::SyncCommsWorld()
 	ULong	buflen,from,n;
 	LPGENERIC p;
 
-/* need all items in world to be the same on all machines after resync. 
+/* need all items in world to be the same on all machines after resync.
 Need: AC positions/data/flight models and anims
 	   Mobiles positions/data and anims
 	   Items anims.
@@ -6654,14 +6654,14 @@ Need: AC positions/data/flight models and anims
   //Is it possible to send this info whilst game is still going for other players? then just
   //accomodate player in like deathmatch resync?
 
-  //- Need to send host bfield list, compare with one players have and if different do 
+  //- Need to send host bfield list, compare with one players have and if different do
   //something about it, i.e. process battlefields  Only need to do this is quick mission/campaign
   -Dont need to do now, bfields are static
 
   - Does DeadStream need to be transmitted? Probably!!!!!
 */
 
-	static timein=0;
+	static int timein=0;
 
 	if (Host)
 	{
@@ -6737,7 +6737,7 @@ Need: AC positions/data/flight models and anims
 
 				SyncData.wsmgot=0;
 				SyncData.sentinfo=true;
-#ifdef SYNCDATA 
+#ifdef SYNCDATA
 				fprintf(fp,"Finished sending world\n");
 #endif
 			}
@@ -6780,7 +6780,7 @@ Need: AC positions/data/flight models and anims
 				PlayerSync=false;
 				return TRUE;
 			}
-		}	
+		}
 	}
 	else
 	{
@@ -6814,7 +6814,7 @@ Need: AC positions/data/flight models and anims
 			}
 
 			break;
- 
+
 		case 3:
 #ifdef SYNCDATA
 			fflush(fp);
@@ -6903,7 +6903,7 @@ void	DPlay::FillHistBuffer(AirStrucPtr ac, ULong slot)
 {
 	HistPosBuffer[slot].InitBuffer();
 	HistPosBuffer[slot].SetTempCurr();
-	do 
+	do
 	{
 		HistPosBuffer[slot].GetTemp()->Pos.X=ac->World.X;
 		HistPosBuffer[slot].GetTemp()->Pos.Y=ac->World.Y;
@@ -6915,7 +6915,7 @@ void	DPlay::FillHistBuffer(AirStrucPtr ac, ULong slot)
 		HistPosBuffer[slot].GetTemp()->Velocity=ac->vel_;
 
 		HistPosBuffer[slot].UpdateTemp();
-	} 
+	}
 	while (HistPosBuffer[slot].GetTemp()!=HistPosBuffer[slot].GetCurr());
 }
 
@@ -6946,7 +6946,7 @@ void	DPlay::OwnerChange(ULong newownerid,AirStrucPtr AIAC)
 		}
 
 	// if player is bad, keep existing one
-		
+
 		if (n!=MAXPLAYERS)
 		{
 			NewSpecial(PIDC_OWNERCHANGE,b1,b2,b3);
@@ -7022,20 +7022,20 @@ void	DPlay::InitialiseOwners()
 //------------------------------------------------------------------------------
 void	DPlay::OwnerChangeDecision(AirStrucPtr me, AirStrucPtr him)
 {
-	if (Implemented)							
-	{								
+	if (Implemented)
+	{
 		if (!me->CommsOwner && !me->uniqueID.commsmove)
 		{
 // only change if I dont have an owner
 
-			if (him->uniqueID.commsmove)					
-			{												
+			if (him->uniqueID.commsmove)
+			{
 // engage with player, he becomes owner
 
-				if (him->uniqueID.count!=me->CommsOwner)		
-				{											
+				if (him->uniqueID.count!=me->CommsOwner)
+				{
 					OwnerChange(him->uniqueID.count,me);
-				}											
+				}
 			}
 			else if (him->CommsOwner && !me->CommsOwner)
 			{
@@ -7047,7 +7047,7 @@ void	DPlay::OwnerChangeDecision(AirStrucPtr me, AirStrucPtr him)
 			{
 // an AI AC with no owner, lets just kick ass
 			}
-		}													
+		}
 	}
 }
 
@@ -7208,16 +7208,16 @@ void	DPlay::ExitCommsAndReplay3D()
 		if (timer)
 			fclose(timer);
 #endif
-		H2H_Player[mySlot].status=CPS_DEBRIEF;					
+		H2H_Player[mySlot].status=CPS_DEBRIEF;
 		_Agg.Running=FALSE;
 		SendGonePacket();
 		ResetCommsGame();
-		FlyNowFlag=FALSE;										
+		FlyNowFlag=FALSE;
 		MainSheetCount=2; // send and receive updates
 
 // for comms build a new list each time
 
-		_Replay.DeleteFileAndGlobRefList(_Replay.bfgrlist); 	
+		_Replay.DeleteFileAndGlobRefList(_Replay.bfgrlist);
 
 		UByte n;
 		for (n=0;n<STAGE_MAX;n++)
@@ -7340,7 +7340,7 @@ char*	DPlay::GetPlayerName(ULong	n)
 ULong	DPlay::GetPlayerNumber(ULong	id)
 {
  	ULong n;
- 
+
  	for (n=0;n<MAXPLAYERS;n++)
  	{
  		if (AllocPacket[n]==id)
@@ -7356,7 +7356,8 @@ ULong	DPlay::GetPlayerNumber(ULong	id)
 //------------------------------------------------------------------------------
 inline ULong DPlay::DPID2Slot(ULong id)
 {
-	for (ULong n=0;n<MAXPLAYERS;n++)
+    ULong n;
+	for (n=0;n<MAXPLAYERS;n++)
 		if (H2H_Player[n].dpid==id)
 			break;
 
@@ -7368,8 +7369,8 @@ inline ULong DPlay::DPID2Slot(ULong id)
 //Date			Thu 17 Jun 1999
 //------------------------------------------------------------------------------
 inline ULong DPlay::UID2Slot(UWord id)
-{
-	for (ULong n=0;n<MAXPLAYERS;n++)
+{   ULong n;
+	for (n=0;n<MAXPLAYERS;n++)
 		if (AllocPacket[n]==id)
 			break;
 
@@ -7452,13 +7453,13 @@ void	DPlay::NewUIDSPacket(UniqueID id1,UniqueID id2,UByte code)
 	if (CommsOrReplay())
 	{
 		if(UIDSBuffer.NumEntries()>=BufferSize)
-		{	
+		{
 			UIDSBuffer.UpdateCurr();
 
 			while (UIDSBuffer.GetCurr()->IDCode==PIDC_DONTSEND && UIDSBuffer.GetCurr()!=UIDSBuffer.GetNext())
 				UIDSBuffer.UpdateCurr();
 		}
-		 
+
 		UIDSBuffer.GetNext()->uid1=id1;
 		UIDSBuffer.GetNext()->uid2=id2;
 		UIDSBuffer.GetNext()->IDCode=code;
@@ -7500,7 +7501,7 @@ void	DPlay::GetUIDSFromPacket(UniqueID& id1, UniqueID& id2,UByteP ptr)
 //------------------------------------------------------------------------------
 void	DPlay::InitSyncData(bool startup)
 {
-#ifdef SYNCDATA 
+#ifdef SYNCDATA
 	FILE* fp=fopen("resync.txt","at");
 	fprintf(fp,"InitSyncData startup=%d\n",startup);
 	fclose(fp);
@@ -7539,7 +7540,7 @@ void	DPlay::CalcVels(UByte slot,UByte pframe)
 			ac=Persons2::PlayerGhostAC;
 
 // go back 2, this is last frame and previous frame. If this is the begining of the buffer then
-// the previous frame will be the starting position		
+// the previous frame will be the starting position
 
 		HistPosBuffer[slot].SetTempNext();
 		HistPosBuffer[slot].TempPrev();
@@ -7569,7 +7570,7 @@ void	DPlay::CalcVels(UByte slot,UByte pframe)
 // move frame between positions
 
 // if the number of frames is greater than the number required for accuracy
-// i.e. 4, then work out vels, if not then track back if possible a number 
+// i.e. 4, then work out vels, if not then track back if possible a number
 // of frames (should only need to go back 1 in theory) to get 4 move frames
 // difference. If we cant track back (because its the start of the buffer) then
 // tough, have to use what we've got
@@ -7594,7 +7595,7 @@ void	DPlay::CalcVels(UByte slot,UByte pframe)
 				break;
 		}
 
-// dodgy catch all 
+// dodgy catch all
 
 		if (!num)
 			num=1;
@@ -7622,18 +7623,18 @@ void	DPlay::CalcVels(UByte slot,UByte pframe)
 		Persons2::PlayerGhostAC->vel_x = ((*_Replay.PosBuffer.GetNext()).X-(*_Replay.PosBuffer.GetCurr()).X);
 		Persons2::PlayerGhostAC->vel_y = ((*_Replay.PosBuffer.GetNext()).Y-(*_Replay.PosBuffer.GetCurr()).Y);
 		Persons2::PlayerGhostAC->vel_z = ((*_Replay.PosBuffer.GetNext()).Z-(*_Replay.PosBuffer.GetCurr()).Z);
-		
-		FP temp = 10000 / ((POSBSIZE-1) * Timer_Code.FRAMETIME);	  
+
+		FP temp = 10000 / ((POSBSIZE-1) * Timer_Code.FRAMETIME);
 
 		Persons2::PlayerGhostAC->vel_x *= temp;
 		Persons2::PlayerGhostAC->vel_y *= temp;
 		Persons2::PlayerGhostAC->vel_z *= temp;
 
-		SLong wx, wy, wz;												
-		MMC.Sky.GetWind(Persons2::PlayerGhostAC->World.Y, wx, wy, wz);	
-		Persons2::PlayerGhostAC->vel_x -= wx;							
-		Persons2::PlayerGhostAC->vel_y -= wy;							
-		Persons2::PlayerGhostAC->vel_z -= wz;							
+		SLong wx, wy, wz;
+		MMC.Sky.GetWind(Persons2::PlayerGhostAC->World.Y, wx, wy, wz);
+		Persons2::PlayerGhostAC->vel_x -= wx;
+		Persons2::PlayerGhostAC->vel_y -= wy;
+		Persons2::PlayerGhostAC->vel_z -= wz;
 
 		_Replay.PosBuffer.UpdateCurr();
 		_Replay.PosBuffer.AddEntryAndUpdateNext();
@@ -7775,17 +7776,17 @@ void	DPlay::UpdateHistBuffer(LPACPACKET p,ULong slot)
 			HistPosBuffer[slot].GetNext()->Roll.a+=val;
 
 			val=GetVal(HistPosBuffer[slot].GetNext()->deltas.Velocity_,shift);
-			SLong newvel=abs(val)<<_Replay.velshifttest;		
-			if (val<0)											
-				newvel=-newvel;								
-			
+			SLong newvel=SLong(abs(val))<<_Replay.velshifttest;
+			if (val<0)
+				newvel=-newvel;
+
 			HistPosBuffer[slot].GetNext()->Velocity+=newvel;
 		}
 
 
-// update ghost and players each frame so that order of prediction and 
+// update ghost and players each frame so that order of prediction and
 // delta application does not matter. Otherwise might get deltas, predict,deltas
-// on one machine and predict,deltas,deltas on another which would mean a 
+// on one machine and predict,deltas,deltas on another which would mean a
 // slight difference of position on the 2 machines. This way always have
 // predict, deltas, predict, deltas etc. Automatically deals with recalculating
 // from resend of missing packets.
@@ -7909,7 +7910,7 @@ void	DPlay::ProcessEjectPacket(AirStrucPtr AC)
 //------------------------------------------------------------------------------
 void	DPlay::ProcessGuestLeavingMessage(ULong id)
 {
-	ProcessPlayerGone(id,TRUE);	 
+	ProcessPlayerGone(id,TRUE);
 
 // if a player leaves whilst a sync is in process need to start again without him
 // force a resync anyway because packet sent saying player is out could be out of sync
@@ -8008,7 +8009,7 @@ void	DPlay::ProcessResyncPacket(LPACSTATEPACKET packet, ULong n)
 			AC->hdg.a=packet->Heading.a;
 			AC->pitch.a=packet->Pitch.a;
 			AC->roll.a=packet->Roll.a;
-			AC->vel_=packet->Velocity;	
+			AC->vel_=packet->Velocity;
 			AC->fly.cpitch=AC->pitch;
 
 			UWord	newsector=world.GetSector(AC);
@@ -8055,7 +8056,7 @@ void	DPlay::ProcessResyncPacket(LPACSTATEPACKET packet, ULong n)
 
 			ProcessAnimPack(datapack,(ItemPtr)AC);
 
-			MinAnimData* mad = (MinAnimData* )AC->Anim;			
+			MinAnimData* mad = (MinAnimData* )AC->Anim;
 
 			if (packet->alive)
 				mad->itemstate = ALIVE;
@@ -8089,7 +8090,7 @@ void	DPlay::SendRestartWorldSyncMessage()
 void	DPlay::SendDeadStream()
 {
 // traverse deadstream finding number of blocks.
-// Send number of blocks with olddaytime, 
+// Send number of blocks with olddaytime,
 // followed by block themseleves!
 
 	DeadStream::DeadBlock* block=NULL;
@@ -8388,7 +8389,7 @@ bool	DPlay::GetPilotsStatus()
 
 		if (time.TimedOut(now))
 			return false;
-		
+
 		if (ReceiveNextMessageToMe(Buffer,BufferLen,From,0))
 		{
 			if (From==DPID_SYSMSG)
@@ -8417,7 +8418,7 @@ void	DPlay::ProcessPilotStatusPacket(bool single,UByteP p,int size)
 {
 	ULong n;
 	UByteP temp=p;
-	LPGENERIC c;			
+	LPGENERIC c;
 
 	if (single)
 	{
@@ -8431,7 +8432,7 @@ void	DPlay::ProcessPilotStatusPacket(bool single,UByteP p,int size)
 	}
 	else
 	{
-		size-=4; 
+		size-=4;
 		p+=sizeof(ULong);
 
 		int sq;
@@ -8470,7 +8471,7 @@ void	DPlay::SendAccelGearUpMessage()
 
 void	DPlay::ProcessAccelGearUpPacket()
 {
-	mobileitem::ResetACGears();					
+	mobileitem::ResetACGears();
 	AircraftAnimData*	adptr;
 	AirStrucPtr ac=Persons2::PlayerSeenAC;
 	SHAPE.NavigationLightsActive(ac,FALSE);
@@ -8514,7 +8515,7 @@ void	DPlay::ProcessNewWPPacket(UByteP ptr, AirStrucPtr AC)
 
 	newwp=byte1+(byte2<<8);
 
-	WayPointPtr i=(WayPointPtr)Persons2::ConvertPtrUID((UniqueID)newwp);	
+	WayPointPtr i=(WayPointPtr)Persons2::ConvertPtrUID((UniqueID)newwp);
 
 	if (i)
 	{
@@ -8553,7 +8554,7 @@ void	DPlay::SendAAAList()
 	ULong packsize=sizeof(ULong)	// PID
 					+sizeof(UWord)	// num
 					+(num*sizeof(UWord));		// data
-	
+
     UByteP pack=new UByte[packsize];
 	UByteP temp=pack;
 
@@ -8599,7 +8600,7 @@ bool	DPlay::GetAAAList()
 				ProcessAAAPacket(buffer);
 				return true;
 			}
-			else 
+			else
 			{
 				ProcessPlayerMessage(buffer,buflen,from);
 			}
@@ -8617,7 +8618,7 @@ void	DPlay::ProcessAAAPacket(char* packet)
 	packet+=sizeof(ULong); // get past PID
 
 	UWord num=*(UWord*)packet; // get number of elements
-	packet+=sizeof(UWord); 
+	packet+=sizeof(UWord);
 
 	UWordP aaa=new UWord[num];
 
@@ -8657,7 +8658,7 @@ bool	DPlay::GetRandomList()
 				Process_PM_RandomList(buffer);
 				return true;
 			}
-			else 
+			else
 			{
 				ProcessPlayerMessage(buffer,buflen,from);
 			}
@@ -8696,9 +8697,9 @@ void	DPlay::ResetCommsSurfaces()
 //
 // Function:    ProcessExtraPacket
 // Date:		12/10/99
-// Author:		
+// Author:
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	DPlay::ProcessExtraPacket(LPACPACKET packet, AirStrucPtr ac, ULong slot)
@@ -8771,9 +8772,9 @@ void	DPlay::ProcessExtraPacket(LPACPACKET packet, AirStrucPtr ac, ULong slot)
 //
 // Function:    MakeControlSurfacePacket
 // Date:		12/10/99
-// Author:		
+// Author:
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	DPlay::MakeControlSurfacePacket(LPBASICPACKET packet)
@@ -8810,9 +8811,9 @@ void	DPlay::MakeControlSurfacePacket(LPBASICPACKET packet)
 	a=sac->fly.aileron;
 	r=sac->fly.rudder;
 
-	packet->byte1=((abs(e)>>8)&127);
-	packet->byte2=((abs(a)>>8)&127);
-	packet->byte3=((abs(r)>>8)&127);
+	packet->byte1=((ULong( abs(e) )>>8)&127);
+	packet->byte2=((ULong( abs(a) )>>8)&127);
+	packet->byte3=((ULong( abs(r) )>>8)&127);
 
 	if (e<0) packet->byte1+=128;
 	if (a<0) packet->byte2+=128;
@@ -8826,9 +8827,9 @@ void	DPlay::MakeControlSurfacePacket(LPBASICPACKET packet)
 
 	UByte e1,a1,r1;
 
-	e1=(abs(e)&0xf8)>>3;
-	a1=(abs(a)&0xf8)>>3;
-	r1=(abs(r)&0xf8)>>3;
+	e1=(ULong(abs(e))&0xf8)>>3;
+	a1=(ULong(abs(a))&0xf8)>>3;
+	r1=(ULong(abs(r))&0xf8)>>3;
 
 	packet->byte4=e1<<3;
 	packet->byte4+=(a1>>2);
@@ -8843,9 +8844,9 @@ void	DPlay::MakeControlSurfacePacket(LPBASICPACKET packet)
 //
 // Function:    ProcessControlSurfacePacket
 // Date:		12/10/99
-// Author:		
+// Author:
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	DPlay::ProcessControlSurfacePacket(UByteP ptr)
@@ -8860,7 +8861,7 @@ void	DPlay::ProcessControlSurfacePacket(UByteP ptr)
 
 		b1=((*ptr)&127)<<8;
 		if ((*ptr++)&128) neg_e=true;
-		
+
 		b2=((*ptr)&127)<<8;
 		if ((*ptr++)&128) neg_a=true;
 
@@ -8887,7 +8888,7 @@ void	DPlay::ProcessControlSurfacePacket(UByteP ptr)
 		b2+=a1;
 		b3+=r1;
 
-// apply sign 
+// apply sign
 
 		if (neg_e) b1=-b1;
 		if (neg_a) b2=-b2;
@@ -8912,9 +8913,9 @@ void	DPlay::ProcessControlSurfacePacket(UByteP ptr)
 //
 // Function:    MakeSpecialBulletPacket
 // Date:		12/10/99
-// Author:		
+// Author:
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	DPlay::MakeSpecialBulletPacket(LPBASICPACKET packet)
@@ -8958,9 +8959,9 @@ void	DPlay::MakeSpecialBulletPacket(LPBASICPACKET packet)
 //
 // Function:    PacketLength
 // Date:		12/10/99
-// Author:		
+// Author:
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 UByte	DPlay::PacketLength(ULong ID)
@@ -9034,9 +9035,9 @@ UByte	DPlay::PacketLength(ULong ID)
 //
 // Function:    ProcessResurrectPacket
 // Date:		12/10/99
-// Author:		
+// Author:
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void DPlay::ProcessResurrectPacket(AirStrucPtr AC)
@@ -9055,9 +9056,9 @@ void DPlay::ProcessResurrectPacket(AirStrucPtr AC)
 //
 // Function:    ProcessResurrectEndPacket
 // Date:		12/10/99
-// Author:		
+// Author:
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void DPlay::ProcessResurrectEndPacket(AirStrucPtr AC)
@@ -9068,7 +9069,7 @@ void DPlay::ProcessResurrectEndPacket(AirStrucPtr AC)
 
 		if (AC!=Persons2::PlayerSeenAC)
 		{
-// allow collisions 
+// allow collisions
 
 			AC->movecode=AUTO_FOLLOWWP;
 
@@ -9078,7 +9079,7 @@ void DPlay::ProcessResurrectEndPacket(AirStrucPtr AC)
 // I am now officially not dead (undeaded????)
 
 		AC->Status.deaded=FALSE;
-		AC->Status.deadtime=0;										
+		AC->Status.deadtime=0;
 
 		ResetDeadPlayers(AC);
 
@@ -9089,7 +9090,7 @@ void DPlay::ProcessResurrectEndPacket(AirStrucPtr AC)
 			resurrectend=false;
 		}
 
-		if (AC != Persons2::PlayerSeenAC)				
+		if (AC != Persons2::PlayerSeenAC)
 		{
 			SHAPE.NavigationLightsActive(AC,FALSE);
 
@@ -9101,10 +9102,10 @@ void DPlay::ProcessResurrectEndPacket(AirStrucPtr AC)
 			adptr->acleglowerb = 255;
 			adptr->animtoggle = 1;
 
-			AC->fly.pModel->ResetGearPos(false);			
+			AC->fly.pModel->ResetGearPos(false);
 		}
 		else
-			AC->fly.pModel->ResetGearPos(true);				
+			AC->fly.pModel->ResetGearPos(true);
 	}
 }
 
@@ -9112,9 +9113,9 @@ void DPlay::ProcessResurrectEndPacket(AirStrucPtr AC)
 //
 // Function:    ProcessLandedEffectPacket
 // Date:		12/10/99
-// Author:		
+// Author:
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void DPlay::ProcessLandedEffectPacket(UByteP ptr, AirStrucPtr AC)
@@ -9140,7 +9141,7 @@ void DPlay::ProcessLandedEffectPacket(UByteP ptr, AirStrucPtr AC)
 			{
 // this can cause ac position to change so need to keep track of deltas - not in playback
 
-				Trans_Obj.DummyLandedEffect(AC,effect,byte3);		
+				Trans_Obj.DummyLandedEffect(AC,effect,byte3);
 			}
 			else
 			{
@@ -9185,9 +9186,9 @@ void DPlay::ProcessLandedEffectPacket(UByteP ptr, AirStrucPtr AC)
 //
 // Function:    ProcessAeroDevicePacket
 // Date:		12/10/99
-// Author:		
+// Author:
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void DPlay::ProcessAeroDevicePacket(UByteP ptr, AirStrucPtr AC)
@@ -9204,28 +9205,28 @@ void DPlay::ProcessAeroDevicePacket(UByteP ptr, AirStrucPtr AC)
 //
 // Function:    ProcessDeathMoveEffectPacket
 // Date:		12/10/99
-// Author:		
+// Author:
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void DPlay::ProcessDeathMoveEffectPacket(UByteP ptr)
 {
 	UByte byte1=*ptr;
 
-	if (_Replay.Playback)			
-	{								
+	if (_Replay.Playback)
+	{
 		_Replay.ReplayDeathMode = (RDEATH)byte1;
-	}		
+	}
 }
 
 //////////////////////////////////////////////////////////////////////
 //
 // Function:    ProcessSpecialBulletPacket
 // Date:		12/10/99
-// Author:		
+// Author:
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void DPlay::ProcessSpecialBulletPacket(AirStrucPtr ac)
@@ -9267,7 +9268,7 @@ void DPlay::ProcessSpecialBulletPacket(AirStrucPtr ac)
 			break;
 		}
 
-		item=(ItemPtr)ac; 
+		item=(ItemPtr)ac;
 
 		Trans_Obj.ClearWeaponChain((mobileitem*)item);
 
@@ -9288,9 +9289,9 @@ void DPlay::ProcessSpecialBulletPacket(AirStrucPtr ac)
 //
 // Function:    MakeEmptyPacket
 // Date:		12/10/99
-// Author:		
+// Author:
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void DPlay::MakeEmptyPacket(LPBASICPACKET packet, UByte index)
@@ -9306,9 +9307,9 @@ void DPlay::MakeEmptyPacket(LPBASICPACKET packet, UByte index)
 //
 // Function:    ClearDeadPlayersPackets
 // Date:		12/10/99
-// Author:		
+// Author:
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void DPlay::ClearDeadPlayersPackets(UByte slot)
@@ -9457,9 +9458,9 @@ void DPlay::ExpandAggPacket(LPAGGSENDPACKET dest, LPAGGSENDPACKET src)
 //
 // Function:    CommsOrReplay
 // Date:		12/10/99
-// Author:		
+// Author:
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 inline bool DPlay::CommsOrReplay()
@@ -9473,7 +9474,7 @@ inline bool DPlay::CommsOrReplay()
 //
 // Function:    MoveSurfacesToZero
 // Date:		12/10/99
-// Author:		
+// Author:
 //
 //Description: Move all control surfaces slowly back to zero(default)
 //
@@ -9524,9 +9525,9 @@ void DPlay::MoveSurfaceToZero(int& surface)
 //
 // Function:    AttempToProcessExtraPacket
 // Date:		12/10/99
-// Author:		
+// Author:
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void DPlay::AttemptToProcessExtraPacket()
@@ -9564,7 +9565,7 @@ void DPlay::AttemptToProcessExtraPacket()
 		{
 			gotfullpacket=true;
 
-// OK, I have received this packet from all players, but need to know if all players 
+// OK, I have received this packet from all players, but need to know if all players
 // have	ACK'ed it so I know that all other players have received all packets for this frame.
 // Examine PlayerAggCheck to see what has been acked!
 
@@ -9574,8 +9575,8 @@ void DPlay::AttemptToProcessExtraPacket()
 // check to see if all players have acked the relevant packet, and only then can we process
 // the packet.
 
-// to maintain the buffer of aggregated packets, set a when a packet is processed saying that 
-// this particular packet number has been processed, and only when all packets in an 
+// to maintain the buffer of aggregated packets, set a when a packet is processed saying that
+// this particular packet number has been processed, and only when all packets in an
 // aggregated packet have been processed can we update it.
 
 
@@ -9620,7 +9621,7 @@ void DPlay::AttemptToProcessExtraPacket()
 // this is used to add 1 entry before updating curr, because the way that packets are
 // put into the buffer the count of actual packets in it is impossible to keep.
 
-			PacketBuffer.AddEntry(); 
+			PacketBuffer.AddEntry();
 
 #ifdef FILELOGS
 			fprintf(fp,"update packetbuffer.curr %d\n",PacketBuffer.GetCurr()->Count);
@@ -9668,7 +9669,7 @@ void DPlay::CheckForResend()
 					FILE* fp=fopen("sendpack.txt","at");
 					fprintf(fp,"RESEND %d\n",SendPackBuffer.GetTemp()->packet.Count);
 					fclose(fp);
-#endif				
+#endif
 
 					SendPacketToAggregator (&(SendPackBuffer.GetTemp()->packet));
 					SendPackBuffer.GetTemp()->ResendStatus++;
@@ -9736,7 +9737,7 @@ void	DPlay::CheckSeen()
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		UpdateBomberGhost
 //Date			Wed 19 Apr 2000
-//Description	Updates the movement and AI info so that Heavy Bomber followers 
+//Description	Updates the movement and AI info so that Heavy Bomber followers
 //				will still work when the leader is occupied by the player
 //------------------------------------------------------------------------------
 void DPlay::UpdateBomberGhost()
@@ -9763,7 +9764,7 @@ void DPlay::UpdateBomberGhost()
 	Persons2::PlayerGhostAC->fly.nextflight =	Persons2::PlayerSeenAC->fly.nextflight;	//CSB 19/04/00
 	Persons2::PlayerGhostAC->fly.leadflight	=	Persons2::PlayerSeenAC->fly.leadflight;	//CSB 19/04/00
 	Persons2::PlayerGhostAC->fly.expandedsag=	Persons2::PlayerSeenAC->fly.expandedsag;//CSB 19/04/00
-	
+
 	Persons2::PlayerGhostAC->ai.unfriendly			=	Persons2::PlayerSeenAC->ai.unfriendly;		//CSB 19/04/00
 	for(int i = 0; i < 4; i++)
 	Persons2::PlayerGhostAC->ai.spottedunfriendly[i]=	Persons2::PlayerSeenAC->ai.spottedunfriendly[i];//CSB 19/04/00
@@ -9789,7 +9790,7 @@ void DPlay::UpdateBomberGhost()
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		UpdateBomberSeen
 //Date			Thu 1 Jun 2000
-//Description	Updates the movement and AI info so that Heavy Bomber followers 
+//Description	Updates the movement and AI info so that Heavy Bomber followers
 //				will still work when the player is not the leader
 //------------------------------------------------------------------------------
 void DPlay::UpdateBomberSeen()
@@ -9816,7 +9817,7 @@ void DPlay::UpdateBomberSeen()
 	Persons2::PlayerSeenAC->fly.nextflight	=	Persons2::PlayerGhostAC->fly.nextflight;	//CSB 01/06/00
 	Persons2::PlayerSeenAC->fly.leadflight	=	Persons2::PlayerGhostAC->fly.leadflight;	//CSB 01/06/00
 	Persons2::PlayerSeenAC->fly.expandedsag	=	Persons2::PlayerGhostAC->fly.expandedsag;	//CSB 01/06/00
-	
+
 	Persons2::PlayerSeenAC->ai.unfriendly			=	Persons2::PlayerGhostAC->ai.unfriendly;			//CSB 01/06/00
 	for(int i = 0; i < 4; i++)
 	Persons2::PlayerSeenAC->ai.spottedunfriendly[i]	=	Persons2::PlayerGhostAC->ai.spottedunfriendly[i];//CSB 19/04/00
@@ -10022,7 +10023,7 @@ void		DPlay::AddDeltasToApply(LPACPACKET packet, ULong slot)
 
 	val=GetVal(packet->Velocity_,shiftfactor);
 
-	SLong newvel=abs(val)<<_Replay.velshifttest;
+	SLong newvel=SLong(abs(val))<<_Replay.velshifttest;
 
 	if (val<0)
 		newvel=-newvel;
@@ -10065,7 +10066,7 @@ void	DPlay::CalcAndAddPartialDelta(SLong val, ULong slot, ULong index)
 	ptr+=index;
 	(*ptr)+=frac;
 
-	
+
 	for (n=0;n<RateDivider;n++)
 	{
 		ptr=(UByteP)(&DeltasToApply[slot][TempIndex]);
@@ -10120,7 +10121,7 @@ void	DPlay::ResetAllAIFields(AirStrucPtr ac)
 	ac->ai.unfriendly=NULL;
 
 	for(int i = 0; i < 4; i++)
-		ac->ai.spottedunfriendly[i] = NULL;							
+		ac->ai.spottedunfriendly[i] = NULL;
 
 	ac->ai.attacker=NULL;
 
@@ -10164,7 +10165,7 @@ void	DPlay::ProcessEngineRPMPacket(UByteP ptr)
 		b1=*ptr;			// we only need 1 byte...
 
 // Set RPM
- 		Persons2::PlayerSeenAC->fly.rpm = (b1*Persons2::PlayerSeenAC->classtype->maxrpm)>>2;	
+ 		Persons2::PlayerSeenAC->fly.rpm = (b1*Persons2::PlayerSeenAC->classtype->maxrpm)>>2;
 		Persons2::PlayerSeenAC->fly.rpm1 = Persons2::PlayerSeenAC->fly.rpm;
 	}
 }
@@ -10189,7 +10190,7 @@ void	DPlay::ProcessEngineAnimPacket(UByteP ptr, ULong slot)
 
 	if (ac)
 	{
-// trigger animation 
+// trigger animation
 
 		Trans_Obj.LaunchEngineStartup(ac,*mobileitem::currworld,true);
 	}
@@ -10307,7 +10308,7 @@ void	DPlay::AddPacketToCheckBuffer(LPAGGSENDPACKET packet)
 			PlayerAggCheck.SetTempCurr();
 
 			int offset=0;
-			do 
+			do
 			{
 				if (PlayerAggCheck.GetTemp()->Frame==packet->player[n].Ack1
 				|| 	PlayerAggCheck.GetTemp()->Frame==packet->player[n].Ack2)
@@ -10463,10 +10464,16 @@ bool	DPlay::ProcessRequiredBFieldPacket(ULong& bfctrl, FileNum& filelist)
 
 void	DPlay::JumpToWebSite()
 {
-	HINSTANCE hApp;
+/*	HINSTANCE hApp;
 
-	hApp = ShellExecute (GetDesktopWindow(), "open",
-	"http://www.empireinteractive.com/BOB", NULL, NULL, SW_SHOW);
+	hApp =
+	ShellExecute (
+                      GetDesktopWindow(),
+                       "open",
+	"http://www.empireinteractive.com/BOB",
+	 NULL,
+	 NULL,
+	 SW_SHOW);*/
 }
 
 void	DPlay::BackupHostPrefs()
@@ -10544,14 +10551,14 @@ bool DPlay::IsPilotDead(int squad, UByte pos)
 void	DPlay::UpdateDeadPilots(AirStrucPtr ac)
 {
 // update deadpilots for comms quick missions
-		
+
 	if (_DPlay.PlayerCreated)
 	{
 		int squadnum;
 		UByte pltnum;
 
 		squadnum=ac->ai.pilotnum;
-		
+
 		int sqcol,sqnum,numacinflight;
 
 		switch (ac->classtype->planetext)
@@ -10684,7 +10691,7 @@ bool	DPlay::GetACArray()
 				ProcessACArrayPacket((UByte*)buffer);
 				return true;
 			}
-			else 
+			else
 			{
 				ProcessPlayerMessage(buffer,buflen,from);
 			}
@@ -10861,7 +10868,7 @@ CON		DPlay::DPlay ()
 	deadpilotlist=NULL;
 
 	for (n=0;n<STAGE_MAX;n++)
-	{																
+	{
 		CommsStage[n][0]=false;
 		CommsStage[n][1]=false;
 	}

@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -64,10 +64,10 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //------------------------------------------------------------------------------
 //Filename       rchatter.cpp
-//System         
+//System
 //Author         Robert Slater
 //Date           Mon 8 Jun 1998
-//Description    
+//Description
 //------------------------------------------------------------------------------
 
 #ifndef	NDEBUG
@@ -141,11 +141,11 @@ bool	naughtynaughty = false;											//RJS 8Nov00
 //Author		Robert Slater
 //Date			Tue 9 Jun 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 RadioChatter::RadioChatter()
@@ -255,7 +255,7 @@ void	RadioChatter::SetUpRandomVoices()
 	{
 		//this is the cheapest combination...	16,957,157	bytes
 		// we might have to load an alternate DENTIST PLACENAMES table (same trick as V2)
-		voicechoiceFAC = 0;				
+		voicechoiceFAC = 0;
 		voicechoiceTOWER = 1;
 		voicechoiceV2= 0;
 	}
@@ -278,11 +278,11 @@ void	RadioChatter::SetUpRandomVoices()
 //Author		Robert Slater
 //Date			Tue 9 Jun 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 RadioChatter::~RadioChatter()
@@ -320,11 +320,11 @@ RadioChatter::~RadioChatter()
 //Author		Robert Slater
 //Date			Mon 8 Jun 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DeadCode RJS 27Jan99 void	RadioChatter::PlayMessage(	int		Scriptno,
@@ -340,7 +340,7 @@ RadioChatter::~RadioChatter()
 //DeadCode RJS 27Jan99 												(mobileitem*)Trg,
 //DeadCode RJS 27Jan99 												(mobileitem*)Callee,
 //DeadCode RJS 27Jan99 												tstruc	);
-//DeadCode RJS 27Jan99 
+//DeadCode RJS 27Jan99
 //DeadCode RJS 27Jan99 		if (MessPtr)
 //DeadCode RJS 27Jan99 		{
 //DeadCode RJS 27Jan99 			if (!noCaller)
@@ -348,22 +348,22 @@ RadioChatter::~RadioChatter()
 //DeadCode RJS 27Jan99 				ComposeSample(MessPtr,PHRASE_THISCALLER);
 //DeadCode RJS 27Jan99 				ComposeSample(MessPtr,PHRASE_COMMA);
 //DeadCode RJS 27Jan99 			}
-//DeadCode RJS 27Jan99 
+//DeadCode RJS 27Jan99
 //DeadCode RJS 27Jan99 			DecomposeScript(MessPtr,Scriptno);
 //DeadCode RJS 27Jan99 		}
 //DeadCode RJS 27Jan99 	}
 //DeadCode RJS 27Jan99 }
-//DeadCode RJS 27Jan99 
+//DeadCode RJS 27Jan99
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DecomposeScript
 //Author		Robert Slater
 //Date			Mon 8 Jun 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::DecomposeScript(RadioMessageP	MessPtr,int Scriptno)
@@ -428,11 +428,11 @@ void	RadioChatter::DecomposeScript(RadioMessageP	MessPtr,int Scriptno)
 //Author		Robert Slater
 //Date			Mon 8 Jun 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 RadioMessageP	RadioChatter::CreateMessage(ItemPtr	caller,
@@ -464,7 +464,7 @@ RadioMessageP	RadioChatter::CreateMessage(ItemPtr	caller,
 				&&	(caller->Status.size == AIRSTRUCSIZE)	)			//RJS 8Sep00
 			{
 				int	callnum;
-				
+
 				if (AirStrucPtr(caller)->ai.diaryptr)
 					callnum=AirStrucPtr(caller)->ai.diaryptr->squadnum;
 				else
@@ -475,7 +475,7 @@ RadioMessageP	RadioChatter::CreateMessage(ItemPtr	caller,
 				else
 					callnum -= SQ_BR_START;
 
-				if (callnum < MaxPilots)			
+				if (callnum < MaxPilots)
  					NewMessagePtr->theFrequency += randomvoice[callnum];
 			}
 
@@ -495,11 +495,11 @@ RadioMessageP	RadioChatter::CreateMessage(ItemPtr	caller,
 //Author		Robert Slater
 //Date			Fri 21 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 RadioOnz*	RadioChatter::PhraseFactors(int	thePhrase)
@@ -515,11 +515,11 @@ RadioOnz*	RadioChatter::PhraseFactors(int	thePhrase)
 //Author		Robert Slater
 //Date			Mon 8 Jun 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
@@ -528,7 +528,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 	{
 //Old_Code RJS 18Jan00 		int			ptype = phrase & 0xFF00;
 //Old_Code RJS 18Jan00 		int			pelement = phrase & 0xFF;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 		if (pelement)
 //Old_Code RJS 18Jan00 		{
 //Old_Code RJS 18Jan00 			if (MessPtr->isAudio)
@@ -536,10 +536,10 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 				RadioSampleRec*	RSamplePtr;
 //Old_Code RJS 18Jan00 				int				StartOffset;
 //Old_Code RJS 18Jan00 				int				SampleSize;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				if (ptype == PHRASE_VOICE2_ONLY)								//RJS 08Jun99
 //Old_Code RJS 18Jan00 					MessPtr->IsExcited = voicechoiceV2;							//RJS 08Jun99
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				RSamplePtr = LoadSample(MessPtr,phrase,StartOffset,SampleSize);
 //Old_Code RJS 18Jan00 				if (RSamplePtr)
 //Old_Code RJS 18Jan00 				{
@@ -547,7 +547,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 						MessPtr->phraselist[MessPtr->nophrases].noCrossFade = 1;
 //Old_Code RJS 18Jan00 					else
 //Old_Code RJS 18Jan00 						MessPtr->phraselist[MessPtr->nophrases].noCrossFade = 0;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					MessPtr->AddSample(RSamplePtr->dataptr,StartOffset,SampleSize);
 //Old_Code RJS 18Jan00 				}
 //Old_Code RJS 18Jan00 			}
@@ -562,7 +562,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 			int				squadron;
 //Old_Code RJS 18Jan00 			int				punctuate = PHRASE_COMMA;
 //Old_Code RJS 18Jan00 			UniqueID		commsname = (UniqueID) 0;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 			switch (ptype)
 //Old_Code RJS 18Jan00 			{
 //Old_Code RJS 18Jan00 			case PHRASE_CALLERGROUP:
@@ -597,10 +597,10 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 					AirStrucPtr	ac = (AirStrucPtr) MessPtr->caller;//RJS 13Jan99
 //Old_Code RJS 18Jan00 					if (ac)
 //Old_Code RJS 18Jan00 					{
-//Old_Code RJS 18Jan00 						pilotno = ac->fly.callnum;		
+//Old_Code RJS 18Jan00 						pilotno = ac->fly.callnum;
 //Old_Code RJS 18Jan00 						squadron = ac->fly.callname;
 //Old_Code RJS 18Jan00 						Bool	fixlater = FALSE;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 						if (squadron)
 //Old_Code RJS 18Jan00 						{
 //Old_Code RJS 18Jan00 							if (ptype == PHRASE_THISCALLER)				//RJS 15Jan99
@@ -611,7 +611,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 								else
 //Old_Code RJS 18Jan00 									fixlater = TRUE;				//RJS 10Feb99
 //Old_Code RJS 18Jan00 							}
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 							ComposeSample(MessPtr,PHRASE_CALLSIGNS_N+squadron);
 //Old_Code RJS 18Jan00 							if (pilotno && (ac->fly.callname < Call_FAC0))	//RJS 20May99
 //Old_Code RJS 18Jan00 							{
@@ -625,10 +625,10 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 								else
 //Old_Code RJS 18Jan00 									ComposeSample(MessPtr,PHRASE_NUMTABLE1_N+pilotno+1);
 //Old_Code RJS 18Jan00 							}
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 							if (fixlater)
 //Old_Code RJS 18Jan00 								ComposeSample(MessPtr,PHRASE_HERE);	//RJS 10Feb99
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 							ComposeSample(MessPtr,punctuate);			//RJS 08Mar99
 //Old_Code RJS 18Jan00 						}
 //Old_Code RJS 18Jan00 					}
@@ -645,9 +645,9 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 					ac = (AirStrucPtr) MessPtr->callee;						//RJS 04May99
 //Old_Code RJS 18Jan00 				if (ac)
 //Old_Code RJS 18Jan00 				{
-//Old_Code RJS 18Jan00 					pilotno = ac->fly.callnum;			
+//Old_Code RJS 18Jan00 					pilotno = ac->fly.callnum;
 //Old_Code RJS 18Jan00 					squadron = ac->fly.callname;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					if (squadron)
 //Old_Code RJS 18Jan00 					{
 //Old_Code RJS 18Jan00 //DeadCode RDH 04May99 						UWord	randy = Math_Lib.rnd();
@@ -672,10 +672,10 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 			case PHRASE_SMLRANGESIMP:
 //Old_Code RJS 18Jan00 			{
 //Old_Code RJS 18Jan00 				SLong	dist = MessPtr->distance;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				dist += phraseControl->subFactor;
 //Old_Code RJS 18Jan00 				dist /= phraseControl->divFactor;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				ComposeSample(MessPtr,PHRASE_SMALLRANGES+dist);
 //Old_Code RJS 18Jan00 			}
 //Old_Code RJS 18Jan00 			break;
@@ -683,14 +683,14 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 			case PHRASE_BIGRANGESIMP:
 //Old_Code RJS 18Jan00 			{
 //Old_Code RJS 18Jan00 				SLong	dist = MessPtr->distance;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				dist += phraseControl->subFactor;				//RJS 12Feb99
 //Old_Code RJS 18Jan00 				dist /= phraseControl->divFactor;				//RJS 12Feb99
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				dist += PHRASE_NUMTABLE25_N;
 //Old_Code RJS 18Jan00 				if (dist > PHRASE_NUMBER800)
 //Old_Code RJS 18Jan00 					dist = PHRASE_NUMBER800;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				ComposeSample(MessPtr,dist);
 //Old_Code RJS 18Jan00 			}
 //Old_Code RJS 18Jan00 			break;
@@ -698,10 +698,10 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 			case PHRASE_RANGESIMP:
 //Old_Code RJS 18Jan00 			{
 //Old_Code RJS 18Jan00 				SLong	dist = MessPtr->distance;
-//Old_Code RJS 18Jan00 			
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				dist += phraseControl->subFactor;			//RJS 12Feb99
 //Old_Code RJS 18Jan00 				dist /= phraseControl->divFactor;			//RJS 12Feb99
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				if (dist > 100)
 //Old_Code RJS 18Jan00 				{
 //Old_Code RJS 18Jan00 					// Are we a pilot?
@@ -714,7 +714,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 							break;
 //Old_Code RJS 18Jan00 						}
 //Old_Code RJS 18Jan00 					}
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					if (ptype == PHRASE_RANGESKM)
 //Old_Code RJS 18Jan00 						ComposeSample(MessPtr,PHRASE_BIGRANGESKM);
 //Old_Code RJS 18Jan00 					else
@@ -725,13 +725,13 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 					SLong	 newphrase = dist + PHRASE_NUMTABLEF;
 //Old_Code RJS 18Jan00 					if (newphrase < PHRASE_FNUMBER2)
 //Old_Code RJS 18Jan00 						newphrase = PHRASE_FNUMBER2;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					if (newphrase > PHRASE_FNUMBER16)
 //Old_Code RJS 18Jan00 					{
 //Old_Code RJS 18Jan00 						newphrase -= PHRASE_NUMTABLEF;
 //Old_Code RJS 18Jan00 						newphrase += PHRASE_NUMTABLE1_N;
 //Old_Code RJS 18Jan00 					}
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					ComposeSample(MessPtr,newphrase);
 //Old_Code RJS 18Jan00 				}
 //Old_Code RJS 18Jan00 			}
@@ -742,16 +742,16 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 				if (MessPtr->InitROL())
 //Old_Code RJS 18Jan00 				{
 //Old_Code RJS 18Jan00 					UWord	relbearing = UWord(MessPtr->bearing);
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					relbearing -= UWord(MessPtr->callee->hdg);	//RJS 05May99
 //Old_Code RJS 18Jan00 					relbearing += phraseControl->subFactor;		//RJS 12Feb99
 //Old_Code RJS 18Jan00 					relbearing /= phraseControl->divFactor;		//RJS 12Feb99
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					if (ptype == PHRASE_BEARINGS)
 //Old_Code RJS 18Jan00 					{
 //Old_Code RJS 18Jan00 						if (!relbearing)
 //Old_Code RJS 18Jan00 							relbearing = 1;
-//Old_Code RJS 18Jan00 							
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 						ComposeSample(MessPtr,ptype+relbearing);
 //Old_Code RJS 18Jan00 						ComposeSample(MessPtr,PHRASE_THEOCLOCK);
 //Old_Code RJS 18Jan00 					}
@@ -760,7 +760,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 						relbearing += PHRASE_NUMTABLE1_N;
 //Old_Code RJS 18Jan00 						if (relbearing < PHRASE_NUMBER1)
 //Old_Code RJS 18Jan00 							relbearing = PHRASE_NUMBER12;
-//Old_Code RJS 18Jan00 						
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 						ComposeSample(MessPtr,PHRASE_YOUR);
 //Old_Code RJS 18Jan00 						ComposeSample(MessPtr,relbearing);
 //Old_Code RJS 18Jan00 					}
@@ -771,12 +771,12 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 			if (MessPtr->InitROL())
 //Old_Code RJS 18Jan00 			{
 //Old_Code RJS 18Jan00 				UWord	relbearing = MessPtr->bearing;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				relbearing += phraseControl->subFactor;		//RJS 12Feb99
 //Old_Code RJS 18Jan00 				relbearing /= phraseControl->divFactor;		//RJS 12Feb99
 //Old_Code RJS 18Jan00 				if (!relbearing)
 //Old_Code RJS 18Jan00 					relbearing = 1;
-//Old_Code RJS 18Jan00 					
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				ComposeSample(MessPtr,ptype+relbearing);
 //Old_Code RJS 18Jan00 			}
 //Old_Code RJS 18Jan00 			break;
@@ -786,7 +786,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 //DeadCode AMM 05Jul99 				// different perspectives!!
 //Old_Code RJS 18Jan00 //DeadCode AMM 05Jul99 				//
 //Old_Code RJS 18Jan00 //DeadCode AMM 05Jul99 				// ie. caller and target, or callee and target
-//Old_Code RJS 18Jan00 //DeadCode AMM 05Jul99 
+//Old_Code RJS 18Jan00 //DeadCode AMM 05Jul99
 //Old_Code RJS 18Jan00 //DeadCode AMM 05Jul99 				SLong	rheights = MessPtr->pitch;
 //Old_Code RJS 18Jan00 //DeadCode AMM 05Jul99 				if (rheights > 5000)
 //Old_Code RJS 18Jan00 //DeadCode AMM 05Jul99 					ComposeSample(MessPtr,PHRASE_HIGH);
@@ -818,14 +818,14 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 				if (MessPtr->target)
 //Old_Code RJS 18Jan00 				{
 //Old_Code RJS 18Jan00 					MessPtr->realheight = MessPtr->target->World.Y;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					DigRange = TRUE;
 //Old_Code RJS 18Jan00 					if (Save_Data.gamedifficulty [GD_UNITS])
 //Old_Code RJS 18Jan00 						ComposeSample(MessPtr,PHRASE_HEIGHTSM);
 //Old_Code RJS 18Jan00 					else
 //Old_Code RJS 18Jan00 						ComposeSample(MessPtr,PHRASE_HEIGHTSFT);
 //Old_Code RJS 18Jan00 					DigRange = FALSE;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					ComposeSample(MessPtr,PHRASE_ANGELS);
 //Old_Code RJS 18Jan00 				}
 //Old_Code RJS 18Jan00 			}
@@ -835,7 +835,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 			case PHRASE_PLACENAMES:
 //Old_Code RJS 18Jan00 			{
 //Old_Code RJS 18Jan00 				SectorNameP	NamePtr;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 //DeadCode RJS 23May99 				if (lastPhrase == PHRASE_LOST)
 //Old_Code RJS 18Jan00 //DeadCode RJS 23May99 				{
 //Old_Code RJS 18Jan00 //DeadCode RJS 23May99 					RelativeToPilot = TRUE;
@@ -846,7 +846,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 					NamePtr = GetPlaceName(MessPtr->target);
 //Old_Code RJS 18Jan00 				else
 //Old_Code RJS 18Jan00 					NamePtr = GetPlaceName(MessPtr->TargetStuff.targetname);
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				if (NamePtr)
 //Old_Code RJS 18Jan00 				{
 //Old_Code RJS 18Jan00 					if (lastPhrase == PHRASE_NULL)					//RJS 11Feb99
@@ -858,11 +858,11 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 							if (	((NamePtr->prefix >= PHRASE_CENTRAL) && (NamePtr->prefix < PHRASE_OVER))
 //Old_Code RJS 18Jan00 								||	(NamePtr->prefix == PHRASE_NULL)	)
 //Old_Code RJS 18Jan00 								ComposeSample(MessPtr,PHRASE_OVER);
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 							ComposeSample(MessPtr,NamePtr->prefix);
 //Old_Code RJS 18Jan00 						}
 //Old_Code RJS 18Jan00 					}
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					ComposeSample(MessPtr,NamePtr->name);
 //Old_Code RJS 18Jan00 					ComposeSample(MessPtr,NamePtr->postfix);	//RJS 15Jun99
 //Old_Code RJS 18Jan00 				}
@@ -875,7 +875,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 				{
 //Old_Code RJS 18Jan00 					ClassPtr	clstyp = ((AirStrucPtr)MessPtr->target)->classtype;
 //Old_Code RJS 18Jan00 					SLong		pno = 0;						//RJS 01Jul99
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					if (clstyp->phrasename == PHRASE_MIGS)
 //Old_Code RJS 18Jan00 						pno = PHRASE_QMIG - PHRASE_NAMED_AC;
 //Old_Code RJS 18Jan00 					else
@@ -883,7 +883,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 						if (clstyp->phrasename == PHRASE_F86S)	//RJS 01Jul99
 //Old_Code RJS 18Jan00 							pno = PHRASE_QSABRE - PHRASE_NAMED_AC;
 //Old_Code RJS 18Jan00 					}
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					if (pno)									//RJS 01Jul99
 //Old_Code RJS 18Jan00 						ComposeSample(MessPtr,ptype+pno);		//RJS 01Jul99
 //Old_Code RJS 18Jan00 				}
@@ -894,7 +894,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 				if (MessPtr->target && (MessPtr->target->Status.size==AIRSTRUCSIZE))
 //Old_Code RJS 18Jan00 				{
 //Old_Code RJS 18Jan00 					ClassPtr	clstyp = ((AirStrucPtr)MessPtr->target)->classtype;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					ComposeSample(MessPtr,clstyp->phrasename);
 //Old_Code RJS 18Jan00 				}
 //Old_Code RJS 18Jan00 			}
@@ -910,7 +910,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 				{
 //Old_Code RJS 18Jan00 					ULong	direction;
 //Old_Code RJS 18Jan00 					Bool	dirset = FALSE;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					if (RelativeToPilot == TRUE)
 //Old_Code RJS 18Jan00 					{
 //Old_Code RJS 18Jan00 						if (MessPtr->caller)
@@ -927,15 +927,15 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 							dirset = TRUE;
 //Old_Code RJS 18Jan00 						}
 //Old_Code RJS 18Jan00 					}
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					if (dirset)
 //Old_Code RJS 18Jan00 					{
 //Old_Code RJS 18Jan00 						direction += phraseControl->subFactor;	//RJS 12Feb99
 //Old_Code RJS 18Jan00 						direction /= phraseControl->divFactor;	//RJS 12Feb99
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 //						if (direction == 0)
 //Old_Code RJS 18Jan00 //							direction = 1;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 						ComposeSample(MessPtr,PHRASE_HEADING);
 //Old_Code RJS 18Jan00 						ComposeSample(MessPtr,ptype+direction);
 //Old_Code RJS 18Jan00 					}
@@ -945,10 +945,10 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 //DeadCode RJS 17Mar99 			case PHRASE_BANDIT_ALERT:
 //Old_Code RJS 18Jan00 //DeadCode RJS 17Mar99 			{
 //Old_Code RJS 18Jan00 //DeadCode RJS 17Mar99 				ULong	randy = Math_Lib.rnd();
-//Old_Code RJS 18Jan00 //DeadCode RJS 17Mar99 
+//Old_Code RJS 18Jan00 //DeadCode RJS 17Mar99
 //Old_Code RJS 18Jan00 //DeadCode RJS 17Mar99 				randy += phraseControl->subFactor;				//RJS 12Feb99
 //Old_Code RJS 18Jan00 //DeadCode RJS 17Mar99 				randy /= phraseControl->divFactor;				//RJS 12Feb99
-//Old_Code RJS 18Jan00 //DeadCode RJS 17Mar99 
+//Old_Code RJS 18Jan00 //DeadCode RJS 17Mar99
 //Old_Code RJS 18Jan00 //DeadCode RJS 17Mar99 				ComposeSample(MessPtr,ptype+randy);
 //Old_Code RJS 18Jan00 //DeadCode RJS 17Mar99 			}
 //Old_Code RJS 18Jan00 //DeadCode RJS 17Mar99 			break;
@@ -984,10 +984,10 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 			case PHRASE_HEIGHTSFT:
 //Old_Code RJS 18Jan00 			{
 //Old_Code RJS 18Jan00 				SLong	height = MessPtr->realheight;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				height += phraseControl->subFactor;
 //Old_Code RJS 18Jan00 				height /= phraseControl->divFactor;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				if (DigRange)
 //Old_Code RJS 18Jan00 					ComposeDigitNumber(MessPtr,height,2);
 //Old_Code RJS 18Jan00 				else
@@ -995,7 +995,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 					height += PHRASE_NUMTABLEF;
 //Old_Code RJS 18Jan00 					if (height < PHRASE_FNUMBER1)
 //Old_Code RJS 18Jan00 						height = PHRASE_FNUMBER1;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					if (height > PHRASE_FNUMBER16)				//RJS 12Apr99
 //Old_Code RJS 18Jan00 					{
 //Old_Code RJS 18Jan00 						height -= PHRASE_NUMTABLEF;
@@ -1024,15 +1024,15 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 							saidheight = true;
 //Old_Code RJS 18Jan00 						}
 //Old_Code RJS 18Jan00 					}
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					if (!saidheight)
 //Old_Code RJS 18Jan00 						ComposeSample(MessPtr,PHRASE_SPACE);
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					if (MessPtr->TargetStuff.targetheight)		//RJS 01Jun99
 //Old_Code RJS 18Jan00 						MessPtr->realheight = MessPtr->TargetStuff.targetheight;
 //Old_Code RJS 18Jan00 					else
 //Old_Code RJS 18Jan00 						MessPtr->realheight = MessPtr->target->World.Y;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					if (Save_Data.gamedifficulty [GD_UNITS])
 //Old_Code RJS 18Jan00 					{
 //Old_Code RJS 18Jan00 						ComposeSample(MessPtr,PHRASE_HEIGHTSM);
@@ -1052,7 +1052,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 				{
 //Old_Code RJS 18Jan00 					ULong	vel;
 //Old_Code RJS 18Jan00 					SLong	newphrase;
-//Old_Code RJS 18Jan00 					
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 //DeadCode RJS 18Mar99 					if (Save_Data.gamedifficulty [GD_UNITS])
 //Old_Code RJS 18Jan00 //DeadCode RJS 18Mar99 					{
 //Old_Code RJS 18Jan00 //DeadCode RJS 18Mar99 						// metric (m/cm)... but have as knots
@@ -1065,18 +1065,18 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 //DeadCode RJS 18Mar99 						vel = Float(MessPtr->speed) * 0.225;
 //Old_Code RJS 18Jan00 //DeadCode RJS 18Mar99 						newphrase = PHRASE_SPEEDSMPH;
 //Old_Code RJS 18Jan00 //DeadCode RJS 18Mar99 					}
-//Old_Code RJS 18Jan00 //DeadCode RJS 18Mar99 
+//Old_Code RJS 18Jan00 //DeadCode RJS 18Mar99
 //Old_Code RJS 18Jan00 //DeadCode RJS 18Mar99 					MessPtr->speed = vel;
 //Old_Code RJS 18Jan00 //DeadCode RJS 18Mar99 					ComposeSample(MessPtr,newphrase);
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					vel = MessPtr->speed;
 //Old_Code RJS 18Jan00 					vel += phraseControl->subFactor;
 //Old_Code RJS 18Jan00 					vel /= phraseControl->divFactor;
 //Old_Code RJS 18Jan00 					if (!vel)	vel = 1;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					ComposeSample(MessPtr,PHRASE_SPACE);				//RJS 09May99
-//Old_Code RJS 18Jan00 					ComposeSample(MessPtr,PHRASE_NUMTABLE25_N+vel); 
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00 					ComposeSample(MessPtr,PHRASE_NUMTABLE25_N+vel);
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					if (Save_Data.gamedifficulty [GD_UNITS])
 //Old_Code RJS 18Jan00 						ComposeSample(MessPtr,PHRASE_CLICKS);
 //Old_Code RJS 18Jan00 					else
@@ -1102,10 +1102,10 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 							saidrange = true;
 //Old_Code RJS 18Jan00 						}
 //Old_Code RJS 18Jan00 					}
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					if (!saidrange)
 //Old_Code RJS 18Jan00 						ComposeSample(MessPtr,PHRASE_SPACE);
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					if (MessPtr->distance > 250000)
 //Old_Code RJS 18Jan00 					{
 //Old_Code RJS 18Jan00 						if (Save_Data.gamedifficulty [GD_UNITS])
@@ -1160,7 +1160,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 				{
 //Old_Code RJS 18Jan00 					UWord	relbearing = UWord(MessPtr->bearing);//RDH 13Apr99
 //Old_Code RJS 18Jan00 					SLong	therel = (relbearing * 360)>>16;	//RDH 13Apr99
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					ComposeDigitNumber(MessPtr,therel,3);		//RDH 30Apr99
 //Old_Code RJS 18Jan00 				}
 //Old_Code RJS 18Jan00 			}
@@ -1184,25 +1184,25 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 			case PHRASE_WINDBEARINGNO:
 //Old_Code RJS 18Jan00 			{
 //Old_Code RJS 18Jan00 				SLong	vx,vy,vz;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				// height is set up by prevous wind phrase...
 //Old_Code RJS 18Jan00 //DeadCode DAW 04May99 				if (MMC.Sky.GetWind(windHeightSet,vx,vy,vz))
 //Old_Code RJS 18Jan00 //DeadCode DAW 04May99 				{
 //Old_Code RJS 18Jan00 //DeadCode DAW 04May99 					ANGLES	bearing,pitch;
-//Old_Code RJS 18Jan00 //DeadCode DAW 04May99 					
+//Old_Code RJS 18Jan00 //DeadCode DAW 04May99
 //Old_Code RJS 18Jan00 //DeadCode DAW 04May99 					Math_Lib.Intercept(vx,vy,vz,windSpeedSet,bearing,pitch);
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					ULong	theBearing;
-//Old_Code RJS 18Jan00 					
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					//These values should already be in degrees...
 //Old_Code RJS 18Jan00 					if (windHeightSet)
 //Old_Code RJS 18Jan00 						theBearing = UWord(MMC.Sky.diralt);
 //Old_Code RJS 18Jan00 					else
 //Old_Code RJS 18Jan00 						theBearing = UWord(MMC.Sky.dir0);
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 //DeadCode DAW 04May99 					theBearing *= 360;
 //Old_Code RJS 18Jan00 //DeadCode DAW 04May99 					theBearing >>= 16;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					ComposeSample(MessPtr,PHRASE_THEBEARING);
 //Old_Code RJS 18Jan00 					ComposeDigitNumber(MessPtr,SLong(theBearing),3);
 //Old_Code RJS 18Jan00 //DEADCODE DAW 04/05/99 				}
@@ -1221,33 +1221,33 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 					else
 //Old_Code RJS 18Jan00 						windSpeedSet = UWord(MMC.Sky.wind0);
 //Old_Code RJS 18Jan00 				}
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				if (windSpeedSet > -1)
 //Old_Code RJS 18Jan00 				{
 //Old_Code RJS 18Jan00 //DeadCode DAW 04May99 					Float	fspeed;
-//Old_Code RJS 18Jan00 //DeadCode DAW 04May99 
+//Old_Code RJS 18Jan00 //DeadCode DAW 04May99
 //Old_Code RJS 18Jan00 //DeadCode DAW 04May99 					//Scale & divide by 10!
 //Old_Code RJS 18Jan00 //DeadCode DAW 04May99 					fspeed = Float(windSpeedSet);
 //Old_Code RJS 18Jan00 //DeadCode DAW 04May99 					if (Save_Data.gamedifficulty [GD_UNITS])
 //Old_Code RJS 18Jan00 //DeadCode DAW 04May99 						fspeed *= 0.194261;						//RJS 30Apr99
 //Old_Code RJS 18Jan00 //DeadCode DAW 04May99 					else
 //Old_Code RJS 18Jan00 //DeadCode DAW 04May99 						fspeed *= 0.22369;						//RJS 30Apr99
-//Old_Code RJS 18Jan00 //DeadCode DAW 04May99 			 
+//Old_Code RJS 18Jan00 //DeadCode DAW 04May99
 //Old_Code RJS 18Jan00 //DeadCode DAW 04May99 					windSpeedSet = SLong(fspeed);
 //Old_Code RJS 18Jan00 					windSpeedSet += PHRASE_FNUMBER0;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					if (windSpeedSet < PHRASE_FNUMBER2)
 //Old_Code RJS 18Jan00 						windSpeedSet = PHRASE_FNUMBER2;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					if (windSpeedSet > PHRASE_FNUMBER16)
 //Old_Code RJS 18Jan00 					{
 //Old_Code RJS 18Jan00 						windSpeedSet -= PHRASE_NUMTABLEF;
 //Old_Code RJS 18Jan00 						windSpeedSet += PHRASE_NUMTABLE1_N;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 						if (windSpeedSet > PHRASE_NUMBER100)
 //Old_Code RJS 18Jan00 							windSpeedSet = PHRASE_NUMBER100;
 //Old_Code RJS 18Jan00 					}
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					ComposeSample(MessPtr,PHRASE_SPACE);
 //Old_Code RJS 18Jan00 					ComposeSample(MessPtr,windSpeedSet);
 //Old_Code RJS 18Jan00 //DEADCODE DAW 05/05/99 					if (Save_Data.gamedifficulty [GD_UNITS])
@@ -1255,7 +1255,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 //DEADCODE DAW 05/05/99 					else
 //Old_Code RJS 18Jan00 //DEADCODE DAW 05/05/99 						ComposeSample(MessPtr,PHRASE_PERHOUR);
 //Old_Code RJS 18Jan00 				}
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				windSpeedSet = -1;
 //Old_Code RJS 18Jan00 			}
 //Old_Code RJS 18Jan00 			break;
@@ -1265,7 +1265,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 				{
 //Old_Code RJS 18Jan00 					AirStrucPtr	ac = (AirStrucPtr) MessPtr->caller;
 //Old_Code RJS 18Jan00 //DEADCODE CSB 05/11/99 					ULong	fueltot = ac->weap.left.int_fuel;
-//Old_Code RJS 18Jan00 //DEADCODE CSB 05/11/99 
+//Old_Code RJS 18Jan00 //DEADCODE CSB 05/11/99
 //Old_Code RJS 18Jan00 //DEADCODE CSB 05/11/99 					fueltot += ac->weap.left.ext_fuel;
 //Old_Code RJS 18Jan00 //DEADCODE CSB 05/11/99 					fueltot += ac->weap.right.int_fuel;
 //Old_Code RJS 18Jan00 //DEADCODE CSB 05/11/99 					fueltot += ac->weap.right.ext_fuel;
@@ -1274,11 +1274,11 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 					ULong fueltot = 0;											//CSB 05/11/99
 //Old_Code RJS 18Jan00 					for(SWord i = 0; i < 4; i++)								//CSB 05/11/99
 //Old_Code RJS 18Jan00 						fueltot += ac->fly.fuel_content[i];						//CSB 05/11/99
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					fueltot /= 100000;	//kgs
 //Old_Code RJS 18Jan00 //DeadCode CSB 30/06/99						fueltot = Float(fueltot) * 0.453597;		//RJS 13May99
-//Old_Code RJS 18Jan00 					fueltot = Float(fueltot) * 2.2046;		//CSB 30/06/99	
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00 					fueltot = Float(fueltot) * 2.2046;		//CSB 30/06/99
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					ComposeSample(MessPtr,PHRASE_SPACE);		//RJS 13May99
 //Old_Code RJS 18Jan00 					ComposeDigitNumber(MessPtr,SLong(fueltot));
 //Old_Code RJS 18Jan00 					ComposeSample(MessPtr,PHRASE_GALLONS);
@@ -1295,7 +1295,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 					relbearing /= phraseControl->divFactor;		//RJS 12Feb99
 //Old_Code RJS 18Jan00 					if (!relbearing)
 //Old_Code RJS 18Jan00 						relbearing++;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					ComposeSample(MessPtr,ptype+relbearing);
 //Old_Code RJS 18Jan00 				}
 //Old_Code RJS 18Jan00 			}
@@ -1307,14 +1307,14 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 					RadioSampleRec*	RSamplePtr;
 //Old_Code RJS 18Jan00 					int				StartOffset;
 //Old_Code RJS 18Jan00 					int				SampleSize;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					RSamplePtr = LoadSample(MessPtr,PHRASE_THINKING,StartOffset,SampleSize);
 //Old_Code RJS 18Jan00 					if (RSamplePtr)
 //Old_Code RJS 18Jan00 					{
 //Old_Code RJS 18Jan00 						// Fiddle the sample size to vary pause length...
 //Old_Code RJS 18Jan00 						SampleSize >>= 1;
 //Old_Code RJS 18Jan00 						SampleSize += Math_Lib.rnd(SampleSize);
-//Old_Code RJS 18Jan00 			
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 						MessPtr->AddSample(RSamplePtr->dataptr,StartOffset,SampleSize);
 //Old_Code RJS 18Jan00 					}
 //Old_Code RJS 18Jan00 				}
@@ -1330,10 +1330,10 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 			case PHRASE_GUSTTYPE:
 //Old_Code RJS 18Jan00 			{
 //Old_Code RJS 18Jan00 				SLong magnitude = MMC.Sky.MaxMagnitude;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				//assume magnitude is 0...6
 //Old_Code RJS 18Jan00 				magnitude = (2 * magnitude)/6;		//scale down to 3 possible types...
-//Old_Code RJS 18Jan00 				
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				ComposeSample(MessPtr,PHRASE_GUSTLIGHT+magnitude);
 //Old_Code RJS 18Jan00 			}
 //Old_Code RJS 18Jan00 			break;
@@ -1369,13 +1369,13 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 			case PHRASE_AIRFIELDS:
 //Old_Code RJS 18Jan00 			{
 //Old_Code RJS 18Jan00 				if (MessPtr->target)									//RJS 05May99
-//Old_Code RJS 18Jan00 				{	
+//Old_Code RJS 18Jan00 				{
 //Old_Code RJS 18Jan00 					SLong	uid = MessPtr->target->uniqueID.count;		//RJS 05May99
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					// Find offset...
 //Old_Code RJS 18Jan00 					uid -= UID_AF_Abbeville; //RJS 16/11/99
 //Old_Code RJS 18Jan00 					uid++;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 					uid += PHRASE_AIRFIELDS;
 //Old_Code RJS 18Jan00 					if ((uid > PHRASE_AIRFIELDS) && (uid <= PHRASE_AFJAPAN))
 //Old_Code RJS 18Jan00 					{
@@ -1392,9 +1392,9 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 			{
 //Old_Code RJS 18Jan00 				if (!commsname)
 //Old_Code RJS 18Jan00 					commsname = MessPtr->target->uniqueID.count;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				ComposeSample(MessPtr,PHRASE_PLAYERNAME1+_DPlay.GetPlayerNumber(commsname));
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				if (ptype == PHRASE_THISCOMMS)
 //Old_Code RJS 18Jan00 				{
 //Old_Code RJS 18Jan00 					ComposeSample(MessPtr,PHRASE_COLON);
@@ -1405,10 +1405,10 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 			case PHRASE_USER_DEFINED:
 //Old_Code RJS 18Jan00 			{
 //Old_Code RJS 18Jan00 				ULong	messno = 8 * _DPlay.GetPlayerNumber(MessPtr->caller->uniqueID.count);
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				messno += MessPtr->TargetStuff.usermessage;
 //Old_Code RJS 18Jan00 				messno++;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 				ComposeSample(MessPtr,ptype+messno);
 //Old_Code RJS 18Jan00 			}
 //Old_Code RJS 18Jan00 			break;
@@ -1437,10 +1437,10 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 					AirStrucPtr	ac = (AirStrucPtr) MessPtr->caller;
 //Old_Code RJS 18Jan00 					if (ac)
 //Old_Code RJS 18Jan00 					{
-//Old_Code RJS 18Jan00 						pilotno = ac->fly.callnum;		
+//Old_Code RJS 18Jan00 						pilotno = ac->fly.callnum;
 //Old_Code RJS 18Jan00 						squadron = ac->fly.callname;
 //Old_Code RJS 18Jan00 						Bool	fixlater = FALSE;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 						if (squadron)
 //Old_Code RJS 18Jan00 						{
 //Old_Code RJS 18Jan00 							if (ptype == PHRASE_GERMANTHISCALLER)
@@ -1449,13 +1449,13 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 								if (!MessPtr->Random(2))
 //Old_Code RJS 18Jan00 									ComposeSample(MessPtr,PHRASE_THISIS);
 //Old_Code RJS 18Jan00 								else
-//Old_Code RJS 18Jan00 								{	
+//Old_Code RJS 18Jan00 								{
 //Old_Code RJS 18Jan00 									ComposeSample(MessPtr,PHRASE_HERE);
 //Old_Code RJS 18Jan00 									ComposeSample(MessPtr,PHRASE_SPACE);
 //Old_Code RJS 18Jan00 									fixlater = TRUE;
 //Old_Code RJS 18Jan00 								}
 //Old_Code RJS 18Jan00 							}
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 							ComposeSample(MessPtr,PHRASE_CALLSIGNS_N+squadron);
 //Old_Code RJS 18Jan00 							if (pilotno && (ac->fly.callname < Call_FAC0))
 //Old_Code RJS 18Jan00 							{
@@ -1469,7 +1469,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 //DeadCode RJS 15Jun99 								else
 //Old_Code RJS 18Jan00 									ComposeSample(MessPtr,PHRASE_NUMTABLE1_N+pilotno+1);
 //Old_Code RJS 18Jan00 							}
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 							ComposeSample(MessPtr,punctuate);
 //Old_Code RJS 18Jan00 						}
 //Old_Code RJS 18Jan00 					}
@@ -1485,14 +1485,14 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 					if (MessPtr->InitROL())
 //Old_Code RJS 18Jan00 					{
 //Old_Code RJS 18Jan00 						UWord	relbearing = MessPtr->bearing;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 						relbearing -= UWord(MessPtr->callee->hdg);
 //Old_Code RJS 18Jan00 						relbearing += phraseControl->subFactor;
 //Old_Code RJS 18Jan00 						relbearing /= phraseControl->divFactor;
 //Old_Code RJS 18Jan00 						relbearing += PHRASE_NUMTABLE1_N;
 //Old_Code RJS 18Jan00 						if (relbearing < PHRASE_NUMBER1)
 //Old_Code RJS 18Jan00 							relbearing = PHRASE_NUMBER12;
-//Old_Code RJS 18Jan00 		
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 						ComposeSample(MessPtr,PHRASE_SPACE);
 //Old_Code RJS 18Jan00 						ComposeSample(MessPtr,relbearing);
 //Old_Code RJS 18Jan00 						ComposeSample(MessPtr,PHRASE_YOUR);
@@ -1504,7 +1504,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 //DEADCODE RDH 07/12/99 			{
 //Old_Code RJS 18Jan00 //DEADCODE RDH 07/12/99 //DeadCode AMM 16Nov99 				int	accelno = _DPlay.GetAccelNumber();
 //Old_Code RJS 18Jan00 //DEADCODE RDH 07/12/99 				int accelno=0;
-//Old_Code RJS 18Jan00 //DEADCODE RDH 07/12/99 
+//Old_Code RJS 18Jan00 //DEADCODE RDH 07/12/99
 //Old_Code RJS 18Jan00 //DEADCODE RDH 07/12/99 				ComposeSample(MessPtr,PHRASE_NUMBER0+accelno);
 //Old_Code RJS 18Jan00 //DEADCODE RDH 07/12/99 			}
 //Old_Code RJS 18Jan00 //DEADCODE RDH 07/12/99 			break;
@@ -1517,13 +1517,13 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Old_Code RJS 18Jan00 					if (MessPtr->InitROL())
 //Old_Code RJS 18Jan00 					{
 //Old_Code RJS 18Jan00 						UWord	relbearing = MessPtr->bearing;
-//Old_Code RJS 18Jan00 
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 						relbearing -= UWord(MessPtr->callee->hdg);
-//Old_Code RJS 18Jan00 						relbearing += phraseControl->subFactor;	  
-//Old_Code RJS 18Jan00 						relbearing /= phraseControl->divFactor;	  
+//Old_Code RJS 18Jan00 						relbearing += phraseControl->subFactor;
+//Old_Code RJS 18Jan00 						relbearing /= phraseControl->divFactor;
 //Old_Code RJS 18Jan00 						if (!relbearing)
 //Old_Code RJS 18Jan00 							relbearing = 1;
-//Old_Code RJS 18Jan00 						
+//Old_Code RJS 18Jan00
 //Old_Code RJS 18Jan00 						ComposeSample(MessPtr,PHRASE_THEOCLOCK);
 //Old_Code RJS 18Jan00 						ComposeSample(MessPtr,ptype+relbearing);
 //Old_Code RJS 18Jan00 					}
@@ -1928,7 +1928,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //DEADCODE RJS 4/18/00 			case PHRASE_NUMBEROFLOSSES:
 //DEADCODE RJS 4/18/00 			{
 //DEADCODE RJS 4/18/00 #pragma	message(__HERE__ "Jim:  I need number of losses for the day")
-//DEADCODE RJS 4/18/00 
+//DEADCODE RJS 4/18/00
 //DEADCODE RJS 4/18/00 			}
 //DEADCODE RJS 4/18/00 			break;
 			case PHRASE_ONLYRAID_ID:
@@ -1953,7 +1953,7 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
  					relbearing /= phraseControl->divFactor;
  					if (!relbearing)
  						relbearing++;
- 
+
  					ComposeSample(MessPtr,ptype+relbearing);
 				}
 			}
@@ -1973,11 +1973,11 @@ void	RadioChatter::ComposeSample(RadioMessageP	MessPtr,int phrase)
 //Author		Robert Slater
 //Date			Tue 9 Jun 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RADIOMESSAGE::AddSample(UByteP	data,int	theOffset, int theSize)	//RJS 22Mar99
@@ -1995,11 +1995,11 @@ void	RADIOMESSAGE::AddSample(UByteP	data,int	theOffset, int theSize)	//RJS 22Mar
 //Author		Robert Slater
 //Date			Thu 13 May 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RADIOMESSAGE::AddPhrase(int phrase)
@@ -2016,18 +2016,18 @@ void	RADIOMESSAGE::AddPhrase(int phrase)
 	}
 	else
 		nophrases++;
-}	
+}
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		BuildMessageAsSamples
 //Author		Robert Slater
 //Date			Mon 8 Jun 1998
 //
-//Description	
+//Description
 //
-//Inputs		
-//								     
-//Returns	
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	RADIOMESSAGE::BuildMessageAsSamples()
@@ -2145,11 +2145,11 @@ Bool	RADIOMESSAGE::BuildMessageAsSamples()
 //Author		Robert Slater
 //Date			Mon 8 Jun 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	RADIOMESSAGE::InitROL()
@@ -2202,16 +2202,16 @@ Bool	RADIOMESSAGE::InitROL()
 //Author		Robert Slater
 //Date			Mon 8 Jun 1998
 //
-//Description	
+//Description
 //
 //				Format:
 //							n files		(ULong)
 //							offset (ULong),	size (ULong)	* n
 //							Samples Header
 //							Samples data
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 RadioSampleRec*	RadioChatter::LoadSample(	RadioMessageP	MessPtr,
@@ -2288,14 +2288,14 @@ RadioSampleRec*	RadioChatter::LoadSample(	RadioMessageP	MessPtr,
 
 					id[4] = 0;
 
-					if (stricmp(id,"SWAV") == 0)
+					if (strnicmp(id,"SWAV",4) == 0)
 					{
 						header1 = (SWAV*) longaddress;
 
 						longaddress += ssize;
 
 						SamplePtr->headerptr = header1;
-						SamplePtr->dataptr = (UByteP) longaddress; 
+						SamplePtr->dataptr = (UByteP) longaddress;
 					}
 					else
 					{
@@ -2336,7 +2336,7 @@ RadioSampleRec*	RadioChatter::LoadSample(	RadioMessageP	MessPtr,
 
 	//DeadCode RJS 27Jul98 		if (pelement)											//RJS 23Jul98
 	//DeadCode RJS 27Jul98 			StartOff = SamplePtr->offsetptr[pelement-1];		//RJS 23Jul98
-	//DeadCode RJS 27Jul98 															
+	//DeadCode RJS 27Jul98
 	//DeadCode RJS 27Jul98 		SampleSize = SamplePtr->offsetptr[pelement] - StartOff;	//RJS 23Jul98
 		}
 	}
@@ -2349,11 +2349,11 @@ RadioSampleRec*	RadioChatter::LoadSample(	RadioMessageP	MessPtr,
 //Author		Robert Slater
 //Date			Tue 9 Jun 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::ProcessMessages(SLong frametime)
@@ -2446,7 +2446,7 @@ void	RadioChatter::ProcessMessages(SLong frametime)
 //Author		Robert Slater
 //Date			Tue 14 Jul 1998
 //
-//Description	
+//Description
 //
 //				Converts an item world X & Z coordinate
 //				into its equivalent 4-digit landscape block number.
@@ -2454,9 +2454,9 @@ void	RadioChatter::ProcessMessages(SLong frametime)
 //				This is then turned into a 40 x 56 placename location...
 //
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 UWord		RadioChatter::GetPlaceNum(Coords3D* WPtr,int noelements)
@@ -2504,7 +2504,7 @@ UWord		RadioChatter::GetPlaceNum(Coords3D* WPtr,int noelements)
 //DEADCODE RJS 5/5/00 			return	&theSectors.PlaceNames[location];
 //DEADCODE RJS 5/5/00 	return NULL;
 //DEADCODE RJS 5/5/00 }
-//DEADCODE RJS 5/5/00 
+//DEADCODE RJS 5/5/00
 //DEADCODE RJS 5/5/00 SectorNameP	RadioChatter::GetPlaceName(ItemPtr	itm)
 //DEADCODE RJS 5/5/00 {
 //DEADCODE RJS 5/5/00 	SectorNameP	NamePtr = NULL;
@@ -2513,7 +2513,7 @@ UWord		RadioChatter::GetPlaceNum(Coords3D* WPtr,int noelements)
 //DEADCODE RJS 5/5/00 		UWord location=GetPlaceNum(&itm->World,theSectors.noelements);
 //DEADCODE RJS 5/5/00 		return (GetPlaceName(location));
 //DEADCODE RJS 5/5/00 	}
-//DEADCODE RJS 5/5/00 
+//DEADCODE RJS 5/5/00
 //DEADCODE RJS 5/5/00 	return(NamePtr);
 //DEADCODE RJS 5/5/00 }
 //DeadCode DAW 26Mar99 SectorNameP	RadioChatter::GetPlaceName(ItemPtr	itm)
@@ -2527,37 +2527,37 @@ UWord		RadioChatter::GetPlaceNum(Coords3D* WPtr,int noelements)
 //DeadCode DAW 26Mar99 			SLong	xof, zof, val;
 //DeadCode DAW 26Mar99 			UWord	bigx, bigz, x, z;
 //DeadCode DAW 26Mar99 			Coords3D	*WPtr = &itm->World;
-//DeadCode DAW 26Mar99 
+//DeadCode DAW 26Mar99
 //DeadCode DAW 26Mar99 			// Sector shift = 21...
 //DeadCode DAW 26Mar99 			val=WPtr->X>>21;
-//DeadCode DAW 26Mar99 
+//DeadCode DAW 26Mar99
 //DeadCode DAW 26Mar99 			x = (val&0x7);
 //DeadCode DAW 26Mar99 			bigx = (val>>3);
-//DeadCode DAW 26Mar99 
+//DeadCode DAW 26Mar99
 //DeadCode DAW 26Mar99 			// Sector shift = 21...
 //DeadCode DAW 26Mar99 			val=WPtr->Z>>21;
-//DeadCode DAW 26Mar99 
+//DeadCode DAW 26Mar99
 //DeadCode DAW 26Mar99 			z = (val&0x7);
 //DeadCode DAW 26Mar99 			bigz = (val>>3);
-//DeadCode DAW 26Mar99 
+//DeadCode DAW 26Mar99
 //DeadCode DAW 26Mar99 			// x vals range from 2 to 6
 //DeadCode DAW 26Mar99 			// z vals range from 2 to 8
-//DeadCode DAW 26Mar99 
+//DeadCode DAW 26Mar99
 //DeadCode DAW 26Mar99 			if (bigx > 6)
 //DeadCode DAW 26Mar99 				bigx = 6;
-//DeadCode DAW 26Mar99 
+//DeadCode DAW 26Mar99
 //DeadCode DAW 26Mar99 			bigx -= 1;
 //DeadCode DAW 26Mar99 			bigz -= 1;
-//DeadCode DAW 26Mar99 
+//DeadCode DAW 26Mar99
 //DeadCode DAW 26Mar99 			xof = (bigx * 8) + x;
 //DeadCode DAW 26Mar99 			zof = (bigz * 8) + z;
-//DeadCode DAW 26Mar99 
+//DeadCode DAW 26Mar99
 //DeadCode DAW 26Mar99 			location = (zof * 40) + xof;
 //DeadCode DAW 26Mar99 			if (location < theSectors.noelements)
 //DeadCode DAW 26Mar99 				NamePtr = &theSectors.PlaceNames[location];
 //DeadCode DAW 26Mar99 		}
 //DeadCode DAW 26Mar99 	}
-//DeadCode DAW 26Mar99 
+//DeadCode DAW 26Mar99
 //DeadCode DAW 26Mar99 	return(NamePtr);
 //DeadCode DAW 26Mar99 }
 
@@ -2566,11 +2566,11 @@ UWord		RadioChatter::GetPlaceNum(Coords3D* WPtr,int noelements)
 //Author		Robert Slater
 //Date			Tue 14 Jul 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SectorNameP	RadioChatter::LoadSectorNames(SLong	thefile)
@@ -2594,11 +2594,11 @@ SectorNameP	RadioChatter::LoadSectorNames(SLong	thefile)
 //Author		Robert Slater
 //Date			Thu 28 Jan 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 UWordP	RadioChatter::GetScript(SLong	scriptno,RadioMessageP MessPtr,PhraseTables& singlephrase)
@@ -2646,11 +2646,11 @@ UWordP	RadioChatter::GetScript(SLong	scriptno,RadioMessageP MessPtr,PhraseTables
 //Author		Robert Slater
 //Date			Tue 12 Jan 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DeadCode RJS 27Jan99 void	RadioChatter::PlayMessage(	int		Scriptno,
@@ -2662,7 +2662,7 @@ UWordP	RadioChatter::GetScript(SLong	scriptno,RadioMessageP MessPtr,PhraseTables
 //DeadCode RJS 27Jan99 	if (Save_Data.vol.rchat)
 //DeadCode RJS 27Jan99 	{
 //DeadCode RJS 27Jan99 		TargetIndexes	tripeval;
-//DeadCode RJS 27Jan99 
+//DeadCode RJS 27Jan99
 //DeadCode RJS 27Jan99 		PlayMessage(Scriptno,tripeval,Caller,Trg,Callee,noCaller);
 //DeadCode RJS 27Jan99 	}
 //DeadCode RJS 27Jan99 }
@@ -2672,11 +2672,11 @@ UWordP	RadioChatter::GetScript(SLong	scriptno,RadioMessageP MessPtr,PhraseTables
 //Author		Robert Slater
 //Date			Tue 12 Jan 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::ExpandMessage(PhraseBuffer&	fbuff,
@@ -2711,11 +2711,11 @@ void	RadioChatter::ExpandMessage(PhraseBuffer&	fbuff,
 //Author		Robert Slater
 //Date			Tue 12 Jan 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::ExpandCallsign(PhraseBuffer&	phbuf, ItemPtr	Caller,const VoiceType& voice)
@@ -2762,11 +2762,11 @@ void	RadioChatter::ExpandCallsign(PhraseBuffer&	phbuf, ItemPtr	Caller,const Voic
 //Author		Robert Slater
 //Date			Tue 12 Jan 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::ExpandPlacename(PhraseBuffer&	phbuf, ItemPtr	Caller)
@@ -2793,11 +2793,11 @@ void	RadioChatter::ExpandPlacename(PhraseBuffer&	phbuf, UWord place)
 //Author		Robert Slater
 //Date			Tue 12 Jan 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::Message_DecomposeScript(RadioMessageP	MessPtr,int Scriptno)
@@ -2852,11 +2852,11 @@ void	RadioChatter::Message_DecomposeScript(RadioMessageP	MessPtr,int Scriptno)
 //Author		Robert Slater
 //Date			Wed 13 Jan 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::PlayMessage(const	MESSAGE_STRUC&	radiomessage, SLong vol, bool isChatter)
@@ -2899,11 +2899,11 @@ void	RadioChatter::PlayMessage(const	MESSAGE_STRUC&	radiomessage, SLong vol, boo
 //Author		Robert Slater
 //Date			Wed 13 Jan 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::ExpandMessage(PhraseBuffer&	fbuff, const MESSAGE_STRUC&	radiomessage )
@@ -2938,11 +2938,11 @@ void	RadioChatter::ExpandMessage(PhraseBuffer&	fbuff, const MESSAGE_STRUC&	radio
 //Author		Robert Slater
 //Date			Wed 27 Jan 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	RadioChatter::TimeOut()
@@ -2960,9 +2960,9 @@ Bool	RadioChatter::TimeOut()
 //
 //Description	constructor
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 RADIOMESSAGE::RADIOMESSAGE(	RADIOMESSAGE*& 	MessPtr,
@@ -3009,9 +3009,9 @@ RADIOMESSAGE::RADIOMESSAGE(	RADIOMESSAGE*& 	MessPtr,
 			vox = VOICE_LWTOWER;
 
 
-		if ((fbuffp==NULL) && (Save_Data.vol.rchat > 0))			//RJS 22Mar99	   
-			isAudio = TRUE;				   					   
-		else		
+		if ((fbuffp==NULL) && (Save_Data.vol.rchat > 0))			//RJS 22Mar99
+			isAudio = TRUE;
+		else
 			isAudio = FALSE;
 	}
 	else
@@ -3020,7 +3020,7 @@ RADIOMESSAGE::RADIOMESSAGE(	RADIOMESSAGE*& 	MessPtr,
 		isAudio = FALSE;
 	}
 
-	TargetStuff = tstruc;					
+	TargetStuff = tstruc;
 	messbuffptr = fbuffp;
 	theVoice = vox;
 
@@ -3035,17 +3035,17 @@ RADIOMESSAGE::RADIOMESSAGE(	RADIOMESSAGE*& 	MessPtr,
 	samplesize = 0;
 	isPlaying = FALSE;
 	PlayQueue = NULL;
-					
+
 	MessPtr = this;					//RJS 17May00
 
 //DEADCODE RDH 17/05/00 	if ((fbuffp==NULL) && (Save_Data.vol.rchat > 0))			//RJS 22Mar99
-//DEADCODE RDH 17/05/00 	{								   
-//DEADCODE RDH 17/05/00 		isAudio = TRUE;				   
-//DEADCODE RDH 17/05/00 				
-//DEADCODE RDH 17/05/00 		MessPtr = this;				   
-//DEADCODE RDH 17/05/00 	}								   
-//DEADCODE RDH 17/05/00 	else		
-//DEADCODE RDH 17/05/00 	{			   
+//DEADCODE RDH 17/05/00 	{
+//DEADCODE RDH 17/05/00 		isAudio = TRUE;
+//DEADCODE RDH 17/05/00
+//DEADCODE RDH 17/05/00 		MessPtr = this;
+//DEADCODE RDH 17/05/00 	}
+//DEADCODE RDH 17/05/00 	else
+//DEADCODE RDH 17/05/00 	{
 //DEADCODE RDH 17/05/00 		isAudio = FALSE;
 //DEADCODE RDH 17/05/00 		MessPtr = this;
 //DEADCODE RDH 17/05/00 	}
@@ -3063,11 +3063,11 @@ RADIOMESSAGE::RADIOMESSAGE(	RADIOMESSAGE*& 	MessPtr,
 //Author		Robert Slater
 //Date			Fri 5 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	MESSAGE_STRUC::SetVoiceType()
@@ -3097,11 +3097,11 @@ void	MESSAGE_STRUC::SetVoiceType()
 //Author		Robert Slater
 //Date			Thu 28 Jan 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 #ifdef TriggerMsg
@@ -3110,12 +3110,12 @@ void	MESSAGE_STRUC::SetVoiceType()
 const MESSAGE_STRUC&	RadioChatter::TriggerMsg(const MESSAGE_STRUC&	msg)
 {
 #ifndef NO_CHATTER_
-	
+
 	//We still want to buffer in accel mode!					//RJS 27May99
 	if (!_Replay.Playback)												//RJS 11Oct00
 	{
  		ProcessVoice(msg);												//RJS 11Oct00
-	
+
 		if (msg.GetScript())											//RJS 11Oct00
 		{
 			if (!_MsgBuffer.AddToBuffer(msg))
@@ -3176,11 +3176,11 @@ const MESSAGE_STRUC&	RadioChatter::TriggerMsg(const MESSAGE_STRUC&	msg)
 //Author		Robert Slater
 //Date			Wed 10 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::ComposeDigitNumber(RadioMessageP	MessPtr, SLong number, SWord nodigits)
@@ -3202,7 +3202,7 @@ void	RadioChatter::ComposeDigitNumber(RadioMessageP	MessPtr, SLong number, SWord
 		while (number);
 
 		while (digitcnt < nodigits)		digits[digitcnt++] = 1;					//zero
-	
+
 		MessPtr->TextNum = TRUE;								//RJS 18Mar99
 
 		digitcnt--;
@@ -3231,9 +3231,9 @@ void	RadioChatter::ComposeDigitNumber(RadioMessageP	MessPtr, SLong number, SWord
 //
 //Description	Calc delay, repeatable and priority
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	MESSAGE_STRUC::ProcessUserMessage()
@@ -3289,11 +3289,11 @@ void	MESSAGE_STRUC::ProcessUserMessage()
 //Author		Robert Slater
 //Date			Fri 12 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 ULong	RadioChatter::PhraseToResource(SLong	thePhrase)
@@ -3331,11 +3331,11 @@ static int  pooaf = 1;
 //Author		Robert Slater
 //Date			Mon 22 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	RADIOMESSAGE::FiddleROL()
@@ -3357,11 +3357,11 @@ void	RadioChatter::ComposeFakeDigitNumber(RadioMessageP	MessPtr, SLong number, S
 //DeadCode RJS 6Sep00 //Author		Robert Slater
 //DeadCode RJS 6Sep00 //Date			Mon 22 Feb 1999
 //DeadCode RJS 6Sep00 //
-//DeadCode RJS 6Sep00 //Description	
+//DeadCode RJS 6Sep00 //Description
 //DeadCode RJS 6Sep00 //
-//DeadCode RJS 6Sep00 //Inputs		
+//DeadCode RJS 6Sep00 //Inputs
 //DeadCode RJS 6Sep00 //
-//DeadCode RJS 6Sep00 //Returns	
+//DeadCode RJS 6Sep00 //Returns
 //DeadCode RJS 6Sep00 //
 //DeadCode RJS 6Sep00 //------------------------------------------------------------------------------
 //DeadCode RJS 6Sep00 void	RadioChatter::ComposeFakeSample(RadioMessageP	MessPtr,int phrase)
@@ -3375,11 +3375,11 @@ static int poolocation;
 //Author		Robert Slater
 //Date			Mon 22 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::PlayAll()
@@ -3391,11 +3391,11 @@ void	RadioChatter::PlayAll()
 //Author		Robert Slater
 //Date			Thu 25 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SectorNameP	RadioChatter::GetFakePlaceName()
@@ -3408,11 +3408,11 @@ SectorNameP	RadioChatter::GetFakePlaceName()
 //Author		Robert Slater
 //Date			Thu 4 Mar 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	MESSAGE_STRUC::ChooseScript(int	sno) const
@@ -3428,7 +3428,7 @@ void	MESSAGE_STRUC::ChooseScript(int	sno) const
 		if (sno)												//RJS 05May00
 		{
 			if (randChoices & 0xFF00)	//is there an excited part?
-			{					
+			{
 				ULong	excitedrand = randChoices>>8;					//RJS 15Aug00
 				ULong	excitedoffset = normrand;					//RJS 17May99
 
@@ -3438,7 +3438,7 @@ void	MESSAGE_STRUC::ChooseScript(int	sno) const
 					if (target && callee)
 					{
 						float	dx,dy,dz,distance;						//RJS 15Aug00
-		
+
 						dx = target->World.X - callee->World.X;
 						dy = target->World.Y - callee->World.Y;
 						dz = target->World.Z - callee->World.Z;
@@ -3498,7 +3498,7 @@ void	MESSAGE_STRUC::ChooseScript(int	sno) const
 //DeadCode RJS 15Sep00 	_Radio.totmess++;
 //DeadCode RJS 15Sep00 	messagecnt = _Radio.totmess;										//JIM 29Apr99
 //DeadCode RJS 15Sep00 #endif
-//DeadCode RJS 15Sep00 
+//DeadCode RJS 15Sep00
 //DeadCode RJS 15Sep00 	randomno = Math_Lib.rnd();
 
 	if (scriptno)
@@ -3513,9 +3513,9 @@ void	MESSAGE_STRUC::ChooseScript(int	sno) const
 //
 //Description	removes any callsign from script, if it is the 1st phrase
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RADIOMESSAGE::StripIsPlayer(UWordP &ScriptPtr)
@@ -3528,7 +3528,7 @@ void	RADIOMESSAGE::StripIsPlayer(UWordP &ScriptPtr)
  		if (	((thePhrase >= PHRASE_CALLER_GL_RAF) && (thePhrase < PHRASE_CALLEE_SQUADNUMBERSHORT))
 //DeadCode RJS 29Sep100 			||	((thePhrase & 0xFF00) == PHRASE_CALLEE_GLW)
 			||	((thePhrase & 0xFF00) == PHRASE_CALLEE_GL_RAF)
-			||	(thePhrase == PHRASE_CALLING)	
+			||	(thePhrase == PHRASE_CALLING)
 			||	(thePhrase == PHRASE_THISIS)	)
  		{
 //DeadCode RJS 29Sep100  			DodgyRandomFix();									//RJS 11May99
@@ -3553,9 +3553,9 @@ void	RADIOMESSAGE::StripIsPlayer(UWordP &ScriptPtr)
 //
 //Description	Just removes caller from script, if it is the 1st phrase
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RADIOMESSAGE::StripCaller(UWordP &ScriptPtr)
@@ -3586,14 +3586,14 @@ void	RADIOMESSAGE::StripCaller(UWordP &ScriptPtr)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Enter3D
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Wed 28 Apr 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::Enter3D(bool	inthe3D)
@@ -3616,11 +3616,11 @@ void	RadioChatter::Enter3D(bool	inthe3D)
 //Author		Robert Slater
 //Date			Fri 29 Sep 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::ClearOldMessage()
@@ -3660,14 +3660,14 @@ void	RadioChatter::ClearOldMessage()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Random
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 4 May 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int		RADIOMESSAGE::Random(int	numbits)
@@ -3684,28 +3684,28 @@ int		RADIOMESSAGE::Random(int	numbits)
 //Author		Robert Slater
 //Date			Tue 11 May 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RADIOMESSAGE::MainStrip(UWordP&	ptr)
 {
-	if (	(caller == callee) 
+	if (	(caller == callee)
 		&&	(theVoice < VOICE_REST)	)								//RJS 29Sep00
-		StripIsPlayer(ptr);						 
-	else										 
-	{											 
-		if (!isAudio)					 
+		StripIsPlayer(ptr);
+	else
+	{
+		if (!isAudio)
 		{
 			if (theVoice < VOICE_REST)									//RJS 29Sep00
 				StripIsPlayer(ptr);
 			else
 				StripCaller(ptr);
 		}
-	}	
+	}
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -3719,9 +3719,9 @@ void	RADIOMESSAGE::MainStrip(UWordP&	ptr)
 //
 //				Must perform same Random tests as in ComposeSample()
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RADIOMESSAGE::DodgyRandomFix()
@@ -3733,11 +3733,11 @@ void	RADIOMESSAGE::DodgyRandomFix()
 //Author		Robert Slater
 //Date			Mon 31 May 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::ClearMessages(MsgType	messagetype)
@@ -3750,11 +3750,11 @@ void	RadioChatter::ClearMessages(MsgType	messagetype)
 //Author		Robert Slater
 //Date			Mon 31 May 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int		RadioChatter::MsgInQ()
@@ -3767,11 +3767,11 @@ int		RadioChatter::MsgInQ()
 //Author		Robert Slater
 //Date			Thu 3 Jun 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::ClearMessages(MsgPriority	priority)
@@ -3784,11 +3784,11 @@ void	RadioChatter::ClearMessages(MsgPriority	priority)
 //Author		Robert Slater
 //Date			Mon 14 Jun 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::ClearMessages(MsgType	messagetype, ItemPtr	theTarget)
@@ -3809,7 +3809,7 @@ void	RadioChatter::ClearMessages(MsgType	messagetype, ItemPtr	theTarget)
 SLong	RadioChatter::AircraftType(RadioMessageP	MessPtr, ItemBasePtr	aci)
 {
 	SLong	actype = 1;
-	
+
 	if (MessPtr->TargetStuff.targettype)
 		actype = MessPtr->TargetStuff.targettype;
 	else
@@ -3892,11 +3892,11 @@ SLong	RadioChatter::SquadronSectionNumber(AirStrucPtr	ac)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::ONE_AIRCRAFT(RadioMessageP	MessPtr)
@@ -3911,9 +3911,9 @@ void	RadioChatter::ONE_AIRCRAFT(RadioMessageP	MessPtr)
 //
 //Description	//CALLEE_RAFGS00 - CALLEE_RAFGS50
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::SUBJECT_GSQUADRAF(RadioMessageP	MessPtr, AirStrucPtr	ac)
@@ -3928,9 +3928,9 @@ void	RadioChatter::SUBJECT_GSQUADRAF(RadioMessageP	MessPtr, AirStrucPtr	ac)
 //
 //Description	CALLEE_RAFGW00- CALLEE_RAFGW50
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::SUBJECT_GWINGRAF(RadioMessageP	MessPtr, AirStrucPtr	ac)
@@ -3945,9 +3945,9 @@ void	RadioChatter::SUBJECT_GWINGRAF(RadioMessageP	MessPtr, AirStrucPtr	ac)
 //
 //Description	CALLEE_GLW00- CALLEE_GLW0x
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::SUBJECT_GLW(RadioMessageP	MessPtr, AirStrucPtr	ac)
@@ -3962,9 +3962,9 @@ void	RadioChatter::SUBJECT_GLW(RadioMessageP	MessPtr, AirStrucPtr	ac)
 //
 //Description	CALLEE_G00- CALLEE_G50
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::SUBJECT_GRAF(RadioMessageP	MessPtr, AirStrucPtr	ac)
@@ -3979,9 +3979,9 @@ void	RadioChatter::SUBJECT_GRAF(RadioMessageP	MessPtr, AirStrucPtr	ac)
 //
 //Description	CALLEE_GL00 - CALLEE_GL50
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::SUBJECT_GL(RadioMessageP	MessPtr, AirStrucPtr	ac)
@@ -3994,11 +3994,11 @@ void	RadioChatter::SUBJECT_GL(RadioMessageP	MessPtr, AirStrucPtr	ac)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLEE_GFLIGHTRAF(RadioMessageP	MessPtr)
@@ -4011,11 +4011,11 @@ void	RadioChatter::CALLEE_GFLIGHTRAF(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLER_GFLIGHTRAF(RadioMessageP	MessPtr)
@@ -4030,9 +4030,9 @@ void	RadioChatter::CALLER_GFLIGHTRAF(RadioMessageP	MessPtr)
 //
 //Description	CALLEE_GFL00 - CALLEE_GFL01
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::SUBJECT_GFLIGHTRAF(RadioMessageP	MessPtr, AirStrucPtr	ac)
@@ -4047,9 +4047,9 @@ void	RadioChatter::SUBJECT_GFLIGHTRAF(RadioMessageP	MessPtr, AirStrucPtr	ac)
 //
 //Description	CALLEE_S00 - CALLEE_S04
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::SUBJECT_GSECTIONRAF(RadioMessageP	MessPtr, AirStrucPtr	ac)
@@ -4062,11 +4062,11 @@ void	RadioChatter::SUBJECT_GSECTIONRAF(RadioMessageP	MessPtr, AirStrucPtr	ac)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLEE_SN(RadioMessageP	MessPtr)
@@ -4086,9 +4086,9 @@ void	RadioChatter::CALLEE_S(RadioMessageP	MessPtr)
 //
 //Description	SPITFIRES1A - DO17S
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::PLURAL_AIRCRAFT(RadioMessageP	MessPtr)
@@ -4101,11 +4101,11 @@ void	RadioChatter::PLURAL_AIRCRAFT(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::SUBJECT_G(RadioMessageP	MessPtr, AirStrucPtr	ac)
@@ -4123,9 +4123,9 @@ void	RadioChatter::SUBJECT_G(RadioMessageP	MessPtr, AirStrucPtr	ac)
 //
 //Description	CALLEE_LWGS00 - CALLEE_LWGS0x
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::SUBJECT_GSQUADLW(RadioMessageP	MessPtr, AirStrucPtr	ac)
@@ -4142,9 +4142,9 @@ void	RadioChatter::SUBJECT_GSQUADLW(RadioMessageP	MessPtr, AirStrucPtr	ac)
 //
 //Description	YARDS|METRES|MILES|KILOMETRES
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::DISTUNITS(RadioMessageP	MessPtr, bool	smallunits)
@@ -4172,9 +4172,9 @@ void	RadioChatter::DISTUNITS(RadioMessageP	MessPtr, bool	smallunits)
 //
 //Description	FIFTIES_50 - FIFTIES_950
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::FIFTIES(RadioMessageP	MessPtr, SLong	number)
@@ -4195,9 +4195,9 @@ void	RadioChatter::FIFTIES(RadioMessageP	MessPtr, SLong	number)
 //
 //Description	NUM_0-NUM_29
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::NUMBER(RadioMessageP	MessPtr, int	theNumber)
@@ -4216,11 +4216,11 @@ void	RadioChatter::NUMBER(RadioMessageP	MessPtr, int	theNumber)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::SQUADNUMBERSHORT(RadioMessageP	MessPtr, ItemBasePtr	ac)
@@ -4234,11 +4234,11 @@ void	RadioChatter::SQUADNUMBERSHORT(RadioMessageP	MessPtr, ItemBasePtr	ac)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TENS(RadioMessageP	MessPtr,SLong	number)
@@ -4254,11 +4254,11 @@ void	RadioChatter::TENS(RadioMessageP	MessPtr,SLong	number)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::THOUSANDUNITS(RadioMessageP	MessPtr)
@@ -4276,9 +4276,9 @@ void	RadioChatter::THOUSANDUNITS(RadioMessageP	MessPtr)
 //
 //Description	LITRES|GALLONS
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::VOLUMEUNITS(RadioMessageP	MessPtr)
@@ -4297,9 +4297,9 @@ void	RadioChatter::VOLUMEUNITS(RadioMessageP	MessPtr)
 //
 //Description	GROUNDCONTROLLERLW00 -GROUNDCONTROLLERLW0x
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::GROUNDCONTROLLERLW(RadioMessageP	MessPtr)
@@ -4314,9 +4314,9 @@ void	RadioChatter::GROUNDCONTROLLERLW(RadioMessageP	MessPtr)
 //
 //Description	GROUNDCONTROLLERRAF00- GROUNDCONTROLLERRAF0x
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::GROUNDCONTROLLERRAF(RadioMessageP	MessPtr)
@@ -4331,9 +4331,9 @@ void	RadioChatter::GROUNDCONTROLLERRAF(RadioMessageP	MessPtr)
 //
 //Description	CALLEE_FIGHTERS00 - CALLEE_FIGHTERS50
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLEE_GFIGHTERS(RadioMessageP	MessPtr)
@@ -4348,9 +4348,9 @@ void	RadioChatter::CALLEE_GFIGHTERS(RadioMessageP	MessPtr)
 //
 //Description	SPITFIRE1AEXCLAIM - DO17EXCLAIM
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::ONE_AIRCRAFT_EXCLAIM(RadioMessageP	MessPtr)
@@ -4366,9 +4366,9 @@ void	RadioChatter::ONE_AIRCRAFT_EXCLAIM(RadioMessageP	MessPtr)
 //Description	More specific placename function,
 //				if fails, calls the vague areaname function...
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::PLACENAMES(RadioMessageP	MessPtr, ItemPtr	theItem, bool sayRange)
@@ -4401,9 +4401,9 @@ void	RadioChatter::PLACENAMES(RadioMessageP	MessPtr, ItemPtr	theItem, bool sayRa
 //
 //Description	Vague area name function, with bearings...
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::AREANAMES(RadioMessageP	MessPtr, ItemPtr	theItem, bool sayRange)
@@ -4451,9 +4451,9 @@ void	RadioChatter::AREANAMES(RadioMessageP	MessPtr, ItemPtr	theItem, bool sayRan
 //
 //Description	BELOW|ABOVE
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TRG_RELHEIGHT(RadioMessageP	MessPtr)
@@ -4476,9 +4476,9 @@ void	RadioChatter::TRG_RELHEIGHT(RadioMessageP	MessPtr)
 //
 //Description	HDGO_000- HDGO_330
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::HdgOClock(RadioMessageP	MessPtr)
@@ -4494,7 +4494,7 @@ void	RadioChatter::HdgOClock(RadioMessageP	MessPtr)
 		relbearing /= phraseControl->divFactor;
 
 		if (!relbearing)	relbearing = 1;
-	
+
 		newphrase += relbearing;
 		if (	(	(newphrase == PHRASE_HDGO_000)
 				||	(newphrase == PHRASE_HDGO_360))
@@ -4510,11 +4510,11 @@ void	RadioChatter::HdgOClock(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TRG_DESC_ESTIMATE(RadioMessageP	MessPtr)
@@ -4524,7 +4524,7 @@ void	RadioChatter::TRG_DESC_ESTIMATE(RadioMessageP	MessPtr)
 	if (forcesize > 1)													//RJS 18Sep00
 	{
 		SLong	thePhrase;									//RJS 20Oct00
-	
+
 		if (forcesize < 20)
 			thePhrase = PHRASE_GAGGLEOF;
 		else
@@ -4539,11 +4539,11 @@ void	RadioChatter::TRG_DESC_ESTIMATE(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::USER_DEFINED(RadioMessageP	MessPtr)
@@ -4563,9 +4563,9 @@ void	RadioChatter::USER_DEFINED(RadioMessageP	MessPtr)
 //
 //Description	MANYSNAPPERSABOVE| WATCHSNAPPERSABOVE| WATCHTOP| BF109ABOVE| FIGHTERESCORTABOVE
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::FIGHTERSABOVE(RadioMessageP	MessPtr)
@@ -4603,11 +4603,11 @@ void	RadioChatter::FIGHTERSABOVE(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::WATCHFORESCORT(RadioMessageP	MessPtr)
@@ -4641,9 +4641,9 @@ void	RadioChatter::WATCHFORESCORT(RadioMessageP	MessPtr)
 //
 //Description	GUSTLIGHT| GUSTMOD| GUSTSEVERE
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::GUSTTYPE(RadioMessageP	MessPtr)
@@ -4652,7 +4652,7 @@ void	RadioChatter::GUSTTYPE(RadioMessageP	MessPtr)
 
 	//assume magnitude is 0...6
 	magnitude = (2 * magnitude)/6;		//scale down to 3 possible types...
-				
+
 	ComposeSample(MessPtr,PHRASE_GUSTLIGHT+magnitude);
 }
 
@@ -4661,11 +4661,11 @@ void	RadioChatter::GUSTTYPE(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::BANDITSEX(RadioMessageP	MessPtr)
@@ -4695,11 +4695,11 @@ void	RadioChatter::BANDITSEX(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLER_GSECTIONRAF(RadioMessageP	MessPtr)
@@ -4714,9 +4714,9 @@ void	RadioChatter::CALLER_GSECTIONRAF(RadioMessageP	MessPtr)
 //
 //Description	W_BEARING + DIGITS3
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::BEARINGS(RadioMessageP	MessPtr)
@@ -4732,9 +4732,9 @@ void	RadioChatter::BEARINGS(RadioMessageP	MessPtr)
 //
 //Description	DIGITS3
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::BAREBEARINGS(RadioMessageP	MessPtr)
@@ -4755,11 +4755,11 @@ void	RadioChatter::BAREBEARINGS(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Fri 21 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::Height(RadioMessageP	MessPtr, RadioOnz*	phraseControl)
@@ -4796,11 +4796,11 @@ void	RadioChatter::Height(RadioMessageP	MessPtr, RadioOnz*	phraseControl)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TRG_HEIGHT(RadioMessageP	MessPtr)
@@ -4824,11 +4824,11 @@ void	RadioChatter::TRG_HEIGHT(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::FUELLEVEL(RadioMessageP	MessPtr)
@@ -4839,10 +4839,10 @@ void	RadioChatter::FUELLEVEL(RadioMessageP	MessPtr)
  		AirStrucPtr	ac = (AirStrucPtr) MessPtr->caller;
  		ULong		fueltot = 0;
  		Float		fuel;
- 
- 		for(SWord i = 0; i < 4; i++)					
+
+ 		for(SWord i = 0; i < 4; i++)
  			fueltot += ac->fly.fuel_content[i];
- 
+
  		fuel = Float(fueltot);
 		if (ac->nationality == NAT_RAF)
  			fuel *= 0.000002935;	//cg -> Imperial gallons			//CSB 03/03/00
@@ -4851,7 +4851,7 @@ void	RadioChatter::FUELLEVEL(RadioMessageP	MessPtr)
  			fuel /= ac->classtype->fuelaboff;
 			fuel /= 6000;	//cg -> Minutes
 		}
- 
+
 		ComposeSample(MessPtr,PHRASE_SPACE);							//RJS 24Aug00
 
  		ComposeDigitNumber(MessPtr,SLong(fuel));
@@ -4867,9 +4867,9 @@ void	RadioChatter::FUELLEVEL(RadioMessageP	MessPtr)
 //
 //Description	W_RANGE +NUMBER+DISTUNITS
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TRG_RANGE(RadioMessageP	MessPtr)
@@ -4897,7 +4897,7 @@ void	RadioChatter::TRG_RANGE(RadioMessageP	MessPtr)
 			SmallRanges(MessPtr,smallunits);							//RJS 22Aug00
 
 		DISTUNITS(MessPtr,smallunits);
-	}	
+	}
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -4905,11 +4905,11 @@ void	RadioChatter::TRG_RANGE(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Fri 21 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::LargeRanges(RadioMessageP	MessPtr)
@@ -4930,11 +4930,11 @@ void	RadioChatter::LargeRanges(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Fri 21 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::SmallRanges(RadioMessageP	MessPtr, bool& smallunits)
@@ -4961,11 +4961,11 @@ void	RadioChatter::SmallRanges(RadioMessageP	MessPtr, bool& smallunits)
 //Author		Robert Slater
 //Date			Fri 21 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::Gen_LargeRanges(RadioMessageP	MessPtr, RadioOnz*	phraseControl)
@@ -4977,7 +4977,7 @@ void	RadioChatter::Gen_LargeRanges(RadioMessageP	MessPtr, RadioOnz*	phraseContro
 	dist /= phraseControl->divFactor;
 
 // Since PHRASE_NUM_0 is already index 1, we want to append to that...
-	dist += PHRASE_NUM_0;				
+	dist += PHRASE_NUM_0;
 	if (dist > PHRASE_NUM_29)
 	{
 		dist -= PHRASE_NUM_0;									//RJS 05May00
@@ -4993,11 +4993,11 @@ void	RadioChatter::Gen_LargeRanges(RadioMessageP	MessPtr, RadioOnz*	phraseContro
 //Author		Robert Slater
 //Date			Fri 21 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::Gen_SmallRanges(RadioMessageP	MessPtr, RadioOnz*	phraseControl)
@@ -5019,9 +5019,9 @@ void	RadioChatter::Gen_SmallRanges(RadioMessageP	MessPtr, RadioOnz*	phraseContro
 //
 //Description	W_VECTOR+DIGITS3
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::Num_Vector(RadioMessageP	MessPtr, ItemPtr	theItem)
@@ -5045,17 +5045,17 @@ void	RadioChatter::Num_Vector(RadioMessageP	MessPtr, ItemPtr	theItem)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::Airfields(RadioMessageP	MessPtr, ItemPtr airfielditem)
 {
 	if (airfielditem)
-	{	
+	{
 		SLong			uid = airfielditem->uniqueID.count;
 		PhraseTables	newphrase = PhraseTables(GetUIDPhrase(uid));
 
@@ -5068,11 +5068,11 @@ void	RadioChatter::Airfields(RadioMessageP	MessPtr, ItemPtr airfielditem)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TRG_HDGCARDINAL(RadioMessageP	MessPtr)
@@ -5093,7 +5093,7 @@ void	RadioChatter::TRG_HDGCARDINAL(RadioMessageP	MessPtr)
 			relbearing /= phraseControl->divFactor;
 
 			if (!relbearing)	relbearing = 1;
-	
+
 			ComposeSample(MessPtr,PHRASE_HDGCARDINAL+relbearing);
 		}
 	}
@@ -5104,11 +5104,11 @@ void	RadioChatter::TRG_HDGCARDINAL(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLER_HDGOCLOCK(RadioMessageP	MessPtr)
@@ -5127,11 +5127,11 @@ void	RadioChatter::CALLER_HDGOCLOCK(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TRG_NUM_ESTIMATE(RadioMessageP	MessPtr)
@@ -5148,11 +5148,11 @@ void	RadioChatter::TRG_NUM_ESTIMATE(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Mon 24 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::ForceSize(RadioMessageP	MessPtr, SLong	amount)
@@ -5189,14 +5189,14 @@ void	RadioChatter::ForceSize(RadioMessageP	MessPtr, SLong	amount)
 //
 //Description	(W_RAID + NUMBER)|(W_HOSTILE+NUMBER)
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::RAID_ID(RadioMessageP	MessPtr)
 {
-	if (Todays_Packages.localplayer != NAT_RAF)					
+	if (Todays_Packages.localplayer != NAT_RAF)
 		ComposeSample(MessPtr,PHRASE_W_RAID);
 	else
 		ComposeSample(MessPtr,PHRASE_W_HOSTILE);
@@ -5209,11 +5209,11 @@ void	RadioChatter::RAID_ID(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLEE_GSN(RadioMessageP	MessPtr)
@@ -5229,9 +5229,9 @@ void	RadioChatter::CALLEE_GSN(RadioMessageP	MessPtr)
 //
 //Description	PLAYERNAME1-PLAYERNAME8
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::USER_NAMES(RadioMessageP	MessPtr, ItemPtr	thePlayer)
@@ -5246,11 +5246,11 @@ void	RadioChatter::USER_NAMES(RadioMessageP	MessPtr, ItemPtr	thePlayer)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLEE_GSQUAD(RadioMessageP	MessPtr)
@@ -5263,11 +5263,11 @@ void	RadioChatter::CALLEE_GSQUAD(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Fri 21 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::SUBJECT_GSQUAD(RadioMessageP	MessPtr, AirStrucPtr	ac)
@@ -5283,11 +5283,11 @@ void	RadioChatter::SUBJECT_GSQUAD(RadioMessageP	MessPtr, AirStrucPtr	ac)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLER_GL(RadioMessageP	MessPtr)
@@ -5300,11 +5300,11 @@ void	RadioChatter::CALLER_GL(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLER_GSQUAD(RadioMessageP	MessPtr)
@@ -5317,11 +5317,11 @@ void	RadioChatter::CALLER_GSQUAD(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLER_GSQUADRAF(RadioMessageP	MessPtr)
@@ -5334,11 +5334,11 @@ void	RadioChatter::CALLER_GSQUADRAF(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLER_GWINGRAF(RadioMessageP	MessPtr)
@@ -5351,11 +5351,11 @@ void	RadioChatter::CALLER_GWINGRAF(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLER_GSN(RadioMessageP	MessPtr)
@@ -5368,11 +5368,11 @@ void	RadioChatter::CALLER_GSN(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Fri 21 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::SUBJECT_GSN(RadioMessageP	MessPtr, AirStrucPtr	ac)
@@ -5386,11 +5386,11 @@ void	RadioChatter::SUBJECT_GSN(RadioMessageP	MessPtr, AirStrucPtr	ac)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLER_SN(RadioMessageP	MessPtr)
@@ -5405,9 +5405,9 @@ void	RadioChatter::CALLER_SN(RadioMessageP	MessPtr)
 //
 //Description	USER_NAMES
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::COMMSCALLER_SN(RadioMessageP	MessPtr)
@@ -5424,9 +5424,9 @@ void	RadioChatter::COMMSCALLER_SN(RadioMessageP	MessPtr)
 //
 //Description	CALLER_GSN
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TRG_GSN(RadioMessageP	MessPtr)
@@ -5442,9 +5442,9 @@ void	RadioChatter::TRG_GSN(RadioMessageP	MessPtr)
 //Description	Section number (colour + number)
 //				CALLEE_SN01 - CALLEE_SN45
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::SUBJECT_SN(RadioMessageP	MessPtr, AirStrucPtr	ac)
@@ -5471,9 +5471,9 @@ void	RadioChatter::SUBJECT_SN(RadioMessageP	MessPtr, AirStrucPtr	ac)
 //
 //Description	Need a lookup table for the squadron number
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLEE_SQUADNUMBERSHORT(RadioMessageP	MessPtr)
@@ -5486,11 +5486,11 @@ void	RadioChatter::CALLEE_SQUADNUMBERSHORT(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLEE_SQUADNUMBERLONG(RadioMessageP	MessPtr)
@@ -5504,11 +5504,11 @@ void	RadioChatter::CALLEE_SQUADNUMBERLONG(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::SQUADNUMBERLONG(RadioMessageP	MessPtr)
@@ -5524,9 +5524,9 @@ void	RadioChatter::SQUADNUMBERLONG(RadioMessageP	MessPtr)
 //
 //Description	TOWNBAND| CITYBAND |NAVIGATIONBAND| RAF_FIGHTERAFBAND
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::PATROL_PLACE(RadioMessageP	MessPtr)
@@ -5540,11 +5540,11 @@ void	RadioChatter::PATROL_PLACE(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TRG_PLACE(RadioMessageP	MessPtr)
@@ -5559,9 +5559,9 @@ void	RadioChatter::TRG_PLACE(RadioMessageP	MessPtr)
 //
 //Description	USER_NAMES
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::COMMSTARGET(RadioMessageP	MessPtr)
@@ -5578,9 +5578,9 @@ void	RadioChatter::COMMSTARGET(RadioMessageP	MessPtr)
 //
 //Description	USER_NAMES
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::COMMS(RadioMessageP	MessPtr)
@@ -5593,11 +5593,11 @@ void	RadioChatter::COMMS(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLER_PLACE(RadioMessageP	MessPtr)
@@ -5612,9 +5612,9 @@ void	RadioChatter::CALLER_PLACE(RadioMessageP	MessPtr)
 //
 //Description	(APPROACHING|HEADINGFOR|COMINGINOVER|OVER) + PLACENAMES
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TRG_NEAR(RadioMessageP	MessPtr)
@@ -5647,11 +5647,11 @@ void	RadioChatter::TRG_NEAR(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TRG_AC(RadioMessageP	MessPtr)
@@ -5659,9 +5659,9 @@ void	RadioChatter::TRG_AC(RadioMessageP	MessPtr)
 	SLong forcesize = Art_Int.CountSquadronSize(*MessPtr->target);
 
 	if (forcesize> 1)
-		PLURAL_AIRCRAFT(MessPtr);	
+		PLURAL_AIRCRAFT(MessPtr);
 	else
-		ONE_AIRCRAFT(MessPtr);	
+		ONE_AIRCRAFT(MessPtr);
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -5671,9 +5671,9 @@ void	RadioChatter::TRG_AC(RadioMessageP	MessPtr)
 //
 //Description	ONE_AIRCRAFT
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TRG_1AC(RadioMessageP	MessPtr)
@@ -5686,11 +5686,11 @@ void	RadioChatter::TRG_1AC(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TRG_BOMBERACS(RadioMessageP	MessPtr)
@@ -5698,9 +5698,9 @@ void	RadioChatter::TRG_BOMBERACS(RadioMessageP	MessPtr)
 	SLong forcesize = Art_Int.CountSquadronSize(*MessPtr->target);		//RJS 16Oct00
 
 	if (forcesize> 1)
-		PLURAL_AIRCRAFT(MessPtr);	
+		PLURAL_AIRCRAFT(MessPtr);
 	else
-		ONE_AIRCRAFT(MessPtr);	
+		ONE_AIRCRAFT(MessPtr);
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -5710,9 +5710,9 @@ void	RadioChatter::TRG_BOMBERACS(RadioMessageP	MessPtr)
 //
 //Description	Should use target2
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TRG_BOMBER2ACS(RadioMessageP	MessPtr)
@@ -5720,9 +5720,9 @@ void	RadioChatter::TRG_BOMBER2ACS(RadioMessageP	MessPtr)
 	SLong forcesize = Art_Int.CountSquadronSize(*MessPtr->target);
 
 	if (forcesize> 1)
-		PLURAL_AIRCRAFT(MessPtr);	
+		PLURAL_AIRCRAFT(MessPtr);
 	else
-		ONE_AIRCRAFT(MessPtr);	
+		ONE_AIRCRAFT(MessPtr);
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -5730,11 +5730,11 @@ void	RadioChatter::TRG_BOMBER2ACS(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TRG_BOMBERAC(RadioMessageP	MessPtr)
@@ -5742,9 +5742,9 @@ void	RadioChatter::TRG_BOMBERAC(RadioMessageP	MessPtr)
 	SLong forcesize = Art_Int.CountSquadronSize(*MessPtr->target);
 
 	if (forcesize> 1)
-		PLURAL_AIRCRAFT(MessPtr);	
+		PLURAL_AIRCRAFT(MessPtr);
 	else
-		ONE_AIRCRAFT(MessPtr);	
+		ONE_AIRCRAFT(MessPtr);
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -5752,11 +5752,11 @@ void	RadioChatter::TRG_BOMBERAC(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::SURFACEWINDBEARINGNO(RadioMessageP	MessPtr)
@@ -5770,11 +5770,11 @@ void	RadioChatter::SURFACEWINDBEARINGNO(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::ALTWINDBEARINGNO(RadioMessageP	MessPtr)
@@ -5788,11 +5788,11 @@ void	RadioChatter::ALTWINDBEARINGNO(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Fri 21 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::WindBearingNo(RadioMessageP	MessPtr, bool	altitude)
@@ -5815,11 +5815,11 @@ void	RadioChatter::WindBearingNo(RadioMessageP	MessPtr, bool	altitude)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::WINDSPEED(RadioMessageP	MessPtr)
@@ -5844,9 +5844,9 @@ void	RadioChatter::WINDSPEED(RadioMessageP	MessPtr)
 //
 //Description	MANYSNAPPERS| WATCHSNAPPERS| WATCHESCORT| BF109ESCORT| FIGHTERESCORTINVICINITY
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::FIGHTERSCLOSE(RadioMessageP	MessPtr)
@@ -5884,11 +5884,11 @@ void	RadioChatter::FIGHTERSCLOSE(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::HEIGHTUNITS(RadioMessageP	MessPtr)
@@ -5904,11 +5904,11 @@ void	RadioChatter::HEIGHTUNITS(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TRG_ANGELS(RadioMessageP	MessPtr)
@@ -5926,11 +5926,11 @@ void	RadioChatter::TRG_ANGELS(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::MY_HDGCARDINAL(RadioMessageP	MessPtr)
@@ -5945,11 +5945,11 @@ void	RadioChatter::MY_HDGCARDINAL(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TRG_RELCARDINAL(RadioMessageP	MessPtr)
@@ -5964,11 +5964,11 @@ void	RadioChatter::TRG_RELCARDINAL(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::MY_RELCARDINAL(RadioMessageP	MessPtr)
@@ -5983,11 +5983,11 @@ void	RadioChatter::MY_RELCARDINAL(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::NUM_HDGOCLOCK(RadioMessageP	MessPtr)
@@ -6001,11 +6001,11 @@ void	RadioChatter::NUM_HDGOCLOCK(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLEE_GS(RadioMessageP	MessPtr)
@@ -6019,11 +6019,11 @@ void	RadioChatter::CALLEE_GS(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TRG_GL(RadioMessageP	MessPtr)
@@ -6038,9 +6038,9 @@ void	RadioChatter::TRG_GL(RadioMessageP	MessPtr)
 //
 //Description	(APPROACHING |HEADINGFOR|COMINGINOVER|OVER) + PLACENAMES
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLER_NEAR(RadioMessageP	MessPtr)
@@ -6073,11 +6073,11 @@ void	RadioChatter::CALLER_NEAR(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TRG_MANYAC(RadioMessageP	MessPtr)
@@ -6092,9 +6092,9 @@ void	RadioChatter::TRG_MANYAC(RadioMessageP	MessPtr)
 //
 //Description	Should use target2 instead
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TRG_BOMBER2AC(RadioMessageP	MessPtr)
@@ -6102,9 +6102,9 @@ void	RadioChatter::TRG_BOMBER2AC(RadioMessageP	MessPtr)
 	SLong forcesize = Art_Int.CountSquadronSize(*MessPtr->target);
 
 	if (forcesize> 1)
-		PLURAL_AIRCRAFT(MessPtr);	
+		PLURAL_AIRCRAFT(MessPtr);
 	else
-		ONE_AIRCRAFT(MessPtr);	
+		ONE_AIRCRAFT(MessPtr);
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -6114,9 +6114,9 @@ void	RadioChatter::TRG_BOMBER2AC(RadioMessageP	MessPtr)
 //
 //Description	FIGHTERSABOVE|FIGHTERSCLOSE
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::FIGHTERESCORT(RadioMessageP	MessPtr)
@@ -6134,11 +6134,11 @@ void	RadioChatter::FIGHTERESCORT(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TRG_SPEED(RadioMessageP	MessPtr)
@@ -6151,11 +6151,11 @@ void	RadioChatter::TRG_SPEED(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 18 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::TRG_VECTOR(RadioMessageP	MessPtr)
@@ -6168,11 +6168,11 @@ void	RadioChatter::TRG_VECTOR(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Fri 21 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLEE_GWINGRAF(RadioMessageP	MessPtr)
@@ -6185,11 +6185,11 @@ void	RadioChatter::CALLEE_GWINGRAF(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Fri 21 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLEE_GSQUADRAF(RadioMessageP	MessPtr)
@@ -6202,11 +6202,11 @@ void	RadioChatter::CALLEE_GSQUADRAF(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Fri 21 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLEE_GSECTIONRAF(RadioMessageP	MessPtr)
@@ -6219,11 +6219,11 @@ void	RadioChatter::CALLEE_GSECTIONRAF(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Fri 21 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::CALLEE_GL(RadioMessageP	MessPtr)
@@ -6236,11 +6236,11 @@ void	RadioChatter::CALLEE_GL(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Tue 29 Feb 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::GetPlaceDesc(Coords3D& pos, SLong& uid, SLong& dir, SLong& range)
@@ -6271,11 +6271,11 @@ void	RadioChatter::GetPlaceDesc(Coords3D& pos, SLong& uid, SLong& dir, SLong& ra
 //Author		Robert Slater
 //Date			Tue 29 Feb 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 UWord	RadioChatter::GetPlaceUID(Coords3D& pos)
@@ -6284,9 +6284,9 @@ UWord	RadioChatter::GetPlaceUID(Coords3D& pos)
 	Grid_Word* uidgrid = (Grid_Word*) fb.getdata();
 
 	if (	pos.X < 0 || 				//JON 3Nov00
-			pos.Z < 0 || 
-			pos.X > LandScape._blockWidth*(639-64)	||
-			pos.Z > LandScape._blockWidth*(639-64)	) // off the nearest grid
+			pos.Z < 0 ||
+			pos.X > LandScape::_blockWidth*(639-64)	||
+			pos.Z > LandScape::_blockWidth*(639-64)	) // off the nearest grid
 	{
 		return UID_EnglishChannel;
 	} else
@@ -6302,9 +6302,9 @@ UWord	RadioChatter::GetPlaceUID(Coords3D& pos)
 //
 //Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SLong	RadioChatter::GetPlaceBase(SLong	uidbase)
@@ -6365,11 +6365,11 @@ SLong	RadioChatter::GetPlaceBase(SLong	uidbase)
 //Author		Robert Slater
 //Date			Tue 29 Feb 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SLong	RadioChatter::GetUIDPhrase(SLong uid)
@@ -6397,9 +6397,9 @@ SLong	RadioChatter::GetUIDPhrase(SLong uid)
 //
 //Description	CALLEE_GSQUADRAF | CALLEE_GGRUPPELW
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::Subject_GUnit(RadioMessageP	MessPtr, ItemPtr theItem)
@@ -6414,7 +6414,7 @@ void	RadioChatter::Subject_GUnit(RadioMessageP	MessPtr, ItemPtr theItem)
 	}
 	else														//RJS 25May00
  		phraseBase = PHRASE_CALLEE_GLW;							//RJS 25May00
- 
+
 	ComposeSample(MessPtr,phraseBase+index);
 }
 
@@ -6423,11 +6423,11 @@ void	RadioChatter::Subject_GUnit(RadioMessageP	MessPtr, ItemPtr theItem)
 //Author		Robert Slater
 //Date			Thu 9 Mar 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SLong	RadioChatter::GetForceSize(RadioMessageP	MessPtr)
@@ -6456,11 +6456,11 @@ SLong	RadioChatter::GetForceSize(RadioMessageP	MessPtr)
 //Author		Robert Slater
 //Date			Thu 9 Mar 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::SayRaidID(RadioMessageP	MessPtr, ItemPtr	theItem,ItemPtr	theOtherItem)
@@ -6482,11 +6482,11 @@ void	RadioChatter::SayRaidID(RadioMessageP	MessPtr, ItemPtr	theItem,ItemPtr	theO
 //Author		Robert Slater
 //Date			Thu 9 Mar 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::ExpandLocation(PhraseBuffer&	phbuf, ULong locdesc)
@@ -6510,7 +6510,7 @@ void	RadioChatter::ExpandLocation(PhraseBuffer&	phbuf, ULong locdesc)
 void	RadioChatter::GetLocationString(CString&	placestring, ULong	locdesc)
 {
 	PhraseBuffer	phbuf;
-	
+
 	placestring = "";
 
 	ExpandLocation(phbuf,locdesc);
@@ -6526,9 +6526,9 @@ void	RadioChatter::GetLocationString(CString&	placestring, ULong	locdesc)
 //Description	Non-vocal messages get 2.5 secs of fake play time...
 //				Map-screen time intervals are 1 sec.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 bool	RadioChatter::MessageFinished()
@@ -6588,11 +6588,11 @@ bool	RadioChatter::MessageFinished()
 //Author		Robert Slater
 //Date			Tue 28 Mar 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::PlayMessage(UWord*	phrase_buffer, VoiceType	theVoice)
@@ -6644,11 +6644,11 @@ void	RadioChatter::PlayMessage(UWord*	phrase_buffer, VoiceType	theVoice)
 //Author		Robert Slater
 //Date			Tue 28 Mar 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::SpeakPhrase(RadioMessageP	MessPtr,int	phrase)
@@ -6687,9 +6687,9 @@ void	RadioChatter::SpeakPhrase(RadioMessageP	MessPtr,int	phrase)
 //
 //Description	Checks to see if the voice you have asked for is valid
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::ProcessVoice(const MESSAGE_STRUC&	msg)
@@ -6703,7 +6703,7 @@ void	RadioChatter::ProcessVoice(const MESSAGE_STRUC&	msg)
 			theScripts.voicePtr = ULongP(getdata(theblock));
 		}
 	}
-	
+
 	if (msg.GetScript() && (msg.GetScript() & 0xFFFF0000))				//RJS 15Sep00
 	{
 		ULong	voxMask = theScripts.voicePtr[(msg.GetScript() & 0xFFFF)-1];	//RJS 15Sep00
@@ -6720,7 +6720,7 @@ void	RadioChatter::ProcessVoice(const MESSAGE_STRUC&	msg)
 			if ((voxMask & (1<<(msg.voiceindex+msg.voxstate))) == 0)
 			{
 				VoiceType	realVoice = VoiceType((voxMask>>27)&0xFF);	//RJS 11Oct00
-// Whoever triggered this message needs a slap!... 
+// Whoever triggered this message needs a slap!...
 // ... a radio message is being spoken in the wrong voice... check the "call stack" to
 // see who is the offender! Only get Rob if you are completely confused.
 				if (in3D)
@@ -6785,11 +6785,11 @@ void	RadioChatter::Init()
 //Author		Richard Jones
 //Date			Sun 4 Sep 1988
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::ScanScript(const MESSAGE_STRUC&	radiomessage)
@@ -6797,7 +6797,7 @@ void	RadioChatter::ScanScript(const MESSAGE_STRUC&	radiomessage)
 //DeadCode RJS 3Oct00 	PhraseBuffer	fbuff;
 	int				Scriptno = radiomessage.GetScript();				//RJS 15Sep00
 
-	lockout = true;					
+	lockout = true;
 	RadioMessageP	OldRootMessPtr = RootMessPtr;
 	RootMessPtr = NULL;
 	RadioMessageP	MessPtr = CreateMessage((mobileitem*)radiomessage.caller,
@@ -6858,7 +6858,7 @@ void	RadioChatter::ScanScript(const MESSAGE_STRUC&	radiomessage)
 	}
 
 	RootMessPtr = OldRootMessPtr;
-	lockout = false;			
+	lockout = false;
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -6868,9 +6868,9 @@ void	RadioChatter::ScanScript(const MESSAGE_STRUC&	radiomessage)
 //
 //Description	Checks to see if we are trying to look at a NULL pointer
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	RadioChatter::ComposeFakeSample(RadioMessageP	MessPtr, PhraseTables& phrase)
@@ -6981,11 +6981,11 @@ void	RadioChatter::ComposeFakeSample(RadioMessageP	MessPtr, PhraseTables& phrase
 //Author		Robert Slater
 //Date			Fri 15 Sep 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	MESSAGE_STRUC::ProcessScript(int	scriptno)

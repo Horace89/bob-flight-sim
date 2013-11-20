@@ -55,7 +55,7 @@ struct	Attacks		//Saved
 #include	"movement.h"
 #include	"flyinit.h"
 
-class CString;
+#include "cstring.h"
 #include "batnode.h"
 #include "package.h"
 //TempCode JIM 17Mar99 #include "debrief.h"

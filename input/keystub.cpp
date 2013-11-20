@@ -79,7 +79,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include	"hardpasm.h"										//ARM 04Jun96
 #pragma message ("Keystub")
 
-//#undef	KEYMAPS_Included	
+#undef	KEYMAPS_Included	//x0r drugs!!!
 #define	SPECIAL_KEYMAPS	1
 #include	"keytest.h"
 KeyMapping	*Debug3dMapTable=ThisKeyMapping;
@@ -150,7 +150,7 @@ int	i;
 
 //	RegUIConv((FileNum) 0);
 //	InsertUIKeyThru=InsertUIKey;
-	KeyFake3dThru=KeyFake3d;
+	KeyFake3dThru=&keytests::KeyFake3d;
 }	
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴

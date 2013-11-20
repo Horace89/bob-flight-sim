@@ -195,7 +195,7 @@ AaaSubList	*sl=aaalist;
 int	index;
 bool retval = false;
 	for (index=0;index<SUBLISTSIZE;index++)
-		if (sl _[index]==NULL)
+		if (sl[0][index]==NULL)
 		{
 			break;
 		}
@@ -204,7 +204,7 @@ bool retval = false;
 	{
 		sl=sl->next;
 		for (index=0;index<SUBLISTSIZE;index++)
-			if (sl _[index]==NULL)
+			if (sl[0][index]==NULL)
 			{
 				aaalist=sl;
 				break;
@@ -213,7 +213,7 @@ bool retval = false;
 	if (index!=SUBLISTSIZE)
 	{
 		index=(index+Math_Lib.rnd(SUBLISTSIZE-index));
-		while (sl _[index])	index--;
+		while (sl[0][index])	index--;
 	}
 	else
 	{
@@ -223,7 +223,7 @@ bool retval = false;
 		aaalist=sl;
 		index=Math_Lib.rnd(SUBLISTSIZE);
 	}
-	sl _[index]=i;
+	sl[0][index]=i;
 	retval = true;
 	return(retval);
 }
@@ -234,7 +234,7 @@ bool AaaMainList::operator -=(ItemPtr i)
 AaaSubList	*sl=aaalist;
 int	index;
 	for (index=0;index<SUBLISTSIZE;index++)
-		if (sl _[index]==i)
+		if (sl[0][index]==i)
 		{
 			break;
 		}
@@ -256,7 +256,7 @@ int	index;
 		if (sl!=sl->next) //only 1 record
 		{
 			for (index=0;index<SUBLISTSIZE;index++)
-				if (sl _[index])
+				if (sl[0][index])
 					return(false);
 			//ok.. can delete array record!
 			AaaSubList	*s2=sl;

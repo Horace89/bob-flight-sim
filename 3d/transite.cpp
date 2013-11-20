@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -131,11 +131,12 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include	"transxtr.h"										//RJS 17Nov99
 //#include	"fastmath.h"										//RJS 14Dec99
 #include "airstruc.h"											//RJS 14Dec99
-#include	"sqddiary.h"										//RJS 18Feb00	
+#include	"sqddiary.h"										//RJS 18Feb00
 #include	"fastmath.h"
 #include	"replay.h"
 #include	"matrix.h"
 #include "migland.h"
+#include <radio.g>
 int firstroll = NULL;								//MGA 03Apr96
 //extern	ULong	GR_Quit3DNow,									//JIM 05Dec96
 //				GR_NAT_FRIEND									//JIM 05Dec96
@@ -205,7 +206,7 @@ inline int	WeaponID(int	lnchr)
 		else
 			masked = LT_CANNON;
 	}
-	
+
 	return masked;
 }
 
@@ -215,11 +216,11 @@ inline int	WeaponID(int	lnchr)
 //Author		Martin Alderton
 //Date			Tue 5 Mar 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 TransObj::TransObj()
@@ -249,11 +250,11 @@ TransObj::TransObj()
 //Author		Martin Alderton
 //Date			Tue 5 Mar 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 TransObj::~TransObj()
@@ -266,11 +267,11 @@ TransObj::~TransObj()
 //Author		Robert Slater
 //Date			Thu 9 Mar 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::Enter3D()
@@ -291,18 +292,18 @@ void	TransObj::SetViewPoint(MobileItem* vp,ViewPoint* vo)
 //Author		Martin Alderton
 //Date			Tue 27 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::AddTransientItemToWorld(TransientItemPtr transitem,WorldStuff& world)
 {
 
 //TempCode MGA 07Mar96	World_Stuff.AddToWorld(transitem);
-	
+
 	world.AddToWorld((itemptr)transitem);
 }
 
@@ -315,9 +316,9 @@ void TransObj::AddTransientItemToWorld(TransientItemPtr transitem,WorldStuff& wo
 //Description	This procedure MUST be called from both movecodes and ClearWorld()
 //				when a transient is to be killed.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::AddTransientItemToDeadList(TransientItemPtr transitem, bool novapour)
@@ -418,9 +419,9 @@ void TransObj::AddTransientItemToDeadList(TransientItemPtr transitem, bool novap
 //TempCode MGA 27Mar96 //
 //TempCode MGA 27Mar96 //Description	allows access to protected TransientList by transite functions
 //TempCode MGA 27Mar96 //
-//TempCode MGA 27Mar96 //Inputs		
+//TempCode MGA 27Mar96 //Inputs
 //TempCode MGA 27Mar96 //
-//TempCode MGA 27Mar96 //Returns	
+//TempCode MGA 27Mar96 //Returns
 //TempCode MGA 27Mar96 //
 //TempCode MGA 27Mar96 //------------------------------------------------------------------------------
 //TempCode MGA 27Mar96 TransientItemPtr TransientItem::gettranslist(void)
@@ -461,11 +462,11 @@ void TransObj::AddTransientItemToDeadList(TransientItemPtr transitem, bool novap
 //DeadCode JIM 07Oct96 //Author		Martin Alderton
 //DeadCode JIM 07Oct96 //Date			Thu 29 Feb 1996
 //DeadCode JIM 07Oct96 //
-//DeadCode JIM 07Oct96 //Description	
+//DeadCode JIM 07Oct96 //Description
 //DeadCode JIM 07Oct96 //
-//DeadCode JIM 07Oct96 //Inputs		
+//DeadCode JIM 07Oct96 //Inputs
 //DeadCode JIM 07Oct96 //
-//DeadCode JIM 07Oct96 //Returns	
+//DeadCode JIM 07Oct96 //Returns
 //DeadCode JIM 07Oct96 //
 //DeadCode JIM 07Oct96 //------------------------------------------------------------------------------
 //DeadCode JIM 07Oct96 int TransObj::FindInTransientList(TransientItemPtr transit)
@@ -498,11 +499,11 @@ void TransObj::AddTransientItemToDeadList(TransientItemPtr transitem, bool novap
 //
 //Description	removes the list of dead transients from the transient	list
 //				and the world.
-//				
-//				Must not be performed during 3d-draw (object may get reallocated)
-//Inputs		
 //
-//Returns	
+//				Must not be performed during 3d-draw (object may get reallocated)
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::RemoveDeadListFromWorld()
@@ -526,7 +527,7 @@ void TransObj::RemoveDeadListFromWorld()
 
 	TransientItemPtr remove = NULL;
 	TransientItemPtr lastitem = NULL;
-															
+
 //DeadCode RJS 11Nov98	SHAPE.KillVapourStreamDeadList();							//RJS 09Apr98
 
 
@@ -568,7 +569,7 @@ void TransObj::RemoveDeadListFromWorld()
 //TempCode RJS 14Aug00 		if (recycleTimer <= 0)												//RJS 13Aug00
 //TempCode RJS 14Aug00 		{
 //TempCode RJS 14Aug00 			recycleTimer = 200;
-//TempCode RJS 14Aug00 
+//TempCode RJS 14Aug00
 //TempCode RJS 14Aug00 			MobileItemPtr	acptr = mobileitem::ACList;
 //TempCode RJS 14Aug00 			while (acptr)
 //TempCode RJS 14Aug00 			{
@@ -576,7 +577,7 @@ void TransObj::RemoveDeadListFromWorld()
 //TempCode RJS 14Aug00 	//			if (	mad->IsInvisible
 //TempCode RJS 14Aug00 	//				&&	(acptr != Persons2::PlayerSeenAC)
 //TempCode RJS 14Aug00 	//				&&	(acptr->movecode != AUTO_NOPPILOT)	)
-//TempCode RJS 14Aug00 
+//TempCode RJS 14Aug00
 //TempCode RJS 14Aug00 				acptr = acptr->nextmobile;
 //TempCode RJS 14Aug00 			}
 //TempCode RJS 14Aug00 		}
@@ -598,11 +599,11 @@ void TransObj::RemoveDeadListFromWorld()
 //Author		Paul.
 //Date			Wed 24 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::KillOldest()
@@ -612,21 +613,21 @@ void TransObj::KillOldest()
 //DeadCode DAW 19May99 	while (trans2kill--)
 //DeadCode DAW 19May99 	{
 //DeadCode DAW 19May99 		TransientItemPtr tip,otp;
-//DeadCode DAW 19May99 		
+//DeadCode DAW 19May99
 //DeadCode DAW 19May99 		tip = otp = TransientItem::TransientList;
-//DeadCode DAW 19May99 
+//DeadCode DAW 19May99
 //DeadCode DAW 19May99 		tip = tip->nexttrans;
-//DeadCode DAW 19May99 
+//DeadCode DAW 19May99
 //DeadCode DAW 19May99 		while (tip)
 //DeadCode DAW 19May99 		{
 //DeadCode DAW 19May99 			if (tip->LaunchTime<otp->LaunchTime)
 //DeadCode DAW 19May99 				otp = tip;
-//DeadCode DAW 19May99 
+//DeadCode DAW 19May99
 //DeadCode DAW 19May99 			tip = tip->nexttrans;
 //DeadCode DAW 19May99 		}
-//DeadCode DAW 19May99 
+//DeadCode DAW 19May99
 //DeadCode DAW 19May99 		otp->LaunchTime = 0x7FFFFFFF;
-//DeadCode DAW 19May99 
+//DeadCode DAW 19May99
 //DeadCode DAW 19May99 		AddTransientItemToDeadList(otp);
 //DeadCode DAW 19May99 	}
 
@@ -635,7 +636,7 @@ void TransObj::KillOldest()
 		TransientItemPtr tip;
 		TransientItemPtr oldestdeletable;
 		TransientItemPtr oldest;
-		
+
 		tip = oldestdeletable = oldest = TransientItem::TransientList;
 
 		tip = tip->nexttrans;
@@ -670,11 +671,11 @@ void TransObj::KillOldest()
 //Author		Martin Alderton
 //Date			Tue 27 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int TransObj::CountTheTransients(TransientItemPtr trans)
@@ -697,11 +698,11 @@ int TransObj::CountTheTransients(TransientItemPtr trans)
 //Author		Martin Alderton
 //Date			Tue 27 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int TransObj::CountTheDeadTransients(TransientItemPtr trans)
@@ -727,9 +728,9 @@ int TransObj::CountTheDeadTransients(TransientItemPtr trans)
 //
 //Description	for use deleting from master TransientList
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 TransientItemPtr TransObj::DeleteTransientItem(TransientItemPtr translist)
@@ -748,9 +749,9 @@ TransientItemPtr TransObj::DeleteTransientItem(TransientItemPtr translist)
 //
 //Description	for use with TransToGoList
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 TransientItemPtr TransObj::DeleteTempTransientItem(TransientItemPtr translist)
@@ -769,11 +770,11 @@ TransientItemPtr TransObj::DeleteTempTransientItem(TransientItemPtr translist)
 //Author		Martin Alderton
 //Date			Thu 22 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::DeleteAll()
@@ -795,9 +796,9 @@ void TransObj::DeleteAll()
 //
 //Description	gets a rnd from mathlib. returns a no between 1 and 6.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int TransObj::GetRand()
@@ -849,17 +850,17 @@ inline	bool	WithinRange(const SLong& a, const SLong& b, const SLong& c, const SL
 //Author		Robert Slater
 //Date			Mon 31 May 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileCarpetStrike(TransientItemPtr transit,WorldStuff& world)
 {
 	SLong	timeleft = transit->LaunchTime;
-	
+
 	if (timeleft > 0)
 	{
 		if ((transit->LaunchTime-=Timer_Code.FRAMETIME)<0)		//DAW 31Jul96
@@ -883,7 +884,7 @@ void TransObj::MobileCarpetStrike(TransientItemPtr transit,WorldStuff& world)
 	SETFPCW(cw);
 #endif
 #endif
-			
+
 			oldhitcoords = transit->World;
 			transit->World.X += Math_Lib.rnd(2000) - 1000;
 			transit->World.Z += Math_Lib.rnd(2000) - 1000;
@@ -902,7 +903,7 @@ void TransObj::MobileCarpetStrike(TransientItemPtr transit,WorldStuff& world)
 		else
 			transit->TransRandom = timeleft;
 
-		if (transit->LaunchTime>0)	
+		if (transit->LaunchTime>0)
 			GAndFriction(transit,0);
 	}
 	else
@@ -914,11 +915,11 @@ void TransObj::MobileCarpetStrike(TransientItemPtr transit,WorldStuff& world)
 //Author		Martin Alderton
 //Date			Tue 27 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileCrater(TransientItemPtr transit,WorldStuff&)//PD 26Apr96
@@ -947,9 +948,9 @@ void TransObj::MobileCrater(TransientItemPtr transit,WorldStuff&)//PD 26Apr96
 //
 //Description	puts unwanted transients in dead list
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileSink(TransientItemPtr transit,WorldStuff& worldptr)
@@ -969,7 +970,7 @@ void TransObj::MobileSink(TransientItemPtr transit,WorldStuff& worldptr)
 //DeadCode RJS 18Sep00 		roll = roff & 0xF000;
 //DeadCode RJS 18Sep00 		roll >>= 12;
 //DeadCode RJS 18Sep00 		pitch = roll & 3;
-//DeadCode RJS 18Sep00 
+//DeadCode RJS 18Sep00
 //DeadCode RJS 18Sep00 		roll >>= 2;
 
 		//after 4 secs, should have tilted 90deg...
@@ -977,17 +978,17 @@ void TransObj::MobileSink(TransientItemPtr transit,WorldStuff& worldptr)
 //DeadCode RJS 18Sep00 			roll--;
 //DeadCode RJS 18Sep00 		else
 //DeadCode RJS 18Sep00 			roll++;
-//DeadCode RJS 18Sep00 
+//DeadCode RJS 18Sep00
 //DeadCode RJS 18Sep00 		roll *= 40;
-//DeadCode RJS 18Sep00 
+//DeadCode RJS 18Sep00
 //DeadCode RJS 18Sep00 		if (pitch < 0)
 //DeadCode RJS 18Sep00 			pitch--;
 //DeadCode RJS 18Sep00 		else
 //DeadCode RJS 18Sep00 			pitch++;
-//DeadCode RJS 18Sep00 
+//DeadCode RJS 18Sep00
 //DeadCode RJS 18Sep00 		pitch *= 30;
 
-//DeadCode RJS 18Sep00 		transit->roll += (Angles) roll;	
+//DeadCode RJS 18Sep00 		transit->roll += (Angles) roll;
 
 // after 4 secs, should have tilted 90 deg...
 // sink destroyer (4960 cm in length) after 10 secs...
@@ -998,7 +999,7 @@ void TransObj::MobileSink(TransientItemPtr transit,WorldStuff& worldptr)
 		pitch = transit->pitch;
 		if (pitch < ANGLES_80Deg)
 			pitch += degreesperframe;
-		
+
 		transit->pitch = Angles(pitch);									//RJS 18Sep00
 		transit->World.Y -= ysinkperframe;								//RJS 18Sep00
 
@@ -1009,10 +1010,10 @@ void TransObj::MobileSink(TransientItemPtr transit,WorldStuff& worldptr)
 //DeadCode RJS 4Oct00 		// Remove the transient bridge element, and turn on the real bridge element to dead....
 //DeadCode RJS 4Oct00 		MinAnimData*	mad;
 //DeadCode RJS 4Oct00 		animptr			adptr = transit->Launcher->Anim;
-//DeadCode RJS 4Oct00 														
-//DeadCode RJS 4Oct00 		adptr += (roff & 0x0FFF);						
-//DeadCode RJS 4Oct00 
-//DeadCode RJS 4Oct00 		mad = (MinAnimData*) adptr;						
+//DeadCode RJS 4Oct00
+//DeadCode RJS 4Oct00 		adptr += (roff & 0x0FFF);
+//DeadCode RJS 4Oct00
+//DeadCode RJS 4Oct00 		mad = (MinAnimData*) adptr;
 //DeadCode RJS 4Oct00 		mad->IsInvisible = 0;
 
 		AddTransientItemToDeadList(transit);
@@ -1026,9 +1027,9 @@ void TransObj::MobileSink(TransientItemPtr transit,WorldStuff& worldptr)
 //
 //Description	used to initialise TransientList. i.e. does nowt visually
 //				and not even used to do this so not much use all round//MGA 29Mar96
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::LaunchDummyExplosion(mobileitem input)
@@ -1044,7 +1045,7 @@ void TransObj::LaunchDummyExplosion(mobileitem input)
 //
 //Inputs		a rotitem giving initial position
 //				does not require a target as target is always same as launcher value
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::LaunchDitchEffect(mobileitem input,WorldStuff& worldptr)
@@ -1060,7 +1061,7 @@ void TransObj::LaunchDitchEffect(mobileitem input,WorldStuff& worldptr)
 //
 //Inputs		a rotitem giving initial position
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::LaunchCrater(mobileitem *input,WorldStuff &worldptr)
@@ -1092,11 +1093,11 @@ void TransObj::LaunchCrater(mobileitem *input,WorldStuff &worldptr)
 //Author		R. Hyde
 //Date			Thu 18 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::PlayGunSound(mobileitem* launcher,WorldStuff& worldptr)
@@ -1122,11 +1123,11 @@ void TransObj::PlayGunSound(mobileitem* launcher,WorldStuff& worldptr)
 //Author		R. Hyde
 //Date			Mon 23 Sep 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SWord	TransObj::DropOneBomb (mobileitem* launcher,WorldStuff& world)
@@ -1228,9 +1229,9 @@ SWord	TransObj::DropOneBomb (mobileitem* launcher,WorldStuff& world)
 //
 //Description	Dumps all external stores.....
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::DropAllStores(mobileitem* ac,WorldStuff& world)
@@ -1238,9 +1239,9 @@ void	TransObj::DropAllStores(mobileitem* ac,WorldStuff& world)
 //DeadCode RJS 23Oct00 	DumpFuel((AirStrucPtr)ac,world);
 	DumpWeapons((AirStrucPtr)ac,world);
 
-//DeadCode RJS 27May98	WeapAnimData*	weapon;										
-//DeadCode RJS 27May98	SLong			xpos, ypos, zpos;							
-//DeadCode RJS 27May98	UByte			index;										
+//DeadCode RJS 27May98	WeapAnimData*	weapon;
+//DeadCode RJS 27May98	SLong			xpos, ypos, zpos;
+//DeadCode RJS 27May98	UByte			index;
 //DeadCode RJS 27May98	UWord			thisstore;
 //DeadCode RJS 27May98	int				retval;
 //DeadCode RJS 27May98	UWord			mvel;
@@ -1250,11 +1251,11 @@ void	TransObj::DropAllStores(mobileitem* ac,WorldStuff& world)
 //DeadCode RJS 27May98		weapon = SHAPE.GetWeaponLauncher(ac,index,xpos,ypos,zpos,mvel,LT_BOMB);
 //DeadCode RJS 27May98		if (weapon)
 //DeadCode RJS 27May98		{
-//DeadCode RJS 27May98			if (weapon->LoadedStores > 0)				
+//DeadCode RJS 27May98			if (weapon->LoadedStores > 0)
 //DeadCode RJS 27May98			{
 //DeadCode RJS 27May98				retval = weapon->LoadedStores;
 //DeadCode RJS 27May98				LaunchBombDrop((mobileitem*) ac,BOMB,xpos,ypos,zpos,world,TRUE);//RJS 11Jun97
-//DeadCode RJS 27May98				
+//DeadCode RJS 27May98
 //DeadCode RJS 27May98				weapon->LoadedStores = 0;
 //DeadCode RJS 27May98
 //DeadCode RJS 27May98 //rdh 8/5/98: storesweight not used now
@@ -1262,7 +1263,7 @@ void	TransObj::DropAllStores(mobileitem* ac,WorldStuff& world)
 //DeadCode RJS 27May98 //
 //DeadCode RJS 27May98 //				if (((AirStruc*) *ac)->fly.storesweight < 0)
 //DeadCode RJS 27May98 //					((AirStruc*) *ac)->fly.storesweight = 0;
-//DeadCode RJS 27May98				
+//DeadCode RJS 27May98
 //DeadCode RJS 27May98				_Miles.SequenceAudible(FIL_MUSIC_BOMBS_DROPPED);
 //DeadCode RJS 27May98			}
 //DeadCode RJS 27May98		}
@@ -1274,11 +1275,11 @@ void	TransObj::DropAllStores(mobileitem* ac,WorldStuff& world)
 //Author		Paul.
 //Date			Fri 26 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 TransientItem* TransObj::LaunchOneGunBullet(mobileitem* launcher,SLong MuzVel,ShapeNum	weapshape,SLong xpos, SLong ypos, SLong zpos, WorldStuff& worldptr,const SWord& weapHdg, const SWord& weapPitch)
@@ -1339,7 +1340,7 @@ TransientItem* TransObj::LaunchOneGunBullet(mobileitem* launcher,SLong MuzVel,Sh
 		else
 		{
 			Float	sgx,sgy,sgz,sgh;
-			Float	mVel = Float(MuzVel);	
+			Float	mVel = Float(MuzVel);
 
 			if (((AirStrucPtr)launcher)->fly.pModel->GetGunOri(sgx,sgy,sgz))
 			{
@@ -1382,16 +1383,16 @@ TransientItem* TransObj::LaunchOneGunBullet(mobileitem* launcher,SLong MuzVel,Sh
 			newitem->vel_z += sgz;
 
 //DeadCode RJS 13Mar00 			Float	mVel = Float(MuzVel);						//RJS 12Nov99
-//DeadCode RJS 13Mar00 
+//DeadCode RJS 13Mar00
 //DeadCode RJS 13Mar00 			Math_Lib.high_sin_cos((Angles)pitchang,sin_ang,cos_ang);
-//DeadCode RJS 13Mar00 //DEADCODE CSB 08/11/99 			temp = (MuzVel * sin_ang)>>ANGLES_SHIFT; newitem->vel_y += (SWord )temp;		
+//DeadCode RJS 13Mar00 //DEADCODE CSB 08/11/99 			temp = (MuzVel * sin_ang)>>ANGLES_SHIFT; newitem->vel_y += (SWord )temp;
 //DeadCode RJS 13Mar00 //DEADCODE CSB 08/11/99 			temp = (MuzVel * cos_ang)>>ANGLES_SHIFT; newitem->velhori += (SWord )temp;
-//DeadCode RJS 13Mar00 			
+//DeadCode RJS 13Mar00
 //DeadCode RJS 13Mar00 			sin_ang *= mVel;
 //DeadCode RJS 13Mar00 			newitem->vel_y += sin_ang;							//RJS 12Nov99
-//DeadCode RJS 13Mar00 				
+//DeadCode RJS 13Mar00
 //DeadCode RJS 13Mar00 			Float	velhori  =  (mVel + Float(newitem->vel_)) * cos_ang;
-//DeadCode RJS 13Mar00 
+//DeadCode RJS 13Mar00
 //DeadCode RJS 13Mar00 			Math_Lib.high_sin_cos((ANGLES )newitem->hdg,sin_ang,cos_ang);
 //DeadCode RJS 13Mar00 //DEADCODE CSB 08/11/99 			temp = (newitem->velhori * sin_ang)>>ANGLES_SHIFT; newitem->velx = (SWord )temp;
 //DeadCode RJS 13Mar00 //DEADCODE CSB 08/11/99 			temp = (newitem->velhori * cos_ang)>>ANGLES_SHIFT; newitem->velz = (SWord )temp;
@@ -1411,11 +1412,11 @@ TransientItem* TransObj::LaunchOneGunBullet(mobileitem* launcher,SLong MuzVel,Sh
 //Author		R. Hyde
 //Date			Tue 16 Jun 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 TransientItem* TransObj::LaunchManyGunBullets(	mobileitem* launcher,
@@ -1434,9 +1435,9 @@ TransientItem* TransObj::LaunchManyGunBullets(	mobileitem* launcher,
 												Bool		isArmed		)
 {
 	SLong	vel;
-	SLong	vely, velx, velz;	
+	SLong	vely, velx, velz;
 	SLong	temp;
-	SWord	headgang = launcher->hdg;	//CSB 11/06/99	
+	SWord	headgang = launcher->hdg;	//CSB 11/06/99
 	SWord	pitchang = launcher->pitch + theangle;			//RJS 26May98
 
 	Float	sin_ang,cos_ang;
@@ -1445,39 +1446,39 @@ TransientItem* TransObj::LaunchManyGunBullets(	mobileitem* launcher,
 
 //DeadCode CSB 10/03/99		velhori = launcher->velhori;
 //DeadCode CSB 10/03/99		vely = launcher->vely;
-//DeadCode CSB 10/03/99	
+//DeadCode CSB 10/03/99
 //DeadCode CSB 10/03/99		Math_Lib.high_sin_cos((Angles)pitchang,sin_ang,cos_ang);
-//DeadCode CSB 10/03/99	
+//DeadCode CSB 10/03/99
 //DeadCode CSB 10/03/99		temp = (MuzVel * sin_ang)>>ANGLES_SHIFT; vely += temp;
 //DeadCode CSB 10/03/99		temp = (MuzVel * cos_ang)>>ANGLES_SHIFT; velhori += temp;
-//DeadCode CSB 10/03/99	
+//DeadCode CSB 10/03/99
 //DeadCode CSB 10/03/99		Math_Lib.high_sin_cos((ANGLES )launcher->hdg,sin_ang,cos_ang);
-//DeadCode CSB 10/03/99	
+//DeadCode CSB 10/03/99
 //DeadCode CSB 10/03/99		velx = (velhori * sin_ang)>>ANGLES_SHIFT;
 //DeadCode CSB 10/03/99		velz = (velhori * cos_ang)>>ANGLES_SHIFT;
 
-	AirStrucPtr AC = (AirStrucPtr)launcher;	//CSB 11/06/99	
-	SWord bhdg, bpitch;//, bvel;						
+	AirStrucPtr AC = (AirStrucPtr)launcher;	//CSB 11/06/99
+	SWord bhdg, bpitch;//, bvel;
 	AC->CalcBulletVel(MuzVel, xpos, ypos, zpos, velx, vely, velz);
-//DeadCode CSB 11Aug00 
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 	Float	totVel = Float(vel);								//RJS 12Nov99
 //DeadCode CSB 11Aug00 	Float	velHori;											//RJS 12Nov99
-//DeadCode CSB 11Aug00 
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 	Math_Lib.high_sin_cos((Angles)pitchang, sin_ang, cos_ang);
 //DeadCode CSB 11Aug00 	vely    = totVel * sin_ang;									//RJS 12Nov99
 //DeadCode CSB 11Aug00 	velHori = totVel * cos_ang;									//RJS 12Nov99
-//DeadCode CSB 11Aug00 	
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 	Math_Lib.high_sin_cos((Angles)headgang, sin_ang, cos_ang);
 //DeadCode CSB 11Aug00 	velx = velHori * sin_ang;									//RJS 12Nov99
 //DeadCode CSB 11Aug00 	velz = velHori * cos_ang;									//RJS 12Nov99
-	
+
 //DeadCode CSB 11/06/99		SLong vel = launcher->vel + MuzVel;
-//DeadCode CSB 11/06/99	
+//DeadCode CSB 11/06/99
 //DeadCode CSB 11/06/99		Math_Lib.high_sin_cos((Angles)pitchang,sin_ang,cos_ang);
-//DeadCode CSB 11/06/99	
+//DeadCode CSB 11/06/99
 //DeadCode CSB 11/06/99		velhori = vel * cos_ang / 32768;
 //DeadCode CSB 11/06/99		vely	= vel * sin_ang / 32768;
-//DeadCode CSB 11/06/99	
+//DeadCode CSB 11/06/99
 //DeadCode CSB 11/06/99		Math_Lib.high_sin_cos((ANGLES )launcher->hdg,sin_ang,cos_ang);
 //DeadCode CSB 11/06/99		velx = velhori * sin_ang / 32768;
 //DeadCode CSB 11/06/99		velz = velhori * cos_ang / 32768;
@@ -1560,11 +1561,11 @@ TransientItem* TransObj::LaunchManyGunBullets(	mobileitem* launcher,
 //Author		Andrew McRae
 //Date			Fri 6 Sep 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DeadCode AMM 24Jul98 TransientItem* TransObj::LaunchCommsBullet(AirStrucPtr Me, BULPACKET BulPacket)
@@ -1573,7 +1574,7 @@ TransientItem* TransObj::LaunchManyGunBullets(	mobileitem* launcher,
 //DeadCode AMM 24Jul98	TransientItem* newitem;
 //DeadCode AMM 24Jul98
 //DeadCode AMM 24Jul98	newitem=LaunchUnguidedMissile(launcher,GunfireShape,LIFETIME_BULLET,MOBILE_BULLET);
-//DeadCode AMM 24Jul98	
+//DeadCode AMM 24Jul98
 //DeadCode AMM 24Jul98	if (newitem)
 //DeadCode AMM 24Jul98	{
 //DeadCode AMM 24Jul98		SWord	sin_ang,cos_ang;
@@ -1587,7 +1588,7 @@ TransientItem* TransObj::LaunchManyGunBullets(	mobileitem* launcher,
 //DeadCode AMM 24Jul98		newitem->velx = 0;
 //DeadCode AMM 24Jul98		newitem->vely = BulPacket.VertVel;
 //DeadCode AMM 24Jul98		newitem->velz = 0;
-//DeadCode AMM 24Jul98		newitem->Status.deadtime = 1;						
+//DeadCode AMM 24Jul98		newitem->Status.deadtime = 1;
 //DeadCode AMM 24Jul98
 //DeadCode AMM 24Jul98		Math_Lib.high_sin_cos((ANGLES )newitem->hdg,sin_ang,cos_ang);
 //DeadCode AMM 24Jul98
@@ -1601,7 +1602,7 @@ TransientItem* TransObj::LaunchManyGunBullets(	mobileitem* launcher,
 //DeadCode AMM 24Jul98
 //DeadCode AMM 24Jul98		AddTransientItemToWorld(newitem,worldptr);
 //DeadCode AMM 24Jul98	}
-//DeadCode AMM 24Jul98	return newitem;												
+//DeadCode AMM 24Jul98	return newitem;
 //DeadCode AMM 24Jul98 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -1609,11 +1610,11 @@ TransientItem* TransObj::LaunchManyGunBullets(	mobileitem* launcher,
 //Author		Robert Slater
 //Date			Tue 21 Apr 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DeadCode RJS 03Dec98 void	TransObj::LaunchTrackedBullet(mobileitem* launcher,WorldStuff& worldptr)
@@ -1656,9 +1657,9 @@ TransientItem* TransObj::LaunchManyGunBullets(	mobileitem* launcher,
 //DeadCode RDH 29Nov98				SLong			temp;
 //DeadCode RDH 29Nov98				SWord			sin_ang,cos_ang;
 //DeadCode RDH 29Nov98
-//DeadCode RDH 29Nov98				newitem->World.X = usexpos/wpcnt;					
-//DeadCode RDH 29Nov98				newitem->World.Y = useypos/wpcnt;					
-//DeadCode RDH 29Nov98				newitem->World.Z = usezpos/wpcnt;	
+//DeadCode RDH 29Nov98				newitem->World.X = usexpos/wpcnt;
+//DeadCode RDH 29Nov98				newitem->World.Y = useypos/wpcnt;
+//DeadCode RDH 29Nov98				newitem->World.Z = usezpos/wpcnt;
 //DeadCode RDH 29Nov98
 //DeadCode RDH 29Nov98				Math_Lib.high_sin_cos((ANGLES )newitem->pitch,sin_ang,cos_ang);
 //DeadCode RDH 29Nov98
@@ -1678,9 +1679,9 @@ TransientItem* TransObj::LaunchManyGunBullets(	mobileitem* launcher,
 //
 //Description	sets up a transientitem
 //
-//Inputs		a rotitem giving initial position		
+//Inputs		a rotitem giving initial position
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::LaunchMiniExplosion(mobileitem* launcher,WorldStuff& worldptr)
@@ -1706,9 +1707,9 @@ void TransObj::LaunchMiniExplosion(mobileitem* launcher,WorldStuff& worldptr)
 //
 //Description	catapults debris of any shape into the air....
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchDebris(mobileitem* launcher,ShapeNum shapeBase,SLong	randcnt, SLong maxbits, WorldStuff& worldptr, Bool nospin)
@@ -1735,7 +1736,7 @@ void	TransObj::LaunchDebris(mobileitem* launcher,ShapeNum shapeBase,SLong	randcn
 		for (count = 0; count < cntrand; count++)
 		{
 			shprand = Math_Lib.rnd(randcnt);								//RJS 1/20/99
-			newitem = SimplifiedSpriteLaunch(launcher,			
+			newitem = SimplifiedSpriteLaunch(launcher,
 											(ShapeNum) (shapeBase + shprand), //RJS 1/20/99
 											250,MOBILE_DEBRIS);
 			if (newitem)
@@ -1751,26 +1752,26 @@ void	TransObj::LaunchDebris(mobileitem* launcher,ShapeNum shapeBase,SLong	randcn
 						&&	(Math_Lib.rnd() > 32767)	)
 					{
 						TroopAnimData*	adptr = (TroopAnimData*) newitem->Anim;
-						adptr->BITSOFFFLAGS |= 1<<BF_ONFIRE;				
+						adptr->BITSOFFFLAGS |= 1<<BF_ONFIRE;
 					}
 				}
 
 				newhdg = Math_Lib.rnd();
 
 				vel = Math_Lib.rnd(300);						//RJS 29Mar00
-				newitem->hdg = (Angles) newhdg;			
+				newitem->hdg = (Angles) newhdg;
 				newitem->pitch = Angles(ANGLES_30Deg + Math_Lib.rnd(pitch));//RJS 29Mar00
  				newitem->vel_ = vel*1000;						//RJS 16Nov99
 				newitem->CalcVels();							//RJS 16Nov99
 
-//DEADCODE CSB 08/11/99 				newitem->velhori = vel;	
-			
+//DEADCODE CSB 08/11/99 				newitem->velhori = vel;
+
 				if (!nospin)
 				{
 //DeadCode RJS 16Dec99					pitchover = (vel << 8)/300;	//greater the vel, the more it spins
 //DeadCode RJS 16Dec99					rollover = newhdg>>8;
 //DeadCode RJS 16Dec99
-//DeadCode RJS 16Dec99					newitem->TransRandom = (rollover<<8) + pitchover;		
+//DeadCode RJS 16Dec99					newitem->TransRandom = (rollover<<8) + pitchover;
 					newitem->TransRandom = Math_Lib.rnd();
 				}
 
@@ -1785,11 +1786,11 @@ void	TransObj::LaunchDebris(mobileitem* launcher,ShapeNum shapeBase,SLong	randcn
 //Author		Robert Slater
 //Date			Mon 1 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchFire(mobileitem* launcher,WorldStuff& worldptr)
@@ -1818,11 +1819,11 @@ void	TransObj::LaunchFire(mobileitem* launcher,WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Mon 1 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchTroops(	item*		launcher,
@@ -1853,7 +1854,7 @@ void	TransObj::LaunchTroops(	item*		launcher,
 				ShapeDescPtr	sdptr;
 				ShapeNum		newshp;
 				animptr			adptrtmp;
-	//DeadCode RJS 21Apr99			FireAnimData*	adptr2;										
+	//DeadCode RJS 21Apr99			FireAnimData*	adptr2;
 //DeadCode RJS 20Oct00 				Bool			isours = FALSE;
 				TroopAnimData*	adptr;
 				MinAnimData*	mad;
@@ -1942,12 +1943,12 @@ void	TransObj::LaunchTroops(	item*		launcher,
 //DeadCode RJS 01Jun99 							randindex = placecnt-Math_Lib.rnd(maxtroops);
 //DeadCode RJS 01Jun99 							if (randindex < 0)
 //DeadCode RJS 01Jun99 								randindex = placecnt;
-//DeadCode RJS 01Jun99 
-//DeadCode RJS 01Jun99 							adptr->xpos = placelist[randindex].X;								
+//DeadCode RJS 01Jun99
+//DeadCode RJS 01Jun99 							adptr->xpos = placelist[randindex].X;
 //DeadCode RJS 01Jun99 							adptr->ypos = placelist[randindex].Y;
 //DeadCode RJS 01Jun99 							adptr->zpos = placelist[randindex].Z;
 //DeadCode RJS 01Jun99 							adptr->oncourse = FALSE;
-//DeadCode RJS 01Jun99 
+//DeadCode RJS 01Jun99
 //DeadCode RJS 01Jun99 							// Someone might panic!!!!!... headless chicken code
 //DeadCode RJS 01Jun99 							if (Math_Lib.rnd()>50000)
 //DeadCode RJS 01Jun99 								adptr->homing = FALSE;
@@ -1959,17 +1960,17 @@ void	TransObj::LaunchTroops(	item*		launcher,
 //DeadCode RJS 01Jun99 							adptr->oncourse = FALSE;
 //DeadCode RJS 01Jun99 							adptr->homing = FALSE;
 //DeadCode RJS 01Jun99 						}
-//DeadCode RJS 01Jun99 	
+//DeadCode RJS 01Jun99
 //DeadCode RJS 01Jun99 						// 5 metre spread around...
 //DeadCode RJS 01Jun99 						newitem->World.X = realpos.X + Math_Lib.rnd(1000) - 500;
-//DeadCode RJS 01Jun99 						newitem->World.Y = groundheight;								
+//DeadCode RJS 01Jun99 						newitem->World.Y = groundheight;
 //DeadCode RJS 01Jun99 						newitem->World.Z = realpos.Z + Math_Lib.rnd(1000) - 500;
-//DeadCode RJS 01Jun99 
+//DeadCode RJS 01Jun99
 //DeadCode RJS 01Jun99 						newitem->hdg = (Angles) Math_Lib.rnd();
 //DeadCode RJS 01Jun99 						newitem->vely = 0;
 //DeadCode RJS 01Jun99 						newitem->velhori = 100 + Math_Lib.rnd(20);
 //DeadCode RJS 01Jun99 						newitem->TransRandom = 50;
-//DeadCode RJS 01Jun99 
+//DeadCode RJS 01Jun99
 //DeadCode RJS 01Jun99 						AddTransientItemToWorld(newitem, worldptr);
 //DeadCode RJS 01Jun99 					}
 //DeadCode RJS 01Jun99 				}
@@ -1985,9 +1986,9 @@ void	TransObj::LaunchTroops(	item*		launcher,
 //
 //Description	Jump from side of the plane/balloon at any angle from 0-180 degrees
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchParachute(mobileitem* launcher,Coords3D& pos, SWord relpos, WorldStuff& worldptr, bool trackthis)//RJS 22Dec99
@@ -2003,7 +2004,7 @@ void	TransObj::LaunchParachute(mobileitem* launcher,Coords3D& pos, SWord relpos,
 		canopyVal = acadptr->CANOPY;
 		canopyPtr = &acadptr->CANOPY;
 	}
-	
+
 	Squad_Diary.SetAC(launcher,launcher->Anim);							//RJS 21Sep00
 																		//RJS 18Feb98
 	// Canopy must have been blown.....									//RJS 18Feb98
@@ -2058,7 +2059,7 @@ void	TransObj::LaunchParachute(mobileitem* launcher,Coords3D& pos, SWord relpos,
 				adptr->stripno = CLOTHING_LWPILOT;
 
 			adptr->BITSOFFFLAGS |= 1<<BF_PARACHUTE;				//RJS 22Dec99
-			
+
 			Anim_Control.SetPlayerAnim(newitem,ANIMATION_DIVE);			//RJS 22Dec99
 
 			newitem->World = pos;										//RJS 06Dec99
@@ -2101,20 +2102,20 @@ void	TransObj::LaunchParachute(mobileitem* launcher,Coords3D& pos, SWord relpos,
 //DeadCode RJS 20Oct00 			ClassPtr	clstyp = ((AirStrucPtr)launcher)->classtype;
 
 //DeadCode RJS 10Aug00 	#pragma warnmsg ("RadioChat: phrase_f15s commented out")
-//DeadCode RJS 10Aug00 			
+//DeadCode RJS 10Aug00
 //TEMPCODE RDH 07/12/99 			if (clstyp->phrasename != PHRASE_F51S)
 //TEMPCODE RDH 07/12/99 			{
 //TEMPCODE RDH 07/12/99 				SLong	vx,vy,vz;
-//TEMPCODE RDH 07/12/99 
-//TEMPCODE RDH 07/12/99 				((AirStrucPtr)launcher)->fly.pModel->CalcParachuteVel(vx,vy,vz,launcher->hdg,launcher->pitch,launcher->roll,launcher->vel_/10000, 40000, launcher->World.Y);	//RJS 10May99	//CSB 13/06/99	
-//TEMPCODE RDH 07/12/99 
+//TEMPCODE RDH 07/12/99
+//TEMPCODE RDH 07/12/99 				((AirStrucPtr)launcher)->fly.pModel->CalcParachuteVel(vx,vy,vz,launcher->hdg,launcher->pitch,launcher->roll,launcher->vel_/10000, 40000, launcher->World.Y);	//RJS 10May99	//CSB 13/06/99
+//TEMPCODE RDH 07/12/99
 //TEMPCODE RDH 07/12/99 				newitem->vel_x = vx;
 //TEMPCODE RDH 07/12/99 				newitem->vel_y = vy;
 //TEMPCODE RDH 07/12/99 				newitem->vel_z = vz;
 //TEMPCODE RDH 07/12/99 //DEADCODE CSB 09/11/99 				newitem->velhori = Math_Lib.distance3d(vx,vz,0);
 //TEMPCODE RDH 07/12/99 				newitem->pitch = launcher->pitch;
 //TEMPCODE RDH 07/12/99 				newitem->roll = launcher->roll;
-//TEMPCODE RDH 07/12/99 
+//TEMPCODE RDH 07/12/99
 //TEMPCODE RDH 07/12/99 //DeadCode CSB 13/06/99					if (((AirStrucPtr)launcher)->AcIsPlayer())		//RJS 13May99
 //TEMPCODE RDH 07/12/99 					newitem->hdg = Math_Lib.arctan(vx,vz);		//RJS 13May99
 //TEMPCODE RDH 07/12/99 //DeadCode CSB 13/06/99					else											//RJS 13May99
@@ -2129,7 +2130,7 @@ void	TransObj::LaunchParachute(mobileitem* launcher,Coords3D& pos, SWord relpos,
 				newitem->vel_y = launcher->vel_y;
 				newitem->vel_z = launcher->vel_z;
 //DEADCODE CSB 09/11/99 				newitem->velhori = 100;
-//DeadCode RJS 3Jul00 
+//DeadCode RJS 3Jul00
 //DeadCode RJS 3Jul00 				newitem->vel_y += 100000;
 
 				SWord	angHdg = (Math_Lib.rnd() * ANGLES_45Deg)/ANGLES_180Deg;
@@ -2181,7 +2182,7 @@ void	TransObj::LaunchParachute(mobileitem* launcher,Coords3D& pos, SWord relpos,
 			if (launcher->Status.size == AIRSTRUCSIZE)
 			{
 				bool	safeOverFrance = (AirStrucPtr(launcher)->nationality != NAT_RAF);
-									
+
 				if (safeOverFrance != newitem->OverFrance())
 					chuteStatus |= PARACHUTE_DEAD;
 			}
@@ -2206,10 +2207,10 @@ void	TransObj::LaunchParachute(mobileitem* launcher,Coords3D& pos, SWord relpos,
 			if (	(chuteStatus & PARACHUTE_DEAD)
 				&&	(launcher->Status.size == AIRSTRUCSIZE)	)
 				AirStrucPtr(launcher)->ai.diaryptr->KillPilot();
-			
+
 			if (trackthis && launcher == Manual_Pilot.ControlledAC2)	//RJS 29Oct00
 				Squad_Diary.UpdatePlayerLog(theReport);					//RJS 29Oct00
-			
+
 			newitem->TransRandom |= (chuteStatus << PARACHUTE_SHIFT);
 																		//RJS 18Feb98
 			AddTransientItemToWorld(newitem, worldptr);					//RJS 18Feb98
@@ -2243,11 +2244,11 @@ void	TransObj::LaunchParachute(mobileitem* launcher,Coords3D& pos, SWord relpos,
 //Author		Robert Slater
 //Date			Fri 5 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchBarage(	mobileitem* launcher,
@@ -2301,11 +2302,11 @@ void	TransObj::LaunchBarage(	mobileitem* launcher,
 //Author		Robert Slater
 //Date			Fri 5 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchDelayedExplosion(mobileitem* launcher,WorldStuff& worldptr)
@@ -2332,11 +2333,11 @@ void	TransObj::LaunchDelayedExplosion(mobileitem* launcher,WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Fri 5 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchFlak(mobileitem* launcher,ShapeNum theShape, WorldStuff& worldptr)
@@ -2365,9 +2366,9 @@ void	TransObj::LaunchFlak(mobileitem* launcher,ShapeNum theShape, WorldStuff& wo
 				newy = Math_Lib.rnd(60000) - 30000;						//RJS 15Nov00
 				newz = Math_Lib.rnd(60000) - 30000;						//RJS 15Nov00
 
-				newitem->World.X += newx;				
-				newitem->World.Z += newy;				
-				newitem->World.Y += newz;				
+				newitem->World.X += newx;
+				newitem->World.Z += newy;
+				newitem->World.Y += newz;
 
 				if (killChance == count)								//RJS 27Oct00
 					newitem->TransRandom = 1;							//RJS 27Oct00
@@ -2383,11 +2384,11 @@ void	TransObj::LaunchFlak(mobileitem* launcher,ShapeNum theShape, WorldStuff& wo
 //Author		Robert Slater
 //Date			Fri 5 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchRicochet(mobileitem* launcher,WorldStuff& worldptr)
@@ -2443,11 +2444,11 @@ void	TransObj::LaunchRicochet(mobileitem* launcher,WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Wed 24 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchSpark(mobileitem* launcher,WorldStuff& worldptr)
@@ -2466,7 +2467,7 @@ void	TransObj::LaunchSpark(mobileitem* launcher,WorldStuff& worldptr)
 			{
 				SLong	vel = Math_Lib.rnd(100);			//RJS 16Nov99
 
-				newitem->hdg = (Angles) (launcher->hdg + ANGLES_180Deg - Math_Lib.rnd(ANGLES_120Deg) + ANGLES_60Deg);				
+				newitem->hdg = (Angles) (launcher->hdg + ANGLES_180Deg - Math_Lib.rnd(ANGLES_120Deg) + ANGLES_60Deg);
 //DeadCode RJS 29Mar00 				newitem->vel_y = (Math_Lib.rnd(vel<<1)-vel)*1000;//RJS 16Nov99
 				newitem->pitch = Angles(Math_Lib.rnd(ANGLES_90Deg)-ANGLES_45Deg);//RJS 29Mar00
 				newitem->vel_ = vel*1000;						//RJS 16Nov99
@@ -2485,11 +2486,11 @@ void	TransObj::LaunchSpark(mobileitem* launcher,WorldStuff& worldptr)
 //Date			Thu 29 Feb 1996
 //
 //Description	Launches a big explosion animation,
-//				and a fan of debris	
+//				and a fan of debris
 //
 //Inputs		a rotitem giving initial position
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::LaunchExplosion(mobileitem* launcher,WorldStuff& worldptr,int	strength)
@@ -2538,7 +2539,7 @@ void TransObj::LaunchExplosion(mobileitem* launcher,WorldStuff& worldptr,int	str
 	}
 
 	LaunchSkinDebris(launcher,worldptr);
-	LaunchSparkDebris(launcher,worldptr);			
+	LaunchSparkDebris(launcher,worldptr);
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -2546,11 +2547,11 @@ void TransObj::LaunchExplosion(mobileitem* launcher,WorldStuff& worldptr,int	str
 //Author		Robert Slater
 //Date			Tue 13 Aug 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::LaunchSparkDebris(mobileitem* launcher, WorldStuff& worldptr)
@@ -2586,11 +2587,11 @@ void TransObj::LaunchSparkDebris(mobileitem* launcher, WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Wed 14 Aug 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::LaunchSkinDebris(mobileitem* launcher, WorldStuff& worldptr)
@@ -2603,21 +2604,21 @@ void TransObj::LaunchSkinDebris(mobileitem* launcher, WorldStuff& worldptr)
 
 		for (count = 0; count < tot; count++)
 		{
-			newitem = LaunchUnguidedMissile(	launcher,		
+			newitem = LaunchUnguidedMissile(	launcher,
 												DebrisMechShape,
 												300,MOBILE_DEBRIS);//RJS 28May99
 			if (newitem)
 			{
 				SLong	vel = 100 + Math_Lib.rnd(200);
 
-				newitem->hdg = (Angles) Math_Lib.rnd();			
-//DeadCode RJS 29Mar00 				newitem->pitch = (Angles) Math_Lib.rnd(16000);	
-				newitem->roll = (Angles) Math_Lib.rnd();	
+				newitem->hdg = (Angles) Math_Lib.rnd();
+//DeadCode RJS 29Mar00 				newitem->pitch = (Angles) Math_Lib.rnd(16000);
+				newitem->roll = (Angles) Math_Lib.rnd();
 //DeadCode RJS 29Mar00 				newitem->vel_y = (Math_Lib.rnd(vel<<1)-vel)*1000;
 				newitem->pitch = Angles(Math_Lib.rnd(ANGLES_90Deg)-ANGLES_45Deg);//RJS 29Mar00
 				newitem->vel_ = vel*1000;
 				newitem->CalcVels();
-//DEADCODE CSB 09/11/99 				newitem->velhori += 300 - vely;			
+//DEADCODE CSB 09/11/99 				newitem->velhori += 300 - vely;
 				newitem->TransRandom = 0;							//RJS 16Aug96
 
 				if ((newitem->shape >= DebrisStartShape) && (newitem->shape <= DebrisEndShape))
@@ -2637,27 +2638,27 @@ void TransObj::LaunchSkinDebris(mobileitem* launcher, WorldStuff& worldptr)
 //Author		Martin Alderton
 //Date			Fri 29 Mar 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::LaunchDeadACPart(AirStruc* launcher,BitFlags bitflag, WorldStuff &worldptr, Bool	blowup)
 {
 //DeadCode RJS 7Jun00 	TransientItem*	newitem;
 //DeadCode RJS 7Jun00 	AircraftAnimData*	adptr2 = (AircraftAnimData* )launcher->Anim;
-//DeadCode RJS 7Jun00 
+//DeadCode RJS 7Jun00
 //DeadCode RJS 7Jun00 	newitem = LaunchUnguidedMissile((mobileitem* )launcher,
 //DeadCode RJS 7Jun00 									launcher->shape,
 //DeadCode RJS 7Jun00 									LIFETIME_ACPART,MOBILE_DEADACPART);
 //DeadCode RJS 7Jun00 	if (newitem)
 //DeadCode RJS 7Jun00 	{
 //DeadCode RJS 7Jun00 		//Set 3D to only draw the dead part
-//DeadCode RJS 7Jun00 
+//DeadCode RJS 7Jun00
 //DeadCode RJS 7Jun00 		AircraftAnimData*	adptr = (AircraftAnimData* )newitem->Anim;
-//DeadCode RJS 7Jun00 
+//DeadCode RJS 7Jun00
 //DeadCode RJS 7Jun00 //DeadCode RJS 09Jun97		adptr->imagemaptail = adptr2->imagemaptail;
 //DeadCode RJS 7Jun00 //DeadCode RJS 09Jun97		adptr->imagemapbtmwing = adptr2->imagemapbtmwing;
 //DeadCode RJS 7Jun00 //DeadCode RJS 09Jun97		adptr->imagemapfuselage = adptr2->imagemapfuselage;
@@ -2665,11 +2666,11 @@ void TransObj::LaunchDeadACPart(AirStruc* launcher,BitFlags bitflag, WorldStuff 
 //DeadCode RJS 7Jun00 //DeadCode RJS 09Jun97		adptr->imagemaptopwing = adptr2->imagemaptopwing;
 //DeadCode RJS 7Jun00 		adptr->imagemapemblem = adptr2->imagemapemblem;
 //DeadCode RJS 7Jun00 //DeadCode RJS 27May97		adptr->vapourtrail = 0;
-//DeadCode RJS 7Jun00 
+//DeadCode RJS 7Jun00
 //DeadCode RJS 7Jun00 		if (blowup)
 //DeadCode RJS 7Jun00 		{
 //DeadCode RJS 7Jun00 			SLong	vel = 100+Math_Lib.rnd(200);				//RJS 16Nov99
-//DeadCode RJS 7Jun00 
+//DeadCode RJS 7Jun00
 //DeadCode RJS 7Jun00 			newitem->hdg = (Angles) Math_Lib.rnd();			//RJS 06Aug96
 //DeadCode RJS 7Jun00 //DeadCode RJS 29Mar00 			newitem->vel_y = (Math_Lib.rnd(vel<<1)-vel)*1000;	//RJS 16Nov99
 //DeadCode RJS 7Jun00 			newitem->pitch = Angles(Math_Lib.rnd(ANGLES_90Deg)-ANGLES_45Deg);//RJS 29Mar00
@@ -2679,16 +2680,16 @@ void TransObj::LaunchDeadACPart(AirStruc* launcher,BitFlags bitflag, WorldStuff 
 //DeadCode RJS 7Jun00 		}
 //DeadCode RJS 7Jun00 		else
 //DeadCode RJS 7Jun00 			newitem->hdg += ANGLES_180Deg;						//RJS 07Nov96
-//DeadCode RJS 7Jun00 
+//DeadCode RJS 7Jun00
 //DeadCode RJS 7Jun00 		UWord	localdamflag;									//RJS 31Oct96
-//DeadCode RJS 7Jun00 
+//DeadCode RJS 7Jun00
 //DeadCode RJS 7Jun00 		localdamflag = 0x0FFFF;		//All dead					//RJS 31Oct96
 //DeadCode RJS 7Jun00 		localdamflag &= ~(BS_DEAD<<bitflag);					//RJS 31Oct96
-//DeadCode RJS 7Jun00 
+//DeadCode RJS 7Jun00
 //DeadCode RJS 7Jun00 //DeadCode RJS 09Jun97		adptr->dammageflags = localdamflag;	//(BS_DEAD<<bitflag) + (BS_DEAD<<BF_TheRest);//RJS 31Oct96
-//DeadCode RJS 7Jun00 
+//DeadCode RJS 7Jun00
 //DeadCode RJS 7Jun00 		newitem->TransRandom = Math_Lib.rnd();
-//DeadCode RJS 7Jun00 
+//DeadCode RJS 7Jun00
 //DeadCode RJS 7Jun00 		AddTransientItemToWorld(newitem, worldptr);
 //DeadCode RJS 7Jun00 	}
 }
@@ -2700,9 +2701,9 @@ void TransObj::LaunchDeadACPart(AirStruc* launcher,BitFlags bitflag, WorldStuff 
 //
 //Description	Eject a 'detachable' part from a shape
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::LaunchBitsOffPart(	ItemPtr		launcher,
@@ -2769,7 +2770,7 @@ void TransObj::LaunchBitsOffPart(	ItemPtr		launcher,
 			vely = fvel * sin_ang;
 			velhori = fvel * cos_ang;
 
-			newitem->hdg = (Angles) newhdg;			
+			newitem->hdg = (Angles) newhdg;
 			newitem->vel_y = vely;
 			Math_Lib.high_sin_cos(newitem->hdg,sin_ang,cos_ang);
 			newitem->vel_x = velhori * sin_ang;
@@ -2806,11 +2807,11 @@ void TransObj::LaunchBitsOffPart(	ItemPtr		launcher,
 //Author		Paul.
 //Date			Tue 30 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::LaunchSmokeTrail(mobileitem* launcher,WorldStuff& worldptr)
@@ -2839,11 +2840,11 @@ void TransObj::LaunchSmokeTrail(mobileitem* launcher,WorldStuff& worldptr)
 //Author		Paul.
 //Date			Wed 1 May 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::LaunchGroundExplosion(mobileitem* launcher,WorldStuff& worldptr)
@@ -2877,11 +2878,11 @@ void TransObj::LaunchGroundExplosion(mobileitem* launcher,WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Wed 20 Nov 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::LaunchSmoulder(mobileitem* launcher,WorldStuff& worldptr,Bool	uselch)
@@ -2906,11 +2907,11 @@ void TransObj::LaunchSmoulder(mobileitem* launcher,WorldStuff& worldptr,Bool	use
 //Author		Robert Slater
 //Date			Mon 8 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchGuidedExplosion(mobileitem* launcher,WorldStuff& worldptr)
@@ -2931,11 +2932,11 @@ void	TransObj::LaunchGuidedExplosion(mobileitem* launcher,WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Mon 8 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchGuidedBurning(mobileitem* launcher,WorldStuff& worldptr)
@@ -2964,11 +2965,11 @@ void	TransObj::LaunchGuidedBurning(mobileitem* launcher,WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Tue 9 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchGuidedFire(mobileitem* launcher,WorldStuff& worldptr)
@@ -2994,11 +2995,11 @@ void	TransObj::LaunchGuidedFire(mobileitem* launcher,WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Wed 24 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchBombDrop(mobileitem* launcher,ShapeNum	bombshape,SLong xpos, SLong ypos, SLong zpos,WorldStuff& worldptr,Bool	duff)
@@ -3009,7 +3010,7 @@ void	TransObj::LaunchBombDrop(mobileitem* launcher,ShapeNum	bombshape,SLong xpos
 
 	if (duff)													//RJS 03Dec96
 		newitem = LaunchUnguidedMissile((mobileitem* )launcher,bombshape,LIFETIME_BOMB,MOBILE_MUSHROOM);//RJS 17Nov98
-	else													
+	else
 		newitem = LaunchUnguidedMissile((mobileitem* )launcher,bombshape,LIFETIME_BOMB,MOBILE_BOMB1STFRAME);	//RJS 3Oct00
 
 	if (newitem)
@@ -3047,12 +3048,13 @@ void	TransObj::LaunchBombDrop(mobileitem* launcher,ShapeNum	bombshape,SLong xpos
 //DeadCode RJS 17Oct00 		if ((_Replay.Playback || _Replay.Record) && launcher==Persons2::PlayerSeenAC)
 //DeadCode RJS 17Oct00 		{
 // velhori will be wrong so recalc
-//DeadCode RJS 17Oct00 
+//DeadCode RJS 17Oct00
 //DEADCODE CB 09/11/99 			SLong totalvel=Persons2::PlayerSeenAC->vel_;
 //DEADCODE CB 09/11/99 			SWord	sin_ang,cos_ang;
 //DEADCODE CB 09/11/99 			Math_Lib.high_sin_cos(Persons2::PlayerSeenAC->pitch,sin_ang,cos_ang);
 //DEADCODE CSB 09/11/99 			newitem->velhori = (totalvel * cos_ang)>>ANGLES_SHIFT;
 //DeadCode RJS 17Oct00 		}
+#ifdef	USE_PHRASE_ONE_AIRCRAFT
 
 		if (	(launcher->Status.size == AIRSTRUCSIZE)					//RJS 27Jun00
 			&&	(AirStrucPtr(launcher)->classtype->phrasename == PHRASE_HE111)	)	//RJS 27Jun00
@@ -3061,6 +3063,7 @@ void	TransObj::LaunchBombDrop(mobileitem* launcher,ShapeNum	bombshape,SLong xpos
 			newitem->pitch = (Angles)(UWord(ANGLES_60Deg) + Math_Lib.rnd(ANGLES_30Deg));
 		}
 		else
+#endif
 			newitem->TmpLaunchTime = 0;
 
 #ifdef	_BOMBBUG_
@@ -3078,9 +3081,9 @@ void	TransObj::LaunchBombDrop(mobileitem* launcher,ShapeNum	bombshape,SLong xpos
 //
 //Description	Set up pointer to vapour animation
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 UWord	TransObj::LaunchVapourStream(	UByteP		weapptr,
@@ -3127,9 +3130,9 @@ UWord	TransObj::LaunchVapourStream(	UByteP		weapptr,
 //
 //Description	For destroying something big, like a balloon
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchBigExplosion(mobileitem* launcher,WorldStuff& worldptr,ShapeNum	groundshape)
@@ -3143,7 +3146,7 @@ void	TransObj::LaunchBigExplosion(mobileitem* launcher,WorldStuff& worldptr,Shap
 	SWord			sin_ang,cos_ang;
 	ShapeDescPtr	sdptr;										//RJS 08Nov96
 	SWord			shpsize;
-	
+
 //DeadCode RJS 20Oct00 	MinAnimData* mad = (MinAnimData* )launcher->Anim;			//RJS 08Nov96
 
 	_Miles.PlayOnce((FileNum) (FIL_SFX_EXPLOSION_GROUND+Math_Lib.rnd(5)),launcher);
@@ -3166,9 +3169,9 @@ void	TransObj::LaunchBigExplosion(mobileitem* launcher,WorldStuff& worldptr,Shap
 			thehdg = Math_Lib.rnd();
 			radius = Math_Lib.rnd(shpsize);
 
-			Math_Lib.high_sin_cos((Angles)thehdg,sin_ang,cos_ang);		
-			dx = (cos_ang * radius) / ANGLES_FRACT;					
-			dz = (sin_ang * radius) / ANGLES_FRACT;					
+			Math_Lib.high_sin_cos((Angles)thehdg,sin_ang,cos_ang);
+			dx = (cos_ang * radius) / ANGLES_FRACT;
+			dz = (sin_ang * radius) / ANGLES_FRACT;
 
 			newitem->World.X += dx;
 			newitem->World.Z += dz;
@@ -3179,7 +3182,7 @@ void	TransObj::LaunchBigExplosion(mobileitem* launcher,WorldStuff& worldptr,Shap
 	}
 
 //DeadCode DAW 27Nov98	LaunchSkinDebris(launcher,worldptr);
-	LaunchSparkDebris(launcher,worldptr);			
+	LaunchSparkDebris(launcher,worldptr);
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -3187,11 +3190,11 @@ void	TransObj::LaunchBigExplosion(mobileitem* launcher,WorldStuff& worldptr,Shap
 //Author		Robert Slater
 //Date			Mon 2 Sep 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchRealShockwave(mobileitem* launcher,UByte strength,WorldStuff& worldptr)
@@ -3221,11 +3224,11 @@ void	TransObj::LaunchRealShockwave(mobileitem* launcher,UByte strength,WorldStuf
 //Author		Robert Slater
 //Date			Thu 5 Sep 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchRicochetSmoke(mobileitem* launcher,ShapeNum	theShape,WorldStuff& worldptr)
@@ -3246,12 +3249,12 @@ void	TransObj::LaunchRicochetSmoke(mobileitem* launcher,ShapeNum	theShape,WorldS
 			newitem->hdg = launcher->hdg;
 //DEADCODE CSB 09/11/99 			newitem->velhori = launcher->velhori;
 		}
-		SLong	groundlevel;								
+		SLong	groundlevel;
 //DeadCode RJS 19Feb98		ExplodeAnimData* adptr;
 
 //		groundlevel = GetGroundLevel(newitem);					//RJS 14Apr99
 //
-//		if (newitem->World.Y<groundlevel)						
+//		if (newitem->World.Y<groundlevel)
 //			newitem->World.Y=groundlevel;
 
 //DeadCode RJS 19Feb98		adptr = (ExplodeAnimData* )newitem->Anim;
@@ -3270,9 +3273,9 @@ void	TransObj::LaunchRicochetSmoke(mobileitem* launcher,ShapeNum	theShape,WorldS
 //
 //Description	Launches a ring of dust balls around an item
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchDustRing(mobileitem* launcher,WorldStuff& worldptr)
@@ -3291,11 +3294,11 @@ void	TransObj::LaunchDustRing(mobileitem* launcher,WorldStuff& worldptr)
  //Author		Robert Slater
  //Date			Wed 16 Oct 1996
  //
- //Description	
+ //Description
  //
- //Inputs		
+ //Inputs
  //
- //Returns	
+ //Returns
  //
  //------------------------------------------------------------------------------
  void	TransObj::LaunchShockwave(mobileitem* launcher,WorldStuff& worldptr)
@@ -3303,7 +3306,7 @@ void	TransObj::LaunchDustRing(mobileitem* launcher,WorldStuff& worldptr)
  	if (desiredFPS <= realFPS)					//RJS 11Jun99
  	{
  		TransientItem*	newitem;
- 
+
  		newitem = SimplifiedSpriteLaunch(	launcher,
  											ExplosionShockShape,
  											100,MOBILE_STATIONARY);//no damage at the mo...
@@ -3311,7 +3314,7 @@ void	TransObj::LaunchDustRing(mobileitem* launcher,WorldStuff& worldptr)
  		{
  			Three_Dee.pMigLand->GetShadowAngles(newitem->World,newitem->hdg,newitem->pitch,newitem->roll);
  			newitem->World.Y += (METRES01*3);						//RJS 21Apr99
- 
+
  			AddTransientItemToWorld(newitem, worldptr);
  		}
  	}
@@ -3322,11 +3325,11 @@ void	TransObj::LaunchDustRing(mobileitem* launcher,WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Thu 17 Oct 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchBirds(mobileitem* launcher,Coords3D&	pos,ShapeNum	birdshape,SLong maxbirds, WorldStuff& worldptr)
@@ -3344,7 +3347,7 @@ void	TransObj::LaunchBirds(mobileitem* launcher,Coords3D&	pos,ShapeNum	birdshape
 
 	for (count = 0; count < nobirds; count++)
 	{
-		newitem = SimplifiedSpriteLaunch(	launcher,		
+		newitem = SimplifiedSpriteLaunch(	launcher,
 											birdshape,
 											LIFETIME_DEBRISLNCHR*4,MOBILE_BIRD);
 
@@ -3369,11 +3372,11 @@ void	TransObj::LaunchBirds(mobileitem* launcher,Coords3D&	pos,ShapeNum	birdshape
 //Author		Robert Slater
 //Date			Thu 17 Oct 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchIgniteAmmoBoxes(mobileitem* launcher,UByte gindex,WorldStuff& worldptr)
@@ -3394,7 +3397,7 @@ void	TransObj::LaunchIgniteAmmoBoxes(mobileitem* launcher,UByte gindex,WorldStuf
 										detonate,MOBILE_AMMODEATH);
 	if (newitem)
 	{
-		SLong	groundlevel;								
+		SLong	groundlevel;
 		groundlevel = GetGroundLevel(newitem);					//RJS 14Apr99
 
 		newitem->roll = (Angles) CLUSTA;						//RJS 26May99
@@ -3411,11 +3414,11 @@ void	TransObj::LaunchIgniteAmmoBoxes(mobileitem* launcher,UByte gindex,WorldStuf
 //Author		Robert Slater
 //Date			Thu 31 Oct 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchDustTrail(	mobileitem* launcher,
@@ -3471,7 +3474,7 @@ void	TransObj::LaunchDustTrail(	mobileitem* launcher,
 		newitem->hdg = direction;
 
 		if (!isplane && (distance == 1))						//RJS 13Nov96
-			newitem->velhori = 200 + Math_Lib.rnd(200);		
+			newitem->velhori = 200 + Math_Lib.rnd(200);
 		else
 			newitem->velhori = Math_Lib.rnd(200);
 
@@ -3484,11 +3487,11 @@ void	TransObj::LaunchDustTrail(	mobileitem* launcher,
 //Author		Robert Slater
 //Date			Thu 8 Jan 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchDustTrail2(	mobileitem* launcher,
@@ -3526,9 +3529,9 @@ void	TransObj::LaunchDustTrail2(	mobileitem* launcher,
 //
 //Description	Throw several dust shapes into the air
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchMushroomCloud(mobileitem* launcher,SLong impact,WorldStuff& worldptr)
@@ -3580,11 +3583,11 @@ void	TransObj::LaunchMushroomCloud(mobileitem* launcher,SLong impact,WorldStuff&
 //Author		Robert Slater
 //Date			Thu 14 Nov 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchSmokePuff(	mobileitem* launcher,
@@ -3598,12 +3601,12 @@ void	TransObj::LaunchSmokePuff(	mobileitem* launcher,
 	newitem = SimplifiedSpriteLaunch(	launcher,
 										theShape,
 										134,MOBILE_CRATER);
-	
+
 	if (newitem)
 	{
 		UWord	randno = Math_Lib.rnd();
 		SWord	heading = ANGLES_180Deg + ((randno>>3) - 4096);
-		
+
 		SLong	vel = Math_Lib.rnd()>>12;
 
 		newitem->hdg = (Angles) (launcher->hdg + heading);
@@ -3628,18 +3631,18 @@ void	TransObj::LaunchSmokePuff(	mobileitem* launcher,
 //Author		Robert Slater
 //Date			Fri 22 Nov 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchFuelBarrels(mobileitem* launcher,WorldStuff& worldptr)
 {
 	if (desiredFPS <= realFPS)					//RJS 11Jun99
 	{
-		TransientItemPtr	newitem;						
+		TransientItemPtr	newitem;
 		UByte			count;
 
 		for (count = 0; count < 4; count++)
@@ -3669,11 +3672,11 @@ void	TransObj::LaunchFuelBarrels(mobileitem* launcher,WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Fri 6 Dec 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchScatteredFire(mobileitem* launcher,ShapeNum	shapehit,WorldStuff& worldptr)
@@ -3728,9 +3731,9 @@ void	TransObj::LaunchScatteredFire(mobileitem* launcher,ShapeNum	shapehit,WorldS
 //Description	Gives an invisible transient vapour item an already known
 //				vapour list....
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	TransObj::LaunchVapourTransient(	mobileitem*	launcher,
@@ -3757,7 +3760,7 @@ Bool	TransObj::LaunchVapourTransient(	mobileitem*	launcher,
 		if (newitem)
 		{
 			MoveGunAnimData*	adptr = (MoveGunAnimData*) newitem->Anim;
-	
+
 			if (launcher->Status.size == TRANSIENTSIZE)				//RJS 21Apr99
 				newitem->Launcher = NULL;							//RJS 21Apr99
 
@@ -3785,11 +3788,11 @@ Bool	TransObj::LaunchVapourTransient(	mobileitem*	launcher,
 //Author		Robert Slater
 //Date			Tue 3 Jun 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 TransientItem* TransObj::LaunchRocket(mobileitem* launcher,ShapeNum	weapshape,SLong xpos, SLong ypos, SLong zpos, WorldStuff& worldptr)
@@ -3837,8 +3840,8 @@ TransientItem* TransObj::LaunchRocket(mobileitem* launcher,ShapeNum	weapshape,SL
 			newitem->vel_ = totVel;								//RJS 16Nov99
 		}
 
-		newitem->World.X = xpos;								
-		newitem->World.Y = ypos;								
+		newitem->World.X = xpos;
+		newitem->World.Y = ypos;
 		newitem->World.Z = zpos;
 
 		//Give it a 3 second burn burst....						//RJS 15Jun99!!
@@ -3859,7 +3862,7 @@ TransientItem* TransObj::LaunchRocket(mobileitem* launcher,ShapeNum	weapshape,SL
 
 		AddTransientItemToWorld(newitem,worldptr);
 	}
-	return newitem;					
+	return newitem;
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -3867,11 +3870,11 @@ TransientItem* TransObj::LaunchRocket(mobileitem* launcher,ShapeNum	weapshape,SL
 //Author		Robert Slater
 //Date			Tue 10 Jun 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 TransientItem* TransObj::LaunchFuelDrop(mobileitem* launcher,ShapeNum	weapshape,WeapAnimData*	weapon,SLong xpos, SLong ypos, SLong zpos, WorldStuff& worldptr)
@@ -3897,8 +3900,8 @@ TransientItem* TransObj::LaunchFuelDrop(mobileitem* launcher,ShapeNum	weapshape,
 
 		weapon->LoadedStores = 0;
 
-		newitem->World.X = xpos;								
-		newitem->World.Y = ypos;								
+		newitem->World.X = xpos;
+		newitem->World.Y = ypos;
 		newitem->World.Z = zpos;
 
 		newitem->TransRandom = 1;								//RJS 28May98
@@ -3915,7 +3918,7 @@ TransientItem* TransObj::LaunchFuelDrop(mobileitem* launcher,ShapeNum	weapshape,
 //DeadCode DAW 28Jun99 			if (!_Replay.Playback)
 			if (!_Replay.Playback && !_Replay.Record)			//AMM 28Jun99
 			{
-				((AirStrucPtr)launcher)->fly.pModel->CalcParachuteVel(vx,vy,vz,launcher->hdg,launcher->pitch,launcher->roll,launcher->vel_/10000,-10000, launcher->World.Y);	//CSB 13/06/99	
+				((AirStrucPtr)launcher)->fly.pModel->CalcParachuteVel(vx,vy,vz,launcher->hdg,launcher->pitch,launcher->roll,launcher->vel_/10000,-10000, launcher->World.Y);	//CSB 13/06/99
 
 				newitem->vel_x = vx;
 				newitem->vel_y = vy;
@@ -3951,7 +3954,7 @@ TransientItem* TransObj::LaunchFuelDrop(mobileitem* launcher,ShapeNum	weapshape,
 
 		AddTransientItemToWorld(newitem,worldptr);
 	}
-	return newitem;		
+	return newitem;
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -3959,11 +3962,11 @@ TransientItem* TransObj::LaunchFuelDrop(mobileitem* launcher,ShapeNum	weapshape,
 //Author		Robert Slater
 //Date			Mon 5 Jan 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::LaunchGunPuff(mobileitem* launcher,SLong xpos, SLong ypos, SLong zpos, WorldStuff& worldptr)
@@ -3973,9 +3976,9 @@ void TransObj::LaunchGunPuff(mobileitem* launcher,SLong xpos, SLong ypos, SLong 
 
 	if (newitem)
 	{
-		newitem->World.X = xpos;								
-		newitem->World.Y = ypos;								
-		newitem->World.Z = zpos;								
+		newitem->World.X = xpos;
+		newitem->World.Y = ypos;
+		newitem->World.Z = zpos;
 
 		AddTransientItemToWorld(newitem,worldptr);
 	}
@@ -3989,9 +3992,9 @@ void TransObj::LaunchGunPuff(mobileitem* launcher,SLong xpos, SLong ypos, SLong 
 //Description	Launches a weapon depending on the weapon's type.
 //				Also will eventually log the weapon for comms...
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DeadCode AMM 09Apr99 void TransObj::LaunchWeapon(AirStrucPtr	ac,
@@ -4099,7 +4102,7 @@ SLong TransObj::LaunchWeapon(bool received,						//AMM 09Apr99
 //TempCode RJS 15Nov99 							newitem->World.X = xpos;
 //TempCode RJS 15Nov99 							newitem->World.Y = ypos;
 //TempCode RJS 15Nov99 							newitem->World.Z = zpos;
-//TempCode RJS 15Nov99 
+//TempCode RJS 15Nov99
 //TempCode RJS 15Nov99 							AddTransientItemToWorld(newitem,worldptr);
 //TempCode RJS 15Nov99 						}
 //TempCode RJS 15Nov99 					}
@@ -4161,11 +4164,11 @@ SLong TransObj::LaunchWeapon(bool received,						//AMM 09Apr99
 //Author		Robert Slater
 //Date			Mon 16 Jun 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::LaunchTrailTail( mobileitem*	launcher,
@@ -4200,11 +4203,11 @@ void TransObj::LaunchTrailTail( mobileitem*	launcher,
 //Author		Robert Slater
 //Date			Mon 16 Jun 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::LaunchClouds()
@@ -4221,32 +4224,32 @@ void TransObj::LaunchClouds()
 //DeadCode RJS 28May99 			SLong	xpos, ypos, zpos;
 //DeadCode RJS 28May99 			SLong	wx, wy, wz, ccount, noclouds;
 //DeadCode RJS 28May99 			SWord	sin_ang,cos_ang,tan_ang;
-//DeadCode RJS 28May99 
+//DeadCode RJS 28May99
 //DeadCode RJS 28May99 			rndheading = Math_Lib.rnd(ANGLES_60Deg) - (SWord)ANGLES_30Deg;
 //DeadCode RJS 28May99 			rndpitch = Math_Lib.rnd(ANGLES_60Deg) - (SWord)ANGLES_30Deg;
-//DeadCode RJS 28May99 
+//DeadCode RJS 28May99
 //DeadCode RJS 28May99 			rndheading += (SWord)View_Point->hdg;
 //DeadCode RJS 28May99 			rndpitch += (SWord)View_Point->pitch;
-//DeadCode RJS 28May99 
+//DeadCode RJS 28May99
 //DeadCode RJS 28May99 			Math_Lib.high_sin_cos((Angles) -rndheading,sin_ang,cos_ang);
-//DeadCode RJS 28May99 
+//DeadCode RJS 28May99
 //DeadCode RJS 28May99 			// distance away is -65536
 //DeadCode RJS 28May99 			xpos = (sin_ang << 16) >> (ANGLES_SHIFT-2);
 //DeadCode RJS 28May99 			zpos = (cos_ang << 16) >> (ANGLES_SHIFT-2);
-//DeadCode RJS 28May99 
+//DeadCode RJS 28May99
 //DeadCode RJS 28May99 			Math_Lib.high_sin_cos((Angles) -rndpitch,sin_ang,cos_ang);
-//DeadCode RJS 28May99 
+//DeadCode RJS 28May99
 //DeadCode RJS 28May99 			ypos = (sin_ang << 16) >> (ANGLES_SHIFT-2);
-//DeadCode RJS 28May99 
+//DeadCode RJS 28May99
 //DeadCode RJS 28May99 			wx = xpos + View_Point->World.X;
 //DeadCode RJS 28May99 			wy = ypos + View_Point->World.Y;
 //DeadCode RJS 28May99 			wz = zpos + View_Point->World.Z;
-//DeadCode RJS 28May99 
+//DeadCode RJS 28May99
 //DeadCode RJS 28May99 			if (wy > (Land_Scape.cloud_base+2000))				//RJS 02Sep97
 //DeadCode RJS 28May99 			{
 //DeadCode RJS 28May99 				TransientItem*	newitem;
 //DeadCode RJS 28May99 				WorldStuff*	world = mobileitem::currworld;
-//DeadCode RJS 28May99 
+//DeadCode RJS 28May99
 //DeadCode RJS 28May99 				noclouds = Math_Lib.rnd() >> 13;
 //DeadCode RJS 28May99 				for (ccount=0; ccount < noclouds; ccount++)
 //DeadCode RJS 28May99 				{
@@ -4258,11 +4261,11 @@ void TransObj::LaunchClouds()
 //DeadCode RJS 28May99 					{
 //DeadCode RJS 28May99 						CloudTimer = 300;
 //DeadCode RJS 28May99 						CloudTotal++;
-//DeadCode RJS 28May99 
+//DeadCode RJS 28May99
 //DeadCode RJS 28May99 						newitem->World.X = wx + ((Math_Lib.rnd() - 32768)>>1);
 //DeadCode RJS 28May99 						newitem->World.Y = wy + ((Math_Lib.rnd() - 32768)>>1);
 //DeadCode RJS 28May99 						newitem->World.Z = wz + ((Math_Lib.rnd() - 32768)>>1);
-//DeadCode RJS 28May99 
+//DeadCode RJS 28May99
 //DeadCode RJS 28May99 						AddTransientItemToWorld(newitem,*world);
 //DeadCode RJS 28May99 					}
 //DeadCode RJS 28May99 				}
@@ -4276,11 +4279,11 @@ void TransObj::LaunchClouds()
 //Author		Robert Slater
 //Date			Mon 22 Sep 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchCloneGun(	mobileitem* launcher,
@@ -4338,9 +4341,9 @@ void	TransObj::LaunchCloneGun(	mobileitem* launcher,
 //Description	Number of secondary napalm spread shapes depends on velocity..
 //				and travels in same direction
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchNapalmStrike(mobileitem* launcher,WorldStuff& worldptr)
@@ -4358,7 +4361,7 @@ void	TransObj::LaunchNapalmStrike(mobileitem* launcher,WorldStuff& worldptr)
 	wz = launcher->World.Z;
 
 	thedist = 750;
-	
+
 	Math_Lib.high_sin_cos((Angles)hdg,sin_ang,cos_ang);
 
 	dx = (sin_ang * thedist) >> 15;
@@ -4474,11 +4477,11 @@ void	TransObj::LaunchNapalmStrike(mobileitem* launcher,WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Thu 19 Feb 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchCanopyEject(mobileitem* launcher,WorldStuff& worldptr)
@@ -4512,7 +4515,7 @@ void	TransObj::LaunchCanopyEject(mobileitem* launcher,WorldStuff& worldptr)
 				SLong				OpenChance = adptr->CANOPY - BS_DAMLV2;
 
 				bool	canopyState=false;									//RJS 28Aug00	//JIM 20Oct00
-				if (ac)	
+				if (ac)
 					canopyState = ac->fly.pModel->CanopyOpen();		//RJS 28Aug00
 
 				OpenChance = (OpenChance * Math_Lib.rnd()) >> 16;
@@ -4603,9 +4606,9 @@ void	TransObj::LaunchCanopyEject(mobileitem* launcher,WorldStuff& worldptr)
 //
 //Description	Bashes up-to two items in a group
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchGroupThug(	item*		launcher,
@@ -4616,7 +4619,7 @@ void	TransObj::LaunchGroupThug(	item*		launcher,
 									Coords3D	posPrev,
 									Coords3D	posNext,
 									UWord		panimoff,
-									UWord		nanimoff,	
+									UWord		nanimoff,
 									ItemPtr		theShooter	)	//RJS 05Jul99
 {
 	TransientItem*	newitem;
@@ -4627,8 +4630,8 @@ void	TransObj::LaunchGroupThug(	item*		launcher,
 
 
 	prevdep *= 1000;											//RJS 23Dec99
-	prevdep /= 127;		
-	
+	prevdep /= 127;
+
 	nextdep *= 1000;											//RJS 23Dec99
 	nextdep /= 127;
 
@@ -4665,11 +4668,11 @@ void	TransObj::LaunchGroupThug(	item*		launcher,
 	else
 		thetime = t2;
 
-	newitem = SimplifiedSpriteLaunch(	launcher,	
-										theshape,		
-										thetime,	
+	newitem = SimplifiedSpriteLaunch(	launcher,
+										theshape,
+										thetime,
 										MOBILE_THUG);
-	
+
 	if (newitem)
 	{
 		ThugAnimData	*adptr = (ThugAnimData*) newitem->Anim;
@@ -4708,11 +4711,11 @@ void	TransObj::LaunchGroupThug(	item*		launcher,
 //Author		Paul.
 //Date			Fri 26 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 TransientItemPtr
@@ -4780,11 +4783,11 @@ TransObj::SimplifiedSpriteLaunch(	Item* launcher,
 //Author		Robert Slater
 //Date			Fri 27 Nov 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 TransientItemPtr
@@ -4798,10 +4801,10 @@ TransObj::RelativeSpriteLaunch(	Item* launcher,
 
 	if (newitem)
 	{
-		transientcounter++;								
+		transientcounter++;
 
 //DeadCode RJS 20Oct00 		ShapeDescPtr	sdptr = (ShapeDescPtr) SHAPESTUFF.GetShapePtr(parentshape);
-		
+
 //DeadCode RJS 23May00 		newitem->DrawOffset = sdptr->Size<<2;		//make it a quarter size...
 		newitem->Launcher = launcher;
 		newitem->nexttogo = NULL;
@@ -4810,9 +4813,9 @@ TransObj::RelativeSpriteLaunch(	Item* launcher,
 		newitem->waypoint = NULL;
 
 		if ((launcher->Status.size >= MovingSize) && (launcher->Status.size != TRANSIENTSIZE))
-			newitem->Target = launcher;									
+			newitem->Target = launcher;
 		else
-			newitem->Target = NULL;									
+			newitem->Target = NULL;
 
 		newitem->hdg =
 			newitem->pitch =
@@ -4852,11 +4855,11 @@ TransObj::RelativeSpriteLaunch(	Item* launcher,
 //Author		Paul.
 //Date			Fri 26 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 TransientItemPtr
@@ -4901,7 +4904,7 @@ TransObj::LaunchUnguidedMissile(	mobileitem* launcher,
 			SLong wx = 0, wy = 0, wz = 0;
 			if((launcher == Persons2::PlayerSeenAC) && (Persons2::PlayerSeenAC->classtype->aerobaticfactor != AEROBATIC_LOW))
 				MissManCampSky().GetWind(launcher->World.Y, wx, wy, wz);
-	
+
 			newitem->vel_x = launcher->vel_x + wx;
 			newitem->vel_y = launcher->vel_y + wy;
 			newitem->vel_z = launcher->vel_z + wz;
@@ -5040,11 +5043,11 @@ TransObj::LaunchUnguidedMissile(	item* launcher,
 //Author		Paul.
 //Date			Fri 26 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 TransientItemPtr
@@ -5106,11 +5109,11 @@ TransObj::LaunchGuidedMissile(	mobileitem* launcher,
 //Author		Robert Slater
 //Date			Mon 22 Sep 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 TransientItemPtr
@@ -5214,8 +5217,8 @@ TransObj::LaunchSuperLauncher(	item*		launcher,
 
 		if (!isArmed)											//RJS 27May99
 			newitem->Status.deadtime = 1;						//RJS 27May99
-		
-		newitem->isArmed = 1;								//RJS 09Jul99	
+
+		newitem->isArmed = 1;								//RJS 09Jul99
 
 // LaunchSuperLauncher will always launch at least one bullet,
 // so at this level, we want (nobullets-1) clones...
@@ -5234,9 +5237,9 @@ TransObj::LaunchSuperLauncher(	item*		launcher,
 //
 //Description	Launches relevant death animation for a shape
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::GeneralItemDamage(mobileitem* launcher,
@@ -5261,9 +5264,9 @@ void	TransObj::GeneralItemDamage(mobileitem* launcher,
 //
 //Description	Must do collision test before first movement....
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileBullet(TransientItemPtr transit,WorldStuff& world)
@@ -5328,7 +5331,7 @@ void TransObj::MobileBullet(TransientItemPtr transit,WorldStuff& world)
 //DeadCode DAW 04Jun99 			 	transit->LaunchTime=0;							//RJS 29Mar99
 		}
 
-		if (transit->LaunchTime>0)	
+		if (transit->LaunchTime>0)
 			GAndFriction(transit,0);	//OrdinaryDrag);		//JIM 24Sep96
 	}
 
@@ -5357,11 +5360,11 @@ void TransObj::MobileBullet(TransientItemPtr transit,WorldStuff& world)
 //Author		Paul.
 //Date			Fri 26 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobilePuffTravel(TransientItemPtr transit,WorldStuff& world)
@@ -5394,11 +5397,11 @@ void TransObj::MobilePuffTravel(TransientItemPtr transit,WorldStuff& world)
 //Author		Robert Slater
 //Date			Wed 24 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::MobileBombDrop(TransientItemPtr transit,WorldStuff& world)
@@ -5456,25 +5459,25 @@ void	TransObj::MobileBombDrop(TransientItemPtr transit,WorldStuff& world)
 //DeadCode RJS 23Dec99 				{
 //DeadCode RJS 23Dec99 					//Test for collision with other
 //DeadCode RJS 23Dec99 					//items
-//DeadCode RJS 23Dec99 
+//DeadCode RJS 23Dec99
 //DeadCode RJS 23Dec99 					itemptr	 hititem;
 //DeadCode RJS 23Dec99 					int	gindex;										//RJS 10Nov98
-//DeadCode RJS 23Dec99 					
+//DeadCode RJS 23Dec99
 //DeadCode RJS 23Dec99 					hititem=BoxCol::NineSectorCol(transit,hitcoords,gindex);//RDH 26Nov96
 //DeadCode RJS 23Dec99 					if (hititem)									//RJS 17May99
 //DeadCode RJS 23Dec99 					{
 //DeadCode RJS 23Dec99 						//We've hit the item 'hititem' the impact coordinates
 //DeadCode RJS 23Dec99 						//are in 'hitvector'
-//DeadCode RJS 23Dec99 
+//DeadCode RJS 23Dec99
 //DeadCode RJS 23Dec99 						_Miles.StopSample(FIL_SFX_BOMB_WHISTLE,(ItemBasePtr) transit);//RJS 06Dec96
-//DeadCode RJS 23Dec99 
+//DeadCode RJS 23Dec99
 //DeadCode RJS 23Dec99 //Dead					transit->vely=transit->velx=transit->velz=transit->velhori=0;
-//DeadCode RJS 23Dec99 
+//DeadCode RJS 23Dec99
 //DeadCode RJS 23Dec99 						transit->LaunchTime = 0;
 //DeadCode RJS 23Dec99 						if (SHAPESTUFF.GetShapeDamageType(transit->shape)==DMT_FIRE)	//RJS 19Feb99
 //DeadCode RJS 23Dec99 						{
 //DeadCode RJS 23Dec99 							Coords3D	oldcoords = transit->World;
-//DeadCode RJS 23Dec99 
+//DeadCode RJS 23Dec99
 //DeadCode RJS 23Dec99 							transit->World = hitcoords;
 //DeadCode RJS 23Dec99 							LaunchNapalmImpacted(transit,world);
 //DeadCode RJS 23Dec99 							transit->World = oldcoords;
@@ -5490,7 +5493,7 @@ void	TransObj::MobileBombDrop(TransientItemPtr transit,WorldStuff& world)
 		}
 
 		//move the bomb
-		if (transit->LaunchTime>0)	
+		if (transit->LaunchTime>0)
 		{
 			GAndFriction(transit,50);									//RJS 27Jun00
 
@@ -5513,9 +5516,9 @@ void	TransObj::MobileBombDrop(TransientItemPtr transit,WorldStuff& world)
 //
 //				Starts to whistle at 20 m/s
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::MobileFuelDrop(TransientItemPtr transit,WorldStuff& world)
@@ -5578,11 +5581,11 @@ void	TransObj::MobileFuelDrop(TransientItemPtr transit,WorldStuff& world)
 //Author		Paul.
 //Date			Mon 29 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileDeadACPart(TransientItemPtr transit,WorldStuff& worldptr)
@@ -5664,11 +5667,11 @@ void TransObj::MobileDeadACPart(TransientItemPtr transit,WorldStuff& worldptr)
 //Author		Paul.
 //Date			Tue 30 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileSmokeTrail(TransientItemPtr transit,WorldStuff& world)
@@ -5745,7 +5748,7 @@ void TransObj::MobileSmokeTrail(TransientItemPtr transit,WorldStuff& world)
 //DeadCode RJS 24Jun97				{
 //DeadCode RJS 24Jun97					newitem = LaunchUnguidedMissile(transit,SPARK,
 //DeadCode RJS 24Jun97												LIFETIME_SMOKE,MOBILE_RICOCHET);
-//DeadCode RJS 24Jun97					
+//DeadCode RJS 24Jun97
 //DeadCode RJS 24Jun97					if (newitem)
 //DeadCode RJS 24Jun97					{
 //DeadCode RJS 24Jun97						newitem->hdg += (ANGLES) (ANGLES_180Deg - Math_Lib.rnd(ANGLES_45Deg) + ANGLES_20Deg);
@@ -5769,7 +5772,7 @@ void TransObj::MobileSmokeTrail(TransientItemPtr transit,WorldStuff& world)
 //DeadCode RJS 24Jun97	else
 //DeadCode RJS 24Jun97	{
 //DeadCode RJS 24Jun97		//Kill the launcher here
-//DeadCode RJS 24Jun97		
+//DeadCode RJS 24Jun97
 //DeadCode RJS 24Jun97 //DeadCode RJS 12Aug96		KillLauncher(transit->Launcher,world);
 //DeadCode RJS 24Jun97
 //DeadCode RJS 24Jun97		AddTransientItemToDeadList(transit);
@@ -5781,11 +5784,11 @@ void TransObj::MobileSmokeTrail(TransientItemPtr transit,WorldStuff& world)
 //Author		Paul.
 //Date			Tue 30 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileGAndF(TransientItemPtr transit,WorldStuff& world)
@@ -5819,11 +5822,11 @@ void TransObj::MobileGAndF(TransientItemPtr transit,WorldStuff& world)
 //Author		Paul.
 //Date			Wed 1 May 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileGroundExp(TransientItemPtr transit,WorldStuff& world)
@@ -5914,11 +5917,11 @@ void TransObj::MobileGroundExp(TransientItemPtr transit,WorldStuff& world)
 //Author		Robert Slater
 //Date			Mon 2 Sep 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileMovingSmoke(TransientItemPtr transit,WorldStuff& world)
@@ -5960,7 +5963,7 @@ void TransObj::MobileMovingSmoke(TransientItemPtr transit,WorldStuff& world)
 //DeadCode RJS 16Sep98
 //DeadCode RJS 16Sep98 //DeadCode RJS 19Feb98				ExplodeAnimData* adptr;									//PD 08May96
 //DeadCode RJS 16Sep98 //DeadCode RJS 19Feb98				adptr = (ExplodeAnimData* )newitem->Anim;			//RJS 31Jul96
-//DeadCode RJS 16Sep98 //DeadCode RJS 19Feb98				adptr->frameno = 0;	
+//DeadCode RJS 16Sep98 //DeadCode RJS 19Feb98				adptr->frameno = 0;
 //DeadCode RJS 16Sep98
 //DeadCode RJS 16Sep98				newitem->World.X = transit->Launcher->World.X;
 //DeadCode RJS 16Sep98				newitem->World.Y = transit->Launcher->World.Y + 50;
@@ -6059,7 +6062,7 @@ void TransObj::MobileMovingSmoke(TransientItemPtr transit,WorldStuff& world)
 			dvel *= dfrac;
 			dvelx *= dfrac;
 			dvelz *= dfrac;
-			
+
 			transit->vel_ -= dvel;
 			transit->vel_x -= dvelx;
 			transit->vel_z -= dvelz;
@@ -6104,9 +6107,9 @@ void TransObj::MobileMovingSmoke(TransientItemPtr transit,WorldStuff& world)
 //
 //Description	Actually burns whatever it is over
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileExplosion(TransientItemPtr transit,WorldStuff& world)
@@ -6279,11 +6282,11 @@ void TransObj::MobileExplosion(TransientItemPtr transit,WorldStuff& world)
 //Author		Robert Slater
 //Date			Thu 22 Jan 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileTimerExplosion(TransientItemPtr transit,WorldStuff& worldptr)
@@ -6308,11 +6311,11 @@ void TransObj::MobileTimerExplosion(TransientItemPtr transit,WorldStuff& worldpt
 //Author		Robert Slater
 //Date			23Dec99
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileFlare(TransientItemPtr transit,WorldStuff& worldptr)
@@ -6353,7 +6356,7 @@ void TransObj::MobileFlare(TransientItemPtr transit,WorldStuff& worldptr)
 		}
 
 		//move the bomb
-		if (transit->LaunchTime>0)	
+		if (transit->LaunchTime>0)
 			GAndFriction(transit,0);
 	}
 	else
@@ -6365,11 +6368,11 @@ void TransObj::MobileFlare(TransientItemPtr transit,WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Fri 21 Jun 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::MobileGroundDebris(TransientItemPtr transit, WorldStuff& worldptr)
@@ -6435,7 +6438,7 @@ void	TransObj::MobileGroundDebris(TransientItemPtr transit, WorldStuff& worldptr
 					float	vx = transit->vel_x;						//RJS 31May00
 					float	vz = transit->vel_z;
 					SLong	vh;
-					
+
 					fastMath.FloatToInt(&vh,fastMath.FastSqrt(vx*vx+vz*vz));
 
 					transit->pitch = Math_Lib.arctan(transit->vel_y, vh);
@@ -6454,11 +6457,11 @@ void	TransObj::MobileGroundDebris(TransientItemPtr transit, WorldStuff& worldptr
 //Author		Robert Slater
 //Date			Mon 1 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::MobileFire(TransientItemPtr transit, WorldStuff& world)
@@ -6470,7 +6473,7 @@ void	TransObj::MobileFire(TransientItemPtr transit, WorldStuff& world)
 		_Miles.PlayLooped(FIL_SFX_SMALL_FIRE_LOOP, (ItemBasePtr) transit,96);//RJS 10Aug00
 
 		SWord	frametime;
-		frametime = Timer_Code.FRAMETIME;		
+		frametime = Timer_Code.FRAMETIME;
 
 		if ((transit->LaunchTime-=frametime)<0)
 			transit->LaunchTime=0;
@@ -6545,11 +6548,11 @@ void	TransObj::MobileFire(TransientItemPtr transit, WorldStuff& world)
 //Author		Robert Slater
 //Date			Mon 1 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::MobileTroop(TransientItemPtr transit, WorldStuff&)
@@ -6579,11 +6582,11 @@ void	TransObj::MobileTroop(TransientItemPtr transit, WorldStuff&)
 //Author		Robert Slater
 //Date			Tue 2 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileParachute(TransientItemPtr transit, WorldStuff&	world)
@@ -6607,7 +6610,7 @@ void TransObj::MobileParachute(TransientItemPtr transit, WorldStuff&	world)
 			if (transitmaster)
 			{
 				transit->hdg = transitmaster->hdg;
-				
+
 				//This is definitely the chute...
 				UWord	randno = transitmaster->TransRandom & PARACHUTE_PHASE_MASK;
 				if (randno == PARACHUTE_PHASE_5)
@@ -6837,7 +6840,7 @@ void TransObj::MobileParachute(TransientItemPtr transit, WorldStuff&	world)
 					}
 				}
 
-				AddWindDrift(transit);						
+				AddWindDrift(transit);
 
 				if (transit->World.Y <= groundheight)
 				{
@@ -6882,7 +6885,7 @@ void TransObj::MobileParachute(TransientItemPtr transit, WorldStuff&	world)
 
 					transit->LaunchTime = aliveTime;
 					transit->vel_ = transit->vel_x = transit->vel_y = transit->vel_z = 0;
-	
+
 					transit->TransRandom = (transit->TransRandom & PARACHUTE_MASK) + PARACHUTE_PHASE_5;
 				}
 			}
@@ -6926,7 +6929,7 @@ void TransObj::MobileParachute(TransientItemPtr transit, WorldStuff&	world)
 			if (transit->Target)
 			{
 				TransientItem*	targ = (TransientItem*) *transit->Target;
-			
+
 				killnow = false;
 
 				targ->Target = NULL;
@@ -6948,11 +6951,11 @@ void TransObj::MobileParachute(TransientItemPtr transit, WorldStuff&	world)
 //Author		Robert Slater
 //Date			Fri 5 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileBarage(TransientItemPtr transit, WorldStuff&	world)
@@ -6961,7 +6964,7 @@ void TransObj::MobileBarage(TransientItemPtr transit, WorldStuff&	world)
 	SLong	timeleft = transit->LaunchTime;							//RJS 05Oct98
 	SWord	frametime = Timer_Code.FRAMETIME;						//RJS 05Oct98
 
-	if (timeleft)													
+	if (timeleft)
 	{
 		if ((transit->LaunchTime-=frametime)<0)
 			transit->LaunchTime=0;
@@ -6993,11 +6996,11 @@ void TransObj::MobileBarage(TransientItemPtr transit, WorldStuff&	world)
 //Author		Robert Slater
 //Date			Fri 5 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileDelayedExplosion(TransientItemPtr transit, WorldStuff& worldptr)
@@ -7021,7 +7024,7 @@ void TransObj::MobileDelayedExplosion(TransientItemPtr transit, WorldStuff& worl
 		{
 			transit->TransRandom = 1;
 			transit->LaunchTime = 0;
-	
+
 			AddTransientItemToDeadList(transit);
 		}
 	}
@@ -7112,11 +7115,11 @@ void TransObj::MobileDelayedExplosion(TransientItemPtr transit, WorldStuff& worl
 //Author		Robert Slater
 //Date			Fri 5 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileFlak(TransientItemPtr transit, WorldStuff& worldptr)
@@ -7170,7 +7173,7 @@ void TransObj::MobileFlak(TransientItemPtr transit, WorldStuff& worldptr)
 						if (sdptr->AnimDataSize == AIRCRAFTANIM)
 						{
 							AircraftAnimData*	adptr = (AircraftAnimData*)trg->Anim;
-							
+
 							rightWing = &adptr->RIGHTWINGIN - UByteP(adptr);
 						}
 						else
@@ -7203,11 +7206,11 @@ void TransObj::MobileFlak(TransientItemPtr transit, WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Fri 5 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileSparkTrail(TransientItemPtr transit, WorldStuff& worldptr)
@@ -7328,11 +7331,11 @@ void TransObj::MobileSparkTrail(TransientItemPtr transit, WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Thu 5 Sep 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileRicochetSmoke(TransientItemPtr transit, WorldStuff& worldptr)
@@ -7399,11 +7402,11 @@ void TransObj::MobileRicochetSmoke(TransientItemPtr transit, WorldStuff& worldpt
 //Author		Robert Slater
 //Date			Tue 22 Feb 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileEngineStart(TransientItemPtr transit, WorldStuff& worldptr)
@@ -7465,18 +7468,18 @@ void TransObj::MobileEngineStart(TransientItemPtr transit, WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Mon 8 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileGuidedBurning(TransientItemPtr transit, WorldStuff& worldptr)
 {
 	SLong		timeleft = transit->LaunchTime;					//RJS 16Nov98
 	ItemPtr		thetarget = transit->Target;						//RJS 16Nov98
-	
+
 	if (timeleft)
 	{
 		_Miles.PlayLooped(FIL_SFX_SMALL_FIRE_LOOP, (ItemBasePtr) transit);//RJS 22Nov96
@@ -7510,11 +7513,11 @@ void TransObj::MobileGuidedBurning(TransientItemPtr transit, WorldStuff& worldpt
 //Author		Robert Slater
 //Date			Tue 9 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileGuidedFire(TransientItemPtr transit, WorldStuff& worldptr)
@@ -7557,9 +7560,9 @@ void TransObj::MobileGuidedFire(TransientItemPtr transit, WorldStuff& worldptr)
 //
 //Description	Throw an exploded object in the air 'A Team' style
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileATeam(TransientItemPtr transit, WorldStuff& worldptr)
@@ -7682,11 +7685,11 @@ void TransObj::MobileATeam(TransientItemPtr transit, WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Sun 13 Oct 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::MobileDustRing(TransientItemPtr transit, WorldStuff& world)
@@ -7699,7 +7702,7 @@ void	TransObj::MobileDustRing(TransientItemPtr transit, WorldStuff& world)
 //DeadCode RJS 20Apr98		SWord	frametime;
 //DeadCode RJS 20Apr98		SLong	groundheight;
 //DeadCode RJS 20Apr98
-//DeadCode RJS 20Apr98		frametime = Timer_Code.FRAMETIME;						
+//DeadCode RJS 20Apr98		frametime = Timer_Code.FRAMETIME;
 //DeadCode RJS 20Apr98
 //DeadCode RJS 20Apr98		if ((transit->LaunchTime-=frametime)<0)
 //DeadCode RJS 20Apr98			transit->LaunchTime=0;
@@ -7715,18 +7718,18 @@ void	TransObj::MobileDustRing(TransientItemPtr transit, WorldStuff& world)
 //DeadCode JIM 28Nov96 //
 //DeadCode JIM 28Nov96 //Description	Similar to bullet
 //DeadCode JIM 28Nov96 //
-//DeadCode JIM 28Nov96 //Inputs		
+//DeadCode JIM 28Nov96 //Inputs
 //DeadCode JIM 28Nov96 //
-//DeadCode JIM 28Nov96 //Returns	
+//DeadCode JIM 28Nov96 //Returns
 //DeadCode JIM 28Nov96 //
 //DeadCode JIM 28Nov96 //------------------------------------------------------------------------------
 //DeadCode JIM 28Nov96 void	TransObj::MobileShockwave(TransientItemPtr transit, WorldStuff& world)
 //DeadCode JIM 28Nov96 {
-//DeadCode JIM 28Nov96	if ((transit->LaunchTime-=Timer_Code.FRAMETIME)<0)	
+//DeadCode JIM 28Nov96	if ((transit->LaunchTime-=Timer_Code.FRAMETIME)<0)
 //DeadCode JIM 28Nov96		transit->LaunchTime=0;
 //DeadCode JIM 28Nov96	else
 //DeadCode JIM 28Nov96	{
-//DeadCode JIM 28Nov96		if ((transit->LaunchTime & 0x03)==0)			
+//DeadCode JIM 28Nov96		if ((transit->LaunchTime & 0x03)==0)
 //DeadCode JIM 28Nov96		{
 //DeadCode JIM 28Nov96			SLong	groundheight;
 //DeadCode JIM 28Nov96
@@ -7751,17 +7754,17 @@ void	TransObj::MobileDustRing(TransientItemPtr transit, WorldStuff& world)
 //DeadCode JIM 28Nov96				if (hititem)	//_Collide.TransCollTest((MovingItemPtr )transit, hititem, hitvector, gindex))//RDH 26Nov96
 //DeadCode JIM 28Nov96				{
 //DeadCode JIM 28Nov96					transit->World=hitcoords;
-//DeadCode JIM 28Nov96 //DeadCode RDH 26Nov96					transit->World.X = hitvector.a;			
-//DeadCode JIM 28Nov96 //DeadCode RDH 26Nov96					transit->World.Y = hitvector.b;			
-//DeadCode JIM 28Nov96 //DeadCode RDH 26Nov96					transit->World.Z = hitvector.c;			
+//DeadCode JIM 28Nov96 //DeadCode RDH 26Nov96					transit->World.X = hitvector.a;
+//DeadCode JIM 28Nov96 //DeadCode RDH 26Nov96					transit->World.Y = hitvector.b;
+//DeadCode JIM 28Nov96 //DeadCode RDH 26Nov96					transit->World.Z = hitvector.c;
 //DeadCode JIM 28Nov96
 //DeadCode JIM 28Nov96					MissileHitSomething(hititem,transit,world,gindex);
 //DeadCode JIM 28Nov96					transit->velhori >>= 1;
 //DeadCode JIM 28Nov96				}
-//DeadCode JIM 28Nov96			}												
+//DeadCode JIM 28Nov96			}
 //DeadCode JIM 28Nov96		}
 //DeadCode JIM 28Nov96
-//DeadCode JIM 28Nov96		if (transit->LaunchTime>0)	
+//DeadCode JIM 28Nov96		if (transit->LaunchTime>0)
 //DeadCode JIM 28Nov96			ApplyVelocities(transit);
 //DeadCode JIM 28Nov96	}
 //DeadCode JIM 28Nov96
@@ -7776,9 +7779,9 @@ void	TransObj::MobileDustRing(TransientItemPtr transit, WorldStuff& world)
 //
 //Description	Realistic movecode for a bird
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::MobileBird(TransientItemPtr transit, WorldStuff& world)
@@ -7819,14 +7822,14 @@ void	TransObj::MobileBird(TransientItemPtr transit, WorldStuff& world)
 //
 //Description	Sends sparks, then blows up
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::MobileAmmoBoxes(TransientItemPtr transit, WorldStuff& world)
 {
-	TransientItemPtr	newitem;						
+	TransientItemPtr	newitem;
 	SLong			timeleft=transit->LaunchTime;
 	UByte			count;
 
@@ -7836,7 +7839,7 @@ void	TransObj::MobileAmmoBoxes(TransientItemPtr transit, WorldStuff& world)
 		SLong	groundheight;
 		UWord	triggerspark;
 
-		frametime = Timer_Code.FRAMETIME;						
+		frametime = Timer_Code.FRAMETIME;
 
 		if ((transit->LaunchTime-=frametime)<0)
 			transit->LaunchTime=0;
@@ -7844,7 +7847,7 @@ void	TransObj::MobileAmmoBoxes(TransientItemPtr transit, WorldStuff& world)
 		// throw sparks...
 
 //DeadCode RJS 28May99 		triggerspark = Math_Lib.rnd();
-//DeadCode RJS 28May99 
+//DeadCode RJS 28May99
 //DeadCode RJS 28May99 		if (triggerspark > 60000+(TransientItem::transcount<<4))
 		if (desiredFPS <= realFPS)				//RJS 11Jun99
 		{
@@ -7853,13 +7856,13 @@ void	TransObj::MobileAmmoBoxes(TransientItemPtr transit, WorldStuff& world)
 			{
 				SLong	vel = 100 + Math_Lib.rnd(100);
 
-				newitem->hdg = (Angles) Math_Lib.rnd();			
+				newitem->hdg = (Angles) Math_Lib.rnd();
 //DeadCode RJS 29Mar00 				newitem->vel_y = Math_Lib.rnd(vel)*1000;		//RJS 16Nov99
 				newitem->pitch = Angles(Math_Lib.rnd(ANGLES_45Deg));//RJS 29Mar00
 				newitem->vel_ = vel*1000;						//RJS 16Nov99
-//DEADCODE CSB 09/11/99 				newitem->velhori = 100 + Math_Lib.rnd(100);			
+//DEADCODE CSB 09/11/99 				newitem->velhori = 100 + Math_Lib.rnd(100);
 //DIRTY FIX !!! //CSB 09/11/99
-				newitem->TransRandom = 0;					
+				newitem->TransRandom = 0;
 				newitem->CalcVels();
 
 				AddTransientItemToWorld(newitem,world);
@@ -7922,11 +7925,11 @@ void	TransObj::MobileAmmoBoxes(TransientItemPtr transit, WorldStuff& world)
 //Author		Robert Slater
 //Date			Mon 12 Aug 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::MobileBigExplosion(TransientItemPtr transit, WorldStuff& world)
@@ -7972,11 +7975,11 @@ void	TransObj::MobileBigExplosion(TransientItemPtr transit, WorldStuff& world)
 //
 //Description	Nothing to do with mushroom clouds.....
 //
-//				Is actually a dummy bomb movecode...	
+//				Is actually a dummy bomb movecode...
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::MobileDummyBomb(TransientItemPtr transit, WorldStuff& world)
@@ -8013,7 +8016,7 @@ void	TransObj::MobileDummyBomb(TransientItemPtr transit, WorldStuff& world)
 		}
 
 		//move the bomb
-		if (transit->LaunchTime>0)	
+		if (transit->LaunchTime>0)
 		{
 			GAndFriction(transit,50);
 
@@ -8030,11 +8033,11 @@ void	TransObj::MobileDummyBomb(TransientItemPtr transit, WorldStuff& world)
 //Author		Robert Slater
 //Date			Tue 27 May 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::MobileVapourTransient(TransientItemPtr	transit, WorldStuff&	world)
@@ -8046,11 +8049,11 @@ void	TransObj::MobileVapourTransient(TransientItemPtr	transit, WorldStuff&	world
 //Author		Robert Slater
 //Date			Wed 4 Jun 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::MobileRocket(TransientItemPtr	transit, WorldStuff&	world)
@@ -8067,12 +8070,12 @@ void	TransObj::MobileRocket(TransientItemPtr	transit, WorldStuff&	world)
 //DeadCode MS 30Nov98			Coords3D	hitcoords;
 //DeadCode MS 30Nov98			int			gindex;
 //DeadCode MS 30Nov98
-//DeadCode MS 30Nov98			if (transit->Status.deadtime == 0)					
+//DeadCode MS 30Nov98			if (transit->Status.deadtime == 0)
 //DeadCode MS 30Nov98			{
 //DeadCode MS 30Nov98				hititem=BoxCol::NineSectorCol(transit,hitcoords,gindex);
 //DeadCode MS 30Nov98				if (hititem)
 //DeadCode MS 30Nov98				{
-//DeadCode MS 30Nov98					transit->LaunchTime=0;								
+//DeadCode MS 30Nov98					transit->LaunchTime=0;
 //DeadCode MS 30Nov98					transit->TransRandom = 2;
 //DeadCode MS 30Nov98				}
 //DeadCode MS 30Nov98				else
@@ -8082,12 +8085,12 @@ void	TransObj::MobileRocket(TransientItemPtr	transit, WorldStuff&	world)
 //DeadCode MS 30Nov98					{
 //DeadCode MS 30Nov98						UByte	theArea = Three_Dee.GetLandType();//MS 30Nov98
 //DeadCode MS 30Nov98
-//DeadCode MS 30Nov98						transit->LaunchTime=0;								
+//DeadCode MS 30Nov98						transit->LaunchTime=0;
 //DeadCode MS 30Nov98						transit->TransRandom = 2;
 //DeadCode MS 30Nov98
 //DeadCode MS 30Nov98						hitcoords = transit->World;
 //DeadCode MS 30Nov98						hitcoords.Y = groundheight+METRES01;
-//DeadCode MS 30Nov98																			
+//DeadCode MS 30Nov98
 //DeadCode MS 30Nov98						DoImpactGround(transit,hitcoords,theArea);//MS 30Nov98
 //DeadCode MS 30Nov98					}
 //DeadCode MS 30Nov98				}
@@ -8172,12 +8175,12 @@ void	TransObj::MobileRocket(TransientItemPtr	transit, WorldStuff&	world)
 			Coords3D	hitcoords;
 			int			gindex;
 
-			if (transit->Status.deadtime == 0)					
+			if (transit->Status.deadtime == 0)
 			{
 				hititem=BoxCol::NineSectorCol(transit,hitcoords,gindex);
 				if (hititem)
 				{
-					transit->LaunchTime=0;								
+					transit->LaunchTime=0;
 //DeadCode RJS 26Feb99					transit->TransRandom = 2;
 				}
 				else
@@ -8188,12 +8191,12 @@ void	TransObj::MobileRocket(TransientItemPtr	transit, WorldStuff&	world)
 					{
 //DeadCode RJS 28Apr99						UByte	theArea = Three_Dee.GetLandType();//MS 30Nov98
 
-						transit->LaunchTime=0;								
+						transit->LaunchTime=0;
 //DeadCode RJS 26Feb99						transit->TransRandom = 2;
 
 						hitcoords = transit->World;
 						hitcoords.Y = groundheight+METRES01;
-																			
+
 						DoImpactGround(transit,hitcoords,theArea);//MS 30Nov98
 					}
 				}
@@ -8209,7 +8212,7 @@ void	TransObj::MobileRocket(TransientItemPtr	transit, WorldStuff&	world)
 
 			burntime -= Timer_Code.FRAMETIME;					//RJS 15Jun99
 			if (burntime <= 0)									//RJS 15Jun99
-			{													//RJS 15Jun99	
+			{													//RJS 15Jun99
 				burntime = 0;									//RJS 15Jun99
 				SHAPE.DetatchAllVapourStreams(transit,400);		//RJS 15Jun99
 			}													//RJS 15Jun99
@@ -8225,11 +8228,11 @@ void	TransObj::MobileRocket(TransientItemPtr	transit, WorldStuff&	world)
 //Author		Robert Slater
 //Date			Mon 22 Sep 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::MobileCloneGun(TransientItemPtr transit, WorldStuff& world)
@@ -8267,7 +8270,7 @@ void	TransObj::MobileCloneGun(TransientItemPtr transit, WorldStuff& world)
 				ShapeNum			theShape = (ShapeNum) adptr->shapename;
 				SWord				muzPitch = 0;	// Maybe defined in airstruc
 				LnchrType			launchmask = (LnchrType)(adptr->lnchtype & LT_MASK);//RJS 09Jul99
-				
+
 				vel = transit->vel_;
 
 				switch (launchmask)							//RJS 09Jul99
@@ -8301,17 +8304,17 @@ void	TransObj::MobileCloneGun(TransientItemPtr transit, WorldStuff& world)
 							hdg = AC->hdg;
 							pitch = AC->pitch;
 	//DeadCode CSB 11Aug00 						SWord bhdg, bpitch;
-	//DeadCode CSB 11Aug00 						SLong bvel;						
+	//DeadCode CSB 11Aug00 						SLong bvel;
 	//DeadCode CSB 11Aug00 						AC->CalcBulletVel(mvel, bhdg, bpitch, bvel);
 	//DeadCode CSB 11Aug00 						hdg   = (Angles)bhdg;
 	//DeadCode CSB 11Aug00 						pitch = (Angles)bpitch;
 	//DeadCode CSB 11Aug00 						vel   = Float(bvel);
-	//DeadCode CSB 11Aug00 
+	//DeadCode CSB 11Aug00
 	//DeadCode CSB 11Aug00 						Float sin_ang,cos_ang;
 	//DeadCode CSB 11Aug00 						Math_Lib.high_sin_cos(pitch,sin_ang,cos_ang);
 	//DeadCode CSB 11Aug00 						vely = vel * sin_ang;
 	//DeadCode CSB 11Aug00 						velh = vel * cos_ang;
-	//DeadCode CSB 11Aug00 
+	//DeadCode CSB 11Aug00
 	//DeadCode CSB 11Aug00 						Math_Lib.high_sin_cos(hdg,sin_ang,cos_ang);
 	//DeadCode CSB 11Aug00 						velx = velh * sin_ang;
 	//DeadCode CSB 11Aug00 						velz = velh * cos_ang;
@@ -8368,7 +8371,7 @@ void	TransObj::MobileCloneGun(TransientItemPtr transit, WorldStuff& world)
 	//DEADCODE CSB 09/11/99 									velh,
 										SLong(vel),
 										transit->nationality,
-										index,			
+										index,
 										index2,
 										adptr->delay,				//RJS 21Jul98
 										clonesleft,//-1,						//RJS 20Jun00
@@ -8402,11 +8405,11 @@ void	TransObj::MobileCloneGun(TransientItemPtr transit, WorldStuff& world)
 //Author		Robert Slater
 //Date			Thu 22 Jan 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::MobileNapalm(TransientItemPtr transit, WorldStuff& world)
@@ -8448,24 +8451,24 @@ void	TransObj::MobileNapalm(TransientItemPtr transit, WorldStuff& world)
 //Author		Robert Slater
 //Date			Wed 18 Feb 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileDoDamage(TransientItemPtr transit,WorldStuff& world)
 {
 
-	if ((transit->LaunchTime-=Timer_Code.FRAMETIME)<0)			
+	if ((transit->LaunchTime-=Timer_Code.FRAMETIME)<0)
 		transit->LaunchTime=0;
 	else
 	{
 //DeadCode RJS 13Aug00 		transit->TransRandom += Timer_Code.FRAMETIME;
 		if ((transit->LaunchTime & 0x04)==0)					//RJS 23Dec99
 		{
-			if (transit->Status.deadtime == 0)					
+			if (transit->Status.deadtime == 0)
 			{
 				ItemPtr		hititem;
 				Coords3D	hitcoords;
@@ -8526,9 +8529,9 @@ void TransObj::MobileDoDamage(TransientItemPtr transit,WorldStuff& world)
 //DeadCode RJS 5Jun00 		{
 //DeadCode RJS 5Jun00 			MissileAnimData*	adptr = (MissileAnimData*) transit->Anim;
 //DeadCode RJS 5Jun00 			DeathTollLink*		pDToll = (DeathTollLink*) adptr->lastmissile;
-//DeadCode RJS 5Jun00 
+//DeadCode RJS 5Jun00
 //DeadCode RJS 5Jun00 			delete pDToll;
-//DeadCode RJS 5Jun00 
+//DeadCode RJS 5Jun00
 //DeadCode RJS 5Jun00 			adptr->lastmissile = NULL;
 //DeadCode RJS 5Jun00 		}
 
@@ -8541,18 +8544,18 @@ void TransObj::MobileDoDamage(TransientItemPtr transit,WorldStuff& world)
 //Author		Robert Slater
 //Date			Mon 2 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileThuggery(TransientItemPtr transit,WorldStuff& world)
 {
 	ThugAnimData	*adptr = (ThugAnimData*) transit->Anim;
 
-	if ((transit->LaunchTime-=Timer_Code.FRAMETIME)<0)			
+	if ((transit->LaunchTime-=Timer_Code.FRAMETIME)<0)
 		transit->LaunchTime=0;
 	else
 	{
@@ -8594,11 +8597,11 @@ void TransObj::MobileThuggery(TransientItemPtr transit,WorldStuff& world)
 					transit->World.Z = adptr->nZPos;
 					transit->TransRandom = 1;
 					scared = FALSE;
-				
+
 					animptr	tmpanim = theVictim->Anim;	 //RJS 05Jul99
 //DeadCode AMM 05Jul99 					animptr	tmpanim = transit->Launcher->Anim;
 					tmpanim += adptr->nanimoff;
-		
+
 					mad = (GrpMinAnimData*) tmpanim;
 				}
 			}
@@ -8607,7 +8610,7 @@ void TransObj::MobileThuggery(TransientItemPtr transit,WorldStuff& world)
 			{
 				itemptr		hititem;
 
-				hititem=BoxCol::SpecificCollision(transit,theVictim);//RJS 05Jul99	
+				hititem=BoxCol::SpecificCollision(transit,theVictim);//RJS 05Jul99
 //DeadCode AMM 05Jul99 				hititem=BoxCol::SpecificCollision(transit,transit->Launcher);
 			}
 		}
@@ -8633,18 +8636,18 @@ void TransObj::MobileThuggery(TransientItemPtr transit,WorldStuff& world)
 //Author		Robert Slater
 //Date			Thu 3 Dec 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileSmallThug(TransientItemPtr transit,WorldStuff& world)
 {
 	ThugAnimData	*adptr = (ThugAnimData*) transit->Anim;
 
-	if ((transit->LaunchTime-=Timer_Code.FRAMETIME)<0)			
+	if ((transit->LaunchTime-=Timer_Code.FRAMETIME)<0)
 		transit->LaunchTime=0;
 	else
 	{
@@ -8677,9 +8680,9 @@ void TransObj::MobileSmallThug(TransientItemPtr transit,WorldStuff& world)
 //
 //Description	A/c death spiral
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void MoveAirStruc::AutoSpiral2Ground(WorldStuff& world)
@@ -8738,7 +8741,7 @@ void MoveAirStruc::AutoSpiral2Ground(WorldStuff& world)
 //DeadCode DAW 03Sep98				{												//RJS 12Sep97
 //DeadCode DAW 03Sep98					_Miles.StopEngine();						//RJS 12Sep97
 //DeadCode DAW 03Sep98					GR_Quit3DNow=CRASHED_DEAD;					//RJS 12Sep97
-//DeadCode DAW 03Sep98					
+//DeadCode DAW 03Sep98
 //DeadCode DAW 03Sep98					Trans_Obj.View_Object->SetToDeathView();				//RDH 02Sep98
 //DeadCode DAW 03Sep98																//RJS 12Sep97
 //DeadCode DAW 03Sep98					if(_DPlay.Implemented)						//RJS 12Sep97
@@ -8833,7 +8836,7 @@ void MoveAirStruc::AutoSpiral2Ground(WorldStuff& world)
 	}
 	else
 	{
-		SWord	lstate,rstate;	
+		SWord	lstate,rstate;
 		UWord	rollstep = ANGLES_5Deg;
 
 		if (SHAPESTUFF.GetShapePtr(this->shape)->AnimDataSize == AIRCRAFTANIM)
@@ -8873,54 +8876,54 @@ void MoveAirStruc::AutoSpiral2Ground(WorldStuff& world)
 //Author		Paul.
 //Date			Mon 29 Apr 1996
 //				//RDH 23Jul96 modified drag
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::GAndFriction(mobileitem* itm,SWord dragfactor,SWord dragfacy)
 {
 //DEADCODE CSB 09/11/99 	SWord	frametime;
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	frametime = Timer_Code.FRAMETIME;							//DAW 31Jul96
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	//Vertical velocity first
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	SLong	testvel;
 //DEADCODE CSB 09/11/99 	SLong	testvely;											//RJS 04Jul96
 //DEADCODE CSB 09/11/99 	SLong	fractionpoo = (itm->timeofday<<1)&127;		//RJS 03Jun97
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	SLong	deltax, deltay;
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	testvel = itm->vel_y;
 //DEADCODE CSB 09/11/99 //rdh	testvel -= 2;	//(frametime * TenMetresPerSec)/100;
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 //vel units are mm/cs
 //DEADCODE CSB 09/11/99 //frametime is in cs
 //DEADCODE CSB 09/11/99 // g = 10m/s/s = 10 * 1000 / (100 * 100) mm/cs/cs = 1 mm/cs/cs
 //DEADCODE CSB 09/11/99 // delta vel = frame time in cs * g
 //DEADCODE CSB 09/11/99 	testvel -= frametime * 1000; //CSB 09/11/99
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	if (testvel>TerminalVelocity)
 //DEADCODE CSB 09/11/99 		itm->vel_y=TerminalVelocity;
 //DEADCODE CSB 09/11/99 	else
 //DEADCODE CSB 09/11/99 		itm->vel_y = (SWord )testvel;
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	//Calculate new horizontal velocity using v = kut
 //DEADCODE CSB 09/11/99 	//where k = drag factor
 //DEADCODE CSB 09/11/99 	//		t = 1 second
-//DEADCODE CSB 09/11/99 
-//DEADCODE CSB 09/11/99 //	testvel = (itm->velhori * frametime)/0x1000;				
+//DEADCODE CSB 09/11/99
+//DEADCODE CSB 09/11/99 //	testvel = (itm->velhori * frametime)/0x1000;
 //DEADCODE CSB 09/11/99 //	testvely = (itm->vely * frametime)/0x90;					//RJS 07Aug96
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	testvel = (itm->velhori * frametime * dragfactor)>>12;		//RJS 22Apr99
 //DEADCODE CSB 09/11/99 	testvely = (itm->vely * frametime * dragfacy)/0x90;			//RJS 22Apr99
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	deltax = (itm->velhori * (frametime<<7/10)+fractionpoo)>>7;
 //DEADCODE CSB 09/11/99 	deltay = (itm->vely * (frametime<<7/10)+fractionpoo)>>7;
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	itm->velhori -= testvel;									//RJS 22Apr99
 //DEADCODE CSB 09/11/99 	itm->vely -= testvely;										//RJS 22Apr99
 
@@ -8987,60 +8990,60 @@ void TransObj::GAndFriction(mobileitem* itm,SWord dragfactor,SWord dragfacy)
 //Author		Robert Slater
 //Date			Fri 29 May 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::GAndFrictionFixedPitch(mobileitem* itm,SWord dragfactor,SWord dragfacy)
 {
 //DeadCode RJS 12Nov99 	ApplyVelocities(itm);
-//DeadCode RJS 12Nov99 
+//DeadCode RJS 12Nov99
 //DeadCode RJS 12Nov99 //DIRTY FIX !!! //CSB 09/11/99
-//DeadCode RJS 12Nov99 
-//DEADCODE CSB 09/11/99 	SWord	frametime = Timer_Code.FRAMETIME;			
+//DeadCode RJS 12Nov99
+//DEADCODE CSB 09/11/99 	SWord	frametime = Timer_Code.FRAMETIME;
 //DEADCODE CSB 09/11/99 	SLong	testvel;
-//DEADCODE CSB 09/11/99 	SLong	testvely;											
-//DEADCODE CSB 09/11/99 	SLong	fractionpoo = (itm->timeofday<<1)&127;	
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99 	SLong	testvely;
+//DEADCODE CSB 09/11/99 	SLong	fractionpoo = (itm->timeofday<<1)&127;
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	SLong	deltax, deltay;
 //DEADCODE CSB 09/11/99 	SWord	sin_ang,cos_ang;
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	testvel = itm->vely;
 //DEADCODE CSB 09/11/99 	testvel -= 2;
-//DEADCODE CSB 09/11/99 
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	if (testvel>TerminalVelocity)
 //DEADCODE CSB 09/11/99 		itm->vely=TerminalVelocity;
 //DEADCODE CSB 09/11/99 	else
 //DEADCODE CSB 09/11/99 		itm->vely = (SWord )testvel;
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	//Calculate new horizontal velocity using v = kut
 //DEADCODE CSB 09/11/99 	//where k = drag factor
 //DEADCODE CSB 09/11/99 	//		t = 1 second
-//DEADCODE CSB 09/11/99 
-//DEADCODE CSB 09/11/99 	testvel = (itm->velhori * frametime)>>12;	
-//DEADCODE CSB 09/11/99 	testvely = (itm->vely * frametime)/0x90;				
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
+//DEADCODE CSB 09/11/99 	testvel = (itm->velhori * frametime)>>12;
+//DEADCODE CSB 09/11/99 	testvely = (itm->vely * frametime)/0x90;
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	deltax = (itm->velhori * (frametime<<7/10)+fractionpoo)>>7;
 //DEADCODE CSB 09/11/99 	deltay = (itm->vely * (frametime<<7/10)+fractionpoo)>>7;
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	if (dragfactor)
-//DEADCODE CSB 09/11/99 		itm->velhori -= (dragfactor*testvel);		
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99 		itm->velhori -= (dragfactor*testvel);
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	if (dragfacy)
 //DEADCODE CSB 09/11/99 		itm->vely -= (dragfacy*testvely);
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	itm->World.Y += (itm->vely * frametime)/10;
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	testvel = (frametime * itm->velhori)/10;
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	if (testvel>TerminalVelocity)	testvel = TerminalVelocity;
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	Math_Lib.high_sin_cos((ANGLES )itm->hdg,sin_ang,cos_ang);
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	itm->World.X += (testvel*sin_ang)/ANGLES_FRACT;
 //DEADCODE CSB 09/11/99 	itm->World.Z += (testvel*cos_ang)/ANGLES_FRACT;
 //DEADCODE CSB 09/11/99 	itm->uniqueID.changed = TRUE;
@@ -9102,29 +9105,29 @@ void TransObj::GAndFrictionFixedPitch(mobileitem* itm,SWord dragfactor,SWord dra
 	//This shouldn't need to be done every frame...				//RJS 12Nov99
 	itm->hdg   = Math_Lib.arctan(itm->vel_z, itm->vel_x);		//RJS 12Nov99
 #endif
-}															
+}
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		NoGravityAndFriction
 //Author		Robert Slater
 //Date			Thu 18 Jun 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::NoGravityAndFriction(mobileitem* itm,SWord dragfactor)
 {
 //DIRTY FIX !!! //CSB 09/11/99
-	
-//DEADCODE CSB 09/11/99 	SWord	frametime = Timer_Code.FRAMETIME;			
-//DEADCODE CSB 09/11/99 	SLong	testvel = (itm->velhori * frametime)>>12;					
-//DEADCODE CSB 09/11/99 
+
+//DEADCODE CSB 09/11/99 	SWord	frametime = Timer_Code.FRAMETIME;
+//DEADCODE CSB 09/11/99 	SLong	testvel = (itm->velhori * frametime)>>12;
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	if (dragfactor)
-//DEADCODE CSB 09/11/99 		itm->velhori -= (dragfactor*testvel);	
+//DEADCODE CSB 09/11/99 		itm->velhori -= (dragfactor*testvel);
 
 	ApplyVelocities(itm);
 }
@@ -9134,11 +9137,11 @@ void TransObj::NoGravityAndFriction(mobileitem* itm,SWord dragfactor)
 //Author		Robert Slater
 //Date			Tue 7 Jan 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::AddWindDrift(item* itm)
@@ -9171,11 +9174,11 @@ void TransObj::AddWindDrift(item* itm)
 //Author		Paul.
 //Date			Mon 29 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::ApplyVelocities_HdgPitch(mobileitem* itm)
@@ -9205,30 +9208,30 @@ void TransObj::ApplyVelocities_HdgPitch(mobileitem* itm)
 																			 //CSB 09/11/99
 #endif
 	itm->uniqueID.changed = TRUE;											 //CSB 09/11/99
-	
-	
+
+
 //DEADCODE CSB 09/11/99 	SWord	frametime;
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	frametime = Timer_Code.FRAMETIME;							//DAW 31Jul96
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	itm->pitch = Math_Lib.arctan(itm->vely,itm->velhori);
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	itm->World.Y += (itm->vely * frametime)/10;
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	SLong	temp;
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	temp = (frametime * itm->velhori)/10;
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	if (temp>TerminalVelocity)	temp = TerminalVelocity;
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	SWord	sin_ang,cos_ang;
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	Math_Lib.high_sin_cos((ANGLES )itm->hdg,sin_ang,cos_ang);
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	itm->World.X += (temp*sin_ang)/ANGLES_FRACT;
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	itm->World.Z += (temp*cos_ang)/ANGLES_FRACT;
-//DEADCODE CSB 09/11/99 
+//DEADCODE CSB 09/11/99
 //DEADCODE CSB 09/11/99 	itm->uniqueID.changed = TRUE;
 
 }
@@ -9267,12 +9270,12 @@ void TransObj::ApplyVelocities(mobileitem* itm)
 //Date			Mon 29 Apr 1996
 //
 //Description
-//	
+//
 //	NB. All the special effects and damage are taken care of externally RJS 27Feb98
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MissileHitSomething(	itemptr			hititem,
@@ -9289,7 +9292,7 @@ void TransObj::MissileHitSomething(	itemptr			hititem,
 //
 //Description	Adds some RANDOM dammage to an aircraft
 //
-//Inputs		
+//Inputs
 //
 //Returns		TRUE if item is dead,
 //				FALSE otherwise
@@ -9311,31 +9314,31 @@ void TransObj::GeneralAircraftDammage(AirStruc* ac,
 //
 //Description	Comms set Aircarft Damage
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::DirectAircraftDamage(AirStruc* ac,WorldStuff& worldptr, BitStates state, BitFlags whichbit)
 {
 //DeadCode RJS 7Jun00 	SLong		temp;
 //DeadCode RJS 7Jun00 	Bool		noanim;
-//DeadCode RJS 7Jun00 
+//DeadCode RJS 7Jun00
 //DeadCode RJS 7Jun00 	AircraftAnimData* adptr;
-//DeadCode RJS 7Jun00 	
+//DeadCode RJS 7Jun00
 //DeadCode RJS 7Jun00 	adptr = (AircraftAnimData* )ac->Anim;
-//DeadCode RJS 7Jun00 
+//DeadCode RJS 7Jun00
 //DeadCode RJS 7Jun00 	if (whichbit < BF_Pilot)
 //DeadCode RJS 7Jun00 		noanim = FALSE;
 //DeadCode RJS 7Jun00 	else
 //DeadCode RJS 7Jun00 		noanim = TRUE;
-//DeadCode RJS 7Jun00 
+//DeadCode RJS 7Jun00
 //DeadCode RJS 7Jun00 	if (state!=BS_DEAD)
 //DeadCode RJS 7Jun00 	{
 //DeadCode RJS 7Jun00 		state++;
 //DeadCode RJS 7Jun00 		AcDamageEffects(ac,whichbit,state,worldptr);//RJS 08Aug96
 //DeadCode RJS 7Jun00 		SetAircraftDammage(ac,worldptr,whichbit,state,noanim,FALSE,FALSE,FALSE);
-//DeadCode RJS 7Jun00 
+//DeadCode RJS 7Jun00
 //DeadCode RJS 7Jun00 		if (state == BS_DEAD)									//RJS 06Sep96
 //DeadCode RJS 7Jun00 		{
 //DeadCode RJS 7Jun00 			ShapeDescPtr	sdptr = SHAPESTUFF.GetShapePtr(ac->shape);
@@ -9354,16 +9357,16 @@ void TransObj::DirectAircraftDamage(AirStruc* ac,WorldStuff& worldptr, BitStates
 //Author		Paul.
 //Date			Thu 18 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::SetAircraftDammage(	AirStruc*	ac,
 									WorldStuff& worldptr,
-									BitFlags	whichbit,	
+									BitFlags	whichbit,
 									BitStates	whatstate,
 									Bool		noanim,
 									Bool		nomovecode,
@@ -9382,11 +9385,11 @@ void TransObj::SetAircraftDammage(	AirStruc*	ac,
 //Author		Robert Slater
 //Date			Fri 2 Aug 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::AcDamageEffects(AirStruc*	ac, BitFlags	whichbit, BitStates	whatstate,WorldStuff&	worldptr)
@@ -9398,11 +9401,11 @@ void	TransObj::AcDamageEffects(AirStruc*	ac, BitFlags	whichbit, BitStates	whatst
 //Author		Paul.
 //Date			Wed 1 May 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::KillLauncher(itemptr launcher,ItemPtr killer,WorldStuff& world,SByte	gindex,Coords3D*	hitcoords,Bool	airtoair)//JIM 11Mar99
@@ -9445,7 +9448,7 @@ void TransObj::KillLauncher(itemptr launcher,ItemPtr killer,WorldStuff& world,SB
 					ExplodeAC(ac,killer,world);						//JIM 11Mar99
 				}
 			}
-			
+
 			Squad_Diary.UpdateKilledAC();									//RJS 4Sep00
 		}
 		else
@@ -9493,11 +9496,11 @@ void TransObj::KillLauncher(itemptr launcher,ItemPtr killer,WorldStuff& world,SB
 //Author		Robert Slater
 //Date			Wed 11 Jun 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::ReloadWeapons(AirStrucPtr	ac)
@@ -9556,11 +9559,11 @@ void	TransObj::ReloadWeapons(AirStrucPtr	ac)
 //Author		Robert Slater
 //Date			Wed 11 Jun 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	TransObj::DumpFuel(AirStrucPtr	ac, WorldStuff& world, Bool byaccident)
@@ -9586,7 +9589,7 @@ Bool	TransObj::DumpFuel(AirStrucPtr	ac, WorldStuff& world, Bool byaccident)
 					failchance = 0;
 				else
 					failchance = weapon->SubDamage * Math_Lib.rnd();
-	
+
 				if (failchance < 1048544)						//RJS 27May98
 				{
 					if (ac==Persons2::PlayerSeenAC)
@@ -9609,9 +9612,9 @@ Bool	TransObj::DumpFuel(AirStrucPtr	ac, WorldStuff& world, Bool byaccident)
 						{}//DEADCODE RDH 07/12/99 						_Radio.TriggerMsg(MESSAGE_STRUC(OLDSCRIPT_HUNGTANK, MSG_STATUSRESPONSE_X, ac, ac, ac->GroupLeader()));
 						{}//DEADCODE RDH 07/12/99 						_Radio.TriggerMsg(MESSAGE_STRUC (OLDSCRIPT_CALLEE_HUNGTANKREPLY, MSG_STATUSRESPONSEREPLY_DELAY_LP_RPT, ac->GroupLeader(), ac, ac));//RDH 18May99
 						ac->/*FormationItem::*/BreakForm();		//GO HOME	//CSB 23/05/99	 //JIM 09/09/99
-//DeadCode RJS 05Nov99 						ac->FormationItem::BreakForm();		//GO HOME	//CSB 23/05/99	
-						ac->waypoint = NULL;							//CSB 23/05/99	
-						ac->movecode = AUTO_FOLLOWWP;					//CSB 23/05/99	
+//DeadCode RJS 05Nov99 						ac->FormationItem::BreakForm();		//GO HOME	//CSB 23/05/99
+						ac->waypoint = NULL;							//CSB 23/05/99
+						ac->movecode = AUTO_FOLLOWWP;					//CSB 23/05/99
 						ac->information = IF_OUT_POS;					//CSB 22Aug00
 						ac->manoeuvretime = 0;
 					}
@@ -9628,11 +9631,11 @@ Bool	TransObj::DumpFuel(AirStrucPtr	ac, WorldStuff& world, Bool byaccident)
 //Author		Robert Slater
 //Date			Wed 11 Jun 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::DumpWeapons(AirStrucPtr	ac, WorldStuff& world)
@@ -9677,7 +9680,7 @@ void	TransObj::DumpWeapons(AirStrucPtr	ac, WorldStuff& world)
 							while (weapon->LoadedStores)
 							{
 								LaunchWeapon(false,ac,weapon,index,xpos,ypos,zpos,world,mvel,mdelay,TRUE);//RJS 15Nov99
-								
+
 								weapon = SHAPE.GetWeaponLauncher(ac,index,xpos,ypos,zpos,mvel,mdelay,mburst,LT_ROCKET);
 								if (!weapon)
 									break;
@@ -9760,11 +9763,11 @@ void	TransObj::DumpWeapons(AirStrucPtr	ac, WorldStuff& world)
 //Author		Robert Slater
 //Date			Wed 16 Sep 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SLong	TransObj::ReActivateStation(AirStrucPtr	ac, ULong &muzVel, UWord &ammotot, UWord	&muzdelay, SWord& ammoGone, SWord& cannonGone, WorldStuff& world, Bool isUnarmed)//RJS 16Sep98
@@ -9775,8 +9778,8 @@ SLong	TransObj::ReActivateStation(AirStrucPtr	ac, ULong &muzVel, UWord &ammotot,
 	if (ac->weap.weapontype != MINWEAP)
 	{
 		LnchrType			currentweapon;
-		SLong				xpos, ypos, zpos;							
-		SLong				usexpos, useypos, usezpos;							
+		SLong				xpos, ypos, zpos;
+		SLong				usexpos, useypos, usezpos;
 		WeapAnimData*		weapon;
 		WeapAnimData*		useweapon;
 		AircraftAnimData*	adptr = (AircraftAnimData*) ac->Anim;
@@ -9816,7 +9819,7 @@ SLong	TransObj::ReActivateStation(AirStrucPtr	ac, ULong &muzVel, UWord &ammotot,
 			{
 				foundWeap++;
 				ammotot += weapon->LoadedStores;
-				if (weapon->LoadedStores > highestammo)	
+				if (weapon->LoadedStores > highestammo)
 				{
 					highestammo = weapon->LoadedStores;
 					useweapon = weapon;
@@ -9848,14 +9851,14 @@ SLong	TransObj::ReActivateStation(AirStrucPtr	ac, ULong &muzVel, UWord &ammotot,
 
 				//If you're on the ground, no damage.
 	//			if (ac->fly.pModel->GearTouched)					//RJS 10Jun99
-	//				isUnarmed = TRUE;								//RJS 10Jun99		
+	//				isUnarmed = TRUE;								//RJS 10Jun99
 			}
 
 	//DeadRJS		ammotot -= 1;											//RJS 09Sep98
 
 			retval = currindex;										//RJS 16Sep98
 			ammoGone = LaunchWeapon(false,ac,useweapon,currindex,usexpos,useypos,usezpos,world,muzVel,muzdelay,isUnarmed);	//RJS 10Jul00
-			ammotot -= ammoGone;		
+			ammotot -= ammoGone;
 
 			if (currentweapon == LT_CANNON)								//RJS 17Oct00
 				cannonGone = ammoGone;									//RJS 17Oct00
@@ -9892,11 +9895,11 @@ SLong	TransObj::ReActivateStation(AirStrucPtr	ac, ULong &muzVel, UWord &ammotot,
 //Author		Robert Slater
 //Date			Tue 10 Jun 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::WeaponSearch(AirStrucPtr	ac, WeapSearchType	direction, Bool wrap)
@@ -9988,7 +9991,7 @@ void	TransObj::WeaponSearch(AirStrucPtr	ac, WeapSearchType	direction, Bool wrap)
 					if (defaultweap!=MINWEAP)
 					{
 						int		minVal = LT_MASK;
-						
+
 						isOk = TRUE;
 						nextval = MINWEAP;
 
@@ -10045,7 +10048,7 @@ void	TransObj::WeaponSearch(AirStrucPtr	ac, WeapSearchType	direction, Bool wrap)
 			}
 
 			SetTotalAmmo(ac);
-		}									
+		}
 
 //DeadCode RJS 5Oct00 		ac->weap.weapontype = nextval;
 	}
@@ -10067,11 +10070,11 @@ static	rotitem	duff_Launcher;
 //Author		Paul.
 //Date			Mon 29 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::ControlKeybWeap(AirStrucPtr ac,WorldStuff& world)
@@ -10101,17 +10104,17 @@ void TransObj::ControlKeybWeap(AirStrucPtr ac,WorldStuff& world)
 //DeadCode MS 30Nov98			LaunchTrackedBullet(ac,world);
 //DeadCode RJS 03Dec98		}
 //DeadCode RJS 03Dec98		else
-//DeadCode RJS 03Dec98			fakeshootdelay -= frametime;	
+//DeadCode RJS 03Dec98			fakeshootdelay -= frametime;
 
 //DEADCODE CSB 01/11/99 		if (Key_Tests.KeyPress3d(WINGSPANUP) || Key_Tests.KeyHeld3d(WINGSPANUP))
 //DEADCODE CSB 01/11/99 			SHAPE.WingSpanUp();
-//DEADCODE CSB 01/11/99 
+//DEADCODE CSB 01/11/99
 //DEADCODE CSB 01/11/99 		if (Key_Tests.KeyPress3d(WINGSPANDOWN) || Key_Tests.KeyHeld3d(WINGSPANDOWN))
 //DEADCODE CSB 01/11/99 			SHAPE.WingSpanDown();
-//DEADCODE CSB 01/11/99 
+//DEADCODE CSB 01/11/99
 //DEADCODE CSB 01/11/99 		if (Key_Tests.KeyPress3d(GUNRANGEUP) || Key_Tests.KeyHeld3d(GUNRANGEUP))
 //DEADCODE CSB 01/11/99 			SHAPE.GunRangeUp();
-//DEADCODE CSB 01/11/99 
+//DEADCODE CSB 01/11/99
 //DEADCODE CSB 01/11/99 		if (Key_Tests.KeyPress3d(GUNRANGEDOWN) || Key_Tests.KeyHeld3d(GUNRANGEDOWN))
 //DEADCODE CSB 01/11/99 			SHAPE.GunRangeDown();
 
@@ -10139,7 +10142,7 @@ void TransObj::ControlKeybWeap(AirStrucPtr ac,WorldStuff& world)
 
 		if (Persons2::PlayerSeenAC->classtype->aerobaticfactor != AEROBATIC_LOW)
 		{
-			if (Key_Tests.KeyPress3d(LASTWEAPON))					
+			if (Key_Tests.KeyPress3d(LASTWEAPON))
 				WeaponSearch(ac,Go_Backward);
 
 			if (Key_Tests.KeyPress3d(NEXTWEAPON))
@@ -10186,7 +10189,7 @@ void TransObj::ControlKeybWeap(AirStrucPtr ac,WorldStuff& world)
 
 								ac->ai.desiredturn=0;
 							}
-							adptr->lastweapindex = wpindex;	
+							adptr->lastweapindex = wpindex;
 						}
 
 						ac->weap.weapontype = oldweaptype;
@@ -10194,9 +10197,9 @@ void TransObj::ControlKeybWeap(AirStrucPtr ac,WorldStuff& world)
 				}
 #ifndef	NDEBUG
 			}
-#endif			
+#endif
 		}
-			
+
 		AirStrucPtr	buddy;
 
 //DeadCode RJS 17Oct00 		if (Key_Tests.KeyPress3d(DUMPWEAPONS) && (Persons2::PlayerSeenAC->classtype->aerobaticfactor != AEROBATIC_LOW))	//RJS 4Oct00
@@ -10386,9 +10389,9 @@ void TransObj::ControlKeybWeap(AirStrucPtr ac,WorldStuff& world)
 //Description	Demo routine - tests for a value in uiddeathitem and
 //				kills the item using the method set in deathtype
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::TestForItem2Kill(WorldStuff& world)
@@ -10436,17 +10439,17 @@ void TransObj::TestForItem2Kill(WorldStuff& world)
 //Author		Robert Slater
 //Date			Mon 14 Oct 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::PilotedACHit()
 {
 	TargetSize	tsz = Save_Data.targetsize;
-	Save_Data.targetsize = TS_MIN;
+	Save_Data.targetsize = TS_MINI;
 
 	if (	Save_Data.gamedifficulty[GD_COLLISIONS]				//RJS 25Jan99
 		&&	!(Manual_Pilot.ControlledAC2->Status.deadtime)
@@ -10473,7 +10476,7 @@ void TransObj::PilotedACHit()
 //
 //Inputs		Aircraft ptr and hit object.
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DeadCode AMM 28Apr99 void TransObj::CommsACHit (AirStrucPtr hititem1, itemptr hititem2)
@@ -10522,11 +10525,11 @@ void TransObj::PilotedACHit()
 //Author		Robert Slater
 //Date			Mon 18 Jan 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::ExecuteAnimation(	ItemPtr				itm,
@@ -10545,11 +10548,11 @@ void	TransObj::ExecuteAnimation(	ItemPtr				itm,
 //Author		Robert Slater
 //Date			Thu 27 Feb 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::ExecuteAnimation(	ItemPtr		itm,
@@ -10661,7 +10664,7 @@ void	TransObj::ExecuteAnimation(	ItemPtr		itm,
 			}
 		}
 		break;
-		case ANIM_SMALLIMPACTEXPLODE:	
+		case ANIM_SMALLIMPACTEXPLODE:
 		{
 			if (WithinVisibleRange(hitCoords,400000))		//RJS 11Jun99
 			{
@@ -10744,7 +10747,7 @@ void	TransObj::ExecuteAnimation(	ItemPtr		itm,
 			{
 				hitpositm->World.Y = grpCoords.Y;
 				_Miles.PlaySample(FileNum(FIL_SFX_COLLAPSE_BUILDING_LARGE1+Math_Lib.rnd(4)),hitpositm);
-				LaunchDustRing(hitpositm,worldptr);	
+				LaunchDustRing(hitpositm,worldptr);
 				LaunchSmoulder(hitpositm,worldptr);
 			}
 			else
@@ -10756,17 +10759,17 @@ void	TransObj::ExecuteAnimation(	ItemPtr		itm,
 				Land_Scape.AddSmokeCloud(firepos,250/Timer_Code.FRAMETIME);
 			}
 		}
-		break;											
-		case ANIM_AMMOBOXES:										
+		break;
+		case ANIM_AMMOBOXES:
 			LaunchIgniteAmmoBoxes(hitpositm,groupindex,worldptr);//RJS 20Nov98
-			break;											
-		case ANIM_THROWBOXES:										
+			break;
+		case ANIM_THROWBOXES:
 			LaunchAmmoBoxes(hitpositm,groupindex,hitterCoords,damagestrength,worldptr);		//RJS 26Apr99
 			break;
-		case ANIM_FUELBARRELS:									
-			LaunchGroundExplosion(hitpositm,worldptr);		
-			LaunchFuelBarrels(hitpositm,worldptr);			
-			break;											
+		case ANIM_FUELBARRELS:
+			LaunchGroundExplosion(hitpositm,worldptr);
+			LaunchFuelBarrels(hitpositm,worldptr);
+			break;
 		case ANIM_CHICKENS:
 			if (WithinVisibleRange(hitCoords,100000))		//RJS 11Jun99
 			{
@@ -10784,14 +10787,14 @@ void	TransObj::ExecuteAnimation(	ItemPtr		itm,
 					_Miles.StopSample(FIL_SFX_TANK_LOOP1,itm);
 				}
 			}
-			break;											
-		case ANIM_BRIDGEDEATH:									
+			break;
+		case ANIM_BRIDGEDEATH:
 			hitpositm->World = oldcoords;
 			LaunchBridgeElement(itm,grpCoords,groupindex,worldptr);//RJS 26Feb99
 			break;
-		case ANIM_TRAINDEATH:									
+		case ANIM_TRAINDEATH:
 			_Miles.PlaySample((FileNum) (FIL_SFX_EXPLOSION_DISTANT1+Math_Lib.rnd(2)), (ItemBasePtr) hitpositm);
-			LaunchSmoulder(hitpositm,worldptr,TRUE);			
+			LaunchSmoulder(hitpositm,worldptr,TRUE);
 			break;
 		case ANIM_FUELDAMAGE:
 		{
@@ -10837,7 +10840,7 @@ void	TransObj::ExecuteAnimation(	ItemPtr		itm,
 			}
 		}
 		break;
-		case ANIM_WEAPONDAMAGE:									
+		case ANIM_WEAPONDAMAGE:
 			break;
 		case ANIM_TURBULANCE:
 			if (!_Replay.Playback)
@@ -10943,7 +10946,7 @@ void	TransObj::ExecuteAnimation(	ItemPtr		itm,
 			{
 				ShapeDescPtr		sdptr = SHAPESTUFF.GetShapePtr(shapehit);
 				ULong				size = 4 + ((sdptr->Size << 4)*damagestrength)/6324;//MS 10Dec98
-		
+
 				LaunchDebris(hitpositm,DebrisWoodShape,2,size,worldptr);
 			}
 		}
@@ -10980,7 +10983,7 @@ void	TransObj::ExecuteAnimation(	ItemPtr		itm,
 				hitpositm->shape = oldshape;
 			}
 			break;
-		case ANIM_TUMBLE:									
+		case ANIM_TUMBLE:
 		{
 			hitpositm->World = oldcoords;
 			LaunchCollapse(itm,grpCoords,groupindex,worldptr);
@@ -11087,7 +11090,7 @@ void	TransObj::ExecuteAnimation(	ItemPtr		itm,
 				vel = Math_Lib.rnd(100);
 
 				newitem->World = oldcoords;								//RJS 26Oct00
-				newitem->hdg = Angles(newhdg);			
+				newitem->hdg = Angles(newhdg);
 				newitem->pitch = ANGLES_30Deg;
  				newitem->vel_ = (100 + vel)*1000;
 				newitem->CalcVels();
@@ -11116,11 +11119,11 @@ void	TransObj::ExecuteAnimation(	ItemPtr		itm,
 //Author		Robert Slater
 //Date			Fri 3 Jul 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::LaunchSmokeCloud(mobileitem *launcher,ShapeNum	theShape,COORDS3D	pos,WorldStuff &worldptr)
@@ -11142,11 +11145,11 @@ void TransObj::LaunchSmokeCloud(mobileitem *launcher,ShapeNum	theShape,COORDS3D	
 //Author		Robert Slater
 //Date			Fri 21 Aug 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchDirtSmall(mobileitem* launcher,WorldStuff& worldptr, bool dosound)
@@ -11166,11 +11169,11 @@ void	TransObj::LaunchDirtSmall(mobileitem* launcher,WorldStuff& worldptr, bool d
 //Author		Robert Slater
 //Date			Fri 21 Aug 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchDirtMedium(mobileitem* launcher,WorldStuff& worldptr)
@@ -11191,11 +11194,11 @@ void	TransObj::LaunchDirtMedium(mobileitem* launcher,WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Fri 21 Aug 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchDirtLarge(mobileitem* launcher,WorldStuff& worldptr)
@@ -11241,11 +11244,11 @@ void	TransObj::LaunchDirtLarge(mobileitem* launcher,WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Fri 21 Aug 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchSplashSmall(mobileitem* launcher,WorldStuff& worldptr)
@@ -11263,11 +11266,11 @@ void	TransObj::LaunchSplashSmall(mobileitem* launcher,WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Fri 21 Aug 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchSplashMedium(mobileitem* launcher,WorldStuff& worldptr)
@@ -11287,11 +11290,11 @@ void	TransObj::LaunchSplashMedium(mobileitem* launcher,WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Fri 21 Aug 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchSplashLarge(mobileitem* launcher,WorldStuff& worldptr)
@@ -11313,11 +11316,11 @@ void	TransObj::LaunchSplashLarge(mobileitem* launcher,WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Fri 21 Aug 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchDustRingBig(mobileitem* launcher,WorldStuff& worldptr)
@@ -11343,11 +11346,11 @@ void	TransObj::LaunchDustRingBig(mobileitem* launcher,WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Fri 21 Aug 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::DoImpactGround(ItemPtr	launcher, Coords3D	impactpos,UByte	areatype)
@@ -11412,7 +11415,7 @@ void	TransObj::DoImpactGround(ItemPtr	launcher, Coords3D	impactpos,UByte	areatyp
 		{
 			_Miles.PlayOnce(FIL_SFX_DEBRIS_WATER2,launcher);
 			LaunchSplashMedium((mobileitem*)launcher,*world);
-		} else 
+		} else
 			LaunchNapalmStrike((mobileitem* )launcher,*world);
 	}
 	break;
@@ -11506,11 +11509,11 @@ void	TransObj::DoImpactGround(ItemPtr	launcher, Coords3D	impactpos,UByte	areatyp
 //Author		Robert Slater
 //Date			Mon 24 Aug 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LandedEffect(AirStrucPtr	ac, SLong	landed,Bool send,bool fromPacket)
@@ -11554,7 +11557,7 @@ void	TransObj::LandedEffect(AirStrucPtr	ac, SLong	landed,Bool send,bool fromPack
 	HitTheDeck = true;											//RDH 09May99
 
 	ac->fly.rpm /= 2;														//RJS 10Jul00
-	ac->fly.rpm1 /= 2;			
+	ac->fly.rpm1 /= 2;
 
 	if (!fromPacket)											//RJS 07Jun00
 	{
@@ -11732,7 +11735,7 @@ void	TransObj::LandedEffect(AirStrucPtr	ac, SLong	landed,Bool send,bool fromPack
 			if (landed == _Collide.LANDED_OK)
 			{
 //DeadCode RJS 11Jun99 				// Perhaps throw up a bit of dirt...
-//DeadCode RJS 11Jun99 
+//DeadCode RJS 11Jun99
 //DeadCode RJS 11Jun99 				adptr->hasdust = FALSE;
 //DeadCode RJS 11Jun99 				if (!adptr->justlanded)
 //DeadCode RJS 11Jun99 				{
@@ -11840,17 +11843,17 @@ void	TransObj::LandedEffect(AirStrucPtr	ac, SLong	landed,Bool send,bool fromPack
 							}
 
 //DEADCODE CSB 01/03/00 							SHAPE.DetatchAllVapourStreams(ac);
-//DEADCODE CSB 01/03/00 					
+//DEADCODE CSB 01/03/00
 //DEADCODE CSB 01/03/00 							Manual_Pilot.DeathSequenceOverride(ac,AUTO_NOPPILOT);
 //DEADCODE CSB 01/03/00 							ExplodeAC(ac,ac,*world);					//JIM 11Mar99
-//DEADCODE CSB 01/03/00 
+//DEADCODE CSB 01/03/00
 //DEADCODE CSB 01/03/00 							if (View_Object && (ac==Manual_Pilot.ControlledAC2))
 //DEADCODE CSB 01/03/00 								View_Object->SetToDeathView(DEATH_NORMAL);
-//DEADCODE CSB 01/03/00 
+//DEADCODE CSB 01/03/00
 //DEADCODE CSB 01/03/00 							SHAPE.ResetAnimData_NewShape(ac,PDEATH,0,true);//RJS 21Apr99
 //DEADCODE CSB 01/03/00 							MinAnimData*	mad = (MinAnimData*)ac->Anim;//RJS 18May99
 //DEADCODE CSB 01/03/00 							mad->itemstate = DEAD;						//RJS 28Apr99
-//DEADCODE CSB 01/03/00 
+//DEADCODE CSB 01/03/00
 //DEADCODE CSB 01/03/00 							LaunchFire(ac,*world);						//RJS 28Jun99
 						}
 						break;
@@ -11940,7 +11943,7 @@ void	TransObj::LandedEffect(AirStrucPtr	ac, SLong	landed,Bool send,bool fromPack
 						}
 						break;
 					}
-					
+
 					default:
 					{
 						if (ac->vel_ < MPH100)						//RJS 11Dec98
@@ -12008,8 +12011,8 @@ void	TransObj::LandedEffect(AirStrucPtr	ac, SLong	landed,Bool send,bool fromPack
 					{
 						AircraftAnimData	*adptr = (AircraftAnimData*) ac->Anim;
 
-						adptr->ENGINELEFT = BS_DEAD;	
-						adptr->ENGINERIGHT = BS_DEAD;	
+						adptr->ENGINELEFT = BS_DEAD;
+						adptr->ENGINERIGHT = BS_DEAD;
 					}
 					else
 					{
@@ -12049,8 +12052,8 @@ void	TransObj::LandedEffect(AirStrucPtr	ac, SLong	landed,Bool send,bool fromPack
 						{
 							AircraftAnimData	*adptr = (AircraftAnimData*) ac->Anim;
 
-							adptr->ENGINELEFT = BS_DEAD;	
-							adptr->ENGINERIGHT = BS_DEAD;	
+							adptr->ENGINELEFT = BS_DEAD;
+							adptr->ENGINERIGHT = BS_DEAD;
 						}
 						else
 						{
@@ -12100,8 +12103,8 @@ void	TransObj::LandedEffect(AirStrucPtr	ac, SLong	landed,Bool send,bool fromPack
 					{
 						AircraftAnimData	*adptr = (AircraftAnimData*) ac->Anim;
 
-						adptr->ENGINELEFT = BS_DEAD;	
-						adptr->ENGINERIGHT = BS_DEAD;	
+						adptr->ENGINELEFT = BS_DEAD;
+						adptr->ENGINERIGHT = BS_DEAD;
 					}
 					else
 					{
@@ -12156,11 +12159,11 @@ void	TransObj::LandedEffect(AirStrucPtr	ac, SLong	landed,Bool send,bool fromPack
 	{
 		ac->vel_y = 0;												//RJS 03May00	//CSB 5Sep00
 		if(		(ac->movecode != AUTO_CRASHSKID)
-			&&	(ac->movecode != AUTO_CRASHROLL) 
-			&&	(ac->movecode != AUTO_CRASHONEWHEEL) 
-			&&	(ac->movecode != AUTO_CRASHNOSE) 
-			&&	(ac->movecode != AUTO_CRASHFLIP) 
-			&&	(ac->movecode != AUTO_CRASHTUMBLE) 
+			&&	(ac->movecode != AUTO_CRASHROLL)
+			&&	(ac->movecode != AUTO_CRASHONEWHEEL)
+			&&	(ac->movecode != AUTO_CRASHNOSE)
+			&&	(ac->movecode != AUTO_CRASHFLIP)
+			&&	(ac->movecode != AUTO_CRASHTUMBLE)
 			&&	(ac->movecode != AUTO_HITWATER)		)
 			ac->vel_ = ac->vel_x = ac->vel_y = ac->vel_z = 0;
 	}
@@ -12173,11 +12176,11 @@ void	TransObj::LandedEffect(AirStrucPtr	ac, SLong	landed,Bool send,bool fromPack
 //Author		Robert Slater
 //Date			Tue 25 Aug 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchBubbles(mobileitem* launcher,SLong	dist,WorldStuff& worldptr)
@@ -12222,11 +12225,11 @@ void	TransObj::LaunchBubbles(mobileitem* launcher,SLong	dist,WorldStuff& worldpt
 //Author		Robert Slater
 //Date			Tue 25 Aug 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchWaterTrail(	mobileitem* launcher,
@@ -12242,9 +12245,9 @@ void	TransObj::LaunchWaterTrail(	mobileitem* launcher,
 		MoveGunAnimData*	adptr = (MoveGunAnimData*)newitem->Anim;
 		WeapAnimData*		weapon = (WeapAnimData*) &adptr->weaponlaunchers[0];
 
-		SHAPE.InitTrailFields((UByteP)weapon,0,32000,LT_DUST);	
+		SHAPE.InitTrailFields((UByteP)weapon,0,32000,LT_DUST);
 
-		LaunchVapourStream((UByteP)weapon,WATSHP);	
+		LaunchVapourStream((UByteP)weapon,WATSHP);
 
 		AddTransientItemToWorld(newitem, worldptr);
 	}
@@ -12255,11 +12258,11 @@ void	TransObj::LaunchWaterTrail(	mobileitem* launcher,
 //Author		Dave Whiteside
 //Date			Thu 3 Sep 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchFingers(	mobileitem* launcher,
@@ -12288,8 +12291,8 @@ void	TransObj::LaunchFingers(	mobileitem* launcher,
 
 		for (count = 0; count < maxfingers; count++)
 		{
-			newitem = SimplifiedSpriteLaunch(launcher,			
-											FIREB,	
+			newitem = SimplifiedSpriteLaunch(launcher,
+											FIREB,
 											700,MOBILE_DEBRIS);
 			if (newitem)
 			{
@@ -12298,7 +12301,7 @@ void	TransObj::LaunchFingers(	mobileitem* launcher,
 
 				SHAPE.InitTrailFields((UByteP)weapon,0,32000,LT_FUEL);
 
-				LaunchVapourStream((UByteP)weapon,FIREB);	
+				LaunchVapourStream((UByteP)weapon,FIREB);
 
 				newhdg = Math_Lib.rnd();
 				newpitch = (Math_Lib.rnd()*13653) >> 16;	//75 degrees
@@ -12315,10 +12318,10 @@ void	TransObj::LaunchFingers(	mobileitem* launcher,
 //Dead				temp = vel * sin_ang;	vely = temp;
 //Dead				temp = vel * cos_ang;	velhori = temp;
 
-				newitem->hdg = (Angles) newhdg;			
-				newitem->vel_y = fvely;		
-				
-//DEADCODE CSB 09/11/99 				newitem->velhori = velhori;		
+				newitem->hdg = (Angles) newhdg;
+				newitem->vel_y = fvely;
+
+//DEADCODE CSB 09/11/99 				newitem->velhori = velhori;
 				Math_Lib.high_sin_cos((Angles)newhdg ,sin_ang, cos_ang); //CSB 09/11/99
 
 				fvelx = fvelh * sin_ang;
@@ -12348,11 +12351,11 @@ void	TransObj::LaunchFingers(	mobileitem* launcher,
 //Author		Robert Slater
 //Date			Wed 16 Sep 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchSmokePuff2(mobileitem*	launcher,
@@ -12371,7 +12374,7 @@ void	TransObj::LaunchSmokePuff2(mobileitem*	launcher,
 										theShape,
 										lifetime,
 										MOBILE_MOVSMK);
-	
+
 	if (newitem)
 	{
 		newitem->World = posP;											//RJS 6Nov00
@@ -12397,16 +12400,16 @@ void	TransObj::LaunchSmokePuff2(mobileitem*	launcher,
 //Author		Robert Slater
 //Date			Tue 16 Sep 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SLong	TransObj::ActivateStation(AirStrucPtr	ac, UWord &ammotot, UWord	&muzdelay, WorldStuff& world)
 {
-	SLong	index = -1;												
+	SLong	index = -1;
 	ULong	muzVel;													//RJS 12NoV99
 //Dead	Bool	retval = FALSE;
 	SLong	weapon = ac->weap.weapontype;							//RJS 01Apr99
@@ -12427,11 +12430,11 @@ SLong	TransObj::ActivateStation(AirStrucPtr	ac, UWord &ammotot, UWord	&muzdelay,
 				unArmed = FALSE;
 
 			index = ReActivateStation(ac,muzVel,ammotot,muzdelay,ammoGone,cannonGone,world,unArmed);	//RJS 17Oct00
-			if (index > -1)												
-			{															
+			if (index > -1)
+			{
 				SLong	massGone = SHAPE.ReduceLauncherLoad(ac,index,ammoGone);	//RJS 10Jul00
-																		
-				ac->SetWeaponForce(massGone,muzVel,muzdelay);			
+
+				ac->SetWeaponForce(massGone,muzVel,muzdelay);
 //Dead				retval = TRUE;
 			}
 			else
@@ -12440,14 +12443,14 @@ SLong	TransObj::ActivateStation(AirStrucPtr	ac, UWord &ammotot, UWord	&muzdelay,
 	}
 
 	index = ReActivateStation(ac,muzVel,ammotot,muzdelay,ammoGone,cannonGone,world);	//RJS 17Oct00
-	if (index > -1)												
-	{															
+	if (index > -1)
+	{
 		//trigger radio message to tell others to drop...
 //DEADCODE CSB 11/02/00 		if ((weapon & LT_MASK) != LT_BULLET)							//RJS 01Apr99
 //DEADCODE CSB 11/02/00 			OverLay.DecisionMessage(FACMsg,6,ac,ac->ai.unfriendly,ac,FALSE);	//RJS 09Jun99
-//DeadCode RJS 10Jul00 
+//DeadCode RJS 10Jul00
  		SLong	massGone = SHAPE.ReduceLauncherLoad(ac,index,ammoGone);		//RJS 10Jul00
- 
+
  		ac->SetWeaponForce(massGone,muzVel,muzdelay);
 		if (ac == Persons2::PlayerSeenAC)								//RJS 10Jul00
 		{
@@ -12460,8 +12463,8 @@ SLong	TransObj::ActivateStation(AirStrucPtr	ac, UWord &ammotot, UWord	&muzdelay,
 				padptr->accannonammoleft -= cannonGone;
 			}
 		}
-	}				
-	
+	}
+
 	return(index);
 }
 
@@ -12473,9 +12476,9 @@ SLong	TransObj::ActivateStation(AirStrucPtr	ac, UWord &ammotot, UWord	&muzdelay,
 //Description	For replay... should mirror LandedEffect, but without stuff
 //				that could screw up Replay.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::DummyLandedEffect(AirStrucPtr	ac, SLong	landed,UByte atype)
@@ -12488,10 +12491,10 @@ void	TransObj::DummyLandedEffect(AirStrucPtr	ac, SLong	landed,UByte atype)
 //DeadCode RJS 07Jun00 	AircraftAnimData	*adptr = (AircraftAnimData*) ac->Anim;
 //DeadCode RJS 07Jun00 	ULong oldmovecode;
 //DeadCode RJS 07Jun00 	Bool		onSparky = FALSE;								//RJS 16May99
-//DeadCode RJS 07Jun00 
+//DeadCode RJS 07Jun00
 //DeadCode RJS 07Jun00 //	if (theArea!=atype)
 //DeadCode RJS 07Jun00 //		_Error.SayAndQuit("Different area types");
-//DeadCode RJS 07Jun00 
+//DeadCode RJS 07Jun00
 //DeadCode RJS 07Jun00 	theArea=(AreaType)atype;
 //DeadCode RJS 07Jun00 	switch (theArea)											//RJS 16May99
 //DeadCode RJS 07Jun00 	{															//RJS 16May99
@@ -12499,7 +12502,7 @@ void	TransObj::DummyLandedEffect(AirStrucPtr	ac, SLong	landed,UByte atype)
 //DeadCode RJS 07Jun00 		case AT_stream:
 //DeadCode RJS 07Jun00 			onWater = TRUE;										//RJS 16May99
 //DeadCode RJS 07Jun00 			break;												//RJS 16May99
-//DeadCode RJS 07Jun00 
+//DeadCode RJS 07Jun00
 //DeadCode RJS 07Jun00 		case AT_village:
 //DeadCode RJS 07Jun00 		case AT_denseTown:
 //DeadCode RJS 07Jun00 		case AT_sparseTown:
@@ -12512,7 +12515,7 @@ void	TransObj::DummyLandedEffect(AirStrucPtr	ac, SLong	landed,UByte atype)
 //DeadCode RJS 07Jun00 			onSparky = TRUE;									//RJS 16May99
 //DeadCode RJS 07Jun00 			break;												//RJS 16May99
 //DeadCode RJS 07Jun00 	}															//RJS 16May99
-//DeadCode RJS 07Jun00 
+//DeadCode RJS 07Jun00
 //DeadCode RJS 07Jun00 	if (ac->IsHealthyMovecode(oldmovecode))
 //DeadCode RJS 07Jun00 	{
 //DeadCode RJS 07Jun00 		if (onWater == TRUE)
@@ -12520,7 +12523,7 @@ void	TransObj::DummyLandedEffect(AirStrucPtr	ac, SLong	landed,UByte atype)
 //DeadCode RJS 07Jun00 			adptr->hasdust = TRUE;
 //DeadCode RJS 07Jun00 			Manual_Pilot.DeathSequenceOverride(ac,AUTO_HITWATER);
 //DeadCode RJS 07Jun00 			_Miles.PlayOnce(FIL_SFX_COLLISION_WATER,ac);
-//DeadCode RJS 07Jun00 
+//DeadCode RJS 07Jun00
 //DeadCode RJS 07Jun00 			switch (landed)
 //DeadCode RJS 07Jun00 			{
 //DeadCode RJS 07Jun00 			case _Collide.PROP_TOUCH:
@@ -12541,7 +12544,7 @@ void	TransObj::DummyLandedEffect(AirStrucPtr	ac, SLong	landed,UByte atype)
 //DeadCode RJS 07Jun00 				LaunchWaterTrail(ac,*world);
 //DeadCode RJS 07Jun00 				break;
 //DeadCode RJS 07Jun00 			}
-//DeadCode RJS 07Jun00 
+//DeadCode RJS 07Jun00
 //DeadCode RJS 07Jun00 			LaunchSplashMedium(ac,*world);
 //DeadCode RJS 07Jun00 		}
 //DeadCode RJS 07Jun00 		else
@@ -12549,7 +12552,7 @@ void	TransObj::DummyLandedEffect(AirStrucPtr	ac, SLong	landed,UByte atype)
 //DeadCode RJS 07Jun00 			if (landed == _Collide.LANDED_OK)
 //DeadCode RJS 07Jun00 			{
 //DeadCode RJS 07Jun00 				// Perhaps throw up a bit of dirt...
-//DeadCode RJS 07Jun00 
+//DeadCode RJS 07Jun00
 //DeadCode RJS 07Jun00 				adptr->hasdust = FALSE;
 //DeadCode RJS 07Jun00 				if (!adptr->justlanded)
 //DeadCode RJS 07Jun00 				{
@@ -12560,7 +12563,7 @@ void	TransObj::DummyLandedEffect(AirStrucPtr	ac, SLong	landed,UByte atype)
 //DeadCode RJS 07Jun00 			else
 //DeadCode RJS 07Jun00 			{
 //DeadCode RJS 07Jun00 				LaunchMushroomCloud(ac,10,*world);				//RJS 20Apr99
-//DeadCode RJS 07Jun00 
+//DeadCode RJS 07Jun00
 //DeadCode RJS 07Jun00 				switch (landed)
 //DeadCode RJS 07Jun00 				{
 //DeadCode RJS 07Jun00 				case _Collide.PROP_TOUCH:
@@ -12571,9 +12574,9 @@ void	TransObj::DummyLandedEffect(AirStrucPtr	ac, SLong	landed,UByte atype)
 //DeadCode RJS 07Jun00 					SHAPE.DetatchAllVapourStreams(ac);
 //DeadCode RJS 07Jun00 					LaunchBigExplosion(ac,*world,ac->shape);
 //DeadCode RJS 07Jun00 					LaunchFingers(ac,*world);
-//DeadCode RJS 07Jun00 
+//DeadCode RJS 07Jun00
 //DeadCode RJS 07Jun00 					Manual_Pilot.DeathSequenceOverride(ac,AUTO_NOPPILOT);
-//DeadCode RJS 07Jun00 
+//DeadCode RJS 07Jun00
 //DeadCode RJS 07Jun00 					LaunchFire(ac,*world);						//RJS 28Jun99
 //DeadCode RJS 07Jun00 				}
 //DeadCode RJS 07Jun00 				break;
@@ -12592,18 +12595,18 @@ void	TransObj::DummyLandedEffect(AirStrucPtr	ac, SLong	landed,UByte atype)
 //DeadCode RJS 07Jun00 					else
 //DeadCode RJS 07Jun00 					{
 //DeadCode RJS 07Jun00 						LaunchFakeDelayedExplosion(ac,*world);
-//DeadCode RJS 07Jun00 
+//DeadCode RJS 07Jun00
 //DeadCode RJS 07Jun00 						SHAPE.DetatchAllVapourStreams(ac);
 //DeadCode RJS 07Jun00 						if (!onSparky)
 //DeadCode RJS 07Jun00 						{
 //DeadCode RJS 07Jun00 							adptr->hasdust = TRUE;
 //DeadCode RJS 07Jun00 							LaunchDustTrail2(ac,*world);
 //DeadCode RJS 07Jun00 						}
-//DeadCode RJS 07Jun00 
+//DeadCode RJS 07Jun00
 //DeadCode RJS 07Jun00 						LaunchTransientTrail(ac,SmallFireballShape,300,FALSE,*world,65536);
 //DeadCode RJS 07Jun00 						LaunchCrater(ac,*world);								//RJS 13May99
 //DeadCode RJS 07Jun00 					}
-//DeadCode RJS 07Jun00 
+//DeadCode RJS 07Jun00
 //DeadCode RJS 07Jun00 					Manual_Pilot.DeathSequenceOverride(ac,AUTO_CRASHSKID);
 //DeadCode RJS 07Jun00 				}
 //DeadCode RJS 07Jun00 				break;
@@ -12619,7 +12622,7 @@ void	TransObj::DummyLandedEffect(AirStrucPtr	ac, SLong	landed,UByte atype)
 //DeadCode RJS 07Jun00 			{
 //DeadCode RJS 07Jun00 				AircraftAnimData	*adptr = (AircraftAnimData*) ac->Anim;
 //DeadCode RJS 07Jun00 				adptr->ENGINELEFT = BS_DEAD;			//Make fire invisible
-//DeadCode RJS 07Jun00 
+//DeadCode RJS 07Jun00
 //DeadCode RJS 07Jun00 				LaunchSplashMedium(ac,*world);
 //DeadCode RJS 07Jun00 			}
 //DeadCode RJS 07Jun00 			else
@@ -12627,7 +12630,7 @@ void	TransObj::DummyLandedEffect(AirStrucPtr	ac, SLong	landed,UByte atype)
 //DeadCode RJS 07Jun00 				KillLauncher(ac,ac,*world);						//JIM 11Mar99
 //DeadCode RJS 07Jun00 				LaunchFire(ac,*world);
 //DeadCode RJS 07Jun00 			}
-//DeadCode RJS 07Jun00 
+//DeadCode RJS 07Jun00
 //DeadCode RJS 07Jun00 			//Is this really an aircraft??
 //DeadCode RJS 07Jun00 			if (oldmovecode != 0xFFFFFFFF)
 //DeadCode RJS 07Jun00 			{
@@ -12643,12 +12646,12 @@ void	TransObj::DummyLandedEffect(AirStrucPtr	ac, SLong	landed,UByte atype)
 //DeadCode RJS 07Jun00 			{
 //DeadCode RJS 07Jun00 				ac->pitch = ANGLES_0Deg;							//DAW 03Sep98
 //DeadCode RJS 07Jun00 				ac->roll = ANGLES_0Deg;								//DAW 03Sep98
-//DeadCode RJS 07Jun00 
+//DeadCode RJS 07Jun00
 //DeadCode RJS 07Jun00 				if (onWater)
 //DeadCode RJS 07Jun00 				{
 //DeadCode RJS 07Jun00 					AircraftAnimData	*adptr = (AircraftAnimData*) ac->Anim;
 //DeadCode RJS 07Jun00 					adptr->ENGINELEFT = BS_DEAD;			//Make fire invisible
-//DeadCode RJS 07Jun00 
+//DeadCode RJS 07Jun00
 //DeadCode RJS 07Jun00 					LaunchSplashMedium(ac,*world);
 //DeadCode RJS 07Jun00 				}
 //DeadCode RJS 07Jun00 				else
@@ -12656,10 +12659,10 @@ void	TransObj::DummyLandedEffect(AirStrucPtr	ac, SLong	landed,UByte atype)
 //DeadCode RJS 07Jun00 					KillLauncher(ac,ac,*world);					//JIM 11Mar99
 //DeadCode RJS 07Jun00 					if (ac==Manual_Pilot.ControlledAC2)					//RJS 31May00
 //DeadCode RJS 07Jun00 						View_Object->SetToDeathView();				//RDH 02Sep98
-//DeadCode RJS 07Jun00 
+//DeadCode RJS 07Jun00
 //DeadCode RJS 07Jun00 					LaunchFire(ac,*world);
 //DeadCode RJS 07Jun00 				}
-//DeadCode RJS 07Jun00 
+//DeadCode RJS 07Jun00
 //DeadCode RJS 07Jun00 				//Is this really an aircraft??
 //DeadCode RJS 07Jun00 				if (oldmovecode != 0xFFFFFFFF)
 //DeadCode RJS 07Jun00 				{
@@ -12679,11 +12682,11 @@ void	TransObj::DummyLandedEffect(AirStrucPtr	ac, SLong	landed,UByte atype)
 //Author		Robert Slater
 //Date			Fri 30 Oct 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchBridgeElement(	ItemPtr	launcher,
@@ -12706,7 +12709,7 @@ void	TransObj::LaunchBridgeElement(	ItemPtr	launcher,
 											shapehit,
 											1000,
 											MOBILE_DEADBRIDGE);
-		
+
 		if (newitem)
 		{
 			newitem->World = noncorrectedgrpcoords;
@@ -12773,11 +12776,11 @@ void	TransObj::LaunchBridgeElement(	ItemPtr	launcher,
 //Author		Robert Slater
 //Date			Fri 30 Oct 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::MobileDeadBridge(TransientItemPtr transit, WorldStuff& world)
@@ -12812,7 +12815,7 @@ void	TransObj::MobileDeadBridge(TransientItemPtr transit, WorldStuff& world)
 
 		pitch *= 30;
 
-		transit->roll += (Angles) roll;	
+		transit->roll += (Angles) roll;
 		transit->pitch += (Angles) pitch;
 
 		GAndFrictionFixedPitch(transit,RetardedDrag);			//RJS 22Dec99
@@ -12849,11 +12852,11 @@ void	TransObj::MobileDeadBridge(TransientItemPtr transit, WorldStuff& world)
 //Author		Robert Slater
 //Date			Mon 9 Nov 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchDirtyFingers(mobileitem*	launcher, WorldStuff&	worldptr)
@@ -12876,7 +12879,7 @@ void	TransObj::LaunchDirtyFingers(mobileitem*	launcher, WorldStuff&	worldptr)
 
 		for (count = 0; count < fingercnt; count++)
 		{
-			newitem = SimplifiedSpriteLaunch(launcher,			
+			newitem = SimplifiedSpriteLaunch(launcher,
 											PLUME2,
 											350,MOBILE_DEBRIS);
 			if (newitem)
@@ -12886,12 +12889,12 @@ void	TransObj::LaunchDirtyFingers(mobileitem*	launcher, WorldStuff&	worldptr)
 
 				SHAPE.InitTrailFields((UByteP)weapon,0,-1,LT_MUDDY);
 
-				LaunchVapourStream((UByteP)weapon,PLUME2);	
+				LaunchVapourStream((UByteP)weapon,PLUME2);
 
 				newhdg = Math_Lib.rnd();
 
 	//			newitem->World.Y = groundheight;
-				newitem->hdg = (Angles) newhdg;			
+				newitem->hdg = (Angles) newhdg;
 				newitem->vel_y = 100000 + (Math_Lib.rnd(200)*1000);//RJS 16Nov99
 //DEADCODE CSB 09/11/99 				newitem->velhori = 50 + Math_Lib.rnd(70);
 				Float velhori = 50000. + Float(Math_Lib.rnd(70)*1000);//RJS 16Nov99
@@ -12912,17 +12915,17 @@ void	TransObj::LaunchDirtyFingers(mobileitem*	launcher, WorldStuff&	worldptr)
 //Author		Robert Slater
 //Date			Mon 16 Nov 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchFlash(mobileitem*	launcher, UByte	damsize, WorldStuff&	worldptr)
 {
 	TransientItem*		newitem;
-	
+
 //DeadCode MS 30Nov98	newitem = SimplifiedSpriteLaunch((mobileitem*)launcher,EXPLO,3,MOBILE_STATIONARY);
 	newitem = SimplifiedSpriteLaunch((mobileitem*)launcher,FLASH,30,MOBILE_STATIONARY);
 	if (newitem)
@@ -12937,11 +12940,11 @@ void	TransObj::LaunchFlash(mobileitem*	launcher, UByte	damsize, WorldStuff&	worl
 //Author		Robert Slater
 //Date			Mon 16 Nov 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchFingersFire(mobileitem* launcher,
@@ -12967,8 +12970,8 @@ void	TransObj::LaunchFingersFire(mobileitem* launcher,
 
 		for (count = 0; count < cntrand; count++)
 		{
-			newitem = LaunchUnguidedMissile(launcher,			
-											NapalmFingerShape,	
+			newitem = LaunchUnguidedMissile(launcher,
+											NapalmFingerShape,
 											1000,MOBILE_DEBRIS);
 			if (newitem)
 			{
@@ -12986,9 +12989,9 @@ void	TransObj::LaunchFingersFire(mobileitem* launcher,
 				vel = 200000 + (Math_Lib.rnd(150)*1000);		//RJS 16Nov99
 
 				newitem->World.Y = groundheight;
-				newitem->hdg = (Angles) newhdg;			
+				newitem->hdg = (Angles) newhdg;
 				newitem->vel_y = 350000-vel;		 //CSB 09/11/99
-//DEADCODE CSB 09/11/99 				newitem->velhori = vel;		
+//DEADCODE CSB 09/11/99 				newitem->velhori = vel;
 				Float sin_ang, cos_ang;									 //CSB 09/11/99
 				Float	tmpvel = Float(vel);
 				Math_Lib.high_sin_cos(Angles(newhdg), sin_ang, cos_ang); //CSB 09/11/99
@@ -13005,11 +13008,11 @@ void	TransObj::LaunchFingersFire(mobileitem* launcher,
 //Author		Robert Slater
 //Date			Tue 17 Nov 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchTossedShape(mobileitem*	launcher, SByte	groupindex,Coords3D hittercoords,SLong strength, WorldStuff&	worldptr)
@@ -13106,7 +13109,7 @@ void	TransObj::LaunchTossedShape(mobileitem*	launcher, SByte	groupindex,Coords3D
 															shapehit,
 															1000,
 															MOBILE_ATEAM);
-				
+
 						if (newitem)
 						{
 							newitem->World.X = pos.gx;
@@ -13143,11 +13146,11 @@ void	TransObj::LaunchTossedShape(mobileitem*	launcher, SByte	groupindex,Coords3D
 //Author		Robert Slater
 //Date			Wed 18 Nov 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::MobileCollapse(TransientItemPtr transit, WorldStuff& world)
@@ -13182,7 +13185,7 @@ void	TransObj::MobileCollapse(TransientItemPtr transit, WorldStuff& world)
 
 		pitch *= 60;
 
-		transit->roll += (Angles) roll;	
+		transit->roll += (Angles) roll;
 		transit->pitch += (Angles) pitch;
 
 		GAndFrictionFixedPitch(transit,0);			//RJS 22Dec99
@@ -13225,11 +13228,11 @@ void	TransObj::MobileCollapse(TransientItemPtr transit, WorldStuff& world)
 //Author		Mark Shaw (Yeah, right!)
 //Date			Mon 30 Nov 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchDirtyBuildingFingers(mobileitem*	launcher, UWord	direction, WorldStuff&	worldptr)
@@ -13253,7 +13256,7 @@ void	TransObj::LaunchDirtyBuildingFingers(mobileitem*	launcher, UWord	direction,
 
 			for (count = 0; count < fingercnt; count++)
 			{
-				newitem = SimplifiedSpriteLaunch(launcher,			
+				newitem = SimplifiedSpriteLaunch(launcher,
 												PLUME2,
 												350,MOBILE_DEBRIS);
 				if (newitem)
@@ -13263,11 +13266,11 @@ void	TransObj::LaunchDirtyBuildingFingers(mobileitem*	launcher, UWord	direction,
 
 					SHAPE.InitTrailFields((UByteP)weapon,0,-1,LT_MUDDY);
 
-					LaunchVapourStream((UByteP)weapon,PLUME2);	
+					LaunchVapourStream((UByteP)weapon,PLUME2);
 
 					newhdg = direction + (Math_Lib.rnd(ANGLES_180Deg) - ANGLES_90Deg);
 
-					newitem->hdg = (Angles) newhdg;			
+					newitem->hdg = (Angles) newhdg;
 					newitem->vel_y = 100000 + (Math_Lib.rnd(100)*1000);//RJS 16Nov99
 //DEADCODE CSB 09/11/99 					newitem->velhori = 150 + Math_Lib.rnd(70);
 					Float velhori = 150000. + Float(Math_Lib.rnd(70)*1000);//RJS 16Nov99
@@ -13275,7 +13278,7 @@ void	TransObj::LaunchDirtyBuildingFingers(mobileitem*	launcher, UWord	direction,
 					Math_Lib.high_sin_cos(Angles(newhdg), sin_ang, cos_ang); //CSB 09/11/99
 					newitem->vel_x = (velhori * sin_ang);						 //CSB 09/11/99
 					newitem->vel_z = (velhori * cos_ang);						 //CSB 09/11/99
-					
+
 					newitem->roll = ANGLES_0Deg;
 					AddTransientItemToWorld(newitem,worldptr);
 				}
@@ -13289,11 +13292,11 @@ void	TransObj::LaunchDirtyBuildingFingers(mobileitem*	launcher, UWord	direction,
 //Author		Robert Slater
 //Date			Thu 3 Dec 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchSmallThug(	item*		launcher,
@@ -13309,11 +13312,11 @@ void	TransObj::LaunchSmallThug(	item*		launcher,
 	MinAnimData		*mad = (MinAnimData*) SHAPE.GetGroupItemAnim(destination,shapehit,gindex,&pos);
 	UWord			animoffset = destination->Anim.Offset(mad);//(UByteP)mad - (UByteP)&destination->Anim[0];
 
-	newitem = SimplifiedSpriteLaunch(	destination,	
-										theshape,		
-										lifeleft,	
+	newitem = SimplifiedSpriteLaunch(	destination,
+										theshape,
+										lifeleft,
 										MOBILE_SMALLTHUG);
-	
+
 	if (newitem)
 	{
 		mad->IsBullied = 1;
@@ -13337,20 +13340,20 @@ void	TransObj::LaunchSmallThug(	item*		launcher,
 	}
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
-//Procedure		
+//Procedure
 //Author		RDH 02/03/99
-//Date			
+//Date
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::ChooseMusic(AirStrucPtr	ac)
 {
-	if (ac==Manual_Pilot.ControlledAC2)					
+	if (ac==Manual_Pilot.ControlledAC2)
 	{
 			_Miles.SequenceAudible(MOOD_DOOMED);		//RDH 01/03/99
 	}else if (ac->PlayerInGroup())
@@ -13370,17 +13373,17 @@ void	TransObj::ChooseMusic(AirStrucPtr	ac)
 //Author		Robert Slater
 //Date			Fri 4 Dec 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::ExplodeAC(AirStrucPtr	ac, ItemPtr killer, WorldStuff&	worldptr,Bool setdamage)
 {
-//DeadCode RJS 4Sep00 	Float	sin_ang,cos_ang;								
-//DeadCode RJS 4Sep00 	SLong	vely, velx, velz;						
+//DeadCode RJS 4Sep00 	Float	sin_ang,cos_ang;
+//DeadCode RJS 4Sep00 	SLong	vely, velx, velz;
 //DeadCode RJS 4Sep00 	Float	velhori, vel;
 
 	if (ac == Persons2::PlayerSeenAC)						//RJS 30Aug00
@@ -13418,8 +13421,8 @@ void	TransObj::ExplodeAC(AirStrucPtr	ac, ItemPtr killer, WorldStuff&	worldptr,Bo
 			if (HitTheDeck)										//RJS 11Jun99
 				Squad_Diary.UpdatePlayerLog(EFS_PILOTLOST);				//RJS 29Oct00
 
-//DeadCode RJS 30Aug00 			_Miles.StopEngine();							
-															
+//DeadCode RJS 30Aug00 			_Miles.StopEngine();
+
 			if (View_Object)
 			{
 				SLong	groundheight = GetGroundLevel(ac);		//RJS 14Apr99
@@ -13495,22 +13498,22 @@ void	TransObj::ExplodeAC(AirStrucPtr	ac, ItemPtr killer, WorldStuff&	worldptr,Bo
 //Author		Robert Slater
 //Date			Mon 7 Dec 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchGunDot(mobileitem*	launcher, WorldStuff&	worldptr)
 {
 	TransientItem*	newitem;
 
-	newitem = SimplifiedSpriteLaunch(	launcher,	
-										SPARK,		
-										10,	
+	newitem = SimplifiedSpriteLaunch(	launcher,
+										SPARK,
+										10,
 										MOBILE_STATIONARY);
-	
+
 	if (newitem)
 		AddTransientItemToWorld(newitem,worldptr);
 }
@@ -13520,11 +13523,11 @@ void	TransObj::LaunchGunDot(mobileitem*	launcher, WorldStuff&	worldptr)
 //Author		Robert Slater
 //Date			Tue 8 Dec 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::LaunchSmallFlash(mobileitem* launcher,WorldStuff& worldptr,Bool heightfix)
@@ -13550,11 +13553,11 @@ void TransObj::LaunchSmallFlash(mobileitem* launcher,WorldStuff& worldptr,Bool h
 //Author		Robert Slater
 //Date			Fri 11 Dec 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::LaunchTransientTrail(mobileitem* launcher,
@@ -13592,9 +13595,9 @@ void TransObj::LaunchTransientTrail(mobileitem* launcher,
 //
 //Description	Explode effect... once received ac_collision packet.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::KillLauncherComms(AirStrucPtr	ac)
@@ -13616,7 +13619,7 @@ void TransObj::KillLauncherComms(AirStrucPtr	ac)
 //DeadCode AMM 12Jul00 	else
 //	if (ac==Persons2::PlayerSeenAC)
 	{
-		ExplodeAC(ac,ac,*world,FALSE);						
+		ExplodeAC(ac,ac,*world,FALSE);
 	}
 
 	Art_Int.BreakOff(ac);
@@ -13635,11 +13638,11 @@ void TransObj::KillLauncherComms(AirStrucPtr	ac)
 //Author		Robert Slater
 //Date			Fri 15 Jan 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchJunk(	mobileitem*	launcher,
@@ -13673,11 +13676,11 @@ void	TransObj::LaunchJunk(	mobileitem*	launcher,
 //Author		Robert Slater
 //Date			Wed 10 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchTimeBomb(ItemPtr	launcher,ULong animoffset,WorldStuff& worldptr)
@@ -13712,9 +13715,9 @@ void	TransObj::LaunchTimeBomb(ItemPtr	launcher,ULong animoffset,WorldStuff& worl
 //				(at the moment, twice...)
 //				(assumes it has been triggered at BS_DAMLV2)
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileScaleFist(TransientItemPtr transit,WorldStuff&)
@@ -13752,11 +13755,11 @@ void TransObj::MobileScaleFist(TransientItemPtr transit,WorldStuff&)
 //Author		Robert Slater
 //Date			Thu 18 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::AddTransientItemToTrailList(TransientItemPtr	newitem)
@@ -13803,11 +13806,11 @@ void	TransObj::AddTransientItemToTrailList(TransientItemPtr	newitem)
 //Author		Robert Slater
 //Date			Thu 18 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::RemoveTransientItemFromTrailList(TransientItemPtr	deaditem)
@@ -13820,7 +13823,7 @@ void	TransObj::RemoveTransientItemFromTrailList(TransientItemPtr	deaditem)
 			StaticTrailList[index].item = NULL;					//RJS 13May99
 			StaticTrailList[index].time = 0xFFFFFFFF;			//RJS 13May99
 			StaticTrailIndex = index;			//next free slot...
-			StaticTrailCnt--;					
+			StaticTrailCnt--;
 			break;
 		}
 	}
@@ -13831,11 +13834,11 @@ void	TransObj::RemoveTransientItemFromTrailList(TransientItemPtr	deaditem)
 //Author		Robert Slater
 //Date			Thu 18 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::CleanUpTrailList()
@@ -13857,7 +13860,7 @@ void	TransObj::CleanUpTrailList()
 //DeadCode DAW 21Jun99 			adptr = (SmokeTrailAnimData*) StaticTrailList[index].item->Anim;
 //DeadCode DAW 21Jun99 			apoint = (Coords3DList*) adptr->thelist;
 //DeadCode DAW 21Jun99 			apoint->Wipe();
-//DeadCode DAW 21Jun99 
+//DeadCode DAW 21Jun99
 //DeadCode DAW 21Jun99 			adptr->thelist = NULL;
 //DeadCode DAW 21Jun99 		}
 
@@ -13875,9 +13878,9 @@ void	TransObj::CleanUpTrailList()
 //
 //Description	For replay blocks...
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::ScanTrailListAndSave()
@@ -13895,11 +13898,11 @@ void	TransObj::ScanTrailListAndSave()
 //Author		Robert Slater
 //Date			Thu 18 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchReplayTrail(Coords3D&			cpos,
@@ -13909,7 +13912,7 @@ void	TransObj::LaunchReplayTrail(Coords3D&			cpos,
 	ReplaySmlSmkStruc*	smkptr = (ReplaySmlSmkStruc*) usmkptr;
 	TransientItemPtr	newitem;
 	newitem = SimplifiedSpriteLaunch(	(MobileItemPtr)Persons2::ConvertPtrUID((UniqueID)smkptr->uniqueid),
-										SMKSHP,	
+										SMKSHP,
 										smkptr->lifetime,
 										MOBILE_STATIONARY);
 
@@ -13943,11 +13946,11 @@ void	TransObj::LaunchReplayTrail(Coords3D&			cpos,
 //Author		Robert Slater
 //Date			Fri 19 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchNapalmImpacted(mobileitem* launcher,WorldStuff& worldptr)
@@ -13964,7 +13967,7 @@ void	TransObj::LaunchNapalmImpacted(mobileitem* launcher,WorldStuff& worldptr)
 	wz = launcher->World.Z;
 
 	thedist = 750;
-	
+
 //DEADCODE CB 09/11/99 	Math_Lib.high_sin_cos((Angles)hdg,sin_ang,cos_ang);
 
 	newitem = SimplifiedSpriteLaunch((mobileitem*)launcher,EXPLO,20,MOBILE_STATIONARY);
@@ -13974,11 +13977,11 @@ void	TransObj::LaunchNapalmImpacted(mobileitem* launcher,WorldStuff& worldptr)
 		AddTransientItemToWorld(newitem,worldptr);
 	}
 
-	newitem = SimplifiedSpriteLaunch(	launcher,			
+	newitem = SimplifiedSpriteLaunch(	launcher,
 										NAPBLB,									//RJS 15Dec99
-										240,			
-										MOBILE_BURNIT);		
-	if (newitem)											
+										240,
+										MOBILE_BURNIT);
+	if (newitem)
 	{
 //DeadCode RJS 21Apr99		newitem->World.Y = GetGroundLevel(newitem);				//RJS 14Apr99
 
@@ -13992,7 +13995,7 @@ void	TransObj::LaunchNapalmImpacted(mobileitem* launcher,WorldStuff& worldptr)
 		if (launcher->Status.size == TRANSIENTSIZE)								//RJS 05May99
 			newitem->Launcher = ((TransientItemPtr)launcher)->Launcher;			//RJS 05May99
 
-		AddTransientItemToWorld(newitem,worldptr);			
+		AddTransientItemToWorld(newitem,worldptr);
 	}
 
 //	LaunchFingersFire(launcher,worldptr);
@@ -14000,16 +14003,16 @@ void	TransObj::LaunchNapalmImpacted(mobileitem* launcher,WorldStuff& worldptr)
 	if (desiredFPS <= realFPS)					//RJS 11Jun99
 	{
 		int				count;
-		for (count = 0; count < 8; count++)			
+		for (count = 0; count < 8; count++)
 		{
 			newitem = SimplifiedSpriteLaunch(launcher,SPARK,LIFETIME_DEBRISLNCHR,MOBILE_GANDF);//RJS 23Nov98
 			if (newitem)
 			{
 				SLong	vely = 150000 + (Math_Lib.rnd(150)*1000);//RJS 16Nov99
 
-				newitem->hdg = (Angles) Math_Lib.rnd();			
-				newitem->vel_y = vely;							
-//DEADCODE CSB 09/11/99 				newitem->velhori = 300 - vely;					
+				newitem->hdg = (Angles) Math_Lib.rnd();
+				newitem->vel_y = vely;
+//DEADCODE CSB 09/11/99 				newitem->velhori = 300 - vely;
 				Float	velhori = 300000. - Float(vely);				 //RJS 16/11/99
 				Float sin_ang, cos_ang;									 //CSB 09/11/99
 				Math_Lib.high_sin_cos(newitem->hdg, sin_ang, cos_ang);	 //CSB 09/11/99
@@ -14027,11 +14030,11 @@ void	TransObj::LaunchNapalmImpacted(mobileitem* launcher,WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Tue 23 Mar 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileCanopy(TransientItemPtr transit, WorldStuff&	world)
@@ -14046,7 +14049,7 @@ void TransObj::MobileCanopy(TransientItemPtr transit, WorldStuff&	world)
 
 		transit->pitch = (Angles) pitch;
 
-		
+
 	}
 	else
 	{
@@ -14055,18 +14058,18 @@ void TransObj::MobileCanopy(TransientItemPtr transit, WorldStuff&	world)
 
 		if (blokesleft && (MobileItemPtr(transit->Launcher)->movecode != AUTO_SPAREAC))//RJS 30Aug00
 		{
-//DeadCode RJS 26Jul00 
+//DeadCode RJS 26Jul00
 //DeadCode RJS 26Jul00 			Coords3D	pos;
 //DeadCode RJS 26Jul00 			SWord		relypos;
 //DeadCode RJS 26Jul00 			mobileitem*	theLauncher=(mobileitem*)transit->Launcher;
 //DeadCode RJS 26Jul00 			bool		trackthis = false;
-//DeadCode RJS 26Jul00 
+//DeadCode RJS 26Jul00
 //DeadCode RJS 26Jul00 			SHAPE.GetPilotPos(theLauncher,totblokes-blokesleft,pos,relypos);
-//DeadCode RJS 26Jul00 
+//DeadCode RJS 26Jul00
 //DeadCode RJS 26Jul00 			blokesleft--;
 //DeadCode RJS 26Jul00 			if (blokesleft == (totblokes>>1))
 //DeadCode RJS 26Jul00 				trackthis = true;
-//DeadCode RJS 26Jul00 
+//DeadCode RJS 26Jul00
 //DeadCode RJS 26Jul00 			LaunchParachute(theLauncher,pos,relypos,world,trackthis);
 
 			EjectParachutist(MobileItemPtr(transit->Launcher),blokesleft,totblokes,world);	//RJS 26Jul00
@@ -14088,11 +14091,11 @@ void TransObj::MobileCanopy(TransientItemPtr transit, WorldStuff&	world)
 //Author		Robert Slater
 //Date			Mon 15 Nov 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchCollapse(	ItemPtr	launcher,
@@ -14115,7 +14118,7 @@ void	TransObj::LaunchCollapse(	ItemPtr	launcher,
 											shapehit,
 											1000,
 											MOBILE_COLLAPSE);
-		
+
 		if (newitem)
 		{
 			newitem->World = noncorrectedgrpcoords;
@@ -14176,9 +14179,9 @@ void	TransObj::LaunchCollapse(	ItemPtr	launcher,
 //
 //				... with a max height test optimisation
 //				Added repeat location optimisation.						//JIM 23/04/99
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 static int lastsector=0;
@@ -14233,11 +14236,11 @@ SLong	TransObj::GetGroundLevel(ItemBase*	itm,UByte&	theArea)
 //Author		Robert Slater
 //Date			Mon 26 Apr 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchAmmoBoxes(mobileitem* launcher,UByte gindex,Coords3D &hittercoords,SLong strength,WorldStuff& worldptr)
@@ -14350,11 +14353,11 @@ void	TransObj::LaunchAmmoBoxes(mobileitem* launcher,UByte gindex,Coords3D &hitte
 //Author		Robert Slater
 //Date			Fri 30 Apr 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	TransObj::WithinVisibleRange(Coords3D&	pos, SLong maxrange)
@@ -14372,11 +14375,11 @@ Bool	TransObj::WithinVisibleRange(Coords3D&	pos, SLong maxrange)
 //DeadCode RJS 24May00 		SLong	deltax = pos.X - View_Point->World.X;
 //DeadCode RJS 24May00 		SLong	deltay = pos.Y - View_Point->World.Y;
 //DeadCode RJS 24May00 		SLong	deltaz = pos.Z - View_Point->World.Z;
-//DeadCode RJS 24May00 
+//DeadCode RJS 24May00
 //DeadCode RJS 24May00 		deltax = (deltax<0)?-deltax:deltax;
 //DeadCode RJS 24May00 		deltay = (deltay<0)?-deltay:deltay;
 //DeadCode RJS 24May00 		deltaz = (deltaz<0)?-deltaz:deltaz;
-//DeadCode RJS 24May00 
+//DeadCode RJS 24May00
 //DeadCode RJS 24May00 		if (	(deltax < maxrange)
 //DeadCode RJS 24May00 			&&	(deltay < maxrange)
 //DeadCode RJS 24May00 			&&	(deltaz < maxrange)	)
@@ -14391,11 +14394,11 @@ Bool	TransObj::WithinVisibleRange(Coords3D&	pos, SLong maxrange)
 //Author		Robert Slater
 //Date			Thu 13 May 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchBoatSink(ItemPtr		launcher,
@@ -14418,7 +14421,7 @@ void	TransObj::LaunchBoatSink(ItemPtr		launcher,
 											shapehit,
 											1000,
 											MOBILE_SINK);
-		
+
 		if (newitem)
 		{
 			newitem->World = noncorrectedgrpcoords;
@@ -14447,7 +14450,7 @@ void	TransObj::LaunchBoatSink(ItemPtr		launcher,
 //DeadCode RJS 18Sep00 					rp = 1;			//fast
 //DeadCode RJS 18Sep00 				else
 //DeadCode RJS 18Sep00 					rp = 0;			//slow
-//DeadCode RJS 18Sep00 
+//DeadCode RJS 18Sep00
 //DeadCode RJS 18Sep00 			}
 
 			rp <<= 2;
@@ -14509,9 +14512,9 @@ void	TransObj::LaunchBoatSink(ItemPtr		launcher,
 //
 //Description	We only care if the launcher is an ac
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	TransObj::KillOldestTrail(ItemPtr	itm)
@@ -14547,11 +14550,11 @@ Bool	TransObj::KillOldestTrail(ItemPtr	itm)
 //Author		Robert Slater
 //Date			Sun 16 May 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchFakeDelayedExplosion(mobileitem*	launcher, WorldStuff&	worldptr	)
@@ -14567,7 +14570,7 @@ void	TransObj::LaunchFakeDelayedExplosion(mobileitem*	launcher, WorldStuff&	worl
 	if (newitem)
 	{
 		// this means it really will explode...
-		newitem->TransRandom = 4;		
+		newitem->TransRandom = 4;
 
 		AddTransientItemToWorld(newitem, worldptr);
 	}
@@ -14578,11 +14581,11 @@ void	TransObj::LaunchFakeDelayedExplosion(mobileitem*	launcher, WorldStuff&	worl
 //Author		Robert Slater
 //Date			Mon 31 May 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchCarpetStrike(mobileitem*	launcher, WorldStuff&	worldptr	)
@@ -14607,7 +14610,7 @@ void	TransObj::LaunchCarpetStrike(mobileitem*	launcher, WorldStuff&	worldptr	)
 	}
 
 	TransientItem*	newitem;
-	newitem = LaunchUnguidedMissile(	launcher,				
+	newitem = LaunchUnguidedMissile(	launcher,
 										theShape,					//RJS 17Jun99
 										lifetime,					//RJS 17Jun99
 										MOBILE_CARPETBOMB	);
@@ -14635,9 +14638,9 @@ void	TransObj::LaunchCarpetStrike(mobileitem*	launcher, WorldStuff&	worldptr	)
 //
 //Description	Actually sets blokes going.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::PointBlokes(ItemPtr	launcher, ShapeNum troopshape, Coords3D&	realpos, SLong	maxtroops, Coords3D*	placelist, SLong placecnt)
@@ -14684,7 +14687,7 @@ void	TransObj::PointBlokes(ItemPtr	launcher, ShapeNum troopshape, Coords3D&	real
 				if (randindex < 0)
 					randindex = placecnt-1;
 
-				adptr->xpos = placelist[randindex].X;								
+				adptr->xpos = placelist[randindex].X;
 				adptr->ypos = placelist[randindex].Y;
 				adptr->zpos = placelist[randindex].Z;
 //DeadCode RJS 11Jun99 					adptr->oncourse = FALSE;
@@ -14701,10 +14704,10 @@ void	TransObj::PointBlokes(ItemPtr	launcher, ShapeNum troopshape, Coords3D&	real
 			else
 				Anim_Control.SetPlayerAnim(newitem,ANIMATION_RUNCHICKEN);	//RJS 17Apr00
 
-	
+
 			// 5 metre spread around...
 			newitem->World.X = realpos.X + Math_Lib.rnd(1000) - 500;
-			newitem->World.Y = groundheight;								
+			newitem->World.Y = groundheight;
 			newitem->World.Z = realpos.Z + Math_Lib.rnd(1000) - 500;
 
 			// Run velocity = 6ms to 9ms
@@ -14736,11 +14739,11 @@ void	TransObj::PointBlokes(ItemPtr	launcher, ShapeNum troopshape, Coords3D&	real
 //Author		Robert Slater
 //Date			Thu 17 Jun 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::ReduceBulkStores(AirStrucPtr	ac, UByteP	aptr)
@@ -14770,7 +14773,7 @@ void	TransObj::ReduceBulkStores(AirStrucPtr	ac, UByteP	aptr)
 //DeadCode RJS 10Jul00 				if ((adptr->weaponlaunchers[index].LauncherType & LT_MASK) == currentweapon)
 //DeadCode RJS 10Jul00 					stationlist[stationcnt++] = index;
 //DeadCode RJS 10Jul00 			}
-//DeadCode RJS 10Jul00 
+//DeadCode RJS 10Jul00
 //DeadCode RJS 10Jul00 			count = 0;
 //DeadCode RJS 10Jul00 			if (stationcnt)											//RJS 21Jun99
 //DeadCode RJS 10Jul00 			{
@@ -14802,7 +14805,7 @@ void	TransObj::ReduceBulkStores(AirStrucPtr	ac, UByteP	aptr)
 //DeadCode RJS 10Jul00 		INT3;
 //DeadCode RJS 10Jul00 #endif
 //DeadCode RJS 10Jul00 				}
-//DeadCode RJS 10Jul00 
+//DeadCode RJS 10Jul00
 //DeadCode RJS 10Jul00 				for (tmpstatcnt = 0; tmpstatcnt < stationcnt; tmpstatcnt++)
 //DeadCode RJS 10Jul00 				{
 //DeadCode RJS 10Jul00 					index = stationlist[tmpstatcnt];
@@ -14810,7 +14813,7 @@ void	TransObj::ReduceBulkStores(AirStrucPtr	ac, UByteP	aptr)
 //DeadCode RJS 10Jul00 					if (count)
 //DeadCode RJS 10Jul00 					{
 //DeadCode RJS 10Jul00 						//Deduct this amount of stores from this station...
-//DeadCode RJS 10Jul00 
+//DeadCode RJS 10Jul00
 //DeadCode RJS 10Jul00 						SHAPE.ReduceLauncherLoad(ac,index,count);
 //DeadCode RJS 10Jul00 					}
 //DeadCode RJS 10Jul00 				}
@@ -14836,11 +14839,11 @@ void	TransObj::ReduceBulkStores(AirStrucPtr	ac, UByteP	aptr)
 //Author		Andy McMaster
 //Date			Wed 23 Jun 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 bool	TransObj::LaunchReplayWeapon(UByteP	armeddata, UByte	noInGroup)
@@ -14905,11 +14908,11 @@ bool	TransObj::LaunchReplayWeapon(UByteP	armeddata, UByte	noInGroup)
 //Author		Robert Slater
 //Date			Tue 29 Jun 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::LaunchSnapFlash(mobileitem* launcher,WorldStuff& worldptr)
@@ -14936,11 +14939,11 @@ void TransObj::LaunchSnapFlash(mobileitem* launcher,WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Tue 6 Jul 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::LaunchDirtSpark(mobileitem* launcher,WorldStuff& worldptr, bool dosound)
@@ -14970,16 +14973,16 @@ void TransObj::LaunchDirtSpark(mobileitem* launcher,WorldStuff& worldptr, bool d
 //				All velocities that come in here should be relative to the
 //				launcher...
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransientItem::CalcVels()
 {
 //DEADCODE RJS 3/29/00 	Float	vx, vz, vh, vy, vel;
 //DEADCODE RJS 3/29/00 	Float	sin_ang, cos_ang;
-//DEADCODE RJS 3/29/00 
+//DEADCODE RJS 3/29/00
 //DEADCODE RJS 3/29/00 	if (vel_ >= vel_y)
 //DEADCODE RJS 3/29/00 	{
 //DEADCODE RJS 3/29/00 		if (vel_ == vel_y)
@@ -14988,18 +14991,18 @@ void	TransientItem::CalcVels()
 //DEADCODE RJS 3/29/00 		{
 //DEADCODE RJS 3/29/00 			vel = Float(vel_);
 //DEADCODE RJS 3/29/00 			vy = Float(vel_y);
-//DEADCODE RJS 3/29/00 
+//DEADCODE RJS 3/29/00
 //DEADCODE RJS 3/29/00 // Calc velhori...
-//DEADCODE RJS 3/29/00 
+//DEADCODE RJS 3/29/00
 //DEADCODE RJS 3/29/00 			vel *= vel;
 //DEADCODE RJS 3/29/00 			vy *= vy;
-//DEADCODE RJS 3/29/00 
+//DEADCODE RJS 3/29/00
 //DEADCODE RJS 3/29/00 			vh = vel - vy;
 //DEADCODE RJS 3/29/00 			vh = fastMath.FastSqrt(float(vh));
 //DEADCODE RJS 3/29/00 //DeadCode RJS11Feb00			_asm
 //DEADCODE RJS 3/29/00 //DeadCode RJS11Feb00			{
-//DEADCODE RJS 3/29/00 //DeadCode RJS11Feb00				fld vh; 
-//DEADCODE RJS 3/29/00 //DeadCode RJS11Feb00				fsqrt; 
+//DEADCODE RJS 3/29/00 //DeadCode RJS11Feb00				fld vh;
+//DEADCODE RJS 3/29/00 //DeadCode RJS11Feb00				fsqrt;
 //DEADCODE RJS 3/29/00 //DeadCode RJS11Feb00				fstp vh;
 //DEADCODE RJS 3/29/00 //DeadCode RJS11Feb00			}
 //DEADCODE RJS 3/29/00 		}
@@ -15050,9 +15053,9 @@ void	TransientItem::CalcVels()
 //
 //Description	Reset weapon link chain with previously launched transients
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::ClearWeaponChain(mobileitem*	launcher, ULong	lastbullet, ULong wpIndex)
@@ -15100,11 +15103,11 @@ DeathTollLink::~DeathTollLink()
 //Author		Robert Slater
 //Date			Tue 23 Nov 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::MobileSuperBomb(TransientItemPtr	transit, WorldStuff&	world)
@@ -15134,7 +15137,7 @@ void	TransObj::MobileSuperBomb(TransientItemPtr	transit, WorldStuff&	world)
 					SLong		gheight;
 					UByte		theArea;
 					Coords3D	coords;
-										
+
 					currelmt >>= 8;
 					if (currelmt)
 					{
@@ -15155,9 +15158,9 @@ void	TransObj::MobileSuperBomb(TransientItemPtr	transit, WorldStuff&	world)
 								{
 									mad = (MinAnimData*) adptr;
 									mad->IsInvisible = 1;
-		
+
 									coords.Y = gheight + METRES01;
-			
+
 									theArea &= AT_MASK;
 
 									DoImpactGround(transit,coords,theArea,newshp,adptr);
@@ -15206,7 +15209,7 @@ void	TransObj::MobileSuperBomb(TransientItemPtr	transit, WorldStuff&	world)
 //DEADCODE JON 05/06/00 										{
 											mad->IsInvisible = 1;
 											coords.Y = gheight + METRES01;
-			
+
 											theArea &= AT_MASK;
 
 											DoImpactGround(transit,coords,theArea,newshp,adptr);
@@ -15278,11 +15281,11 @@ void	TransObj::MobileSuperBomb(TransientItemPtr	transit, WorldStuff&	world)
 //DeadCode RJS 16Dec99 			Float	sin_ang, cos_ang;
 //DeadCode RJS 16Dec99 			SWord	fakeangle = timeleft*950;
 //DeadCode RJS 16Dec99 			Math_Lib.high_sin_cos((Angles)fakeangle, sin_ang, cos_ang);
-//DeadCode RJS 16Dec99 
+//DeadCode RJS 16Dec99
 //DeadCode RJS 16Dec99 			Float deltapitch = -1000.0 * Float(TimerCode.FRAMETIME) * sin_ang;
 //DeadCode RJS 16Dec99 			deltapitch *= 1.0 - (Float(timeleft) * 0.002);
 //DeadCode RJS 16Dec99 			transit->pitch += SWord(deltapitch);
-//DeadCode RJS 16Dec99 
+//DeadCode RJS 16Dec99
 //DeadCode RJS 16Dec99 			if (timeleft > 500)
 //DeadCode RJS 16Dec99 				transit->TmpLaunchTime = 0;
 //DeadCode RJS 16Dec99 		}
@@ -15294,19 +15297,19 @@ void	TransObj::MobileSuperBomb(TransientItemPtr	transit, WorldStuff&	world)
 //DeadCode RJS 16Dec99 			float	totvel;
 //DeadCode RJS 16Dec99 			Float	velhori,vely;
 //DeadCode RJS 16Dec99 			Float	sin_ang,cos_ang;
-//DeadCode RJS 16Dec99 
+//DeadCode RJS 16Dec99
 //DeadCode RJS 16Dec99 			vx *= vx;
 //DeadCode RJS 16Dec99 			vz *= vz;
-//DeadCode RJS 16Dec99 
+//DeadCode RJS 16Dec99
 //DeadCode RJS 16Dec99 			totvel = vx+vz;
-//DeadCode RJS 16Dec99 			
+//DeadCode RJS 16Dec99
 //DeadCode RJS 16Dec99 //			velhori = Float(fastMath.FastSqrt(totvel));
 //DeadCode RJS 16Dec99 			velhori = FSqrt(Float(totvel));
 //DeadCode RJS 16Dec99 			vely = Float(transit->vel_y);
 //DeadCode RJS 16Dec99 			vely /= velhori;
-//DeadCode RJS 16Dec99 
+//DeadCode RJS 16Dec99
 //DeadCode RJS 16Dec99 			Math_Lib.high_sin_cos(transit->pitch,sin_ang,cos_ang);
-//DeadCode RJS 16Dec99 
+//DeadCode RJS 16Dec99
 //DeadCode RJS 16Dec99 			if (sin_ang > (cos_ang*vely))	//pitchdown
 //DeadCode RJS 16Dec99 				transit->pitch -= (Angles)Timer_Code.FRAMETIME*10;
 //DeadCode RJS 16Dec99 			else
@@ -15322,11 +15325,11 @@ void	TransObj::MobileSuperBomb(TransientItemPtr	transit, WorldStuff&	world)
 //Author		Robert Slater
 //Date			Tue 23 Nov 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::DoImpactGround(TransientItem* transit, Coords3D& coords, UByte theArea, ShapeNum newshp, animptr adptr)
@@ -15353,18 +15356,18 @@ void	TransObj::DoImpactGround(TransientItem* transit, Coords3D& coords, UByte th
 //Author		Robert Slater
 //Date			Tue 23 Nov 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchSuperBomb(mobileitem*	launcher, ShapeNum theShape, Coords3D& pos, WorldStuff&	worldptr)
 {
 	ShapeNum	bombShape = (ShapeNum)(SBG00+launcher->shape-SAG00);	//RJS 08Dec99
 	TransientItem*	newitem;
-	newitem = LaunchUnguidedMissile(	launcher,				
+	newitem = LaunchUnguidedMissile(	launcher,
 										bombShape,
 										LIFETIME_BOMB,
 										MOBILE_SUPERBOMB	);
@@ -15378,7 +15381,7 @@ void	TransObj::LaunchSuperBomb(mobileitem*	launcher, ShapeNum theShape, Coords3D
 
 		if (launcher->Status.size == TRANSIENTSIZE)
 			newitem->Launcher = ((TransientItem*)launcher)->Launcher;
-		
+
 		if (AirStrucPtr(*launcher)->fly.numinsag && AirStrucPtr(*launcher)->fly.expandedsag)
 			SHAPE.GroupMemberInherit(launcher,bombShape,theShape,newitem->Anim);
 		else
@@ -15387,13 +15390,13 @@ void	TransObj::LaunchSuperBomb(mobileitem*	launcher, ShapeNum theShape, Coords3D
 		if (launcher->Status.size == AIRSTRUCSIZE)
 		{
 			AirStrucPtr	ac = (AirStrucPtr)launcher;
-#ifndef	_NO_RADIOCHATTER_			
+#ifndef	_NO_RADIOCHATTER_
 			if (ac->classtype->phrasename == PHRASE_HE111)
 			{
 #endif
 				newitem->TmpLaunchTime = newitem->LaunchTime;			//RJS 16Dec99
 				newitem->pitch = (Angles)(UWord(ANGLES_60Deg) + Math_Lib.rnd(ANGLES_30Deg));
-#ifndef	_NO_RADIOCHATTER_			
+#ifndef	_NO_RADIOCHATTER_
 			}
 			else
 				newitem->TmpLaunchTime = 0;
@@ -15411,11 +15414,11 @@ void	TransObj::LaunchSuperBomb(mobileitem*	launcher, ShapeNum theShape, Coords3D
 //Author		Robert Slater
 //Date			Thu 25 Nov 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchSAGTransient(mobileitem*	launcher, ShapeNum theShape, Coords3D&	grpCoords, int groupindex, WorldStuff& worldptr)
@@ -15436,7 +15439,7 @@ void	TransObj::LaunchSAGTransient(mobileitem*	launcher, ShapeNum theShape, Coord
 	if (!mad->IsInvisible)
 	{
 		TransientItem*	newitem;
-		newitem = LaunchUnguidedMissile(	launcher,				
+		newitem = LaunchUnguidedMissile(	launcher,
 											shapehit,
 											3000,
 											MOBILE_DEADAC	);
@@ -15484,9 +15487,9 @@ void	TransObj::LaunchSAGTransient(mobileitem*	launcher, ShapeNum theShape, Coord
 //
 //Description	Stolen from AutoDeathSequence
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileDeadAC(TransientItemPtr	transit, WorldStuff& world)
@@ -15526,8 +15529,8 @@ void TransObj::MobileDeadAC(TransientItemPtr	transit, WorldStuff& world)
 
 				transit->Status.deadtime = true;						//RJS 27Jul00
 
-				Coords3D	hitpos = transit->World;			
-				hitpos.Y = groundheight;						
+				Coords3D	hitpos = transit->World;
+				hitpos.Y = groundheight;
 
 				if (!mad->IsInvisible)								//RJS 20Dec99
 				{													//RJS 20Dec99
@@ -15539,8 +15542,8 @@ void TransObj::MobileDeadAC(TransientItemPtr	transit, WorldStuff& world)
 			else
 			{
 				// Maybe not...
-//DeadCode RJS 20Dec99 				if (BoxCol::NineSectorColPiloted(transit))		
-//DeadCode RJS 20Dec99 					transit->LaunchTime=0;						
+//DeadCode RJS 20Dec99 				if (BoxCol::NineSectorColPiloted(transit))
+//DeadCode RJS 20Dec99 					transit->LaunchTime=0;
 			}
 		}
 
@@ -15563,7 +15566,7 @@ void TransObj::MobileDeadAC(TransientItemPtr	transit, WorldStuff& world)
 
 			transit->isOwned = 0;
 		}
-		
+
 		if (!transit->Status.deadtime)
 		{
 			// Explode!!
@@ -15576,7 +15579,7 @@ void TransObj::MobileDeadAC(TransientItemPtr	transit, WorldStuff& world)
 	}
 }
 
-			
+
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		MobileMoveDeadAC
 //Author		Robert Slater
@@ -15584,9 +15587,9 @@ void TransObj::MobileDeadAC(TransientItemPtr	transit, WorldStuff& world)
 //
 //Description	Stolen from AutoDeathSequence
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileMoveDeadAC(mobileitem* item)
@@ -15620,13 +15623,13 @@ void TransObj::MobileMoveDeadAC(mobileitem* item)
 //DeadCode CSB 19Jun00 	for(;;)
 //DeadCode CSB 19Jun00 	{
 //DeadCode CSB 19Jun00 		if( (lwing > BS_DAMLV2) && (rwing > BS_DAMLV2) && (tail > BS_DAMLV2) )
-//DeadCode CSB 19Jun00 		{	
+//DeadCode CSB 19Jun00 		{
 //DeadCode CSB 19Jun00 			PitchIntercept = ANGLES_270Deg;
 //DeadCode CSB 19Jun00 			DesRoll = ANGLES_80Deg;
 //DeadCode CSB 19Jun00 			if(item->roll < ANGLES_0Deg) DesRoll = -DesRoll;
 //DeadCode CSB 19Jun00 			break;
 //DeadCode CSB 19Jun00 		}
-//DeadCode CSB 19Jun00 
+//DeadCode CSB 19Jun00
 //DeadCode CSB 19Jun00 		if( (lwing > BS_DAMLV2) && (rwing > BS_DAMLV2) )
 //DeadCode CSB 19Jun00 		{
 //DeadCode CSB 19Jun00 			PitchIntercept = ANGLES_285Deg;
@@ -15634,7 +15637,7 @@ void TransObj::MobileMoveDeadAC(mobileitem* item)
 //DeadCode CSB 19Jun00 			if(item->roll < ANGLES_0Deg) DesRoll = -DesRoll;
 //DeadCode CSB 19Jun00 			break;
 //DeadCode CSB 19Jun00 		}
-//DeadCode CSB 19Jun00 		
+//DeadCode CSB 19Jun00
 //DeadCode CSB 19Jun00 		if( (lwing > BS_DAMLV2) && (rwing < BS_DAMLV2) )
 //DeadCode CSB 19Jun00 		{
 //DeadCode CSB 19Jun00 			PitchIntercept = ANGLES_300Deg;
@@ -15643,7 +15646,7 @@ void TransObj::MobileMoveDeadAC(mobileitem* item)
 //DeadCode CSB 19Jun00 			DesRoll = -DesRoll;
 //DeadCode CSB 19Jun00 			break;
 //DeadCode CSB 19Jun00 		}
-//DeadCode CSB 19Jun00 
+//DeadCode CSB 19Jun00
 //DeadCode CSB 19Jun00 		if( (lwing < BS_DAMLV2) && (rwing > BS_DAMLV2) )
 //DeadCode CSB 19Jun00 	 	{
 //DeadCode CSB 19Jun00 			PitchIntercept = ANGLES_300Deg;
@@ -15651,7 +15654,7 @@ void TransObj::MobileMoveDeadAC(mobileitem* item)
 //DeadCode CSB 19Jun00 			DesRoll -= ANGLES_1Deg;
 //DeadCode CSB 19Jun00 			break;
 //DeadCode CSB 19Jun00 		}
-//DeadCode CSB 19Jun00  
+//DeadCode CSB 19Jun00
 //DeadCode CSB 19Jun00 		if(tail > BS_DAMLV2)
 //DeadCode CSB 19Jun00 		{
 //DeadCode CSB 19Jun00 			PitchIntercept = ANGLES_270Deg;
@@ -15659,27 +15662,27 @@ void TransObj::MobileMoveDeadAC(mobileitem* item)
 //DeadCode CSB 19Jun00 			if(item->roll < ANGLES_0Deg) DesRoll = -DesRoll;
 //DeadCode CSB 19Jun00 			break;
 //DeadCode CSB 19Jun00 		}
-//DeadCode CSB 19Jun00 
+//DeadCode CSB 19Jun00
 //DeadCode CSB 19Jun00 		if(canopy == BS_DEAD)					//RJS 17Nov99
 //DeadCode CSB 19Jun00 		{
 //DeadCode CSB 19Jun00 			PitchIntercept =  ANGLES_340Deg;
 //DeadCode CSB 19Jun00 //DEADCODE RJS 5/4/00 			PitchIntercept += ANGLES_30Deg * FP(item->vel_) / 500000;
-//DeadCode CSB 19Jun00 
+//DeadCode CSB 19Jun00
 //DeadCode CSB 19Jun00 			DesRoll = ANGLES_30Deg;
-//DeadCode CSB 19Jun00 
+//DeadCode CSB 19Jun00
 //DeadCode CSB 19Jun00 			SWord sin, cos;
 //DeadCode CSB 19Jun00 			Math_Lib.high_sin_cos(Angles(SWord(View_Object->TotalDrawFrameTime() * 100)), sin, cos);
 //DeadCode CSB 19Jun00 			DesRoll += sin / 100;
 //DeadCode CSB 19Jun00 			break;
 //DeadCode CSB 19Jun00 		}
-//DeadCode CSB 19Jun00 
+//DeadCode CSB 19Jun00
 //DeadCode CSB 19Jun00 		if(engine > BS_DAMLV2)
 //DeadCode CSB 19Jun00 		{
 //DeadCode CSB 19Jun00 			PitchIntercept = ANGLES_350Deg;
 //DeadCode CSB 19Jun00 			DesRoll = ANGLES_0Deg;
 //DeadCode CSB 19Jun00 			break;
 //DeadCode CSB 19Jun00 		}
-//DeadCode CSB 19Jun00 
+//DeadCode CSB 19Jun00
 //DeadCode CSB 19Jun00 		break;
 //DeadCode CSB 19Jun00 	}
 
@@ -15697,7 +15700,7 @@ void TransObj::MobileMoveDeadAC(mobileitem* item)
 
 	if(item->vel_ > 1500000)	item->vel_ -= Timer_Code.FRAMETIME * 200;
 	if(item->vel_ < 1500000)	item->vel_ += Timer_Code.FRAMETIME * 200;
-	
+
 	Float sin_theta, cos_theta;
 	Float sin_hdg,  cos_hdg;
 	Math_Lib.high_sin_cos(item->pitch, sin_theta, cos_theta);
@@ -15718,11 +15721,11 @@ void TransObj::MobileMoveDeadAC(mobileitem* item)
 //Author		Robert Slater
 //Date			Fri 26 Nov 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void*	TransObj::LaunchAircraftFire(mobileitem*	launcher, Coords3D& pos, WorldStuff&	worldptr)
@@ -15779,11 +15782,11 @@ void*	TransObj::LaunchAircraftFire(mobileitem*	launcher, Coords3D& pos, WorldStu
 //Author		Robert Slater
 //Date			Mon 13 Dec 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchBalloonFire(mobileitem*	launcher, WorldStuff&	worldptr)
@@ -15823,9 +15826,9 @@ void	TransObj::LaunchBalloonFire(mobileitem*	launcher, WorldStuff&	worldptr)
 //Description	Put down morphing, inflating dingy,
 //				and morphing pool of dye
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchDingyChap(mobileitem* launcher,WorldStuff& worldptr)
@@ -15839,7 +15842,7 @@ void	TransObj::LaunchDingyChap(mobileitem* launcher,WorldStuff& worldptr)
 	if (newitem)
 	{
 		newitem->World.Y = GetGroundLevel(launcher);			//RJS 19Jun00
-		newitem->TimeOfLaunch -= 6000;		//make older 
+		newitem->TimeOfLaunch -= 6000;		//make older
 
 		AddTransientItemToWorld(newitem,worldptr);
 	}
@@ -15857,11 +15860,11 @@ void	TransObj::LaunchDingyChap(mobileitem* launcher,WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Mon 13 Dec 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileFuelFire(TransientItemPtr transit, WorldStuff& worldptr)
@@ -15876,13 +15879,13 @@ void TransObj::MobileFuelFire(TransientItemPtr transit, WorldStuff& worldptr)
 			transit->LaunchTime=0;
 
 		if (transit->TmpLaunchTime && (transit->TmpLaunchTime != 65535))
-		{										
-			timeleft = transit->TmpLaunchTime;	
-			timeleft -= frametime;				
-			if (timeleft < 0)					
-				timeleft = 0;					
-												
-			transit->TmpLaunchTime = timeleft;	
+		{
+			timeleft = transit->TmpLaunchTime;
+			timeleft -= frametime;
+			if (timeleft < 0)
+				timeleft = 0;
+
+			transit->TmpLaunchTime = timeleft;
 		}
 
 		if (!CheckCommsValid(transit->Launcher))						//RJS 20Sep00
@@ -15909,8 +15912,8 @@ void TransObj::MobileFuelFire(TransientItemPtr transit, WorldStuff& worldptr)
 		{
 			mobileitem*	parent = (mobileitem*) transit->Launcher;
 
-			if (	(parent->movecode == MOBILE_NOPPILOT)	
-				||	(parent->movecode == AUTO_RESURRECT)	
+			if (	(parent->movecode == MOBILE_NOPPILOT)
+				||	(parent->movecode == AUTO_RESURRECT)
 				||	(transit->TmpLaunchTime==0)				)
 			{
 				if (transit->World.Y <= (GetGroundLevel(transit) + 1000))	//RJS 31May00
@@ -15967,7 +15970,7 @@ void TransObj::MobileFuelFire(TransientItemPtr transit, WorldStuff& worldptr)
 
 					if (nopoints)
 						usepoint = Math_Lib.rnd(nopoints);
-					 
+
 					SHAPE.GetFuelPos(parent,usepoint,holepos,LT_INTFUEL);
 
 					TransientItemPtr	newitem;
@@ -15980,7 +15983,7 @@ void TransObj::MobileFuelFire(TransientItemPtr transit, WorldStuff& worldptr)
 					{
 						SLong	vel = 150 + Math_Lib.rnd(150);
 //DeadCode RJS 29Mar00 						SLong	miny = (vel*2)/3;
-//DeadCode RJS 29Mar00 
+//DeadCode RJS 29Mar00
 //DeadCode RJS 29Mar00 						newitem->vel_y = (miny+Math_Lib.rnd(vel-miny))*1000;
 						newitem->pitch = Angles(ANGLES_30Deg+Math_Lib.rnd(ANGLES_30Deg));//RJS 29Mar00
 						newitem->vel_ = vel*1000;
@@ -16017,11 +16020,11 @@ void TransObj::MobileFuelFire(TransientItemPtr transit, WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Tue 14 Dec 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchFireLick(mobileitem*	launcher, Coords3D&	pos, WorldStuff& worldptr)
@@ -16050,11 +16053,11 @@ void	TransObj::LaunchFireLick(mobileitem*	launcher, Coords3D&	pos, WorldStuff& w
 //Author		Robert Slater
 //Date			Tue 14 Dec 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileSmokeBlob(TransientItemPtr transit,WorldStuff& world)
@@ -16090,7 +16093,7 @@ void TransObj::MobileSmokeBlob(TransientItemPtr transit,WorldStuff& world)
 		transit->vel_x = vx;	//compiler auto-casts to long...
 		transit->vel_y = vy;
 		transit->vel_z = vz;
-		
+
 		frametime *= 0.0001;					//frametime / 10000
 
 		transit->World.X += SLong(vx*frametime);
@@ -16112,11 +16115,11 @@ void TransObj::MobileSmokeBlob(TransientItemPtr transit,WorldStuff& world)
 //Author		Robert Slater
 //Date			Wed 15 Dec 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobileDeadBalloon(TransientItemPtr transit,WorldStuff& world)
@@ -16135,7 +16138,7 @@ void TransObj::MobileDeadBalloon(TransientItemPtr transit,WorldStuff& world)
 			AddWindDrift(transit);
 
 			SWord	thePitch = transit->pitch;
-			
+
 			thePitch -= ANGLES_1Deg;
 			if (thePitch < -SWord(ANGLES_45Deg))
 				thePitch = -ANGLES_45Deg;
@@ -16185,11 +16188,11 @@ void TransObj::MobileDeadBalloon(TransientItemPtr transit,WorldStuff& world)
 //Author		Robert Slater
 //Date			Wed 15 Dec 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchDeadBalloon(ShapeNum theShape, Coords3D& pos, WorldStuff&	worldptr)
@@ -16217,11 +16220,11 @@ void	TransObj::LaunchDeadBalloon(ShapeNum theShape, Coords3D& pos, WorldStuff&	w
 //Author		Robert Slater
 //Date			Thu 16 Dec 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransientItem::BombPitch()
@@ -16235,7 +16238,7 @@ void	TransientItem::BombPitch()
 		Math_Lib.high_sin_cos((Angles)fakeangle, sin_ang, cos_ang);
 
 		Float deltapitch = -1000.0 * Float(TimerCode.FRAMETIME) * sin_ang;
-		deltapitch *= 1.0 - (Float(timeleft) * 0.002);
+		deltapitch *= (1.0 - (Float(timeleft) * 0.002));
 		pitch += SWord(deltapitch);
 
 		if (timeleft > 500)
@@ -16254,7 +16257,7 @@ void	TransientItem::BombPitch()
 		vz *= vz;
 
 		totvel = vx+vz;
-			
+
 		velhori = fastMath.FastInvSqrt(totvel);					//RJS 17Oct00
 //DeadCode RJS 11Feb00		velhori = FSqrt(Float(totvel));
 		vely = Float(vel_y) * velhori;							//RJS 17Oct00
@@ -16274,17 +16277,17 @@ void	TransientItem::BombPitch()
 //Author		Robert Slater
 //Date			Mon 20 Dec 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchACTransient(mobileitem*	launcher, ShapeNum theShape, WorldStuff& worldptr)
 {
 	TransientItem*	newitem;
-	newitem = LaunchUnguidedMissile(	launcher,				
+	newitem = LaunchUnguidedMissile(	launcher,
 										theShape,
 										3000,
 										MOBILE_DEADAC	);
@@ -16313,11 +16316,11 @@ void	TransObj::LaunchACTransient(mobileitem*	launcher, ShapeNum theShape, WorldS
 //Author		Robert Slater
 //Date			Mon 10 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::DoRaidAlert(UWord	uniqueid)				//RJS 09Mar00
@@ -16396,11 +16399,11 @@ void	TransObj::DoRaidAlert(UWord	uniqueid)				//RJS 09Mar00
 //Author		Robert Slater
 //Date			Mon 10 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::DoRaidEnd(UWord			uniqueid)			//RJS 09Mar00
@@ -16481,11 +16484,11 @@ void	TransObj::DoRaidEnd(UWord			uniqueid)			//RJS 09Mar00
 //Author		Robert Slater
 //Date			Mon 10 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchBloke(ItemPtr	launcher, Coords3D&	destpos, bool mental, WorldStuff&	world)
@@ -16522,11 +16525,11 @@ void	TransObj::LaunchBloke(ItemPtr	launcher, Coords3D&	destpos, bool mental, Wor
 //Author		Robert Slater
 //Date			Fri 14 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchACRicochet(mobileitem* launcher,WorldStuff& worldptr)
@@ -16612,9 +16615,9 @@ void	TransObj::LaunchACRicochet(mobileitem* launcher,WorldStuff& worldptr)
 //Description	Flies high, then drops & opens its chute,
 //				then changes movecode.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void TransObj::MobilePAC(TransientItemPtr transit,WorldStuff& worldptr)
@@ -16692,11 +16695,11 @@ void TransObj::MobilePAC(TransientItemPtr transit,WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Tue 22 Feb 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchEngineStartup(mobileitem* launcher,WorldStuff& worldptr, bool isPacket)
@@ -16729,11 +16732,11 @@ void	TransObj::LaunchEngineStartup(mobileitem* launcher,WorldStuff& worldptr, bo
 //Author		Robert Slater
 //Date			Fri 25 Feb 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchEmergencyDudes(mobileitem* launcher, Coords3D& worldPos,WorldStuff& worldptr)
@@ -16775,11 +16778,11 @@ void	TransObj::LaunchEmergencyDudes(mobileitem* launcher, Coords3D& worldPos,Wor
 //Author		Robert Slater
 //Date			Thu 9 Mar 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::RaidAlert(ItemPtr	raiditem)
@@ -16793,18 +16796,19 @@ void	TransObj::RaidAlert(ItemPtr	raiditem)
 //Author		Robert Slater
 //Date			Thu 9 Mar 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::NewRaid(UWord	uid, SLong raidendtime)
 {
 	if (uid)
 	{
-		for (SLong index=0; index < raidCount; index++)
+	    SLong index;
+		for (index=0; index < raidCount; index++)
 		{
 			if (raidList[index].uid == uid)
 				break;
@@ -16830,9 +16834,9 @@ void	TransObj::NewRaid(UWord	uid, SLong raidendtime)
 //
 //Description	Will bump the raid time-out to 3 30 seconds
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::RaidEnd(ItemPtr	raiditem)
@@ -16858,11 +16862,11 @@ void	TransObj::RaidEnd(ItemPtr	raiditem)
 //Author		Robert Slater
 //Date			Thu 9 Mar 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::UpdateRaids()
@@ -16892,11 +16896,11 @@ void	TransObj::UpdateRaids()
 //Author		Robert Slater
 //Date			Wed 19 Apr 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 bool	TransObj::ClearPath(Coords3D&	eye, Coords3D& target, Coords3D& object, SLong radius)
@@ -16945,11 +16949,11 @@ bool	TransObj::ClearPath(Coords3D&	eye, Coords3D& target, Coords3D& object, SLon
 //Author		Robert Slater
 //Date			Wed 26 Apr 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::BirdCentralControl(ItemPtr	launcher, ShapeNum launchershape, SLong groupindex, WorldStuff& worldptr)
@@ -16961,7 +16965,7 @@ void	TransObj::BirdCentralControl(ItemPtr	launcher, ShapeNum launchershape, SLon
 		ShapeNum				shapehit;
 		UWord					ghdg;
 		BirdLauncherAnimData* 	adptr;
-		
+
 		adptr = (BirdLauncherAnimData*) SHAPE.GetGroupItemAnimHdg(launcher,shapehit,groupindex,&pos,ghdg);
 		if (	!adptr->IsInvisible
 			&&	(adptr->itemstate != DEAD)
@@ -16979,11 +16983,11 @@ void	TransObj::BirdCentralControl(ItemPtr	launcher, ShapeNum launchershape, SLon
 //Author		Robert Slater
 //Date			Wed 26 Apr 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::ControlDummyBloke(ItemPtr	theItem)
@@ -17112,16 +17116,16 @@ void	TransObj::ControlDummyBloke(ItemPtr	theItem)
 //Author		Robert Slater
 //Date			Mon 22 May 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchExplodePuff(mobileitem*	launcher, SLong height, ShapeNum theShape, SLong lifetime, WorldStuff& world)
 {
-	if (	(realFPS > desiredFPS)					
+	if (	(realFPS > desiredFPS)
 		&&	(Math_Lib.rnd() > 32767)				)
 	{
 		Coords3D	pos = launcher->World;
@@ -17138,9 +17142,9 @@ void	TransObj::LaunchExplodePuff(mobileitem*	launcher, SLong height, ShapeNum th
 //
 //Description	Used by real blokes and transient blokes
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::MoveBlokeWithBrain(mobileitem* transit, UWord& timer)
@@ -17159,7 +17163,7 @@ void	TransObj::MoveBlokeWithBrain(mobileitem* transit, UWord& timer)
 		{
 			SLong	dx, dy, dz;
 			SLong	distance;
-			SWord	hdg2;					
+			SWord	hdg2;
 			SWord	newhdg;
 			SWord	thehdg;
 
@@ -17172,7 +17176,7 @@ void	TransObj::MoveBlokeWithBrain(mobileitem* transit, UWord& timer)
 
 			if (adptr->oncourse == FALSE)
 			{
-				hdg2 = transit->hdg;				
+				hdg2 = transit->hdg;
 				newhdg = (thehdg - hdg2) >> 1;
 
 				if (newhdg == 0)
@@ -17200,7 +17204,7 @@ void	TransObj::MoveBlokeWithBrain(mobileitem* transit, UWord& timer)
 			transit->hdg = (Angles) (transit->hdg + Math_Lib.rnd(ANGLES_10Deg) - ANGLES_5Deg);	//RJS 26Oct00
 			timer += ((50*voxrand)>>16);
 		}
-		
+
 		Float	sin_ang, cos_ang;
 		Float	theVel = Float(transit->vel_);
 		Math_Lib.high_sin_cos(transit->hdg, sin_ang, cos_ang);
@@ -17232,11 +17236,11 @@ void	TransObj::MoveBlokeWithBrain(mobileitem* transit, UWord& timer)
 //Author		Robert Slater
 //Date			Mon 22 May 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::PointBloke(mobileitem*	launcher, Coords3D&	destpos, bool mental)
@@ -17249,7 +17253,7 @@ void	TransObj::PointBloke(mobileitem*	launcher, Coords3D&	destpos, bool mental)
 	adptr->homing = FALSE;
 	if (!mental)
 	{
-		adptr->xpos = destpos.X;								
+		adptr->xpos = destpos.X;
 		adptr->ypos = destpos.Y;
 		adptr->zpos = destpos.Z;
 
@@ -17290,11 +17294,11 @@ void	TransObj::PointBloke(mobileitem*	launcher, Coords3D&	destpos, bool mental)
 //Author		Robert Slater
 //Date			Wed 14 Jun 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchBlowCanopy(mobileitem* launcher, WorldStuff& worldptr)
@@ -17328,11 +17332,11 @@ void	TransObj::LaunchBlowCanopy(mobileitem* launcher, WorldStuff& worldptr)
 //Author		Robert Slater
 //Date			Wed 26 Jul 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::EjectParachutist(mobileitem*	launcher, UWord& blokesleft, UWord totblokes, WorldStuff& world)
@@ -17355,11 +17359,11 @@ void	TransObj::EjectParachutist(mobileitem*	launcher, UWord& blokesleft, UWord t
 //Author		Robert Slater
 //Date			Mon 21 Aug 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchTurbulance(mobileitem* launcher,UByte strength,WorldStuff& worldptr)
@@ -17371,13 +17375,13 @@ void	TransObj::LaunchTurbulance(mobileitem* launcher,UByte strength,WorldStuff& 
 										54,MOBILE_DODAMAGE);
 	if (newitem)
 	{
-		if (launcher->Status.size == TRANSIENTSIZE)	
+		if (launcher->Status.size == TRANSIENTSIZE)
 			newitem->Launcher = ((TransientItem*)launcher)->Launcher;
 
 		MissileAnimData*	adptr = (MissileAnimData*) newitem->Anim;
- 		adptr->hitstrength = strength;				
+ 		adptr->hitstrength = strength;
 
-		newitem->isArmed = 1;					
+		newitem->isArmed = 1;
 
 		AddTransientItemToWorld(newitem, worldptr);
 	}
@@ -17388,11 +17392,11 @@ void	TransObj::LaunchTurbulance(mobileitem* launcher,UByte strength,WorldStuff& 
 //Author		Robert Slater
 //Date			Wed 20 Sep 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 inline	bool	TransObj::CheckCommsValid(const ItemPtr	theItem)
@@ -17416,11 +17420,11 @@ inline	bool	TransObj::CheckCommsValid(const ItemPtr	theItem)
 //Author		Robert Slater
 //Date			Tue 26 Sep 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::LaunchHitGrass(mobileitem* launcher, const SLong& gheight, WorldStuff& worldptr)
@@ -17446,9 +17450,9 @@ void	TransObj::LaunchHitGrass(mobileitem* launcher, const SLong& gheight, WorldS
 //Description	We don't want to move the bomb if it's been launched this frame...
 //				... otherwise the bomb will move 1 frame ahead of its launcher.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::MobileBomb1stFrame(TransientItemPtr transit,WorldStuff& world)
@@ -17466,11 +17470,11 @@ void	TransObj::MobileBomb1stFrame(TransientItemPtr transit,WorldStuff& world)
 //Date			Thu 05 Oct 2000
 //
 //Description
-//			
 //
-//Inputs		
 //
-//Returns	
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::SetTotalAmmo(AirStrucPtr	ac)
@@ -17523,10 +17527,10 @@ void	TransObj::ReloadBomb(AirStrucPtr ac)
 
 	if (ac->classtype->aerobaticfactor != AEROBATIC_LOW)
 	{
-		weapon = adptr->weaponlaunchers;									
-		for (index=0; index < adptr->nolaunchers; index++)					
+		weapon = adptr->weaponlaunchers;
+		for (index=0; index < adptr->nolaunchers; index++)
 		{
-			if (weapon)														
+			if (weapon)
 			{
 				if ((weapon->LauncherType&LT_MASK) == LT_BOMB)
 					weapon->LoadedStores = weapon->Stores;
@@ -17543,11 +17547,11 @@ void	TransObj::ReloadBomb(AirStrucPtr ac)
 //Date			Sun 29 Oct 2000
 //
 //Description
-//			
 //
-//Inputs		
 //
-//Returns	
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 void	TransObj::ClearGunFlash(const ItemPtr	shooter)

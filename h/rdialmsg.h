@@ -18,7 +18,7 @@
 	afx_msg CDC* OnGetOffScreenDC();
 	afx_msg CHintBox* OnGetHintBox();
 	afx_msg CListBx* OnGetComboDialog();
-	afx_msg CRListBox* OnGetComboListbox();
+	afx_msg class CRListBox* OnGetComboListbox();
 	afx_msg void OnActiveXScroll(int scrollpos, BOOL horzalign);
 	afx_msg int OnGetString(int resourceID,char* workbuffer);
 public:

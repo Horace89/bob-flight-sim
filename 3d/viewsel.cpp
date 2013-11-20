@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -64,10 +64,10 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //------------------------------------------------------------------------------
 //Filename       viewsel.cpp
-//System         
-//Author         Paul.   
+//System
+//Author         Paul.
 //Date           Mon 19 Feb 1996
-//Description    
+//Description
 //------------------------------------------------------------------------------
 	#include	"dosdefs.h"
 #define	F_BATTLE
@@ -101,6 +101,8 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 	#include "transite.h"
 	#include "model.h"
 	#include "fastmath.h"
+#undef assert
+#include <cassert>
 #ifndef	NDEBUG
 //#define __TINYROTATE__
 //#define __NODEATHVIEW__
@@ -146,10 +148,10 @@ const	ULong	QUIT3DNOTSET = 0xFFFFFFFF;								//RJS 27Sep00
 const	SLong	MAX_ZOOM_CONST = 500000;								//RJS 10Nov00
 
 //DeadCode RJS 5Jul00 #ifndef	NDEBUG
-//DeadCode RJS 5Jul00 
+//DeadCode RJS 5Jul00
 //DeadCode RJS 5Jul00 //#define __NODEATHVIEW__
 //DeadCode RJS 5Jul00 //	#define	_FIXZOOMRANGE_
-//DeadCode RJS 5Jul00 
+//DeadCode RJS 5Jul00
 //DeadCode RJS 5Jul00 #endif
 
 void ViewPoint::CheckPadlock(ItemBasePtr ip)
@@ -169,7 +171,7 @@ void ViewPoint::CheckPadlock(ItemBasePtr ip)
 // Date:		07/06/00
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 //TEMPCODE JIM 07/06/00 ViewPoint::View_Key	ViewPoint::VieweeList[] =
@@ -180,12 +182,12 @@ void ViewPoint::CheckPadlock(ItemBasePtr ip)
 //TEMPCODE JIM 07/06/00 		{GRNDTVIEW,InitGroundTarget},
 //TEMPCODE JIM 07/06/00 		{WAYPTVIEW,InitWayPoint},
 //TEMPCODE JIM 07/06/00 		{MSGVIEW,InitMessage},									//PD 02Sep96
-//TEMPCODE JIM 07/06/00 
+//TEMPCODE JIM 07/06/00
 //TEMPCODE JIM 07/06/00 		{PREVENEMYVIEW,PInitEnemy},								//PD 08Oct97
 //TEMPCODE JIM 07/06/00 		{PREVFRNDVIEW,PInitFriendly},							//PD 08Oct97
 //TEMPCODE JIM 07/06/00 		{PREVGRNDTVIEW,PInitGroundTarget},						//PD 08Oct97
 //TEMPCODE JIM 07/06/00 		{PREVWAYPTVIEW,PInitWayPoint},							//PD 08Oct97
-//TEMPCODE JIM 07/06/00 
+//TEMPCODE JIM 07/06/00
 //TEMPCODE JIM 07/06/00 		{RESETENEMYVIEW,ResetEnemy},
 //TEMPCODE JIM 07/06/00 		{RESETFRNDVIEW,ResetFriendly},
 //TEMPCODE JIM 07/06/00 		{RESETGRNDTVIEW,ResetGroundTarget},
@@ -195,7 +197,7 @@ void ViewPoint::CheckPadlock(ItemBasePtr ip)
 //TEMPCODE JIM 07/06/00 		{ESCORTEEVIEW,InitEscortee},
 //TEMPCODE JIM 07/06/00 		{(KeyVal3D )NULL,(InitRtnP )NULL}
 //TEMPCODE JIM 07/06/00 	};
-//TEMPCODE JIM 07/06/00 
+//TEMPCODE JIM 07/06/00
 //TEMPCODE JIM 07/06/00 ViewPoint::View_Key	ViewPoint::ViewTypeList[] =
 //TEMPCODE JIM 07/06/00 	{
 //TEMPCODE JIM 07/06/00 		{INSIDETOG,		List1Toggle},
@@ -211,7 +213,7 @@ void ViewPoint::CheckPadlock(ItemBasePtr ip)
 //TEMPCODE JIM 07/06/00 		{ACCELKEY2,		List9Toggle},
 //TEMPCODE JIM 07/06/00 		{(KeyVal3D )NULL,(InitRtnP )NULL}
 //TEMPCODE JIM 07/06/00 	};
-//TEMPCODE JIM 07/06/00 
+//TEMPCODE JIM 07/06/00
 //TEMPCODE JIM 07/06/00 ViewPoint::View_Key	ViewPoint::ViewSpecList[] =
 //TEMPCODE JIM 07/06/00 	{
 //TEMPCODE JIM 07/06/00 		{IMPACTTOG,ImpactToggle},
@@ -261,14 +263,14 @@ inline	bool	ViewPoint::GuyIsAlive(const	ItemPtr	entry)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ViewPoint
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 19 Feb 1996
 //
 //Description	View point constructor
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 DES	ViewPoint::~ViewPoint()
@@ -306,86 +308,86 @@ CON	ViewPoint::ViewPoint(CLib3D* lib3d,View3d* v)
 	//use this list when view mode select is 0
 static ViewPoint::View_Key	VieweeList[] =
 	{
-		{RESETVIEW,InitFlyingView},								//PD 03Sep96
-		{ENEMYVIEW,InitEnemy},
-		{FRNDVIEW,InitFriendly},
-		{GRNDTVIEW,InitGroundTarget},
-		{WAYPTVIEW,InitWayPoint},
-		{MSGVIEW,InitMessage},									//PD 02Sep96
+		{RESETVIEW, MYPREFIX ViewPoint::InitFlyingView},								//PD 03Sep96
+		{ENEMYVIEW, MYPREFIX ViewPoint::InitEnemy},
+		{FRNDVIEW, MYPREFIX ViewPoint::InitFriendly},
+		{GRNDTVIEW, MYPREFIX ViewPoint::InitGroundTarget},
+		{WAYPTVIEW, MYPREFIX ViewPoint::InitWayPoint},
+		{MSGVIEW, MYPREFIX ViewPoint::InitMessage},									//PD 02Sep96
 
-		{PREVENEMYVIEW,PInitEnemy},								//PD 08Oct97
-		{PREVFRNDVIEW,PInitFriendly},							//PD 08Oct97
-		{PREVGRNDTVIEW,PInitGroundTarget},						//PD 08Oct97
-		{PREVWAYPTVIEW,PInitWayPoint},							//PD 08Oct97
+		{PREVENEMYVIEW, MYPREFIX ViewPoint::PInitEnemy},								//PD 08Oct97
+		{PREVFRNDVIEW, MYPREFIX ViewPoint::PInitFriendly},							//PD 08Oct97
+		{PREVGRNDTVIEW, MYPREFIX ViewPoint::PInitGroundTarget},						//PD 08Oct97
+		{PREVWAYPTVIEW, MYPREFIX ViewPoint::PInitWayPoint},							//PD 08Oct97
 
-		{RESETENEMYVIEW,ResetEnemy},
-		{RESETFRNDVIEW,ResetFriendly},
-		{RESETGRNDTVIEW,ResetGroundTarget},
-		{RESETWAYPTVIEW,RSetWP},
-		{PADLOCKTOG,ToggleEnemy},								//PD 26Sep96
-		{AIUNFRIENDLYVIEW,InitAIUnfriendly},
-		{ESCORTEEVIEW,InitEscortee},
+		{RESETENEMYVIEW, MYPREFIX ViewPoint::ResetEnemy},
+		{RESETFRNDVIEW, MYPREFIX ViewPoint::ResetFriendly},
+		{RESETGRNDTVIEW, MYPREFIX ViewPoint::ResetGroundTarget},
+		{RESETWAYPTVIEW, MYPREFIX ViewPoint::RSetWP},
+		{PADLOCKTOG, MYPREFIX ViewPoint::ToggleEnemy},								//PD 26Sep96
+		{AIUNFRIENDLYVIEW, MYPREFIX ViewPoint::InitAIUnfriendly},
+		{ESCORTEEVIEW, MYPREFIX ViewPoint::InitEscortee},
 		{(KeyVal3D )NULL,(InitRtnP )NULL}
 	};
 
 static ViewPoint::View_Key	ViewTypeList[] =
 	{
-		{INSIDETOG,		List1Toggle},
-		{OUTSIDETOG,	List2Toggle},
-		{SATELLITOG,	List3Toggle},
-		{CHASETOG,		List4Toggle},
-		{CHEATTOG,		List5Toggle},							//PD 17Jun96
+		{INSIDETOG,		 MYPREFIX ViewPoint::List1Toggle},
+		{OUTSIDETOG,	 MYPREFIX ViewPoint::List2Toggle},
+		{SATELLITOG,	 MYPREFIX ViewPoint::List3Toggle},
+		{CHASETOG,		 MYPREFIX ViewPoint::List4Toggle},
+		{CHEATTOG,		 MYPREFIX ViewPoint::List5Toggle},							//PD 17Jun96
 #ifndef	NDEBUG													//RDH 13Dec96
-		{OUTREVLOCKTOG,	List6Toggle},							//PD 27Jun96
+		{OUTREVLOCKTOG,	 MYPREFIX ViewPoint::List6Toggle},							//PD 27Jun96
 #endif															//RDH 13Dec96
-		{INOUTTOG,		List7Toggle},							//PD 26Sep96
-		{GOTOMAPKEY,	List8Toggle},							//rjs 09Sep98
-		{ACCELKEY2,		List9Toggle},
+		{INOUTTOG,		 MYPREFIX ViewPoint::List7Toggle},							//PD 26Sep96
+		{GOTOMAPKEY,	 MYPREFIX ViewPoint::List8Toggle},							//rjs 09Sep98
+		{ACCELKEY2,		 MYPREFIX ViewPoint::List9Toggle},
 		{(KeyVal3D )NULL,(InitRtnP )NULL}
 	};
 
 static ViewPoint::View_Key	ViewSpecList[] =
 	{
-		{IMPACTTOG,ImpactToggle},
+		{IMPACTTOG, MYPREFIX ViewPoint::ImpactToggle},
 		{(KeyVal3D )NULL,(InitRtnP )NULL}
 	};
 
 	static	Zoom_Key	ViewRotList[] =
 	{
-		{ROTRESET,		ResetZoomRotat2,ZR_NULL},
-		{ROTRESET2,		ResetZoomRotat2,ZR_NULL},
-		{ZOOMIN,		HandleZoom,		ZR_ZoomIn},
-		{ZOOMOUT,		HandleZoom,		ZR_ZoomOut},
-		{ROTDOWN,		HandleRotate,	ZR_RotDn},
-		{ROTUP,			HandleRotate,	ZR_RotUp},
-		{ROTRIGHT,		HandleRotate,	ZR_RotRght},
-		{ROTLEFT,		HandleRotate,	ZR_RotLft},
-		{ROTDNLEFT,		HandleRotate,	ZR_RotDn|ZR_RotLft},
-		{ROTDNRIGHT,	HandleRotate,	ZR_RotDn|ZR_RotRght},
-		{ROTUPLEFT,		HandleRotate,	ZR_RotUp|ZR_RotLft},
-		{ROTUPRIGHT,	HandleRotate,	ZR_RotUp|ZR_RotRght},
+		{ROTRESET,		 MYPREFIX ViewPoint::ResetZoomRotat2,ZR_NULL},
+		{ROTRESET2,		 MYPREFIX ViewPoint::ResetZoomRotat2,ZR_NULL},
+		{ZOOMIN,		 MYPREFIX ViewPoint::HandleZoom,		ZR_ZoomIn},
+		{ZOOMOUT,		 MYPREFIX ViewPoint::HandleZoom,		ZR_ZoomOut},
+		{ROTDOWN,		 MYPREFIX ViewPoint::HandleRotate,	ZR_RotDn},
+		{ROTUP,			 MYPREFIX ViewPoint::HandleRotate,	ZR_RotUp},
+		{ROTRIGHT,		 MYPREFIX ViewPoint::HandleRotate,	ZR_RotRght},
+		{ROTLEFT,		 MYPREFIX ViewPoint::HandleRotate,	ZR_RotLft},
+		{ROTDNLEFT,		 MYPREFIX ViewPoint::HandleRotate,	ZR_RotDn|ZR_RotLft},
+		{ROTDNRIGHT,	 MYPREFIX ViewPoint::HandleRotate,	ZR_RotDn|ZR_RotRght},
+		{ROTUPLEFT,		 MYPREFIX ViewPoint::HandleRotate,	ZR_RotUp|ZR_RotLft},
+		{ROTUPRIGHT,	 MYPREFIX ViewPoint::HandleRotate,	ZR_RotUp|ZR_RotRght},
 
-		{BIGZOOMIN,		HandleZoom,		ZR_BIG|ZR_ZoomIn},
-		{BIGZOOMOUT,	HandleZoom,		ZR_BIG|ZR_ZoomOut},
-		{BIGROTDOWN,	HandleRotate,	ZR_BIG|ZR_RotDn},
-		{BIGROTUP,		HandleRotate,	ZR_BIG|ZR_RotUp},
-		{BIGROTRIGHT,	HandleRotate,	ZR_BIG|ZR_RotRght},
-		{BIGROTLEFT,	HandleRotate,	ZR_BIG|ZR_RotLft},
-		{BIGROTDNLEFT,	HandleRotate,	ZR_BIG|ZR_RotDn|ZR_RotLft},
-		{BIGROTDNRIGHT,	HandleRotate,	ZR_BIG|ZR_RotDn|ZR_RotRght},
-		{BIGROTUPLEFT,	HandleRotate,	ZR_BIG|ZR_RotUp|ZR_RotLft},
-		{BIGROTUPRIGHT,	HandleRotate,	ZR_BIG|ZR_RotUp|ZR_RotRght},
+		{BIGZOOMIN,		 MYPREFIX ViewPoint::HandleZoom,		ZR_BIG|ZR_ZoomIn},
+		{BIGZOOMOUT,	 MYPREFIX ViewPoint::HandleZoom,		ZR_BIG|ZR_ZoomOut},
+		{BIGROTDOWN,	 MYPREFIX ViewPoint::HandleRotate,	ZR_BIG|ZR_RotDn},
+		{BIGROTUP,		 MYPREFIX ViewPoint::HandleRotate,	ZR_BIG|ZR_RotUp},
+		{BIGROTRIGHT,	 MYPREFIX ViewPoint::HandleRotate,	ZR_BIG|ZR_RotRght},
+		{BIGROTLEFT,	 MYPREFIX ViewPoint::HandleRotate,	ZR_BIG|ZR_RotLft},
+		{BIGROTDNLEFT,	 MYPREFIX ViewPoint::HandleRotate,	ZR_BIG|ZR_RotDn|ZR_RotLft},
+		{BIGROTDNRIGHT,	 MYPREFIX ViewPoint::HandleRotate,	ZR_BIG|ZR_RotDn|ZR_RotRght},
+		{BIGROTUPLEFT,	 MYPREFIX ViewPoint::HandleRotate,	ZR_BIG|ZR_RotUp|ZR_RotLft},
+		{BIGROTUPRIGHT,	 MYPREFIX ViewPoint::HandleRotate,	ZR_BIG|ZR_RotUp|ZR_RotRght},
 
 		//add alt-keyboard number keys to this list
-		{AROTRESET,		ResetZoomRotat2,ZR_NULL},
-		{AROTDOWN,		HandleRotate,	ZR_RotDn},
-		{AROTUP,		HandleRotate,	ZR_RotUp},
-		{AROTRIGHT,		HandleRotate,	ZR_RotRght},
-		{AROTLEFT,		HandleRotate,	ZR_RotLft},
-		{AROTDNLEFT,	HandleRotate,	ZR_RotDn|ZR_RotLft},
-		{AROTDNRIGHT,	HandleRotate,	ZR_RotDn|ZR_RotRght},
-		{AROTUPLEFT,	HandleRotate,	ZR_RotUp|ZR_RotLft},
-		{AROTUPRIGHT,	HandleRotate,	ZR_RotUp|ZR_RotRght},
+		{AROTRESET,		 MYPREFIX ViewPoint::ResetZoomRotat2,ZR_NULL},
+		{AROTDOWN,		 MYPREFIX ViewPoint::HandleRotate,	ZR_RotDn},
+		{AROTUP,		 MYPREFIX ViewPoint::HandleRotate,	ZR_RotUp},
+		{AROTRIGHT,		 MYPREFIX ViewPoint::HandleRotate,	ZR_RotRght},
+		{AROTLEFT,		 MYPREFIX ViewPoint::HandleRotate,	ZR_RotLft},
+		{AROTDNLEFT,	 MYPREFIX ViewPoint::HandleRotate,	ZR_RotDn|ZR_RotLft},
+		{AROTDNRIGHT,	 MYPREFIX ViewPoint::HandleRotate,	ZR_RotDn|ZR_RotRght},
+		{AROTUPLEFT,	 MYPREFIX ViewPoint::HandleRotate,	ZR_RotUp|ZR_RotLft},
+		{AROTUPRIGHT,	 MYPREFIX ViewPoint::HandleRotate,	ZR_RotUp|ZR_RotRght},
 
 		{(KeyVal3D )NULL,(ZmRtRtnP )NULL,ZR_NULL}
 	};
@@ -395,133 +397,133 @@ static ViewPoint::View_Key	ViewSpecList[] =
 	static	Zoom_Key AlternateViewRotList[] =									//PD 14Aug97
 	{
 		//add alt-keyboard number keys to this list
-		{AROTRESET,		ResetZoomRotat2,ZR_NULL},
-		{AROTDOWN,		HandleRotate,	ZR_RotDn},
-		{AROTUP,		HandleRotate,	ZR_RotUp},
-		{AROTRIGHT,		HandleRotate,	ZR_RotRght},
-		{AROTLEFT,		HandleRotate,	ZR_RotLft},
-		{AROTDNLEFT,	HandleRotate,	ZR_RotDn|ZR_RotLft},
-		{AROTDNRIGHT,	HandleRotate,	ZR_RotDn|ZR_RotRght},
-		{AROTUPLEFT,	HandleRotate,	ZR_RotUp|ZR_RotLft},
-		{AROTUPRIGHT,	HandleRotate,	ZR_RotUp|ZR_RotRght},
+		{AROTRESET,		 MYPREFIX ViewPoint::ResetZoomRotat2,ZR_NULL},
+		{AROTDOWN,		 MYPREFIX ViewPoint::HandleRotate,	ZR_RotDn},
+		{AROTUP,		 MYPREFIX ViewPoint::HandleRotate,	ZR_RotUp},
+		{AROTRIGHT,		 MYPREFIX ViewPoint::HandleRotate,	ZR_RotRght},
+		{AROTLEFT,		 MYPREFIX ViewPoint::HandleRotate,	ZR_RotLft},
+		{AROTDNLEFT,	 MYPREFIX ViewPoint::HandleRotate,	ZR_RotDn|ZR_RotLft},
+		{AROTDNRIGHT,	 MYPREFIX ViewPoint::HandleRotate,	ZR_RotDn|ZR_RotRght},
+		{AROTUPLEFT,	 MYPREFIX ViewPoint::HandleRotate,	ZR_RotUp|ZR_RotLft},
+		{AROTUPRIGHT,	 MYPREFIX ViewPoint::HandleRotate,	ZR_RotUp|ZR_RotRght},
 
 		{(KeyVal3D )NULL,	(ZmRtRtnP )NULL,ZR_NULL}
 	};															//PD 14Aug97
 
 	static	Zoom_Key	ViewHeadList[]=
 	{
-		{HEADOUTVIEWL,	HandleHead,		ZR_HeadLeft},			//RJS 27Mar00
-		{HEADOUTVIEWR,	HandleHead,		ZR_HeadRight},			//RJS 27Mar00
-		{FLOORVIEW,		HandleHead,		ZR_HeadDown},					//RJS 4Oct00
+		{HEADOUTVIEWL,	 MYPREFIX ViewPoint::HandleHead,		ZR_HeadLeft},			//RJS 27Mar00
+		{HEADOUTVIEWR,	 MYPREFIX ViewPoint::HandleHead,		ZR_HeadRight},			//RJS 27Mar00
+		{FLOORVIEW,		 MYPREFIX ViewPoint::HandleHead,		ZR_HeadDown},					//RJS 4Oct00
 
 		{(KeyVal3D )NULL,	(ZmRtRtnP )NULL,ZR_NULL}
 	};
 
 	static	Quick_View	QuickViewList[]=
 	{
-		{LOOKNE,	HandleQuickView,	QV_NorthEast},
-		{LOOKE,		HandleQuickView,	QV_East}, 
-		{LOOKSE,	HandleQuickView,	QV_SouthEast},
-		{LOOKS, 	HandleQuickView,	QV_South},
-		{LOOKSW,	HandleQuickView,	QV_SouthWest},
-		{LOOKW, 	HandleQuickView,	QV_West},
-		{LOOKNW,	HandleQuickView,	QV_NorthWest},
-		{LOOKN,		HandleQuickView,	QV_North}, 
-		{LOOKUPNE,	HandleQuickView,	QV_NorthEastUp},
-		{LOOKUPE, 	HandleQuickView,	QV_EastUp}, 
-		{LOOKUPSE,	HandleQuickView,	QV_SouthEastUp},
-		{LOOKUPS, 	HandleQuickView,	QV_SouthUp},
-		{LOOKUPSW,	HandleQuickView,	QV_SouthWestUp},
-		{LOOKUPW, 	HandleQuickView,	QV_WestUp},
-		{LOOKUPNW,	HandleQuickView,	QV_NorthWestUp},
-		{LOOKUPN, 	HandleQuickView,	QV_NorthUp}, 
+		{LOOKNE,	 MYPREFIX ViewPoint::HandleQuickView,	QV_NorthEast},
+		{LOOKE,		 MYPREFIX ViewPoint::HandleQuickView,	QV_East},
+		{LOOKSE,	 MYPREFIX ViewPoint::HandleQuickView,	QV_SouthEast},
+		{LOOKS, 	 MYPREFIX ViewPoint::HandleQuickView,	QV_South},
+		{LOOKSW,	 MYPREFIX ViewPoint::HandleQuickView,	QV_SouthWest},
+		{LOOKW, 	 MYPREFIX ViewPoint::HandleQuickView,	QV_West},
+		{LOOKNW,	 MYPREFIX ViewPoint::HandleQuickView,	QV_NorthWest},
+		{LOOKN,		 MYPREFIX ViewPoint::HandleQuickView,	QV_North},
+		{LOOKUPNE,	 MYPREFIX ViewPoint::HandleQuickView,	QV_NorthEastUp},
+		{LOOKUPE, 	 MYPREFIX ViewPoint::HandleQuickView,	QV_EastUp},
+		{LOOKUPSE,	 MYPREFIX ViewPoint::HandleQuickView,	QV_SouthEastUp},
+		{LOOKUPS, 	 MYPREFIX ViewPoint::HandleQuickView,	QV_SouthUp},
+		{LOOKUPSW,	 MYPREFIX ViewPoint::HandleQuickView,	QV_SouthWestUp},
+		{LOOKUPW, 	 MYPREFIX ViewPoint::HandleQuickView,	QV_WestUp},
+		{LOOKUPNW,	 MYPREFIX ViewPoint::HandleQuickView,	QV_NorthWestUp},
+		{LOOKUPN, 	 MYPREFIX ViewPoint::HandleQuickView,	QV_NorthUp},
 		{(KeyVal3D )NULL,(QVRtnP )NULL,	QV_NULL}
 	};
 
 	static Quick_View	FixedViewList[]=
 	{
-		{ROTRESET,		HandleFixedView,	QV_Up},
-		{ROTUPRIGHT,	HandleFixedView,	QV_NorthEast},
-		{ROTRIGHT,		HandleFixedView,	QV_East}, 
-		{ROTDNRIGHT,	HandleFixedView,	QV_SouthEast},
-		{ROTDOWN, 		HandleFixedView,	QV_South},
-		{ROTDNLEFT,		HandleFixedView,	QV_SouthWest},
-		{ROTLEFT, 		HandleFixedView,	QV_West},
-		{ROTUPLEFT,		HandleFixedView,	QV_NorthWest},
-		{ROTUP,			HandleFixedView,	QV_North}, 
-		{PANLEFT,		HandleFixedView,	QV_PanLeft},
-		{PANRIGHT,		HandleFixedView,	QV_PanRight},
+		{ROTRESET,		 MYPREFIX ViewPoint::HandleFixedView,	QV_Up},
+		{ROTUPRIGHT,	 MYPREFIX ViewPoint::HandleFixedView,	QV_NorthEast},
+		{ROTRIGHT,		 MYPREFIX ViewPoint::HandleFixedView,	QV_East},
+		{ROTDNRIGHT,	 MYPREFIX ViewPoint::HandleFixedView,	QV_SouthEast},
+		{ROTDOWN, 		 MYPREFIX ViewPoint::HandleFixedView,	QV_South},
+		{ROTDNLEFT,		 MYPREFIX ViewPoint::HandleFixedView,	QV_SouthWest},
+		{ROTLEFT, 		 MYPREFIX ViewPoint::HandleFixedView,	QV_West},
+		{ROTUPLEFT,		 MYPREFIX ViewPoint::HandleFixedView,	QV_NorthWest},
+		{ROTUP,			 MYPREFIX ViewPoint::HandleFixedView,	QV_North},
+		{PANLEFT,		 MYPREFIX ViewPoint::HandleFixedView,	QV_PanLeft},
+		{PANRIGHT,		 MYPREFIX ViewPoint::HandleFixedView,	QV_PanRight},
 
-		{ALOOKUP,		HandleFixedView,	QV_Up},
-		{ALOOKNE,		HandleFixedView,	QV_NorthEast},
-		{ALOOKE,		HandleFixedView,	QV_East}, 
-		{ALOOKSE,		HandleFixedView,	QV_SouthEast},
-		{ALOOKS, 		HandleFixedView,	QV_South},
-		{ALOOKSW,		HandleFixedView,	QV_SouthWest},
-		{ALOOKW,	 	HandleFixedView,	QV_West},
-		{ALOOKNW,		HandleFixedView,	QV_NorthWest},
-		{ALOOKN,		HandleFixedView,	QV_North}, 
-		{APANLEFT,		HandleFixedView,	QV_PanLeft},
-		{APANRIGHT,		HandleFixedView,	QV_PanRight},
+		{ALOOKUP,		 MYPREFIX ViewPoint::HandleFixedView,	QV_Up},
+		{ALOOKNE,		 MYPREFIX ViewPoint::HandleFixedView,	QV_NorthEast},
+		{ALOOKE,		 MYPREFIX ViewPoint::HandleFixedView,	QV_East},
+		{ALOOKSE,		 MYPREFIX ViewPoint::HandleFixedView,	QV_SouthEast},
+		{ALOOKS, 		 MYPREFIX ViewPoint::HandleFixedView,	QV_South},
+		{ALOOKSW,		 MYPREFIX ViewPoint::HandleFixedView,	QV_SouthWest},
+		{ALOOKW,	 	 MYPREFIX ViewPoint::HandleFixedView,	QV_West},
+		{ALOOKNW,		 MYPREFIX ViewPoint::HandleFixedView,	QV_NorthWest},
+		{ALOOKN,		 MYPREFIX ViewPoint::HandleFixedView,	QV_North},
+		{APANLEFT,		 MYPREFIX ViewPoint::HandleFixedView,	QV_PanLeft},
+		{APANRIGHT,		 MYPREFIX ViewPoint::HandleFixedView,	QV_PanRight},
 		{(KeyVal3D )NULL,(QVRtnP )NULL,	QV_NULL}
 	};
 
 	static Quick_View	AlternateFixedViewList[]=
 	{
-		{ALOOKUP,		HandleFixedView,	QV_Up},
-		{ALOOKNE,		HandleFixedView,	QV_NorthEast},
-		{ALOOKE,		HandleFixedView,	QV_East}, 
-		{ALOOKSE,		HandleFixedView,	QV_SouthEast},
-		{ALOOKS, 		HandleFixedView,	QV_South},
-		{ALOOKSW,		HandleFixedView,	QV_SouthWest},
-		{ALOOKW,	 	HandleFixedView,	QV_West},
-		{ALOOKNW,		HandleFixedView,	QV_NorthWest},
-		{ALOOKN,		HandleFixedView,	QV_North}, 
-		{APANLEFT,		HandleFixedView,	QV_PanLeft},
-		{APANRIGHT,		HandleFixedView,	QV_PanRight},
+		{ALOOKUP,		 MYPREFIX ViewPoint::HandleFixedView,	QV_Up},
+		{ALOOKNE,		 MYPREFIX ViewPoint::HandleFixedView,	QV_NorthEast},
+		{ALOOKE,		 MYPREFIX ViewPoint::HandleFixedView,	QV_East},
+		{ALOOKSE,		 MYPREFIX ViewPoint::HandleFixedView,	QV_SouthEast},
+		{ALOOKS, 		 MYPREFIX ViewPoint::HandleFixedView,	QV_South},
+		{ALOOKSW,		 MYPREFIX ViewPoint::HandleFixedView,	QV_SouthWest},
+		{ALOOKW,	 	 MYPREFIX ViewPoint::HandleFixedView,	QV_West},
+		{ALOOKNW,		 MYPREFIX ViewPoint::HandleFixedView,	QV_NorthWest},
+		{ALOOKN,		 MYPREFIX ViewPoint::HandleFixedView,	QV_North},
+		{APANLEFT,		 MYPREFIX ViewPoint::HandleFixedView,	QV_PanLeft},
+		{APANRIGHT,		 MYPREFIX ViewPoint::HandleFixedView,	QV_PanRight},
 		{(KeyVal3D )NULL,(QVRtnP )NULL,	QV_NULL}
 	};
 
 	static	Zoom_Key	ViewRotGunnerList[] =					//RJS 02May00
 	{
-		{ROTRESET,		HandleGunner,	ZR_TopGun},
-		{ROTRESET2,		ResetZoomRotat2,ZR_NULL},
-		{ZOOMIN,		HandleZoom,		ZR_ZoomIn},
-		{ZOOMOUT,		HandleZoom,		ZR_ZoomOut},
-		{ROTDOWN,		HandleGunner,	ZR_BotGun},
-		{ROTUP,			HandleGunner,	ZR_FrontGun},
-		{ROTRIGHT,		HandleGunnerRotate,	ZR_RotRght},				//RJS 26Oct00
-		{ROTLEFT,		HandleGunnerRotate,	ZR_RotLft},					//RJS 26Oct00
-		{ROTDNLEFT,		HandleGunnerRotate,	ZR_RotDn|ZR_RotLft},		//RJS 26Oct00
-		{ROTDNRIGHT,	HandleGunnerRotate,	ZR_RotDn|ZR_RotRght},		//RJS 26Oct00
-		{ROTUPLEFT,		HandleGunnerRotate,	ZR_RotUp|ZR_RotLft},		//RJS 26Oct00
-		{ROTUPRIGHT,	HandleGunnerRotate,	ZR_RotUp|ZR_RotRght},		//RJS 26Oct00
+		{ROTRESET,		 MYPREFIX ViewPoint::HandleGunner,	ZR_TopGun},
+		{ROTRESET2,		 MYPREFIX ViewPoint::ResetZoomRotat2,ZR_NULL},
+		{ZOOMIN,		 MYPREFIX ViewPoint::HandleZoom,		ZR_ZoomIn},
+		{ZOOMOUT,		 MYPREFIX ViewPoint::HandleZoom,		ZR_ZoomOut},
+		{ROTDOWN,		 MYPREFIX ViewPoint::HandleGunner,	ZR_BotGun},
+		{ROTUP,			 MYPREFIX ViewPoint::HandleGunner,	ZR_FrontGun},
+		{ROTRIGHT,		 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_RotRght},				//RJS 26Oct00
+		{ROTLEFT,		 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_RotLft},					//RJS 26Oct00
+		{ROTDNLEFT,		 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_RotDn|ZR_RotLft},		//RJS 26Oct00
+		{ROTDNRIGHT,	 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_RotDn|ZR_RotRght},		//RJS 26Oct00
+		{ROTUPLEFT,		 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_RotUp|ZR_RotLft},		//RJS 26Oct00
+		{ROTUPRIGHT,	 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_RotUp|ZR_RotRght},		//RJS 26Oct00
 
-		{BIGZOOMIN,		HandleZoom,		ZR_BIG|ZR_ZoomIn},
-		{BIGZOOMOUT,	HandleZoom,		ZR_BIG|ZR_ZoomOut},
-		{BIGROTDOWN,	HandleGunnerRotate,	ZR_BIG|ZR_RotDn},
-		{BIGROTUP,		HandleGunnerRotate,	ZR_BIG|ZR_RotUp},
-		{BIGROTRIGHT,	HandleGunnerRotate,	ZR_BIG|ZR_RotRght},
-		{BIGROTLEFT,	HandleGunnerRotate,	ZR_BIG|ZR_RotLft},
-		{BIGROTDNLEFT,	HandleGunnerRotate,	ZR_BIG|ZR_RotDn|ZR_RotLft},
-		{BIGROTDNRIGHT,	HandleGunnerRotate,	ZR_BIG|ZR_RotDn|ZR_RotRght},
-		{BIGROTUPLEFT,	HandleGunnerRotate,	ZR_BIG|ZR_RotUp|ZR_RotLft},
-		{BIGROTUPRIGHT,	HandleGunnerRotate,	ZR_BIG|ZR_RotUp|ZR_RotRght},
+		{BIGZOOMIN,		 MYPREFIX ViewPoint::HandleZoom,		ZR_BIG|ZR_ZoomIn},
+		{BIGZOOMOUT,	 MYPREFIX ViewPoint::HandleZoom,		ZR_BIG|ZR_ZoomOut},
+		{BIGROTDOWN,	 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_BIG|ZR_RotDn},
+		{BIGROTUP,		 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_BIG|ZR_RotUp},
+		{BIGROTRIGHT,	 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_BIG|ZR_RotRght},
+		{BIGROTLEFT,	 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_BIG|ZR_RotLft},
+		{BIGROTDNLEFT,	 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_BIG|ZR_RotDn|ZR_RotLft},
+		{BIGROTDNRIGHT,	 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_BIG|ZR_RotDn|ZR_RotRght},
+		{BIGROTUPLEFT,	 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_BIG|ZR_RotUp|ZR_RotLft},
+		{BIGROTUPRIGHT,	 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_BIG|ZR_RotUp|ZR_RotRght},
 
 		//add alt-keyboard number keys to this list
-		{AROTRESET,		ResetZoomRotat2,ZR_NULL},
-		{AROTDOWN,		HandleGunnerRotate,	ZR_RotDn},
-		{AROTUP,		HandleGunnerRotate,	ZR_RotUp},
-		{AROTRIGHT,		HandleGunnerRotate,	ZR_RotRght},
-		{AROTLEFT,		HandleGunnerRotate,	ZR_RotLft},
-		{AROTDNLEFT,	HandleGunnerRotate,	ZR_RotDn|ZR_RotLft},
-		{AROTDNRIGHT,	HandleGunnerRotate,	ZR_RotDn|ZR_RotRght},
-		{AROTUPLEFT,	HandleGunnerRotate,	ZR_RotUp|ZR_RotLft},
-		{AROTUPRIGHT,	HandleGunnerRotate,	ZR_RotUp|ZR_RotRght},
+		{AROTRESET,		 MYPREFIX ViewPoint::ResetZoomRotat2,ZR_NULL},
+		{AROTDOWN,		 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_RotDn},
+		{AROTUP,		 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_RotUp},
+		{AROTRIGHT,		 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_RotRght},
+		{AROTLEFT,		 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_RotLft},
+		{AROTDNLEFT,	 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_RotDn|ZR_RotLft},
+		{AROTDNRIGHT,	 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_RotDn|ZR_RotRght},
+		{AROTUPLEFT,	 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_RotUp|ZR_RotLft},
+		{AROTUPRIGHT,	 MYPREFIX ViewPoint::HandleGunnerRotate,	ZR_RotUp|ZR_RotRght},
 
 		{(KeyVal3D )NULL,(ZmRtRtnP )NULL,ZR_NULL}
 	};
-	
+
 	static	View_Rec	PaintShopViewRec(0x2800,ANGLES_225Deg,ANGLES_45Deg,ANGLES_0Deg,0x2800,ANGLES_225Deg,ANGLES_45Deg,ANGLES_0Deg);
 	static	View_Rec	InPadlockViewRec(0x0100,ANGLES_0Deg,ANGLES_0Deg,ANGLES_0Deg,0x0100,ANGLES_0Deg,ANGLES_0Deg,ANGLES_0Deg);
 	static	View_Rec	InsideFwdViewRec(0x0100,ANGLES_0Deg,(Angles)0xE74,ANGLES_0Deg,0x0100,ANGLES_0Deg,(Angles)0xE74,ANGLES_0Deg);
@@ -574,29 +576,29 @@ static ViewPoint::View_Key	ViewSpecList[] =
 
 	viewrotgunner_list	= ViewRotGunnerList;					//RJS 02May00
 
-	paintshopviewrec = &PaintShopViewRec;
+	paintshopviewrec =  & PaintShopViewRec;
 
-	inpadlockviewrec = &InPadlockViewRec;
-	insidefwdviewrec = &InsideFwdViewRec;						//PD 20Jun96
-	currentviewrec = insideviewrec = &InsideViewRec;			//ARM 02Oct96
-	insidecheatviewrec = &InsideCheatViewRec;					//PD 17Jun96
-	insidednviewrec = &InsideDnViewRec;
+	inpadlockviewrec =  & InPadlockViewRec;
+	insidefwdviewrec =  & InsideFwdViewRec;						//PD 20Jun96
+	currentviewrec = insideviewrec =  & InsideViewRec;			//ARM 02Oct96
+	insidecheatviewrec =  & InsideCheatViewRec;					//PD 17Jun96
+	insidednviewrec =  & InsideDnViewRec;
 
-	outpadlockviewrec = &OutPadlockViewRec;
-	trackviewrec = &TrackViewRec;
+	outpadlockviewrec =  & OutPadlockViewRec;
+	trackviewrec =  & TrackViewRec;
 #ifndef NDEBUG
-	outrevpadlockviewrec = &OutRevPadlockViewRec;
+	outrevpadlockviewrec =  & OutRevPadlockViewRec;
 #endif
 
-	satelliteviewrec = &SatelliteViewRec;
-	nrsatelliteviewrec = &NrSatelliteViewRec;
+	satelliteviewrec =  & SatelliteViewRec;
+	nrsatelliteviewrec =  & NrSatelliteViewRec;
 
-	flybyviewrec = &FlyByViewRec;
-	chaseviewrec = &ChaseViewRec;
+	flybyviewrec =  & FlyByViewRec;
+	chaseviewrec =  & ChaseViewRec;
 
-	globalviewrec = &GlobalViewRec;								//PD 27Feb96
+	globalviewrec =  & GlobalViewRec;								//PD 27Feb96
 
-	viewdrawrtn = InvalidDraw;									//PD 23Feb96
+	viewdrawrtn =  MYPREFIX ViewPoint::InvalidDraw;									//PD 23Feb96
 	bupviewdrawrtn = NULL;										//PD 28Jan97
 
 	this->hdg =
@@ -607,8 +609,8 @@ static ViewPoint::View_Key	ViewSpecList[] =
 		this->actpitch =										//PD 02May96
 		this->actroll = ANGLES_0Deg;							//PD 02May96
 
-	flybysrc = &FlyBySrc;
-	flybydelta = &FlyByDelta;
+	flybysrc =  &FlyBySrc;
+	flybydelta =  &FlyByDelta;
 
 	viewnum.viewchanged=VC_SuccessfulChange;					//PD 24Oct96
 	messagetime=FIVESECS100;									//RDH 20May96
@@ -620,17 +622,17 @@ static ViewPoint::View_Key	ViewSpecList[] =
 
 	supercheatitem = NULL;										//RJS 18Sep96
 
-	deathviewgndrec = &DeathViewGndRec;//RJS 02Sep98
-	deathviewwatrec = &DeathViewWatRec;//RJS 02Sep98
-	deathviewrotrec = &DeathViewRotRec;//RJS 02Sep98
-	deathviewairrec = &DeathViewAirRec;//RJS 03Sep98
-	deathviewtumblerec = &DeathViewTumbleRec;//RJS 23Mar00
+	deathviewgndrec =  & DeathViewGndRec;//RJS 02Sep98
+	deathviewwatrec =  & DeathViewWatRec;//RJS 02Sep98
+	deathviewrotrec =  & DeathViewRotRec;//RJS 02Sep98
+	deathviewairrec =  & DeathViewAirRec;//RJS 03Sep98
+	deathviewtumblerec =  & DeathViewTumbleRec;//RJS 23Mar00
 
-	maprec = &MapRec;											//RJS 08Sep98
-	prefsrec=&PrefsViewRec;										//PD 19Nov98
+	maprec =  & MapRec;											//RJS 08Sep98
+	prefsrec =  &  PrefsViewRec;										//PD 19Nov98
 	drawmap = FALSE;											//RJS 10Sep98
 	drawSpecialFlags = VIEW_SPECIAL_NULL;
-	parachuterec=&ParachuteRec;									//RJS 25Mar99
+	parachuterec =  &  ParachuteRec;									//RJS 25Mar99
 
 	deathview = FALSE;
 
@@ -645,21 +647,21 @@ static ViewPoint::View_Key	ViewSpecList[] =
 // This stuff needs initialising!
 	GroundTargItem.shape = EMPTY;
 	GroundTargItem.Anim = ANIM_NULL;
-	
+
 	DirectorItem.shape = EMPTY;
 	DirectorItem.Anim = ANIM_NULL;
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ViewPoint
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 19 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::SetToMapItem(itemptr trg)
@@ -689,7 +691,7 @@ void ViewPoint::SetToMapItem(itemptr trg)
 		UpdateGlobalViewRec();
 		AddViewRec();
 		UpdateGlobalHPR();
-		
+
 		AddZoom();								//RJS 2Oct00
 
 		viewnum.viewtarg=VT_Unlocked;
@@ -707,15 +709,15 @@ void ViewPoint::SetToMapItem(itemptr trg)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SetToPiloted
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
 //Description	Initialises the view system to front inside view
 //				of piloted aircraft.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DeadCode AMM 19Feb99 void ViewPoint::SetToPiloted(itemptr pilotedac)
@@ -792,7 +794,7 @@ void ViewPoint::SetToPiloted(itemptr pilotedac,bool replayreset)//AMM 19Feb99
 			bupviewdrawrtn = NULL;										//PD 28Jan97
 
 			if (!replayreset)									//AMM 19Feb99
-				viewdrawrtn = DrawInsideCheat;
+				viewdrawrtn =  MYPREFIX ViewPoint::DrawInsideCheat;
 
 			drawpolypit = FALSE;
 			drawSpecialFlags -= (drawSpecialFlags & VIEW_SPECIAL_MAP);	//RJS 20Oct98
@@ -830,14 +832,14 @@ void ViewPoint::SetToPiloted(itemptr pilotedac,bool replayreset)//AMM 19Feb99
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawPiloted
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool ViewPoint::PolyPitEnabled()
@@ -862,14 +864,14 @@ bool ViewPoint::InCockpit()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		QuickViewing
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 28 Jan 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool ViewPoint::QuickViewing()
@@ -882,17 +884,17 @@ Bool ViewPoint::QuickViewing()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetPolyPitAngles
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 21 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
-void ViewPoint::GetPolyPitAngles(ANGLES& pithdg, ANGLES& pitpitch, ANGLES& pitroll)
+void ViewPoint::GetPolyPitAngles(ANGLES &  pithdg, ANGLES &  pitpitch, ANGLES &  pitroll)
 {
 	pithdg = (ANGLES )((hpitem* )trackeditem)->hdg;
 	pitpitch = (ANGLES )((hpitem* )trackeditem)->pitch;
@@ -909,24 +911,26 @@ void ViewPoint::GetPolyPitAngles(ANGLES& pithdg, ANGLES& pitpitch, ANGLES& pitro
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetViewRecAngles
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 5 Sep 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
-void ViewPoint::GetViewRecAngles(ANGLES& vrhdg, ANGLES& vrpitch, ANGLES& vrroll)
+void ViewPoint::GetViewRecAngles(ANGLES &  vrhdg, ANGLES &  vrpitch, ANGLES &  vrroll)
 {
-	if (bupviewdrawrtn==NULL && viewdrawrtn!=DrawQuick && viewdrawrtn!=DrawFixed)
+	if (bupviewdrawrtn==NULL 
+		&& viewdrawrtn!=  MYPREFIX ViewPoint::DrawQuick 
+		&& viewdrawrtn!=  MYPREFIX ViewPoint::DrawFixed )
 	{
  		vrhdg = -currentviewrec->hdg;
 		vrpitch = -currentviewrec->pitch;
 	}
-	else if (viewdrawrtn==DrawQuick)
+	else if (viewdrawrtn== MYPREFIX ViewPoint::DrawQuick)
 	{
  		vrhdg = -quickviewrec->hdg;
 		vrpitch = -quickviewrec->pitch;
@@ -944,15 +948,15 @@ void ViewPoint::GetViewRecAngles(ANGLES& vrhdg, ANGLES& vrpitch, ANGLES& vrroll)
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
-//Procedure		AllOutsideAnglesReset				   		
-//Author		Paul.   
+//Procedure		AllOutsideAnglesReset
+//Author		Paul.
 //Date			Fri 23 Feb 1996
 //
 //Description	Resets the view system
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::AllOutsideAnglesReset()
@@ -1023,14 +1027,14 @@ void ViewPoint::AllOutsideAnglesReset()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SelectView
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 19 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::SelectView()
@@ -1087,7 +1091,7 @@ void ViewPoint::SelectView()
 		SetVisibleRange(MaxVisibleRange);
 
 	//DEAD	visiblerange=0x7FFFFFFF;
-		
+
 		viewcodeframetime = RealDrawFrameTime();						//RJS 19Sep00
 
 //Dead		viewcodeframetime=5;
@@ -1096,7 +1100,7 @@ void ViewPoint::SelectView()
 
 	if (setDeath == DEATH_NULL)			//RJS 11Jun99
 	{
-		if (_Replay.Playback && 
+		if (_Replay.Playback &&
 			(drawpolypit==TRUE || viewnum.viewmode==VM_InsideCheat) &&
 			Land_Scape.GetGroundLevel(*this)<=SAFECAMERAHEIGHT)
 		{
@@ -1140,11 +1144,11 @@ void ViewPoint::SelectView()
 //Author		Paul.				Craig Beeston
 //Date			Thu 18 Sep 1997		Thu 02 Mar 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::ViewFudge()
@@ -1158,8 +1162,8 @@ void ViewPoint::ViewFudge()
 			MovingItem*	mip = (MovingItem*)trackeditem;
 
 			trackeditem->World.X += SLong((mip->vel_x + Three_Dee.wind_x) * dt) / 100000;	//micro m/cs * ms / 10e5 = cm	//CSB 01/03/00
-			trackeditem->World.Y += SLong((mip->vel_y + Three_Dee.wind_y) * dt) / 100000;	
-			trackeditem->World.Z += SLong((mip->vel_z + Three_Dee.wind_z) * dt) / 100000;	
+			trackeditem->World.Y += SLong((mip->vel_y + Three_Dee.wind_y) * dt) / 100000;
+			trackeditem->World.Z += SLong((mip->vel_z + Three_Dee.wind_z) * dt) / 100000;
 		}
 	}
 
@@ -1171,8 +1175,8 @@ void ViewPoint::ViewFudge()
 			MovingItem*	mip = (MovingItem*)trackeditem2;
 
 			trackeditem2->World.X += SLong((mip->vel_x + Three_Dee.wind_x) * dt) / 1e5;	//micro m/cs * ms / 10e5 = cm	//CSB 01/03/00
-			trackeditem2->World.Y += SLong((mip->vel_y + Three_Dee.wind_y) * dt) / 1e5;	
-			trackeditem2->World.Z += SLong((mip->vel_z + Three_Dee.wind_z) * dt) / 1e5;	
+			trackeditem2->World.Y += SLong((mip->vel_y + Three_Dee.wind_y) * dt) / 1e5;
+			trackeditem2->World.Z += SLong((mip->vel_z + Three_Dee.wind_z) * dt) / 1e5;
 		}
 	}
 
@@ -1216,11 +1220,11 @@ void ViewPoint::ViewFudge()
 //Author		Paul.				Craig Beeston
 //Date			Thu 18 Sep 1997		Thu 02 Mar 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::ViewUnFudge()
@@ -1237,15 +1241,15 @@ void ViewPoint::ViewUnFudge()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		BFViewSelect
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 1 Apr 1996
 //
 //Description	Sets view depending on the current values of battlefield
 //				file variables
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::BFViewSelect()
@@ -1269,14 +1273,14 @@ void ViewPoint::BFViewSelect()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SetViewFromNum
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 1 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::SetViewFromNum(ViewFlags vno)
@@ -1324,48 +1328,48 @@ void ViewPoint::SetViewFromNum(ViewFlags vno)
 	switch (viewnum.viewmode)
 	{
 		case VM_InPadlock:
-			viewsetuprtn = InitInPadlock;
+			viewsetuprtn =  MYPREFIX ViewPoint::InitInPadlock;
 			break;
 
 		case VM_Inside:
-			viewsetuprtn = InitInside;
+			viewsetuprtn =  MYPREFIX ViewPoint::InitInside;
 			break;
 
 		case VM_OutPadlock:
-			viewsetuprtn = InitOutPadlock;
+			viewsetuprtn =  MYPREFIX ViewPoint::InitOutPadlock;
 			break;
 
 		case VM_Track:
-			viewsetuprtn = InitTrack;
+			viewsetuprtn =  MYPREFIX ViewPoint::InitTrack;
 			break;
 #ifndef NDEBUG
 		case VM_OutRevPadlock:
-			viewsetuprtn = InitOutRevPadlock;
+			viewsetuprtn =  MYPREFIX ViewPoint::InitOutRevPadlock;
 			break;
 #endif
 		case VM_Satellite:
-			viewsetuprtn = InitSatellite;
+			viewsetuprtn =  MYPREFIX ViewPoint::InitSatellite;
 			break;
 
 		case VM_NrSatellite:
-			viewsetuprtn = InitNrSatellite;
+			viewsetuprtn =  MYPREFIX ViewPoint::InitNrSatellite;
 			break;
 
 		case VM_FlyBy:
-			viewsetuprtn = InitFlyBy;
+			viewsetuprtn =  MYPREFIX ViewPoint::InitFlyBy;
 			break;
 
 		case VM_Chase:
-			viewsetuprtn = InitChase;
+			viewsetuprtn =  MYPREFIX ViewPoint::InitChase;
 			break;
 
 		case VM_InsideCheat:									//PD 03Sep96
-			viewsetuprtn = InitInsideCheat;						//PD 03Sep96
+			viewsetuprtn =  MYPREFIX ViewPoint::InitInsideCheat;						//PD 03Sep96
 			break;												//PD 03Sep96
 
 		case VM_ZoomedMap:										//RJS 08Sep98
 		case VM_Map:											//RJS 08Sep98
-			viewsetuprtn = InitMap;								//RJS 08Sep98
+			viewsetuprtn =  MYPREFIX ViewPoint::InitMap;								//RJS 08Sep98
 			break;												//RJS 08Sep98
 
 //DeadCode PD 16Feb99 		case VM_Prefs:											//PD 19Nov98
@@ -1409,7 +1413,7 @@ void ViewPoint::SetViewFromNum(ViewFlags vno)
 	SLong	min_zoom_shape;		//Shape size to get min zoom range
 
 	min_zoom_shape = sdptr->Size<<5;							//PD 05Jul96
-	
+
 	if (bfzoom<min_zoom_shape)
 		bfzoom = min_zoom_shape;
 
@@ -1419,14 +1423,14 @@ void ViewPoint::SetViewFromNum(ViewFlags vno)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetItemPtrFromUID
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 1 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 itemptr ViewPoint::GetItemPtrFromUID(SLong inuid)
@@ -1439,14 +1443,14 @@ itemptr ViewPoint::GetItemPtrFromUID(SLong inuid)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SetViewRangeMinMax
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 27 Mar 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::SetViewRangeMinMax(SLong min, SLong max)
@@ -1460,14 +1464,14 @@ void ViewPoint::SetViewRangeMinMax(SLong min, SLong max)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SetToPaintShop
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 21 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::SetToPaintShop()
@@ -1476,14 +1480,14 @@ void ViewPoint::SetToPaintShop()
 //DEADCODE PD 01/12/99 	oldColorDepth=Save_Data.colourdepth;
 //DEADCODE PD 01/12/99 	Save_Data.colourdepth=8;
 //DEADCODE PD 01/12/99 	ViewCutType	temp;											//PD 10Apr96
-//DEADCODE PD 01/12/99 
+//DEADCODE PD 01/12/99
 //DEADCODE PD 01/12/99 	AllOutsideAnglesReset();
-//DEADCODE PD 01/12/99 
+//DEADCODE PD 01/12/99
 //DEADCODE PD 01/12/99 	temp = viewnum.viewcuttype;									//PD 10Apr96
 //DEADCODE PD 01/12/99 	viewnum.viewcuttype = Instant;								//PD 10Apr96
-//DEADCODE PD 01/12/99 
+//DEADCODE PD 01/12/99
 //DEADCODE PD 01/12/99 	currentviewrec = paintshopviewrec;
-//DEADCODE PD 01/12/99 	viewdrawrtn = DrawOutside;
+//DEADCODE PD 01/12/99 	viewdrawrtn =  MYPREFIX ViewPoint::DrawOutside;
 //DEADCODE PD 01/12/99 	bupviewdrawrtn = NULL;										//PD 28Jan97
 //DEADCODE PD 01/12/99 	drawpolypit = FALSE;
 //DEADCODE PD 01/12/99 	CopyPosition(trackeditem,this);
@@ -1492,9 +1496,9 @@ void ViewPoint::SetToPaintShop()
 //DEADCODE PD 01/12/99 	AddZoom();													//PD 10Apr96
 //DEADCODE PD 01/12/99 	UpdateGlobalHPR();											//PD 10Apr96
 //DEADCODE PD 01/12/99 	UIResetView();
-//DEADCODE PD 01/12/99 
+//DEADCODE PD 01/12/99
 //DEADCODE PD 01/12/99 	viewnum.viewcuttype=temp;									//PD 10Apr96
-//DEADCODE PD 01/12/99 
+//DEADCODE PD 01/12/99
 //DEADCODE PD 01/12/99 	bfrotaterate=												//PD 12Apr96
 //DEADCODE PD 01/12/99 		bfpitchrate=											//PD 12Apr96
 //DEADCODE PD 01/12/99 		bfrollrate=0;											//PD 12Apr96
@@ -1506,11 +1510,11 @@ void ViewPoint::SetToPaintShop()
 //Author		Robert Slater
 //Date			Fri 1 Nov 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::SetToDeathView(DeathViewType	dtype, DeathZoom	slowzoom,Bool	haltview)
@@ -1564,12 +1568,12 @@ void ViewPoint::SetToDeathView(DeathViewType	dtype, DeathZoom	slowzoom,Bool	halt
 				StopDeadView = haltview;								//RJS 12Sep97
 				deathview = TRUE;
 
-				temp = viewnum.viewcuttype;									
+				temp = viewnum.viewcuttype;
 				if (!deathspeed)
 				{
 					AllOutsideAnglesReset();
 					UIResetView();
-					viewnum.viewcuttype = Instant;								
+					viewnum.viewcuttype = Instant;
 				}
 				else
 					viewnum.viewcuttype = Gradual;
@@ -1581,7 +1585,7 @@ void ViewPoint::SetToDeathView(DeathViewType	dtype, DeathZoom	slowzoom,Bool	halt
 	#endif
 
 				bupviewdrawrtn = NULL;								//PD 28Jan97
-				viewdrawrtn = DrawOutside;
+				viewdrawrtn =  MYPREFIX ViewPoint::DrawOutside;
 				viewnum.viewmode = VM_Track;
 				drawpolypit = FALSE;
 				CopyPosition(trackeditem,this);
@@ -1594,15 +1598,15 @@ void ViewPoint::SetToDeathView(DeathViewType	dtype, DeathZoom	slowzoom,Bool	halt
 					currentviewrec->hdg = (ANGLES)(((mobileitem*)trackeditem)->hdg + ANGLES_45Deg);
 				}
 
-				UpdateGlobalViewRec();										
+				UpdateGlobalViewRec();
 				AddViewRec();
-				AddZoom();													
-				UpdateGlobalHPR();											
+				AddZoom();
+				UpdateGlobalHPR();
 
-				viewnum.viewcuttype=temp;									
+				viewnum.viewcuttype=temp;
 
-				bfrotaterate=												
-					bfpitchrate=											
+				bfrotaterate=
+					bfpitchrate=
 					bfrollrate=0;
 
 				switch (slowzoom)									//RJS 05Nov96
@@ -1632,11 +1636,11 @@ void ViewPoint::SetToDeathView(DeathViewType	dtype, DeathZoom	slowzoom,Bool	halt
 //Author		Robert Slater
 //Date			Tue 27 Jan 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::SetToParachuteView(mobileitem*	pshapetrans)
@@ -1676,11 +1680,11 @@ void ViewPoint::SetToParachuteView(mobileitem*	pshapetrans)
 //Author		Andrew McRae
 //Date			Thu 5 Dec 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::SetToResurrectView()
@@ -1690,28 +1694,28 @@ void ViewPoint::SetToResurrectView()
 	ViewCutType	temp;
 
 	deathview = TRUE;
-	
+
 	if (drawpolypit || (viewnum.viewmode == VM_InsideCheat))//RJS 07Nov96
 	{
 		AllOutsideAnglesReset();
 
-		temp = viewnum.viewcuttype;									
-		viewnum.viewcuttype = Instant;								
+		temp = viewnum.viewcuttype;
+		viewnum.viewcuttype = Instant;
 
 		currentviewrec = paintshopviewrec;
 
 		bupviewdrawrtn = NULL;									//PD 28Jan97
-		viewdrawrtn = DrawOutside;
+		viewdrawrtn =  MYPREFIX ViewPoint::DrawOutside;
 		viewnum.viewmode = VM_Track;
 		drawpolypit = FALSE;
 		CopyPosition(trackeditem,this);
-		UpdateGlobalViewRec();										
+		UpdateGlobalViewRec();
 		AddViewRec();
-		AddZoom();													
-		UpdateGlobalHPR();											
+		AddZoom();
+		UpdateGlobalHPR();
 		UIResetView();
 
-		viewnum.viewcuttype=temp;									
+		viewnum.viewcuttype=temp;
 
 		bfrotaterate= ANGLES_30Deg;
 			bfpitchrate=0;
@@ -1727,14 +1731,14 @@ void ViewPoint::SetToResurrectView()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		UISelectView
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 19 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::UISelectView()
@@ -1755,14 +1759,14 @@ void ViewPoint::UISelectView()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		UIResetView
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 21 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::UIResetView()
@@ -1773,32 +1777,32 @@ void ViewPoint::UIResetView()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ClearUIFlag
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 21 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
-inline ZmRtFlags operator &= (ZmRtFlags z,int i) {return z=ZmRtFlags(z&i);}
+inline ZmRtFlags operator &= (ZmRtFlags z,int i) {return z=ZmRtFlags(z & i);}
 void ViewPoint::ClearUIFlag(ZmRtFlags inp)
 {
-	uiflag &= ~int(inp);
+	uiflag &= ~(int)inp/*int(inp)*/;
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SetUIFlag
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 21 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::SetUIFlag(ZmRtFlags inp)
@@ -1808,14 +1812,14 @@ void ViewPoint::SetUIFlag(ZmRtFlags inp)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ControlAircraftSelect
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 19 Feb 1996
 //
 //Description	Dummy routine not used for Flying Corps
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::ControlAircraftSelect()
@@ -1825,14 +1829,14 @@ void ViewPoint::ControlAircraftSelect()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CommsStuff
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 18 Sep 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //deadvoid ViewPoint::CommsStuff()
@@ -1852,7 +1856,7 @@ void ViewPoint::ControlAircraftSelect()
 //TempCode PD 18Nov97  				{
 //TempCode PD 18Nov97  					MagicCode += 4;
 //TempCode PD 18Nov97  					isMagic = TRUE;
-//TempCode PD 18Nov97 
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 					if (_DPlay.Implemented)						//AMM 21Aug97
 //TempCode PD 18Nov97 					{											//AMM 21Aug97
 //TempCode PD 18Nov97 						_DPlay.SendKill(NULL,GR_Quit3DNow,CP_CHEATED,NULL);//AMM 21Aug97
@@ -1885,15 +1889,15 @@ void ViewPoint::ControlAircraftSelect()
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ControlViewSelect
 //LastModified:	PD 18Sep97
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 19 Feb 1996
 //
 //Description	Main view control loop - tests various keys and updates the
 //				view position as appropriate
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::ControlViewSelect()
@@ -1954,7 +1958,7 @@ void ViewPoint::ControlViewSelect()
 
 		if (Key_Tests.KeyPress3d(KEY_TOGGLE_DESC_TEXT))	//JON 17Oct00
 		{
-			if (Save_Data.gamedifficulty[GD_TEXTINFO])	
+			if (Save_Data.gamedifficulty[GD_TEXTINFO])
 			{
 				Three_Dee.drawDescText = !Three_Dee.drawDescText;
 			} else
@@ -1968,19 +1972,19 @@ void ViewPoint::ControlViewSelect()
 //DeadCode JON 17Oct00 	{
 //DeadCode JON 17Oct00 		if (Save_Data.gamedifficulty[GD_VIEWMODESELECT])	Save_Data.gamedifficulty %= GD_VIEWMODESELECT;
 //DeadCode JON 17Oct00 		else												Save_Data.gamedifficulty |= GD_VIEWMODESELECT;
-//DeadCode JON 17Oct00 
+//DeadCode JON 17Oct00
 //DeadCode JON 17Oct00 		bViewModeToggled=TRUE;
 //DeadCode JON 17Oct00 	}
-//DeadCode JON 17Oct00 
+//DeadCode JON 17Oct00
 //DeadCode JON 17Oct00 	if (viewkeysallowed && Key_Tests.KeyPress3d(BOXTARGET))
 //DeadCode JON 17Oct00 	{
 //DeadCode JON 17Oct00 		if (Save_Data.detail_3d[DETAIL3D_PADLOCKCHEAT])	Save_Data.detail_3d %= DETAIL3D_PADLOCKCHEAT;
 //DeadCode JON 17Oct00 		else											Save_Data.detail_3d |= DETAIL3D_PADLOCKCHEAT;
 //DeadCode JON 17Oct00 	}
-//DeadCode JON 17Oct00 
+//DeadCode JON 17Oct00
 //DeadCode JON 17Oct00 	if (viewkeysallowed && Key_Tests.KeyPress3d(KEY_TOGGLE_DESC_TEXT))	//JON 17Oct00
 //DeadCode JON 17Oct00 	{
-//DeadCode JON 17Oct00 		if (Save_Data.gamedifficulty[GD_TEXTINFO])	
+//DeadCode JON 17Oct00 		if (Save_Data.gamedifficulty[GD_TEXTINFO])
 //DeadCode JON 17Oct00 		{
 //DeadCode JON 17Oct00 			Three_Dee.drawDescText = !Three_Dee.drawDescText;
 //DeadCode JON 17Oct00 		} else
@@ -1996,7 +2000,7 @@ void ViewPoint::ControlViewSelect()
 		viewmodeselect = 0;												//RJS 20Oct00
 
 	if (bViewModeToggled && viewmodeselect==0 &&
-		(viewdrawrtn==DrawQuick || viewdrawrtn==DrawFixed))		//PD 27Sep97
+		(viewdrawrtn== MYPREFIX ViewPoint::DrawQuick || viewdrawrtn== MYPREFIX ViewPoint::DrawFixed))		//PD 27Sep97
 		InitInside();											//PD 16Sep97
 
 	enemytoofar = FALSE;										//PD 18Nov96
@@ -2242,7 +2246,7 @@ void ViewPoint::ControlViewSelect()
 			s_pitch = SWord(currentviewrec->pitch);
 		}
 
-		if (s_pitch < ANGLES_0Deg)		
+		if (s_pitch < ANGLES_0Deg)
 		{
 			currentviewrec->pitch = ANGLES_0Deg;
 			jpitch = 0;
@@ -2273,14 +2277,14 @@ void ViewPoint::ControlViewSelect()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ControlViewDraw
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::ControlViewDraw()
@@ -2317,15 +2321,15 @@ void ViewPoint::ControlViewDraw()
 			}
 		}
 	}
-	OverLay.SetViewVals(0,0,0);	
+	OverLay.SetViewVals(0,0,0);
 	if (trackeditem2==this)
 		FixVieweePos();
 
 	(this->*viewdrawrtn) ();
 
-	if ( (drawSpecialFlags&VIEW_SPECIAL_MAP)!=0 )						//JON 8Nov00
+	if ( (drawSpecialFlags & VIEW_SPECIAL_MAP)!=0 )						//JON 8Nov00
 	{
-		if ( OverLay.pCurScr == &COverlay::waypointMapScr &&
+		if ( OverLay.pCurScr ==  & COverlay::waypointMapScr &&
 			 OverLay.curr_waypoint != NULL
 			)
 		{
@@ -2362,7 +2366,7 @@ void ViewPoint::ControlViewDraw()
 			World.Z = (8*8*8-8)*LandScape::_blockWidth;
 
 		// now make it look at the player aircraft.
-		if ( (drawSpecialFlags&VIEW_SPECIAL_MAP)==0 ) // but not in map
+		if ( (drawSpecialFlags & VIEW_SPECIAL_MAP)==0 ) // but not in map
 		{
 			int xOff = World.X -currentvehicle->World.X;
 			int yOff = World.Y - currentvehicle->World.Y;
@@ -2371,7 +2375,7 @@ void ViewPoint::ControlViewDraw()
 
 			hdg = Math_Lib.HighArcTan( xOff, zOff );
 			pitch = Math_Lib.HighArcTan( yOff, range );
-			roll = ANGLES_0Deg;		
+			roll = ANGLES_0Deg;
 		}
 	}
 }
@@ -2382,12 +2386,12 @@ void ViewPoint::ControlViewDraw()
 
 void ViewPoint::InitAIUnfriendly()
 {
-	drawSpecialFlags-=(drawSpecialFlags&VIEW_SPECIAL_MAP);
+	drawSpecialFlags-=(drawSpecialFlags & VIEW_SPECIAL_MAP);
 	drawmap = FALSE;
 	viewnum.viewtarg=VT_AIUnfriendly;
 	currentenemyitem=NULL;
 
-	if (Manual_Pilot.ControlledAC2 && 
+	if (Manual_Pilot.ControlledAC2 &&
 		Manual_Pilot.ControlledAC2->ai.unfriendly &&
 		!Manual_Pilot.ControlledAC2->ai.unfriendly->Status.deadtime)
 		currentenemyitem=Manual_Pilot.ControlledAC2->ai.unfriendly;
@@ -2403,7 +2407,7 @@ void ViewPoint::InitAIUnfriendly()
 }
 void ViewPoint::InitEscortee()
 {
-	drawSpecialFlags-=(drawSpecialFlags&VIEW_SPECIAL_MAP);
+	drawSpecialFlags-=(drawSpecialFlags & VIEW_SPECIAL_MAP);
 	drawmap = FALSE;
 	viewnum.viewtarg=VT_Escortee;
 	currentfriendlyitem=NULL;
@@ -2424,10 +2428,10 @@ void ViewPoint::InitEscortee()
 
 		if (targ!=NULL)
 		{
-			if (!targ->Status.deadtime)	
+			if (!targ->Status.deadtime)
 				currentfriendlyitem=(itemptr)targ;
 		}
-		else 
+		else
 		{
 			targ=Manual_Pilot.ControlledAC2->fly.leadflight;
 			if (targ!=NULL &&
@@ -2448,14 +2452,14 @@ void ViewPoint::InitEscortee()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitFlyingView
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 3 Sep 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::InitFlyingView()
@@ -2491,14 +2495,14 @@ void ViewPoint::InitFlyingView()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitPiloted
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 19 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::InitPiloted()
@@ -2508,7 +2512,7 @@ void ViewPoint::InitPiloted()
 	trackeditem2 = NULL;
 	previousvehicle = NULL;
 	bupviewdrawrtn = NULL;										//PD 28Jan97
-	viewdrawrtn = DrawInside;
+	viewdrawrtn =  MYPREFIX ViewPoint::DrawInside;
 	drawpolypit = TRUE;
 	InitInside();												//PD 19Jun96
 	CopyPositionHPR(trackeditem,this);						//DAW 21Feb96
@@ -2519,7 +2523,7 @@ void ViewPoint::InitPiloted()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetFirstAC
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 2 Mar 1999
 //------------------------------------------------------------------------------
 itemptr ViewPoint::GetFirstAC()
@@ -2529,7 +2533,7 @@ itemptr ViewPoint::GetFirstAC()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetNextAC
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 2 Mar 1999
 //------------------------------------------------------------------------------
 itemptr ViewPoint::GetNextAC(itemptr itemPtr)
@@ -2546,19 +2550,19 @@ itemptr ViewPoint::GetNextAC(itemptr itemPtr)
 
 //	if (itemPtr==NULL)	itemPtr=ACList;
 	return itemPtr;
-}	
+}
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitEnemy
 //LastModified:	PD 27Jun96
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 19 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::InitEnemy()
@@ -2609,7 +2613,7 @@ void ViewPoint::InitEnemy()
 			viewnum.vieweestepped=TRUE;							//PD 22Nov96
 		}
 	}
-	
+
 	if(!currentenemyitem)
 	{
 		//Failed to locate an enemy aircraft
@@ -2631,14 +2635,14 @@ void ViewPoint::InitEnemy()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		PInitEnemy
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 8 Oct 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::PInitEnemy()
@@ -2679,7 +2683,7 @@ void ViewPoint::PInitEnemy()
 			viewnum.vieweestepped=TRUE;							//PD 22Nov96
 		}
 	}
-	
+
 	if(!currentenemyitem)
 	{
 		//Failed to locate an enemy aircraft
@@ -2701,14 +2705,14 @@ void ViewPoint::PInitEnemy()
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitFriendly
 //LastModified:	PD 27Jun96
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 19 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::InitFriendly()
@@ -2768,14 +2772,14 @@ void ViewPoint::InitFriendly()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		PInitFriendly
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 8 Oct 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::PInitFriendly()
@@ -2832,16 +2836,16 @@ void ViewPoint::PInitFriendly()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitGroundTarget
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 19 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
-//Version Notes:	DAW 23Oct96 - taken pauls version - lastver is deadcoded 
+//Version Notes:	DAW 23Oct96 - taken pauls version - lastver is deadcoded
 //
 //------------------------------------------------------------------------------
 void ViewPoint::InitGroundTarget()
@@ -2850,9 +2854,9 @@ void ViewPoint::InitGroundTarget()
 	drawmap = FALSE;//RJS 10Sep98
 
 	//Waypoint target view code
- 
+
 	viewnum.viewtarg = VT_GroundTarg;
- 
+
 	if (!currentgndtargitem) ResetGroundTarget();
 
 	if(!currentgndtargitem)
@@ -2880,14 +2884,14 @@ void ViewPoint::InitGroundTarget()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		PInitGroundTarget
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 8 Oct 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::PInitGroundTarget()
@@ -2950,14 +2954,14 @@ void	ViewPoint::FixVieweePos()
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitWayPoint
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 19 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::RSetWP()	 //ctrl F4
@@ -3057,7 +3061,7 @@ void ViewPoint::InitWayPoint()   //F4
 
 		viewnum.vieweestepped=TRUE;							//PD 22Nov96
 	}
-	else	
+	else
 	{
 		if(currentwaypoint==NULL)
 		{
@@ -3088,14 +3092,14 @@ void ViewPoint::InitWayPoint()   //F4
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		PInitWayPoint
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 8 Oct 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::PInitWayPoint()
@@ -3124,7 +3128,7 @@ void ViewPoint::PInitWayPoint()
 			if (((AirStrucPtr )trackeditem)->FindLeadCandidate()==NULL)
 				currentwaypoint=getprev((AirStrucPtr)trackeditem,currentwaypoint);
 			trackeditem2=(itemptr )currentwaypoint;
-		
+
 			InitPadlockedItem();											//RJS 29Sep00
 
 			viewnum.vieweestepped=TRUE;							//PD 22Nov96
@@ -3147,14 +3151,14 @@ void ViewPoint::PInitWayPoint()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitMessage
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 2 Sep 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::InitMessage()
@@ -3163,7 +3167,7 @@ void ViewPoint::InitMessage()
 	drawmap = FALSE;//RJS 10Sep98
 	viewnum.viewtarg = VT_Message;
 	currentmessageitem = GetFirstMessage();
-	if (currentmessageitem==NULL) 
+	if (currentmessageitem==NULL)
 	{
 		InitFlyingView();
 		viewNotAvailable=true;
@@ -3182,14 +3186,14 @@ void ViewPoint::InitMessage()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ToggleEnemy
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 26 Sep 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::ToggleEnemy()
@@ -3211,14 +3215,14 @@ void ViewPoint::ToggleEnemy()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ResetEnemy
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 19 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::ResetEnemy()
@@ -3273,14 +3277,14 @@ void ViewPoint::ResetEnemy()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ResetFriendly
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 19 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::ResetFriendly()
@@ -3311,7 +3315,7 @@ void ViewPoint::ResetFriendly()
 			viewnum.viewtarg = VT_Friendly;
 			if (!ModifyView())
 				InitFlyingView();
-		}	
+		}
 	}
 }
 
@@ -3321,7 +3325,7 @@ void ViewPoint::ResetFriendly()
 // Date:		10/05/99
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void ViewPoint::ResetGroundTarget()
@@ -3368,7 +3372,7 @@ void ViewPoint::ResetGroundTarget()
 //DEADCODE DAW 11/05/99 		{
 //DEADCODE DAW 11/05/99 			SGtarget=MobileItem::currworld->ConvertPtrUID(SGT);
 //DEADCODE DAW 11/05/99 		}
-//DEADCODE DAW 11/05/99 
+//DEADCODE DAW 11/05/99
 //DEADCODE DAW 11/05/99 		//this if makes the SGT item be chosen first...
 //DEADCODE DAW 11/05/99 		if (!SGtarget || ItemPtr(*SGtarget)->shape==EMPTY)
 //DEADCODE DAW 11/05/99 		{	//scan for nearest item
@@ -3383,7 +3387,7 @@ void ViewPoint::ResetGroundTarget()
 //DEADCODE DAW 11/05/99 					ItemPtr i=*b;
 //DEADCODE DAW 11/05/99 					if (i->SGT==SGT && i->shape!=EMPTY && !i->Status.deadtime)
 //DEADCODE DAW 11/05/99 					{
-//DEADCODE DAW 11/05/99 						Float range=trackeditem->Distance3DSquared(&i->World);
+//DEADCODE DAW 11/05/99 						Float range=trackeditem->Distance3DSquared( & i->World);
 //DEADCODE DAW 11/05/99 						if (range<skiprangeover && range>skiprangeunder)
 //DEADCODE DAW 11/05/99 						{
 //DEADCODE DAW 11/05/99 							SGtarget=i;
@@ -3411,7 +3415,7 @@ void ViewPoint::ResetGroundTarget()
 					GroundTargItem.World.Y += gdy;
 					GroundTargItem.World.Z += gdz;
 
-					currentgndtargitem = &GroundTargItem;
+					currentgndtargitem =  ViewPoint::GroundTargItem;
 				}
 			}
 		}
@@ -3423,7 +3427,7 @@ void ViewPoint::ResetGroundTarget()
 // Date:		10/05/99
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void ViewPoint::NextGroundTarget()
@@ -3458,7 +3462,7 @@ void ViewPoint::NextGroundTarget()
 
 	if (!SGtarget)
 	{
-		if (currentgndtargitem == &GroundTargItem)
+		if (currentgndtargitem == ViewPoint::GroundTargItem)
 			SGtarget=currentgndtargitem->Next;
 		else
 			SGtarget=currentgndtargitem;
@@ -3484,10 +3488,10 @@ void ViewPoint::NextGroundTarget()
 		//GET THE PREVIOUS RANGE - THAT IS THE MINIMUM RANGE
 		{
 			ItemBasePtr lasttarg=currentgndtargitem;
-			if (currentgndtargitem == &GroundTargItem)
+			if (currentgndtargitem ==  ViewPoint::GroundTargItem)
 				lasttarg=currentgndtargitem->Next;				//DAW 20Jun99
 			if (lasttarg)
-				skiprangeunder=trackeditem->Distance3DSquared(&lasttarg->World);
+				skiprangeunder=trackeditem->Distance3DSquared( & lasttarg->World);
 		}
 
 		forever
@@ -3495,7 +3499,7 @@ void ViewPoint::NextGroundTarget()
 			//GET THE SGT ITEM RANGE. THAT MAY BE THE MAX RANGE
 			if (SGtarget && !(ItemPtr(*SGtarget)->shape==EMPTY))
 			{
-				int SGTrange=trackeditem->Distance3DSquared(&SGtarget->World);
+				int SGTrange=trackeditem->Distance3DSquared( & SGtarget->World);
 				if (SGTrange>skiprangeunder && SGTrange<skiprangeover)
 					skiprangeover=SGTrange;
 				else
@@ -3514,7 +3518,7 @@ void ViewPoint::NextGroundTarget()
 						ItemPtr i=*b;
 						if (i->SGT==SGT && i->shape!=EMPTY && !i->Status.deadtime)
 						{
-							Float range=trackeditem->Distance3DSquared(&i->World);
+							Float range=trackeditem->Distance3DSquared( & i->World);
 							if (range<skiprangeover && range>skiprangeunder)
 							{
 								SGtarget=i;
@@ -3551,7 +3555,7 @@ void ViewPoint::NextGroundTarget()
 					GroundTargItem.World.X += gdx;
 					GroundTargItem.World.Y += gdy;
 					GroundTargItem.World.Z += gdz;
-					currentgndtargitem = &GroundTargItem;
+					currentgndtargitem = ViewPoint::GroundTargItem;
 				}
 			}
 		}
@@ -3564,7 +3568,7 @@ void ViewPoint::NextGroundTarget()
 // Date:		10/05/99
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void ViewPoint::PrevGroundTarget()
@@ -3599,7 +3603,7 @@ void ViewPoint::PrevGroundTarget()
 
 	if (!SGtarget)
 	{
-		if (currentgndtargitem == &GroundTargItem)
+		if (currentgndtargitem == ViewPoint::GroundTargItem)
 			SGtarget=currentgndtargitem->Next;
 		else
 			SGtarget=currentgndtargitem;
@@ -3625,10 +3629,10 @@ void ViewPoint::PrevGroundTarget()
 		//GET THE PREVIOUS RANGE - THAT IS THE MAXIMUM RANGE
 		{
 			ItemBasePtr lasttarg=currentgndtargitem;
-			if (currentgndtargitem == &GroundTargItem)
+			if (currentgndtargitem == ViewPoint::GroundTargItem)
 				lasttarg=currentgndtargitem->Next;
 			if (lasttarg)
-				skiprangeover=trackeditem->Distance3DSquared(&lasttarg->World);
+				skiprangeover=trackeditem->Distance3DSquared( & lasttarg->World);
 		}
 
 		forever
@@ -3636,7 +3640,7 @@ void ViewPoint::PrevGroundTarget()
 			//GET THE SGT ITEM RANGE. THAT MAY BE THE MAX RANGE
 			if (SGtarget && !(ItemPtr(*SGtarget)->shape==EMPTY))
 			{
-				int SGTrange=trackeditem->Distance3DSquared(&SGtarget->World);
+				int SGTrange=trackeditem->Distance3DSquared( & SGtarget->World);
 				if (SGTrange>skiprangeunder && SGTrange<skiprangeover)
 					skiprangeunder=SGTrange;
 				else
@@ -3655,7 +3659,7 @@ void ViewPoint::PrevGroundTarget()
 						ItemPtr i=*b;
 						if (i->SGT==SGT && i->shape!=EMPTY && !i->Status.deadtime)
 						{
-							Float range=trackeditem->Distance3DSquared(&i->World);
+							Float range=trackeditem->Distance3DSquared( & i->World);
 							if (range<skiprangeover && range>skiprangeunder)
 							{
 								SGtarget=i;
@@ -3691,7 +3695,7 @@ void ViewPoint::PrevGroundTarget()
 					GroundTargItem.World.X += gdx;
 					GroundTargItem.World.Y += gdy;
 					GroundTargItem.World.Z += gdz;
-					currentgndtargitem = &GroundTargItem;
+					currentgndtargitem = ViewPoint::GroundTargItem;
 				}
 			}
 		}
@@ -3700,14 +3704,14 @@ void ViewPoint::PrevGroundTarget()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		NextGroundTarget
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 14 Oct 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DEADCODE DAW 10/05/99 void ViewPoint::NextGroundTarget()
@@ -3723,20 +3727,20 @@ void ViewPoint::PrevGroundTarget()
 //DEADCODE DAW 10/05/99 	Bool		livegroupelement;
 
 //DEADCODE DAW 10/05/99 	WayPointPtr	wpp;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 	//Set crange to the distance to the currently viewed target
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 	if (currentgndtargitem!=NULL)
 //DEADCODE DAW 10/05/99 	{
 //DEADCODE DAW 10/05/99 		deltax = trackeditem->World.X - currentgndtargitem->World.X;
 //DEADCODE DAW 10/05/99 		deltay = trackeditem->World.Y - currentgndtargitem->World.Y;
 //DEADCODE DAW 10/05/99 		deltaz = trackeditem->World.Z - currentgndtargitem->World.Z;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 		Math_Lib.Intercept(	deltax,deltay,deltaz,
 //DEADCODE DAW 10/05/99 							crange,
 //DEADCODE DAW 10/05/99 							dummy1,dummy2);
 //DEADCODE DAW 10/05/99 	}
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 	//Get the first waypoint for the current view item (if available)
 //DEADCODE DAW 10/05/99 	switch(trackeditem->Status.size)
 //DEADCODE DAW 10/05/99 	{
@@ -3749,7 +3753,7 @@ void ViewPoint::PrevGroundTarget()
 //DEADCODE DAW 10/05/99 		case ItemSize:
 //DEADCODE DAW 10/05/99 			wpp = (WayPointPtr )NULL;
 //DEADCODE DAW 10/05/99 			break;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 		case MobileSize:
 //DEADCODE DAW 10/05/99 		case TransientSize:
 //DEADCODE DAW 10/05/99 		case FormationSize:
@@ -3758,21 +3762,21 @@ void ViewPoint::PrevGroundTarget()
 //DEADCODE DAW 10/05/99 			wpp = ((MobileItemPtr )trackeditem)->waypoint;
 //DEADCODE DAW 10/05/99 			break;
 //DEADCODE DAW 10/05/99 	}
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 	while (wpp)
 //DEADCODE DAW 10/05/99 	{
 //DEADCODE DAW 10/05/99 		if (wpp->target!=NULL)
 //DEADCODE DAW 10/05/99 		{
 //DEADCODE DAW 10/05/99 			itemptr	ibp;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 			ibp = (itemptr)wpp->target;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 			if (ibp!=currentgndtargitem
 //DEADCODE DAW 10/05/99 				&&
 //DEADCODE DAW 10/05/99 				ibp->shape!=EMPTY)
 //DEADCODE DAW 10/05/99 			{
 //DEADCODE DAW 10/05/99 				livegroupelement=FALSE;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 				if (ibp->Status.size==FORMATIONSIZE)
 //DEADCODE DAW 10/05/99 				{
 //DEADCODE DAW 10/05/99 					while (ibp->Status.deadtime)
@@ -3792,17 +3796,17 @@ void ViewPoint::PrevGroundTarget()
 //DEADCODE DAW 10/05/99 					if (!livegroupelement)
 //DEADCODE DAW 10/05/99 						ibp=NULL;
 //DEADCODE DAW 10/05/99 				}
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 				if (ibp)
 //DEADCODE DAW 10/05/99 				{
 //DEADCODE DAW 10/05/99 					deltax = gdx + trackeditem->World.X - ibp->World.X;
 //DEADCODE DAW 10/05/99 					deltay = gdy + trackeditem->World.Y - ibp->World.Y;
 //DEADCODE DAW 10/05/99 					deltaz = gdz + trackeditem->World.Z - ibp->World.Z;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 					Math_Lib.Intercept(	deltax,deltay,deltaz,
 //DEADCODE DAW 10/05/99 										range,
 //DEADCODE DAW 10/05/99 										dummy1,dummy2);
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 					if (range<matchrange)
 //DEADCODE DAW 10/05/99 					{
 //DEADCODE DAW 10/05/99 						matchrange = range;
@@ -3827,10 +3831,10 @@ void ViewPoint::PrevGroundTarget()
 //DEADCODE DAW 10/05/99 				}
 //DEADCODE DAW 10/05/99 			}
 //DEADCODE DAW 10/05/99 		}
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 		wpp = wpp->next;
 //DEADCODE DAW 10/05/99 	}
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 	if (selected==NULL)
 //DEADCODE DAW 10/05/99 	{
 //DEADCODE DAW 10/05/99 		//Get the first waypoint for the current view item (if available)
@@ -3845,7 +3849,7 @@ void ViewPoint::PrevGroundTarget()
 //DEADCODE DAW 10/05/99 			case ItemSize:
 //DEADCODE DAW 10/05/99 				wpp = (WayPointPtr )NULL;
 //DEADCODE DAW 10/05/99 				break;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 			case MobileSize:
 //DEADCODE DAW 10/05/99 			case TransientSize:
 //DEADCODE DAW 10/05/99 			case FormationSize:
@@ -3854,23 +3858,23 @@ void ViewPoint::PrevGroundTarget()
 //DEADCODE DAW 10/05/99 				wpp = ((MobileItemPtr )trackeditem)->waypoint;
 //DEADCODE DAW 10/05/99 				break;
 //DEADCODE DAW 10/05/99 		}
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 		if (wpp) while (wpp->prev) {wpp=wpp->prev;}
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 		while (wpp)
 //DEADCODE DAW 10/05/99 		{
 //DEADCODE DAW 10/05/99 			if (wpp->target!=NULL)
 //DEADCODE DAW 10/05/99 			{
 //DEADCODE DAW 10/05/99 				itemptr	ibp;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 				ibp = (itemptr)wpp->target;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 				if (ibp!=currentgndtargitem
 //DEADCODE DAW 10/05/99 					&&
 //DEADCODE DAW 10/05/99 					ibp->shape!=EMPTY)
 //DEADCODE DAW 10/05/99 				{
 //DEADCODE DAW 10/05/99 					livegroupelement=FALSE;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 					if (ibp->Status.size==FORMATIONSIZE)
 //DEADCODE DAW 10/05/99 					{
 //DEADCODE DAW 10/05/99 						while (ibp->Status.deadtime)
@@ -3890,17 +3894,17 @@ void ViewPoint::PrevGroundTarget()
 //DEADCODE DAW 10/05/99 						if (!livegroupelement)
 //DEADCODE DAW 10/05/99 							ibp=NULL;
 //DEADCODE DAW 10/05/99 					}
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 					if (ibp)
 //DEADCODE DAW 10/05/99 					{
 //DEADCODE DAW 10/05/99 						deltax = gdx + trackeditem->World.X - ibp->World.X;
 //DEADCODE DAW 10/05/99 						deltay = gdy + trackeditem->World.Y - ibp->World.Y;
 //DEADCODE DAW 10/05/99 						deltaz = gdz + trackeditem->World.Z - ibp->World.Z;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 						Math_Lib.Intercept(	deltax,deltay,deltaz,
 //DEADCODE DAW 10/05/99 											range,
 //DEADCODE DAW 10/05/99 											dummy1,dummy2);
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 						if (range<matchrange)
 //DEADCODE DAW 10/05/99 						{
 //DEADCODE DAW 10/05/99 							matchrange = range;
@@ -3925,7 +3929,7 @@ void ViewPoint::PrevGroundTarget()
 //DEADCODE DAW 10/05/99 					}
 //DEADCODE DAW 10/05/99 				}
 //DEADCODE DAW 10/05/99 			}
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 			wpp = wpp->next;
 //DEADCODE DAW 10/05/99 		}
 //DEADCODE DAW 10/05/99 	}
@@ -3938,14 +3942,14 @@ void ViewPoint::PrevGroundTarget()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		PrevGroundTarget
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 8 Oct 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DEADCODE DAW 10/05/99 void ViewPoint::PrevGroundTarget()
@@ -3959,22 +3963,22 @@ void ViewPoint::PrevGroundTarget()
 //DEADCODE DAW 10/05/99 	ANGLES		matchhdg;
 //DEADCODE DAW 10/05/99 	SLong		crange = 0;
 //DEADCODE DAW 10/05/99 	Bool		livegroupelement;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 	WayPointPtr	wpp;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 	//Set crange to the distance to the currently viewed target
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 	if (currentgndtargitem!=NULL)
 //DEADCODE DAW 10/05/99 	{
 //DEADCODE DAW 10/05/99 		deltax = trackeditem->World.X - currentgndtargitem->World.X;
 //DEADCODE DAW 10/05/99 		deltay = trackeditem->World.Y - currentgndtargitem->World.Y;
 //DEADCODE DAW 10/05/99 		deltaz = trackeditem->World.Z - currentgndtargitem->World.Z;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 		Math_Lib.Intercept(	deltax,deltay,deltaz,
 //DEADCODE DAW 10/05/99 							crange,
 //DEADCODE DAW 10/05/99 							dummy1,dummy2);
 //DEADCODE DAW 10/05/99 	}
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 	//Get the first waypoint for the current view item (if available)
 //DEADCODE DAW 10/05/99 	switch(trackeditem->Status.size)
 //DEADCODE DAW 10/05/99 	{
@@ -3987,7 +3991,7 @@ void ViewPoint::PrevGroundTarget()
 //DEADCODE DAW 10/05/99 		case ItemSize:
 //DEADCODE DAW 10/05/99 			wpp = (WayPointPtr )NULL;
 //DEADCODE DAW 10/05/99 			break;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 		case MobileSize:
 //DEADCODE DAW 10/05/99 		case TransientSize:
 //DEADCODE DAW 10/05/99 		case FormationSize:
@@ -3996,21 +4000,21 @@ void ViewPoint::PrevGroundTarget()
 //DEADCODE DAW 10/05/99 			wpp = ((MobileItemPtr )trackeditem)->waypoint;
 //DEADCODE DAW 10/05/99 			break;
 //DEADCODE DAW 10/05/99 	}
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 	while (wpp)
 //DEADCODE DAW 10/05/99 	{
 //DEADCODE DAW 10/05/99 		if (wpp->target!=NULL)
 //DEADCODE DAW 10/05/99 		{
 //DEADCODE DAW 10/05/99 			itemptr	ibp;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 			ibp = (itemptr)wpp->target;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 			if (ibp!=currentgndtargitem
 //DEADCODE DAW 10/05/99 				&&
 //DEADCODE DAW 10/05/99 				ibp->shape!=EMPTY)
 //DEADCODE DAW 10/05/99 			{
 //DEADCODE DAW 10/05/99 				livegroupelement=FALSE;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 				if (ibp->Status.size==FORMATIONSIZE)
 //DEADCODE DAW 10/05/99 				{
 //DEADCODE DAW 10/05/99 					while (ibp->Status.deadtime)
@@ -4030,17 +4034,17 @@ void ViewPoint::PrevGroundTarget()
 //DEADCODE DAW 10/05/99 					if (!livegroupelement)
 //DEADCODE DAW 10/05/99 						ibp=NULL;
 //DEADCODE DAW 10/05/99 				}
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 				if (ibp)
 //DEADCODE DAW 10/05/99 				{
 //DEADCODE DAW 10/05/99 					deltax = gdx + trackeditem->World.X - ibp->World.X;
 //DEADCODE DAW 10/05/99 					deltay = gdy + trackeditem->World.Y - ibp->World.Y;
 //DEADCODE DAW 10/05/99 					deltaz = gdz + trackeditem->World.Z - ibp->World.Z;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 					Math_Lib.Intercept(	deltax,deltay,deltaz,
 //DEADCODE DAW 10/05/99 										range,
 //DEADCODE DAW 10/05/99 										dummy1,dummy2);
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 					if (range>matchrange)
 //DEADCODE DAW 10/05/99 					{
 //DEADCODE DAW 10/05/99 						matchrange = range;
@@ -4065,10 +4069,10 @@ void ViewPoint::PrevGroundTarget()
 //DEADCODE DAW 10/05/99 				}
 //DEADCODE DAW 10/05/99 			}
 //DEADCODE DAW 10/05/99 		}
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 		wpp = wpp->next;
 //DEADCODE DAW 10/05/99 	}
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 	if (selected==NULL)
 //DEADCODE DAW 10/05/99 	{
 //DEADCODE DAW 10/05/99 		//Get the first waypoint for the current view item (if available)
@@ -4083,7 +4087,7 @@ void ViewPoint::PrevGroundTarget()
 //DEADCODE DAW 10/05/99 			case ItemSize:
 //DEADCODE DAW 10/05/99 				wpp = (WayPointPtr )NULL;
 //DEADCODE DAW 10/05/99 				break;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 			case MobileSize:
 //DEADCODE DAW 10/05/99 			case TransientSize:
 //DEADCODE DAW 10/05/99 			case FormationSize:
@@ -4092,23 +4096,23 @@ void ViewPoint::PrevGroundTarget()
 //DEADCODE DAW 10/05/99 				wpp = ((MobileItemPtr )trackeditem)->waypoint;
 //DEADCODE DAW 10/05/99 				break;
 //DEADCODE DAW 10/05/99 		}
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 		if (wpp) while (wpp->prev) {wpp=wpp->prev;}
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 		while (wpp)
 //DEADCODE DAW 10/05/99 		{
 //DEADCODE DAW 10/05/99 			if (wpp->target!=NULL)
 //DEADCODE DAW 10/05/99 			{
 //DEADCODE DAW 10/05/99 				itemptr	ibp;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 				ibp = (itemptr)wpp->target;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 				if (ibp!=currentgndtargitem
 //DEADCODE DAW 10/05/99 					&&
 //DEADCODE DAW 10/05/99 					ibp->shape!=EMPTY)
 //DEADCODE DAW 10/05/99 				{
 //DEADCODE DAW 10/05/99 					livegroupelement=FALSE;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 					if (ibp->Status.size==FORMATIONSIZE)
 //DEADCODE DAW 10/05/99 					{
 //DEADCODE DAW 10/05/99 						while (ibp->Status.deadtime)
@@ -4128,17 +4132,17 @@ void ViewPoint::PrevGroundTarget()
 //DEADCODE DAW 10/05/99 						if (!livegroupelement)
 //DEADCODE DAW 10/05/99 							ibp=NULL;
 //DEADCODE DAW 10/05/99 					}
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 					if (ibp)
 //DEADCODE DAW 10/05/99 					{
 //DEADCODE DAW 10/05/99 						deltax = gdx + trackeditem->World.X - ibp->World.X;
 //DEADCODE DAW 10/05/99 						deltay = gdy + trackeditem->World.Y - ibp->World.Y;
 //DEADCODE DAW 10/05/99 						deltaz = gdz + trackeditem->World.Z - ibp->World.Z;
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 						Math_Lib.Intercept(	deltax,deltay,deltaz,
 //DEADCODE DAW 10/05/99 											range,
 //DEADCODE DAW 10/05/99 											dummy1,dummy2);
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 						if (range>matchrange)
 //DEADCODE DAW 10/05/99 						{
 //DEADCODE DAW 10/05/99 							matchrange = range;
@@ -4163,27 +4167,27 @@ void ViewPoint::PrevGroundTarget()
 //DEADCODE DAW 10/05/99 					}
 //DEADCODE DAW 10/05/99 				}
 //DEADCODE DAW 10/05/99 			}
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 			wpp = wpp->next;
 //DEADCODE DAW 10/05/99 		}
 //DEADCODE DAW 10/05/99 	}
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //DEADCODE DAW 10/05/99 	if (selected==NULL)
 //DEADCODE DAW 10/05/99 		ResetGroundTarget();
 //DEADCODE DAW 10/05/99 	else
 //DEADCODE DAW 10/05/99 		currentgndtargitem = selected;
 //DEADCODE DAW 10/05/99 }
-//DEADCODE DAW 10/05/99 
+//DEADCODE DAW 10/05/99
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ResetWayPoint
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 19 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::ResetWayPoint()
@@ -4213,14 +4217,14 @@ void ViewPoint::ResetWayPoint()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ResetMessage
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 2 Sep 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::ResetMessage()
@@ -4234,14 +4238,14 @@ void ViewPoint::ResetMessage()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawInside
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::DrawInside()
@@ -4265,14 +4269,14 @@ void ViewPoint::DrawInside()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawQuick
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 28 Jan 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::DrawQuick()
@@ -4297,14 +4301,14 @@ void ViewPoint::DrawQuick()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawQuick
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 28 Jan 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::DrawFixed()
@@ -4329,14 +4333,14 @@ void ViewPoint::DrawFixed()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawInsideLostLock
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 23 Oct 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::DrawInsideLostLock()
@@ -4360,14 +4364,14 @@ void ViewPoint::DrawInsideLostLock()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawInsideFwd
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 20 Jun 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::DrawInsideFwd()
@@ -4388,14 +4392,14 @@ void ViewPoint::DrawInsideFwd()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawInsideCheat
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 17 Jun 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::DrawInsideCheat()
@@ -4422,14 +4426,14 @@ ANGLES	targetinterceptpitch,targetintercepthdg;
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawInPadlock
 //LastModified:	PD 05Jul96
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //#define NEW_PADLOCK
@@ -4441,7 +4445,7 @@ void ViewPoint::DrawInPadlock()
 	const ANGLES PITCH_UNDER_AC=ANGLES_330Deg;
 	const ANGLES PITCH_BELOW_RIM_CLIP=ANGLES_345Deg;
 //DeadCode CSB 09/07/99		const ANGLES PITCH_ZONE_PITCH=(Angles)(UWord(ANGLES_90Deg)-UWord(ANGLES_20Deg)-UWord(ANGLES_1Deg));
-	const ANGLES PITCH_ZONE_PITCH=(Angles)(UWord(ANGLES_90Deg)-UWord(ANGLES_25Deg));	//CSB 09/07/99	
+	const ANGLES PITCH_ZONE_PITCH=(Angles)(UWord(ANGLES_90Deg)-UWord(ANGLES_25Deg));	//CSB 09/07/99
 	const ANGLES HEADING_ZONE_HDG_CLIP_LO=ANGLES_160Deg;
 	const ANGLES HEADING_ZONE_HDG_CLIP_HI=(Angles)(int(ANGLES_190Deg)+int(ANGLES_10Deg));
 //DeadCode RJS 20Oct00 	const SWord TRACKING_TIME=1*100;	//1 second switch
@@ -4540,13 +4544,13 @@ void ViewPoint::DrawInPadlock()
 		bool isincentralarea;
 		if (intercepthdg<<ANGLES_270Deg && intercepthdg>>ANGLES_90Deg)
 			isincentralarea=(interceptpitch>>PITCH_ZONE_PITCH && interceptpitch<<ANGLES_90Deg)?true:false;
-		else 
+		else
 			isincentralarea=false;
 
 		if (isincentralarea)
 		{
 			//we want the pilot to be looking forwards but
-			//with his head tilted back until the target is 
+			//with his head tilted back until the target is
 			//in view
 			ANGLES newhdg,newpitch;
 	//		newhdg=intercepthdg+ANGLES_180Deg;
@@ -4574,8 +4578,8 @@ void ViewPoint::DrawInPadlock()
 		ANGLES	targetpitch=interceptpitch;
 
 	//DEADCODE CSB 08/03/00 	deltaangle=targethdg-targetintercepthdg;
-	//DEADCODE CSB 08/03/00 
-	//DEADCODE CSB 08/03/00 	if (deltaangle>=0)	
+	//DEADCODE CSB 08/03/00
+	//DEADCODE CSB 08/03/00 	if (deltaangle>=0)
 	//DEADCODE CSB 08/03/00 		deltaanglesign=1;
 	//DEADCODE CSB 08/03/00 	else
 	//DEADCODE CSB 08/03/00 	{
@@ -4590,7 +4594,7 @@ void ViewPoint::DrawInPadlock()
 	//DEADCODE CSB 08/03/00 		deltaangle = maxdelta;											//CSB 08/03/00
 	//DEADCODE CSB 08/03/00 //DEADCODE CSB 08/03/00 	if (deltaangle>viewcodeframetime)
 	//DEADCODE CSB 08/03/00 //DEADCODE CSB 08/03/00 		deltaangle=2+((deltaangle*viewcodeframetime)/25);
-	//DEADCODE CSB 08/03/00 
+	//DEADCODE CSB 08/03/00
 	//DEADCODE CSB 08/03/00 	targethdg=(Angles)(targetintercepthdg+deltaanglesign*deltaangle);
 
 	/*	TESTCODE CSB 08/03/00 */
@@ -4598,7 +4602,7 @@ void ViewPoint::DrawInPadlock()
 	/*	TESTCODE CSB 08/03/00 */
 		SLong dhdg = SLong(SWord(targethdg)) - SLong(SWord(targetintercepthdg));
 
-		if(dhdg >= 0)	
+		if(dhdg >= 0)
 			deltaanglesign = 1;
 		else
 		{
@@ -4612,11 +4616,11 @@ void ViewPoint::DrawInPadlock()
 	//DEADCODE CSB 03/05/00 		maxdelta *= factor;
 
 		if(dhdg > ANGLES_90Deg)
-			maxdelta *= 2;	
+			maxdelta *= 2;
 
 		if(dhdg > maxdelta)
-			dhdg = maxdelta;					
-												
+			dhdg = maxdelta;
+
 		targethdg = (Angles)(targetintercepthdg + deltaanglesign * dhdg);
 	/*	TESTCODE CSB 08/03/00 */
 	/*	TESTCODE CSB 08/03/00 */
@@ -4639,7 +4643,7 @@ void ViewPoint::DrawInPadlock()
 	//DEADCODE CSB 03/05/00 		maxdelta *= factor;
 
 		if(deltaangle > maxdelta)
-			deltaangle = maxdelta;					
+			deltaangle = maxdelta;
 	//DEADCODE CSB 08/03/00 	if (deltaangle>viewcodeframetime)
 	//DEADCODE CSB 08/03/00 		deltaangle=2+((deltaangle*viewcodeframetime)/25);
 
@@ -4692,9 +4696,9 @@ void ViewPoint::DrawInPadlockB()
 	ANGLES 	temp1,temp2;
 
 	ViewCutType	oldviewcuttype;
-	
+
 	Bool	pitchvisible,hdgvisible,special;
-	
+
 	Bool	targetisvisible;//=TRUE;
 
 	drawpolypit = TRUE;											//PD 08Jul97
@@ -4737,7 +4741,7 @@ void ViewPoint::DrawInPadlockB()
 		relpitch = interceptpitch;
 		relhdg = intercepthdg;
 
-		//hdgint,pitchint,rollint are now the angles required to 
+		//hdgint,pitchint,rollint are now the angles required to
 		//look directly at the tracked item.
 
 		//Modified so that if either the heding or pitch is in range
@@ -4786,7 +4790,7 @@ void ViewPoint::DrawInPadlockB()
 		pitch_hi_clip = (UWord)ANGLES_350Deg;//PD 19Nov97
 
 		//Do visibility tests and angle clipping
-		
+
 		targetisvisible = FALSE;
 		pitchvisible = FALSE;
 		hdgvisible = FALSE;
@@ -5000,14 +5004,14 @@ void ViewPoint::DrawInPadlockB()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		WhichWay
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 26 Nov 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 UByte ViewPoint::WhichWay(itemptr targetitemp)
@@ -5083,18 +5087,18 @@ UByte ViewPoint::WhichWay(itemptr targetitemp)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		RelativeIntercept
-//Author		Paul.   
+//Author		Paul.
 //Date			Sat 7 Dec 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::RelativeIntercept(itemptr srcp,itemptr trgp,
-									ANGLES& inthdg,ANGLES& intptch)
+									ANGLES &  inthdg,ANGLES &  intptch)
 {
 	MobileItemPtr	msrcp,mtrgp;
 	FPMATRIX			tmat;
@@ -5129,14 +5133,14 @@ void ViewPoint::RelativeIntercept(itemptr srcp,itemptr trgp,
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawTrack
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::DrawTrack()
@@ -5156,7 +5160,7 @@ void ViewPoint::DrawTrack()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawRovingCamera
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 3 Dec 1999
 //
 //------------------------------------------------------------------------------
@@ -5230,14 +5234,14 @@ void ViewPoint::DrawRovingCamera()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawOutside
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::DrawOutside()
@@ -5251,14 +5255,14 @@ void ViewPoint::DrawOutside()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawOutPadlock
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 27 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::DrawOutPadlock()
@@ -5341,14 +5345,14 @@ void ViewPoint::DrawOutPadlock()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawOutRevPadlock
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 27 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 #ifndef NDEBUG
@@ -5401,14 +5405,14 @@ void ViewPoint::DrawOutRevPadlock()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawChase
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::DrawChase()
@@ -5453,14 +5457,14 @@ void ViewPoint::DrawChase()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawFlyBy
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::DrawFlyBy()
@@ -5522,7 +5526,7 @@ void ViewPoint::DrawFlyBy()
 			currentviewrec->range=curRange;
 		}
 		//pan round using the heading field of the viewrec
-		SLong curH=SLong(currentviewrec->hdg)&0xFFFF;
+		SLong curH=SLong(currentviewrec->hdg) & 0xFFFF;
 		SLong angToGo=((curH-(SLong(chaseviewrec->hdg)&0xFFFF))*ft)/flybytimeleft;
 		if (angToGo<ft) angToGo=ft;
 		curH-=angToGo;
@@ -5562,14 +5566,14 @@ void ViewPoint::DrawFlyBy()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InvalidDraw
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 23 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::InvalidDraw()
@@ -5584,14 +5588,14 @@ void ViewPoint::InvalidDraw()
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ImpactToggle
 //LastModified:	PD 17Jun96
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::ImpactToggle()
@@ -5615,14 +5619,14 @@ void ViewPoint::ImpactToggle()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		HandleZoom
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::HandleZoom(ZmRtFlags flags)
@@ -5633,17 +5637,17 @@ void ViewPoint::HandleZoom(ZmRtFlags flags)
 	//when further away.
 
 //DeadCode CSB 7Aug00 	viewrangestep = (currentviewrec->range - modViewRangeMin);	//PD 30Apr97
-//DeadCode CSB 7Aug00 
-//DeadCode CSB 7Aug00 	if (flags&ZR_BIG)											//JIM 10Aug96
+//DeadCode CSB 7Aug00
+//DeadCode CSB 7Aug00 	if (flags & ZR_BIG)											//JIM 10Aug96
 //DeadCode CSB 7Aug00 		viewrangestep<<=2;										//JIM 10Aug96
-//DeadCode CSB 7Aug00 
+//DeadCode CSB 7Aug00
 //DeadCode CSB 7Aug00 	if(viewrangestep <= 20)	viewrangestep = 20;
 //DeadCode CSB 7Aug00 //DEADCODE CSB 08/03/00 	else					viewrangestep = 2 + ((viewrangestep * viewcodeframetime)>>5);//JIM 10Aug96
 //DeadCode CSB 7Aug00 	else					viewrangestep = 2 + ((viewrangestep * Three_Dee.Draw_Time()) >> 8);	//CSB 08/03/00
 //DeadCode CSB 7Aug00 	if(viewrangestep <= 20) viewrangestep = 20;
 
 	viewrangestep = frameTimeMSecs * 8;									//RJS 19Sep00
-	if(flags&ZR_BIG)	
+	if(flags & ZR_BIG)
 		viewrangestep *= 4;
 
 	if (deathspeed)												//RJS 05Nov96
@@ -5674,16 +5678,16 @@ void ViewPoint::HandleZoom(ZmRtFlags flags)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		StopZoom
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 2 May 1996
 //
 //Description	Key has been released so copy
 //				the current zoom from the global
-//				viewrec structure into the 
+//				viewrec structure into the
 //				current viewrec structure
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::StopZoom()
@@ -5693,14 +5697,14 @@ void ViewPoint::StopZoom()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		StopRotate
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 2 Sep 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::StopRotate()
@@ -5709,14 +5713,14 @@ void ViewPoint::StopRotate()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		HandleFixedView
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 22 Jul 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::HandleFixedView(QuickView quickviewflag)
@@ -5733,7 +5737,7 @@ void ViewPoint::HandleFixedView(QuickView quickviewflag)
 	static View_Rec	VRNorth(0x0100,ANGLES_0Deg,ANGLES_0Deg,ANGLES_0Deg,0x0100,ANGLES_0Deg,ANGLES_0Deg,ANGLES_0Deg);
 	static View_Rec	VRUp(0x0100,ANGLES_0Deg,ANGLES_90Deg,ANGLES_0Deg,0x0100,ANGLES_0Deg,ANGLES_90Deg,ANGLES_0Deg);
 
-	if (viewdrawrtn!=DrawFixed)	InitPiloted();					//PD 27Sep97
+	if (viewdrawrtn!= MYPREFIX ViewPoint::DrawFixed)	InitPiloted();					//PD 27Sep97
 
 	if (quickviewflag==QV_UpDownTog)
 	{
@@ -5766,17 +5770,17 @@ void ViewPoint::HandleFixedView(QuickView quickviewflag)
 	else if (quickviewflag==QV_PanRight)
 	{
 		if (fixedviewrec==NULL)
-			nextViewRec=&VRNorth;
+			nextViewRec= &VRNorth;
 		else
 		{
-			if 		(fixedviewrec==&VRNorthEast)	nextViewRec=&VREast;
-			else if (fixedviewrec==&VREast)			nextViewRec=&VRSouthEast;
-			else if (fixedviewrec==&VRSouthEast)	nextViewRec=&VRSouth;
-			else if (fixedviewrec==&VRSouth)		nextViewRec=&VRSouthWest;
-			else if (fixedviewrec==&VRSouthWest)	nextViewRec=&VRWest;
-			else if (fixedviewrec==&VRWest)			nextViewRec=&VRNorthWest;
-			else if (fixedviewrec==&VRNorthWest)	nextViewRec=&VRNorth;
-			else if (fixedviewrec==&VRNorth)		nextViewRec=&VRNorthEast;
+			if 		(fixedviewrec== &VRNorthEast)	nextViewRec= &VREast;
+			else if (fixedviewrec== &VREast)			nextViewRec= &VRSouthEast;
+			else if (fixedviewrec== &VRSouthEast)	nextViewRec= &VRSouth;
+			else if (fixedviewrec== &VRSouth)		nextViewRec= &VRSouthWest;
+			else if (fixedviewrec== &VRSouthWest)	nextViewRec= &VRWest;
+			else if (fixedviewrec== &VRWest)			nextViewRec= &VRNorthWest;
+			else if (fixedviewrec== &VRNorthWest)	nextViewRec= &VRNorth;
+			else if (fixedviewrec== &VRNorth)		nextViewRec= &VRNorthEast;
 			else return;
 
 			if (fixedviewrec->pitch!=fixedviewrec->reset_pitch)
@@ -5790,17 +5794,17 @@ void ViewPoint::HandleFixedView(QuickView quickviewflag)
 	else if (quickviewflag==QV_PanLeft)
 	{
 		if (fixedviewrec==NULL)
-			nextViewRec=&VRNorth;
+			nextViewRec= &VRNorth;
 		else
 		{
-			if 		(fixedviewrec==&VRNorthEast)	nextViewRec=&VRNorth;
-			else if (fixedviewrec==&VREast)			nextViewRec=&VRNorthEast;
-			else if (fixedviewrec==&VRSouthEast)	nextViewRec=&VREast;
-			else if (fixedviewrec==&VRSouth)		nextViewRec=&VRSouthEast;
-			else if (fixedviewrec==&VRSouthWest)	nextViewRec=&VRSouth;
-			else if (fixedviewrec==&VRWest)			nextViewRec=&VRSouthWest;
-			else if (fixedviewrec==&VRNorthWest)	nextViewRec=&VRWest;
-			else if (fixedviewrec==&VRNorth)		nextViewRec=&VRNorthWest;
+			if 		(fixedviewrec== &VRNorthEast)	nextViewRec= &VRNorth;
+			else if (fixedviewrec== &VREast)			nextViewRec= &VRNorthEast;
+			else if (fixedviewrec== &VRSouthEast)	nextViewRec= &VREast;
+			else if (fixedviewrec== &VRSouth)		nextViewRec= &VRSouthEast;
+			else if (fixedviewrec== &VRSouthWest)	nextViewRec= &VRSouth;
+			else if (fixedviewrec== &VRWest)			nextViewRec= &VRSouthWest;
+			else if (fixedviewrec== &VRNorthWest)	nextViewRec= &VRWest;
+			else if (fixedviewrec== &VRNorth)		nextViewRec= &VRNorthWest;
 			else return;
 
 			if (fixedviewrec->pitch!=fixedviewrec->reset_pitch)
@@ -5814,15 +5818,15 @@ void ViewPoint::HandleFixedView(QuickView quickviewflag)
 
 	switch (quickviewflag)
 	{
-		case QV_NorthEast:	nextViewRec=&VRNorthEast;	break;
-		case QV_East:		nextViewRec=&VREast;		break;
-		case QV_SouthEast:	nextViewRec=&VRSouthEast;	break;
-		case QV_South:		nextViewRec=&VRSouth;		break;
-		case QV_SouthWest:	nextViewRec=&VRSouthWest;	break;
-		case QV_West:		nextViewRec=&VRWest;		break;
-		case QV_NorthWest:	nextViewRec=&VRNorthWest;	break;	
-		case QV_North:		nextViewRec=&VRNorth;		break;
-		case QV_Up:			nextViewRec=&VRUp;			break;
+		case QV_NorthEast:	nextViewRec= &VRNorthEast;	break;
+		case QV_East:		nextViewRec= &VREast;		break;
+		case QV_SouthEast:	nextViewRec= &VRSouthEast;	break;
+		case QV_South:		nextViewRec= &VRSouth;		break;
+		case QV_SouthWest:	nextViewRec= &VRSouthWest;	break;
+		case QV_West:		nextViewRec= &VRWest;		break;
+		case QV_NorthWest:	nextViewRec= &VRNorthWest;	break;
+		case QV_North:		nextViewRec= &VRNorth;		break;
+		case QV_Up:			nextViewRec= &VRUp;			break;
 	}
 
 	if (fixedviewrec!=NULL && Save_Data.gamedifficulty[GD_UPTOGGLESTICKS]
@@ -5836,20 +5840,20 @@ void ViewPoint::HandleFixedView(QuickView quickviewflag)
 
 	//fixedviewrec = ptr to viewrec for required quick view
 
-	viewdrawrtn=DrawFixed;
+	viewdrawrtn= MYPREFIX ViewPoint::DrawFixed;
 	drawpolypit=TRUE;
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		HandleQuickView
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 28 Jan 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::HandleQuickView(QuickView quickviewflag)
@@ -5891,68 +5895,68 @@ void ViewPoint::HandleQuickView(QuickView quickviewflag)
 	switch (quickviewflag)
 	{
 		case QV_NorthEast:
-			quickviewrec=&VRNorthEast;
+			quickviewrec =  &  VRNorthEast;
 			pitchfiddle=ANGLES_0Deg;
 		break;
 		case QV_East:
-			quickviewrec=&VREast;
+			quickviewrec =  &  VREast;
 			pitchfiddle=ANGLES_0Deg;
 		break;
 		case QV_SouthEast:
-			quickviewrec=&VRSouthEast;
+			quickviewrec =  &  VRSouthEast;
 			pitchfiddle=ANGLES_0Deg;
 		break;
 		case QV_South:
-			quickviewrec=&VRSouth;
+			quickviewrec =  &  VRSouth;
 			pitchfiddle=ANGLES_0Deg;
 		break;
 		case QV_SouthWest:
-			quickviewrec=&VRSouthWest;
+			quickviewrec =  &  VRSouthWest;
 			pitchfiddle=ANGLES_0Deg;
 		break;
 		case QV_West:
-			quickviewrec=&VRWest;
+			quickviewrec =  &  VRWest;
 			pitchfiddle=ANGLES_0Deg;
 		break;
 		case QV_NorthWest:
-			quickviewrec=&VRNorthWest;
+			quickviewrec =  &  VRNorthWest;
 			pitchfiddle=ANGLES_0Deg;
 		break;
 		case QV_North:
-			quickviewrec=&VRNorth;
+			quickviewrec =  &  VRNorth;
 			pitchfiddle=ANGLES_0Deg;
 		break;
 
 		case QV_NorthEastUp:
-			quickviewrec=&VRNorthEast;
+			quickviewrec =  &  VRNorthEast;
 			pitchfiddle=ANGLES_45Deg;
 		break;
 		case QV_EastUp:
-			quickviewrec=&VREast;
+			quickviewrec =  &  VREast;
 			pitchfiddle=ANGLES_45Deg;
 		break;
 		case QV_SouthEastUp:
-			quickviewrec=&VRSouthEast;
+			quickviewrec =  &  VRSouthEast;
 			pitchfiddle=ANGLES_45Deg;
 		break;
 		case QV_SouthUp:
-			quickviewrec=&VRSouth;
+			quickviewrec =  &  VRSouth;
 			pitchfiddle=ANGLES_45Deg;
 		break;
 		case QV_SouthWestUp:
-			quickviewrec=&VRSouthWest;
+			quickviewrec =  &  VRSouthWest;
 			pitchfiddle=ANGLES_45Deg;
 		break;
 		case QV_WestUp:
-			quickviewrec=&VRWest;
+			quickviewrec =  &  VRWest;
 			pitchfiddle=ANGLES_45Deg;
 		break;
 		case QV_NorthWestUp:
-			quickviewrec=&VRNorthWest;
+			quickviewrec =  &  VRNorthWest;
 			pitchfiddle=ANGLES_45Deg;
 		break;
 		case QV_NorthUp:
-			quickviewrec=&VRNorth;
+			quickviewrec =  &  VRNorth;
 			pitchfiddle=ANGLES_45Deg;
 		break;
 	}
@@ -5964,7 +5968,7 @@ void ViewPoint::HandleQuickView(QuickView quickviewflag)
 	if (bupviewdrawrtn==NULL)
 	{
 		bupviewdrawrtn=viewdrawrtn;
-		viewdrawrtn=DrawQuick;
+		viewdrawrtn= MYPREFIX ViewPoint::DrawQuick;
 		bupdrawpolypit=drawpolypit;
 		drawpolypit=TRUE;
 	}
@@ -5973,15 +5977,15 @@ void ViewPoint::HandleQuickView(QuickView quickviewflag)
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ClipInsideAngles
 //LastModified:	PD 06Jun97
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 14 Jun 1996
 //
 //Description	Keep inside view angles clipped to values that prevent
 //				the pilots head from falling off
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::ClipInsideAngles()
@@ -6012,14 +6016,14 @@ void ViewPoint::ClipInsideAngles()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		HandleRotate
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::HandleRotate(ZmRtFlags flags)
@@ -6095,14 +6099,14 @@ void ViewPoint::HandleRotate(ZmRtFlags flags)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ResetZoomRotate
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::ResetZoomRotat2(ZmRtFlags flags)
@@ -6122,14 +6126,14 @@ void ViewPoint::ResetZoomRotate(ZmRtFlags flags)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CopyPosition
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::CopyPosition(itemptr source,itemptr dest)
@@ -6174,14 +6178,14 @@ void ViewPoint::CopyPosition(itemptr source,itemptr dest)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CopyPositionHP
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 27 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::CopyPositionHP(itemptr source,itemptr dest)
@@ -6230,14 +6234,14 @@ void ViewPoint::CopyPositionHP(itemptr source,itemptr dest)
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CopyPositionHPR
 //LastModified:	DAW 23Feb96
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
 //Description	The '-' signs are temporary						//DAW 23Feb96
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::CopyPositionHPR(itemptr source,itemptr dest)
@@ -6280,15 +6284,15 @@ void ViewPoint::CopyPositionHPR(itemptr source,itemptr dest)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CopyPositionHPVel
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 24 Apr 1996
 //
 //Description	Set view direction based on the tracked items velocity
 //				vectors (if avaliable).
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::CopyPositionHPVel(itemptr source,itemptr dest)
@@ -6309,7 +6313,7 @@ void ViewPoint::CopyPositionHPVel(itemptr source,itemptr dest)
  			vhdg = Math_Lib.HighArcTan(sptr->vel_x,sptr->vel_z);
 
 //DEADCODE CSB 09/11/99 			vptch= Math_Lib.HighArcTan(sptr->vely,sptr->velhori);
-	
+
 //DIRTY FIX !!! //CSB 09/11/99
 //DeadCode RJS 10Jul00 			FP velhori = FSqrt(sptr->vel_x * sptr->vel_x + sptr->vel_z * sptr->vel_z);	 //CSB 09/11/99
 //DeadCode RJS 10Jul00 			vptch= Math_Lib.HighArcTan(sptr->vel_y, velhori);							 //CSB 09/11/99
@@ -6317,13 +6321,13 @@ void ViewPoint::CopyPositionHPVel(itemptr source,itemptr dest)
 			float	fvx = sptr->vel_x;
 			float	fvz = sptr->vel_z;
 			SLong	velhori;
-				
-			fastMath.FloatToInt(&velhori,fastMath.FastSqrt(fvx*fvx+fvz*fvz));
+
+			fastMath.FloatToInt( & velhori,fastMath.FastSqrt(fvx*fvx+fvz*fvz));
 
 			vptch= Math_Lib.HighArcTan(sptr->vel_y, velhori);
- 
+
  			vroll= ANGLES_0Deg;
- 
+
  			((ViewPoint* )dest)->reqhdg = vhdg;
  			((ViewPoint* )dest)->reqpitch = vptch;
  			((ViewPoint* )dest)->reqroll = vroll;
@@ -6349,15 +6353,15 @@ void ViewPoint::CopyPositionHPVel(itemptr source,itemptr dest)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CopyPositionHPRVel
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 24 Apr 1996
 //
 //Description	Set view direction based on the tracked items velocity
 //				vectors (if avaliable).
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::CopyPositionHPRVel(itemptr source,itemptr dest)
@@ -6393,16 +6397,16 @@ void ViewPoint::CopyPositionHPRVel(itemptr source,itemptr dest)
 				float	fvx = sptr->vel_x;
 				float	fvz = sptr->vel_z;
 				SLong	velhori;
-				
-				fastMath.FloatToInt(&velhori,fastMath.FastSqrt(fvx*fvx+fvz*fvz));
+
+				fastMath.FloatToInt( &velhori,fastMath.FastSqrt(fvx*fvx+fvz*fvz));
 
 //DeadCode RJS 4Jul00 				FP velhori = FSqrt(sptr->vel_x * sptr->vel_x + sptr->vel_z * sptr->vel_z);	 //CSB 09/11/99
 				vptch= Math_Lib.HighArcTan(sptr->vel_y, velhori);							 //CSB 09/11/99
 //DEADCODE CSB 09/11/99 				vptch= Math_Lib.HighArcTan(sptr->vely,sptr->velhori);
 			}
- 
+
  			vroll= sptr->roll;
- 
+
  			((ViewPoint* )dest)->reqhdg = vhdg;
  			((ViewPoint* )dest)->reqpitch = vptch;
  			((ViewPoint* )dest)->reqroll = vroll;
@@ -6428,14 +6432,14 @@ void ViewPoint::CopyPositionHPRVel(itemptr source,itemptr dest)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		AddViewRec
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::AddViewRec()
@@ -6451,14 +6455,14 @@ void ViewPoint::AddViewRec()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		AddViewRecInside
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 14 Jun 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::AddViewRecInside()
@@ -6490,14 +6494,14 @@ void ViewPoint::AddViewRecInside()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		AddZoom
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::AddZoom()
@@ -6527,7 +6531,7 @@ void ViewPoint::AddZoom()
 	if (max_zoom_shape > MAX_ZOOM_CONST)								//RJS 10Nov00
 		max_zoom_shape = MAX_ZOOM_CONST;
 
-	if (min_zoom_shape>(globalviewrec->range+jzoom)) 
+	if (min_zoom_shape>(globalviewrec->range+jzoom))
 	{
 		// do nothing, cos this IS the minimum zoom
 		globalviewrec->range = currentviewrec->range = min_zoom_shape;
@@ -6572,7 +6576,7 @@ void ViewPoint::AddZoom()
 	//on map view make sure that the viewer isn't allowed to get
 	//above the cloud layer...
 
-	if (OverLay.pCurScr==&OverLay.mapViewScr)
+	if (OverLay.pCurScr== &OverLay.mapViewScr)
 	{
 		SLong cloudAlt=Land_Scape.CloudAlt();
 		if (World.Y>cloudAlt)
@@ -6605,14 +6609,14 @@ void ViewPoint::AddZoom()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitInside
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::InitInside()
@@ -6628,7 +6632,7 @@ void ViewPoint::InitInside()
 	trackeditem = currentvehicle;
 	currentviewrec = insideviewrec;
 	bupviewdrawrtn = NULL;										//PD 28Jan97
-	viewdrawrtn = DrawInside;
+	viewdrawrtn =  MYPREFIX ViewPoint::DrawInside;
 	drawpolypit = TRUE;
 	drawSpecialFlags -= (drawSpecialFlags & VIEW_SPECIAL_MAP);	//RJS 20Oct98
 	drawmap = FALSE;//RJS 10Sep98
@@ -6637,14 +6641,14 @@ void ViewPoint::InitInside()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitInsideCheat
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 17 Jun 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::InitInsideCheat()
@@ -6655,7 +6659,7 @@ void ViewPoint::InitInsideCheat()
 	trackeditem = currentvehicle;
 	currentviewrec = insidecheatviewrec;
 	bupviewdrawrtn = NULL;										//PD 28Jan97
-	viewdrawrtn = DrawInsideCheat;
+	viewdrawrtn =  MYPREFIX ViewPoint::DrawInsideCheat;
 	drawpolypit = FALSE;
 	drawSpecialFlags -= (drawSpecialFlags & VIEW_SPECIAL_MAP);	//RJS 20Oct98
 	drawmap = FALSE;//RJS 10Sep98
@@ -6664,14 +6668,14 @@ void ViewPoint::InitInsideCheat()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitInPadlock
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::InitInPadlock()
@@ -6692,13 +6696,13 @@ void ViewPoint::InitInPadlock()
 	{
 		currentviewrec = insideviewrec;
 		bupviewdrawrtn = NULL;									//PD 28Jan97
-		viewdrawrtn = DrawInside;
+		viewdrawrtn =  MYPREFIX ViewPoint::DrawInside;
 	}
 	else
 	{
 		currentviewrec = inpadlockviewrec;
 		bupviewdrawrtn = NULL;									//PD 28Jan97
-		viewdrawrtn = DrawInPadlock;
+		viewdrawrtn =  MYPREFIX ViewPoint::DrawInPadlock;
 	}
 	drawpolypit = TRUE;											//PD 14Jun96
 	drawSpecialFlags -= (drawSpecialFlags & VIEW_SPECIAL_MAP);	//RJS 20Oct98
@@ -6708,14 +6712,14 @@ void ViewPoint::InitInPadlock()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitTrack
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::InitTrack()
@@ -6724,7 +6728,7 @@ void ViewPoint::InitTrack()
 	currentviewrec = trackviewrec;
 	UpdateGlobalViewRec();
 	bupviewdrawrtn = NULL;										//PD 28Jan97
-	viewdrawrtn = DrawTrack;
+	viewdrawrtn =  MYPREFIX ViewPoint::DrawTrack;
 	drawpolypit = FALSE;
 	drawSpecialFlags -= (drawSpecialFlags & VIEW_SPECIAL_MAP);	//RJS 20Oct98
 	drawmap = FALSE;//RJS 10Sep98
@@ -6734,7 +6738,7 @@ void ViewPoint::InitTrack()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitRovingCamera
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 3 Dec 1999
 //
 //------------------------------------------------------------------------------
@@ -6745,22 +6749,22 @@ void ViewPoint::InitRovingCamera()
 	rovingData.World=currentvehicle->World;
 	rovingData.rovingT=0;
 	bupviewdrawrtn=NULL;
-	viewdrawrtn=DrawRovingCamera;
+	viewdrawrtn= MYPREFIX ViewPoint::DrawRovingCamera;
 	drawpolypit=FALSE;
-	drawSpecialFlags-=(drawSpecialFlags&VIEW_SPECIAL_MAP);
+	drawSpecialFlags-=(drawSpecialFlags & VIEW_SPECIAL_MAP);
 	drawmap=FALSE;
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitOutPadlock
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::InitOutPadlock()
@@ -6778,14 +6782,14 @@ void ViewPoint::InitOutPadlock()
 	if (trackeditem2 && DoWeAbortTrack())								//RJS 22Aug00
 	{
 		viewnum.viewmode = VM_Track;
-		viewsetuprtn = InitTrack;
+		viewsetuprtn =  MYPREFIX ViewPoint::InitTrack;
 		currentviewrec = trackviewrec;
-		viewdrawrtn = DrawTrack;
+		viewdrawrtn =  MYPREFIX ViewPoint::DrawTrack;
 	}
 	else
 	{
 		currentviewrec = outpadlockviewrec;
-		viewdrawrtn = DrawOutPadlock;
+		viewdrawrtn =  MYPREFIX ViewPoint::DrawOutPadlock;
 	}
 
 	UpdateGlobalViewRec();
@@ -6793,14 +6797,14 @@ void ViewPoint::InitOutPadlock()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitOutRevPadlock
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 #ifndef NDEBUG
@@ -6809,7 +6813,7 @@ void ViewPoint::InitOutRevPadlock()
 	trackeditem = currentvehicle;
 	currentviewrec = outrevpadlockviewrec;
 	bupviewdrawrtn = NULL;										//PD 28Jan97
-	viewdrawrtn = DrawOutRevPadlock;
+	viewdrawrtn =  MYPREFIX ViewPoint::DrawOutRevPadlock;
 	drawpolypit = FALSE;
 	drawSpecialFlags -= (drawSpecialFlags & VIEW_SPECIAL_MAP);	//RJS 20Oct98
 	drawmap = FALSE;//RJS 10Sep98
@@ -6818,14 +6822,14 @@ void ViewPoint::InitOutRevPadlock()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitNrSatellite
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::InitNrSatellite()
@@ -6833,7 +6837,7 @@ void ViewPoint::InitNrSatellite()
 	trackeditem = currentvehicle;
 	currentviewrec = nrsatelliteviewrec;
 	bupviewdrawrtn = NULL;										//PD 28Jan97
-	viewdrawrtn = DrawOutside;
+	viewdrawrtn =  MYPREFIX ViewPoint::DrawOutside;
 	drawpolypit = FALSE;
 	drawSpecialFlags -= (drawSpecialFlags & VIEW_SPECIAL_MAP);	//RJS 20Oct98
 	drawmap = FALSE;//RJS 10Sep98
@@ -6841,14 +6845,14 @@ void ViewPoint::InitNrSatellite()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitSatellite
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::InitSatellite()
@@ -6856,7 +6860,7 @@ void ViewPoint::InitSatellite()
 	trackeditem = currentvehicle;
 	currentviewrec = satelliteviewrec;
 	bupviewdrawrtn = NULL;										//PD 28Jan97
-	viewdrawrtn = DrawOutside;
+	viewdrawrtn =  MYPREFIX ViewPoint::DrawOutside;
 	drawpolypit = FALSE;
 	drawSpecialFlags -= (drawSpecialFlags & VIEW_SPECIAL_MAP);	//RJS 20Oct98
 	drawmap = FALSE;//RJS 10Sep98
@@ -6864,14 +6868,14 @@ void ViewPoint::InitSatellite()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitChase
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::InitChase()
@@ -6879,7 +6883,7 @@ void ViewPoint::InitChase()
 	trackeditem = currentvehicle;
 	currentviewrec = chaseviewrec;
 	bupviewdrawrtn = NULL;										//PD 28Jan97
-	viewdrawrtn = DrawChase;
+	viewdrawrtn =  MYPREFIX ViewPoint::DrawChase;
 	drawpolypit = FALSE;
 	drawSpecialFlags -= (drawSpecialFlags & VIEW_SPECIAL_MAP);	//RJS 20Oct98
 	drawmap = FALSE;//RJS 10Sep98
@@ -6907,14 +6911,14 @@ void ViewPoint::InitChase()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitFlyBy
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::InitFlyBy()
@@ -6935,7 +6939,7 @@ void ViewPoint::InitFlyBy()
 		trackeditem=currentvehicle;
 		currentviewrec=flybyviewrec;
 		bupviewdrawrtn=NULL;
-		viewdrawrtn=DrawFlyBy;
+		viewdrawrtn= MYPREFIX ViewPoint::DrawFlyBy;
 		drawpolypit=FALSE;
 		MobileItemPtr mip=(MobileItemPtr)trackeditem;
 		currentviewrec->reset_range=MaxFlybyZoom;
@@ -6966,15 +6970,15 @@ void ViewPoint::InitFlyBy()
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		List1Toggle
 //LastModified:	PD 03Sep96
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
 //Description	Steps between Inside padlock, inside look up and
 //				inside look down views
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::List1Toggle()
@@ -6989,7 +6993,7 @@ void ViewPoint::List1Toggle()
 	switch (viewnum.viewtarg)
 	{
 		case VT_Player:
-			viewsetuprtn = InitInside;
+			viewsetuprtn =  MYPREFIX ViewPoint::InitInside;
 			break;
 		case VT_Enemy:
 			InitInside();
@@ -7031,14 +7035,14 @@ void ViewPoint::List1Toggle()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		List2Toggle
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::List2Toggle()
@@ -7048,7 +7052,7 @@ void ViewPoint::List2Toggle()
 	switch (viewnum.viewtarg)
 	{
 		case VT_Player:
-			viewsetuprtn = InitTrack;
+			viewsetuprtn =  MYPREFIX ViewPoint::InitTrack;
 			break;
 		case VT_Enemy:
 			InitTrack();
@@ -7091,14 +7095,14 @@ void ViewPoint::List2Toggle()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		List3Toggle
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::List3Toggle()
@@ -7117,24 +7121,24 @@ void ViewPoint::List3Toggle()
 	switch(viewnum.viewmode)
 	{
 		case VM_Satellite:
-			viewsetuprtn = InitSatellite;
+			viewsetuprtn =  MYPREFIX ViewPoint::InitSatellite;
 			break;
 		case VM_NrSatellite:
-			viewsetuprtn = InitNrSatellite;
+			viewsetuprtn =  MYPREFIX ViewPoint::InitNrSatellite;
 			break;
 	}
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		List4Toggle
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 20 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::List4Toggle()
@@ -7153,24 +7157,24 @@ void ViewPoint::List4Toggle()
 	switch(viewnum.viewmode)
 	{
 		case VM_Chase:
-			viewsetuprtn = InitChase;
+			viewsetuprtn =  MYPREFIX ViewPoint::InitChase;
 			break;
 		case VM_FlyBy:
-			viewsetuprtn = InitFlyBy;
+			viewsetuprtn =  MYPREFIX ViewPoint::InitFlyBy;
 			break;
 	}
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		List5Toggle
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 17 Jun 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::List5Toggle()
@@ -7178,20 +7182,20 @@ void ViewPoint::List5Toggle()
 	if (viewnum.viewmode != VM_InsideCheat)
 	{
 		viewnum.viewmode = VM_InsideCheat;
-		viewsetuprtn = InitInsideCheat;
+		viewsetuprtn =  MYPREFIX ViewPoint::InitInsideCheat;
 	}
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		List7Toggle
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 26 Sep 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::List7Toggle()
@@ -7217,30 +7221,30 @@ void ViewPoint::List7Toggle()
 	switch (newmode)
 	{
 		case VM_Track:
-			viewsetuprtn = InitTrack;
+			viewsetuprtn =  MYPREFIX ViewPoint::InitTrack;
 			break;
 		case VM_OutPadlock:
-			viewsetuprtn = InitOutPadlock;
+			viewsetuprtn =  MYPREFIX ViewPoint::InitOutPadlock;
 			break;
 		case VM_Inside:
-			viewsetuprtn = InitInside;
+			viewsetuprtn =  MYPREFIX ViewPoint::InitInside;
 			break;
 		case VM_InPadlock:
-			viewsetuprtn = InitInPadlock;
+			viewsetuprtn =  MYPREFIX ViewPoint::InitInPadlock;
 			break;
 	}
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		List6Toggle
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 27 Jun 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 #ifndef NDEBUG
@@ -7249,24 +7253,24 @@ void ViewPoint::List6Toggle()
 	if (viewnum.viewmode!=VM_OutRevPadlock)
 	{
 		viewnum.viewmode = VM_OutRevPadlock;
-		viewsetuprtn = InitOutRevPadlock;
+		viewsetuprtn =  MYPREFIX ViewPoint::InitOutRevPadlock;
 	}
 }
 #endif															//RDH 13Dec96
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetHPIntercept
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 27 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
-void ViewPoint::GetHPIntercept(itemptr ip1,itemptr ip,ANGLES& out_hdg, ANGLES& out_pitch,int& range)
+void ViewPoint::GetHPIntercept(itemptr ip1,itemptr ip,ANGLES &  out_hdg, ANGLES &  out_pitch,int &  range)
 {
 	SLong	deltax,deltay,deltaz;//,dummy;
 
@@ -7294,15 +7298,15 @@ void ViewPoint::GetHPIntercept(itemptr ip1,itemptr ip,ANGLES& out_hdg, ANGLES& o
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		AddCameraWobble
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 29 Feb 1996
 //
 //Description	Moves the cameraposition vertically and horizontally to
 //				add to the views realism (probably!)
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::AddCameraWobble()
@@ -7325,9 +7329,9 @@ void ViewPoint::AddCameraWobble()
 
 	if(zdelta.anglevalue < ANGLES_0Deg)	NewCameraDelta(zdelta);	//RDH 24Jul96
 
-	this->World.X += GetCameraDisplacement(&xdelta,viewanglestep);
-	this->World.Y += GetCameraDisplacement(&ydelta,viewanglestep);
-	this->World.Z += GetCameraDisplacement(&zdelta,viewanglestep);
+	this->World.X += GetCameraDisplacement( &xdelta,viewanglestep);
+	this->World.Y += GetCameraDisplacement( &ydelta,viewanglestep);
+	this->World.Z += GetCameraDisplacement( &zdelta,viewanglestep);
 
 	//Don't let the camera go below 5m above ground level
 
@@ -7339,14 +7343,14 @@ void ViewPoint::AddCameraWobble()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetCameraDisplacement
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 29 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SLong ViewPoint::GetCameraDisplacement(Viewpoint_DeltaP vdp,ANGLES viewanglestep)
@@ -7379,17 +7383,17 @@ SLong ViewPoint::GetCameraDisplacement(Viewpoint_DeltaP vdp,ANGLES viewanglestep
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		NewCameraDelta
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 29 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
-void ViewPoint::NewCameraDelta(Viewpoint_Delta& viewdelta)
+void ViewPoint::NewCameraDelta(Viewpoint_Delta&  viewdelta)
 {
 	SLong	random1,random2,temp;
 
@@ -7422,14 +7426,14 @@ void ViewPoint::NewCameraDelta(Viewpoint_Delta& viewdelta)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetDeltaAxis
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 29 Feb 1996
 //
-//Description	
+//Description
 //
 //Maths:		For each of X,Y,Z we know:
 //				D = distance in CM between viewer and viewee (long)
-//				S = Start vel - viewers velocity in 0.1 cm/cs units 
+//				S = Start vel - viewers velocity in 0.1 cm/cs units
 //				E = End vel - viewees velocity in 0.1 cm/cs units
 //				R = Time to traverse whole distance in 100ths of sec
 //
@@ -7459,7 +7463,7 @@ void ViewPoint::NewCameraDelta(Viewpoint_Delta& viewdelta)
 //			max		300K	+96
 //					WB.B	00B.B
 //
-//			a	=	(E+S)/10RR - 2D/RRR	
+//			a	=	(E+S)/10RR - 2D/RRR
 //		range:	min		-32		0
 //			max		+32	2*2^28/2^18=4K
 //					00B.B		0BB.B
@@ -7489,8 +7493,8 @@ void ViewPoint::NewCameraDelta(Viewpoint_Delta& viewdelta)
 //Inputs		end_vel      = E
 //				start_vel    = S
 //				dist         = D	Distance at time R
-//				time_to_dist = R	time to Distance 
-//				
+//				time_to_dist = R	time to Distance
+//
 //				viewcodeframetime	time for specific answer return
 //
 //Returns	req_dist=D		Distance at time [frametime]
@@ -7536,7 +7540,7 @@ void ViewPoint::GetDeltaAxis(SWord end_vel,SWord start_vel,SLong dist,SLong time
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetFirstItem
 //LastModified:	PD 27Jun96
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 27 Jun 1996
 //
 //Description	Gets the item in a list nearest the viewer
@@ -7609,19 +7613,19 @@ itemptr ViewPoint::GetFirstItem(	MobileItemPtr 	entry,MobileItemPtr	SAGlist,
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetLastItem
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 8 Oct 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 inline Float	ViewPoint::RangeCheck(ItemPtr entry,Float minval,Float maxval)
 {
-	Float rv=trackeditem->Distance3DSquared(&entry->World);
+	Float rv=trackeditem->Distance3DSquared( & entry->World);
 	if (rv<=minval || rv>=maxval)
 		return	0;
 	else
@@ -7697,7 +7701,7 @@ itemptr ViewPoint::GetLastItem(	MobileItemPtr 	entry,MobileItemPtr	SAGlist,
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetNextItem
 //LastModified:	PD 27Jun96
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 27 Jun 1996
 //
 //Description	Gets the item in a list nearest the viewer further
@@ -7705,7 +7709,7 @@ itemptr ViewPoint::GetLastItem(	MobileItemPtr 	entry,MobileItemPtr	SAGlist,
 //
 //Inputs		ptr to list of items,
 //				ptr to currently selected item,
-//				nationality, 
+//				nationality,
 //				current selected item range
 //
 //Returns		ptr to selected item or NULL
@@ -7757,11 +7761,11 @@ itemptr ViewPoint::GetNextItem(	MobileItemPtr 	list,MobileItemPtr	SAGlist,
 //DEADCODE JIM 10/02/00 				deltax = trackeditem->World.X - list->World.X;
 //DEADCODE JIM 10/02/00 				deltay = trackeditem->World.Y - list->World.Y;
 //DEADCODE JIM 10/02/00 				deltaz = trackeditem->World.Z - list->World.Z;
-//DEADCODE JIM 10/02/00 
+//DEADCODE JIM 10/02/00
 //DEADCODE JIM 10/02/00 				Math_Lib.Intercept(	deltax,deltay,deltaz,
 //DEADCODE JIM 10/02/00 									range,
 //DEADCODE JIM 10/02/00 									dummy1,dummy2);				//PD 05Jul96
-//DEADCODE JIM 10/02/00 
+//DEADCODE JIM 10/02/00
 //DEADCODE JIM 10/02/00 				if (range<matchrange && range>crange)
 //DEADCODE JIM 10/02/00 				{
 //DEADCODE JIM 10/02/00 					matchrange = range;
@@ -7785,14 +7789,14 @@ itemptr ViewPoint::GetNextItem(	MobileItemPtr 	list,MobileItemPtr	SAGlist,
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetPrevItem
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 8 Oct 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 itemptr ViewPoint::GetPrevItem(	MobileItemPtr 	list, MobileItemPtr	SAGlist,
@@ -7834,23 +7838,23 @@ itemptr ViewPoint::GetPrevItem(	MobileItemPtr 	list, MobileItemPtr	SAGlist,
 								selected = (itemptr )entry;
 						}
 //DEADCODE JIM 10/02/00 	SLong	deltax,deltay,deltaz;
-//DEADCODE JIM 10/02/00 
+//DEADCODE JIM 10/02/00
 //DEADCODE JIM 10/02/00 	SLong	range;
-//DEADCODE JIM 10/02/00 
+//DEADCODE JIM 10/02/00
 //DEADCODE JIM 10/02/00 	ANGLES	dummy1,dummy2,matchhdg;
-//DEADCODE JIM 10/02/00 
+//DEADCODE JIM 10/02/00
 //DEADCODE JIM 10/02/00 	SLong	matchrange = 0;
-//DEADCODE JIM 10/02/00 
+//DEADCODE JIM 10/02/00
 //DEADCODE JIM 10/02/00 	deltax = trackeditem->World.X - entry->World.X;
 //DEADCODE JIM 10/02/00 	deltay = trackeditem->World.Y - entry->World.Y;
 //DEADCODE JIM 10/02/00 	deltaz = trackeditem->World.Z - entry->World.Z;
-//DEADCODE JIM 10/02/00 
+//DEADCODE JIM 10/02/00
 //DEADCODE JIM 10/02/00 	Math_Lib.Intercept(	deltax,deltay,deltaz,
 //DEADCODE JIM 10/02/00 						crange,
 //DEADCODE JIM 10/02/00 						dummy1,dummy2);
-//DEADCODE JIM 10/02/00 
+//DEADCODE JIM 10/02/00
 //DEADCODE JIM 10/02/00 	itemptr	selected = (itemptr )NULL;
-//DEADCODE JIM 10/02/00 
+//DEADCODE JIM 10/02/00
 //DEADCODE JIM 10/02/00 	while(list)
 //DEADCODE JIM 10/02/00 	{
 //DEADCODE JIM 10/02/00 		if(list!=(MobileItemPtr )trackeditem && list!=entry && !list->Status.deadtime)//PD 14Nov96
@@ -7861,11 +7865,11 @@ itemptr ViewPoint::GetPrevItem(	MobileItemPtr 	list, MobileItemPtr	SAGlist,
 //DEADCODE JIM 10/02/00 				deltax = trackeditem->World.X - list->World.X;
 //DEADCODE JIM 10/02/00 				deltay = trackeditem->World.Y - list->World.Y;
 //DEADCODE JIM 10/02/00 				deltaz = trackeditem->World.Z - list->World.Z;
-//DEADCODE JIM 10/02/00 
+//DEADCODE JIM 10/02/00
 //DEADCODE JIM 10/02/00 				Math_Lib.Intercept(	deltax,deltay,deltaz,
 //DEADCODE JIM 10/02/00 									range,
 //DEADCODE JIM 10/02/00 									dummy1,dummy2);
-//DEADCODE JIM 10/02/00 
+//DEADCODE JIM 10/02/00
 //DEADCODE JIM 10/02/00 				if (range>matchrange && range<crange)
 //DEADCODE JIM 10/02/00 				{
 //DEADCODE JIM 10/02/00 					matchrange = range;
@@ -7889,14 +7893,14 @@ itemptr ViewPoint::GetPrevItem(	MobileItemPtr 	list, MobileItemPtr	SAGlist,
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetFirstMessage
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 2 Sep 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 itemptr	ViewPoint::GetFirstMessage()
@@ -7917,14 +7921,14 @@ itemptr	ViewPoint::GetFirstMessage()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		UISetViewItemShape
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 28 Mar 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::UISetViewItemShape(ShapeNum shpno)
@@ -7936,14 +7940,14 @@ void ViewPoint::UISetViewItemShape(ShapeNum shpno)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetViewedItem
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 28 Mar 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 itemptr ViewPoint::UIGetViewedItem()
@@ -7953,14 +7957,14 @@ itemptr ViewPoint::UIGetViewedItem()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		UpdateGlobalViewRec
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 4 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::UpdateGlobalViewRec()
@@ -7983,14 +7987,14 @@ void ViewPoint::UpdateGlobalViewRec()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		UpdateGlobalHPR
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 5 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::UpdateGlobalHPR()
@@ -8012,9 +8016,9 @@ void ViewPoint::UpdateGlobalHPR()
 		case VSlow:
 		{
 			//Smooth PITCH
-		
+
 			CalcSmoothAngle(this->actpitch - this->reqpitch,actpitch);
-		
+
 			//Smooth HEADING
 
 			CalcSmoothAngle(this->acthdg - this->reqhdg,acthdg);
@@ -8068,14 +8072,14 @@ void ViewPoint::UpdateGlobalHPR()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ModifyView
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 26 Jun 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool ViewPoint::ModifyView()
@@ -8121,14 +8125,14 @@ Bool ViewPoint::ModifyView()
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		VisibleTest
 //LastModified:	PD 05Jul96
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 27 Jun 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool ViewPoint::VisibleTest(itemptr itmp,VisFlags vf)
@@ -8168,14 +8172,14 @@ Bool ViewPoint::VisibleTest(itemptr itmp,VisFlags vf)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ItemInDeadZone
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 27 Jun 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool ViewPoint::ItemInDeadZone(itemptr itmp)
@@ -8188,7 +8192,7 @@ Bool ViewPoint::ItemInDeadZone(itemptr itmp)
 
 	MATRIX	tmat;												//PD 25Jul96
 
-	MATRIX_PTR	tmatrix = &tmat;								//PD 25Jul96
+	MATRIX_PTR	tmatrix =  &tmat;								//PD 25Jul96
 
 	tihdg = ((MobileItemPtr )itmp)->hdg;
 	tipitch = ((MobileItemPtr )itmp)->pitch;
@@ -8204,7 +8208,7 @@ Bool ViewPoint::ItemInDeadZone(itemptr itmp)
 						tipitch,tiroll,
 						tmatrix
 					);
-			
+
 	_matrix.rotate(	tmatrix,
 					deltax,deltay,deltaz
 					);
@@ -8236,14 +8240,14 @@ Bool ViewPoint::ItemInDeadZone(itemptr itmp)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetViewedAc
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 19 Aug 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 AirStrucPtr	ViewPoint::GetViewedAc()
@@ -8266,14 +8270,14 @@ AirStrucPtr	ViewPoint::GetViewedAc()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		PossDirectAction
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 10 Sep 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::PossDirectorAction(Coords3D&	dirworld)		//RJS 24May99
@@ -8281,7 +8285,7 @@ void ViewPoint::PossDirectorAction(Coords3D&	dirworld)		//RJS 24May99
 	if (directorcount==0)
 	{
 		DirectorItem.World=dirworld;	//diritem->World;
-		currentdirectoritem = &DirectorItem;
+		currentdirectoritem =  &DirectorItem;
 		DirectorItem.shape=EMPTY;
 		directorcount = DIRECTOR_VIEW_DELAY;
 
@@ -8296,14 +8300,14 @@ void ViewPoint::PossDirectorAction(Coords3D&	dirworld)		//RJS 24May99
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ControlDirectorView
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 10 Sep 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::ControlDirectorView()
@@ -8320,7 +8324,7 @@ void ViewPoint::ControlDirectorView()
 		viewnum.viewspec |= VS_Impact;
 	}
 
-	if (viewnum.viewspec & VS_Impact)
+	if (viewnum.viewspec &VS_Impact)
 	{
 		switch (directorcount)
 		{
@@ -8334,7 +8338,7 @@ void ViewPoint::ControlDirectorView()
 				trackeditem = currentdirectoritem;
 				currentviewrec = paintshopviewrec;
 				bupviewdrawrtn = NULL;							//PD 28Jan97
-				viewdrawrtn = DrawTrack;
+				viewdrawrtn =  MYPREFIX ViewPoint::DrawTrack;
 				drawpolypit = FALSE;
 				viewnum.viewcuttype=Instant;
 				DrawTrack();
@@ -8363,17 +8367,17 @@ void ViewPoint::ControlDirectorView()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetRoll4HdgAndPitch
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 26 Nov 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
-void ViewPoint::GetRoll4HdgAndPitch(ANGLES& rhdg,ANGLES& rpitch,ANGLES& rroll)
+void ViewPoint::GetRoll4HdgAndPitch(ANGLES &  rhdg,ANGLES &  rpitch,ANGLES &  rroll)
 {
 	ANGLES		hdgint,
 				pitchint,
@@ -8403,88 +8407,88 @@ void ViewPoint::GetRoll4HdgAndPitch(ANGLES& rhdg,ANGLES& rpitch,ANGLES& rroll)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CockpitOrientation
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 3 Sep 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SLong ViewPoint::CockpitOrientation(Window* win,PVList* pvlp,SLong)
 {
 //TempCode PD 18Nov97 	MobileItemPtr	mip;
-//TempCode PD 18Nov97 
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 	MATRIX	fakeViewerMatrix;
-//TempCode PD 18Nov97 
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 	SLong	dx,dy,dz;
-//TempCode PD 18Nov97 
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 	SLong	wvMinX,wvMaxX,wvMinY,wvMaxY;
-//TempCode PD 18Nov97 
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 	SLong	sX,sY;
 
 	SLong	howMany = 0;
 
 //TempCode PD 18Nov97 	SWord	sgnBz;
-//TempCode PD 18Nov97 
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 	if (!Save_Data.gamedifficulty[GD_PERIPHERALVISION] ||
 //TempCode PD 18Nov97 		viewnum.viewmode!=VM_InPadlock)
 //TempCode PD 18Nov97 		return (howMany);
-//TempCode PD 18Nov97 
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 	mip = (MobileItemPtr)currentvehicle;
-//TempCode PD 18Nov97 
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 	_matrix.generate(-mip->hdg,-mip->pitch,-mip->roll,&fakeViewerMatrix);
-//TempCode PD 18Nov97 
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 	dx = trackeditem2->World.X - mip->World.X;
 //TempCode PD 18Nov97 	dy = trackeditem2->World.Y - mip->World.Y;
 //TempCode PD 18Nov97 	dz = trackeditem2->World.Z - mip->World.Z;
-//TempCode PD 18Nov97 
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 	SWord scaleFactor = _matrix.transform(&fakeViewerMatrix,dx,dy,dz);
-//TempCode PD 18Nov97 
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 	sgnBz = dz<0?-1:1;
-//TempCode PD 18Nov97 
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 	dz = dz<0?-dz:dz;
-//TempCode PD 18Nov97 
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 	VERTEX	v;
 //TempCode PD 18Nov97 	v.scalefactor=scaleFactor;
 //TempCode PD 18Nov97 	v.bx = dx;
 //TempCode PD 18Nov97 	v.by = dy;
 //TempCode PD 18Nov97 	v.bz = dz;
-//TempCode PD 18Nov97 
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 	if (Save_Data.colourdepth!=8)
 //TempCode PD 18Nov97 	{
 //TempCode PD 18Nov97 		currwin->Body2Screen(FULLW_2,FULLW_2,v);
-//TempCode PD 18Nov97 
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 		sX = v.sx; sY = v.sy;
 //TempCode PD 18Nov97 	}
 //TempCode PD 18Nov97 	else
 //TempCode PD 18Nov97 	{
 //TempCode PD 18Nov97 		_matrix.body2screen(v);
-//TempCode PD 18Nov97 
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 		sX = v.sx * win->virtualXscale;
 //TempCode PD 18Nov97 		sY = v.sy * win->virtualYscale;
 //TempCode PD 18Nov97 	}
-//TempCode PD 18Nov97 
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 	wvMinX = win->VirtualMinX;
 //TempCode PD 18Nov97 	wvMinY = win->VirtualMinY;
-//TempCode PD 18Nov97 
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 	wvMaxX = wvMinX+win->VirtualWidth-PIXEL640;
 //TempCode PD 18Nov97 	wvMaxY = wvMinY+win->VirtualHeight-PIXEL640;
-//TempCode PD 18Nov97 
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 	if (sgnBz==1 &&
 //TempCode PD 18Nov97 		sX>=wvMinX && sX<=wvMaxX &&
 //TempCode PD 18Nov97 		sY>=wvMinY && sY<=wvMaxY)	return (howMany);
-//TempCode PD 18Nov97 
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 	UByte	flag = 0;
-//TempCode PD 18Nov97 	
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 	if (sX<wvMinX)			{sX = wvMinX;flag|=0x02;}
 //TempCode PD 18Nov97 	else if (sX>wvMaxX)		{sX = wvMaxX;flag|=0x01;}
-//TempCode PD 18Nov97 
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 	if (sY<wvMinY)			{sY = wvMinY;flag|=0x08;}
 //TempCode PD 18Nov97 	else if (sY>wvMaxY)		{sY = wvMaxY;flag|=0x04;}
-//TempCode PD 18Nov97 			
+//TempCode PD 18Nov97
 //TempCode PD 18Nov97 	pvlp->sx = sX;
 //TempCode PD 18Nov97 	pvlp->sy = sY;
 //TempCode PD 18Nov97 	pvlp->edgeflag = flag;
@@ -8521,53 +8525,53 @@ SLong ViewPoint::CockpitOrientation(Window* win,PVList* pvlp,SLong)
 
 //DeadCode JON 23Oct00 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //DeadCode JON 23Oct00 //Procedure		BuildPeripheralVisionList
-//DeadCode JON 23Oct00 //Author		Paul.   
+//DeadCode JON 23Oct00 //Author		Paul.
 //DeadCode JON 23Oct00 //Date			Tue 22 Jul 1997
 //DeadCode JON 23Oct00 //
-//DeadCode JON 23Oct00 //Description	
+//DeadCode JON 23Oct00 //Description
 //DeadCode JON 23Oct00 //
-//DeadCode JON 23Oct00 //Inputs		
+//DeadCode JON 23Oct00 //Inputs
 //DeadCode JON 23Oct00 //
-//DeadCode JON 23Oct00 //Returns	
+//DeadCode JON 23Oct00 //Returns
 //DeadCode JON 23Oct00 //
 //DeadCode JON 23Oct00 //------------------------------------------------------------------------------
 //DeadCode JON 23Oct00 SLong ViewPoint::BuildPeripheralVisionList(PVList* pvlp,SLong maxEntries)
 //DeadCode JON 23Oct00 {
 //DeadCode JON 23Oct00 	SLong		howMany = 0;
-//DeadCode JON 23Oct00 
-//DeadCode JON 23Oct00  	if (!Manual_Pilot.ControlledAC2 || !Save_Data.gamedifficulty[GD_PERIPHERALVISION])	
+//DeadCode JON 23Oct00
+//DeadCode JON 23Oct00  	if (!Manual_Pilot.ControlledAC2 || !Save_Data.gamedifficulty[GD_PERIPHERALVISION])
 //DeadCode JON 23Oct00 		return (howMany);//PD 21Aug97
 //DeadCode JON 23Oct00 	FPMATRIX tmat,*tmatp=&tmat;
 //DeadCode JON 23Oct00 	FormationItemPtr us=(FormationItemPtr)trackeditem;
 //DeadCode JON 23Oct00 	Nationality their_side=(Manual_Pilot.ControlledAC2->nationality==NAT_BLUE)?NAT_RED:NAT_BLUE;
 //DeadCode JON 23Oct00 	MobileItemPtr listp=ACList;
-//DeadCode JON 23Oct00 
+//DeadCode JON 23Oct00
 //DeadCode JON 23Oct00 	_matrix.Generate(this->hdg,this->pitch,this->roll,tmatp);
-//DeadCode JON 23Oct00 
+//DeadCode JON 23Oct00
 //DeadCode JON 23Oct00 	while (listp!=NULL && howMany<maxEntries)
 //DeadCode JON 23Oct00 	{
 //DeadCode JON 23Oct00 		if (listp!=(MobileItemPtr)trackeditem &&
 //DeadCode JON 23Oct00 			!listp->Status.deadtime)
 //DeadCode JON 23Oct00 		{
 //DeadCode JON 23Oct00 			//Check position for this item
-//DeadCode JON 23Oct00 
+//DeadCode JON 23Oct00
 //DeadCode JON 23Oct00 			IFShare dx,dy,dz;
-//DeadCode JON 23Oct00 
+//DeadCode JON 23Oct00
 //DeadCode JON 23Oct00 			dx.i=listp->World.X-this->World.X;
 //DeadCode JON 23Oct00 			dy.i=listp->World.Y-this->World.Y;
 //DeadCode JON 23Oct00 			dz.i=listp->World.Z-this->World.Z;
-//DeadCode JON 23Oct00 
+//DeadCode JON 23Oct00
 //DeadCode JON 23Oct00 			_matrix.transform(tmatp,dx,dy,dz);
-//DeadCode JON 23Oct00 
+//DeadCode JON 23Oct00
 //DeadCode JON 23Oct00 			if (dz.f>=Float(1))	// don't display a/c behind the viewer
 //DeadCode JON 23Oct00 			{
 //DeadCode JON 23Oct00 				SLong	irange;
 //DeadCode JON 23Oct00 				SWord	ihdg,ipitch;
-//DeadCode JON 23Oct00 
+//DeadCode JON 23Oct00
 //DeadCode JON 23Oct00 				SLong	hi,pi;
-//DeadCode JON 23Oct00 
+//DeadCode JON 23Oct00
 //DeadCode JON 23Oct00 				Math_Lib.Intercept(SLong(dx.f),SLong(dy.f),SLong(dz.f),irange,ihdg,ipitch);
-//DeadCode JON 23Oct00 
+//DeadCode JON 23Oct00
 //DeadCode JON 23Oct00 				UByte col=((FormationItemPtr)listp)->nationality==their_side?UByte(RED):UByte(197);
 //DeadCode JON 23Oct00 #pragma warnmsg("BuildPeripheralVisionList. This routine needs to scan SAGList as well.")
 //DeadCode JON 23Oct00 //TempCode PD 02Dec99 				if (irange<viewrangemax)
@@ -8588,7 +8592,7 @@ void ViewPoint::GetThreatData(SWord& count,COORDS3D* pCoords,UByte* pColour,cons
 		count=-1;
 		return;
 	}
-	FPMATRIX tmat,*tmatp=&tmat;
+	FPMATRIX tmat,*tmatp= &tmat;
 
 //DeadCode RJS 20Oct00 	FormationItemPtr us=(FormationItemPtr)trackeditem;
 
@@ -8651,21 +8655,21 @@ void ViewPoint::GetThreatData(SWord& count,COORDS3D* pCoords,UByte* pColour,cons
 					}
 				}
 			}
-			
+
 		}
 
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ReadJoystick
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 16 Sep 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::ReadJoystick(	SWord& swHdg,
@@ -8675,7 +8679,7 @@ void ViewPoint::ReadJoystick(	SWord& swHdg,
 {
 	if (	!flybytimeleft												//RJS 9Oct00
 		&&	Manual_Pilot.ControlledAC2									//RJS 9Oct00
-		&& ((drawSpecialFlags&VIEW_SPECIAL_MAP)==0)						//RJS 25Oct00
+		&& ((drawSpecialFlags & VIEW_SPECIAL_MAP)==0)						//RJS 25Oct00
 		&&	!Land_Scape.gunnerDead	)									//RJS 25Oct00
 	{
 		if (draw_frametime || !SHAPE.UsingRearGunner())		//RJS 18Oct00
@@ -8700,12 +8704,12 @@ void ViewPoint::ReadJoystick(	SWord& swHdg,
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		UseIdentityMatrix
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 9 Oct 1998
 //------------------------------------------------------------------------------
 Bool ViewPoint::UseIdentityMatrix()
 {
-	if (viewdrawrtn==DrawInside &&
+	if (viewdrawrtn== MYPREFIX ViewPoint::DrawInside &&
 		currentviewrec==insideviewrec &&
 		currentviewrec->hdg==ANGLES_0Deg &&
 		currentviewrec->pitch==ANGLES_0Deg &&
@@ -8721,40 +8725,40 @@ Bool ViewPoint::UseIdentityMatrix()
 //Author		Robert Slater
 //Date			Tue 8 Sep 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::InitMap()
 {
 	trackeditem = currentvehicle;
 	currentviewrec = maprec;
-	bupviewdrawrtn = NULL;				
-	viewdrawrtn = DrawMap;										
+	bupviewdrawrtn = NULL;
+	viewdrawrtn =  MYPREFIX ViewPoint::DrawMap;
 	drawpolypit = FALSE;
 	drawmap = TRUE;
 
 	drawSpecialFlags |= VIEW_SPECIAL_MAP;
 
 	ReadJoystick(jhead,jpitch,jroll,jzoom);								//RJS 9Oct00
-	
+
 	OverLay.SetToMapScreen();
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitMapAccel
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 3 Mar 1999
 //------------------------------------------------------------------------------
 void ViewPoint::InitMapAccel()
 {
 	trackeditem = currentvehicle;
 	currentviewrec = maprec;
-	bupviewdrawrtn = NULL;				
-	viewdrawrtn = DrawMap;										
+	bupviewdrawrtn = NULL;
+	viewdrawrtn =  MYPREFIX ViewPoint::DrawMap;
 	drawpolypit = FALSE;
 	drawmap = TRUE;
 
@@ -8770,11 +8774,11 @@ void ViewPoint::InitMapAccel()
 //Author		Robert Slater
 //Date			Tue 8 Sep 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::DrawMap()
@@ -8786,16 +8790,16 @@ void ViewPoint::DrawMap()
 
 	World.Y = FT_20000;
 
-	UpdateGlobalViewRec();										
+	UpdateGlobalViewRec();
 	AddViewRec();
-	UpdateGlobalHPR();											
+	UpdateGlobalHPR();
 
 	viewnum.viewcuttype = temp;
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitPrefs
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 19 Nov 1998
 //------------------------------------------------------------------------------
 void ViewPoint::InitPrefs()
@@ -8803,7 +8807,7 @@ void ViewPoint::InitPrefs()
 //DeadCode PD 20Nov98 	assert(false&&"Write me!");
 //DeadCode PD 16Feb99 	ViewCutType	temp=viewnum.viewcuttype;
 //DeadCode PD 16Feb99 	viewnum.viewcuttype=Instant;
-//DeadCode PD 16Feb99 
+//DeadCode PD 16Feb99
 //DeadCode PD 16Feb99 	trackeditem = currentvehicle;
 //DeadCode PD 16Feb99 	currentviewrec = prefsrec;
 //DeadCode PD 16Feb99 	ResetZoomRotate((ZmRtFlags )NULL);
@@ -8815,20 +8819,20 @@ void ViewPoint::InitPrefs()
 //DeadCode PD 16Feb99 	drawmap = FALSE;
 //DeadCode PD 16Feb99 	OverLay.fPausedForPrefs=true;
 //DeadCode PD 16Feb99 	OverLay.InitPrefs3D();
-//DeadCode PD 16Feb99 
+//DeadCode PD 16Feb99
 //DeadCode PD 16Feb99 	viewnum.viewcuttype=temp;
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawPrefs
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 19 Nov 1998
 //------------------------------------------------------------------------------
 void ViewPoint::DrawPrefs()
 {
 //DeadCode PD 16Feb99 	ViewCutType	temp=viewnum.viewcuttype;
 //DeadCode PD 16Feb99 	viewnum.viewcuttype=Instant;
-//DeadCode PD 16Feb99 
+//DeadCode PD 16Feb99
 //DeadCode PD 16Feb99  	CopyPositionHP(trackeditem,this);
 //DeadCode PD 16Feb99 	this->reqhdg = -this->reqhdg;
 //DeadCode PD 16Feb99 	this->reqpitch = -this->reqpitch;
@@ -8840,7 +8844,7 @@ void ViewPoint::DrawPrefs()
 //DeadCode PD 16Feb99 	UpdateGlobalHPR();
 //DeadCode PD 16Feb99 	AddZoom();
 //DeadCode PD 16Feb99 //	viewnum.viewcuttype = temp;
-//DeadCode PD 16Feb99 
+//DeadCode PD 16Feb99
 //DeadCode PD 16Feb99 	viewnum.viewcuttype=temp;
 }
 
@@ -8849,11 +8853,11 @@ void ViewPoint::DrawPrefs()
 //Author		Robert Slater
 //Date			Tue 20 Oct 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::List8Toggle()
@@ -8869,14 +8873,14 @@ void ViewPoint::List8Toggle()
 			premapviewrec=currentviewrec;
 
 			viewnum.viewmode = VM_Map;
-			viewsetuprtn = InitMap;
+			viewsetuprtn =  MYPREFIX ViewPoint::InitMap;
 		}
 	}
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		List9Toggle
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 3 Mar 1999
 //------------------------------------------------------------------------------
 void ViewPoint::List9Toggle()
@@ -8899,7 +8903,7 @@ void ViewPoint::List9Toggle()
 			premapviewrec=currentviewrec;
 
 			viewnum.viewmode = VM_Map;
-			viewsetuprtn = InitMapAccel;
+			viewsetuprtn =  MYPREFIX ViewPoint::InitMapAccel;
 		}
 	}
 }
@@ -8909,11 +8913,11 @@ void ViewPoint::List9Toggle()
 //Author		Robert Slater
 //Date			Tue 20 Oct 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ViewPoint::SetReplayView(Bool	active)
@@ -8934,11 +8938,11 @@ void	ViewPoint::SetReplayView(Bool	active)
 //Author		Robert Slater
 //Date			Mon 9 Nov 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ViewPoint::SetCheatItem(ItemPtr	itm)
@@ -8947,8 +8951,8 @@ void	ViewPoint::SetCheatItem(ItemPtr	itm)
 
 	trackeditem = itm;
 	currentviewrec = outpadlockviewrec;
-	bupviewdrawrtn = NULL;						
-	viewdrawrtn = DrawOutPadlock;
+	bupviewdrawrtn = NULL;
+	viewdrawrtn =  MYPREFIX ViewPoint::DrawOutPadlock;
 	drawpolypit = FALSE;
 	drawSpecialFlags -= (drawSpecialFlags & VIEW_SPECIAL_MAP);
 	drawmap = FALSE;
@@ -8956,7 +8960,7 @@ void	ViewPoint::SetCheatItem(ItemPtr	itm)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ReturnFromMap
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 16 Feb 1999
 //------------------------------------------------------------------------------
 void ViewPoint::ReturnFromMap()
@@ -8969,12 +8973,12 @@ void ViewPoint::ReturnFromMap()
 	currentviewrec=premapviewrec;
 	straightback=TRUE;
 	drawmap=FALSE;
-	drawSpecialFlags-=(drawSpecialFlags&VIEW_SPECIAL_MAP);
+	drawSpecialFlags-=(drawSpecialFlags & VIEW_SPECIAL_MAP);
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ExecuteMapViewCommand
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 12 Mar 1999
 //------------------------------------------------------------------------------
 void ViewPoint::ExecuteMapViewCommand(UByte k)
@@ -9061,10 +9065,10 @@ void ViewPoint::AnalogRead()
 //DeadCode AMM 4Aug00 	else
 
 	_Analogue.usingMouseToPan=false;
-	
+
 	//if not dead or on map??? //THERE IS AN ELSE PART AT THE BOTTOM...										//JIM 9Oct00
 	{
-		if (!SHAPE.UsingRearGunner() || !InCockpit()) 
+		if (!SHAPE.UsingRearGunner() || !InCockpit())
 		{
 	#ifdef NDEBUG
 	//DeadCode RDH 18Sep00 		{
@@ -9116,10 +9120,10 @@ void ViewPoint::AnalogRead()
 	//DeadCode  11Aug00 		||	(_Analogue.GunnerOnJoystick && !Key_Tests.jshift)
 	//DeadCode  11Aug00 		||	(_Analogue.GunnerOnShiftedMouse && Key_Tests.mshift)
 	//DeadCode  11Aug00 		||	(_Analogue.GunnerOnMouse && !Key_Tests.mshift))
-	//DeadCode JIM 31Aug00 		if ((_Analogue.AxisDeviceFlags&Analogue::GUN_ON_SH_JOYSTICK && Key_Tests.jshift)
-	//DeadCode JIM 31Aug00 		||	(_Analogue.AxisDeviceFlags&Analogue::GUN_ON_JOYSTICK && !Key_Tests.jshift)
-	//DeadCode JIM 31Aug00 		||	(_Analogue.AxisDeviceFlags&Analogue::GUN_ON_SH_MOUSE && Key_Tests.mshift)
-	//DeadCode JIM 31Aug00 		||	(_Analogue.AxisDeviceFlags&Analogue::GUN_ON_MOUSE && !Key_Tests.mshift))
+	//DeadCode JIM 31Aug00 		if ((_Analogue.AxisDeviceFlags & Analogue::GUN_ON_SH_JOYSTICK && Key_Tests.jshift)
+	//DeadCode JIM 31Aug00 		||	(_Analogue.AxisDeviceFlags & Analogue::GUN_ON_JOYSTICK && !Key_Tests.jshift)
+	//DeadCode JIM 31Aug00 		||	(_Analogue.AxisDeviceFlags & Analogue::GUN_ON_SH_MOUSE && Key_Tests.mshift)
+	//DeadCode JIM 31Aug00 		||	(_Analogue.AxisDeviceFlags & Analogue::GUN_ON_MOUSE && !Key_Tests.mshift))
 			{
 				analview[JOY_PITCH]=_Analogue.ReadPosition(AU_GUNP);
 				if (!(analview[JOY_PITCH]==-0x8000))
@@ -9213,12 +9217,12 @@ void ViewPoint::HandleHead(ZmRtFlags flags)
 //
 //Description	Draw frame time is in ms... we want cs
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
-void	ViewPoint::SetDrawFrameTime(ULong&	dft)
+void	ViewPoint::SetDrawFrameTime(ULong& dft)
 {
 	frameTimeMSecs = dft;
 	draw_frametime = draw_frametimeMS = 0;
@@ -9250,11 +9254,11 @@ void	ViewPoint::SetDrawFrameTime(ULong&	dft)
 //Author		Robert Slater
 //Date			Tue 2 May 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::HandleGunner(ZmRtFlags flags)
@@ -9278,17 +9282,17 @@ void ViewPoint::HandleGunner(ZmRtFlags flags)
 //Author		Robert Slater
 //Date			Fri 28 Jul 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 bool	ViewPoint::DoWeAbortTrack()
 {
 	bool	abortTrack = false;
-	
+
 	if (trackeditem2)
 	{
 		if (	(trackeditem2 != Persons2::PlayerSeenAC)				//RJS 9Aug00
@@ -9385,11 +9389,11 @@ bool	ViewPoint::DoWeAbortTrack()
 //Author		Robert Slater
 //Date			Fri 1 Sep 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ViewPoint::HandleNull(ZmRtFlags flags)
@@ -9403,14 +9407,14 @@ void ViewPoint::HandleNull(ZmRtFlags flags)
 //
 //Description	Adjust the head to look at cockpit
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ViewPoint::FocusCockpit()
 {
-	if (	this 
+	if (	this
 		&&	drawpolypit
 		&&	Manual_Pilot.ControlledAC2
 		&&	(Manual_Pilot.ControlledAC2->classtype->aerobaticfactor != AEROBATIC_LOW)	)
@@ -9420,14 +9424,14 @@ void	ViewPoint::FocusCockpit()
 	}
 }
 
-inline	void	ViewPoint::CalcSmoothAngle(const ANGLES	tempangle,ANGLES& actualangle)
+inline	void	ViewPoint::CalcSmoothAngle(const ANGLES	tempangle,ANGLES &  actualangle)
 {
 	UWord	tempangle_pos;
 	SWord	tempangle_sign;
 
 
 	Math_Lib.Pos (SWord(tempangle),tempangle_pos,tempangle_sign);
-		
+
 //Modify step size based on the size of change required
 
 	ULong maxdelta;														//RJS 20Sep00
@@ -9464,11 +9468,11 @@ inline	void	ViewPoint::CalcSmoothAngle(const ANGLES	tempangle,ANGLES& actualangl
 //Author		Robert Slater
 //Date			Fri 29 Sep 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ViewPoint::InitPadlockedItem()
@@ -9495,9 +9499,9 @@ void	ViewPoint::AddHeadOffset(const SLong	dx, const SLong	dy)
 //
 //Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ViewPoint::ForceToOutside()										//RJS 24Oct00
@@ -9506,7 +9510,7 @@ void	ViewPoint::ForceToOutside()										//RJS 24Oct00
 	viewnum.viewcuttype=Instant;
 
 	if (viewnum.viewmode==VM_Inside)
-	{				
+	{
 		viewnum.viewmode=VM_Track;
 
 		InitTrack();

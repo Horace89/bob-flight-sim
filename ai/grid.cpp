@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -65,20 +65,20 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 // Stuff 4 holding grid info...
 // Jon
 #ifdef STAND_ALONE
-#undef new
+/*#undef new
 void* __cdecl operator new(unsigned int nSize,const char* FileName, int nLine)
 { return operator new (nSize);}
-void  __cdecl operator delete(void* v,char const *,int)	
+void  __cdecl operator delete(void* v,char const *,int)
 { operator delete(v);}
 #ifdef DEBUG_NEW
 #define new DEBUG_NEW
-#endif
+#endif*/
 #endif
 #include "dosdefs.h"
 #include "mathasm.h"
 #include "grid.h"
 
-#include <stdio.h>
+#include <cstdio>
 
 // simple conversions to remember
 // x>>6 == x/64, x&63 == x%64
@@ -88,12 +88,13 @@ void  __cdecl operator delete(void* v,char const *,int)
 //////////////////////////////////////////////////////////////////////////
 //	Grid_Base functions													//
 //////////////////////////////////////////////////////////////////////////
-#undef new
+//#undef new
 
 inline void* Grid_Base::operator new( size_t, void* inplaceaddress )
 {
 	return inplaceaddress;
 }
+
 
 void Grid_Base::makeGridAt( void* &dataarea, ULong& datasize ) // the second parameter is ignored...
 {
@@ -110,7 +111,7 @@ void Grid_Base::makeGridAt( void* dataarea )
 		break;
 	case TYPE_BYTE:
 		new (dataarea) Grid_Byte( 0 );
-		break; 
+		break;
 	case TYPE_WORD:
 		new (dataarea) Grid_Word( 0 );
 		break;
@@ -122,10 +123,10 @@ void Grid_Base::makeGridAt( void* dataarea )
 		break;
 	}
 }
-#ifdef	DEBUG_NEW
+/*#ifdef	DEBUG_NEW
 	#define	new DEBUG_NEW
 #endif
-
+*/
 //////////////////////////////////////////////////////////////////////////
 //	Grid_Bit functions													//
 //////////////////////////////////////////////////////////////////////////
@@ -135,7 +136,7 @@ Grid_Bit::Grid_Bit()
 	// basic constructor - set all values to 0 and all headers to run consecutivley up..
 	for ( int i = 0; i< 10*10; i++ )
 		*t++ = i;
-	for ( i = 0; i < (10*10*8/4); i++ ) // wipe 
+	for ( int i = 0; i < (10*10*8/4); i++ ) // wipe
 		*t++ = 0;
 }
 
@@ -157,17 +158,17 @@ void Grid_Bit::set( int x, int y, bool v )
 {
 	// dead simple method, compression done at save time
 	// get the byte that holds the bit value we are interested in...
-	char *row = &data[ header[x>>6][y>>6] ][x&63][0]; 
+	char *row = &data[ header[x>>6][y>>6] ][x&63][0];
 	if ( v )
 		BITSET( row, y&63 );
-	else 
+	else
 		BITRESET( row, y&63 );
 }
 
 long Grid_Bit::get( int x, int y )
 {
 	// get the byte that holds the bit value we are interested in...
-	char *row = &data[ header[x>>6][y>>6] ][x&63][0]; 
+	char *row = &data[ header[x>>6][y>>6] ][x&63][0];
 	return (long)BITTEST( row, y&63 );
 }
 
@@ -180,7 +181,7 @@ bool Grid_Bit::save( char *filename )
 	// write the type
 	long type = TYPE_BIT;
 	fwrite( &type, 4, 1, fp );
-	
+
 	// first build a temporary header...
 	long temp[10*10];
 	long *hdSt = &header[0][0];
@@ -194,19 +195,19 @@ bool Grid_Bit::save( char *filename )
 
 	long newHd[10*10];
 	int nextFree = 0;
-	for ( i = 0; i<10*10; i++ )
+	for ( int i = 0; i<10*10; i++ )
 		if ( temp[i] < hdSt[i] )
 		{
 			newHd[i] = newHd[ temp[i] ]; // the blocks are the same
 		} else {
-			newHd[i] = nextFree++;			
+			newHd[i] = nextFree++;
 		}
 
 	// now write out the header.
 	fwrite( newHd, 4, 10*10, fp );
 
 	// now 4 the data.
-	for ( i = 0; i<10*10; i++ )
+	for ( int i = 0; i<10*10; i++ )
 		if ( temp[i] >= hdSt[i] )
 			fwrite( data[ hdSt[i] ], 1, 64*8, fp );			// write out this block (first time seen)
 
@@ -225,7 +226,7 @@ Grid_Byte::Grid_Byte()
 	// basic constructor - set all values to 0 and all headers to run consecutivley up..
 	for ( int i = 0; i< 80*80; i++ )
 		*t++ = i;
-	for ( i = 0; i < (80*80*8*8/4); i++ )
+	for ( int i = 0; i < (80*80*8*8/4); i++ )
 		*t++ = 0;
 }
 
@@ -291,7 +292,7 @@ bool Grid_Byte::load( char *filename )
 		copyBlock( temp[i], i );
 	}
 
-    // fclose(fp);
+    fclose(fp);
 	return true;
 }
 
@@ -304,7 +305,7 @@ bool Grid_Byte::save( char *filename )
 	// write the type
 	long type = TYPE_BYTE;
 	fwrite( &type, 4, 1, fp );
-	
+
 	// first build a temporary header...
 	long temp[80*80];
 	long *hdSt = &header[0][0];
@@ -318,19 +319,19 @@ bool Grid_Byte::save( char *filename )
 
 	long newHd[80*80];
 	int nextFree = 0;
-	for ( i = 0; i<80*80; i++ )
+	for ( int i = 0; i<80*80; i++ )
 		if ( temp[i] < hdSt[i] )
 		{
 			newHd[i] = newHd[ temp[i] ]; // the blocks are the same
 		} else {
-			newHd[i] = nextFree++;			
+			newHd[i] = nextFree++;
 		}
 
 	// now write out the header.
 	fwrite( newHd, 4, 80*80, fp );
 
 	// now 4 the data.
-	for ( i = 0; i<80*80; i++ )
+	for ( int i = 0; i<80*80; i++ )
 		if ( temp[i] >= hdSt[i] )
 			fwrite( data[ hdSt[i] ], 1, 8*8, fp );			// write out this block (first time seen)
 
@@ -349,7 +350,7 @@ Grid_Word::Grid_Word()
 	// basic constructor - set all values to 0 and all headers to run consecutivley up..
 	for ( int i = 0; i< 80*80; i++ )
 		*t++ = i;
-	for ( i = 0; i < (80*80*8*8/2); i++ )
+	for ( int i = 0; i < (80*80*8*8/2); i++ )
 		*t++ = 0;
 }
 
@@ -385,7 +386,7 @@ bool Grid_Word::save( char *filename )
 	// write the type
 	long type = TYPE_WORD;
 	fwrite( &type, 4, 1, fp );
-	
+
 	// first build a temporary header...
 	long temp[80*80];
 	long *hdSt = &header[0][0];
@@ -399,19 +400,19 @@ bool Grid_Word::save( char *filename )
 
 	long newHd[80*80];
 	int nextFree = 0;
-	for ( i = 0; i<80*80; i++ )
+	for ( int i = 0; i<80*80; i++ )
 		if ( temp[i] < hdSt[i] )
 		{
 			newHd[i] = newHd[ temp[i] ]; // the blocks are the same
 		} else {
-			newHd[i] = nextFree++;			
+			newHd[i] = nextFree++;
 		}
 
 	// now write out the header.
 	fwrite( newHd, 4, 80*80, fp );
 
 	// now 4 the data.
-	for ( i = 0; i<80*80; i++ )
+	for ( int i = 0; i<80*80; i++ )
 		if ( temp[i] >= hdSt[i] )
 			fwrite( data[ hdSt[i] ], 2, 8*8, fp );			// write out this block (first time seen)
 
@@ -429,7 +430,7 @@ Grid_Long::Grid_Long()
 	// basic constructor - set all values to 0 and all headers to run consecutivley up..
 	for ( int i = 0; i< 80*80; i++ )
 		*t++ = i;
-	for ( i = 0; i < (80*80*8*8); i++ )
+	for ( int i = 0; i < (80*80*8*8); i++ )
 		*t++ = 0;
 }
 
@@ -485,7 +486,7 @@ bool Grid_Long::save( char *filename )
 	// write the type
 	long type = TYPE_LONG;
 	fwrite( &type, 4, 1, fp );
-	
+
 	// first build a temporary header...
 	long temp[80*80];
 	long *hdSt = &header[0][0];
@@ -499,19 +500,19 @@ bool Grid_Long::save( char *filename )
 
 	long newHd[80*80];
 	int nextFree = 0;
-	for ( i = 0; i<80*80; i++ )
+	for ( int i = 0; i<80*80; i++ )
 		if ( temp[i] < hdSt[i] )
 		{
 			newHd[i] = newHd[ temp[i] ]; // the blocks are the same
 		} else {
-			newHd[i] = nextFree++;			
+			newHd[i] = nextFree++;
 		}
 
 	// now write out the header.
 	fwrite( newHd, 4, 80*80, fp );
 
 	// now 4 the data.
-	for ( i = 0; i<80*80; i++ )
+	for ( int i = 0; i<80*80; i++ )
 		if ( temp[i] >= hdSt[i] )
 			fwrite( data[ hdSt[i] ], 4, 8*8, fp );			// write out this block (first time seen)
 
@@ -546,10 +547,12 @@ Grid_Base* loadGrid( char* filename )
 
 //stuff for within the game so that there is no conflicts on the grids...
 #ifdef	FILE_Included // only done if the files are included first - i.e inside bob
-#undef new
+//#undef new
 static Grid_Byte blankInst;
 Grid_Byte* Grid_Byte_File::blank = &blankInst;
-#define new DEBUG_NEW
+
+//#define new DEBUG_NEW
+
 //DeadCode JON 28Jul00 Grid_Byte_File* Grid_Base::gridfiles[GF_TABLESIZE]={ /*NULL*/};
 static Grid_Byte_File gridTable[Grid_Base::GF_TABLESIZE];
 Grid_Byte_File* Grid_Base::gridfiles = gridTable;
@@ -562,12 +565,12 @@ fileblock* Grid_Base::CloudGrids[3]={ NULL };
 // Date:		25/05/00
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	Grid_Base::OpenGridFiles()
 {
-	CloseGridFiles();	
+	CloseGridFiles();
 //DeadCode JON 28Jul00 	gridfiles[GF_RADAR]=new fileblock(FIL_RADARGRID, makeGridAt );
 //DeadCode JON 28Jul00 	gridfiles[GF_COLOUR]=new fileblock( FIL_4COLGRID, makeGridAt );
 //DeadCode JON 28Jul00 //DeadCode JON 28Jul00 	gridfiles[GF_LOWCLOUD]=new fileblock( FIL_CLOUDGRID_01, makeGridAt );
@@ -599,7 +602,7 @@ void	Grid_Base::SetCloudGrid( int layer, UByte cover )
 //DeadCode JON 28Jul00 	{
 //DeadCode JON 28Jul00 		delete gridfiles[GF_CLOUDLAYER0+layer];
 //DeadCode JON 28Jul00 		gridfiles[GF_CLOUDLAYER0+layer] = NULL;
-//DeadCode JON 28Jul00 	} 
+//DeadCode JON 28Jul00 	}
 //DeadCode JON 28Jul00 	if ( cover < 64 )
 //DeadCode JON 28Jul00 		gridfiles[GF_CLOUDLAYER0+layer]=new fileblock( (void*)new Grid_Byte() );// blank
 //DeadCode JON 28Jul00 	else if ( cover < 128 )
@@ -618,13 +621,13 @@ void	Grid_Base::SetCloudGrid( int layer, UByte cover )
 //DeadCode JON 6Sep00 		gridfiles[GF_CLOUDLAYER0+layer].SetFile( CloudGrids[2] ); // heavy
 	switch ( cover>>6 )
 	{
-	case 0: // cover < 64 
+	case 0: // cover < 64
 		gridfiles[GF_CLOUDLAYER0+layer].CloseFile();// blank
 		break;
-	case 1: // 64 <= cover < 128 
+	case 1: // 64 <= cover < 128
 		gridfiles[GF_CLOUDLAYER0+layer].SetFile( CloudGrids[0] ); // scattered
 		break;
-	case 2:	 // 128 <= cover < 192 
+	case 2:	 // 128 <= cover < 192
 		gridfiles[GF_CLOUDLAYER0+layer].SetFile( CloudGrids[1] ); // overcast
 		break;
 	case 3: // 192 <= cover
@@ -646,7 +649,7 @@ void	Grid_Base::SetCloudGrid( int layer, UByte cover )
 // Date:		25/05/00
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	Grid_Base::CloseGridFiles()
@@ -661,7 +664,7 @@ void	Grid_Base::CloseGridFiles()
 		gridfiles[GF_CLOUDLAYER0+i].CloseFile();
 	}
 
-	for (i=0;i<GF_TABLESIZE;i++)
+	for ( int i=0;i<GF_TABLESIZE;i++)
 	{
 		if ( gridfiles[i].getdata() != NULL )
 		{

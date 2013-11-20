@@ -1734,7 +1734,7 @@ void WriteTypeCurves (char* Type)
 			fwrite (Line, strlen(Line), 1, file);
 
 			sprintf (Line,
-				"\nCURVEPNT %s_%s [%ld] = {\n",
+				"\nCURVEPNT %s_%s [%ld%] = {\n",
 				pCurve->AircraftName,
 				pCurve->CurveName,
 				pCurve->cPoints);

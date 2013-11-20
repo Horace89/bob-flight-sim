@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -65,7 +65,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include	"dosdefs.h"
 #include	<stdio.h>
 #define	F_COMMON
-#define F_GRAFIX	
+#define F_GRAFIX
 #include "uniqueid.h"
 #include "ranges.h"
 #include	"files.g"
@@ -92,7 +92,7 @@ QuickDef	CSQuick1::quickdef;
 
 
 //
-//I have added the following system so that you can add title and description strings 
+//I have added the following system so that you can add title and description strings
 //without using the resources
 //
 //
@@ -113,8 +113,8 @@ char extrastrings[]=
 	ES(NULL)
 };
 #undef ES
-#define _XCHR(x)         #@x
-#define TOCHR(x)        _XCHR(x)
+//#define _XCHR(x)         #@x
+//#define TOCHR(x)        _XCHR(x)
 
 #define ES(name)	TOCHR(ES_##name)
 
@@ -128,31 +128,31 @@ QuickDef	CSQuick1::quickmissions[]=
 
 	{
 		IDS_MISTYPE_BASICTRAINING,IDS_L_QUICK_1,IDS_QUICK_1_DESC,
-		{	
+		{
 			{	{	{PT_SPIT_A,1,SKILL_VETERAN,0,IDS_UN_CAP,Q::QFD_BRIT_LONE} }	},
 			{	{	{PT_ME109,1,SKILL_VETERAN,0,IDS_UN_CAP,Q::QFD_GERM_LONE} }	}
 		},
 		BLUE,0,0,0,
 		FILDEMO(FIL_QUICKMISSION_00),FIL_QUICKMISSION_03,0,2,  //currmissnum, altmissnum, weather,time//RDH 27Mar00
 		{ IDS_GROUP11AF,IDS_SUPPLYPOINT},
-		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_DEBDEN,UID_AF_KENLEY},	
+		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_DEBDEN,UID_AF_KENLEY},
 			{UID_AF_Marck,UID_AF_Abbeville,UID_AF_Wissant,UID_AF_LeHarve}
 		},
 		UID_AF_TANGMERE
 	},
 
 //-----------------------------------------------------------------------------
-//BASIC TRAINING : landing 
+//BASIC TRAINING : landing
 	{
 		IDS_MISTYPE_BASICTRAINING,IDS_QUICK_2,IDS_QUICK_2_DESC,
-		{	
+		{
 			{	{	{PT_SPIT_A,1,SKILL_VETERAN,FT_2000,IDS_UN_CAP,Q::QFD_BRIT_LONE} }	},
 			{	{	{PT_ME109,1,SKILL_VETERAN,FT_2000,IDS_UN_CAP,Q::QFD_GERM_LONE} }	}
 		},
 		BLUE,0,0,0,
 		FILDEMO(FIL_QUICKMISSION_01),FIL_QUICKMISSION_04,0,2,  //currmissnum, altmissnum, weather,time//RDH 27Mar00
 		{ IDS_GROUP11AF,IDS_SUPPLYPOINT},
-		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_DEBDEN,UID_AF_KENLEY},	
+		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_DEBDEN,UID_AF_KENLEY},
 			{UID_AF_Marck,UID_AF_Abbeville,UID_AF_Wissant,UID_AF_LeHarve}
 		},
 		UID_AF_TANGMERE
@@ -161,14 +161,14 @@ QuickDef	CSQuick1::quickmissions[]=
 //BASIC TRAINING : circuits
 	{
 		IDS_MISTYPE_BASICTRAINING,IDS_QUICK_3,IDS_QUICK_3_DESC,
-		{	
+		{
 			{	{	{PT_SPIT_A,1,SKILL_VETERAN,FT_3000,IDS_UN_CAP,Q::QFD_BRIT_LONE} }	},
 			{	{	{PT_ME109,1,SKILL_VETERAN,FT_3000,IDS_UN_CAP,Q::QFD_GERM_LONE} }	}
 		},
 		BLUE,0,0,0,
 		FILDEMO(FIL_QUICKMISSION_02),FIL_QUICKMISSION_05,0,2,  //currmissnum, altmissnum, weather,time//RDH 27Mar00
 		{ IDS_GROUP11AF,IDS_SUPPLYPOINT},
-		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_DEBDEN,UID_AF_KENLEY},	
+		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_DEBDEN,UID_AF_KENLEY},
 			{UID_AF_Marck,UID_AF_Abbeville,UID_AF_Wissant,UID_AF_LeHarve},
 		},
 		UID_AF_TANGMERE
@@ -176,16 +176,16 @@ QuickDef	CSQuick1::quickmissions[]=
 
 //-----------------------------------------------------------------------------
 //BASIC TRAINING : squad takeoff
-	{	
+	{
 		IDS_MISTYPE_BASICTRAINING,IDS_QUICK_4,IDS_QUICK_4_DESC,
-		{	
+		{
 			{	{	{PT_SPIT_A,4,SKILL_VETERAN,0,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} }	},
 			{	{	{PT_ME109,3,SKILL_VETERAN,0,IDS_UN_CAP,Q::QFD_GERM_FIGHTER} }	}
 		},
 		BLUE,0,0,0,
 		FILDEMO(FIL_QUICKMISSION_06),FIL_QUICKMISSION_10,0,2,  //currmissnum, altmissnum, weather,time//RDH 27Mar00
 		{ IDS_GROUP11AF,IDS_SUPPLYPOINT},
-		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_DEBDEN,UID_AF_KENLEY},	
+		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_DEBDEN,UID_AF_KENLEY},
 			{UID_AF_Marck,UID_AF_Abbeville,UID_AF_Wissant,UID_AF_LeHarve},
 		},
 		UID_AF_TANGMERE
@@ -195,14 +195,14 @@ QuickDef	CSQuick1::quickmissions[]=
 //BASIC TRAINING :  Squadron landing
 	{
 		IDS_MISTYPE_BASICTRAINING,IDS_QUICK_5,IDS_QUICK_5_DESC,
-		{	
+		{
 			{	{	{PT_SPIT_A,4,SKILL_VETERAN,FT_3000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} }	},
 			{	{	{PT_ME109,3,SKILL_VETERAN,FT_3000,IDS_UN_CAP,Q::QFD_GERM_FIGHTER} }	}
 		},
 		BLUE,0,0,2,
 		FILDEMO(FIL_QUICKMISSION_07),FIL_QUICKMISSION_11,0,2,  //currmissnum, altmissnum, weather,time//RDH 27Mar00
 		{ IDS_GROUP11AF,IDS_SUPPLYPOINT},
-		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_DEBDEN,UID_AF_KENLEY},	
+		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_DEBDEN,UID_AF_KENLEY},
 			{UID_AF_Marck,UID_AF_Abbeville,UID_AF_Wissant,UID_AF_LeHarve},
 		},
 		UID_AF_TANGMERE
@@ -213,14 +213,14 @@ QuickDef	CSQuick1::quickmissions[]=
 //FAMILIARISATION : follow leader
 	{
 		IDS_MISTYPE_FAMILIARISATION,IDS_QUICK_8,IDS_QUICK_8_DESC,
-		{	
+		{
 			{	{	{PT_SPIT_A,1,SKILL_ACE,FT_14000,IDS_UN_CAP,Q::QFD_BRIT_LONE}		}	},
 			{	{	{PT_ME109,1,SKILL_ACE,FT_14000,IDS_UN_CAP,Q::QFD_GERM_LONE} }	}
 		},
 		BLUE,0,0,0,
 		FILDEMO(FIL_QUICKMISSION_14),FIL_QUICKMISSION_17,0,2,  //currmissnum, altmissnum, weather,time//RDH 27Mar00
 		{ IDS_GROUP11AF,IDS_SUPPLYPOINT},
-		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_DEBDEN,UID_AF_KENLEY},	
+		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_DEBDEN,UID_AF_KENLEY},
 			{UID_AF_Marck,UID_AF_Abbeville,UID_AF_Wissant,UID_AF_LeHarve},
 		},
 		UID_AF_TANGMERE
@@ -248,7 +248,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //FAMILIARISATION : Free Flight
 	{	//	S	W	G
 		IDS_MISTYPE_FAMILIARISATION,IDS_QUICK_10,IDS_QUICK_10_DESC,
-		{	
+		{
 			{	{	{PT_SPIT_A,1,SKILL_REGULAR,FT_1000,IDS_UN_CAP,Q::QFD_BRIT_LONE}	}},
 			{	{	{PT_ME109,1,SKILL_REGULAR,FT_1000,IDS_UN_CAP,Q::QFD_GERM_LONE} }	}
 		},
@@ -256,18 +256,18 @@ QuickDef	CSQuick1::quickmissions[]=
 		BLUE,0,0,0,
 		FILDEMO(FIL_QUICKMISSION_16),FIL_QUICKMISSION_19,0,2,  //currmissnum, altmissnum, weather,time//RDH 27Mar00
 //DeadCode MS 28Mar00 		{ IDS_AIRFIELD,IDS_SUPPLYPOINT,IDS_BRIDGE,IDS_CONVOYS},
-//DeadCode MS 28Mar00 //TempCode MS 24Mar00 		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_NORTHWEALD,UID_AF_KENLEY},	
+//DeadCode MS 28Mar00 //TempCode MS 24Mar00 		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_NORTHWEALD,UID_AF_KENLEY},
 //DeadCode MS 28Mar00 //TempCode MS 24Mar00 			{UID_AF_HORNCHURCH,UID_AF_DEBDEN,UID_AF_NORTHOLT,UID_AF_FILTON},
 //DeadCode MS 28Mar00 //TempCode MS 24Mar00 			{UID_AF_MIDDLEWALLOP,UID_AF_DUXFORD,UID_AF_COLTISHALL,UID_AF_HAWKINGE},
 //DeadCode MS 28Mar00 //TempCode MS 24Mar00 			{UID_AF_CROYDON,UID_HS_STPAULS,UID_HS_ROYALALBERT,UID_HS_HOUSESPARLIAMENT},
-//DeadCode MS 28Mar00 		{ 	{UID_AF_WESTHAMPNETT,UID_AF_FOWLMERE,UID_AF_WARMWELL,UID_AF_EXETER},	
+//DeadCode MS 28Mar00 		{ 	{UID_AF_WESTHAMPNETT,UID_AF_FOWLMERE,UID_AF_WARMWELL,UID_AF_EXETER},
 //DeadCode MS 28Mar00 			{UID_AF_PEMBREY,UID_AF_COLERNE,UID_AF_ROCHFORD,UID_AF_CROYDON},
 //DeadCode MS 28Mar00 			{UID_AF_STAPLEFORD,UID_AF_MARTLESHAM,UID_AF_HAWKINGE,UID_AF_MANSTON},
 //DeadCode MS 28Mar00 			{UID_AF_LYMPNE,UID_AF_WESTMALLING,UID_HS_ROYALALBERT,UID_HS_HOUSESPARLIAMENT},
 //DeadCode MS 28Mar00 		},
 //DeadCode MS 28Mar00 		UID_AF_TANGMERE
 		{ IDS_COASTAL,IDS_SOUTHLONDON,IDS_NORTHLONDON},
-		{ 	{UID_AF_TANGMERE,UID_AF_HAWKINGE,UID_AF_WARMWELL,UID_AF_MANSTON},	
+		{ 	{UID_AF_TANGMERE,UID_AF_HAWKINGE,UID_AF_WARMWELL,UID_AF_MANSTON},
 			{UID_AF_KENLEY,UID_AF_BIGGINHILL,UID_AF_GRAVESEND,UID_AF_CROYDON},
 			{UID_AF_HORNCHURCH,UID_AF_NORTHWEALD,UID_AF_DUXFORD,UID_AF_DEBDEN}
 		},
@@ -277,7 +277,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //THESE ARE THE TARGETS TO GO IN FINAL VERSION!!!!				//MS 28Mar00
 
 //TempCode MS 28Mar00 		{ IDS_COASTAL,IDS_SOUTHLONDON,IDS_NORTHLONDON},
-//TempCode MS 28Mar00 		{ 	{UID_AF_TANGMERE,UID_AF_HAWKINGE,UID_AF_WARMWELL,UID_AF_MANSTON},	
+//TempCode MS 28Mar00 		{ 	{UID_AF_TANGMERE,UID_AF_HAWKINGE,UID_AF_WARMWELL,UID_AF_MANSTON},
 //TempCode MS 28Mar00 			{UID_AF_KENLEY,UID_AF_BIGGINHILL,UID_AF_GRAVESEND,UID_AF_CROYDON},
 //TempCode MS 28Mar00 			{UID_AF_HORNCHURCH,UID_AF_NORTHWEALD,UID_AF_DUXFORD,UID_AF_DEBDEN}
 //TempCode MS 28Mar00 		},
@@ -288,14 +288,14 @@ QuickDef	CSQuick1::quickmissions[]=
 
 	{
 		IDS_MISTYPE_FAMILIARISATION,IDS_QUICK_6,IDS_QUICK_6_DESC,
-		{	
+		{
 			{	{	{PT_SPIT_A,1,SKILL_VETERAN,FT_2000,IDS_UN_CAP,Q::QFD_BRIT_LONE} }	},
 			{	{	{PT_ME109,1,SKILL_VETERAN,FT_2000,IDS_UN_CAP,Q::QFD_GERM_LONE} }	}
 		},
 		BLUE,0,0,0,
 		FILDEMO(FIL_QUICKMISSION_08),FIL_QUICKMISSION_12,0,2,  //currmissnum, altmissnum, weather,time//RDH 27Mar00
 		{ IDS_GROUP11AF,IDS_SUPPLYPOINT},
-		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_DEBDEN,UID_AF_KENLEY},	
+		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_DEBDEN,UID_AF_KENLEY},
 			{UID_AF_Marck,UID_AF_Abbeville,UID_AF_Wissant,UID_AF_LeHarve},
 		},
 		UID_AF_TANGMERE
@@ -305,14 +305,14 @@ QuickDef	CSQuick1::quickmissions[]=
 //FAMILIARISATION : land heavy damage
 	{
 		IDS_MISTYPE_FAMILIARISATION,IDS_QUICK_7,IDS_QUICK_7_DESC,
-		{	
+		{
 			{	{	{PT_SPIT_A,1,SKILL_VETERAN,FT_2000,IDS_UN_CAP,Q::QFD_BRIT_LONE} }	},
 			{	{	{PT_ME109,1,SKILL_VETERAN,FT_2000,IDS_UN_CAP,Q::QFD_GERM_LONE} }	}
 		},
 		BLUE,0,0,0 ,
 		FILDEMO(FIL_QUICKMISSION_09),FIL_QUICKMISSION_13,0,2,  //currmissnum, altmissnum, weather,time//RDH 27Mar00
 		{ IDS_GROUP11AF,IDS_SUPPLYPOINT},
-		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_DEBDEN,UID_AF_KENLEY},	
+		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_DEBDEN,UID_AF_KENLEY},
 			{UID_AF_Marck,UID_AF_Abbeville,UID_AF_Wissant,UID_AF_LeHarve},
 		},
 		UID_AF_TANGMERE
@@ -322,7 +322,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //COMBAT : turkey
 	{
 		IDS_MISTYPE_DOGFIGHTING,IDS_QUICK_11,IDS_QUICK_11_DESC,
-		{	
+		{
 			{	{	{PT_SPIT_A,1,SKILL_POOR,FT_10000,IDS_UN_CAP,Q::QFD_BRIT_LONE} }	},
 			{	{	{PT_ME109,1,SKILL_POOR,FT_10000,IDS_RED_CAP,Q::QFD_GERM_LONE}	}	}
 		},
@@ -339,7 +339,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //COMBAT : one on one
 	{
 		IDS_MISTYPE_DOGFIGHTING,IDS_QUICK_12,IDS_QUICK_12_DESC,
-		{	
+		{
 			{	{	{PT_SPIT_A,1,SKILL_VETERAN,FT_12000,IDS_UN_CAP,Q::QFD_BRIT_LONE} }	},
 			{	{	{PT_ME109,1,SKILL_VETERAN,FT_12000,IDS_UN_CAP,Q::QFD_GERM_LONE}	}	}
 		},
@@ -355,7 +355,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //COMBAT : random adv
 	{
 		IDS_MISTYPE_DOGFIGHTING,IDS_QUICK_13,IDS_QUICK_13_DESC,
-		{	
+		{
 			{	{	{PT_SPIT_A,4,SKILL_ACE,FT_12000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} }	},
 			{	{	{PT_ME109,3,SKILL_ACE,FT_12000,IDS_UN_CAP,Q::QFD_GERM_FIGHTER}	}	}
 		},
@@ -403,7 +403,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //GROUNDWORK : ????
 //TempCode MS 25Apr00 	{
 //TempCode MS 25Apr00 		IDS_MISTYPE_BOMBING,IDS_QUICK_16,IDS_QUICK_16_DESC,
-//TempCode MS 25Apr00 		{	
+//TempCode MS 25Apr00 		{
 //TempCode MS 25Apr00 			{	{	{PT_SPIT_A,2,SKILL_HERO,FT_6000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} }	},
 //TempCode MS 25Apr00 			{	{	{PT_DO17,4,SKILL_VETERAN,FT_5000,IDS_UN_FB_STRIKE,Q::QFD_FIXED_AUTO} }	}
 //TempCode MS 25Apr00 		},
@@ -419,9 +419,9 @@ QuickDef	CSQuick1::quickmissions[]=
 //GROUNDWORK : dive bomb attack 2
 	{
 		IDS_MISTYPE_BOMBING,IDS_QUICK_17,IDS_QUICK_17_DESC,
-		{	
+		{
 			{	{	{PT_SPIT_A,4,SKILL_VETERAN,FT_6000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER+Q::QFD_ALLOW_ZERO_FL} }	},
-			{	{	{PT_JU87,4,SKILL_VETERAN,FT_9000,IDS_UN_FLAK_DUTY,Q::QFD_GERM_BOMBER_PLAYER_ONLY} },	
+			{	{	{PT_JU87,4,SKILL_VETERAN,FT_9000,IDS_UN_FLAK_DUTY,Q::QFD_GERM_BOMBER_PLAYER_ONLY} },
 				{	{PT_ME109,3,SKILL_VETERAN,0,IDS_UN_ESCORT_DUTY,Q::QFD_GERM_FIGHTER+Q::QFD_ALLOW_ZERO_FL} }	}
 		},
 		RED,0,0,0,
@@ -440,9 +440,9 @@ QuickDef	CSQuick1::quickmissions[]=
 	{
 		IDS_MISTYPE_BOMBING,IDS_QUICK_18,IDS_QUICK_18_DESC,
 //DeadCode MS 20Jan00 		IDS_QUICK_5,IDS_QUICK_2,IDS_QUICK_16_DESC,
-		{	
+		{
 			{	{	{PT_SPIT_A,4,SKILL_VETERAN,FT_7000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER+Q::QFD_ALLOW_ZERO_FL} }	},
-			{	{	{PT_JU87,4,SKILL_VETERAN,FT_9000,IDS_UN_FLAK_DUTY,Q::QFD_GERM_BOMBER_PLAYER_ONLY} },	
+			{	{	{PT_JU87,4,SKILL_VETERAN,FT_9000,IDS_UN_FLAK_DUTY,Q::QFD_GERM_BOMBER_PLAYER_ONLY} },
 				{	{PT_ME109,3,SKILL_VETERAN,0,IDS_UN_ESCORT_DUTY,Q::QFD_GERM_FIGHTER+Q::QFD_ALLOW_ZERO_FL} }	}
 		},
 		RED,0,0,0,
@@ -458,7 +458,7 @@ QuickDef	CSQuick1::quickmissions[]=
 	{
 		IDS_MISTYPE_BOMBING,IDS_QUICK_19,IDS_QUICK_19_DESC,
 //DeadCode MS 20Jan00 		IDS_QUICK_5,IDS_QUICK_3,IDS_QUICK_16_DESC,
-		{	
+		{
 			{	{	{PT_SPIT_A,2,SKILL_VETERAN,0,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} }	},
 			{	{	{PT_ME110,2,SKILL_VETERAN,0,IDS_UN_FB_STRIKE,Q::QFD_GERM_BOMBER_PLAYER_ONLY} }	}
 		},
@@ -476,9 +476,9 @@ QuickDef	CSQuick1::quickmissions[]=
 	{
 		IDS_MISTYPE_INTERCEPTS,IDS_QUICK_20,IDS_QUICK_20_DESC,
 //DeadCode MS 20Jan00 		IDS_QUICK_6,IDS_QUICK_4,IDS_QUICK_16_DESC,
-		{	
+		{
 			{	{	{PT_SPIT_A,1,SKILL_VETERAN,FT_11000,IDS_RED_CAP,Q::QFD_BRIT_LONE} }	},
-			{	{	{PT_DO17,1,SKILL_VETERAN,FT_10000,IDS_UN_FB_STRIKE,Q::QFD_FIXED_NUM_PLAYER} } }	
+			{	{	{PT_DO17,1,SKILL_VETERAN,FT_10000,IDS_UN_FB_STRIKE,Q::QFD_FIXED_NUM_PLAYER} } }
 		},
 		BLUE,0,0,0,
 		FILDEMO(FIL_QUICKMISSION_29),FIL_QUICKMISSION_29,0,2,  //currmissnum, altmissnum, weather,time//RDH 27Mar00
@@ -495,12 +495,12 @@ QuickDef	CSQuick1::quickmissions[]=
 	{
 		IDS_MISTYPE_INTERCEPTS,IDS_QUICK_21,IDS_QUICK_21_DESC,
 //DeadCode MS 20Jan00 		IDS_QUICK_6,IDS_QUICK_4,IDS_QUICK_16_DESC,
-		{	
+		{
 			{	{	{PT_HURR_A,4,SKILL_VETERAN,FT_12000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER}	},
-				{	{PT_SPIT_A,4,SKILL_VETERAN,0,IDS_UN_ESCORT_DUTY,Q::QFD_BRIT_FIGHTER+Q::QFD_ALLOW_ZERO_FL}	}	
+				{	{PT_SPIT_A,4,SKILL_VETERAN,0,IDS_UN_ESCORT_DUTY,Q::QFD_BRIT_FIGHTER+Q::QFD_ALLOW_ZERO_FL}	}
 			},
 			{	{	{PT_DO17,4,SKILL_VETERAN,FT_10000,IDS_UN_FB_STRIKE,Q::QFD_GERM_BOMBER_AUTO_ONLY}	},
-				{	{PT_ME109,3,SKILL_VETERAN,0,IDS_UN_ESCORT_DUTY,Q::QFD_GERM_FIGHTER+Q::QFD_ALLOW_ZERO_FL}	}, 
+				{	{PT_ME109,3,SKILL_VETERAN,0,IDS_UN_ESCORT_DUTY,Q::QFD_GERM_FIGHTER+Q::QFD_ALLOW_ZERO_FL}	},
 				{	{PT_ME109,3,SKILL_VETERAN,0,IDS_UN_ESCORT_DUTY,Q::QFD_GERM_FIGHTER+Q::QFD_ALLOW_ZERO_FL} }
 			}
 		},
@@ -524,13 +524,13 @@ QuickDef	CSQuick1::quickmissions[]=
 	{
 		IDS_MISTYPE_INTERCEPTS,IDS_QUICK_22,IDS_QUICK_22_DESC,
 //DeadCode MS 20Jan00 		IDS_QUICK_6,IDS_QUICK_17,IDS_QUICK_16_DESC,
-		{	
+		{
 			{	{	{PT_HURR_A,4,SKILL_VETERAN,FT_12000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER}	},
-				{	{PT_SPIT_A,4,SKILL_VETERAN,0,IDS_UN_ESCORT_DUTY,Q::QFD_BRIT_FIGHTER+Q::QFD_ALLOW_ZERO_FL}	}	
+				{	{PT_SPIT_A,4,SKILL_VETERAN,0,IDS_UN_ESCORT_DUTY,Q::QFD_BRIT_FIGHTER+Q::QFD_ALLOW_ZERO_FL}	}
 			},
 			{	{	{PT_DO17,4,SKILL_VETERAN,FT_10000,IDS_UN_FB_STRIKE,Q::QFD_GERM_BOMBER_AUTO_ONLY}	},
-				{	{PT_ME109,3,SKILL_VETERAN,0,IDS_UN_ESCORT_DUTY,Q::QFD_GERM_FIGHTER+Q::QFD_ALLOW_ZERO_FL}	}, 
-				{	{PT_ME109,3,SKILL_VETERAN,0,IDS_UN_ESCORT_DUTY,Q::QFD_GERM_FIGHTER+Q::QFD_ALLOW_ZERO_FL}	} 
+				{	{PT_ME109,3,SKILL_VETERAN,0,IDS_UN_ESCORT_DUTY,Q::QFD_GERM_FIGHTER+Q::QFD_ALLOW_ZERO_FL}	},
+				{	{PT_ME109,3,SKILL_VETERAN,0,IDS_UN_ESCORT_DUTY,Q::QFD_GERM_FIGHTER+Q::QFD_ALLOW_ZERO_FL}	}
 			}
 		},
 		BLUE,0,0,0,
@@ -550,12 +550,12 @@ QuickDef	CSQuick1::quickmissions[]=
 	{
 		IDS_MISTYPE_INTERCEPTS,IDS_QUICK_23,IDS_QUICK_23_DESC,
 //DeadCode MS 20Jan00 		IDS_QUICK_6,IDS_QUICK_17,IDS_QUICK_16_DESC,
-		{	
+		{
 			{	{	{PT_HURR_A,4,SKILL_VETERAN,FT_12000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER}	},
 				{	{PT_SPIT_A,4,SKILL_VETERAN,FT_12000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER+Q::QFD_ALLOW_ZERO_FL}	}
 			},
 			{	{	{PT_DO17,4,SKILL_VETERAN,FT_10000,IDS_UN_FB_STRIKE,Q::QFD_GERM_BOMBER_AUTO_ONLY}	},
-				{	{PT_ME109,3,SKILL_VETERAN,FT_11000,IDS_UN_ESCORT_DUTY,Q::QFD_GERM_FIGHTER+Q::QFD_ALLOW_ZERO_FL}	}, 
+				{	{PT_ME109,3,SKILL_VETERAN,FT_11000,IDS_UN_ESCORT_DUTY,Q::QFD_GERM_FIGHTER+Q::QFD_ALLOW_ZERO_FL}	},
 				{	{PT_ME109,3,SKILL_VETERAN,FT_12000,IDS_UN_ESCORT_DUTY,Q::QFD_GERM_FIGHTER+Q::QFD_ALLOW_ZERO_FL} }
 			}
 		},
@@ -575,7 +575,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //TempCode MS 25Apr00 	{
 //TempCode MS 25Apr00 		IDS_MISTYPE_INTERCEPTS,IDS_QUICK_24,IDS_QUICK_24_DESC,
 //TempCode MS 25Apr00 //DeadCode MS 20Jan00 		IDS_QUICK_6,IDS_QUICK_17,IDS_QUICK_16_DESC,
-//TempCode MS 25Apr00 		{	
+//TempCode MS 25Apr00 		{
 //TempCode MS 25Apr00 			{	{	{PT_SPIT_A,2,SKILL_HERO,FT_6000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} }	},
 //TempCode MS 25Apr00 			{	{	{PT_DO17,4,SKILL_VETERAN,FT_5000,IDS_UN_FB_STRIKE,Q::QFD_FIXED_AUTO} }	}
 //TempCode MS 25Apr00 		},
@@ -592,7 +592,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //TempCode MS 25Apr00 	{
 //TempCode MS 25Apr00 		IDS_MISTYPE_INTERCEPTS,IDS_QUICK_25,IDS_QUICK_25_DESC,
 //TempCode MS 25Apr00 //DeadCode MS 20Jan00 		IDS_QUICK_6,IDS_QUICK_17,IDS_QUICK_16_DESC,
-//TempCode MS 25Apr00 		{	
+//TempCode MS 25Apr00 		{
 //TempCode MS 25Apr00 			{	{	{PT_SPIT_A,2,SKILL_HERO,FT_6000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} }	},
 //TempCode MS 25Apr00 			{	{	{PT_DO17,4,SKILL_VETERAN,FT_5000,IDS_UN_FB_STRIKE,Q::QFD_FIXED_AUTO} }	}
 //TempCode MS 25Apr00 		},
@@ -609,8 +609,8 @@ QuickDef	CSQuick1::quickmissions[]=
 	{
 		IDS_MISTYPE_HISTORIC,IDS_QUICK_26,IDS_QUICK_26_DESC,
 //DeadCode MS 20Jan00 		IDS_QUICK_7,IDS_QUICK_2,IDS_QUICK_16_DESC,
-		{	
-			{	{	{PT_HURR_A,4,SKILL_REGULAR,FT_6000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} } 	,			
+		{
+			{	{	{PT_HURR_A,4,SKILL_REGULAR,FT_6000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} } 	,
 				{	{PT_DEFIANT,4,SKILL_REGULAR,FT_5000,IDS_UN_CAP,Q::QFD_BRIT_BOMBER_AUTO_ONLY} } },
 			{	{	{PT_ME109,3,SKILL_VETERAN,FT_7000,IDS_UN_CAP,Q::QFD_GERM_FIGHTER} }	}
 		},
@@ -624,12 +624,12 @@ QuickDef	CSQuick1::quickmissions[]=
 
 //DeadCode MS 05Jul00 //-----------------------------------------------------------------------------
 //DeadCode MS 05Jul00 //HISTORIC : 2	AlderTag morning
-//DeadCode MS 05Jul00 
-//DeadCode MS 05Jul00 
+//DeadCode MS 05Jul00
+//DeadCode MS 05Jul00
 //DeadCode MS 05Jul00 	{
 //DeadCode MS 05Jul00 		IDS_MISTYPE_HISTORIC,IDS_QUICK_27,IDS_QUICK_27_DESC,
 //DeadCode MS 05Jul00 //DeadCode MS 20Jan00 		IDS_QUICK_7,IDS_QUICK_17,IDS_QUICK_16_DESC,
-//DeadCode MS 05Jul00 		{	
+//DeadCode MS 05Jul00 		{
 //DeadCode MS 05Jul00 			{	{	{PT_SPIT_A,2,SKILL_HERO,FT_6000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} }	},
 //DeadCode MS 05Jul00 			{	{	{PT_DO17,4,SKILL_VETERAN,FT_5000,IDS_UN_FB_STRIKE,Q::QFD_FIXED_AUTO} }	}
 //DeadCode MS 05Jul00 		},
@@ -646,14 +646,14 @@ QuickDef	CSQuick1::quickmissions[]=
 	{
 		IDS_MISTYPE_HISTORIC,IDS_QUICK_28,IDS_QUICK_28_DESC,
 //DeadCode MS 20Jan00 		IDS_QUICK_7,IDS_QUICK_17,IDS_QUICK_16_DESC,
-		{	
-			{	
+		{
+			{
 				{	{PT_SPIT_A,4,SKILL_VETERAN,FT_12000,IDS_UID_NB_Portland,Q::QFD_BRIT_FIGHTER} },
 				{	{PT_HURR_A,4,SKILL_VETERAN,FT_12000,IDS_UID_NB_Portland,Q::QFD_BRIT_FIGHTER} },
 				{	{PT_SPIT_B,4,SKILL_VETERAN,FT_12000,IDS_UID_AF_MIDDLEWALLOP,Q::QFD_BRIT_FIGHTER} },
 				{	{PT_HURR_B,4,SKILL_VETERAN,FT_12000,IDS_UID_DK_Southampton,Q::QFD_BRIT_FIGHTER} }
 			},
-			{	
+			{
 				{	{PT_JU88,3,SKILL_VETERAN,FT_12000,IDS_UID_NB_Portland,Q::QFD_GERM_BOMBER_AUTO_ONLY}	},
 				{	{PT_ME110,3,SKILL_VETERAN,FT_14000,IDS_UID_NB_Portland,Q::QFD_GERM_FIGHTER+Q::QFD_ALLOW_ZERO_FL}	},
 				{	{PT_JU88,3,SKILL_VETERAN,FT_12000,IDS_UID_DK_Southampton,Q::QFD_GERM_BOMBER_AUTO_ONLY}	},
@@ -672,8 +672,8 @@ QuickDef	CSQuick1::quickmissions[]=
 //DeadCode MS 05Jul00 //HISTORIC : 4	BIG WING BATTLE OF BRITAIN DAY
 //DeadCode MS 05Jul00 	{
 //DeadCode MS 05Jul00 		IDS_MISTYPE_HISTORIC,IDS_QUICK_29,IDS_QUICK_29_DESC,
-//DeadCode MS 05Jul00 		{	
-//DeadCode MS 05Jul00 			{	
+//DeadCode MS 05Jul00 		{
+//DeadCode MS 05Jul00 			{
 //DeadCode MS 05Jul00 				{	{PT_HURR_A,4,SKILL_HERO,FT_10000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER}
 //DeadCode MS 05Jul00 				},
 //DeadCode MS 05Jul00 				{	{PT_HURR_B,4,SKILL_HERO,FT_14000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER},
@@ -681,14 +681,14 @@ QuickDef	CSQuick1::quickmissions[]=
 //DeadCode MS 05Jul00 				},
 //DeadCode MS 05Jul00 			},
 //DeadCode MS 05Jul00 			//GERMANS
-//DeadCode MS 05Jul00 			{	
+//DeadCode MS 05Jul00 			{
 //DeadCode MS 05Jul00 				{	{PT_DO17,3,SKILL_VETERAN,FT_10000,IDS_UN_FB_STRIKE,Q::QFD_GERM_BOMBER_AUTO_ONLY},
 //DeadCode MS 05Jul00 					{PT_DO17,3,SKILL_VETERAN,FT_11000,IDS_UN_FB_STRIKE,Q::QFD_GERM_BOMBER_AUTO_ONLY+Q::QFD_ALLOW_ZERO_FL},
-//DeadCode MS 05Jul00 					{PT_ME109,3,SKILL_ACE,FT_10000,IDS_RED_CAP,Q::QFD_GERM_FIGHTER+Q::QFD_ALLOW_ZERO_FL}		
+//DeadCode MS 05Jul00 					{PT_ME109,3,SKILL_ACE,FT_10000,IDS_RED_CAP,Q::QFD_GERM_FIGHTER+Q::QFD_ALLOW_ZERO_FL}
 //DeadCode MS 05Jul00 				}
-//DeadCode MS 05Jul00 
-//DeadCode MS 05Jul00 //TempCode MS 27Mar00 				{	
-//DeadCode MS 05Jul00 //TempCode MS 27Mar00 					{PT_DO17,3,SKILL_ACE,FT_6000,IDS_RED_CAP,Q::QFD_FIXED_AUTO},	
+//DeadCode MS 05Jul00
+//DeadCode MS 05Jul00 //TempCode MS 27Mar00 				{
+//DeadCode MS 05Jul00 //TempCode MS 27Mar00 					{PT_DO17,3,SKILL_ACE,FT_6000,IDS_RED_CAP,Q::QFD_FIXED_AUTO},
 //DeadCode MS 05Jul00 //TempCode MS 27Mar00 					{PT_DO17,3,SKILL_ACE,FT_6000,IDS_RED_CAP,Q::QFD_FIXED_AUTO},
 //DeadCode MS 05Jul00 //TempCode MS 27Mar00  					{PT_DO17,3,SKILL_ACE,FT_6000,IDS_RED_CAP,Q::QFD_FIXED_AUTO}
 //DeadCode MS 05Jul00 //TempCode MS 27Mar00 				}
@@ -707,7 +707,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //DeadCode MS 05Jul00 	{
 //DeadCode MS 05Jul00 		IDS_MISTYPE_HISTORIC,IDS_QUICK_30,IDS_QUICK_30_DESC,
 //DeadCode MS 05Jul00 //DeadCode MS 20Jan00 		IDS_QUICK_7,IDS_QUICK_17,IDS_QUICK_16_DESC,
-//DeadCode MS 05Jul00 		{	
+//DeadCode MS 05Jul00 		{
 //DeadCode MS 05Jul00 			{	{	{PT_SPIT_A,2,SKILL_HERO,FT_6000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} }	},
 //DeadCode MS 05Jul00 			{	{	{PT_JU88,4,SKILL_VETERAN,FT_5000,IDS_UN_FB_STRIKE,Q::QFD_FIXED_AUTO} }	}
 //DeadCode MS 05Jul00 		},
@@ -724,12 +724,12 @@ QuickDef	CSQuick1::quickmissions[]=
 //HISTORIC : 7 Black Thursday Morning
 	{
 		IDS_MISTYPE_HISTORIC,IDS_QUICK_32,IDS_QUICK_32_DESC,
-		{	
-			{	
+		{
+			{
 				{	{PT_HURR_A,4,SKILL_REGULAR,FT_5000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} },
-				{	{PT_SPIT_A,4,SKILL_REGULAR,FT_10000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} } 
-			},			
-			{	
+				{	{PT_SPIT_A,4,SKILL_REGULAR,FT_10000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} }
+			},
+			{
 				{	{PT_JU87,3,SKILL_REGULAR,FT_7000,IDS_UN_FLAK_DUTY,Q::QFD_GERM_BOMBER_PLAYER_ONLY} },
 				{	{PT_ME109,3,SKILL_REGULAR,FT_14000,IDS_UN_CAP,Q::QFD_GERM_FIGHTER+Q::QFD_ALLOW_ZERO_FL} },
 				{	{PT_JU87,3,SKILL_REGULAR,FT_7000,IDS_UN_FLAK_DUTY,Q::QFD_GERM_BOMBER_PLAYER_ONLY} },
@@ -748,7 +748,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //HISTORIC : 8 Black Thursday Afternoon 15th AUG
 	{
 		IDS_MISTYPE_HISTORIC,IDS_QUICK_33,IDS_QUICK_33_DESC,
-		{	
+		{
 			{	{	{PT_SPIT_A,4,SKILL_VETERAN,FT_18000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} },
 				{	{PT_HURR_A,4,SKILL_VETERAN,FT_16000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER+Q::QFD_ALLOW_ZERO_FL} },
 				{	{PT_HURR_B,4,SKILL_VETERAN,FT_16000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER+Q::QFD_ALLOW_ZERO_FL} }
@@ -773,13 +773,13 @@ QuickDef	CSQuick1::quickmissions[]=
 	{
 //DeadCode MS 06Jul00 		IDS_MISTYPE_HISTORIC,IDS_QUICK_31,IDS_QUICK_31_DESC,
 //DeadCode MS 06Jul00 //DeadCode MS 20Jan00 		IDS_QUICK_7,IDS_QUICK_17,IDS_QUICK_16_DESC,
-//DeadCode MS 06Jul00 		{	
+//DeadCode MS 06Jul00 		{
 //DeadCode MS 06Jul00 			{	{	{PT_SPIT_A,3,SKILL_HERO,FT_8000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} },
-//DeadCode MS 06Jul00 				{	{PT_HURR_A,3,SKILL_HERO,FT_6000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} },	
+//DeadCode MS 06Jul00 				{	{PT_HURR_A,3,SKILL_HERO,FT_6000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} },
 //DeadCode MS 06Jul00 				{	{PT_HURR_B,3,SKILL_HERO,FT_6000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} }
 //DeadCode MS 06Jul00 			},
 //DeadCode MS 06Jul00 			//GERMANS
-//DeadCode MS 06Jul00 			{	
+//DeadCode MS 06Jul00 			{
 //DeadCode MS 06Jul00 //DeadCode MS 24Mar00 				{	{PT_JU88,3,SKILL_VETERAN,FT_5000,IDS_UN_FB_STRIKE,Q::QFD_FIXED_AUTO},
 //DeadCode MS 06Jul00 //DeadCode MS 24Mar00  					{PT_JU88,3,SKILL_VETERAN,FT_5000,IDS_UN_FB_STRIKE,Q::QFD_FIXED_AUTO},
 //DeadCode MS 06Jul00 //DeadCode MS 24Mar00 					{PT_JU88,3,SKILL_VETERAN,FT_5000,IDS_UN_FB_STRIKE,Q::QFD_FIXED_AUTO}
@@ -788,13 +788,13 @@ QuickDef	CSQuick1::quickmissions[]=
 //DeadCode MS 06Jul00 //TempCode MS 24Mar00 				{	{PT_JU88,3,SKILL_VETERAN,FT_5000,IDS_UN_FB_STRIKE,Q::QFD_FIXED_AUTO},
 //DeadCode MS 06Jul00 //TempCode MS 24Mar00 					{PT_JU88,3,SKILL_VETERAN,FT_5000,IDS_UN_FB_STRIKE,Q::QFD_FIXED_AUTO}
 //DeadCode MS 06Jul00 //TempCode MS 24Mar00 				},
-//DeadCode MS 06Jul00 				//JG 51, I, 
-//DeadCode MS 06Jul00 				{	{PT_ME109,3,SKILL_ACE,FT_6000,IDS_RED_CAP,Q::QFD_GERM_FIGHTER},	
-//DeadCode MS 06Jul00 					{PT_ME109,3,SKILL_ACE,FT_6000,IDS_RED_CAP,Q::QFD_GERM_FIGHTER} 
+//DeadCode MS 06Jul00 				//JG 51, I,
+//DeadCode MS 06Jul00 				{	{PT_ME109,3,SKILL_ACE,FT_6000,IDS_RED_CAP,Q::QFD_GERM_FIGHTER},
+//DeadCode MS 06Jul00 					{PT_ME109,3,SKILL_ACE,FT_6000,IDS_RED_CAP,Q::QFD_GERM_FIGHTER}
 //DeadCode MS 06Jul00 				},
-//DeadCode MS 06Jul00 				//JG 51, II, 
-//DeadCode MS 06Jul00 				{	{PT_ME109,3,SKILL_ACE,FT_6000,IDS_RED_CAP,Q::QFD_GERM_FIGHTER},	
-//DeadCode MS 06Jul00 					{PT_ME109,3,SKILL_ACE,FT_6000,IDS_RED_CAP,Q::QFD_GERM_FIGHTER} 
+//DeadCode MS 06Jul00 				//JG 51, II,
+//DeadCode MS 06Jul00 				{	{PT_ME109,3,SKILL_ACE,FT_6000,IDS_RED_CAP,Q::QFD_GERM_FIGHTER},
+//DeadCode MS 06Jul00 					{PT_ME109,3,SKILL_ACE,FT_6000,IDS_RED_CAP,Q::QFD_GERM_FIGHTER}
 //DeadCode MS 06Jul00 				}
 //DeadCode MS 06Jul00 			}
 //DeadCode MS 06Jul00 		},
@@ -807,14 +807,14 @@ QuickDef	CSQuick1::quickmissions[]=
 //DeadCode MS 06Jul00 	},
 
 		IDS_MISTYPE_HISTORIC,IDS_QUICK_31,IDS_QUICK_31_DESC,
-		{	
-			{	{	{PT_HURR_A,4,SKILL_VETERAN,FT_12000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER}	}, 
+		{
+			{	{	{PT_HURR_A,4,SKILL_VETERAN,FT_12000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER}	},
 				{	{PT_SPIT_A,4,SKILL_VETERAN,0,IDS_UN_ESCORT_DUTY,Q::QFD_BRIT_FIGHTER}	},
-				{	{PT_HURR_B,4,SKILL_VETERAN,FT_15000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER}	}, 
+				{	{PT_HURR_B,4,SKILL_VETERAN,FT_15000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER}	},
 				{	{PT_SPIT_B,4,SKILL_VETERAN,0,IDS_UN_ESCORT_DUTY,Q::QFD_BRIT_FIGHTER}	}
 			},
 			//GERMANS
-			{	
+			{
 				{	{PT_HE111,3,SKILL_VETERAN,FT_12000,IDS_UN_FB_STRIKE,Q::QFD_GERM_BOMBER_AUTO_ONLY}	},
  				{	{PT_ME110,3,SKILL_VETERAN,0,IDS_UN_ESCORT_DUTY,Q::QFD_GERM_FIGHTER}	},
 				{	{PT_ME109,3,SKILL_VETERAN,0,IDS_UN_ESCORT_DUTY,Q::QFD_GERM_FIGHTER}	},
@@ -833,20 +833,20 @@ QuickDef	CSQuick1::quickmissions[]=
 //HISTORIC : 4	BIG WING BATTLE OF BRITAIN DAY
 	{
 		IDS_MISTYPE_HISTORIC,IDS_QUICK_29,IDS_QUICK_29_DESC,
-		{	
-			{	
+		{
+			{
 				{	{PT_HURR_A,4,SKILL_ACE,FT_10000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER}	},
 				{	{PT_HURR_B,4,SKILL_ACE,FT_14000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER}	},
 				{	{PT_SPIT_B,4,SKILL_ACE,FT_20000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER+Q::QFD_ALLOW_ZERO_FL}	}
 			},
 			//GERMANS
-			{	
+			{
 				{	{PT_DO17,3,SKILL_VETERAN,FT_10000,IDS_UN_FB_STRIKE,Q::QFD_GERM_BOMBER_AUTO_ONLY}	},
 				{	{PT_DO17,3,SKILL_VETERAN,FT_11000,IDS_UN_FB_STRIKE,Q::QFD_GERM_BOMBER_AUTO_ONLY}	},
-				{	{PT_ME109,3,SKILL_ACE,0,IDS_UN_ESCORT_DUTY,Q::QFD_GERM_FIGHTER+Q::QFD_ALLOW_ZERO_FL}	}	
+				{	{PT_ME109,3,SKILL_ACE,0,IDS_UN_ESCORT_DUTY,Q::QFD_GERM_FIGHTER+Q::QFD_ALLOW_ZERO_FL}	}
 
-//TempCode MS 27Mar00 				{	
-//TempCode MS 27Mar00 					{PT_DO17,3,SKILL_ACE,FT_6000,IDS_RED_CAP,Q::QFD_FIXED_AUTO},	
+//TempCode MS 27Mar00 				{
+//TempCode MS 27Mar00 					{PT_DO17,3,SKILL_ACE,FT_6000,IDS_RED_CAP,Q::QFD_FIXED_AUTO},
 //TempCode MS 27Mar00 					{PT_DO17,3,SKILL_ACE,FT_6000,IDS_RED_CAP,Q::QFD_FIXED_AUTO},
 //TempCode MS 27Mar00  					{PT_DO17,3,SKILL_ACE,FT_6000,IDS_RED_CAP,Q::QFD_FIXED_AUTO}
 //TempCode MS 27Mar00 				}
@@ -870,7 +870,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //USE THIS ONe to test formations
 	{
 		IDS_CONFIGIGNORED,IDS_HOTSHOT,IDS_CONFIGIGNORED,
-		{	
+		{
 			{	{	{PT_SPIT_A,4,SKILL_HERO,FT_18000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} },
 				{	{PT_HURR_A,4,SKILL_HERO,FT_16000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER+Q::QFD_ALLOW_ZERO_FL} }
 			},
@@ -894,7 +894,7 @@ QuickDef	CSQuick1::quickmissions[]=
 	{
 		IDS_CONFIGIGNORED,IDS_QUICK_27,IDS_QUICK_27_DESC,
 //DeadCode MS 20Jan00 		IDS_QUICK_7,IDS_QUICK_17,IDS_QUICK_16_DESC,
-		{	
+		{
 			{	{	{PT_SPIT_A,2,SKILL_HERO,FT_6000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} }	},
 			{	{	{PT_DO17,4,SKILL_VETERAN,FT_5000,IDS_UN_FB_STRIKE,Q::QFD_FIXED_AUTO} }	}
 		},
@@ -911,7 +911,7 @@ QuickDef	CSQuick1::quickmissions[]=
 	{
 		IDS_CONFIGIGNORED,IDS_QUICK_30,IDS_QUICK_30_DESC,
 //DeadCode MS 20Jan00 		IDS_QUICK_7,IDS_QUICK_17,IDS_QUICK_16_DESC,
-		{	
+		{
 			{	{	{PT_SPIT_A,2,SKILL_HERO,FT_6000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} }	},
 			{	{	{PT_JU88,4,SKILL_VETERAN,FT_5000,IDS_UN_FB_STRIKE,Q::QFD_FIXED_AUTO} }	}
 		},
@@ -926,10 +926,10 @@ QuickDef	CSQuick1::quickmissions[]=
 
 //-----------------------------------------------------------------------------
 
-//Mark Test 
+//Mark Test
 	{
 		IDS_CONFIGIGNORED,IDS_QUICK_11,IDS_QUICK_11,
-		{	
+		{
 			{	{	{PT_SPIT_A,1,SKILL_VETERAN,FT_2000,IDS_UN_CAP,Q::QFD_BRIT_FIGHTER} }	},
 		},
 		BLUE,0,0,0,
@@ -948,7 +948,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //DEADCODE DAW 19/11/99 //IAN 2
 //DEADCODE DAW 19/11/99 	{
 //DEADCODE DAW 19/11/99 		IDS_AIRFIELD,IDS_AIRFIELD,
-//DEADCODE DAW 19/11/99 		{	
+//DEADCODE DAW 19/11/99 		{
 //DEADCODE DAW 19/11/99 			{	{	{PT_BLEN,2,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} }	},
 //DEADCODE DAW 19/11/99 		},
 //DEADCODE DAW 19/11/99 		BLUE,0,0,0,
@@ -964,7 +964,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //DEADCODE DAW 19/11/99 //AMANDA 1
 //DEADCODE DAW 19/11/99 	{
 //DEADCODE DAW 19/11/99 		IDS_CIVILIAN,IDS_CIVILIAN,
-//DEADCODE DAW 19/11/99 		{	
+//DEADCODE DAW 19/11/99 		{
 //DEADCODE DAW 19/11/99 			{	{	{PT_BLEN,2,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} }	},
 //DEADCODE DAW 19/11/99 		},
 //DEADCODE DAW 19/11/99 		BLUE,0,0,0,
@@ -980,7 +980,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //DEADCODE DAW 19/11/99 //AMANDA 2
 //DEADCODE DAW 19/11/99 	{
 //DEADCODE DAW 19/11/99 		IDS_TOWN,IDS_TOWN,
-//DEADCODE DAW 19/11/99 		{	
+//DEADCODE DAW 19/11/99 		{
 //DEADCODE DAW 19/11/99 			{	{	{PT_BLEN,2,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} }	},
 //DEADCODE DAW 19/11/99 		},
 //DEADCODE DAW 19/11/99 		BLUE,0,0,0,
@@ -996,7 +996,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //DEADCODE DAW 19/11/99 //AMANDA 3
 //DEADCODE DAW 19/11/99 	{
 //DEADCODE DAW 19/11/99 		IDS_CIVILIAN,IDS_CIVILIAN,
-//DEADCODE DAW 19/11/99 		{	
+//DEADCODE DAW 19/11/99 		{
 //DEADCODE DAW 19/11/99 			{	{	{PT_BLEN,2,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} }	},
 //DEADCODE DAW 19/11/99 		},
 //DEADCODE DAW 19/11/99 		BLUE,0,0,0,
@@ -1012,7 +1012,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //DEADCODE DAW 19/11/99 //AMANDA 4
 //DEADCODE DAW 19/11/99 	{
 //DEADCODE DAW 19/11/99 		IDS_TOWN,IDS_TOWN,
-//DEADCODE DAW 19/11/99 		{	
+//DEADCODE DAW 19/11/99 		{
 //DEADCODE DAW 19/11/99 			{	{	{PT_BLEN,2,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} }	},
 //DEADCODE DAW 19/11/99 		},
 //DEADCODE DAW 19/11/99 		BLUE,0,0,0,
@@ -1028,7 +1028,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //DEADCODE DAW 19/11/99 //AMANDA 5
 //DEADCODE DAW 19/11/99 	{
 //DEADCODE DAW 19/11/99 		IDS_CIVILIAN,IDS_CIVILIAN,
-//DEADCODE DAW 19/11/99 		{	
+//DEADCODE DAW 19/11/99 		{
 //DEADCODE DAW 19/11/99 			{	{	{PT_BLEN,2,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} }	},
 //DEADCODE DAW 19/11/99 		},
 //DEADCODE DAW 19/11/99 		BLUE,0,0,0,
@@ -1044,7 +1044,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //DEADCODE DAW 19/11/99 //general testing type stuff
 //DEADCODE DAW 19/11/99 	{
 //DEADCODE DAW 19/11/99 		IDS_UN_CAP,IDS_UN_CAP,
-//DEADCODE DAW 19/11/99 		{	
+//DEADCODE DAW 19/11/99 		{
 //DEADCODE DAW 19/11/99 			{	{	{PT_BLEN,2,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} }	},
 //DEADCODE DAW 19/11/99 		},
 //DEADCODE DAW 19/11/99 		BLUE,0,0,0,
@@ -1060,7 +1060,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //DEADCODE DAW 19/11/99 //RICH 1
 //DEADCODE DAW 19/11/99 	{
 //DEADCODE DAW 19/11/99 		IDS_BRIDGE,IDS_BRIDGE,
-//DEADCODE DAW 19/11/99 		{	
+//DEADCODE DAW 19/11/99 		{
 //DEADCODE DAW 19/11/99 			{	{	{PT_BLEN,2,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} }	},
 //DEADCODE DAW 19/11/99 		},
 //DEADCODE DAW 19/11/99 		BLUE,0,0,0,
@@ -1076,7 +1076,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //DEADCODE DAW 19/11/99 //RICH 2
 //DEADCODE DAW 19/11/99 	{
 //DEADCODE DAW 19/11/99 		IDS_CHOKE,IDS_CHOKE,
-//DEADCODE DAW 19/11/99 		{	
+//DEADCODE DAW 19/11/99 		{
 //DEADCODE DAW 19/11/99 			{	{	{PT_BLEN,2,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} }	},
 //DEADCODE DAW 19/11/99 		},
 //DEADCODE DAW 19/11/99 		BLUE,0,0,0,
@@ -1092,7 +1092,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //DEADCODE DAW 19/11/99 //RICH 3
 //DEADCODE DAW 19/11/99 	{
 //DEADCODE DAW 19/11/99 		IDS_BRIDGE,IDS_BRIDGE,
-//DEADCODE DAW 19/11/99 		{	
+//DEADCODE DAW 19/11/99 		{
 //DEADCODE DAW 19/11/99 			{	{	{PT_BLEN,2,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} }	},
 //DEADCODE DAW 19/11/99 		},
 //DEADCODE DAW 19/11/99 		BLUE,0,0,0,
@@ -1108,7 +1108,7 @@ QuickDef	CSQuick1::quickmissions[]=
 //DEADCODE DAW 19/11/99 //RICH 4
 //DEADCODE DAW 19/11/99 	{
 //DEADCODE DAW 19/11/99 		IDS_CHOKE,IDS_CHOKE,
-//DEADCODE DAW 19/11/99 		{	
+//DEADCODE DAW 19/11/99 		{
 //DEADCODE DAW 19/11/99 			{	{	{PT_BLEN,2,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} }	},
 //DEADCODE DAW 19/11/99 		},
 //DEADCODE DAW 19/11/99 		BLUE,0,0,0,
@@ -1124,11 +1124,11 @@ QuickDef	CSQuick1::quickmissions[]=
 //DEADCODE DAW 19/11/99 //DEATH MATCH TESTING
 //DEADCODE DAW 19/11/99 	{
 //DEADCODE DAW 19/11/99 		IDS_QUICK_6,IDS_QUICK_6,
-//DEADCODE DAW 19/11/99 		{	
-//DEADCODE DAW 19/11/99 			{	{	{PT_SPIT_A,1,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} },	
-//DEADCODE DAW 19/11/99 				{	{PT_SPIT_A,1,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} },	
-//DEADCODE DAW 19/11/99 				{	{PT_F84,1,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} },	
-//DEADCODE DAW 19/11/99 				{	{PT_F84,1,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} } },	
+//DEADCODE DAW 19/11/99 		{
+//DEADCODE DAW 19/11/99 			{	{	{PT_SPIT_A,1,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} },
+//DEADCODE DAW 19/11/99 				{	{PT_SPIT_A,1,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} },
+//DEADCODE DAW 19/11/99 				{	{PT_F84,1,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} },
+//DEADCODE DAW 19/11/99 				{	{PT_F84,1,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} } },
 //DEADCODE DAW 19/11/99 			{	{	{PT_ME109,1,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} },
 //DEADCODE DAW 19/11/99 				{	{PT_ME109,1,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} },
 //DEADCODE DAW 19/11/99 				{	{PT_ME109,1,SKILL_VETERAN,FT_10000,IDS_UN_CAP,Q::QFD_BOMBER_AUTO_ONLY} },
@@ -1173,14 +1173,14 @@ QuickDef	CSQuick1::quickmissions[]=
 //DeadCode MS 08Aug00 //DEMO MISSION 2
 //DeadCode MS 08Aug00 	{
 //DeadCode MS 08Aug00 		IDS_DEMOMISSIONS,IDS_QUICK_2,IDS_QUICK_2_DESC,
-//DeadCode MS 08Aug00 		{	
+//DeadCode MS 08Aug00 		{
 //DeadCode MS 08Aug00 			{	{	{PT_SPIT_A,1,SKILL_VETERAN,FT_3000,IDS_UN_CAP,Q::QFD_BRIT_LONE} }	},
 //DeadCode MS 08Aug00 			{	{	{PT_ME109,1,SKILL_VETERAN,FT_3000,IDS_UN_CAP,Q::QFD_GERM_LONE} }	}
 //DeadCode MS 08Aug00 		},
 //DeadCode MS 08Aug00 		BLUE,0,0,0,
 //DeadCode MS 08Aug00 		FIL_QUICKMISSION_34,FIL_QUICKMISSION_34,0,2,  //currmissnum, altmissnum, weather,time//RDH 27Mar00
 //DeadCode MS 08Aug00 		{ IDS_GROUP10AF,IDS_SUPPLYPOINT,IDS_CONFIGIGNORED},
-//DeadCode MS 08Aug00 		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_DEBDEN,UID_AF_KENLEY},	
+//DeadCode MS 08Aug00 		{ 	{UID_AF_TANGMERE,UID_AF_BIGGINHILL,UID_AF_DEBDEN,UID_AF_KENLEY},
 //DeadCode MS 08Aug00 			{UID_AF_Marck,UID_AF_Abbeville,UID_AF_Wissant,UID_AF_LeHarve},
 //DeadCode MS 08Aug00 			{UID_AF_HAWKINGE,UID_AF_GRAVESEND},
 //DeadCode MS 08Aug00 		},
@@ -1251,8 +1251,8 @@ void	QuickDef::MakeTeamPlayMission(int index)
 //DeadCode AMM 23Oct00 			CSQuick1::quickdef.line[side][wave][grp].flights = 0;
 //DeadCode AMM 23Oct00 			CSQuick1::quickdef.line[side][wave][grp].actype = 0;
 //DeadCode AMM 23Oct00 		}
-//DeadCode AMM 23Oct00 		i++;	
-//DeadCode AMM 23Oct00 	}	
+//DeadCode AMM 23Oct00 		i++;
+//DeadCode AMM 23Oct00 	}
 //DeadCode AMM 23Oct00 	int startwave;
 //DeadCode AMM 23Oct00 	for (side = 0; side < 2; side++)
 //DeadCode AMM 23Oct00 	{
@@ -1297,7 +1297,7 @@ void	QuickDef::trans(void* &dataarea,ULong& datasize)
 		char** tablestart=(char**)qd;
 		extrastrings=tablestart;
 		int* findtext=(int*)tablestart;
-		while (*findtext==0) 
+		while (*findtext==0)
 			findtext++;
 		char* text=(char*)findtext;
 //x0r		assert(*text=='\0');
@@ -1318,7 +1318,7 @@ const QuickDef	QuickDef::QuickMissionArray::operator[](int index)const
 	fileblock fb(FIL_QUICKMISSION_DATA,trans);
 #endif
 	QuickDef* qd=(QuickDef*)fb.getdata();
-	return	(qd[index]); 
+	return	(qd[index]);
 }
 ////////////////////////////////////////////////////////////////////////
 //
@@ -1326,7 +1326,7 @@ const QuickDef	QuickDef::QuickMissionArray::operator[](int index)const
 // Author:		JIM
 // Date:		04/07/01
 //
-// Description:	Overload for LoadResString so that any occurance of LoadResString 
+// Description:	Overload for LoadResString so that any occurance of LoadResString
 //				in the program that is dealing with text fields of quick missions *only*
 //				will potentially be loaded from the quick mission extra strings
 ////////////////////////////////////////////////////////////////////////

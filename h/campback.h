@@ -52,4 +52,3 @@ protected:
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_CAMPBACK_H__C6FA28C2_3E98_11D2_A5A3_0040052179B6__INCLUDED_)
-

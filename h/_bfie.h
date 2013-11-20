@@ -15,7 +15,7 @@
 #include	"movement.h"
 #include	"flyinit.h"
 
-class CString;
+#include "cstring.h"
 #include "batnode.h"
 #include "package.h"
 

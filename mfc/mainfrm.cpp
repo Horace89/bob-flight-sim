@@ -158,7 +158,7 @@ CMainFrame::CMainFrame()
 	m_doIExist=0;
 	m_bHideToolbars=TRUE;
 /////	FILEMAN.InitFileSystem();
-	havedrawn=havesafe=false;
+	havedrawn=havesafe=bAppMinimized=false;
 //DeadCode AMM 7Aug00 	m_oldindebrief=(Bool)2;
 }
 
@@ -1053,12 +1053,13 @@ void CMainFrame::WinHelp(DWORD dwData, UINT nCmd)
 	// finally, run the Windows Help engine
 //DeadCode RJS 03May100 	if (!HtmlHelp(pWnd->m_hWnd, CString(pApp->m_pszHelpFilePath)+"::/asset.htm", nCmd, 0))
 //DEADCODE DAW 15/05/00 	if (!HtmlHelp(NULL, pApp->m_pszHelpFilePath, nCmd, dwData&0xffff))
-	if (!HtmlHelp(pWnd->m_hWnd, pApp->m_pszHelpFilePath, nCmd, dwData&0xffff))
+/*x0r disable help	if (!HtmlHelp(pWnd->m_hWnd, pApp->m_pszHelpFilePath, nCmd, dwData&0xffff))
 	{
 		dwData=IDD_RAFCOMMANDBRIEFING;
 		if (!HtmlHelp(pWnd->m_hWnd, pApp->m_pszHelpFilePath, nCmd, dwData&0xffff))
 			AfxMessageBox(AFX_IDP_FAILED_TO_LAUNCH_HELP);
 	}
+	*/
 }
 
 
@@ -1170,8 +1171,11 @@ static BOOL CALLBACK EnumThreadWndProc(  HWND hwnd,  LPARAM lParam)
 	return	FALSE;
 }
    
-
+#if     _MSC_VER < 1300
 void CMainFrame::OnActivateApp(BOOL bActive, HTASK hTask) 
+#else
+void CMainFrame::OnActivateApp(BOOL bActive, DWORD hTask) 
+#endif
 {
 	CFrameWnd::OnActivateApp(bActive, hTask);
 //DeadCode DAW 22Jun99 	TRACE2("Activate Ap %i ==>%08x\n",bActive,hTask);

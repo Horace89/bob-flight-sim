@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -64,11 +64,11 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //------------------------------------------------------------------------------
 //Filename       savegame.cpp
-//System         
+//System
 //Author         Jim Taylor
 //Date           Thu 22 Aug 1996
 //Description    Various savegame routines - using overloading of << and >>	Dev Studio ref system don't like overloaded operators.
-//_MIGALLEY_GUID						
+//_MIGALLEY_GUID
 //------------------------------------------------------------------------------
 #include	"dosdefs.h"
 #include	"myerror.h"
@@ -104,12 +104,14 @@ SaveData	Save_Data;
 DeadStream	Dead_Stream={0};
 char	date[]="Rowan Savegame: " __DATE__ ;
 char	date2[]="Rowan Savegame: " __DATE__ ;
-inline	CString	LoadResString(int resnum)
+CString	LoadResString(int resnum);
+/*
 {
 	CString s;
 	s.LoadString(resnum);
 	return s;
 };
+*/
 extern void GetDriverAndMode(int&,int&,int&,int&);
 //DEADCODE PD 03/12/99 extern void Configure(bool,HWND);
 #include	"..\mfc\resource.h"
@@ -123,11 +125,11 @@ extern void GetDriverAndMode(int&,int&,int&,int&);
 //Author		Jim Taylor
 //Date			Tue 27 Aug 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 static	BOStream& operator  <<  (BOStream& bos,RunTimeDevDesc& devdesc)
@@ -178,7 +180,7 @@ BIStream& operator	>>	(BIStream& bis,Analogue::Tuning& tuning)
 	BOStream& operator	<<	(BOStream& bos,Analogue& analogue)
 {
 	for (int dev=0;dev<20;dev++)
-		bos<<analogue.runtimedevices[dev];	
+		bos<<analogue.runtimedevices[dev];
 	for (int au=0;au<AU_MAX;au++)
 	{
 		bos<<analogue.tune[au];
@@ -198,7 +200,7 @@ BIStream& operator	>>	(BIStream& bis,Analogue::Tuning& tuning)
 	BIStream& operator	>>	(BIStream& bis,Analogue& analogue)
 {
 	for (int dev=0;dev<20;dev++)
-		bis>>analogue.runtimedevices[dev];	
+		bis>>analogue.runtimedevices[dev];
 	for (int au=0;au<AU_MAX;au++)
 	{
 		bis>>analogue.tune[au];
@@ -213,7 +215,7 @@ BIStream& operator	>>	(BIStream& bis,Analogue::Tuning& tuning)
 	bis>>analogue.FF_airframe;
 	analogue.LoadGame();
 	return(bis);
-	
+
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -221,11 +223,11 @@ BIStream& operator	>>	(BIStream& bis,Analogue::Tuning& tuning)
 //Author		Jim Taylor
 //Date			Tue 27 Aug 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 BOStream& operator	<<	(BOStream& bos,SaveDataSoftware& savedata)
@@ -261,7 +263,8 @@ BIStream& operator	>>	(BIStream& bis,SaveData& savedata)
 		bis.read((char*)&savedata,sizeof(SaveDataLoad));
 		char buffer[180];
 		char b=-1;
-		for (int i=0;b;buffer[i++]=b)
+		int i;
+		for ( i=0;b;buffer[i++]=b)
 			bis>>b;
 		savedata.lastsavegame=buffer;
 		for (b=-1,i=0;b;buffer[i++]=b)
@@ -279,7 +282,7 @@ BIStream& operator	>>	(BIStream& bis,SaveData& savedata)
 //DEAD		MessageBox(NULL,LoadResString(IDS_CONFIGIGNORED),LoadResString(IDS_CHOOSEPREFS),MB_OK);
 
 	return(bis);
-	
+
 }
 
 
@@ -288,11 +291,11 @@ BIStream& operator	>>	(BIStream& bis,SaveData& savedata)
 //Author		Jim Taylor
 //Date			Tue 27 Aug 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 BOStream& operator	<<	(BOStream& bos,DeadStream & deadstream)
@@ -332,11 +335,11 @@ BIStream& operator	>>	(BIStream& bis,DeadStream & deadstream)
 //Author		Jim Taylor
 //Date			Tue 27 Aug 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 static	BOStream& operator	<<	(BOStream& bos,Campaign& campaign)
@@ -394,7 +397,7 @@ static	BIStream& operator	>>	(BIStream& bis,Campaign& campaign)
 //DEAD		}
 //DEAD	}
 	return(bis);
-	
+
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -402,11 +405,11 @@ static	BIStream& operator	>>	(BIStream& bis,Campaign& campaign)
 //Author		Jim Taylor
 //Date			Thu 22 Aug 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 BOStream& operator	<<	(BOStream& bos,MissMan& miss_man)
@@ -458,11 +461,11 @@ BIStream& operator	>>	(BIStream& bis,MissMan& miss_man)
 //Author		Jim Taylor
 //Date			Mon 2 Sep 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 
@@ -689,7 +692,7 @@ UniqueID	DeadStream::DeadBlockItterator::SkipItem()
 	lastuniqueID=GetWord();
 	if (lastuniqueID)
 	{
-		
+
 		lastStatus=GetWord();
 		lastshape=GetWord();
 		lastnumelts=GetByte();
@@ -714,9 +717,9 @@ bool	DeadStream::DeadBlockItterator::SkipToItem(UniqueID trg)
 //
 //Description	Clear all dead fields
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DeadStream::ClrWorldDead()
@@ -766,7 +769,7 @@ bool	DeadStream::DontRecordBand(UniqueID u)						  //DAW 6/15/99
 	UniqueIDBand	b=Persons2::getbandfromUID(u);
 	return(		b==BritAAASiteBAND
 			||	b==BarrageBalloonBAND
-		
+
 		);
 }
 bool	DeadStream::MainWorldBand(UniqueID u)
@@ -954,7 +957,8 @@ void	DeadStream::GetWorldDead(WorldStuff* world)
 	SGT=b.NextSGT();
 	while(SGT)
 	{
-		for (int i=0;i<WorldStuff::PITEMTABLESIZE;i++)
+	    int i;
+		for (i=0;i<WorldStuff::PITEMTABLESIZE;i++)
 			if (!MainWorldBand(UniqueID(i)))
 				if (world->pItem[i])
 				{
@@ -1050,7 +1054,7 @@ static bool	RevivableBand(int targuid)
 // Date:		30/04/99
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	DeadStream::ReviveWorld(const int repairpointsinperiod,int repairbridgepointsinperiod)
@@ -1129,7 +1133,8 @@ void	DeadStream::ReviveWorld(const int repairpointsinperiod,int repairbridgepoin
 				else
 					SGT=(UniqueID)targuid;
 
-				for (int entry=0;entry<usedentries;entry++)
+				int entry;
+				for (entry=0;entry<usedentries;entry++)
 					breakif (damagelist[entry].uniqueid==SGT);
 				if (entry==usedentries)
 				{
@@ -1155,11 +1160,12 @@ void	DeadStream::ReviveWorld(const int repairpointsinperiod,int repairbridgepoin
 					if (firstbyte.IsInvisible)
 						src.SkipCountedInfo();
 				}
-				
+
 			}
 			while ((SGT=src.NextSGT())!=UID_NULL)
 			{
-				for (int entry=0;entry<usedentries;entry++)
+			    int entry;
+				for (entry=0;entry<usedentries;entry++)
 					breakif (damagelist[entry].uniqueid==SGT);
 				if (entry==usedentries)
 				{
@@ -1205,7 +1211,7 @@ void	DeadStream::ReviveWorld(const int repairpointsinperiod,int repairbridgepoin
 		//
 		//A group is fully repaired when all it's elements are cleared.
 		//How do I know it is fully repaired, though?
-	
+
 		//I WON'T REMOVE AN ITEM UNTIL THE NEXT DAY
 		//I won't remove an item unless there are no more damaged elements to follow
 		//in the main world
@@ -1227,7 +1233,8 @@ void	DeadStream::ReviveWorld(const int repairpointsinperiod,int repairbridgepoin
 					else
 						SGT=(UniqueID)targuid;
 
-					for (int entry=0;entry<usedentries;entry++)
+					int entry;
+					for (entry=0;entry<usedentries;entry++)
 						breakif (damagelist[entry].uniqueid==SGT);
 					if (damagelist[entry].eltsleft==0)
 					{	//skip and discard
@@ -1294,7 +1301,8 @@ void	DeadStream::ReviveWorld(const int repairpointsinperiod,int repairbridgepoin
 
 			while ((SGT=src.NextSGT())!=UID_NULL)
 			{
-				for (int entry=0;entry<usedentries;entry++)
+			    int entry;
+				for (entry=0;entry<usedentries;entry++)
 					breakif (damagelist[entry].uniqueid==SGT);
 				if (damagelist[entry].eltsleft)
 				{
@@ -1393,7 +1401,7 @@ bool	DeadStream::DeadBlockItterator::MoveOwnerOfRestOfListToEndOf(DeadStream::De
 		second=*base;
 		while(second->nextblock!=curr)
 			second=second->nextblock;
-		second->nextblock=NULL;	
+		second->nextblock=NULL;
 		curr=NULL;
 		return true;
 	}
@@ -1406,19 +1414,19 @@ bool	DeadStream::DeadBlockItterator::MoveOwnerOfRestOfListToEndOf(DeadStream::De
 // Date:		17/08/00
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	DeadStream::FakeDamage(UniqueID targuid,ULong newpercent,bool clearifreducedamage)
-{	
+{
 	if (newpercent>100)
 		newpercent=100;
 	newpercent*=7.5;
 	static UniqueIDBand	testbands[]=
 	{IllegalBAND,AfHangarBAND,AfFieldBAND,AfStaffBAND,AfStoresBAND,NULL_BAND};
-	//Need to find all the items in the SG that are damagable 
+	//Need to find all the items in the SG that are damagable
 	//and decide how much damage to give them
-	//Only the main item, anything in the same band, 
+	//Only the main item, anything in the same band,
 	//and the 3 AF bands should now count towards damage.
 	struct	DamagabeItems
 	{	//I was concerned about modifying the SGT tables, but all the bands are in the mainwld.
@@ -1448,10 +1456,10 @@ void	DeadStream::FakeDamage(UniqueID targuid,ULong newpercent,bool clearifreduce
 	testbands[0]=Persons2::GetBandFromUID(targuid);
 	{for (int damagablecount=1,tb=0;testbands[tb];tb++,damagablecount=0)
 	{
- 
+
 		UniqueIDBand tbv=testbands[tb];
 		UniqueIDBand db=tbv;
-		if (tb==0)	
+		if (tb==0)
 			db=NULL_BAND;
 //DeadCode JIM 20Oct00 		int	basebandindex=0;
 		for (int u=tbv;Persons2::GetBandFromUID(UniqueID(u))==tbv;u++)
@@ -1476,8 +1484,8 @@ void	DeadStream::FakeDamage(UniqueID targuid,ULong newpercent,bool clearifreduce
 	//To do that, each of the groups in that section should be hit equally
 
 	//First, we need to assess the current damage for each element
-	
-	
+
+
 	{limitscope
 	UniqueID s;
 	int order=0x10000;
@@ -1493,7 +1501,7 @@ void	DeadStream::FakeDamage(UniqueID targuid,ULong newpercent,bool clearifreduce
 		{
 			tb--;
 			te--;
-			damagableitems[tb][te].order=order;	
+			damagableitems[tb][te].order=order;
 			GroupItterator g(ShapeNum(b.lastshape));
 			int w;
 			int totalweight=0;
@@ -1548,14 +1556,14 @@ void	DeadStream::FakeDamage(UniqueID targuid,ULong newpercent,bool clearifreduce
 						totalweight,
 						(ShapeNum)i->shape,LoadResString(IDS_SHAPESSTART+i->shape),
 						targuid,LoadResString(IDS_PLACENAMES_START+i->shape));
-							
+
 	}		}
-	
+
 	//I now have all the existing damage levels and weights, and can compare the total weights
 	//I can generate new damage levels to build the required total damage level in each category
 	Math_Lib.ResetRndCount();
 	{for (int tb=0;testbands[tb];tb++)
-	{	
+	{
 		int	stilldamageable[10]={0,1,2,3,4,5,6,7,8,9};
 		int stilldamageablecount=damagecounts[tb];
 		if (clearifreducedamage && totaldamagelevel[tb]>reqdamagelevel[tb])
@@ -1582,7 +1590,7 @@ void	DeadStream::FakeDamage(UniqueID targuid,ULong newpercent,bool clearifreduce
 			{	//can't undamage this item any more - remove from list
 				stilldamageablecount--;
 				stilldamageable[ite]=stilldamageable[stilldamageablecount];
-				assert (stilldamageablecount!=0,"Nothing left to UNdamage in group!!!!!");
+				bobassert (stilldamageablecount!=0,"Nothing left to UNdamage in group!!!!!");
 			}
 		}
 		else
@@ -1591,7 +1599,7 @@ void	DeadStream::FakeDamage(UniqueID targuid,ULong newpercent,bool clearifreduce
 			int r=Math_Lib.rnd();
 			int ite=((r&0xf000)*stilldamageablecount)>>16;
 			int te=stilldamageable[ite];
-			int c;		
+			int c;
 			r=r&0x1ff;	//get first 16 elements equally. If 15th is fully damaged tends to go sequentially.
 
 			do{
@@ -1630,7 +1638,7 @@ void	DeadStream::FakeDamage(UniqueID targuid,ULong newpercent,bool clearifreduce
 	//0x10000+: Item already known to damage system
 	//0:		Item not known. No damage
 	//-1:		Item not known. New damage has occured
-	
+
 //	INT3;
 	DeadBlock* newlist=NULL;
 	{limitscope
@@ -1798,7 +1806,8 @@ void	NodeData::CheckDamage(DeadStream& ds)
 				else
 					SGT=(UniqueID)targuid;
 
-				for (int entry=0;entry<usedentries;entry++)
+				int entry;
+				for (entry=0;entry<usedentries;entry++)
 					breakif (damagelist[entry].uniqueid==SGT);
 				if (entry==usedentries)
 				{
@@ -1818,7 +1827,7 @@ void	NodeData::CheckDamage(DeadStream& ds)
 					if (firstbyte.IsInvisible)
 						src.SkipCountedInfo();
 				}
-				
+
 			}
 //DeadCode JIM 13Sep00 			while ((SGT=src.NextSGT())!=UID_NULL)
 //DeadCode JIM 13Sep00 			{
@@ -2016,7 +2025,7 @@ int	NodeData::CheckDamage(DeadStream& ds,UniqueID SGT)
 				trg->ApplyDamage(maindamage,IllegalSepID);
 			}
 	}
-	
+
 	return maindamage;
 }
 //////////////////////////////////////////////////////////////////////
@@ -2025,7 +2034,7 @@ int	NodeData::CheckDamage(DeadStream& ds,UniqueID SGT)
 // Date:		24/03/00
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 int	DeadStream::DecodeDamage(UniqueID SGT,DamageDef* damagetable)
@@ -2078,7 +2087,8 @@ int	DeadStream::DecodeDamage(UniqueID SGT,DamageDef* damagetable)
 
 			int targband=Persons2::getbandfromUID(targuid);
 			ItemPtr p=NULL;
-			for (int skip=targuid-targband,u=targband,max=Persons2::getbandMAXfromUID(targuid);skip>=0;u++)
+			int u=targband;
+			for (int skip=targuid-targband,max=Persons2::getbandMAXfromUID(targuid);skip>=0;u++)
 			{
 				if (u==max)
 				{
@@ -2117,11 +2127,11 @@ int	DeadStream::DecodeDamage(UniqueID SGT,DamageDef* damagetable)
 //
 //
 //
- 
-DeadStream::DeadBlockItterator*	
+
+DeadStream::DeadBlockItterator*
 	GroupItterator::DeadIttCopy(DeadStream::DeadBlockItterator* I)
 {
-	return new DeadStream::DeadBlockItterator(I); 
+	return new DeadStream::DeadBlockItterator(I);
 }
 void	GroupItterator::DeadIttDelete(DeadStream::DeadBlockItterator* I)
 {
@@ -2138,32 +2148,32 @@ void	GroupItterator::NextDeadIttElt(DeadStream::DeadBlockItterator* I,UByte&di1b
 //
 //		 ... code in mfc\damage.cpp
 //
-//DeadCode RJS 15Feb99 bool	GroupItterator::operator++(int)		{status++;return (status<10);}				
-//move on to next element? 
+//DeadCode RJS 15Feb99 bool	GroupItterator::operator++(int)		{status++;return (status<10);}
+//move on to next element?
 //if not NULL Push animptr,grpindexer, and deadstream forward
 //DeadCode RJS 15Feb99 GroupItterator::operator bool()		{return (status<10);}	//reached end of group?
 
 
-//DeadCode RJS 15Feb99 int GroupItterator::NumElts(void)	
+//DeadCode RJS 15Feb99 int GroupItterator::NumElts(void)
 //DeadCode RJS 15Feb99 {return 5;}
-//DeadCode RJS 15Feb99 
+//DeadCode RJS 15Feb99
 //DeadCode RJS 15Feb99 char& GroupItterator::AnimDataByte()
 //DeadCode RJS 15Feb99 {
 //DeadCode RJS 15Feb99 	static char dummy=5;
 //DeadCode RJS 15Feb99 	return dummy;
 //DeadCode RJS 15Feb99 }
-//DeadCode RJS 15Feb99 
+//DeadCode RJS 15Feb99
 //DeadCode RJS 15Feb99 int GroupItterator::PostLauncherDataSize()
 //DeadCode RJS 15Feb99 {
 //DeadCode RJS 15Feb99 	return 0;
 //DeadCode RJS 15Feb99 }
-//DeadCode RJS 15Feb99 
+//DeadCode RJS 15Feb99
 //DeadCode RJS 15Feb99 char * GroupItterator::PostLauncherDataLoc()
 //DeadCode RJS 15Feb99 {
 //DeadCode RJS 15Feb99 	return NULL;
 //DeadCode RJS 15Feb99 }
 
-static	DistanceFactors	
+static	DistanceFactors
 Distance[]=
 {
 	{	//SHORT			//MEDIUM		//far
@@ -2204,7 +2214,7 @@ Speed[]=
 		IDS_MPSEC,		IDS_MPMIN,		IDS_KMPHR
 	},
 	{
-		0.25440,		0.5088,			0.19426,	//0.5147,	//CSB 23/06/99	
+		0.25440,		0.5088,			0.19426,	//0.5147,	//CSB 23/06/99
 		IDS_INPERSEC,	IDS_FTPERMIN,	IDS_KNOTTS,
 		IDS_INPS,		IDS_FTPM,		IDS_KTS
 	}
@@ -2334,26 +2344,26 @@ void SaveData::InitPreferences(int wh)
 	_Analogue.tune	[AU_AILERON]	.deadzones = DZ_SMALL;						  //RDH 24/05/99
 	_Analogue.tune	[AU_ELEVATOR]	.deadzones = DZ_SMALL;					  //RDH 24/05/99
 	_Analogue.tune	[AU_RUDDER]		.deadzones = DZ_SMALL;						  //RDH 24/05/99
-									         
+
 	_Analogue.tune	[AU_THROTTLE]	.deadzones = DZ_SMALL;						  //RDH 24/05/99 //RDH 29/11/99
 	_Analogue.tune	[AU_THROTTLE2]	.deadzones = DZ_SMALL;					  //RDH 24/05/99 //RDH 29/11/99
 	_Analogue.tune	[AU_PROPPITCH]	.deadzones = DZ_SMALL;						  //RDH 24/05/99 //RDH 29/11/99
 	_Analogue.tune	[AU_PROPPITCH2]	.deadzones = DZ_SMALL;						  //RDH 24/05/99
-									         
+
  	_Analogue.tune	[AU_VIEWP]		.deadzones = DZ_SMALL;						  //RDH 24/05/99 //RDH 29/11/99
 	_Analogue.tune	[AU_VIEWZ]		.deadzones = DZ_SMALL;					  //RDH 24/05/99 //RDH 29/11/99
 	_Analogue.tune	[AU_COCKPIT]	.deadzones = DZ_SMALL;						  //RDH 24/05/99 //RDH 29/11/99
 	_Analogue.tune	[AU_GUNP]		.deadzones = DZ_SMALL;						  //RDH 24/05/99
-									         
+
 	_Analogue.tune	[AU_AILERON]	.mode	 = AM_ARCADE;						  //RDH 24/05/99
 	_Analogue.tune	[AU_ELEVATOR]	.mode	 = AM_ARCADE;					  //RDH 24/05/99
 	_Analogue.tune	[AU_RUDDER]		.mode	 = AM_ARCADE;						  //RDH 24/05/99
-									         
+
 	_Analogue.tune	[AU_THROTTLE]	.mode	 = AM_ARCADE;						  //RDH 24/05/99 //RDH 29/11/99
 	_Analogue.tune	[AU_THROTTLE2]	.mode	 = AM_ARCADE;					  //RDH 24/05/99 //RDH 29/11/99
 	_Analogue.tune	[AU_PROPPITCH]	.mode	 = AM_ARCADE;						  //RDH 24/05/99 //RDH 29/11/99
 	_Analogue.tune	[AU_PROPPITCH2]	.mode	 = AM_ARCADE;						  //RDH 24/05/99
-									         
+
  	_Analogue.tune	[AU_VIEWP]		.mode	 = AM_LOW;						  //RDH 24/05/99 //RDH 29/11/99
 	_Analogue.tune	[AU_VIEWH]		.mode	 = AM_LOW;							//AMM 28Mar100
 	_Analogue.tune	[AU_VIEWZ]		.mode	 = AM_LOW;					  //RDH 24/05/99 //RDH 29/11/99
@@ -2424,8 +2434,8 @@ void SaveData::InitPreferences(int wh)
 	}
 //DeadCode JIM 18Oct00 	ui_horizontalres[UIR_FIRST]=	0;			//First call fills this with desktop
 	ui_colourdepth=0;							//Zero means default depth
-	ui_winx=0,	
-	ui_winy=0,	
+	ui_winx=0,
+	ui_winy=0,
 	ui_winw=-1,	//zero width means never set up
 	ui_winh=-1;	//negative width means start map fullscreen
 
@@ -2512,8 +2522,8 @@ void SaveData::InitPreferences(int wh)
 		ui_horizontalres[UIR_FRAG]=		UIRC_DESK;			//1 can mean use map
 		nextdialposmem=0;
 		ui_colourdepth=0;							//Zero means default depth
-		ui_winx=0,	
-		ui_winy=0,	
+		ui_winx=0,
+		ui_winy=0,
 		ui_winw=-1,	//zero width means never set up
 		ui_winh=-1;	//negative width means start map fullscreen
 	}
@@ -2523,7 +2533,7 @@ void SaveData::InitPreferences(int wh)
 #endif
 
 	//Don't put initialisation after this						//PD 11Feb99
-}	
+}
 
 void	SaveData::SavePreferences()
 {
@@ -2542,12 +2552,12 @@ void	SaveData::SavePreferences()
 //
 //
 /////////////////////////////////////////////////////////////////////////////////
-static	BOStream& operator	<<	(BOStream& bos,Attacks& a)	
+static	BOStream& operator	<<	(BOStream& bos,Attacks& a)
 {	return bos.write((char*)&a,sizeof(Attacks));return bos;	}
-static	BIStream& operator	>>	(BIStream& bis,Attacks& a)	
+static	BIStream& operator	>>	(BIStream& bis,Attacks& a)
 {	return bis.read((char*)&a,sizeof(Attacks));return bis;	}
 
-extern	char* compiledate; 
+extern	char* compiledate;
 
 //////////////////////////////////////////////////////////////////////
 //
@@ -2555,7 +2565,7 @@ extern	char* compiledate;
 // Date:		09/12/99
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	NodeData::SetPlayerInfoLevel()

@@ -9,17 +9,17 @@
 #endif
 //DEADCODE MS 02/02/00 #include "dosdefs.h"
 //DEADCODE MS 02/02/00 #include "files.g"
-//DEADCODE MS 02/02/00 
+//DEADCODE MS 02/02/00
 //DEADCODE MS 02/02/00 #include	<afxmt.h>
 //DEADCODE MS 02/02/00 #include	<dinput.h>
 //DEADCODE MS 02/02/00 #include	<mmsystem.h>
-//DEADCODE MS 02/02/00 #include	"stub3d.h" 
-//DEADCODE MS 02/02/00 #include "display.h"  
+//DEADCODE MS 02/02/00 #include	"stub3d.h"
+//DEADCODE MS 02/02/00 #include "display.h"
 //DEADCODE MS 02/02/00 #include "stdafx.h"
 //DEADCODE MS 02/02/00 #include	"flyinit.h"
 //DEADCODE MS 02/02/00 #include	"DEBRIEF.h"
 
-MATHABLE(SquadSelect)
+//x0r !!! MATHABLE(SquadSelect)
 //#ifndef	THIS_FILE_DEFINED
 //DEADCODE DAW 29/01/00 MATHABLE(Debrief::Types)
 //#endif

@@ -14,7 +14,7 @@
 
 
 class	MESSAGE_STRUC;
-class	CString;
+//class	CString;
 struct	PhraseBuffer;
 class	Sound;															//RJS 29Sep00
 

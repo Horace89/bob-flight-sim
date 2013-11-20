@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 //Filename       flymodel.h
-//System         
-//Author         R. Hyde 
+//System
+//Author         R. Hyde
 //Date           Thu 26 Oct 1995
 //Description    flymodel.cpp header file
 //------------------------------------------------------------------------------
@@ -58,24 +58,24 @@ private:
 //DeadCode RDH 28Feb96 	SWord		aileron,
 //DeadCode RDH 28Feb96 				elevator,
 //DeadCode RDH 28Feb96 				rudder;
-//DeadCode RDH 28Feb96 
+//DeadCode RDH 28Feb96
 //DeadCode RDH 20Dec95 	INSTABILITY	Instability;
 
 //DeadCode RDH 28Feb96 	ANGLES		oldpitch,
 //DeadCode RDH 28Feb96 				oldroll,
 //DeadCode RDH 28Feb96 				acroll,
 //DeadCode RDH 28Feb96 //DeadCode RDH 18Dec95 				cpitch,
-//DeadCode RDH 28Feb96 				croll, 
-//DeadCode RDH 28Feb96 				chdg,  
-//DeadCode RDH 28Feb96 				coldpitch, 
-//DeadCode RDH 28Feb96 				coldroll,  
+//DeadCode RDH 28Feb96 				croll,
+//DeadCode RDH 28Feb96 				chdg,
+//DeadCode RDH 28Feb96 				coldpitch,
+//DeadCode RDH 28Feb96 				coldroll,
 //DeadCode RDH 28Feb96 				oldacpitch,
-//DeadCode RDH 28Feb96 				oldacroll, 
-//DeadCode RDH 28Feb96 				oldachdg,  
+//DeadCode RDH 28Feb96 				oldacroll,
+//DeadCode RDH 28Feb96 				oldachdg,
 //DeadCode RDH 28Feb96 				stalldirection;
-//DeadCode RDH 28Feb96 
+//DeadCode RDH 28Feb96
 //DeadCode RDH 28Feb96 	SLong		cposy;
-//DeadCode RDH 28Feb96 
+//DeadCode RDH 28Feb96
 //DeadCode RDH 28Feb96 //DeadCode RDH 20Dec95 	SWord		idle,
 //DeadCode RDH 28Feb96 	SWord		rpm_lastcycle,
 //DeadCode RDH 28Feb96 				rpmtrimtime,
@@ -92,7 +92,7 @@ private:
 	SWord		airdensity,
 				cl_coeff,
 				sos,
-//DeadCode RDH 22Jul96 				trim,     
+//DeadCode RDH 22Jul96 				trim,
 				sinoldacpitch,
 				cosoldacpitch,
 				sinoldachdg,
@@ -141,7 +141,7 @@ private:
 //DeadCode RDH 01Mar96 	UWord		pilotframetime;
 	SLong		velocity_p2;
 	UWord		cycletimeres;
-//manual ac specific		   
+//manual ac specific
 	UWord		//sensitivity,										  //JIM 11/06/99
 				cntstick_f,
 				cntstick_b,
@@ -149,7 +149,7 @@ private:
 				cntstick_r,
 				cntrudder_l,
 				cntrudder_r;
-	SWord		device;	
+	SWord		device;
 
 UWordP		elevatordeflectiondata,
 			machdata,
@@ -225,7 +225,7 @@ private:
 //DeadCode RDH 01Mar96 	void	MoveToRPM (SWord);
 //DeadCode RDH 01Mar96 	void 	SetManoeuvreTime (SWord);
 //DeadCode RDH 01Mar96 	SWord 	ManoeuvreTimeLeft ();
-//DeadCode RDH 01Mar96 
+//DeadCode RDH 01Mar96
 //DeadCode RDH 01Mar96 	void	TightTurn (ANGLES);
 //DeadCode RDH 01Mar96 	void	SplitS ();
 //DeadCode RDH 01Mar96 	void	ZoomandDrop ();
@@ -249,7 +249,7 @@ private:
 //DeadCode RDH 01Mar96 	void	HeadOnOffset (SWord,SWord);
 //DeadCode RDH 01Mar96 	void	Immelmann (SWord,SWord);
 //DeadCode RDH 01Mar96 	void	StayWithPrey (SWord,SWord);
-//DeadCode RDH 01Mar96 
+//DeadCode RDH 01Mar96
 
 
 
@@ -262,10 +262,10 @@ public:
 	void	InitManualPilot (AirStrucPtr const A);				//RDH 05May96
 	void	InitManualPilotSub (AirStrucPtr const A);				//RDH 01Nov96
 //rdh	void	InitAircraft(AirStrucPtr const ControlledAC, Bool players);
-	void ManualPilot::InitFlightModelPos(AirStrucPtr const ControlledAC);
-	void ManualPilot::AutoToggleAircraft(AirStrucPtr const ControlledAC, CONTROLMODE mode);
+	void InitFlightModelPos(AirStrucPtr const ControlledAC);
+	void AutoToggleAircraft(AirStrucPtr const ControlledAC, CONTROLMODE mode);
 
-	void ManualPilot::InitSimpleAc(AirStrucPtr const ControlledAC);
+	void InitSimpleAc(AirStrucPtr const ControlledAC);
 
 //DEADCODE JIM 31/03/00 	void	PrintStatistics (class Window*);
 	void	Associate(

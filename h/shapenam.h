@@ -10,7 +10,7 @@
 
 #define	DEFAULT_SHAPENAM 0
 
-//#include	"shapenum.g"
+#include	"shapenum.g"
 
 #ifndef	NDEBUG
 

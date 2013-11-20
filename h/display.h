@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //Filename       display.h
-//System         
+//System
 //Author         Jim Taylor
 //Date           Tue 12 Dec 1995
 //Description    Hierachy of 3 physical realities:
@@ -14,7 +14,7 @@
 #define	DISPLAY_Included
 
 #define	DEFAULT_DISPLAY 0
- 
+
 #define MAXCMODES 60											//ARM 26Nov96
 //------------------------------------------------------------------------------
 class	Window;
@@ -32,7 +32,8 @@ struct	CharSizeEntry;
 struct	CharTableEntry;
 typedef	CharTableEntry	*CharTableEntryPtr;
 struct	FontStructInfo;
-typedef	struct	Font *FontPtr;;
+struct	Font;
+//x0r typedef	struct	Font *FontPtr;;
 class ViewPoint;
 
 struct	SmackTag;
@@ -79,7 +80,7 @@ struct IFFHunkSearch
 };
 
 //------------------------------------------------------------------------------
-//struct OutCode 
+//struct OutCode
 //{
 //	unsigned all;
 //	unsigned left:4;
@@ -158,7 +159,7 @@ protected:
 //	short	PhysicalHeight;		//Width of screen in pixels
 //	short	PhysicalMaxY;		//Height of screen in pixels
 	Smack* 	currsmk;
-	static UByte	Graphic::ExpandBuff[256][8];
+	static UByte	ExpandBuff[256][8];
 //	static SLong	fontcolour;
 
 //	Colour			colour;
@@ -256,7 +257,7 @@ protected:
 //	void	FillPalFxTable(void );								//PD 05Jan96
 protected:
 
-	void	Graphic::FillExpandBuff();
+	void	FillExpandBuff();
 //	void	PlotAndSaveMouseScanline(SWord	x, SWord	y, SWord	w, UByte	*&oldpos, UByte	*&newpos);
 //	void	PlotMouseScanline(SWord	x, SWord	y, SWord	w, UByte	*&pos);
 
@@ -310,7 +311,7 @@ protected:
 //{
 //	SLong	width;			//This is what the customer sets
 //	SLong	height;			//we do the rest
-//	SWord	colourdepth;	
+//	SWord	colourdepth;
 //	SWord	driver;												//PD 22May97
 //};
 
@@ -318,7 +319,7 @@ protected:
 //{
 //	SLong	VirtualMinX;		//these should never be>word
 //	SLong	VirtualWidth;		//note that these virtual mins and sizes
-//	SLong	VirtualMinY;		//must be proportional to 
+//	SLong	VirtualMinY;		//must be proportional to
 //	SLong	VirtualHeight;		//physical mins and sizes so zero is in same place
 //	CON	InitWindowDef(SLong X,SLong Y,SLong W,SLong H)
 //	{
@@ -446,7 +447,7 @@ public:
 //	short	NumberOfScreens;
 //	SLong	VirtualMinX;		//these should never be>word
 //	SLong	VirtualWidth;		//note that these virtual mins and sizes
-//	SLong	VirtualMinY;		//must be proportional to 
+//	SLong	VirtualMinY;		//must be proportional to
 //	SLong	VirtualHeight;		//physical mins and sizes so that the
 //	short	virtualXscale;		//origin LogicalScreenPtr is in the same place
 //	short	virtualYscale;		//Then, scaling only needs /virtual?scale.
@@ -559,7 +560,7 @@ private:
 //{
 //ULong	size;			//Input to GetDPMImem is size already filled in bytes
 //UWord	desc;			//This returns desc as a segment descriptor
-//UWord	seg,off;		//Seg is enough to find the data in both modes, 
+//UWord	seg,off;		//Seg is enough to find the data in both modes,
 //void*	flat;			//but an offset may be desirable sometimes
 //};						//So, off is also an input, and flat will be set up.
 //-------------------------------------------------------
@@ -607,7 +608,7 @@ private:
 
 // Structure for Direct Draw Parameters							//ARM 25Jun96
 //JIM 12/1/98
-//#ifdef	DECLARE_HANDLE 
+//#ifdef	DECLARE_HANDLE
 //#undef	DECLARE_HANDLE
 //#endif
 //#ifdef STRICT
@@ -654,7 +655,7 @@ private:
 //class direct_draw;
 //typedef class direct_draw DirectDD,*DirectDDP;
 
-//#if !defined(DIRECTDRAW_VERSION) 
+//#if !defined(DIRECTDRAW_VERSION)
 //#define LPDDCAPS void*
 //#endif
 																//ARM 25Jun96
@@ -673,7 +674,7 @@ private:
 
 //	LPDDCAPS		lpDDDriverCaps;								//ARM 25Jul96
 //	LPDDCAPS		lpDDHelCaps;								//ARM 25Jul96
-	
+
 //	LPDDSURFACEDESC   lpddsd;									//ARM 25Jun96
 																//ARM 25Jun96
 //	MYLPPALETTEENTRY	PaletteBuffer;							//ARM 25Jun96

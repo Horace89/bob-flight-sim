@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -64,8 +64,8 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //------------------------------------------------------------------------------
 //Filename       matrix.cpp
-//System         
-//Author         Paul.   
+//System
+//Author         Paul.
 //Date           Tue 22 Aug 1995
 //Description    3D transformation matrix generation code
 //------------------------------------------------------------------------------
@@ -132,11 +132,11 @@ extern	"C" Bool ASMDoBigXProd(SLong,SLong,SLong,SLong);		//PD 27Nov96
 // Author       Paul
 // Date         05/11/97
 //
-// Description  
+// Description
 //
-// Inputs       
+// Inputs
 //
-// Returns      
+// Returns
 //
 //-----------------------------------------------------------------------------
 extern	"C" void XASMDoBigXProd(void);
@@ -290,15 +290,15 @@ inline void fpTan(ANGLES ang,Float& tanAng)
 //Procedure	matrix
 //LastModified:	PD 20Dec95
 //------------------------------------------------------------------------------
-//Author		Paul.   
+//Author		Paul.
 //Date		Tue 22 Aug 1995
 //Modified	Removed old code and added coordinate scaling
 //
-//Description	
+//Description
 //
-//Inputs	
+//Inputs
 //
-//Returns	
+//Returns
 //
 //Externals
 //------------------------------------------------------------------------------
@@ -348,29 +348,29 @@ void matrix::generate(ANGLES heading, ANGLES pitch, ANGLES roll, MATRIX_PTR matr
 //PD 16Apr96 - nice idea but can't use it 'cos bz is no longer a range in cm for use with
 //				the rest of the code (shading , cone checking , draw ranges etc.)
 //TempCode PD 16Apr96 	//Introduce scaling factors for different screen resolutions//PD 16Apr96
-//TempCode PD 16Apr96 
+//TempCode PD 16Apr96
 //TempCode PD 16Apr96 	SWord	width = screen->PhysicalWidth;
-//TempCode PD 16Apr96 
+//TempCode PD 16Apr96
 //TempCode PD 16Apr96 	SWord	scalefactor = ((320<<15)/width);
-//TempCode PD 16Apr96 
+//TempCode PD 16Apr96
 //TempCode PD 16Apr96 	matrix->L31 = (matrix->L31 * scalefactor)>>15;
-//TempCode PD 16Apr96 
+//TempCode PD 16Apr96
 //TempCode PD 16Apr96 	matrix->L32 = (matrix->L32 * scalefactor)>>15;
-//TempCode PD 16Apr96 
+//TempCode PD 16Apr96
 //TempCode PD 16Apr96 	matrix->L33 = (matrix->L33 * scalefactor)>>15;
 
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		generate2
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 26 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void matrix::generate2(ANGLES heading, ANGLES pitch, ANGLES roll, MATRIX_PTR matrix)
@@ -414,14 +414,14 @@ void matrix::generate2(ANGLES heading, ANGLES pitch, ANGLES roll, MATRIX_PTR mat
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		generater
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 5 Jun 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void matrix::generater(ANGLES roll,MATRIX_PTR m)
@@ -440,20 +440,20 @@ void matrix::generater(ANGLES roll,MATRIX_PTR m)
 	m->L12 = -sin_roll;
 
 	m->L31 = m->L32 = m->L13 = m->L23 = 0;
-	
+
 	m->L33 = 0x07FFF;
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		generatep
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 6 Jun 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void matrix::generatep(ANGLES pitch, MATRIX_PTR m)
@@ -477,14 +477,14 @@ void matrix::generatep(ANGLES pitch, MATRIX_PTR m)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		generateh
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 2 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void matrix::generateh(ANGLES hdg,MATRIX_PTR m)
@@ -507,7 +507,7 @@ void matrix::generateh(ANGLES hdg,MATRIX_PTR m)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		inverse
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 17 Nov 1995
 //
 //Description	Generates the inverse of the current transformation
@@ -530,7 +530,7 @@ void matrix::generateh(ANGLES hdg,MATRIX_PTR m)
 // For the following version, the angles don't need reversing
 // uses cos(-theta) == cos(theta) and sin(-theta) == -sin(theta)
 // to simplify the method above.
-//	
+//
 //L11	=	CR.CH - SR.SP.SH
 //L21	=	SR.CP
 //L31	=	SR.SP.CH + CR.SH
@@ -546,9 +546,9 @@ void matrix::generateh(ANGLES hdg,MATRIX_PTR m)
 //L33	=	CP.CH
 //
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void matrix::inverse(ANGLES heading, ANGLES pitch, ANGLES roll, MATRIX_PTR matrix)
@@ -604,74 +604,74 @@ void matrix::inverse(ANGLES heading, ANGLES pitch, ANGLES roll, MATRIX_PTR matri
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		getxdeltas
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 31 Oct 1995
 //
 //Description	Returns the body x,y,z deltas required to move 1 cm in the
 //				positive world X direction
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //TempCode PD 4Mar98 void matrix::getxdeltas(MATRIX_PTR T, SLong& x, SLong& y, SLong& z)
 //TempCode PD 4Mar98 {
 //TempCode PD 4Mar98 	SLong tx,ty,tz;
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	tx = T->L11;
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	ty = T->L21;
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	tz = T->L31;
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	x = tx>>1;
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	y = ty>>1;
-//TempCode PD 4Mar98 	
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	z = tz>>1;
 //TempCode PD 4Mar98 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		getzdeltas
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 31 Oct 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //TempCode PD 4Mar98 void matrix::getzdeltas(MATRIX_PTR T, SLong& x, SLong& y, SLong& z)
 //TempCode PD 4Mar98 {
 //TempCode PD 4Mar98 	SLong tx,ty,tz;
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	tx = T->L13;
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	ty = T->L23;
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	tz = T->L33;
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	x = tx>>1;
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	y = ty>>1;
-//TempCode PD 4Mar98 	
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	z = tz>>1;
 //TempCode PD 4Mar98 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		transform_y
 //LastModified:	PD 13Mar96
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 23 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 	extern SLong TestOFlowY(SLong a);
@@ -721,28 +721,28 @@ inline  SLong TestOFlowY(SLong a)
 //TempCode PD 4Mar98 void matrix::transform_y(	MATRIX_PTR T, SLong y, SWord scale,
 //TempCode PD 4Mar98 							SLong& rtx, SLong& rty, SLong& rtz)
 //TempCode PD 4Mar98 {
-//TempCode PD 4Mar98 
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	SLong	tx,ty,tz;
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	SLong	temp = (y>=0)?y:-y;
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	SWord	y_scale=0;
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	while(temp>0x07FFF)
 //TempCode PD 4Mar98 	{
 //TempCode PD 4Mar98 		temp>>=1;
 //TempCode PD 4Mar98 		y_scale++;
 //TempCode PD 4Mar98 	}
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	y>>=y_scale;
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	tx = y * T->L12;										//PD 13Mar96
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	ty = y * T->L22;										//PD 13Mar96
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	tz = y * T->L32;										//PD 13Mar96
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	if((rtx = TestOFlowY(tx))==tx)
 //TempCode PD 4Mar98 	{
 //TempCode PD 4Mar98 		y_scale++;
@@ -767,14 +767,14 @@ inline  SLong TestOFlowY(SLong a)
 //TempCode PD 4Mar98 			}
 //TempCode PD 4Mar98 		}
 //TempCode PD 4Mar98 	}
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	SWord	scale_diff;
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	scale_diff = scale - y_scale;
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	if(scale_diff<=0)
 //TempCode PD 4Mar98 		return;
-//TempCode PD 4Mar98 
+//TempCode PD 4Mar98
 //TempCode PD 4Mar98 	rtx >>= scale_diff;
 //TempCode PD 4Mar98 	rty >>= scale_diff;
 //TempCode PD 4Mar98 	rtz >>= scale_diff;
@@ -785,16 +785,16 @@ inline  SLong TestOFlowY(SLong a)
 //Procedure	transform
 //LastModified:	PD 31Oct95
 //------------------------------------------------------------------------------
-//Author		Paul.   
+//Author		Paul.
 //Date		Fri 25 Aug 1995
-//Modified	
+//Modified
 //
 //Description	Transforms a point (Now includes a shift factor to avoid any
 //				overflows later).
 //
-//Inputs	
+//Inputs
 //
-//Returns	
+//Returns
 //
 //Externals
 //------------------------------------------------------------------------------
@@ -806,14 +806,14 @@ UWord matrix::transform(MATRIX_PTR T, SLong& x, SLong& y, SLong& z)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		rotate
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 5 Jun 1996
 //
 //Description	Transformation with no scaling tests
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void matrix::rotate(MATRIX_PTR T, SLong& x, SLong& y, SLong& z)
@@ -842,11 +842,11 @@ void matrix::rotate(MATRIX_PTR T, SLong& x, SLong& y, SLong& z)
 //Author		Paul											//PD 27Feb96
 //Date			Wed 25 Oct 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void matrix::multiply(MATRIX_PTR t,MATRIX_PTR sip)
@@ -910,9 +910,7 @@ void matrix::multiply(MATRIX_PTR t,MATRIX_PTR sip)
 //Returns	
 //
 //------------------------------------------------------------------------------
-UWord matrix::scaleto16bit(SLong& x, SLong& y, SLong& z)
-{
-extern SWord GetScale(SLong x,SLong y,SLong z);
+//extern SWord GetScale(SLong x,SLong y,SLong z);
 #ifdef __WATCOMC__
 #pragma aux GetScale =							\
 			"mov	edx,eax"					\
@@ -939,7 +937,7 @@ extern SWord GetScale(SLong x,SLong y,SLong z);
 			value 	[ax]
 #else
 #ifdef __MSVC__
-inline  SWord GetScale(SLong x,SLong y,SLong z);
+SWord GetScale(SLong x,SLong y,SLong z)
 {
 	SWord	retval;
     __asm
@@ -973,7 +971,8 @@ inline  SWord GetScale(SLong x,SLong y,SLong z);
 
 #endif
 #endif
-
+UWord matrix::scaleto16bit(SLong& x, SLong& y, SLong& z)
+{
 	SWord	ret_val;
 
 	ret_val = GetScale(x,y,z);
@@ -992,13 +991,13 @@ inline  SWord GetScale(SLong x,SLong y,SLong z);
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Body2Screen
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 25 Sep 1995
 //
-//Description	Transform from body coordinate system to screen 
+//Description	Transform from body coordinate system to screen
 //				coordinate system
 //
-//Inputs		
+//Inputs
 //
 //Returns		FALSE if the body Z for the point was negative.
 //
@@ -1016,7 +1015,7 @@ inline  SWord GetScale(SLong x,SLong y,SLong z);
 //DEADCODE PD 01/12/99 	}
 //DEADCODE PD 01/12/99 	else
 //DEADCODE PD 01/12/99 	{
-//DEADCODE PD 01/12/99 		R3DVALUE rw=R3DVALUE(1./(POLYGON.viewdata.hoD*dopoint.bodyz.f));	
+//DEADCODE PD 01/12/99 		R3DVALUE rw=R3DVALUE(1./(POLYGON.viewdata.hoD*dopoint.bodyz.f));
 //DEADCODE PD 01/12/99 		dopoint.screenx.f=R3DVALUE(POLYGON.viewdata.scalex*dopoint.bodyx.f*rw+POLYGON.viewdata.originx);
 //DEADCODE PD 01/12/99 		dopoint.screeny.f=R3DVALUE(-POLYGON.viewdata.scaley*dopoint.bodyy.f*rw+POLYGON.viewdata.originy);
 //DEADCODE PD 01/12/99 	}
@@ -1024,14 +1023,14 @@ inline  SWord GetScale(SLong x,SLong y,SLong z);
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		body2screen
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 23 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 /*DEAD void matrix::body2screen(landvertex& lvert)						//PD 25Jul96
@@ -1057,7 +1056,7 @@ inline  SWord GetScale(SLong x,SLong y,SLong z);
 		temp.bodyx.f=lvert.bodyx.f;
 		temp.bodyy.f=lvert.bodyy.f;
 		temp.bodyz.f=lvert.bodyz.f;
-		R3DVALUE rw=R3DVALUE(1./(POLYGON.viewdata.hoD*temp.bodyz.f));	
+		R3DVALUE rw=R3DVALUE(1./(POLYGON.viewdata.hoD*temp.bodyz.f));
 		temp.screenx.f=R3DVALUE(POLYGON.viewdata.scalex*temp.bodyx.f*rw+POLYGON.viewdata.originx);
 		temp.screeny.f=R3DVALUE(-POLYGON.viewdata.scaley*temp.bodyy.f*rw+POLYGON.viewdata.originy);
 		lvert.sx.f=temp.screenx.f;
@@ -1068,13 +1067,13 @@ DEAD*/
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Body2Screen
 //LastModified:	PD 04Jan96
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 25 Sep 1995
 //
-//Description	Transform from body coordinate system to screen 
+//Description	Transform from body coordinate system to screen
 //				coordinate system
 //
-//Inputs		
+//Inputs
 //
 //Returns		FALSE if the body Z for the point was negative.
 //
@@ -1102,22 +1101,22 @@ DEAD*/
 //DEADCODE PD 03/12/99 		dopoint.bodyx.f=vertex.bx.f;
 //DEADCODE PD 03/12/99 		dopoint.bodyy.f=vertex.by.f;
 //DEADCODE PD 03/12/99 		dopoint.bodyz.f=vertex.bz.f;
-//DEADCODE PD 03/12/99 		R3DVALUE rw=R3DVALUE(1./(POLYGON.viewdata.hoD*dopoint.bodyz.f));	
+//DEADCODE PD 03/12/99 		R3DVALUE rw=R3DVALUE(1./(POLYGON.viewdata.hoD*dopoint.bodyz.f));
 //DEADCODE PD 03/12/99 		dopoint.screenx.f=R3DVALUE(POLYGON.viewdata.scalex*dopoint.bodyx.f*rw+POLYGON.viewdata.originx);
 //DEADCODE PD 03/12/99 		dopoint.screeny.f=R3DVALUE(-POLYGON.viewdata.scaley*dopoint.bodyy.f*rw+POLYGON.viewdata.originy);
 //DEADCODE PD 03/12/99 		vertex.sx.f=dopoint.screenx.f;
 //DEADCODE PD 03/12/99 		vertex.sy.f=dopoint.screeny.f;
-//DEADCODE PD 03/12/99 	}	
+//DEADCODE PD 03/12/99 	}
 //DEADCODE PD 03/12/99 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		crossproduct
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 17 Oct 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
 //Returns		TRUE for clockwise, FALSE for anti-clockwise
 //
@@ -1163,58 +1162,58 @@ Bool matrix::crossproduct(DoPointStruc &v1,DoPointStruc &v2,DoPointStruc &v3)
 //Old_Code PD 28Oct98 {
 //Old_Code PD 28Oct98 	IFShare	temp1,temp2;
 //Old_Code PD 28Oct98 	IFShare	y2y1, x2x3, x2x1, y2y3;
-//Old_Code PD 28Oct98 
+//Old_Code PD 28Oct98
 //Old_Code PD 28Oct98 	Bool	retval;
-//Old_Code PD 28Oct98 
+//Old_Code PD 28Oct98
 //Old_Code PD 28Oct98 	y2y1.f = v2.screeny.f-v1.screeny.f;
 //Old_Code PD 28Oct98 	x2x3.f = v2.screenx.f-v3.screenx.f;
-//Old_Code PD 28Oct98 
+//Old_Code PD 28Oct98
 //Old_Code PD 28Oct98 	temp1.f= y2y1.f*x2x3.f;
-//Old_Code PD 28Oct98 
+//Old_Code PD 28Oct98
 //Old_Code PD 28Oct98 	x2x1.f = v2.screenx.f-v1.screenx.f;
 //Old_Code PD 28Oct98 	y2y3.f = v2.screeny.f-v3.screeny.f;
-//Old_Code PD 28Oct98 
+//Old_Code PD 28Oct98
 //Old_Code PD 28Oct98 	temp2.f= x2x1.f*y2y3.f;
-//Old_Code PD 28Oct98 
+//Old_Code PD 28Oct98
 //Old_Code PD 28Oct98 	temp1.f-=temp2.f;
-//Old_Code PD 28Oct98 
+//Old_Code PD 28Oct98
 //Old_Code PD 28Oct98 	if(temp1.f<(Float)0.0)
 //Old_Code PD 28Oct98 		retval = FALSE;
 //Old_Code PD 28Oct98 	else
 //Old_Code PD 28Oct98 		retval = TRUE;
-//Old_Code PD 28Oct98 
+//Old_Code PD 28Oct98
 //Old_Code PD 28Oct98 	return(retval);
 //Old_Code PD 28Oct98 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		accuratecrossproduct
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 27 Nov 1996
 //
 //Description	Cross product test using body coordinates (not screen
 //				coordinates). This means it can be used before zclipping
 //				and should be more accurate.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool matrix::accuratecrossproduct(DoPointStruc &v1,DoPointStruc &v2,DoPointStruc &v3)
 {
 //TempCode PD 08Jan97 	//Make my two vectors
-//TempCode PD 08Jan97 
+//TempCode PD 08Jan97
 //TempCode PD 08Jan97 	Float	vect0[2],vect1[2];
-//TempCode PD 08Jan97 
+//TempCode PD 08Jan97
 //TempCode PD 08Jan97 	vect0[0] = v2.bodyx.f - v1.bodyx.f;
 //TempCode PD 08Jan97 	vect0[1] = v2.bodyy.f - v1.bodyy.f;
-//TempCode PD 08Jan97 
+//TempCode PD 08Jan97
 //TempCode PD 08Jan97 	vect1[0] = v2.bodyx.f - v3.bodyx.f;
 //TempCode PD 08Jan97 	vect1[1] = v2.bodyy.f - v3.bodyy.f;
-//TempCode PD 08Jan97 
+//TempCode PD 08Jan97
 //TempCode PD 08Jan97 	//Only interested in the sign of the
 //TempCode PD 08Jan97 	//resulting Z component
-//TempCode PD 08Jan97 
+//TempCode PD 08Jan97
 //TempCode PD 08Jan97 	return (ASMDoBigXProd(vect0[0],vect0[1],vect1[0],vect1[1]));
 
 	//FIX ME!!!
@@ -1225,7 +1224,7 @@ Bool matrix::accuratecrossproduct(DoPointStruc &v1,DoPointStruc &v2,DoPointStruc
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		TransformAngles
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 3 Jul 1996
 //
 //Description	Given a set of angular deltas in an items coordinate system
@@ -1281,7 +1280,7 @@ void matrix::TransformAngles(	ANGLES thdg, ANGLES tpitch, ANGLES troll,
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		TransformAngles
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 3 Jul 1996
 //
 //Description	Given a set of angular deltas in an items coordinate system
@@ -1331,16 +1330,16 @@ void matrix::ViewAnglesTransform(	ANGLES thdg, ANGLES tpitch, ANGLES troll,
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		TransformAnglesB
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 4 Jul 1996
 //
-//Description	
+//Description
 //
 //Inputs		thdg, tpitch, troll = items current hdg,pitch,roll
 //				dhdg, dpitch  		= requested new hdg, pitch in world
 //									  coordinate system
 //
-//Returns		
+//Returns
 //
 //------------------------------------------------------------------------------
 void matrix::TransformAnglesB(	SLong	x, SLong y, SLong z,
@@ -1400,14 +1399,14 @@ void matrix::TransformAnglesB(	SLong	x, SLong y, SLong z,
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SetZScale
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 25 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void matrix::SetZScale()
@@ -1419,14 +1418,14 @@ void matrix::SetZScale()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		generate
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 6 Jan 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void matrix::generate(ANGLES heading, ANGLES pitch, ANGLES roll, FPMATRIX_PTR matrix)
@@ -1459,14 +1458,14 @@ void matrix::generate(ANGLES heading, ANGLES pitch, ANGLES roll, FPMATRIX_PTR ma
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		generate2
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 6 Jan 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void matrix::generate2(ANGLES heading, ANGLES pitch, ANGLES roll, FPMATRIX_PTR matrix)
@@ -1499,14 +1498,14 @@ void matrix::generate2(ANGLES heading, ANGLES pitch, ANGLES roll, FPMATRIX_PTR m
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		inverse
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 6 Jan 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void matrix::inverse(ANGLES heading, ANGLES pitch, ANGLES roll, FPMATRIX_PTR matrix)
@@ -1544,14 +1543,14 @@ void matrix::inverse(ANGLES heading, ANGLES pitch, ANGLES roll, FPMATRIX_PTR mat
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		getxdeltas
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 6 Jan 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void matrix::getxdeltas(FPMATRIX_PTR T, IFShare& x, IFShare& y, IFShare& z)
@@ -1563,14 +1562,14 @@ void matrix::getxdeltas(FPMATRIX_PTR T, IFShare& x, IFShare& y, IFShare& z)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		getzdeltas
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 6 Jan 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void matrix::getzdeltas(FPMATRIX_PTR T, IFShare& x, IFShare& y, IFShare& z)
@@ -1582,14 +1581,14 @@ void matrix::getzdeltas(FPMATRIX_PTR T, IFShare& x, IFShare& y, IFShare& z)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		transform
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 6 Jan 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 UWord matrix::transform(FPMATRIX_PTR T, IFShare& x, IFShare& y, IFShare& z)
@@ -1602,7 +1601,7 @@ UWord matrix::transform(FPMATRIX_PTR T, IFShare& x, IFShare& y, IFShare& z)
 	y.f = (T->L21 * fx) + (T->L22 * fy) + (T->L23 * fz);
 	z.f = (T->L31 * fx) + (T->L32 * fy) + (T->L33 * fz);
 
-	//Now generates clip flags based 
+	//Now generates clip flags based
 	//on the current view cone
 
 	return 0;
@@ -1610,7 +1609,7 @@ UWord matrix::transform(FPMATRIX_PTR T, IFShare& x, IFShare& y, IFShare& z)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		transformNC
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 24 Apr 1998
 //------------------------------------------------------------------------------
 UWord matrix::transformNC(FPMATRIX_PTR T, IFShare& x, IFShare& y, IFShare& z)
@@ -1639,11 +1638,11 @@ UWord matrix::transformNC(FPMATRIX_PTR T, IFShare& x, IFShare& y, IFShare& z)
 //Author		Jim Taylor
 //Date			Wed 4 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void matrix::transform(FPMATRIX_PTR T, DoPointStruc& dp)
@@ -1659,7 +1658,7 @@ void matrix::transform(FPMATRIX_PTR T, DoPointStruc& dp)
 					(T->L21 * fx) + (T->L22 * fy) + (T->L23 * fz),
 					(T->L31 * fx) + (T->L32 * fy) + (T->L33 * fz)	);
 
-	//Now generates clip flags based 
+	//Now generates clip flags based
 	//on the current view cone
 
 //DEADCODE PD 03/12/99 	SetClipFlags(dp);
@@ -1667,7 +1666,7 @@ void matrix::transform(FPMATRIX_PTR T, DoPointStruc& dp)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		transformNC
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 24 Apr 1998
 //------------------------------------------------------------------------------
 /*inline void matrix::transformNC(FPMATRIX_PTR T, DoPointStruc* dp)
@@ -1685,14 +1684,14 @@ void matrix::transform(FPMATRIX_PTR T, DoPointStruc& dp)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		transform
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 6 Jan 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 UWord matrix::fptrans(FPMATRIX_PTR T, IFShare& x, IFShare& y, IFShare& z)
@@ -1704,12 +1703,12 @@ UWord matrix::fptrans(FPMATRIX_PTR T, IFShare& x, IFShare& y, IFShare& z)
 	y.f = (T->L21 * fx) + (T->L22 * fy) + (T->L23 * fz);
 	z.f = (T->L31 * fx) + (T->L32 * fy) + (T->L33 * fz);
 
-	//Now generates clip flags based 
+	//Now generates clip flags based
 	//on the current view cone
 
 	UWord retval=0;														//RJS 26Jul00
 //DEADCODE PD 03/12/99 	_clipFB(retval,z.f,1.,fpMaximumZ);
-//DEADCODE PD 03/12/99 
+//DEADCODE PD 03/12/99
 //DEADCODE PD 03/12/99 	_clipLR(retval,x.f,z.f);
 //DEADCODE PD 03/12/99 	_clipTB(retval,y.f,z.f);
 	return retval;
@@ -1717,14 +1716,14 @@ UWord matrix::fptrans(FPMATRIX_PTR T, IFShare& x, IFShare& y, IFShare& z)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		transform_y
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 6 Jan 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void matrix::transform_y(FPMATRIX_PTR T, SLong y,
@@ -1738,14 +1737,14 @@ void matrix::transform_y(FPMATRIX_PTR T, SLong y,
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		multiply
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 6 Jan 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void matrix::multiply(FPMATRIX_PTR t, FPMATRIX_PTR sip)
@@ -1784,12 +1783,12 @@ void matrix::multiply(FPMATRIX_PTR t, FPMATRIX_PTR sip)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SetViewParams
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 2 Feb 1998
 //
-//Description	
+//Description
 //
-//Inputs		view cone angle + distance to back clipping plane in cm	
+//Inputs		view cone angle + distance to back clipping plane in cm
 //
 //------------------------------------------------------------------------------
 void matrix::SetViewParams(Window* win,ANGLES viewCone,SLong viewRange)
@@ -1797,21 +1796,21 @@ void matrix::SetViewParams(Window* win,ANGLES viewCone,SLong viewRange)
 //DEADCODE PD 03/12/99 	//Clip the view cone to min/max
 //DEADCODE PD 03/12/99 	if (viewCone<ANGLES_40Deg)		viewCone=ANGLES_40Deg;
 //DEADCODE PD 03/12/99 	else if (viewCone>ANGLES_90Deg)	viewCone=ANGLES_90Deg;
-//DEADCODE PD 03/12/99 
+//DEADCODE PD 03/12/99
 //DEADCODE PD 03/12/99 	viewConeAngle=Angles(UWord(viewCone)>>1);
 //DEADCODE PD 03/12/99 	fpTan(viewConeAngle,FoV);
-//DEADCODE PD 03/12/99 
+//DEADCODE PD 03/12/99
 //DEADCODE PD 03/12/99 	aspectRatio=Float(win->VirtualHeight)/Float(win->VirtualWidth);
 //DEADCODE PD 03/12/99 	aspectRatio*=FoV;
-//DEADCODE PD 03/12/99 
+//DEADCODE PD 03/12/99
 //DEADCODE PD 03/12/99  	fpMaximumZ=Float(viewRange);
-//DEADCODE PD 03/12/99 
+//DEADCODE PD 03/12/99
 //DEADCODE PD 03/12/99 	win->DoSetAspectRatio(aspectRatio,FoV);
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		generateh
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 24 Aug 1998
 //------------------------------------------------------------------------------
 void matrix::generateh(ANGLES hdg,FPMATRIX& m)
@@ -1827,7 +1826,7 @@ void matrix::generateh(ANGLES hdg,FPMATRIX& m)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		generatep
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 24 Aug 1998
 //------------------------------------------------------------------------------
 void matrix::generatep(ANGLES pitch, FPMATRIX& m)
@@ -1844,7 +1843,7 @@ void matrix::generatep(ANGLES pitch, FPMATRIX& m)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		generater
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 24 Aug 1998
 //------------------------------------------------------------------------------
 void matrix::generater(ANGLES roll,FPMATRIX& m)
@@ -1861,7 +1860,7 @@ void matrix::generater(ANGLES roll,FPMATRIX& m)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		inverseMobileMatrix
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 24 Aug 1998
 //------------------------------------------------------------------------------
 void matrix::inverseMobileMatrix(ANGLES hdg,ANGLES pitch,ANGLES roll,FPMATRIX& m)
@@ -1887,7 +1886,7 @@ void matrix::inverseMobileMatrix(ANGLES hdg,ANGLES pitch,ANGLES roll,FPMATRIX& m
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Generate
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 12 Oct 1998
 //------------------------------------------------------------------------------
 void matrix::Generate(ANGLES heading,ANGLES pitch,ANGLES roll,FPMATRIX* matrix)
@@ -1964,7 +1963,7 @@ void matrix::GenerateV(ANGLES heading,ANGLES pitch,ANGLES roll,FPMATRIX* matrix)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Generate2
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 12 Oct 1998
 //------------------------------------------------------------------------------
 void matrix::Generate2(	ANGLES heading,ANGLES pitch,ANGLES roll,
@@ -2005,9 +2004,9 @@ void matrix::Generate2(	ANGLES heading,ANGLES pitch,ANGLES roll,
 //
 //Description	For spheres and cylinders.......
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void matrix::GenerateXY(Float	&xscale,Float	&yscale)
@@ -2023,9 +2022,9 @@ void matrix::GenerateXY(Float	&xscale,Float	&yscale)
 //
 //Description	Generates a 20 degree viewcone for radar locking
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void matrix::GenerateRadar(ANGLES heading,ANGLES pitch,ANGLES roll,FPMATRIX* matrix)
@@ -2081,11 +2080,11 @@ void matrix::GenerateRadar(ANGLES heading,ANGLES pitch,ANGLES roll,FPMATRIX* mat
 //Author		Robert Slater
 //Date			Mon 13 Mar 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	matrix::Transform(FPMATRIX_PTR T, Float& x, Float& y, Float& z)
@@ -2106,9 +2105,9 @@ void	matrix::Transform(FPMATRIX_PTR T, Float& x, Float& y, Float& z)
 //
 //Description	X = l/r, Y = f/b, Z = u/d
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	matrix::Generate3DS(Float*	matrix, SWord& hdg, SWord& pitch, SWord& roll)

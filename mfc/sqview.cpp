@@ -81,7 +81,7 @@ static char THIS_FILE[] = __FILE__;
 
 
 CQuickView::CQuickView(CWnd* pParent /*=NULL*/)
-	: RowanDialog(CQuickView::IDD, pParent)
+	: RowanDialog(CQuickView::IDD, pParent),targtype(0),targentry(0)
 {
 	//{{AFX_DATA_INIT(CQuickView)
 		// NOTE: the ClassWizard will add member initialization here

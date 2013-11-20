@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -64,7 +64,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //------------------------------------------------------------------------------
 //Filename       sound.cpp
-//System         
+//System
 //Author         Robert Slater
 //Date           Wed 21 Feb 1996
 //Description    MIDI and sound sample library functions
@@ -76,7 +76,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 #ifndef	NDEBUG
 //	#define		_NO_RADIOCHATTER_
-//	#define		_WAITFORCRAIG_	
+//	#define		_WAITFORCRAIG_
 //#define	_NOVELOCITY_
 //#define	_VOLTEST_
 //#define	_NOSOUNDIN3D_
@@ -124,6 +124,20 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include	"fastmath.h"
 #include	"messengn.h"													//RJS 29Sep00
 #include	<Vfw.h>
+
+int strnicmp(const char *s1, const char *s2, size_t n)
+{
+
+  if (n == 0)
+    return 0;
+  do {
+    if (toupper(*s1) != toupper(*s2++))
+      return toupper(*(unsigned const char *)s1) - toupper(*(unsigned const char *)--s2);
+    if (*s1++ == 0)
+      break;
+  } while (--n != 0);
+  return 0;
+}
 
 const	double	VOL_DISTUNIT = 150.;
 const	double	VOL_DISTUNITSQRD = 150.*150.;
@@ -214,11 +228,11 @@ extern	bool	naughtynaughty;											//RJS 8Nov00
 //Author		Robert Slater
 //Date			Wed 21 Feb 1996
 //
-//Description	Set up midi and digital samples system	
+//Description	Set up midi and digital samples system
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 extern	void*	ailmalloc(size_t);
@@ -247,7 +261,7 @@ void	Sound::StartUpSound(ULong	thiswin)					//RJS 19May98
 	if (mdi || dig || timer)								//RJS 18May98
 		return;
 
-	currWin = thiswin;			
+	currWin = thiswin;
 	View_Point=NULL;											//RJS 13Mar98
 	midiOutDev=NULL;
 																//RJS 13Mar98
@@ -417,19 +431,19 @@ void	Sound::StartUpSound(ULong	thiswin)					//RJS 19May98
 //Author		Robert Slater
 //Date			Mon 18 May 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	Sound::NewDigitalDriver(HSampRate	srate,int	nohandlers,Bool	usemono, bool have3d)
 {
 	int 		count;
 	char		found;
-	int			size;											
-	SLong		result;			
+	int			size;
+	SLong		result;
 	Bool		ok;
 	WAVEFORMATEX PCM_waveformat;
 	int			volBeforeCloseDown = Save_Data.vol.sfx;					//RJS 16Nov00
@@ -584,11 +598,11 @@ Bool	Sound::NewDigitalDriver(HSampRate	srate,int	nohandlers,Bool	usemono, bool h
 //Author		Robert Slater
 //Date			Thu 29 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	Sound::TuneInRange(int	tuneno)
@@ -605,11 +619,11 @@ Bool	Sound::TuneInRange(int	tuneno)
 //Author		Robert Slater
 //Date			Mon 25 Mar 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	Sound::SequenceInRange(TuneStrucP	TunePtr, int	seqno)
@@ -626,11 +640,11 @@ Bool	Sound::SequenceInRange(TuneStrucP	TunePtr, int	seqno)
 //Author		Robert Slater
 //Date			Mon 25 Mar 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	Sound::SampleInRange(int	sampleno)
@@ -647,11 +661,11 @@ Bool	Sound::SampleInRange(int	sampleno)
 //Author		Robert Slater
 //Date			Mon 25 Mar 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	Sound::HandlerInRange(int	qpos)
@@ -668,12 +682,12 @@ Bool	Sound::HandlerInRange(int	qpos)
 //Date			Wed 21 Feb 1996
 //
 //Description	Initialises all the sequences in a tune
-//			
 //
-//Inputs				
 //
-//Returns		
-//	
+//Inputs
+//
+//Returns
+//
 //------------------------------------------------------------------------------
 void	Sound::InitTune(TuneStrucP	TunePtr)
 {
@@ -684,11 +698,11 @@ void	Sound::InitTune(TuneStrucP	TunePtr)
 //Author		Robert Slater
 //Date			Thu 29 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	Sound::StartMain(SLong	vol)
@@ -698,17 +712,17 @@ Bool	Sound::StartMain(SLong	vol)
  	int		nosequences;
  	ULong	status, channelno;									//RJS 30Sep96
 //DeadCode RJS 20Oct00  	int		combatbase = GetIndex(FIL_MUSIC_MAIN);				//RJS 02Jul98
- 
+
  	if ((Save_Data.vol.music != 0) && !incombat)					//RJS 25Jun98
  	{
 		if (mdi->Playing())
 			return FALSE;
- 
+
  		TuneStrucP	TunePtr = LoadTune(FIL_MUSIC_MAIN);					//RJS 18May98
  		if (TunePtr && TunePtr->blockptr && !request.activated)
  		{
  			HSEQUENCE	thishandle;
- 
+
  			request.wait = FALSE;
  			request.todiscard = FALSE;
  			request.killnow = FALSE;
@@ -716,16 +730,16 @@ Bool	Sound::StartMain(SLong	vol)
  			request.mainstopped = FALSE;								//RJS 06Jan97
  			request.alonetuneno = NULL;									//RJS 26Feb98
  			request.forcestop = 0;										//RJS 18Jun99
- 
+
  			// Clip the volume if out of range...
- 
+
  			ClipVolume(vol);							//RJS 14Sep00
- 
+
 			mdi->SetVolume(vol);
 			mdi->Play(TunePtr->dlsPtr,TunePtr->dlsSize);
  		}
  	}
- 
+
 	return TRUE;
 }
 
@@ -734,26 +748,26 @@ Bool	Sound::StartMain(SLong	vol)
 //Author		Robert Slater
 //Date			Tue 12 Nov 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::StopMain()
 {
  	int	count;
- 
+
  	if (	(Save_Data.vol.music == 0)
- 		||	(incombat == FALSE)			
+ 		||	(incombat == FALSE)
  		||	(request.mainstopped == TRUE)		)
  		return;
- 
+
  	request.activated = INT_NULL;
- 
+
 	mdi->SetVolume(0,3000);
- 
+
  	request.activated |= INT_STOPSEQUENCE;
 }
 
@@ -764,9 +778,9 @@ void	Sound::StopMain()
 //
 //Description	Throws away all the main music stuff
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::DiscardMusic(TuneStrucP	exception)
@@ -777,37 +791,37 @@ void	Sound::DiscardMusic(TuneStrucP	exception)
  	int			sequenceno;
  	Bool		specialcase = FALSE;
  	TuneStrucP	TunePtr;
- 
+
  	if (!mdi)													//RJS 03Dec96
  		return;													//RJS 03Dec96
- 
+
  	request.activated = INT_NULL;
  	incombat = FALSE;											//RJS 12Nov96
- 
+
  	for (tuneno = 0; tuneno < endtune; tuneno++)
  	{
  		TunePtr = &tune[tuneno];
- 
+
  		if (TunePtr == exception)
  			specialcase = TRUE;
  		else
  			specialcase = FALSE;
- 
+
  		if (TunePtr->blockptr)
  		{
  			nosequences = TunePtr->nosequences;
 
  			mdi->Stop();
- 
+
  			if (!specialcase)
  			{
  				delete TunePtr->blockptr;
- 
+
  				TunePtr->blockptr = NULL;
  			}
  		}
  	}
- 
+
  	request.killnow = FALSE;
 }
 
@@ -874,7 +888,7 @@ TuneStrucP	Sound::LoadTune(FileNum	thefile)
 
 			// All clear, so load the sequences file...
 			thefile=(FileNum)(thefile+MusicDir);
-	
+
 			theblock = new fileblock (thefile);
 			if (theblock)
 			{
@@ -920,11 +934,11 @@ TuneStrucP	Sound::LoadTune(FileNum	thefile)
 //Author		Robert Slater
 //Date			Wed 21 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		Digital waveform table filename		
+//Inputs		Digital waveform table filename
 //
-//Returns		
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::InstallWaveTable(FileNum	thefile,Bool	useDLS)
@@ -947,7 +961,7 @@ void	Sound::InstallWaveTable(FileNum	thefile,Bool	useDLS)
 //
 //Inputs		camera world viewpoint
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::ProcessSpot(ViewPoint*	viewobject)
@@ -961,7 +975,7 @@ void	Sound::ProcessSpot(ViewPoint*	viewobject)
 		if (	viewobject->FrameTime()								//RJS 12Jan00
 			&&	!viewobject->Accel()
 			&&	(	!viewobject->drawSpecialFlags
-				||	(viewobject->drawSpecialFlags & VIEW_SPECIAL_REPLAY) )	)	
+				||	(viewobject->drawSpecialFlags & VIEW_SPECIAL_REPLAY) )	)
 		{
 			SLong	seqno;
 			SLong	tuneno;
@@ -985,7 +999,7 @@ void	Sound::ProcessSpot(ViewPoint*	viewobject)
 						if (mdi->GetVolume())
  							stopnow = false;
  					}
- 
+
  					if (stopnow)
  					{
  						request.activated &= ~INT_STOPSEQUENCE;
@@ -1145,7 +1159,7 @@ void	Sound::ProcessSpot(ViewPoint*	viewobject)
 //
 //Inputs		Damage level (0 - 16)
 //				0 is no damage
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::KillEngine(ClassPtr	classtype, int	dlevel)
@@ -1171,11 +1185,11 @@ void	Sound::KillEngine(ClassPtr	classtype, int	dlevel)
 //Author		Robert Slater
 //Date			Fri 23 Feb 1996
 //
-//Description	Hard starts a sequence from scratch	
+//Description	Hard starts a sequence from scratch
 //
-//Inputs		Sequence number, fade time, and fade volume		
+//Inputs		Sequence number, fade time, and fade volume
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::StartSequence(FileNum	thefile, int	sequenceno, SLong	fadeval, SLong	vol)
@@ -1187,11 +1201,11 @@ void	Sound::StartSequence(FileNum	thefile, int	sequenceno, SLong	fadeval, SLong	
 //Author		Robert Slater
 //Date			Thu 26 Feb 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	Sound::StartSeqEffect(TuneStrucP	TunePtr,SLong	vol,SLong fadeval)
@@ -1204,11 +1218,11 @@ Bool	Sound::StartSeqEffect(TuneStrucP	TunePtr,SLong	vol,SLong fadeval)
 //Author		Robert Slater
 //Date			Thu 26 Feb 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	Sound::StartSeqMain(TuneStrucP	TunePtr, SLong	vol,SLong fadeval)
@@ -1236,15 +1250,15 @@ Bool	Sound::StartSeqMain(TuneStrucP	TunePtr, SLong	vol,SLong fadeval)
 		request.NewFade = fadeval;									//RJS 06May99
 
 
-		if (!incombat)										
+		if (!incombat)
 			doInt = StartMain(request.NewVolume);					//RJS 18Jun99
-		else												
+		else
 		{
 			if (lasttrack == request.CurrentTrack)				//RJS 30Jun98
-				doInt = FALSE;							
-		}													
+				doInt = FALSE;
+		}
 
-		if (incombat)										
+		if (incombat)
 		{
 			if (doInt)
 				request.activated |= INT_FADER;
@@ -1277,7 +1291,7 @@ Bool	Sound::StartSeqIndependent(TuneStrucP	TunePtr, SLong	vol,SLong fadeval)
  			{
  				request.alonetuneno = TunePtr;
  				request.activated |= INT_STOPSEQUENCE;			//RJS 18Jun99
- 
+
  				FadeAll(500);
  			}
  			else
@@ -1286,11 +1300,11 @@ Bool	Sound::StartSeqIndependent(TuneStrucP	TunePtr, SLong	vol,SLong fadeval)
  				{
  					request.alonetuneno = TunePtr;
  					request.activated |= INT_STOPSEQUENCE;			//RJS 18Jun99
- 
+
  					FadeAll(500);
  				}
  				else
- 					doInt = FALSE;		
+ 					doInt = FALSE;
  			}
  		}
  		else
@@ -1302,7 +1316,7 @@ Bool	Sound::StartSeqIndependent(TuneStrucP	TunePtr, SLong	vol,SLong fadeval)
  		{
  			request.alonetuneno = TunePtr;
  			request.killnow = TRUE;
- 
+
   			FadeAll(500);
  		}
   	}
@@ -1316,15 +1330,15 @@ Bool	Sound::StartSeqIndependent(TuneStrucP	TunePtr, SLong	vol,SLong fadeval)
 //Date			Fri 23 Feb 1996
 //
 //Description	Essentially a track volume fader;
-//				Adjusts the volume of the specified sequence	
+//				Adjusts the volume of the specified sequence
 //
 //Inputs		Tune, Sequence, fade time, fade volume and stomp request
 //				If stomp is FALSE,
 //					a request is placed to fade in/out at an appropriate moment.
 //				otherwise
-//					adjust volume regardless.		
+//					adjust volume regardless.
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::SequenceAudible(FileNum	thefile, SLong	vol, SLong	fadeval)
@@ -1367,9 +1381,9 @@ void	Sound::SequenceAudible(FileNum	thefile, SLong	vol, SLong	fadeval)
 //
 //Description	For mood settings
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::SequenceAudible(MoodSetting	 setMood,SLong vol,SLong fadeval)
@@ -1383,11 +1397,11 @@ void	Sound::SequenceAudible(MoodSetting	 setMood,SLong vol,SLong fadeval)
 //Author		Robert Slater
 //Date			Wed 3 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::SequenceAudible(MoodDelta	 deltaMood,SLong vol,SLong fadeval)
@@ -1401,11 +1415,11 @@ void	Sound::SequenceAudible(MoodDelta	 deltaMood,SLong vol,SLong fadeval)
 //Author		Robert Slater
 //Date			Fri 23 Feb 1996
 //
-//Description	Stops a sequence from playing	
+//Description	Stops a sequence from playing
 //
 //Inputs		The file, Sequence no
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::StopSequence(FileNum	thefile, int	sequenceno)
@@ -1440,9 +1454,9 @@ void	Sound::StopSequence(FileNum	thefile, int	sequenceno)
 //
 //Description	Stops all the midi music if any is playing
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::StopMusic()
@@ -1465,11 +1479,11 @@ void	Sound::StopMusic()
 //Author		Robert Slater
 //Date			Fri 30 Aug 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 bool	Sound::FadeAll(SLong fadeval)
@@ -1495,9 +1509,9 @@ bool	Sound::FadeAll(SLong fadeval)
 //
 //Description	Resumes all stopped midi music
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::ResumeMusic()
@@ -1509,11 +1523,11 @@ void	Sound::ResumeMusic()
 //Author		Robert Slater
 //Date			Fri 23 Feb 1996
 //
-//Description	Fade out sequence	
+//Description	Fade out sequence
 //
-//Inputs		The sequence no, the fade time, a stomp request		
+//Inputs		The sequence no, the fade time, a stomp request
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::SequenceMute(FileNum	thefile, int	sequenceno, SLong	fadeval)
@@ -1526,11 +1540,11 @@ void	Sound::SequenceMute(FileNum	thefile, int	sequenceno, SLong	fadeval)
 //Author		Robert Slater
 //Date			Tue 27 Feb 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::reporterror(int	eno, char	*text)
@@ -1542,7 +1556,7 @@ void	Sound::reporterror(int	eno, char	*text)
 //Author		Robert Slater
 //Date			Tue 20 Feb 1996
 //
-//Description	Gets a sample from disk and stores its information	
+//Description	Gets a sample from disk and stores its information
 //
 //Inputs		Sample number and the filename
 //
@@ -1600,7 +1614,7 @@ SampleRec*	Sound::LoadSample(FileNum	thefile, Bool inUI)
 
 					for (count = 0; count < 4; count ++)
 						header[count] = *tmpptr++;
-	
+
 					header[4] = 0;
 
 					if (	(strcmp(header,"RIFF") == 0)
@@ -1608,7 +1622,7 @@ SampleRec*	Sound::LoadSample(FileNum	thefile, Bool inUI)
 					{
 						header1 = (RIFF*) tmpaddress;
 						header2 = (FMT*) header1->data;
-		
+
 						count = 0;											//RJS 24Nov96
 						while (strnicmp(header2->FMT_string,"fmt ",4))
     					{
@@ -1693,30 +1707,30 @@ SQueuePtr	Sound::FindFreeHandler(SampleRec* SamplePtr, ItemBasePtr	sampleitem, S
 	SQueuePtr	NewChannelPtr = NULL;
 
 	OldChannelPtr = NULL;
-	ChannelPtr = &soundqueue[freechannelstart];		
+	ChannelPtr = &soundqueue[freechannelstart];
 	for (count = freechannelstart; count < status.nohandlers; count ++)
 	{
-		if (!ChannelPtr->isRadio)								
+		if (!ChannelPtr->isRadio)
 		{
 			UpdatePriority(ChannelPtr,count,lowest,lowpos);
 
-			if (ChannelPtr->sampleindex)						
+			if (ChannelPtr->sampleindex)
 			{
 				if (ChannelPtr->handler->Status() == SMP_DONE)
 				{
 					ChannelPtr->Clean();
 
-					if (!NewChannelPtr && !OldChannelPtr)		
-						NewChannelPtr = ChannelPtr;				
+					if (!NewChannelPtr && !OldChannelPtr)
+						NewChannelPtr = ChannelPtr;
 				}
 				else
 				{
-					if (	(ChannelPtr->looping)				
+					if (	(ChannelPtr->looping)
 						&&	(ChannelPtr->worlditem == sampleitem)
 						&&	(ChannelPtr->sampleindex == SamplePtr)
-						&&	!OldChannelPtr		)				  
-					{											  
-						OldChannelPtr = ChannelPtr;				  
+						&&	!OldChannelPtr		)
+					{
+						OldChannelPtr = ChannelPtr;
 						NewChannelPtr = NULL;
 
 						ChannelPtr->handler->SetLooping(looplength);
@@ -1725,12 +1739,12 @@ SQueuePtr	Sound::FindFreeHandler(SampleRec* SamplePtr, ItemBasePtr	sampleitem, S
 			}
 			else
 			{
-				if (!NewChannelPtr && !OldChannelPtr)			
-					NewChannelPtr = ChannelPtr;					
+				if (!NewChannelPtr && !OldChannelPtr)
+					NewChannelPtr = ChannelPtr;
 			}
 		}
 
-		ChannelPtr++;											
+		ChannelPtr++;
 	}
 
 	// If there were no free slots, then grab the one with the lowest priority
@@ -1743,11 +1757,11 @@ SQueuePtr	Sound::FindFreeHandler(SampleRec* SamplePtr, ItemBasePtr	sampleitem, S
 
 			NewChannelPtr->Clean();
 
-			NewChannelPtr->handler->End();				
+			NewChannelPtr->handler->End();
 		}
 	}
 
-	return(NewChannelPtr);										
+	return(NewChannelPtr);
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -1757,9 +1771,9 @@ SQueuePtr	Sound::FindFreeHandler(SampleRec* SamplePtr, ItemBasePtr	sampleitem, S
 //
 //Description	Same as above, but blocks the sample if already playing
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SQueuePtr	Sound::FindFreeHandlerOnce(SampleRec* SamplePtr, ItemBasePtr	sampleitem, SQueuePtr	&OldChannelPtr, int	stblock, int	endblock)
@@ -1774,38 +1788,38 @@ SQueuePtr	Sound::FindFreeHandlerOnce(SampleRec* SamplePtr, ItemBasePtr	sampleite
 
 	OldChannelPtr = NULL;	//RJS 29Jan99
 
-	ChannelPtr = &soundqueue[freechannelstart];					
+	ChannelPtr = &soundqueue[freechannelstart];
 	for (count = freechannelstart; count < status.nohandlers; count ++)
 	{
-//DeadCode RJS 22Sep00 		ChannelPtr = &soundqueue[count];					
-		if (!ChannelPtr->isRadio)							
+//DeadCode RJS 22Sep00 		ChannelPtr = &soundqueue[count];
+		if (!ChannelPtr->isRadio)
 		{
 			UpdatePriority(ChannelPtr,count,lowest,lowpos);				//RJS 22Sep00
 
-			if (ChannelPtr->sampleindex)					
+			if (ChannelPtr->sampleindex)
 			{
 				if (ChannelPtr->handler->Status() == SMP_DONE)
 				{
 					ChannelPtr->Clean();								//RJS 22Sep00
 
-					if (!NewChannelPtr && !OldChannelPtr)			
-						NewChannelPtr = ChannelPtr;					
+					if (!NewChannelPtr && !OldChannelPtr)
+						NewChannelPtr = ChannelPtr;
 				}
 				else
 				{
-					if (	(ChannelPtr->worlditem == sampleitem)	
-						&&  (ChannelPtr->sampleindex > StBlockPtr)	
-						&&	(ChannelPtr->sampleindex < EndBlockPtr)	
-						&&	!OldChannelPtr	)						
-					{												
-						OldChannelPtr = ChannelPtr;					
-					}												
+					if (	(ChannelPtr->worlditem == sampleitem)
+						&&  (ChannelPtr->sampleindex > StBlockPtr)
+						&&	(ChannelPtr->sampleindex < EndBlockPtr)
+						&&	!OldChannelPtr	)
+					{
+						OldChannelPtr = ChannelPtr;
+					}
 				}
 			}
 			else
 			{
 				if (!NewChannelPtr && !OldChannelPtr)
-					NewChannelPtr = ChannelPtr;	 
+					NewChannelPtr = ChannelPtr;
 			}
 		}
 
@@ -1813,15 +1827,15 @@ SQueuePtr	Sound::FindFreeHandlerOnce(SampleRec* SamplePtr, ItemBasePtr	sampleite
 	}
 
 	// If there were no free slots, then grab the one with the lowest priority
-	if (!NewChannelPtr && !OldChannelPtr)				
+	if (!NewChannelPtr && !OldChannelPtr)
 	{
 		if (SamplePtr->priority <= lowest)									//RJS 22Sep00
 		{
-			NewChannelPtr = &soundqueue[lowpos];				
+			NewChannelPtr = &soundqueue[lowpos];
 
 			NewChannelPtr->Clean();
 
-			NewChannelPtr->handler->End();				
+			NewChannelPtr->handler->End();
 		}
 	}
 
@@ -1833,11 +1847,11 @@ SQueuePtr	Sound::FindFreeHandlerOnce(SampleRec* SamplePtr, ItemBasePtr	sampleite
 //Author		Robert Slater
 //Date			Mon 1 Jun 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SQueuePtr	Sound::FindFreeRadioHandler()
@@ -1850,14 +1864,14 @@ SQueuePtr	Sound::FindFreeRadioHandler()
 		SQueuePtr	OldChannelPtr = NULL;
 
 		ChannelPtr = &soundqueue[channel_radiochatter];								//RJS 14Apr99
-		if (ChannelPtr->sampleindex)								
+		if (ChannelPtr->sampleindex)
 		{
 			if (ChannelPtr->handler->Status() == SMP_DONE)
 			{
 				ChannelPtr->Clean();
 
-				if (!NewChannelPtr && !OldChannelPtr)		
-					NewChannelPtr = ChannelPtr;			
+				if (!NewChannelPtr && !OldChannelPtr)
+					NewChannelPtr = ChannelPtr;
 			}
 			else
 			{
@@ -1871,11 +1885,11 @@ SQueuePtr	Sound::FindFreeRadioHandler()
 		else
 		{
 			if (!NewChannelPtr && !OldChannelPtr)
-				NewChannelPtr = ChannelPtr;			
+				NewChannelPtr = ChannelPtr;
 		}
 	}
 
-	return(NewChannelPtr);							
+	return(NewChannelPtr);
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -1883,11 +1897,11 @@ SQueuePtr	Sound::FindFreeRadioHandler()
 //Author		Robert Slater
 //Date			Fri 12 Mar 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SQueuePtr	Sound::FindFreeHandlerUI(SampleRec* SamplePtr)
@@ -1902,8 +1916,8 @@ SQueuePtr	Sound::FindFreeHandlerUI(SampleRec* SamplePtr)
 	ChannelPtr = soundqueue;											//RJS 29Sep00
 	for (count = 0; count < status.nohandlers; count ++)
 	{
-//DeadCode RJS 22Sep00 		ChannelPtr = &soundqueue[count];						
-		if (!ChannelPtr->isRadio)								
+//DeadCode RJS 22Sep00 		ChannelPtr = &soundqueue[count];
+		if (!ChannelPtr->isRadio)
 		{
 			UpdatePriority(ChannelPtr,count,lowest,lowpos);				//RJS 22Sep00
 
@@ -1919,14 +1933,14 @@ SQueuePtr	Sound::FindFreeHandlerUI(SampleRec* SamplePtr)
 				else
 				{
 					if (	(ChannelPtr->sampleindex == SamplePtr)
-						&&	!OldChannelPtr	)						
-					{												
+						&&	!OldChannelPtr	)
+					{
 						OldChannelPtr = ChannelPtr;
 						NewChannelPtr = OldChannelPtr;
 
 						ChannelPtr->handler->End();
 						ChannelPtr->Clean();
-					}												
+					}
 				}
 			}
 			else
@@ -1941,18 +1955,18 @@ SQueuePtr	Sound::FindFreeHandlerUI(SampleRec* SamplePtr)
 
 	// If there were no free slots, then grab the one with the lowest priority
 
-	if (!NewChannelPtr && !OldChannelPtr)						
+	if (!NewChannelPtr && !OldChannelPtr)
 	{
 		if (SamplePtr->priority <= lowest)									//RJS 22Sep00
 		{
-			NewChannelPtr = &soundqueue[lowpos];				
+			NewChannelPtr = &soundqueue[lowpos];
 
 			NewChannelPtr->Clean();
-			NewChannelPtr->handler->End();				
+			NewChannelPtr->handler->End();
 		}
 	}
 
-	return(NewChannelPtr);										
+	return(NewChannelPtr);
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -1960,11 +1974,11 @@ SQueuePtr	Sound::FindFreeHandlerUI(SampleRec* SamplePtr)
 //Author		Robert Slater
 //Date			Tue 13 Jun 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SQueuePtr	Sound::FindFreeHandlerRestart(SampleRec* SamplePtr, ItemBasePtr	sampleitem, int	stblock, int	endblock)
@@ -1978,42 +1992,42 @@ SQueuePtr	Sound::FindFreeHandlerRestart(SampleRec* SamplePtr, ItemBasePtr	sample
 	SampleRec*	EndBlockPtr = &thesample[endblock];
 	SQueuePtr	OldChannelPtr = NULL;	//RJS 29Jan99
 
-	ChannelPtr = &soundqueue[freechannelstart];					
+	ChannelPtr = &soundqueue[freechannelstart];
 	for (count = freechannelstart; count < status.nohandlers; count ++)
 	{
-//DeadCode RJS 22Sep00 		ChannelPtr = &soundqueue[count];					
-		if (!ChannelPtr->isRadio)							
+//DeadCode RJS 22Sep00 		ChannelPtr = &soundqueue[count];
+		if (!ChannelPtr->isRadio)
 		{
 			UpdatePriority(ChannelPtr,count,lowest,lowpos);
 
-			if (ChannelPtr->sampleindex)					
+			if (ChannelPtr->sampleindex)
 			{
 				if (ChannelPtr->handler->Status() == SMP_DONE)
 				{
 					ChannelPtr->Clean();
 
-					if (!NewChannelPtr && !OldChannelPtr)			
-						NewChannelPtr = ChannelPtr;					
+					if (!NewChannelPtr && !OldChannelPtr)
+						NewChannelPtr = ChannelPtr;
 
 					ChannelPtr->sampleindex = NULL;
 				}
 				else
 				{
-					if (	(ChannelPtr->worlditem == sampleitem)	
-						&&  (ChannelPtr->sampleindex > StBlockPtr)	
-						&&	(ChannelPtr->sampleindex < EndBlockPtr)	
-						&&	!OldChannelPtr	)						
-					{												
+					if (	(ChannelPtr->worlditem == sampleitem)
+						&&  (ChannelPtr->sampleindex > StBlockPtr)
+						&&	(ChannelPtr->sampleindex < EndBlockPtr)
+						&&	!OldChannelPtr	)
+					{
 						OldChannelPtr = ChannelPtr;
 						OldChannelPtr->Clean();
 						OldChannelPtr->handler->End();
-					}												
+					}
 				}
 			}
 			else
 			{
 				if (!NewChannelPtr && !OldChannelPtr)
-					NewChannelPtr = ChannelPtr;	 
+					NewChannelPtr = ChannelPtr;
 			}
 		}
 
@@ -2021,15 +2035,15 @@ SQueuePtr	Sound::FindFreeHandlerRestart(SampleRec* SamplePtr, ItemBasePtr	sample
 	}
 
 	// If there were no free slots, then grab the one with the lowest priority
-	if (!NewChannelPtr && !OldChannelPtr)				
+	if (!NewChannelPtr && !OldChannelPtr)
 	{
 		if (SamplePtr->priority <= lowest)									//RJS 22Sep00
 		{
-			NewChannelPtr = &soundqueue[lowpos];				
+			NewChannelPtr = &soundqueue[lowpos];
 
 			NewChannelPtr->Clean();
 
-			NewChannelPtr->handler->End();				
+			NewChannelPtr->handler->End();
 		}
 	}
 	else
@@ -2046,11 +2060,11 @@ SQueuePtr	Sound::FindFreeHandlerRestart(SampleRec* SamplePtr, ItemBasePtr	sample
 //Author		Robert Slater
 //Date			Thu 7 Mar 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SLong	Sound::ClipVolume(SLong	maxvol, SLong	vol)
@@ -2069,7 +2083,7 @@ SLong	Sound::ClipVolume(SLong	maxvol, SLong	vol)
 //Author		Robert Slater
 //Date			Thu 7 Mar 1996
 //
-//Description	
+//Description
 //
 //Inputs		+/-32K clipped to +/-10K then shifted to +/- 64
 //
@@ -2107,9 +2121,9 @@ SLong	Sound::ClipPan(SLong	pan)
 //									     2
 //									    D
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::SoundInWorld(const COORDS3D& WPos, SLong	&vol, SLong& hdg)		//RJS 12Jan00
@@ -2127,7 +2141,7 @@ void	Sound::SoundInWorld(const COORDS3D& WPos, SLong	&vol, SLong& hdg)		//RJS 12
 		{
  			SWord	boffang = Math_Lib.arctan(dx,dz);
  			boffang += eyeHdg;
- 
+
  			hdg = boffang;
 		}
 		else
@@ -2164,9 +2178,9 @@ void	Sound::SoundInWorld(const COORDS3D& WPos, SLong	&vol, SLong& hdg)		//RJS 12
 //
 //Description	update the 3d sound world if any sound is playing
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::Update3d()
@@ -2174,24 +2188,24 @@ void	Sound::Update3d()
 	int		count;
 	SLong	pan;
 	SLong	vol;
-	SampleRec*	thissamp;										
-	Bool	isused = FALSE;										
-	ULong	TimeDiff;											
-//DeadCode RJS 12Jan00 	SLong	distance;											
-	SQueuePtr	ChannelPtr = soundqueue;						
+	SampleRec*	thissamp;
+	Bool	isused = FALSE;
+	ULong	TimeDiff;
+//DeadCode RJS 12Jan00 	SLong	distance;
+	SQueuePtr	ChannelPtr = soundqueue;
 	float		vx,vy,vz;
 	mobileitem*	mitem;
 	Coords3D*	pSoundPos;												//RJS 15Sep00
 
-	if (delindex < (MAXSAMPLES_LOADED-1))						
-		delindex++;												
-	else														
-		delindex = 0;											
+	if (delindex < (MAXSAMPLES_LOADED-1))
+		delindex++;
+	else
+		delindex = 0;
 
-	for (count = 0; count < status.nohandlers; count++)			
+	for (count = 0; count < status.nohandlers; count++)
 	{
 		thissamp = ChannelPtr->sampleindex;
-		if (count >= freechannelstart)							
+		if (count >= freechannelstart)
 		{
 			if (thissamp)		// this channel is occupied
 			{
@@ -2238,7 +2252,7 @@ void	Sound::Update3d()
 						else
 						{
 // Stereo Sound
-							if (vol)				
+							if (vol)
 							{
 								pan = ClipPan(pan);							//RJS 5Sep00
 
@@ -2248,7 +2262,7 @@ void	Sound::Update3d()
 				    			ChannelPtr->handler->SetVolume(vol);
 							}
 							else
-								ChannelPtr->playingpriority+=PRIORITYFACTOR;	
+								ChannelPtr->playingpriority+=PRIORITYFACTOR;
 						}
 					}
 					else
@@ -2291,8 +2305,8 @@ void	Sound::Update3d()
 				else
 				{
 // This sound has finished playing
-					thissamp = NULL;								
-					ChannelPtr->sampleindex = NULL;					
+					thissamp = NULL;
+					ChannelPtr->sampleindex = NULL;
 				}
 			}
 		}
@@ -2308,14 +2322,14 @@ void	Sound::Update3d()
 																MAX_DISTANCE	)	);
 		}
 
-		if (thissamp == &thesample[delindex])					
-			isused = TRUE;										
+		if (thissamp == &thesample[delindex])
+			isused = TRUE;
 
-		ChannelPtr++;											
+		ChannelPtr++;
 	}
 
-	if (!isused)												
-		DeleteSample(delindex);									
+	if (!isused)
+		DeleteSample(delindex);
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -2323,11 +2337,11 @@ void	Sound::Update3d()
 //Author		Robert Slater
 //Date			Thu 11 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::HaltItemSound(ItemBasePtr	sampleitem)
@@ -2353,11 +2367,11 @@ void	Sound::HaltItemSound(ItemBasePtr	sampleitem)
 //Author		Robert Slater
 //Date			Thu 7 Mar 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::PlaySettings(SQueuePtr	ChannelPtr, SLong	vol, SLong	pan)
@@ -2383,11 +2397,11 @@ void	Sound::PlaySettings(SQueuePtr	ChannelPtr, SLong	vol, SLong	pan)
 //Author		Robert Slater
 //Date			Mon 4 Mar 1996
 //
-//Description	Initialises a sample for a handler and plays it	
+//Description	Initialises a sample for a handler and plays it
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::SetUpSample(SQueuePtr ChannelPtr, SampleRec* SamplePtr, SLong	maxvol, SLong	vol, SLong	pan, ItemBasePtr	sampleitem, const float startscale)	//RJS 13Sep00
@@ -2402,13 +2416,13 @@ void	Sound::SetUpSample(SQueuePtr ChannelPtr, SampleRec* SamplePtr, SLong	maxvol
 	theHandler = ChannelPtr->handler;
 
 	ChannelPtr->sampleindex = SamplePtr;
-	ChannelPtr->playingvolume = maxvol;							
-	ChannelPtr->worlditem = sampleitem;							
-	ChannelPtr->GameSound = TRUE;								
-	ChannelPtr->looping = isloop;								
+	ChannelPtr->playingvolume = maxvol;
+	ChannelPtr->worlditem = sampleitem;
+	ChannelPtr->GameSound = TRUE;
+	ChannelPtr->looping = isloop;
 	ChannelPtr->highPriority = false;
 
-	if (!sampleitem)											
+	if (!sampleitem)
  		ChannelPtr->GameSound = FALSE;
 
 	void*	sample_ptr = SamplePtr->dataptr;
@@ -2422,7 +2436,7 @@ void	Sound::SetUpSample(SQueuePtr ChannelPtr, SampleRec* SamplePtr, SLong	maxvol
 		initlength -= (initlength - (onzlength<<1));
 
 		sample_length = int(fastMath.DoubleToULong(double(1.f-startscale)*double(initlength)));//RJS 13Sep00
-		
+
 		onzlength = sample_length >> 1;
 		sample_length -= (sample_length - (onzlength<<1));
 
@@ -2430,19 +2444,19 @@ void	Sound::SetUpSample(SQueuePtr ChannelPtr, SampleRec* SamplePtr, SLong	maxvol
 	}
 	else
 		sample_length = SamplePtr->datasize;
-	
+
 	if (theHandler->LoadBuffer(SamplePtr->wavheader->data,sample_ptr,sample_length))	//RJS 13Sep00
 	{
 		PlaySettings(ChannelPtr,vol,pan);								//RJS 22Sep00
-																
+
 		if ((ChannelPtr != EngineSound.ChanPtr) || EngineSound.Dying)
-		{														
+		{
 			if (isloop)
 				theHandler->SetLooping(2);
-		}														
- 	}															
- 	else														
- 		reporterror(2);											
+		}
+ 	}
+ 	else
+ 		reporterror(2);
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -2450,37 +2464,37 @@ void	Sound::SetUpSample(SQueuePtr ChannelPtr, SampleRec* SamplePtr, SLong	maxvol
 //Author		Robert Slater
 //Date			Tue 25 Jun 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void 	Sound::PlaySample(FileNum	thefile, ItemBasePtr	sampleitem, SLong	vol)
 {
 #ifndef	_NOSOUNDIN3D_
-	SQueuePtr	ChannelPtr;										
-	SQueuePtr	OldChannelPtr;									
-	SLong	thevol;												
-	int		thepan;												
+	SQueuePtr	ChannelPtr;
+	SQueuePtr	OldChannelPtr;
+	SLong	thevol;
+	int		thepan;
 //DeadCode RJS 12Jan00 	SLong	distance;
 	SampleRec*	SamplePtr;
 
-	if (allowedsamples)											
+	if (allowedsamples)
 	{
 		SamplePtr = LoadSample(thefile);
 		if (SamplePtr)
 		{
-			thevol = (SamplePtr->samplevolume * vol) >> 7;		
-			vol = thevol;										
+			thevol = (SamplePtr->samplevolume * vol) >> 7;
+			vol = thevol;
 
 			thepan = SoundInWorld(ItemPtr(sampleitem),thevol);			//RJS 12Jan00
 
 			if (thevol)
 			{
 				ChannelPtr = FindFreeHandler(SamplePtr,sampleitem,OldChannelPtr);
-				if (ChannelPtr)											
+				if (ChannelPtr)
 				{
 					allowedsamples--;
 
@@ -2502,7 +2516,7 @@ void 	Sound::PlaySample(FileNum	thefile, ItemBasePtr	sampleitem, SLong	vol)
 //Description	Soft start a sample; finds a suitable slot in the sound
 //				handler queue then starts it.
 //
-//Inputs		The sample number, its volume, its stereo pan (0 is central)		
+//Inputs		The sample number, its volume, its stereo pan (0 is central)
 //
 //Returns		The sample that has been played.
 //				-1 if it has failed
@@ -2511,11 +2525,11 @@ void 	Sound::PlaySample(FileNum	thefile, ItemBasePtr	sampleitem, SLong	vol)
 void 	Sound::PlaySample(FileNum	thefile, SLong	vol, SLong	pan)
 {
 #ifndef	_NOSOUNDIN3D_
-	SQueuePtr	ChannelPtr;										
-	SQueuePtr	OldChannelPtr;									
+	SQueuePtr	ChannelPtr;
+	SQueuePtr	OldChannelPtr;
 	SampleRec*	SamplePtr;
 
-	if (allowedsamples)											
+	if (allowedsamples)
 	{
 		SamplePtr = LoadSample(thefile);
 		if (SamplePtr)
@@ -2525,9 +2539,9 @@ void 	Sound::PlaySample(FileNum	thefile, SLong	vol, SLong	pan)
 			SoundInWorld(ItemPtr(NULL),useVol);									//RJS 12Jun00
 
 			ChannelPtr = FindFreeHandler(SamplePtr,NULL,OldChannelPtr);
-			if (ChannelPtr)											   
+			if (ChannelPtr)
 			{
-				allowedsamples--;									   
+				allowedsamples--;
 				SetUpSample(ChannelPtr,SamplePtr,vol,useVol,pan,NULL);
 
 				ChannelPtr->handler->Play();
@@ -2536,7 +2550,7 @@ void 	Sound::PlaySample(FileNum	thefile, SLong	vol, SLong	pan)
 	}
 #endif
 }
-		
+
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		OverrideSample
 //Author		Robert Slater
@@ -2546,16 +2560,16 @@ void 	Sound::PlaySample(FileNum	thefile, SLong	vol, SLong	pan)
 //
 //Inputs		Sound queue index, sample index, volume, pan and frequency
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::OverrideSample(SQueuePtr ChannelPtr, FileNum	thefile, SLong	vol, SLong	pan,SLong	newfreq)
 {
 	SampleRec*	SamplePtr = LoadSample(thefile);
 
-	if (SamplePtr && ChannelPtr)									
+	if (SamplePtr && ChannelPtr)
 	{
-		//Volume is virtual (32k)					
+		//Volume is virtual (32k)
 		SLong	thevol = vol;											//RJS 12Jun00
 		HSAMPLE	theHandle = ChannelPtr->handler;
 
@@ -2564,8 +2578,8 @@ void	Sound::OverrideSample(SQueuePtr ChannelPtr, FileNum	thefile, SLong	vol, SLo
 
 		SoundInWorld(ItemPtr(NULL),thevol);
 
-		SetUpSample(ChannelPtr,SamplePtr,vol,thevol,pan,NULL);		
-	
+		SetUpSample(ChannelPtr,SamplePtr,vol,thevol,pan,NULL);
+
 		if (newfreq > -1)
 		{
 			theHandle->SetFrequency(newfreq);
@@ -2587,7 +2601,7 @@ void	Sound::OverrideSample(SQueuePtr ChannelPtr, FileNum	thefile, SLong	vol, SLo
 //Inputs		The sample file name,
 //				The item pointer.
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::StopSample(FileNum	thefile, ItemBasePtr	sampleitem)
@@ -2595,31 +2609,31 @@ void	Sound::StopSample(FileNum	thefile, ItemBasePtr	sampleitem)
 	int	count;
 	int	spos = GetIndex(thefile);
 	int	lastpos = GetIndex(FIL_SFX_LASTSOUND);
-	SQueuePtr	ChannelPtr = soundqueue;						
+	SQueuePtr	ChannelPtr = soundqueue;
 
-	if ((spos >= 0) && (spos < lastpos))						
+	if ((spos >= 0) && (spos < lastpos))
 	{
 		SampleRec*	SamplePtr = &thesample[spos];
 		if (sampleitem)
-		{	
-			for (count = 0; count < status.nohandlers; count++)	
-			{													
-				if (	(ChannelPtr->sampleindex == SamplePtr)	
-					&&	(ChannelPtr->worlditem == sampleitem) )	
-					HardStop(ChannelPtr);						
-																
-				ChannelPtr++;									
-			}													
+		{
+			for (count = 0; count < status.nohandlers; count++)
+			{
+				if (	(ChannelPtr->sampleindex == SamplePtr)
+					&&	(ChannelPtr->worlditem == sampleitem) )
+					HardStop(ChannelPtr);
+
+				ChannelPtr++;
+			}
 		}
 		else
 		{
-			for (count = 0; count < status.nohandlers; count++)	
-			{													
-				if (ChannelPtr->sampleindex == SamplePtr)		
-					HardStop(ChannelPtr);						
-																
-				ChannelPtr++;									
-			}													
+			for (count = 0; count < status.nohandlers; count++)
+			{
+				if (ChannelPtr->sampleindex == SamplePtr)
+					HardStop(ChannelPtr);
+
+				ChannelPtr++;
+			}
 		}
 	}
 }
@@ -2631,9 +2645,9 @@ void	Sound::StopSample(FileNum	thefile, ItemBasePtr	sampleitem)
 //
 //Description	Finds a sample
 //
-//Inputs		
+//Inputs
 //
-//Returns		
+//Returns
 //
 //------------------------------------------------------------------------------
 bool	Sound::SamplePlaying(FileNum	theFile)
@@ -2645,16 +2659,16 @@ bool	Sound::SamplePlaying(FileNum	theFile)
 		SQueuePtr	ChannelPtr = soundqueue;
 		SampleRec*	SamplePtr = &thesample[GetIndex(theFile)];
 
-		for (int count = 0; count < status.nohandlers; count++)	
-		{													
-			if (	(ChannelPtr->sampleindex == SamplePtr)	
+		for (int count = 0; count < status.nohandlers; count++)
+		{
+			if (	(ChannelPtr->sampleindex == SamplePtr)
 				&&	(ChannelPtr->handler->Status() == SMP_PLAYING)	)
 			{
 				retval = true;
 				break;
 			}
-			
-			ChannelPtr++;													
+
+			ChannelPtr++;
 		}
 	}
 
@@ -2670,21 +2684,21 @@ bool	Sound::SamplePlaying(FileNum	theFile)
 //
 //Inputs		Position in sample handler queue
 //
-//Returns		
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::HardStop(SQueuePtr	ChannelPtr)
 {
-	if (dig)													
+	if (dig)
 	{
  		if (ChannelPtr->handler->Status() == SMP_PLAYING)
-			ChannelPtr->handler->End();				
+			ChannelPtr->handler->End();
 
-		if (ChannelPtr == EngineSound.ChanPtr)					
+		if (ChannelPtr == EngineSound.ChanPtr)
 		{
-			EngineSound.Playing = FALSE;						
+			EngineSound.Playing = FALSE;
 			if (EngineSound.SubChanPtr->handler->Status() == SMP_PLAYING)
-				EngineSound.SubChanPtr->handler->End();	
+				EngineSound.SubChanPtr->handler->End();
 		}
 
 		ChannelPtr->Clean();
@@ -2696,21 +2710,21 @@ void	Sound::HardStop(SQueuePtr	ChannelPtr)
 //Author		Robert Slater
 //Date			Tue 3 Dec 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::UpdateEngine()
 {
-	if (EngineSound.isInitialised)								
+	if (EngineSound.isInitialised)
 	{
 		if (EngineSound.CurrentFile != FIL_NULL)
 		{
-			SLong		NewFreq = EngineSound.Freq;						
-			SLong		SubFreq = EngineSound.SubHarmonicFreq;						
+			SLong		NewFreq = EngineSound.Freq;
+			SLong		SubFreq = EngineSound.SubHarmonicFreq;
 
 			if (thesample[GetIndex(EngineSound.CurrentFile)].blockptr && !EngineSound.Changed)
 			{
@@ -2721,7 +2735,7 @@ void	Sound::UpdateEngine()
 //DeadCode RJS 15Sep00 				float	vel_y = float(eyeVelocity.Y)*VEL_SCALE;
 //DeadCode RJS 15Sep00 				float	vel_z = float(eyeVelocity.Z)*VEL_SCALE;
 
-				if (EngineSound.Playing)								
+				if (EngineSound.Playing)
 				{
 					if (EngineSound.IsJet)
 						EngineSound.SubChanPtr->handler->SetFrequency(NewFreq);
@@ -2740,7 +2754,7 @@ void	Sound::UpdateEngine()
 //DeadCode RJS 15Sep00 																				themainvol,
 //DeadCode RJS 15Sep00 																				1000,
 //DeadCode RJS 15Sep00 																				5000000	)	);
-																				
+
 					EngineSound.ChanPtr->handler->SetVolume(therumblevol);
 //DeadCode RJS 15Sep00 					EngineSound.ChanPtr->handler->Set3DSource(SubjectStruc(	eyeWorld,
 //DeadCode RJS 15Sep00 																			vel_x, vel_y, vel_z,
@@ -2762,14 +2776,14 @@ void	Sound::UpdateEngine()
 			}
 			else
 			{
-				if (EngineSound.Playing)								
+				if (EngineSound.Playing)
 				{
 					if (EngineSound.IsJet)
 					{
-						OverrideSample(	EngineSound.ChanPtr,				
-										EngineSound.CurrentFile,			
-										EngineSound.RumbleVolume,			
-										0,									
+						OverrideSample(	EngineSound.ChanPtr,
+										EngineSound.CurrentFile,
+										EngineSound.RumbleVolume,
+										0,
 										CUR_SAMP_VAL);			//RJS 14Jun00
 
 						OverrideSample(	EngineSound.SubChanPtr,
@@ -2780,31 +2794,31 @@ void	Sound::UpdateEngine()
 					}
 					else
 					{
-						OverrideSample(	EngineSound.ChanPtr,				
-										EngineSound.CurrentFile,	
+						OverrideSample(	EngineSound.ChanPtr,
+										EngineSound.CurrentFile,
 										EngineSound.RumbleVolume,
-										0,					
+										0,
 										NewFreq);
-						
+
 						OverrideSample(	EngineSound.SubChanPtr,
 										EngineSound.CurrentSubFile,
 										EngineSound.SubHarmonicVolume,
 										0,
 										SubFreq);						//RJS 13Jun00
-					
+
 						//Boost sound too?
 					}
 				}
-				else							
-					OverrideSample(	EngineSound.ChanPtr,				
-									EngineSound.CurrentFile,			
-									EngineSound.WindVolume,				
-									0,									
+				else
+					OverrideSample(	EngineSound.ChanPtr,
+									EngineSound.CurrentFile,
+									EngineSound.WindVolume,
+									0,
 									CUR_SAMP_VAL);				//RJS 14Jun00
 			}
 		}
 	}
-	EngineSound.Changed = FALSE;					
+	EngineSound.Changed = FALSE;
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -2812,23 +2826,23 @@ void	Sound::UpdateEngine()
 //Author		Robert Slater
 //Date			Tue 3 Dec 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::PlayEngine(AirStrucPtr	ac, EngineInfo&	leftengine,EngineInfo&	rightengine)
 {
 #ifndef	_NOSOUNDIN3D_
-	if (Save_Data.vol.sfx && EngineSound.Volume)					
+	if (Save_Data.vol.sfx && EngineSound.Volume)
 	{
 //DeadCode RJS 25Oct00 		SLong	revgap;
 //DeadCode RJS 25Oct00 		SLong	revlimit;
-		SLong	Maxvol = EngineSound.Volume;						
+		SLong	Maxvol = EngineSound.Volume;
 		SLong	RumbleVol;
-		SLong	wvol;												
+		SLong	wvol;
 		FileNum	newSound,newSound2;
 		ClassPtr	classtype = ac->classtype;
 // Take average rpm for the time being...
@@ -2869,7 +2883,7 @@ void	Sound::PlayEngine(AirStrucPtr	ac, EngineInfo&	leftengine,EngineInfo&	righte
 
 				fastMath.FloatToInt(&wTotVel255units,fTotVel);
 
-				wvol = (Maxvol * CockpitNobble * wTotVel255units)/(255*255);			
+				wvol = (Maxvol * CockpitNobble * wTotVel255units)/(255*255);
 				if (wvol > Maxvol)
 					wvol = Maxvol;
 			}
@@ -2893,17 +2907,17 @@ void	Sound::PlayEngine(AirStrucPtr	ac, EngineInfo&	leftengine,EngineInfo&	righte
 
 		if (EngineSound.Dying == FALSE)
 		{
-			EngineSound.Playing = TRUE;							
+			EngineSound.Playing = TRUE;
 
-			if (!EngineSound.InCockpit)							
+			if (!EngineSound.InCockpit)
 			{
 				newSound = FileNum(classtype->enginesnd + 1);
 				newSound2 = FileNum(classtype->enginesubsnd + 1);
 			}
-			else												
+			else
 			{
 				newSound = classtype->enginesnd;
-				newSound2 = classtype->enginesubsnd;				
+				newSound2 = classtype->enginesubsnd;
 			}
 
 			if (leftengine.rpm_starter)
@@ -2914,10 +2928,10 @@ void	Sound::PlayEngine(AirStrucPtr	ac, EngineInfo&	leftengine,EngineInfo&	righte
 
 			if (	(newSound != EngineSound.CurrentFile)
 				||	(newSound2 != EngineSound.CurrentSubFile)	)
-				EngineSound.Changed = TRUE;						
+				EngineSound.Changed = TRUE;
 
-			if (thrustp < 0)	thrustp = 0;					
-			if (thrustp >= 255)	thrustp = 256;					
+			if (thrustp < 0)	thrustp = 0;
+			if (thrustp >= 255)	thrustp = 256;
 
 //DeadCode RJS 13Jun00 			if (rpm < rpm_min)
 //DeadCode RJS 13Jun00 				EngineSound.engineStarted = false;
@@ -2928,11 +2942,11 @@ void	Sound::PlayEngine(AirStrucPtr	ac, EngineInfo&	leftengine,EngineInfo&	righte
 				EngineSound.Freq = CUR_SAMP_VAL + (5000.*float(rpm)*sampRateScale/3975);	//RJS 12Sep00
 
 				RumbleVol = Maxvol - (Maxvol/16);
-				EngineSound.SubHarmonicVolume = Maxvol / 4;				
-				EngineSound.CurrentSubFile = (FileNum) (newSound + 2);	
+				EngineSound.SubHarmonicVolume = Maxvol / 4;
+				EngineSound.CurrentSubFile = (FileNum) (newSound + 2);
 
 
-				EngineSound.RumbleVolume = (RumbleVol * thrustp)>>8;	
+				EngineSound.RumbleVolume = (RumbleVol * thrustp)>>8;
 			}
 			else
 			{
@@ -2985,7 +2999,7 @@ void	Sound::PlayEngine(AirStrucPtr	ac, EngineInfo&	leftengine,EngineInfo&	righte
 				EngineSound.CurrentSubFile = newSound2;
 			}
 
-			EngineSound.CurrentFile = newSound;							
+			EngineSound.CurrentFile = newSound;
 
 			if (diveBrakesOn)											//RJS 25Oct00
 			{
@@ -3006,9 +3020,9 @@ void	Sound::PlayEngine(AirStrucPtr	ac, EngineInfo&	leftengine,EngineInfo&	righte
 			else
 				EngineSound.JericoVol = 0;
 		}
-																
-		if (!EngineSound.WindVolume)							
-			EngineSound.WindVolume = 1;							
+
+		if (!EngineSound.WindVolume)
+			EngineSound.WindVolume = 1;
 	}
 #endif
 }
@@ -3018,11 +3032,11 @@ void	Sound::PlayEngine(AirStrucPtr	ac, EngineInfo&	leftengine,EngineInfo&	righte
 //Author		Robert Slater
 //Date			Tue 1 Oct 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::OverRevCheck()
@@ -3033,14 +3047,14 @@ void	Sound::OverRevCheck()
 	{
 		if ((EngineSound.JericoVol + EngineSound.JericoOn)>0)
 		{
-			SQueuePtr	ChannelPtr;									
-			SQueuePtr	OldChannelPtr;								
-			SampleRec*	SamplePtr;									
+			SQueuePtr	ChannelPtr;
+			SQueuePtr	OldChannelPtr;
+			SampleRec*	SamplePtr;
 			SLong		vol = EngineSound.JericoVol;
-			SLong		thevol;												
+			SLong		thevol;
 
-			SamplePtr = LoadSample(FIL_SFX_OVERREVVING_LOOP1);		
-			if (SamplePtr)											
+			SamplePtr = LoadSample(FIL_SFX_OVERREVVING_LOOP1);
+			if (SamplePtr)
 			{
 				thevol = vol;
 
@@ -3061,10 +3075,10 @@ void	Sound::OverRevCheck()
 					}
 					else
 					{
-						if (OldChannelPtr) 
+						if (OldChannelPtr)
 						{
 							if (OldChannelPtr->handler->Status()==SMP_PLAYING)
-							{			
+							{
 								if (thevol)
 								{
 									ClipVolume(thevol);
@@ -3084,7 +3098,7 @@ void	Sound::OverRevCheck()
 									OldChannelPtr->handler->End();
 									OldChannelPtr->Clean();
 								}
-							}											
+							}
 						}
 					}
 				}
@@ -3100,19 +3114,19 @@ void	Sound::OverRevCheck()
 //
 //Description	Stops the engine sample, so wind can kick in
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::StopEngine(int	velocity)
 {
-	if (Save_Data.vol.sfx > 0)								
-	{												
-		HardStop(EngineSound.ChanPtr);						
-		StopSample(FIL_SFX_OVERREVVING_LOOP1);		
-		EngineSound.Playing = TRUE;							
-		EngineSound.Dead = TRUE;							
+	if (Save_Data.vol.sfx > 0)
+	{
+		HardStop(EngineSound.ChanPtr);
+		StopSample(FIL_SFX_OVERREVVING_LOOP1);
+		EngineSound.Playing = TRUE;
+		EngineSound.Dead = TRUE;
 		EngineSound.Dying = TRUE;
 		EngineSound.engineStarting = false;
 	}
@@ -3125,19 +3139,19 @@ void	Sound::StopEngine(int	velocity)
 //
 //Description	Starts a sample for the gunfire and loops it continuously
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::PlayLooped(FileNum	thefile, ItemBasePtr	sampleitem, SLong	vol, UByte	looplength, Bool sound3d)
 {
 #ifndef	_NOSOUNDIN3D_
-	SQueuePtr	ChannelPtr;									
-	SQueuePtr	OldChannelPtr;								
-	SampleRec*	SamplePtr;									
-	SLong	thevol;											
-	int	thepan;		
+	SQueuePtr	ChannelPtr;
+	SQueuePtr	OldChannelPtr;
+	SampleRec*	SamplePtr;
+	SLong	thevol;
+	int	thepan;
 
 	SamplePtr = LoadSample(thefile);
 	if (SamplePtr)
@@ -3148,17 +3162,17 @@ void	Sound::PlayLooped(FileNum	thefile, ItemBasePtr	sampleitem, SLong	vol, UByte
 
 		if (allowedsamples || highPriority)								//RJS 22Sep00
 		{
-			thevol = (SamplePtr->samplevolume * vol) >> 7;		
-			vol = thevol;										
+			thevol = (SamplePtr->samplevolume * vol) >> 7;
+			vol = thevol;
 
 			thepan = SoundInWorld(ItemPtr(sampleitem),thevol);			//RJS 12Jan00
 
 			if (thevol)
 			{
 				ChannelPtr = FindFreeHandler(SamplePtr,sampleitem,OldChannelPtr,looplength);
-				if (ChannelPtr)					
+				if (ChannelPtr)
 				{
-					allowedsamples--;							
+					allowedsamples--;
 
 					SetUpSample(ChannelPtr,SamplePtr,vol,thevol,thepan,sampleitem);
 					ChannelPtr->handler->SetLooping(looplength);
@@ -3179,11 +3193,11 @@ void	Sound::PlayLooped(FileNum	thefile, ItemBasePtr	sampleitem, SLong	vol, UByte
 //Author		Robert Slater
 //Date			Mon 22 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::PlayLanded(ItemBasePtr	sampleitem, SLong	velocity, Bool skid)
@@ -3194,35 +3208,35 @@ void	Sound::PlayLanded(ItemBasePtr	sampleitem, SLong	velocity, Bool skid)
 		AircraftAnimData*	adptr = (AircraftAnimData*) MobileItemPtr(sampleitem)->Anim;	//RJS 30Aug00
 		adptr->justlanded = 1;											//RJS 30Aug00
 
-		SQueuePtr	ChannelPtr;										
-		SQueuePtr	OldChannelPtr;									
-		SampleRec*	SamplePtr;										
+		SQueuePtr	ChannelPtr;
+		SQueuePtr	OldChannelPtr;
+		SampleRec*	SamplePtr;
 		int	vol;
 		int	freq;
 		SLong	thevol;
 
 		if (allowedsamples)
 		{
-			allowedsamples--;										
+			allowedsamples--;
 
-			SamplePtr = LoadSample(FIL_SFX_LANDING_GRASS_LOOP);		
-			if (SamplePtr)											
+			SamplePtr = LoadSample(FIL_SFX_LANDING_GRASS_LOOP);
+			if (SamplePtr)
 			{
 //DeadCode RJS 30Aug00 				AircraftAnimData*	adptr = (AircraftAnimData*) ((mobileitem*)sampleitem)->Anim;
 				SLong	legtally = 0;
-				SLong	maxvol = SamplePtr->samplevolume;			
-				SLong	thisvol = SamplePtr->samplevolume;			
+				SLong	maxvol = SamplePtr->samplevolume;
+				SLong	thisvol = SamplePtr->samplevolume;
 
-				if (!adptr->acleglowerl)							
+				if (!adptr->acleglowerl)
 					legtally++;
 
-				if (!adptr->acleglowerr)							
+				if (!adptr->acleglowerr)
 					legtally++;
 
-				if (!adptr->acleglowerf)							
+				if (!adptr->acleglowerf)
 					legtally++;
 
-				if (!adptr->acleglowerb)							
+				if (!adptr->acleglowerb)
 					legtally++;
 
 				maxvol *= legtally;
@@ -3233,22 +3247,22 @@ void	Sound::PlayLanded(ItemBasePtr	sampleitem, SLong	velocity, Bool skid)
 					maxvol /= 7500;			//(ie. 75m/s * 100)
 
 					bouncecount = 100;
-					vol = ClipVolume(thisvol,maxvol);				
+					vol = ClipVolume(thisvol,maxvol);
 
 					thevol = vol;
 					SoundInWorld(ItemPtr(NULL),thevol);
 
-					if (skid)										
+					if (skid)
 					{
 						// Perhaps check ground type.....
 
 
-						SLong	skidvol = (128 * vol)/thisvol;		
+						SLong	skidvol = (128 * vol)/thisvol;
 
 						PlayOnce(FIL_SFX_TYRE_SCREECH1,sampleitem,skidvol);	//RJS 30Aug00
 					}
 
-					if (thevol)										
+					if (thevol)
 					{
 						ChannelPtr = FindFreeHandler(SamplePtr,sampleitem,OldChannelPtr);
 						freq = CUR_SAMP_VAL + (vol/3);				//RJS 14Jun00
@@ -3263,7 +3277,7 @@ void	Sound::PlayLanded(ItemBasePtr	sampleitem, SLong	velocity, Bool skid)
 						}
 						else
 						{
-							if (OldChannelPtr)							
+							if (OldChannelPtr)
 							{
 								if (OldChannelPtr->handler->Status()==SMP_PLAYING)
 								{
@@ -3273,7 +3287,7 @@ void	Sound::PlayLanded(ItemBasePtr	sampleitem, SLong	velocity, Bool skid)
 									OldChannelPtr->handler->SetFrequency(freq);
 									if (Save_Data.hardwareconfig[HW_3DSOUND])			//RJS 12Jun00
 										OldChannelPtr->handler->Set3DSource(*theSubject);	//RJS 12Jun00
-								}											
+								}
 							}
 						}
 					}
@@ -3289,11 +3303,11 @@ void	Sound::PlayLanded(ItemBasePtr	sampleitem, SLong	velocity, Bool skid)
 //Author		Robert Slater
 //Date			Tue 23 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::StopLanded()
@@ -3309,23 +3323,23 @@ void	Sound::StopLanded()
 //Author		Robert Slater
 //Date			Fri 19 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::PlayOnce(FileNum	thefile, ItemBasePtr	sampleitem, SLong	vol, FileNum	stsam, FileNum	endsam, float startscale)
 {
 #ifndef	_NOSOUNDIN3D_
-	SQueuePtr	ChannelPtr;										
-	SampleRec*	SamplePtr;										
+	SQueuePtr	ChannelPtr;
+	SampleRec*	SamplePtr;
 	int			spos;
 	int	stblock = 0;
 	int	endblock = 0;
-	SLong	thevol;												
-	int	thepan;													
+	SLong	thevol;
+	int	thepan;
 //DeadCode RJS 12Jan00 	SLong	distance;
 
 	SamplePtr = LoadSample(thefile);
@@ -3333,12 +3347,12 @@ void	Sound::PlayOnce(FileNum	thefile, ItemBasePtr	sampleitem, SLong	vol, FileNum
 	{
 		if (allowedsamples || (sampleitem == Manual_Pilot.ControlledAC2))
 		{
-			thevol = (SamplePtr->samplevolume * vol) >> 7;			
-			vol = thevol;											
+			thevol = (SamplePtr->samplevolume * vol) >> 7;
+			vol = thevol;
 
 			spos = GetIndex(thefile);
-			stblock = spos - 1;										
-			endblock = spos + 1;									
+			stblock = spos - 1;
+			endblock = spos + 1;
 
 			if (	(stsam != FIL_NULL)
 				&&	(endsam != FIL_NULL)	)
@@ -3349,14 +3363,14 @@ void	Sound::PlayOnce(FileNum	thefile, ItemBasePtr	sampleitem, SLong	vol, FileNum
 
 			thepan = SoundInWorld(ItemPtr(sampleitem),thevol);			//RJS 12Jan00
 
-			if (thevol)													
+			if (thevol)
 			{
 				SQueuePtr	OldChannelPtr;
 
 				ChannelPtr = FindFreeHandlerOnce(SamplePtr,sampleitem,OldChannelPtr,stblock,endblock);
-				if (ChannelPtr)			   
+				if (ChannelPtr)
 				{
-					allowedsamples--;	   
+					allowedsamples--;
 
 					if (startscale > 1.f)	startscale = 1.f;			//RJS 13Sep00
 
@@ -3379,19 +3393,19 @@ void	Sound::PlayOnce(FileNum	thefile, ItemBasePtr	sampleitem, SLong	vol, FileNum
 //
 //Inputs		pan is in rowan angles...
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::PlayOnce(FileNum	thefile, int	vol, SLong thepan)
 {
 #ifndef	_NOSOUNDIN3D_
-	SQueuePtr	ChannelPtr;										
-	SampleRec*	SamplePtr;										
-	int	spos;													
+	SQueuePtr	ChannelPtr;
+	SampleRec*	SamplePtr;
+	int	spos;
 	int	stblock = 0;
 	int	endblock = 0;
 	ItemBasePtr	sampleitem = NULL;
-	SLong	thevol;													
+	SLong	thevol;
 
 	SamplePtr = LoadSample(thefile);
 	if (SamplePtr)
@@ -3400,20 +3414,20 @@ void	Sound::PlayOnce(FileNum	thefile, int	vol, SLong thepan)
 
 		spos = GetIndex(thefile);
 
-		thevol = (SamplePtr->samplevolume * vol) >> 7;			
-		vol = thevol;											
+		thevol = (SamplePtr->samplevolume * vol) >> 7;
+		vol = thevol;
 
 		SoundInWorld(ItemPtr(NULL),thevol);									//RJS 12Jun00
 
 //DeadCode RJS 12Jun00 		thevol >>= 8;
 
-		stblock = spos - 1;										
-		endblock = spos + 1;									
+		stblock = spos - 1;
+		endblock = spos + 1;
 
 		ChannelPtr = FindFreeHandlerOnce(SamplePtr,sampleitem,OldChannelPtr,stblock,endblock);
-		if (ChannelPtr && allowedsamples)							
+		if (ChannelPtr && allowedsamples)
 		{
-			allowedsamples--;										
+			allowedsamples--;
 
 			RowanToPan(thepan);
 
@@ -3423,7 +3437,7 @@ void	Sound::PlayOnce(FileNum	thefile, int	vol, SLong thepan)
 		}
 		else
 		{
-			if (OldChannelPtr)						
+			if (OldChannelPtr)
 			{
 				if (OldChannelPtr->handler->Status() == SMP_PLAYING)
 				{
@@ -3451,9 +3465,9 @@ void	Sound::PlayOnce(FileNum	thefile, int	vol, SLong thepan)
 //
 //Description	Halts all the sound samples
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::StopAll()
@@ -3466,19 +3480,19 @@ void	Sound::StopAll()
 			HardStop(&soundqueue[qpos]);						//RJS 21Oct97
 	}
 
-	EngineSound.Dying = FALSE;									
-	EngineSound.Dead = FALSE;									
-	EngineSound.Playing = FALSE;								
-	EngineSound.CurrentFile = FIL_NULL;							
-	EngineSound.OldFile = FIL_NULL;								
-	EngineSound.Freq = 8000;									
-	EngineSound.SubHarmonicFreq = 8000;							
-	EngineSound.SubHarmonicVolume = 1;							
-	EngineSound.WindVolume = 1;									
-	EngineSound.JericoVol = 0;								
+	EngineSound.Dying = FALSE;
+	EngineSound.Dead = FALSE;
+	EngineSound.Playing = FALSE;
+	EngineSound.CurrentFile = FIL_NULL;
+	EngineSound.OldFile = FIL_NULL;
+	EngineSound.Freq = 8000;
+	EngineSound.SubHarmonicFreq = 8000;
+	EngineSound.SubHarmonicVolume = 1;
+	EngineSound.WindVolume = 1;
+	EngineSound.JericoVol = 0;
 	EngineSound.JericoFreq = MIN_SAMP_VAL;						//RJS 13Jan00
-	EngineSound.CockpitWind = 0;								
-	EngineSound.InCockpit = TRUE;								
+	EngineSound.CockpitWind = 0;
+	EngineSound.InCockpit = TRUE;
 	EngineSound.RumbleVolume = 1;
 	EngineSound.Changed = TRUE;
 	EngineSound.isInitialised = FALSE;
@@ -3496,7 +3510,7 @@ void	Sound::StopAll()
 //
 //Inputs		The sample file
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::DeleteSample(FileNum	thefile)
@@ -3513,7 +3527,7 @@ void	Sound::DeleteSample(FileNum	thefile)
 //
 //Inputs		Internal sample number
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::DeleteSample(SLong	spos)
@@ -3523,7 +3537,7 @@ void	Sound::DeleteSample(SLong	spos)
 		if (thesample[spos].blockptr)
 		{
 			delete thesample[spos].blockptr;
-			thesample[spos].blockptr = NULL;	
+			thesample[spos].blockptr = NULL;
 		}
 	}
 	else
@@ -3537,9 +3551,9 @@ void	Sound::DeleteSample(SLong	spos)
 //
 //Description	Frees all the samples in memory
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::FreeSamples()
@@ -3556,8 +3570,8 @@ void	Sound::FreeSamples()
 		if (thesample[count].blockptr)
 		{
 			delete thesample[count].blockptr;
-			
-			thesample[count].blockptr = NULL;	
+
+			thesample[count].blockptr = NULL;
 		}
 
 	}
@@ -3570,11 +3584,11 @@ void	Sound::FreeSamples()
 //Author		Robert Slater
 //Date			Mon 4 Mar 1996
 //
-//Description	Frees all the tunes in memory	
+//Description	Frees all the tunes in memory
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::FreeTunes()
@@ -3601,17 +3615,17 @@ void	Sound::FreeTunes()
 	status.notunes = 0;
 }
 
-	
+
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ShutDownSound
 //Author		Robert Slater
 //Date			Wed 21 Feb 1996
 //
-//Description	Close down all music drivers and free associated memory	
+//Description	Close down all music drivers and free associated memory
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::ShutDownSound()
@@ -3658,9 +3672,9 @@ void	Sound::ShutDownSound()
 //
 //Description	Stops the engine sound
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::GamePaused()
@@ -3672,11 +3686,11 @@ void	Sound::GamePaused()
 //Author		Robert Slater
 //Date			Fri 12 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::ResetSoundFlags()
@@ -3725,11 +3739,11 @@ void	Sound::ResetSoundFlags()
 //Author		Robert Slater
 //Date			Thu 29 Aug 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::ResetMidiFlags()
@@ -3756,9 +3770,9 @@ void	Sound::ResetMidiFlags()
 //Description	Set up user interface handler for sfx
 //				and Smacker
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	Sound::InitUI(int	wind)
@@ -3767,11 +3781,11 @@ Bool	Sound::InitUI(int	wind)
 #ifndef _NO_Sound_AUDIO_
  	if (dig)
 		StopAll();
-	
+
  	if (NewDigitalDriver(NOM_SAMP_VAL,4,TRUE,false))
  	{
 //DeadCode RJS 18Oct00 		HWND	thiswin = (HWND) wind;
-//DeadCode RJS 18Oct00 
+//DeadCode RJS 18Oct00
 //UpdateMilesCode RJS 08Nov99		SmackSoundUseMSS (dig);
 //UpdateMilesCode RJS 08Nov99 		AIL_set_DirectSound_HWND(dig,thiswin);
  		theresult = TRUE;
@@ -3792,9 +3806,9 @@ Bool	Sound::InitUI(int	wind)
 //
 //Description	Set up 3d digital handler
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	Sound::Init3D()
@@ -3822,11 +3836,11 @@ Bool	Sound::Init3D()
 //Author		Robert Slater
 //Date			Tue 13 Aug 1996
 //
-//Description	Sets the global volumes for sfx, midi and engine	
+//Description	Sets the global volumes for sfx, midi and engine
 //
 //Inputs		sfx vol, midi vol, engine vol
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::SetGlobalVolumes(int	sfxvol, int	midivol, int	engvol, int	smackervol, Bool	saveset)
@@ -3893,11 +3907,11 @@ void	Sound::SetGlobalVolumes(int	sfxvol, int	midivol, int	engvol, int	smackervol
 //Author		Robert Slater
 //Date			Thu 3 Apr 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::GetSampleVolumes()
@@ -3945,18 +3959,18 @@ void	Sound::GetSampleVolumes()
 	}															//RJS 23Feb99
 	else														//RJS 23Feb99
 		Save_Data.vol.sfx = 0;									//RJS 23Feb99
-}												
+}
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SetDirectSoundWindow
 //Author		Robert Slater
 //Date			Mon 18 May 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::SetDirectSoundWindow(ULong	newwin)
@@ -3974,11 +3988,11 @@ void	Sound::SetDirectSoundWindow(ULong	newwin)
 //Author		Robert Slater
 //Date			Mon 18 May 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::SetCompressedDLS(TuneStrucP TunePtr, void*	ptr, SLong	size)
@@ -3989,7 +4003,7 @@ void	Sound::SetCompressedDLS(TuneStrucP TunePtr, void*	ptr, SLong	size)
 //UpdateMilesCode RJS 08Nov99 									 0,
 //UpdateMilesCode RJS 08Nov99 									 &TunePtr->dlsPtr,
 //UpdateMilesCode RJS 08Nov99 									 0	);
-//UpdateMilesCode RJS 08Nov99 
+//UpdateMilesCode RJS 08Nov99
 //UpdateMilesCode RJS 08Nov99 	if (TunePtr->dlsPtr)
 //UpdateMilesCode RJS 08Nov99 	{
 //UpdateMilesCode RJS 08Nov99 		TunePtr->dlsID = AIL_DLS_load_memory(wavetable.DLSwavesynth,
@@ -4003,11 +4017,11 @@ void	Sound::SetCompressedDLS(TuneStrucP TunePtr, void*	ptr, SLong	size)
 //Author		Robert Slater
 //Date			Mon 18 May 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::SetUncompressedDLS(TuneStrucP TunePtr, void* ptr, SLong	size)
@@ -4018,7 +4032,7 @@ void	Sound::SetUncompressedDLS(TuneStrucP TunePtr, void* ptr, SLong	size)
 //UpdateMilesCode RJS 08Nov99 									0,
 //UpdateMilesCode RJS 08Nov99 									&TunePtr->dlsPtr,
 //UpdateMilesCode RJS 08Nov99 									0	);
-//UpdateMilesCode RJS 08Nov99 
+//UpdateMilesCode RJS 08Nov99
 //UpdateMilesCode RJS 08Nov99 	if (TunePtr->dlsPtr)
 //UpdateMilesCode RJS 08Nov99 	{
 //UpdateMilesCode RJS 08Nov99 		TunePtr->dlsID = AIL_DLS_load_memory(wavetable.DLSwavesynth,
@@ -4032,11 +4046,11 @@ void	Sound::SetUncompressedDLS(TuneStrucP TunePtr, void* ptr, SLong	size)
 //Author		Robert Slater
 //Date			Tue 19 May 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::SetXMidi(TuneStrucP	TunePtr)
@@ -4050,22 +4064,22 @@ void	Sound::SetXMidi(TuneStrucP	TunePtr)
 //DeadCode RJS 09Nov99 		UWord		noforms = 0;
 //DeadCode RJS 09Nov99 		SLong		header;
 //DeadCode RJS 09Nov99 		HSEQUENCE	tmphandle = NULL;
-//DeadCode RJS 09Nov99 
+//DeadCode RJS 09Nov99
 //DeadCode RJS 09Nov99 		// Get IFF_ number of sequences information from header...
 //DeadCode RJS 09Nov99 		headptr = (SLongP) TunePtr->xmiPtr;
-//DeadCode RJS 09Nov99 
+//DeadCode RJS 09Nov99
 //DeadCode RJS 09Nov99 		for (count = 0; count < 5; count ++)
 //DeadCode RJS 09Nov99 			header = *headptr++;
-//DeadCode RJS 09Nov99 
+//DeadCode RJS 09Nov99
 //DeadCode RJS 09Nov99 		noforms = (UWord) *headptr;
-//DeadCode RJS 09Nov99 
+//DeadCode RJS 09Nov99
 //DeadCode RJS 09Nov99 		TunePtr->nosequences = noforms;
 //DeadCode RJS 09Nov99 		if (	(TunePtr->ttype == T_independent)				//RJS 06May99
 //DeadCode RJS 09Nov99 			||	(TunePtr->ttype == T_independent_pri)	)		//RJS 06May99
 //DeadCode RJS 09Nov99 		{
 //DeadCode RJS 09Nov99 			tmphandle = tune[GetIndex(FIL_MUSIC_MAIN)].sequence[0];
 //DeadCode RJS 09Nov99 			if (tmphandle == NULL)
-//DeadCode RJS 09Nov99 				LoadTune(FIL_MUSIC_MAIN);				
+//DeadCode RJS 09Nov99 				LoadTune(FIL_MUSIC_MAIN);
 //DeadCode RJS 09Nov99 			tmphandle = tune[GetIndex(FIL_MUSIC_MAIN)].sequence[0];
 //DeadCode RJS 09Nov99 		}
 //DeadCode RJS 09Nov99 		else
@@ -4075,14 +4089,14 @@ void	Sound::SetXMidi(TuneStrucP	TunePtr)
 //UpdateMilesCode RJS 08Nov99 			else
 //UpdateMilesCode RJS 08Nov99 				tmphandle = TunePtr->sequence[0];
 //DeadCode RJS 09Nov99 		}
-//DeadCode RJS 09Nov99 
+//DeadCode RJS 09Nov99
 //DeadCode RJS 09Nov99 		for (count = 0; count < TunePtr->nosequences; count ++)
 //DeadCode RJS 09Nov99 		{
-//DeadCode RJS 09Nov99 			TunePtr->sequence[count] = tmphandle;		
+//DeadCode RJS 09Nov99 			TunePtr->sequence[count] = tmphandle;
 //UpdateMilesCode RJS 08Nov99 			if (TunePtr->sequence[count] == NULL)
 //UpdateMilesCode RJS 08Nov99 			{
 //UpdateMilesCode RJS 08Nov99 				AIL_shutdown();
-//UpdateMilesCode RJS 08Nov99 
+//UpdateMilesCode RJS 08Nov99
 //UpdateMilesCode RJS 08Nov99 				_Error.EmitSysErr(AIL_last_error());
 //UpdateMilesCode RJS 08Nov99 			}
 //DeadCode RJS 09Nov99 		}
@@ -4099,11 +4113,11 @@ void	Sound::SetXMidi(TuneStrucP	TunePtr)
 //Author		Robert Slater
 //Date			Tue 19 May 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::SetDLS(TuneStrucP	TunePtr)
@@ -4123,7 +4137,7 @@ void	Sound::SetDLS(TuneStrucP	TunePtr)
 		{
 			tmphandle = tune[GetIndex(FIL_MUSIC_MAIN)].DLSsequence[0];
 			if (tmphandle == NULL)
-				LoadTune(FIL_MUSIC_MAIN);				
+				LoadTune(FIL_MUSIC_MAIN);
 			tmphandle = tune[GetIndex(FIL_MUSIC_MAIN)].DLSsequence[0];
 		}
 		else
@@ -4136,11 +4150,11 @@ void	Sound::SetDLS(TuneStrucP	TunePtr)
 
 		for (count = 0; count < noforms; count ++)
 		{
-			TunePtr->DLSsequence[count] = tmphandle;		
+			TunePtr->DLSsequence[count] = tmphandle;
 //UpdateMilesCode RJS 08Nov99 			if (TunePtr->DLSsequence[count] == NULL)
 //UpdateMilesCode RJS 08Nov99 			{
 //UpdateMilesCode RJS 08Nov99 				AIL_shutdown();
-//UpdateMilesCode RJS 08Nov99 
+//UpdateMilesCode RJS 08Nov99
 //UpdateMilesCode RJS 08Nov99 				_Error.EmitSysErr(AIL_last_error());
 //UpdateMilesCode RJS 08Nov99 			}
 		}
@@ -4152,11 +4166,11 @@ void	Sound::SetDLS(TuneStrucP	TunePtr)
 //Author		Robert Slater
 //Date			Wed 20 May 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::SetCockpit(Bool	thecock)
@@ -4169,11 +4183,11 @@ void	Sound::SetCockpit(Bool	thecock)
 //Author		Robert Slater
 //Date			Thu 21 May 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::SetVP(mobileitem *vp)
@@ -4188,9 +4202,9 @@ void	Sound::SetVP(mobileitem *vp)
 //
 //Description	Plays cockpit wind, adjusting the volume on-the-fly
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::PlayWind()
@@ -4198,17 +4212,17 @@ void	Sound::PlayWind()
 #ifndef	_NOSOUNDIN3D_
 	if (Save_Data.vol.sfx != 0)
 	{
-		SQueuePtr	ChannelPtr;								   
-		SQueuePtr	OldChannelPtr;							   
-		SampleRec*	SamplePtr;								   
+		SQueuePtr	ChannelPtr;
+		SQueuePtr	OldChannelPtr;
+		SampleRec*	SamplePtr;
 		int			vol;
-		SLong		thevol;											   
+		SLong		thevol;
 
-		SamplePtr = LoadSample(FIL_SFX_WIND_COCKPIT_LOOP);	   
-		if (SamplePtr)										   
+		SamplePtr = LoadSample(FIL_SFX_WIND_COCKPIT_LOOP);
+		if (SamplePtr)
 		{
-			vol = EngineSound.CockpitWind;	
-			
+			vol = EngineSound.CockpitWind;
+
 			thevol = vol;
 			SoundInWorld(ItemPtr(NULL),thevol);							//RJS 12Jun00
 
@@ -4227,7 +4241,7 @@ void	Sound::PlayWind()
 				}
 				else
 				{
-					if (OldChannelPtr)				
+					if (OldChannelPtr)
 					{
 						if (OldChannelPtr->handler->Status() == SMP_PLAYING)
 						{
@@ -4247,9 +4261,9 @@ void	Sound::PlayWind()
 								wasWindy = false;
 
 								OldChannelPtr->handler->End();
-								OldChannelPtr->sampleindex = NULL;							
-								OldChannelPtr->looping = FALSE;							
-								OldChannelPtr->worlditem = NULL;							
+								OldChannelPtr->sampleindex = NULL;
+								OldChannelPtr->looping = FALSE;
+								OldChannelPtr->worlditem = NULL;
  								OldChannelPtr->GameSound = FALSE;
 							}
 						}
@@ -4266,11 +4280,11 @@ void	Sound::PlayWind()
 //Author		Robert Slater
 //Date			Mon 1 Jun 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::PlayFlyAway(ItemBasePtr	sampleitem)
@@ -4294,18 +4308,18 @@ void	Sound::PlayFlyAway(ItemBasePtr	sampleitem)
 //Author		Robert Slater
 //Date			Tue 9 Jun 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	Sound::SampleFinished(UByteP	QueuePtr, bool hipriset)
 {
 	Bool		retval = FALSE;
 
-	if (dig)								
+	if (dig)
 	{
 		SQueuePtr	ChannelPtr = (SQueuePtr) QueuePtr;
 		if (ChannelPtr)
@@ -4316,10 +4330,10 @@ Bool	Sound::SampleFinished(UByteP	QueuePtr, bool hipriset)
 				if (hipriset)
 					ChannelPtr->handler->End();							//RJS 16Aug00
 
-				ChannelPtr->sampleindex = NULL;						
-				ChannelPtr->playingvolume = 0;							
-				ChannelPtr->worlditem = NULL;							
-				ChannelPtr->GameSound = FALSE;								
+				ChannelPtr->sampleindex = NULL;
+				ChannelPtr->playingvolume = 0;
+				ChannelPtr->worlditem = NULL;
+				ChannelPtr->GameSound = FALSE;
 				ChannelPtr->looping = FALSE;
 				ChannelPtr->isRadio = FALSE;
 
@@ -4336,30 +4350,30 @@ Bool	Sound::SampleFinished(UByteP	QueuePtr, bool hipriset)
 //Author		Robert Slater
 //Date			Tue 9 Jun 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 UByteP	Sound::PlaySampleRadio(UByteP	DataPtr, int Size, SWord volscale, int Frequency, int noBits)
 {
 	SQueuePtr	ChannelPtr=NULL;
-	if (dig)													
+	if (dig)
 	{
-		if (Save_Data.vol.rchat)								
-		{														
-			ChannelPtr = FindFreeRadioHandler();				
-			if (ChannelPtr)										
+		if (Save_Data.vol.rchat)
+		{
+			ChannelPtr = FindFreeRadioHandler();
+			if (ChannelPtr)
 			{
 				SWord	theVol = (volscale * Save_Data.vol.rchat)>>(7-VOL_SCALE_FROM_PREFS);	//RJS 14Sep00
 
-				ChannelPtr->sampleindex = NULL;						
-				ChannelPtr->playingvolume = 0;							
-				ChannelPtr->worlditem = NULL;							
-				ChannelPtr->GameSound = FALSE;								
-				ChannelPtr->isRadio = TRUE;								
+				ChannelPtr->sampleindex = NULL;
+				ChannelPtr->playingvolume = 0;
+				ChannelPtr->worlditem = NULL;
+				ChannelPtr->GameSound = FALSE;
+				ChannelPtr->isRadio = TRUE;
 				ChannelPtr->looping = FALSE;
 
 				if (ChannelPtr->handler->LoadBuffer(DIG_F_MONO_8,(void*)DataPtr,Size))
@@ -4387,11 +4401,11 @@ UByteP	Sound::PlaySampleRadio(UByteP	DataPtr, int Size, SWord volscale, int Freq
 //Author		Robert Slater
 //Date			Mon 27 Jul 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::DisableAll()
@@ -4405,11 +4419,11 @@ void	Sound::DisableAll()
 //Author		Robert Slater
 //Date			Mon 27 Jul 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::KillAll()
@@ -4427,11 +4441,11 @@ void	Sound::KillAll()
 //Author		Robert Slater
 //Date			Tue 8 Sep 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::SetVolumes(Bool goinginto3d)
@@ -4557,15 +4571,15 @@ void	Sound::SetVolumes(Bool goinginto3d)
 		EngineSound.Volume = 0;
 
 	// Free up channel if we don't need it...
-	if (Save_Data.vol.rchat)									
+	if (Save_Data.vol.rchat)
 		freechannelstart = FreeChannelStartWithRadio;									//RJS 25Oct00
-	else														
-		freechannelstart = FreeChannelStartWithRadio-1;									
+	else
+		freechannelstart = FreeChannelStartWithRadio-1;
 
-	channel_radiochatter = FreeChannelRadio;									
-	channel_percussion = FreeChannelRadio+1;										
-	if (havePercussion)											
-		freechannelstart++;										
+	channel_radiochatter = FreeChannelRadio;
+	channel_percussion = FreeChannelRadio+1;
+	if (havePercussion)
+		freechannelstart++;
 
 	thesmackervol = Save_Data.vol.anim;
 }
@@ -4575,11 +4589,11 @@ void	Sound::SetVolumes(Bool goinginto3d)
 //Author		Robert Slater
 //Date			Tue 8 Sep 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	Sound::IsEnabled(SoundType	theSound)
@@ -4623,11 +4637,11 @@ void	Sound::SetEngine()
 //Author		Bobby Parp
 //Date			Tue 17 Nov 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::ProcessInterfaceSpot()
@@ -4640,11 +4654,11 @@ void	Sound::ProcessInterfaceSpot()
 //Author		Robert Slater
 //Date			Thu 28 Jan 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::InitSoundFonts()
@@ -4652,25 +4666,25 @@ void	Sound::InitSoundFonts()
 //UpdateMilesCode RJS 08Nov99 	if (trySoundFonts == true)
 //UpdateMilesCode RJS 08Nov99 	{
 //UpdateMilesCode RJS 08Nov99 		LPHMIDIOUT	midiOutDev = (LPHMIDIOUT) pooMidiDev;
-//UpdateMilesCode RJS 08Nov99 
+//UpdateMilesCode RJS 08Nov99
 //UpdateMilesCode RJS 08Nov99 		trySoundFonts = false;
-//UpdateMilesCode RJS 08Nov99 
+//UpdateMilesCode RJS 08Nov99
 //UpdateMilesCode RJS 08Nov99 		if (_SndFonts.LoadSoundFont(midiOutDev,FIL_SFONT_SNARES) == FALSE)
 //UpdateMilesCode RJS 08Nov99 		{
 //UpdateMilesCode RJS 08Nov99  			AIL_midiOutClose(mdi);
-//UpdateMilesCode RJS 08Nov99 
+//UpdateMilesCode RJS 08Nov99
 //UpdateMilesCode RJS 08Nov99 			havePercussion = false;								//RJS 14Apr99
 //UpdateMilesCode RJS 08Nov99 			if (bestDrivers[1] > -1)
 //UpdateMilesCode RJS 08Nov99 			{
 //UpdateMilesCode RJS 08Nov99 				MusicDir = FIL_DIR_MUSICMED-FIL_DIR_MUSIC;
 //UpdateMilesCode RJS 08Nov99 				uDriverID = (ULong) bestDrivers[1];
-//UpdateMilesCode RJS 08Nov99 				if (AIL_midiOutOpen (&mdi, &midiOutDev, uDriverID))				
+//UpdateMilesCode RJS 08Nov99 				if (AIL_midiOutOpen (&mdi, &midiOutDev, uDriverID))
 //UpdateMilesCode RJS 08Nov99 				{
 //UpdateMilesCode RJS 08Nov99 					MusicDir = FIL_DIR_MUSICLOW-FIL_DIR_MUSIC;
 //UpdateMilesCode RJS 08Nov99 					if (bestDrivers[2] > -1)
 //UpdateMilesCode RJS 08Nov99 					{
 //UpdateMilesCode RJS 08Nov99 						uDriverID = (ULong) bestDrivers[2];
-//UpdateMilesCode RJS 08Nov99 						if (AIL_midiOutOpen (&mdi, &midiOutDev, uDriverID))				
+//UpdateMilesCode RJS 08Nov99 						if (AIL_midiOutOpen (&mdi, &midiOutDev, uDriverID))
 //UpdateMilesCode RJS 08Nov99 							mdi = NULL;
 //UpdateMilesCode RJS 08Nov99 						else
 //UpdateMilesCode RJS 08Nov99 							havePercussion=true;				//RJS 14Apr99
@@ -4683,7 +4697,7 @@ void	Sound::InitSoundFonts()
 //UpdateMilesCode RJS 08Nov99 				if (bestDrivers[2] > -1)
 //UpdateMilesCode RJS 08Nov99 				{
 //UpdateMilesCode RJS 08Nov99 					uDriverID = (ULong) bestDrivers[2];
-//UpdateMilesCode RJS 08Nov99 					if (AIL_midiOutOpen (&mdi, &midiOutDev, uDriverID))				
+//UpdateMilesCode RJS 08Nov99 					if (AIL_midiOutOpen (&mdi, &midiOutDev, uDriverID))
 //UpdateMilesCode RJS 08Nov99 						mdi = NULL;
 //UpdateMilesCode RJS 08Nov99 					else
 //UpdateMilesCode RJS 08Nov99 						havePercussion=true;
@@ -4692,7 +4706,7 @@ void	Sound::InitSoundFonts()
 //UpdateMilesCode RJS 08Nov99 					mdi = NULL;
 //UpdateMilesCode RJS 08Nov99 			}
 //UpdateMilesCode RJS 08Nov99 		}
-//UpdateMilesCode RJS 08Nov99 
+//UpdateMilesCode RJS 08Nov99
 //UpdateMilesCode RJS 08Nov99 		if (mdi == NULL)
 //UpdateMilesCode RJS 08Nov99 			Save_Data.vol.music = 0;
 //UpdateMilesCode RJS 08Nov99 	}
@@ -4703,12 +4717,12 @@ void	Sound::InitSoundFonts()
 //Author		Robert Slater
 //Date			Thu 28 Jan 1999
 //
-//Description	
+//Description
 //
 //Inputs		vol is 0 - 128 scale factor,
 //				pan is in Rowan angles
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::PlayBuffet(SLong vol, SLong thepan)
@@ -4719,14 +4733,14 @@ void	Sound::PlayBuffet(SLong vol, SLong thepan)
 		SampleRec*	SamplePtr = LoadSample(FIL_SFX_SPRING1);
 		if (SamplePtr)
 		{
-			SQueuePtr	ChannelPtr;										
+			SQueuePtr	ChannelPtr;
 			SQueuePtr	OldChannelPtr;
-			SLong		thevol,audiblevol;											
+			SLong		thevol,audiblevol;
 //DeadCode RJS 12Jan00 			SLong		distance;
 			Bool		dothis = FALSE;
 
 
-			thevol = (SamplePtr->samplevolume * vol) >> 7;			
+			thevol = (SamplePtr->samplevolume * vol) >> 7;
 			vol = thevol;
 			audiblevol = vol;
 
@@ -4735,7 +4749,7 @@ void	Sound::PlayBuffet(SLong vol, SLong thepan)
 			if (audiblevol)
 				dothis = TRUE;
 			else
-			{	
+			{
 				if (lastBuffetVol)
 					dothis = TRUE;
 			}
@@ -4750,13 +4764,13 @@ void	Sound::PlayBuffet(SLong vol, SLong thepan)
 					allowedsamples--;
 
 					SetUpSample(ChannelPtr,SamplePtr,vol,audiblevol,thepan,NULL);
-					ChannelPtr->handler->SetLooping(2);	
-					ChannelPtr->handler->Play();			
-					ChannelPtr->looping = TRUE;						
+					ChannelPtr->handler->SetLooping(2);
+					ChannelPtr->handler->Play();
+					ChannelPtr->looping = TRUE;
 				}
 				else
 				{
-					if (OldChannelPtr)	
+					if (OldChannelPtr)
 					{
 						if (OldChannelPtr->handler->Status() == SMP_PLAYING)
 						{
@@ -4795,18 +4809,18 @@ void	Sound::PlayBuffet(SLong vol, SLong thepan)
 //Author		Robert Slater
 //Date			Fri 29 Jan 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::RowanToPan(SLong	&theAngle)
 {
 	if (theAngle > 16384)
 		theAngle = 32768 - theAngle;
-	
+
 	if (theAngle < -16384)
 		theAngle = -32768 - theAngle;
 }
@@ -4816,18 +4830,18 @@ void	Sound::RowanToPan(SLong	&theAngle)
 //Author		Robert Slater
 //Date			Fri 29 Jan 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::RowanToPan(SWord	&theAngle)
 {
 	if (theAngle > 16384)
 		theAngle = 32768 - theAngle;
-	
+
 	if (theAngle < -16384)
 		theAngle = -32768 - theAngle;
 }
@@ -4839,9 +4853,9 @@ void	Sound::RowanToPan(SWord	&theAngle)
 //
 //Description	Scale morale to fit mood...
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::SequenceAudible(MoraleType	 morale,SLong vol,SLong fadeval)
@@ -4860,25 +4874,25 @@ void	Sound::SequenceAudible(MoraleType	 morale,SLong vol,SLong fadeval)
 //Author		Robert Slater
 //Date			Fri 12 Mar 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::UIPlaySample(FileNum	thefile,SLong vol)
 {
 	if (Save_Data.vol.uisfx)
 	{
-		SQueuePtr	ChannelPtr;										
-		SQueuePtr	OldChannelPtr;									
+		SQueuePtr	ChannelPtr;
+		SQueuePtr	OldChannelPtr;
 		SampleRec*	SamplePtr;
 
 		vol *= Save_Data.vol.uisfx;								//RJS 05Apr00
 		vol >>= 7;												//RJS 05Apr00
 
-		if (allowedsamples)											
+		if (allowedsamples)
 		{
 			SamplePtr = LoadSample(thefile,TRUE);
 			if (SamplePtr)
@@ -4889,11 +4903,11 @@ void	Sound::UIPlaySample(FileNum	thefile,SLong vol)
 				vol = thevol;
 				thevol >>= VOL_SCALE_SHIFT;								//RJS 14Sep00
 
-				ChannelPtr = FindFreeHandlerUI(SamplePtr);	
-				if (ChannelPtr)												
+				ChannelPtr = FindFreeHandlerUI(SamplePtr);
+				if (ChannelPtr)
 				{
-					allowedsamples--;										
-					SetUpSample(ChannelPtr,SamplePtr,vol,thevol,thepan,NULL);	
+					allowedsamples--;
+					SetUpSample(ChannelPtr,SamplePtr,vol,thevol,thepan,NULL);
 					ChannelPtr->handler->Play();
 				}
 			}
@@ -4923,11 +4937,11 @@ void	Sound::SequenceMute(SLong	fadeval)
 //Author		Robert Slater
 //Date			Thu 1 Apr 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::PreLoadSFX()
@@ -4976,11 +4990,11 @@ void	Sound::PreLoadSFX()
 //Author		Robert Slater
 //Date			Thu 1 Apr 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	Sound::PreLoadRadioChatter()
@@ -5067,7 +5081,7 @@ void	Sound::PreLoadFile(SLong	thefile)
 //
 //Description	Vol toggle
 //
-//Inputs		
+//Inputs
 //
 //Returns		smacker volume in 100*db
 //
@@ -5099,9 +5113,9 @@ SLong	Sound::SmackerOn(int	wind)
 //
 //Description	Vol toggle
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::SmackerOff(int	wind)
@@ -5121,7 +5135,7 @@ void	Sound::StopShooting()
 		Trans_Obj.ClearWeaponChain(Manual_Pilot.ControlledAC2);			//RJS 15Nov99
 		if (!shootTimer)
 		{
-//DeadCode AMM 21Feb100 			if(Save_Data.flightdifficulty[FD_FF_GUN])	//CSB 05/07/99	
+//DeadCode AMM 21Feb100 			if(Save_Data.flightdifficulty[FD_FF_GUN])	//CSB 05/07/99
 //DeadCode CSB 17Aug00 			if(Save_Data.hardwareconfig[HW_FF_GUN])	 //AMM 07/02/00
 			if((_Analogue.FFdevice) && (_Analogue.FF_gun))
 				_Analogue.FFshake.SetX(0,0,false);
@@ -5147,12 +5161,12 @@ Bool	Sound::StartShooting(FileNum	theSample,SLong shoottime,SLong	gunfreq)
 	Bool	shootnow = FALSE;
 	if (!playerShooting)
 	{
-//DeadCode AMM 21Feb100 		if(Save_Data.flightdifficulty[FD_FF_GUN])	//CSB 05/07/99	
+//DeadCode AMM 21Feb100 		if(Save_Data.flightdifficulty[FD_FF_GUN])	//CSB 05/07/99
 //DeadCode CSB 17Aug00 		if(_Analogue.FFdevice)	 //AMM 07/02/00
 		if((_Analogue.FFdevice) && (_Analogue.FF_gun))
 		{
 			int strength = (10000 * _Analogue.FF_gun) / 5;				//CSB 17Aug00
-			_Analogue.FFshake.SetX(strength, gunfreq / 4, false);				  //RJS 31/05/99	//CSB 18/06/99	
+			_Analogue.FFshake.SetX(strength, gunfreq / 4, false);				  //RJS 31/05/99	//CSB 18/06/99
 		}
 
 		shootTimer = shoottime;
@@ -5174,11 +5188,11 @@ Bool	Sound::StartShooting(FileNum	theSample,SLong shoottime,SLong	gunfreq)
 //Author		Robert Slater
 //Date			Wed 14 Apr 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	Sound::PreLoadMusicSamples()
@@ -5242,7 +5256,7 @@ Bool	Sound::PreLoadMusicSamples()
 
 						for (count = 0; count < 4; count ++)
 							header[count] = *tmpptr++;
-	
+
 						header[4] = 0;
 
 						if (	(strcmp(header,"RIFF") == 0)
@@ -5250,16 +5264,16 @@ Bool	Sound::PreLoadMusicSamples()
 						{
 							header1 = (RIFF*) tmpaddress;
 							header2 = (FMT*) header1->data;
-		
-							count = 0;								
+
+							count = 0;
 							while (strnicmp(header2->FMT_string,"fmt ",4))
     						{
     							header2 = (FMT *) ((BYTE *) header2 +
 			      						header2->chunk_size + 8 + (header2->chunk_size & 1));
 
-								count++;										
-								if (count >3)									
-									break;										
+								count++;
+								if (count >3)
+									break;
     						}
 
 							if (count > 3)
@@ -5277,7 +5291,7 @@ Bool	Sound::PreLoadMusicSamples()
 							SamplePtr->datasize = header3->chunk_size;
 							SamplePtr->dataptr = (void*) header3->data;
 						}
-						else					
+						else
 							SamplePtr->samplerate = 44100;
 
 						SamplePtr->priority = 0;
@@ -5308,11 +5322,11 @@ Bool	Sound::PreLoadMusicSamples()
 //Author		Robert Slater
 //Date			Wed 14 Apr 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::DeleteMusicSamples()
@@ -5341,9 +5355,9 @@ void	Sound::DeleteMusicSamples()
 //
 //Description	Called from radio chatter to reset preload with alternate voices
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::SetUpRandomVoices(SLong	fac, SLong	tower, SLong v2)
@@ -5363,9 +5377,9 @@ void	Sound::SetUpRandomVoices(SLong	fac, SLong	tower, SLong v2)
 //
 //Description	VEL SCALE :   1MS   = 10000 UNITS
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::PlayWindyMiller(AirStrucPtr	ac)
@@ -5393,8 +5407,8 @@ void	Sound::PlayWindyMiller(AirStrucPtr	ac)
 				if (acgear > 128)	acgear = 128;
 
 				acbreak += acflaps<<1;	//cos flaps are noisier
-				acbreak += acgear;		
-			
+				acbreak += acgear;
+
 				if (velscale > 32768)
 					velscale = 32768;
 
@@ -5460,11 +5474,11 @@ void	Sound::PlayWindyMiller(AirStrucPtr	ac)
 //Author		Andy McMaster
 //Date			Fri 11 Jun 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DEADCODE AMM 14/01/00 ULong		Sound::GetSysTime()
@@ -5480,9 +5494,9 @@ void	Sound::PlayWindyMiller(AirStrucPtr	ac)
 //Description	Log a sample to be played from a different thread, if it is not
 //				already playing.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::PlayDelayed(FileNum	thefile, ItemPtr	theitm,SLong vol,Bool looped,FileNum	stsam, FileNum	endsam)
@@ -5491,9 +5505,9 @@ void	Sound::PlayDelayed(FileNum	thefile, ItemPtr	theitm,SLong vol,Bool looped,Fi
 	if (Save_Data.vol.sfx && thefile != FIL_NULL)						//RJS 9Jun00
 	{
 //DeadCode RJS 16Oct00 		int	spos = GetIndex(thefile);
-//DeadCode RJS 16Oct00 
+//DeadCode RJS 16Oct00
 //DeadCode RJS 16Oct00 		SampleRec*	SamplePtr = &thesample[spos];
-//DeadCode RJS 16Oct00 
+//DeadCode RJS 16Oct00
 //DeadCode RJS 16Oct00 		for (int count = freechannelstart; count < status.nohandlers; count ++)
 //DeadCode RJS 16Oct00 		{
 //DeadCode RJS 16Oct00 			if (	(soundqueue[count].sampleindex == SamplePtr)
@@ -5513,9 +5527,9 @@ void	Sound::PlayDelayed(FileNum	thefile, ItemPtr	theitm,SLong vol,Bool looped,Fi
 //
 //Description	Play percussion sample that has been logged by a midi event.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::ProcessPercussion()
@@ -5555,11 +5569,11 @@ void	Sound::ProcessPercussion()
 //Author		Robert Slater
 //Date			Mon 8 Nov 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::MultiMediaError(ULong	midiRes)
@@ -5596,9 +5610,9 @@ void	Sound::MultiMediaError(ULong	midiRes)
 //
 //Description	Top level call to calculate pan & vol for an item
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SLong	Sound::SoundInWorld(const ItemPtr	theItem, SLong	&vol)
@@ -5661,11 +5675,11 @@ SLong	Sound::SoundInWorld(const ItemPtr	theItem, SLong	&vol)
 //Author		Robert Slater
 //Date			Wed 12 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::SetSubject(Coords3D&	pos, SLong vx, SLong vy, SLong vz, SLong vol)
@@ -5686,11 +5700,11 @@ void	Sound::SetSubject(Coords3D&	pos, SLong vx, SLong vy, SLong vz, SLong vol)
 //Author		Robert Slater
 //Date			Wed 12 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::SetListener(ViewPoint*	vp)
@@ -5741,11 +5755,11 @@ void	Sound::Commit()
 //Author		Robert Slater
 //Date			Mon 8 May 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::UIPlayAmbient(SLong sfxTrigger)
@@ -5766,17 +5780,17 @@ void	Sound::UIPlayAmbient(SLong sfxTrigger)
 //Author		Robert Slater
 //Date			Mon 8 May 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::UIProcessAmbience()
 {
 	if (Save_Data.vol.anim)										//RJS 02Jun00
-	{	
+	{
 		SampleRec*	SamplePtr;
 		SLong		vol;
 		FileNum		thefile = FIL_NULL;
@@ -5837,22 +5851,22 @@ void	Sound::UIProcessAmbience()
 				SamplePtr = LoadSample(thefile,TRUE);
 				if (SamplePtr)
 				{
-					SQueuePtr	ChannelPtr;										
-					SQueuePtr	OldChannelPtr;	
+					SQueuePtr	ChannelPtr;
+					SQueuePtr	OldChannelPtr;
 					SLong		spos = GetIndex(thefile);
 					SLong		thepan = 0;
 					SLong		thevol = (SamplePtr->samplevolume * vol) >> 7;
-					int			stblock = spos - 1;										
-					int			endblock = spos + 1;										
+					int			stblock = spos - 1;
+					int			endblock = spos + 1;
 
 					vol = thevol;
 					thevol >>= VOL_SCALE_SHIFT;							//RJS 14Sep00
 
-//DeadCode RJS 20Jun00 					ChannelPtr = FindFreeHandlerUI(SamplePtr);	
+//DeadCode RJS 20Jun00 					ChannelPtr = FindFreeHandlerUI(SamplePtr);
 					ChannelPtr = FindFreeHandlerOnce(SamplePtr,NULL,OldChannelPtr,stblock,endblock);
-					if (ChannelPtr)												
+					if (ChannelPtr)
 					{
-						SetUpSample(ChannelPtr,SamplePtr,vol,thevol,thepan,NULL);	
+						SetUpSample(ChannelPtr,SamplePtr,vol,thevol,thepan,NULL);
 						ChannelPtr->handler->Play();
 					}
 				}
@@ -5870,36 +5884,36 @@ void	Sound::UIProcessAmbience()
 //Author		Robert Slater
 //Date			Tue 13 Jun 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::PlayRestart(FileNum	thefile, ItemBasePtr	sampleitem, SLong	vol,FileNum	stsam, FileNum	endsam)
 {
 #ifndef	_NOSOUNDIN3D_
 
-	SQueuePtr	ChannelPtr;										
-	SampleRec*	SamplePtr;										
+	SQueuePtr	ChannelPtr;
+	SampleRec*	SamplePtr;
 	int			spos;
 	int	stblock = 0;
 	int	endblock = 0;
-	SLong	thevol;												
-	int	thepan;													
+	SLong	thevol;
+	int	thepan;
 
 	SamplePtr = LoadSample(thefile);
 	if (SamplePtr)
 	{
 		if (allowedsamples || (sampleitem == Manual_Pilot.ControlledAC2))
 		{
-			thevol = (SamplePtr->samplevolume * vol) >> 7;			
-			vol = thevol;											
+			thevol = (SamplePtr->samplevolume * vol) >> 7;
+			vol = thevol;
 
 			spos = GetIndex(thefile);
-			stblock = spos - 1;										
-			endblock = spos + 1;									
+			stblock = spos - 1;
+			endblock = spos + 1;
 
 			if (	(stsam != FIL_NULL)
 				&&	(endsam != FIL_NULL)	)
@@ -5910,14 +5924,14 @@ void	Sound::PlayRestart(FileNum	thefile, ItemBasePtr	sampleitem, SLong	vol,FileN
 
 			thepan = SoundInWorld(ItemPtr(sampleitem),thevol);			//RJS 12Jan00
 
-			if (thevol)													
+			if (thevol)
 			{
 				SQueuePtr	OldChannelPtr;
 
 				ChannelPtr = FindFreeHandlerRestart(SamplePtr,sampleitem,stblock,endblock);
-				if (ChannelPtr)			   
+				if (ChannelPtr)
 				{
-					allowedsamples--;	   
+					allowedsamples--;
 
 					SetUpSample(ChannelPtr,SamplePtr,vol,thevol,thepan,sampleitem);
 
@@ -5934,11 +5948,11 @@ void	Sound::PlayRestart(FileNum	thefile, ItemBasePtr	sampleitem, SLong	vol,FileN
 //Author		Robert Slater
 //Date			Tue 13 Jun 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::PlayRestart(FileNum	thefile, SLong	vol, SLong thepan)
@@ -5951,11 +5965,11 @@ void	Sound::PlayRestart(FileNum	thefile, SLong	vol, SLong thepan)
 //Author		Robert Slater
 //Date			Mon 14 Aug 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::PreLoadChatChunk(SLong	diroffset, bool preLoadRAF, bool preLoadLW)
@@ -6092,11 +6106,11 @@ void	Sound::PreLoadChatChunk(SLong	diroffset, bool preLoadRAF, bool preLoadLW)
 //Author		Robert Slater
 //Date			Fri 15 Sep 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::ChatterStatus(bool	preLoadFlag)
@@ -6109,11 +6123,11 @@ void	Sound::ChatterStatus(bool	preLoadFlag)
 //Author		Robert Slater
 //Date			Fri 15 Sep 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 inline void	Sound::ClipVolume(SLong& theVol)							//RJS 14Sep00
@@ -6132,11 +6146,11 @@ inline void	Sound::ClipVolume(SLong& theVol)							//RJS 14Sep00
 //Author		Robert Slater
 //Date			Fri 15 Sep 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 inline void	Sound::GetEyeVelocity(SLong& vx, SLong& vy, SLong& vz)
@@ -6155,11 +6169,11 @@ inline void	Sound::GetEyeVelocity(SLong& vx, SLong& vy, SLong& vz)
 //Author		Robert Slater
 //Date			Fri 15 Sep 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::SetUpListener(const ItemPtr	trackeditem,
@@ -6195,11 +6209,11 @@ void	Sound::SetUpListener(const ItemPtr	trackeditem,
 //Author		Robert Slater
 //Date			Fri 22 Sep 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 inline	void	Sound::SetPriority(const SQueuePtr	ChannelPtr,SLong& vol)
@@ -6214,20 +6228,20 @@ inline	void	Sound::SetPriority(const SQueuePtr	ChannelPtr,SLong& vol)
 //Author		Robert Slater
 //Date			Fri 22 Sep 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 inline	void	Sound::UpdatePriority(const SQueuePtr	ChannelPtr, const int& count, SLong& lowest, SLong& lowpos)
 {
 	if (!ChannelPtr->highPriority)
 	{
-		ChannelPtr->playingpriority++;					
+		ChannelPtr->playingpriority++;
 
-		if (ChannelPtr->playingpriority > lowest)		
+		if (ChannelPtr->playingpriority > lowest)
 		{
 			lowest = ChannelPtr->playingpriority;
 			lowpos = count;
@@ -6240,19 +6254,19 @@ inline	void	Sound::UpdatePriority(const SQueuePtr	ChannelPtr, const int& count, 
 //Author		Robert Slater
 //Date			Fri 22 Sep 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	PlayingRec::Clean()
 {
-	sampleindex = NULL;					
-	looping = false;						
-	worlditem = NULL;					
-	GameSound = false;					
+	sampleindex = NULL;
+	looping = false;
+	worlditem = NULL;
+	GameSound = false;
 	isRadio = false;
 	highPriority = false;
 }
@@ -6262,11 +6276,11 @@ void	PlayingRec::Clean()
 //Author		Robert Slater
 //Date			Thu 28 Sep 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::ClearSoundQueue()
@@ -6290,11 +6304,11 @@ void	Sound::ClearSoundQueue()
 //Author		Robert Slater
 //Date			Thu 28 Sep 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int		Sound::GetEngineVol()
@@ -6335,11 +6349,11 @@ void	Sound::GoingToMapScreen()
 //Author		Robert Slater
 //Date			Tue 10 Oct 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::StopItemSamples(ItemBasePtr	theItem)
@@ -6349,14 +6363,14 @@ void	Sound::StopItemSamples(ItemBasePtr	theItem)
 		int			count;
 		SQueuePtr	ChannelPtr = soundqueue;
 
-		for (count = 0; count < status.nohandlers; count++)	
-		{		
+		for (count = 0; count < status.nohandlers; count++)
+		{
 			if (	ChannelPtr->sampleindex
 				&&	(ChannelPtr->worlditem == theItem)	)
-				HardStop(ChannelPtr);						
+				HardStop(ChannelPtr);
 
-			ChannelPtr++;									
-		}		
+			ChannelPtr++;
+		}
 	}
 }
 
@@ -6392,9 +6406,9 @@ void	LogSoundRec::Add(FileNum p1, ItemBasePtr	p2, SLong p3, Bool lp, FileNum p4,
 //
 //Description	Used for edge-case protection...
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Sound::CloseDownSmall()

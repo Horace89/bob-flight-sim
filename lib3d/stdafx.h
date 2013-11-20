@@ -6,6 +6,9 @@
 #if !defined(AFX_STDAFX_H__11556B62_95E0_11D3_8795_0040052C1F45__INCLUDED_)
 #define AFX_STDAFX_H__11556B62_95E0_11D3_8795_0040052C1F45__INCLUDED_
 
+#include <windows.h>
+//#include <cguid.h>
+
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000

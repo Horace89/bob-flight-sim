@@ -21,7 +21,7 @@ class CMainToolbar : public CRToolBar
 // Construction
 public:
 	CMainToolbar(CWnd* pParent = NULL);   // standard constructor
-	enum	{	ACALLOC, BASES, SQUADRONLIST,WEATHER, 
+	enum	{	ACALLOC, BASES, SQUADRONLIST,WEATHER,
 				REVIEW, PILOTDATA, ASSETLIST, MISSIONFOLDER, HOSTILESLIST,
 				DOSSIER, ACDOSSIER, DIARY,INTERCEPTOFFERED,
 				TAKEOVEROFFERED, ROUTE , WAYPOINT,
@@ -57,31 +57,31 @@ public:
 
 // Implementation
 public:
-   void OpenDirectives(); 
-//DEADCODE RDH 06/01/00    void OpenPlayerlog(); 
+   void OpenDirectives();
+//DEADCODE RDH 06/01/00    void OpenPlayerlog();
 //DEADCODE RDH 11/11/99    void OpenSquads(int entry);
    void OpenDossier(UniqueID item);
    void OpenACDossier(int item, int gruppe);
-   void OpenDiary(int squad); 
-	void OpenInterceptOffered(int pack,int raid); 
-	void OpenTakeOfferOffered(); 
-	void OpenRoute(); 
-	void OpenWP(); 
+   void OpenDiary(int squad);
+	void OpenInterceptOffered(int pack,int raid);
+	void OpenTakeOfferOffered();
+	void OpenRoute();
+	void OpenWP();
 	void	OpenMissionfolder(bool special=false);
 //DEADCODE RDH 05/04/00 	void AuthorisePackage(UniqueID uid);
 
-   void OpenDossierNotFrontLine(UniqueID item); 
+   void OpenDossierNotFrontLine(UniqueID item);
 //DEADCODE JIM 30/11/99    void	OpenDis();
    void DialoguesVisible( bool vis);
-//DEADCODE JIM 30/11/99    void OpenLoadProfile(int uid); 
+//DEADCODE JIM 30/11/99    void OpenLoadProfile(int uid);
 //DEADCODE JIM 30/11/99    void LaunchPlayerLog(PosnControl x, PosnControl y);
-//DEADCODE RDH 06/01/00    void LaunchOverview(PosnControl x, PosnControl y); 
+//DEADCODE RDH 06/01/00    void LaunchOverview(PosnControl x, PosnControl y);
 	void OnClickedMissionlog();
-   void OpenHostileslist(); 
+   void OpenHostileslist();
 	void AnythingImportantToReview();
 	void FindSomethingToReview();
 	bool EndofWar();
-	void TailorHints(); 
+	void TailorHints();
 
 
 	// Generated message map functions
@@ -109,9 +109,9 @@ public:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
-		  
+
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_MAINTBAR_H__C13BD762_E594_11D1_A1F0_0080C8582DE4__INCLUDED_)
-
+

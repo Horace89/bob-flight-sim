@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -64,10 +64,10 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //------------------------------------------------------------------------------
 //Filename       overlay.cpp
-//System         
-//Author         Paul.   
+//System
+//Author         Paul.
 //Date           Thu 4 Jun 1998
-//Description    
+//Description
 //------------------------------------------------------------------------------
 
 //#define _REDO_ME_
@@ -103,9 +103,10 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 // get rid of this later...
 //#define	_NOTFORDEMO_
 
+#include "3ddefs.h"
 enum	ImageMapNumber;
-#include <afxctl.h>
-#include	<afxwin.h>
+// x0r ??? #include <afxctl.h>
+// x0r ??? #include	<afxwin.h>
 #include "dosdefs.h"
 #define	F_BATTLE
 #include	"files.g"
@@ -141,8 +142,21 @@ enum	ImageMapNumber;
 
 const ULong ONE_SECOND_TIME = 1000;
 extern	CDC g_OffScreenDC;
-												//RJS 1Dec00
+
+class CFont;
+											//RJS 1Dec00
 extern CFont* (g_AllFonts[][4]);
+
+int strcasecmp( const char *s1, const char *s2 )
+{
+  while (1)
+    {
+     int c1 = tolower( (unsigned char) *s1++ );
+     int c2 = tolower( (unsigned char) *s2++ );
+     if (c1 == 0 || c1 != c2) return c1 - c2;
+    }
+}
+
 static ULong vsets[16]=
 {
 	0x00000000,0x000000ff,0x0000ff00,0x0000ffff,
@@ -204,7 +218,7 @@ inline Colour MAKE_SOFT_COL(ULong inp)
 static OString OSpeedText(IDS_INFOPANEL_SPEED);
 static OString OAltitudeText(IDS_ALT);
 static OString OMachText(IDS_MACH);
-static OString OAmmoText(IDS_GUNAMMO);		 
+static OString OAmmoText(IDS_GUNAMMO);
 static OString OHdgText(IDS_HDG);
 static OString OThrustText(IDS_THRUST);
 static OString OFrameTimeText(IDS_FRAMES_SEC);
@@ -289,14 +303,14 @@ const SLong _NumInfoTexts=sizeof(OInfoPanelText)/sizeof(OString*);
 
 OString* listViewee[]=
 {
-	&OViewResetView,	
-	&OViewEnemyView,	
-	&OViewFrndView,	
-	&OViewGrndTView,	
-	&OViewWayptView,	
+	&OViewResetView,
+	&OViewEnemyView,
+	&OViewFrndView,
+	&OViewGrndTView,
+	&OViewWayptView,
 	&OViewMessage,
 	&OViewResetEnemyView,
-	&OViewResetFrndView,	
+	&OViewResetFrndView,
 	&OViewResetGrndTView,
 	&OViewResetWayptView,
 	&OViewResetMessage
@@ -348,7 +362,7 @@ struct ICON
 };
 
 const SWord HALF_WIDTH_640=320;
-const SWord HALF_HEIGHT_640=320;	
+const SWord HALF_HEIGHT_640=320;
 const Float FHALF_WIDTH=Float(HALF_WIDTH_640);
 
 //const SWord INFO_LINE_HEIGHT=8;	//info bar height in pixels @ 640x480
@@ -470,13 +484,13 @@ SWord TOPLINE_Y=0;
 SWord TOPLINE_Y2=0;
 SWord TOPLINE_Y3=0;
 SWord TOPLINE_YY=0;
-//DeadCode RJS 7Dec00 const SWord ALTITUDE_X	=  10;	
+//DeadCode RJS 7Dec00 const SWord ALTITUDE_X	=  10;
 //DeadCode RJS 7Dec00 const SWord HDG_X		= 110;
 //DeadCode RJS 7Dec00 const SWord SPEED_X		= 190;
 //DeadCode RJS 7Dec00 const SWord THRUST_X	= 310;
 //DeadCode RJS 7Dec00 const SWord AMMO_X		= 410;
-//DeadCode RJS 7Dec00 const SWord MACH_X		= 0;	
-const SWord ALTITUDE_X	=  0;	
+//DeadCode RJS 7Dec00 const SWord MACH_X		= 0;
+const SWord ALTITUDE_X	=  0;
 const SWord HDG_X		= 1;
 const SWord SPEED_X		= 2;
 const SWord THRUST_X	= 3;
@@ -547,11 +561,11 @@ const SWord TRGALTTXT_X=TRGBRGTXT_X+100;
 //Author		Robert Slater
 //Date			Thu 7 Dec 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	COverlay::FindLanguage()
@@ -564,7 +578,7 @@ void	COverlay::FindLanguage()
 		for (int i=0;i<MACH_X;i++)
 		{
 			curroffset+=(UByte)resourcelanguagewidths[i];
-			x_offsets[0][i]=curroffset;	
+			x_offsets[0][i]=curroffset;
 		}
 	}
 	else
@@ -580,7 +594,7 @@ void	COverlay::FindLanguage()
 				char*	langname = tmpname;
 
 				strcpy(tmpname,theName);
-				
+
 				tmpname[stringlen-18] = 0;
 
 				for (int i=stringlen-19; i > 0; i--)
@@ -593,9 +607,9 @@ void	COverlay::FindLanguage()
 					}
 				}
 
-				for (i=0; i < LI_MAX; i++)
+				for (int i=0; i < LI_MAX; i++)
 				{
-					if (stricmp(lang_name[i],langname)==0)
+					if (strcasecmp(lang_name[i],langname)==0)
 					{
 						g_languageIndex = i;
 						break;
@@ -609,7 +623,7 @@ void	COverlay::FindLanguage()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawWholeScreen
-//Author		Paul    
+//Author		Paul
 //Date			Thu 4 Jun 1998
 //------------------------------------------------------------------------------
 void COverlay::DrawWholeScreen()
@@ -619,7 +633,7 @@ void COverlay::DrawWholeScreen()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetSurfaceDimensions
-//Author		Paul.   
+//Author		Paul.
 //
 //------------------------------------------------------------------------------
 void COverlay::GetSurfaceDimensions(SLong& w,SLong& h)
@@ -633,14 +647,14 @@ void COverlay::GetSurfaceDimensions(SLong& w,SLong& h)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawInfoBar
-//Author		Paul    
+//Author		Paul
 //Date			Thu 4 Jun 1998
 //------------------------------------------------------------------------------
 void COverlay::DrawInfoBar()
 {
 	active_lines=0;
 
-	if (pCurScr==&mapViewScr) 
+	if (pCurScr==&mapViewScr)
 		return;
 
 	if (Key_Tests.KeyPress3d(HUDTOGGLE))
@@ -678,33 +692,33 @@ void COverlay::DrawInfoBar()
 		messageTimer-=pvp->RealFrameTime();
 		if (messageTimer<0)
 			messageTimer=0;
-	
+
 		COORDS2D* pointList;
 		Save_Data.infoLineCount%=INFOLINESMAX;
-	
+
 //DeadCode JON 13Jun00 		DoPointStruc dp;
-	
+
 		SLong box_height;
-		
+
 		GetSurfaceDimensions(physicalWidth,physicalHeight);
-	
+
 //DeadCode JON 5Nov00 		fIsWide=IsWide(physicalWidth);
-	
+
 		if (!fIsWide)	box_height=10;
 		else			box_height=18;
-	
+
 		longDistUnitStr=LdStr(Save_Data.dist.longabbr);
 		shortDistUnitStr=LdStr(Save_Data.dist.mediumabbr);
 		heightUnitStr=LdStr(Save_Data.alt.mediumabbr);
 		speedUnitStr=LdStr(Save_Data.speed.perhrabbr);
-	
+
 		PreFormatViewText();
-	
+
 		if (TestMessageText())
 		{
 			SWord local_box_height=0;
-	
-			if (Save_Data.infoLineCount==1) 
+
+			if (Save_Data.infoLineCount==1)
 			{
 				local_box_height+=box_height;
 			}
@@ -715,7 +729,7 @@ void COverlay::DrawInfoBar()
 				else
 					local_box_height+=box_height;
 			}
-	
+
 			if (messageTimer && (Save_Data.gamedifficulty[GD_DISPLAYMESSAGES] || !otherText->IsEmpty()))
 			{
 				local_box_height+=box_height;
@@ -742,7 +756,7 @@ void COverlay::DrawInfoBar()
 		TOPLINE_Y=physicalHeight-box_height+1;
 		TOPLINE_Y2=TOPLINE_Y-box_height;
 		TOPLINE_Y3=TOPLINE_Y2-box_height;
-	
+
 		if (Save_Data.infoLineCount==2 && fTwoLines)
 		{
 			TOPLINE_YY=TOPLINE_Y;
@@ -751,7 +765,7 @@ void COverlay::DrawInfoBar()
 			TOPLINE_Y3-=box_height;
 		}
 		active_lines=Save_Data.infoLineCount!=0?1:0;
-	
+
 		if (messageTimer && (Save_Data.gamedifficulty[GD_DISPLAYMESSAGES] || !otherText->IsEmpty()))
 		{
 			if (!active_lines)
@@ -762,14 +776,14 @@ void COverlay::DrawInfoBar()
 			DrawMessageText();
 			active_lines+=msgText[1].IsEmpty()?1:2;
 		}
-	
+
 		switch (Save_Data.infoLineCount)
 		{
 			case 2:
 			DrawViewText();
 			if (fTwoLines) active_lines++;
 			break;
-			case 1:			
+			case 1:
 			DrawTopText();
 			break;
 		}
@@ -787,7 +801,7 @@ void COverlay::DrawInfoBar()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawTopText
-//Author		Paul    
+//Author		Paul
 //Date			Thu 4 Jun 1998
 //------------------------------------------------------------------------------
 void COverlay::DrawTopText()
@@ -798,7 +812,7 @@ void COverlay::DrawTopText()
 
 	altitude2=(altitude*305)/Save_Data.alt.mediummm;
 //DeadCode CSB 23/06/99		speedey=(float(speed)/.5147)*Save_Data.speed.mmpcs2perhr;
-	speedey = float(speed) * Save_Data.speed.mmpcs2perhr;	//CSB 23/06/99	
+	speedey = float(speed) * Save_Data.speed.mmpcs2perhr;	//CSB 23/06/99
 	speed2=SLong(speedey);
 
 //DeadCode JON 10Oct00 	const SLong doubleSpace=StrPixelLen2((char*)&"  ");
@@ -845,22 +859,22 @@ void COverlay::DrawTopText()
 //DeadCode CSB 15Sep00 	SWord bupxpos=xpos;
 //DeadCode CSB 15Sep00 	sprintf(temp,"%s: %3d%s",OSpeedText.text,speed2,speedUnitStr);
 //DeadCode CSB 15Sep00 	PrintAt2(xpos,TOPLINE_Y,temp);
-//DeadCode CSB 15Sep00 
+//DeadCode CSB 15Sep00
 //DeadCode CSB 15Sep00 	xpos=bupxpos+StrPixelLen2(OSpeedText.text)+3*digitWidth+StrPixelLen2(speedUnitStr)+doubleSpace;
 //DeadCode CSB 15Sep00 	bupxpos=xpos;
 //DeadCode CSB 15Sep00 	sprintf(temp,"%s: %3d",OAmmoText.text,ammocount);
 //DeadCode CSB 15Sep00 	PrintAt2(xpos,TOPLINE_Y,temp);
-//DeadCode CSB 15Sep00 
+//DeadCode CSB 15Sep00
 //DeadCode CSB 15Sep00 	xpos=bupxpos+StrPixelLen2(OMachText.text)+4*digitWidth+doubleSpace;
 //DeadCode CSB 15Sep00 	bupxpos=xpos;
 //DeadCode CSB 15Sep00 	sprintf(temp,"%s: %5d%s",OAltitudeText.text,altitude2,heightUnitStr);
 //DeadCode CSB 15Sep00 	PrintAt2(xpos,TOPLINE_Y,temp);
-//DeadCode CSB 15Sep00 
+//DeadCode CSB 15Sep00
 //DeadCode CSB 15Sep00 	xpos=bupxpos+StrPixelLen2(OAltitudeText.text)+6*digitWidth+StrPixelLen2(heightUnitStr)+doubleSpace;
 //DeadCode CSB 15Sep00 	bupxpos=xpos;
 //DeadCode CSB 15Sep00 	sprintf(temp,"%s: %3d",OHdgText.text,heading);
 //DeadCode CSB 15Sep00 	PrintAt2(xpos,TOPLINE_Y,temp);
-//DeadCode CSB 15Sep00 
+//DeadCode CSB 15Sep00
 //DeadCode CSB 15Sep00 	xpos=bupxpos+StrPixelLen2(OHdgText.text)+3*digitWidth+doubleSpace;
 //DeadCode CSB 15Sep00 	sprintf(temp,"%s: %3d",OThrustText.text,thrust);
 //DeadCode CSB 15Sep00 	PrintAt2(xpos,TOPLINE_Y,temp);
@@ -886,7 +900,7 @@ inline bool COverlay::TestMessageText()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawMessageText
-//Author		Paul    
+//Author		Paul
 //Date			Thu 4 Jun 1998
 //------------------------------------------------------------------------------
 void COverlay::DrawMessageText()
@@ -946,7 +960,7 @@ void COverlay::PreFormatViewText()
 	for (i=VIEWEE_LIST_SIZE-1;i>=0;i--)
 		if ((j=StrPixelWidthPadded(listViewee[i]->text))>vieweeLen)
 			vieweeLen=j;
-	
+
 	for (i=VIEWTYPE_LIST_SIZE-1;i>=0;i--)
 		if ((j=StrPixelWidthPadded(listViewType[i]->text))>viewTypeLen)
 			viewTypeLen=j;
@@ -966,13 +980,13 @@ void COverlay::PreFormatViewText()
 //DeadCode JON 10Oct00 	const	SLong rangeDigitLen=StrPixelLen2("00000000");
 //DeadCode JON 10Oct00 	const	SLong relBrgDigitLen=StrPixelLen2("0000");
 //DeadCode JON 10Oct00 	const	SLong relAltDigitLen=StrPixelLen2("00000000");
-//DeadCode JON 10Oct00 
+//DeadCode JON 10Oct00
 //DeadCode JON 10Oct00 	//find the longest viewer & viewee strings
-//DeadCode JON 10Oct00 
+//DeadCode JON 10Oct00
 //DeadCode JON 10Oct00 	for (i=VIEWEE_LIST_SIZE-1;i>=0;i--)
 //DeadCode JON 10Oct00 		if ((j=StrPixelLen2(listViewee[i]->text))>vieweeLen)
 //DeadCode JON 10Oct00 			vieweeLen=j;
-//DeadCode JON 10Oct00 	
+//DeadCode JON 10Oct00
 //DeadCode JON 10Oct00 	for (i=VIEWTYPE_LIST_SIZE-1;i>=0;i--)
 //DeadCode JON 10Oct00 		if ((j=StrPixelLen2(listViewType[i]->text))>viewTypeLen)
 //DeadCode JON 10Oct00 			viewTypeLen=j;
@@ -1004,7 +1018,7 @@ void COverlay::PreFormatViewText()
 					relBrgUnitsLen;
 
 		if (totalLen>physicalWidth)
-			fTwoLines=true;			
+			fTwoLines=true;
 	}
 	viewee_x=0;
 
@@ -1019,7 +1033,7 @@ void COverlay::PreFormatViewText()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawViewText
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 5 Jun 1998
 //------------------------------------------------------------------------------
 void COverlay::DrawViewText()
@@ -1075,7 +1089,7 @@ void COverlay::DrawViewText()
 
 //DeadCode JON 13Jun00 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //DeadCode JON 13Jun00 //Procedure		DrawReplayBar
-//DeadCode JON 13Jun00 //Author		Paul    
+//DeadCode JON 13Jun00 //Author		Paul
 //DeadCode JON 13Jun00 //Date			Thu 4 Jun 1998
 //DeadCode JON 13Jun00 //------------------------------------------------------------------------------
 //DeadCode JON 13Jun00 void COverlay::DrawReplayBar()
@@ -1097,7 +1111,7 @@ void COverlay::DrawViewText()
 
 //DeadCode JON 13Jun00 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //DeadCode JON 13Jun00 //Procedure		DrawReplayIcons
-//DeadCode JON 13Jun00 //Author		Paul    
+//DeadCode JON 13Jun00 //Author		Paul
 //DeadCode JON 13Jun00 //Date			Thu 4 Jun 1998
 //DeadCode JON 13Jun00 //------------------------------------------------------------------------------
 //DeadCode JON 13Jun00 void COverlay::DrawReplayIcons(bool pausedFlag)
@@ -1114,7 +1128,7 @@ void COverlay::DrawViewText()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		RenderIcon
-//Author		Paul    
+//Author		Paul
 //Date			Thu 4 Jun 1998
 //------------------------------------------------------------------------------
 //DeadCode JON 13Jun00 void COverlay::RenderIcon(ICON& icn,bool clicked)
@@ -1122,30 +1136,30 @@ void COverlay::DrawViewText()
 //DeadCode JON 13Jun00 	//position of the icon on screen is taken from the
 //DeadCode JON 13Jun00 	//hit box def
 //DeadCode JON 13Jun00 	//mapping coordinates are from the unclicked image def
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 	IMAGEDEF* pid;
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 	if (clicked)	pid=&icn.clicked;
 //DeadCode JON 13Jun00 	else			pid=&icn.clicked;//unclicked;
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 	IMAGEDEF& id=*pid;
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 //deadcode	POLYGON.createpoly(id.imageNo);
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	R3DVERTEX *pRVerts;
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	g_lpLib3d->BeginPoly(HMATERIAL(Image_Map.GetImageMapPtr(id.imageNo)),4,pRVerts);
 //DeadCode JON 13Jun00 	Lib3DPoint* pRVerts = g_lpLib3d->BeginPoly( HMATERIAL(Image_Map.GetImageMapPtr(id.imageNo)),4 );
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 	RECT2D& rect=id.mappingCoords;
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	SWord u,v;
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 	//always 4 points...
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	pRVerts->bodyx.f=Float(icn.hitBox.x-HALF_WIDTH_640)/FHALF_WIDTH;
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	pRVerts->bodyy.f=Float(HALF_HEIGHT_640-icn.hitBox.y)/FHALF_WIDTH;
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	pRVerts->bodyz.f=Float(1);
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	pRVerts->ix=u=rect.x;
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	pRVerts->iy=v=rect.y;
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 	pRVerts->setPosition(
 //DeadCode JON 13Jun00 		Float(icn.hitBox.x-HALF_WIDTH_640)/FHALF_WIDTH,
 //DeadCode JON 13Jun00 		Float(HALF_HEIGHT_640-icn.hitBox.y)/FHALF_WIDTH,
@@ -1155,69 +1169,69 @@ void COverlay::DrawViewText()
 //DeadCode JON 13Jun00 		rect.x,
 //DeadCode JON 13Jun00 		rect.y
 //DeadCode JON 13Jun00 	);
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 	pRVerts++;
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	pRVerts->bodyx.f=Float(icn.hitBox.x+icn.hitBox.w-1-HALF_WIDTH_640)/FHALF_WIDTH;
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	pRVerts->bodyy.f=Float(HALF_HEIGHT_640-icn.hitBox.y)/FHALF_WIDTH;
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	pRVerts->bodyz.f=Float(1);
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	pRVerts->ix=u=rect.x+rect.w;
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	pRVerts->iy=v=rect.y;
-//DeadCode JON 13Jun00 
-//DeadCode JON 13Jun00 	pRVerts->setPosition(	
+//DeadCode JON 13Jun00
+//DeadCode JON 13Jun00 	pRVerts->setPosition(
 //DeadCode JON 13Jun00 		Float(icn.hitBox.x+icn.hitBox.w-1-HALF_WIDTH_640)/FHALF_WIDTH,
 //DeadCode JON 13Jun00 		Float(HALF_HEIGHT_640-icn.hitBox.y)/FHALF_WIDTH,
 //DeadCode JON 13Jun00 		Float(1)
 //DeadCode JON 13Jun00 	);
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 	pRVerts->setIMapCoords(
 //DeadCode JON 13Jun00 		rect.x+rect.w,
 //DeadCode JON 13Jun00 		rect.y
 //DeadCode JON 13Jun00 	);
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 	pRVerts++;
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	pRVerts->bodyx.f=Float(icn.hitBox.x+icn.hitBox.w-1-HALF_WIDTH_640)/FHALF_WIDTH;
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	pRVerts->bodyy.f=Float(HALF_HEIGHT_640-icn.hitBox.y-icn.hitBox.h+1)/FHALF_WIDTH;
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	pRVerts->bodyz.f=Float(1);
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	pRVerts->ix=u=rect.x+rect.w;
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	pRVerts->iy=v=rect.y+rect.h;
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 	pRVerts->setPosition(
 //DeadCode JON 13Jun00 		Float(icn.hitBox.x+icn.hitBox.w-1-HALF_WIDTH_640)/FHALF_WIDTH,
 //DeadCode JON 13Jun00 		Float(HALF_HEIGHT_640-icn.hitBox.y-icn.hitBox.h+1)/FHALF_WIDTH,
 //DeadCode JON 13Jun00 		Float(1)
 //DeadCode JON 13Jun00 	);
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 	pRVerts->setIMapCoords(
 //DeadCode JON 13Jun00 		rect.x+rect.w,
 //DeadCode JON 13Jun00 		rect.y+rect.h
 //DeadCode JON 13Jun00 	);
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 	pRVerts++;
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	pRVerts->bodyx.f=Float(icn.hitBox.x-HALF_WIDTH_640)/FHALF_WIDTH;
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	pRVerts->bodyy.f=Float(HALF_HEIGHT_640-icn.hitBox.y-icn.hitBox.h+1)/FHALF_WIDTH;
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	pRVerts->bodyz.f=Float(1);
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	pRVerts->ix=u=rect.x;
 //DeadCode JON 13Jun00 //DEADCODE JON 5/22/00 	pRVerts->iy=v=rect.y+rect.h;
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 	pRVerts->setPosition(
 //DeadCode JON 13Jun00 		Float(icn.hitBox.x-HALF_WIDTH_640)/FHALF_WIDTH,
 //DeadCode JON 13Jun00 		Float(HALF_HEIGHT_640-icn.hitBox.y-icn.hitBox.h+1)/FHALF_WIDTH,
 //DeadCode JON 13Jun00 		Float(1)
 //DeadCode JON 13Jun00 	);
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 	pRVerts->setIMapCoords(
 //DeadCode JON 13Jun00 		rect.x,
 //DeadCode JON 13Jun00 		rect.y+rect.h
 //DeadCode JON 13Jun00 	);
-//DeadCode JON 13Jun00 
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 	g_lpLib3d->EndPoly();
 //DeadCode JON 13Jun00 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ReplayIconHitTest
-//Author		Paul    
+//Author		Paul
 //Date			Thu 4 Jun 1998
 //------------------------------------------------------------------------------
 //SWord COverlay::ReplayIconHitTest(SWord x,SWord y)
@@ -1236,7 +1250,7 @@ void COverlay::DrawViewText()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		PrintAt
-//Author		Paul    
+//Author		Paul
 //Date			Thu 4 Jun 1998
 //------------------------------------------------------------------------------
 void COverlay::PrintAt(SWord& x,SWord& y,const char* str, const ULong& theCol)
@@ -1246,7 +1260,7 @@ void COverlay::PrintAt(SWord& x,SWord& y,const char* str, const ULong& theCol)
 		NameTable[nameTableCnt].x = x;
 		NameTable[nameTableCnt].y = y;
 		NameTable[nameTableCnt].colour = theCol;
-	
+
 		strcpy(NameTable[nameTableCnt++].text,str);
 	}
 }
@@ -1348,7 +1362,7 @@ static UByte bigWidths[]=
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		StrPixelLen
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 17 Dec 1998
 //------------------------------------------------------------------------------
 //DeadCode JON 10Oct00 SLong COverlay::StrPixelLen(char* pstr)
@@ -1358,7 +1372,7 @@ static UByte bigWidths[]=
 //DeadCode JON 10Oct00 	{
 //DeadCode JON 10Oct00 		if (!fIsWide)
 //DeadCode JON 10Oct00 			return 7*strlen(pstr);
-//DeadCode JON 10Oct00 
+//DeadCode JON 10Oct00
 //DeadCode JON 10Oct00 		while (*pstr)
 //DeadCode JON 10Oct00 		{
 //DeadCode JON 10Oct00 	 		retVal+=bigWidths[(*pstr)-32];
@@ -1374,7 +1388,7 @@ static UByte bigWidths[]=
 //DeadCode JON 10Oct00 	{
 //DeadCode JON 10Oct00 		if (!fIsWide)
 //DeadCode JON 10Oct00 			return 8*strlen(pstr);
-//DeadCode JON 10Oct00 
+//DeadCode JON 10Oct00
 //DeadCode JON 10Oct00 		while (*pstr)
 //DeadCode JON 10Oct00 		{
 //DeadCode JON 10Oct00 	 		retVal+=bigWidths[(*pstr)-32]+1;
@@ -1440,7 +1454,8 @@ SWord COverlay::CalcTargIndex(CString& in)
 //DeadCode JON 10Oct00 	if (StrPixelLen(const_cast<char*>(LPCTSTR(in)))<physicalWidth)
 	if (StrPixelWidth(const_cast<char*>(LPCTSTR(in)))<physicalWidth)
 		return 0;
-	for (SLong i=0;i<in.GetLength();i++)
+    SLong i;
+	for (i=0;i<in.GetLength();i++)
 	{
 		CString temp=in.Right(in.GetLength()-i);
 //DeadCode JON 10Oct00 		if (StrPixelLen(const_cast<char*>(LPCTSTR(temp)))<physicalWidth)
@@ -1456,7 +1471,7 @@ SWord COverlay::CalcTargIndex(CString& in)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		PutC
-//Author		Paul    
+//Author		Paul
 //Date			Thu 4 Jun 1998
 //------------------------------------------------------------------------------
 void COverlay::PutC(SWord& x,SWord& y,unsigned char c)
@@ -1471,11 +1486,11 @@ void COverlay::PutC(SWord& x,SWord& y,unsigned char c)
 	else tWidth=bigWidths[c-32]+1/*+extra*/;
 
  	c-=32;		//1st 32 chars not included
- 
+
  	SWord ou,ov;
  	SWord cWidth,pWidth,cHeight,pHeight;
  	ImageMapNumber fontNo;
- 
+
 	ImageMapDesc* pmap;
 
 	this_y=y;
@@ -1523,7 +1538,7 @@ void COverlay::PutC(SWord& x,SWord& y,unsigned char c)
 	hy=physicalHeight>>1;
 	sx=1.f/R3DVALUE(hx);
 	sy=-1.f/R3DVALUE(hy);
-	
+
 	Lib3DPoint *dp = g_lpLib3d->BeginPoly(HMATERIAL(pmap),4);
 //TEMPCODE JON 6/1/00 	DoPointStruc *dp = SHAPE.newco;
 
@@ -1554,7 +1569,7 @@ void COverlay::PutC(SWord& x,SWord& y,unsigned char c)
 		dp[2].getPosY(),
 		0.f
 	);
-	
+
 	dp[0].setIMapCoords(
 		ou,
 		ov
@@ -1598,17 +1613,17 @@ void COverlay::PutC(SWord& x,SWord& y,unsigned char c)
 //DEADCODE JON 5/22/00  	dp[2].iy=ov+cHeight-1;
 //DEADCODE JON 5/22/00  	dp[3].ix=ou;
 //DEADCODE JON 5/22/00  	dp[3].iy=ov+cHeight-1;
-//DEADCODE JON 5/22/00 
-//DEADCODE JON 5/22/00 
+//DEADCODE JON 5/22/00
+//DEADCODE JON 5/22/00
 //DEADCODE JON 5/22/00 	for (int i=3;i>=0;i--)
 //DEADCODE JON 5/22/00 	{
 //DEADCODE JON 5/22/00 	 	dp[i].bodyx.f=(dp[i].bodyx.f-hx)*sx;
 //DEADCODE JON 5/22/00 	 	dp[i].bodyy.f=(dp[i].bodyy.f-hy)*sy;
 //DEADCODE JON 5/22/00 		dp[i].bodyz.f=0.f;
 //DEADCODE JON 5/22/00 	}
-	
+
  	x+=pWidth;
- 
+
  	if (x>=physicalWidth) x=0,y+=pHeight;
  	if (y>=physicalHeight) y=0;
 
@@ -1625,13 +1640,14 @@ void COverlay::PutC(SWord& x,SWord& y,unsigned char c)
 //
 //Description	with letter clip!
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 VOID	COverlay::PatchFontTable(ImageMapDesc* imap)
-{	//This routine is ONLY for use on an 8-bit font to generate all 256 chracters
+{/* x0r !!!
+    	//This routine is ONLY for use on an 8-bit font to generate all 256 chracters
 
 	if (COverlay::languagesetbyresources>2)
 	{
@@ -1644,8 +1660,8 @@ VOID	COverlay::PatchFontTable(ImageMapDesc* imap)
 					ROW_JUMP=(wh==128)		?30	:60	,
 					SCALE_HI=(wh==128)		?0	:0	,
 					SCALE_LO=(wh==128)		?18000:36000;
-											
-					
+
+
 
 
 		CFont* oldfont=g_OffScreenDC.SelectObject(::g_AllFonts[4][0]);
@@ -1754,6 +1770,7 @@ VOID	COverlay::PatchFontTable(ImageMapDesc* imap)
 	}
 	bigWidths[' '-32]=maxwid;
 	bigWidths['-'-32]=maxwid;
+*/
 }
 
 void COverlay::PutC2(SWord& x,SWord& y,unsigned char c)
@@ -1764,17 +1781,17 @@ void COverlay::PutC2(SWord& x,SWord& y,unsigned char c)
 	UByte tWidth=8;
 	SWord this_y;
 
-	if (!fIsWide && c>='a' && c<='z') 
+	if (!fIsWide && c>='a' && c<='z')
 		c=c-'a'+'A';
-	else 
+	else
 		tWidth=bigWidths[c-32]+1/*+extra*/;
 
  	c-=32;		//1st 32 chars not included
- 
+
  	SWord ou,ov;
  	SWord cWidth,pWidth,cHeight,pHeight;
  	ImageMapNumber fontNo;
- 
+
 	ImageMapDesc* pmap;
 
 	this_y=y;
@@ -1821,7 +1838,7 @@ void COverlay::PutC2(SWord& x,SWord& y,unsigned char c)
 		hy=physicalHeight>>1;
 		sx=1.f/R3DVALUE(hx);
 		sy=-1.f/R3DVALUE(hy);
-		
+
 		Lib3DPoint *dp = g_lpLib3d->BeginPoly(HMATERIAL(pmap),4);
 
 		dp[0].setPosition(
@@ -1847,7 +1864,7 @@ void COverlay::PutC2(SWord& x,SWord& y,unsigned char c)
 			dp[2].getPosY(),
 			0.f
 		);
-		
+
 		dp[0].setIMapCoords(
 			ou,
 			ov
@@ -1882,20 +1899,20 @@ void COverlay::PutC2(SWord& x,SWord& y,unsigned char c)
 //DeadCode JON 21Aug00 #pragma message(__HERE__ "clippedputc")
 //DeadCode JON 21Aug00 	/*
 //DeadCode JON 21Aug00 	DoPointStruc dp[4];
-//DeadCode JON 21Aug00 
+//DeadCode JON 21Aug00
 //DeadCode JON 21Aug00 	for (int i=0;i<4;dp[i++]=*idp++);
-//DeadCode JON 21Aug00 
+//DeadCode JON 21Aug00
 //DeadCode JON 21Aug00 	//check for completely clipped off screen
-//DeadCode JON 21Aug00 
+//DeadCode JON 21Aug00
 //DeadCode JON 21Aug00 	if (dp[0].bodyx.f>=clip.right ||
 //DeadCode JON 21Aug00 		dp[0].bodyy.f>=clip.bottom ||
 //DeadCode JON 21Aug00 		dp[2].bodyx.f<=clip.left ||
 //DeadCode JON 21Aug00 		dp[2].bodyy.f<=clip.top)
 //DeadCode JON 21Aug00 		return;
-//DeadCode JON 21Aug00 
+//DeadCode JON 21Aug00
 //DeadCode JON 21Aug00 	//check for any clipping at all
-//DeadCode JON 21Aug00 
-//DeadCode JON 21Aug00 	if (!(dp[0].bodyx.f>=clip.left && 
+//DeadCode JON 21Aug00
+//DeadCode JON 21Aug00 	if (!(dp[0].bodyx.f>=clip.left &&
 //DeadCode JON 21Aug00 		dp[1].bodyx.f<=clip.right &&
 //DeadCode JON 21Aug00 		dp[0].bodyy.f>=clip.top &&
 //DeadCode JON 21Aug00 		dp[3].bodyy.f<=clip.bottom))
@@ -1908,7 +1925,7 @@ void COverlay::PutC2(SWord& x,SWord& y,unsigned char c)
 //DeadCode JON 21Aug00 			frac=Float(dp[1].ix-dp[0].ix)*frac;
 //DeadCode JON 21Aug00 			dp[0].ix=dp[3].ix=dp[0].ix+SWord(frac);
 //DeadCode JON 21Aug00 		}
-//DeadCode JON 21Aug00 
+//DeadCode JON 21Aug00
 //DeadCode JON 21Aug00 		//clip against right edge
 //DeadCode JON 21Aug00 		if (dp[1].bodyx.f>clip.right)
 //DeadCode JON 21Aug00 		{
@@ -1917,7 +1934,7 @@ void COverlay::PutC2(SWord& x,SWord& y,unsigned char c)
 //DeadCode JON 21Aug00 			frac=Float(dp[1].ix-dp[0].ix)*frac;
 //DeadCode JON 21Aug00 			dp[1].ix=dp[2].ix=dp[1].ix+SWord(frac);
 //DeadCode JON 21Aug00 		}
-//DeadCode JON 21Aug00 
+//DeadCode JON 21Aug00
 //DeadCode JON 21Aug00 		//clip against bottom edge
 //DeadCode JON 21Aug00 		if (dp[2].bodyy.f>clip.bottom)
 //DeadCode JON 21Aug00 		{
@@ -1926,7 +1943,7 @@ void COverlay::PutC2(SWord& x,SWord& y,unsigned char c)
 //DeadCode JON 21Aug00 			frac=Float(dp[3].iy-dp[0].iy)*frac;
 //DeadCode JON 21Aug00 			dp[2].iy=dp[3].iy=dp[0].iy+SWord(frac);
 //DeadCode JON 21Aug00 		}
-//DeadCode JON 21Aug00 
+//DeadCode JON 21Aug00
 //DeadCode JON 21Aug00 		//clip against top edge
 //DeadCode JON 21Aug00 		if (dp[0].bodyy.f<clip.top)
 //DeadCode JON 21Aug00 		{
@@ -1957,7 +1974,7 @@ inline R3DVALUE scaledScreenY( const R3DVALUE y )
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		PrintIcon
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 17 Feb 1999
 //------------------------------------------------------------------------------
 void COverlay::PrintIcon(SLong sx,SLong sy,SLong sw,SLong sh,UWord iconIndex)
@@ -1977,7 +1994,7 @@ void COverlay::PrintIcon(SLong sx,SLong sy,SLong sw,SLong sh,UWord iconIndex)
 	scy=-1.f/R3DVALUE(hy);
 
 	ImageMapNumber iconNo=(ImageMapNumber)currIcons[iconIndex].imageMapNo;
- 
+
 	ImageMapDesc* pmap;
 
 	ou=currIcons[iconIndex].x;
@@ -2035,7 +2052,7 @@ void COverlay::PrintIcon(SLong sx,SLong sy,SLong sw,SLong sh,UWord iconIndex)
 		dp[2].getPosY(),
 		0.f
 	);
-	
+
 	dp[0].setIMapCoords(
 		ou,
 		ov
@@ -2056,7 +2073,7 @@ void COverlay::PrintIcon(SLong sx,SLong sy,SLong sw,SLong sh,UWord iconIndex)
 		ov+cHeight
 	);
 
-	
+
 	g_lpLib3d->EndPoly();
 }
 
@@ -2068,7 +2085,7 @@ void COverlay::PrintIcon(SLong sx,SLong sy,SLong sw,SLong sh,UWord iconIndex)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		RenderInfoPanel
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 5 Jun 1998
 //------------------------------------------------------------------------------
 void COverlay::RenderInfoPanel()
@@ -2084,7 +2101,7 @@ void COverlay::RenderInfoPanel()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		RenderMapPad
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 18 Nov 1998
 //------------------------------------------------------------------------------
 void COverlay::RenderMapPad()
@@ -2096,7 +2113,7 @@ void COverlay::RenderMapPad()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DrawMapPad
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 18 Nov 1998
 //------------------------------------------------------------------------------
 void COverlay::DrawMapPad()
@@ -2107,7 +2124,7 @@ COORDS3D last;
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DisplayProfileData
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 18 Nov 1998
 //------------------------------------------------------------------------------
 void COverlay::DisplayProfileData(bool fDisplay)
@@ -2145,7 +2162,7 @@ void COverlay::DisplayProfileData(bool fDisplay)
 		if (frec[i]<min_frame) min_frame=frec[i];
 		if (frec[i]>max_frame) max_frame=frec[i];
 	}
-	
+
 	float fp_ave=100./(float(ave_frame)/float(frames));
 	float fp_min=100./float(min_frame);
 	float fp_max=100./float(max_frame);
@@ -2189,10 +2206,10 @@ void COverlay::DisplayProfileData(bool fDisplay)
 
 //DeadCode JON 29Oct00 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //DeadCode JON 29Oct00 //Procedure		Prefs3D
-//DeadCode JON 29Oct00 //Author		Paul.   
+//DeadCode JON 29Oct00 //Author		Paul.
 //DeadCode JON 29Oct00 //Date			Thu 19 Nov 1998
 //DeadCode JON 29Oct00 //------------------------------------------------------------------------------
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 struct SOption
 //DeadCode JON 29Oct00 {
 //DeadCode JON 29Oct00 	char* optionText;
@@ -2200,23 +2217,23 @@ void COverlay::DisplayProfileData(bool fDisplay)
 //DeadCode JON 29Oct00 	int selection;
 //DeadCode JON 29Oct00 	char** selectionList;
 //DeadCode JON 29Oct00 };
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 static char* OnOff[]={"On","Off",NULL};
 //DeadCode JON 29Oct00 static char* PoorLowMedHigh[]={"Poor","Low","Medium","High",NULL};
 //DeadCode JON 29Oct00 static char* MinMax[]={"Minimum","Maximum",NULL};
 //DeadCode JON 29Oct00 static char* MinMaxAuto[]={"Minimum","Maximum","Auto",NULL};
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 //3D Hardware related options...
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 static SOption OptTransp={"Transparency Effects: ",true,0,OnOff};
 //DeadCode JON 29Oct00 static SOption OptTextureQuality={"Texture Quality: ",true,0,PoorLowMedHigh};
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 //General 3D options
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 static SOption OptTrees={"Trees: ",false,0,OnOff};
 //DeadCode JON 29Oct00 static SOption OptHorizonFade={"Horizon Fade: ",false,0,MinMax};
 //DeadCode JON 29Oct00 static SOption OptAutoLand={"Altitude Detail: ",false,0,MinMaxAuto};
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 static SOption* gameOptions[]=
 //DeadCode JON 29Oct00 {
 //DeadCode JON 29Oct00 	&OptTransp,
@@ -2225,65 +2242,65 @@ void COverlay::DisplayProfileData(bool fDisplay)
 //DeadCode JON 29Oct00 	&OptHorizonFade,
 //DeadCode JON 29Oct00 	&OptAutoLand,
 //DeadCode JON 29Oct00 };
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 static int Selection=3;
 
 //DeadCode JON 29Oct00 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //DeadCode JON 29Oct00 //Procedure		Prefs3D
-//DeadCode JON 29Oct00 //Author		Paul.   
+//DeadCode JON 29Oct00 //Author		Paul.
 //DeadCode JON 29Oct00 //Date			Thu 19 Nov 1998
 //DeadCode JON 29Oct00 //------------------------------------------------------------------------------
 //DeadCode JON 29Oct00 void COverlay::Prefs3D()
 //DeadCode JON 29Oct00 {
 //DeadCode PD 02Dec99 	if (pvp==NULL||pw==NULL) return;
-//DeadCode PD 02Dec99 
+//DeadCode PD 02Dec99
 //DeadCode PD 02Dec99 	static char tempStr[128];
-//DeadCode PD 02Dec99 
+//DeadCode PD 02Dec99
 //DeadCode PD 02Dec99 	const int num_options=sizeof(gameOptions)/sizeof(SOption*);
-//DeadCode PD 02Dec99 
+//DeadCode PD 02Dec99
 //DeadCode PD 02Dec99 	pw->DoGetSurfaceDimensions(physicalWidth,physicalHeight);
-//DeadCode PD 02Dec99 
+//DeadCode PD 02Dec99
 //DeadCode PD 02Dec99 	fIsWide=IsWide(physicalWidth);
-//DeadCode PD 02Dec99 
+//DeadCode PD 02Dec99
 //DeadCode PD 02Dec99 	pw->DoSetFontColour(TEXT_NORMAL);
 //DeadCode PD 02Dec99 	pw->DoSetGlobalAlpha(8);
 //DeadCode PD 02Dec99 	pw->DoSmokedGlassBox((physicalWidth>>2),(physicalHeight>>2),(physicalWidth>>1),(physicalHeight>>1),GLASS_COLOUR);
 //DeadCode PD 02Dec99 	pw->DoSetGlobalAlpha(255);
-//DeadCode PD 02Dec99 
+//DeadCode PD 02Dec99
 //DeadCode PD 02Dec99 	int lineHeight=fIsWide?10:8;
-//DeadCode PD 02Dec99 
+//DeadCode PD 02Dec99
 //DeadCode PD 02Dec99 	SWord cx=(physicalWidth>>2)+lineHeight;
 //DeadCode PD 02Dec99 	SWord cy=fIsWide?(physicalHeight>>3)+lineHeight:(physicalHeight>>2)+lineHeight;
-//DeadCode PD 02Dec99 
+//DeadCode PD 02Dec99
 //DeadCode PD 02Dec99 	//PrintAt(cx,cy,"Detail Settings");
-//DeadCode PD 02Dec99 
+//DeadCode PD 02Dec99
 //DeadCode PD 02Dec99 	cy+=lineHeight+lineHeight;
-//DeadCode PD 02Dec99 
+//DeadCode PD 02Dec99
 //DeadCode PD 02Dec99 	for (SLong i=0;i<num_options;i++)
 //DeadCode PD 02Dec99 	{
 //DeadCode PD 02Dec99 		if (!gameOptions[i]->enabled)	pw->DoSetFontColour(TEXT_GREYED);
 //DeadCode PD 02Dec99 		else if (i==Selection)			pw->DoSetFontColour(TEXT_HI);
 //DeadCode PD 02Dec99 		else							pw->DoSetFontColour(TEXT_NORMAL);
-//DeadCode PD 02Dec99 
+//DeadCode PD 02Dec99
 //DeadCode PD 02Dec99 		sprintf(tempStr,"%s%s",gameOptions[i]->optionText,gameOptions[i]->selectionList[gameOptions[i]->selection]);
 //DeadCode PD 02Dec99 		//PrintAt(cx,cy,tempStr);
 //DeadCode PD 02Dec99 		cy+=lineHeight;
 //DeadCode PD 02Dec99 	}
 //DeadCode PD 02Dec99 	cy+=lineHeight;
-//DeadCode PD 02Dec99 
+//DeadCode PD 02Dec99
 //DeadCode PD 02Dec99 	if (Selection==num_options)	pw->DoSetFontColour(TEXT_HI);
 //DeadCode PD 02Dec99 	else						pw->DoSetFontColour(TEXT_NORMAL);
 //DeadCode PD 02Dec99 	//PrintAt(cx,cy,"Okay");
 //DeadCode PD 02Dec99 	cx+=lineHeight*10;
-//DeadCode PD 02Dec99 
+//DeadCode PD 02Dec99
 //DeadCode PD 02Dec99 	if (Selection==num_options+1)	pw->DoSetFontColour(TEXT_HI);
 //DeadCode PD 02Dec99 	else							pw->DoSetFontColour(TEXT_NORMAL);
 //DeadCode PD 02Dec99 	//PrintAt(cx,cy,"Cancel");
-//DeadCode PD 02Dec99 
+//DeadCode PD 02Dec99
 //DeadCode PD 02Dec99 	//key tests here!
-//DeadCode PD 02Dec99 
+//DeadCode PD 02Dec99
 //DeadCode PD 02Dec99 	bool selectCurrent=false;
-//DeadCode PD 02Dec99 
+//DeadCode PD 02Dec99
 //DeadCode PD 02Dec99 	if (Key_Tests.KeyPress3d(ELEVATOR_FORWARD))
 //DeadCode PD 02Dec99 	{
 //DeadCode PD 02Dec99 		Selection--;
@@ -2307,7 +2324,7 @@ void COverlay::DisplayProfileData(bool fDisplay)
 //DeadCode PD 02Dec99 	}
 //DeadCode PD 02Dec99 	else if (Key_Tests.KeyPress3d(DROPBOMB) || Key_Tests.KeyPress3d(SHOOT))
 //DeadCode PD 02Dec99 		selectCurrent=true;
-//DeadCode PD 02Dec99 
+//DeadCode PD 02Dec99
 //DeadCode PD 02Dec99 	if (selectCurrent)
 //DeadCode PD 02Dec99 	{
 //DeadCode PD 02Dec99 		if (Selection<num_options)
@@ -2316,7 +2333,7 @@ void COverlay::DisplayProfileData(bool fDisplay)
 //DeadCode PD 02Dec99 			selectedOption->selection++;
 //DeadCode PD 02Dec99 			if (selectedOption->selectionList[selectedOption->selection]==NULL)
 //DeadCode PD 02Dec99 				selectedOption->selection=0;
-//DeadCode PD 02Dec99 
+//DeadCode PD 02Dec99
 //DeadCode PD 02Dec99 			UpdateSelections2();
 //DeadCode PD 02Dec99 			UpdateSelections();
 //DeadCode PD 02Dec99 		}
@@ -2336,7 +2353,7 @@ void COverlay::DisplayProfileData(bool fDisplay)
 
 //DeadCode JON 29Oct00 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //DeadCode JON 29Oct00 //Procedure		InitPrefs3D
-//DeadCode JON 29Oct00 //Author		Paul.   
+//DeadCode JON 29Oct00 //Author		Paul.
 //DeadCode JON 29Oct00 //Date			Fri 20 Nov 1998
 //DeadCode JON 29Oct00 //------------------------------------------------------------------------------
 //DeadCode JON 29Oct00 void COverlay::InitPrefs3D()
@@ -2346,59 +2363,59 @@ void COverlay::DisplayProfileData(bool fDisplay)
 //DeadCode JON 29Oct00 	fDonePrefs=false;
 //DeadCode JON 29Oct00 	pBackupSettings=new GameSettings;
 //DeadCode JON 29Oct00 	*pBackupSettings=gameSettings;
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 	//set initial options based on the current game settings
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 	UpdateSelections();
 //DeadCode JON 29Oct00 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		UpdateSelections
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 20 Nov 1998
 //------------------------------------------------------------------------------
 //DeadCode JON 29Oct00 void COverlay::UpdateSelections()
 //DeadCode JON 29Oct00 {
 //DeadCode JON 29Oct00 	//setup display based on the current values in 'gameSettings'
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 	OptTrees.enabled=true;
 //DeadCode JON 29Oct00 	OptTrees.selection=Save_Data.detail_3d[DETAIL3D_INCONSEQUENTIALS]?1:0;
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 	OptHorizonFade.enabled=true;
 //DeadCode JON 29Oct00 	OptHorizonFade.selection=Save_Data.detail_3d[DETAIL3D_HORIZONFADE]?1:0;
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 	OptAutoLand.enabled=true;
 //DeadCode JON 29Oct00 	OptAutoLand.selection=Save_Data.detail_3d[DETAIL3D_AUTODETAIL]?1:0;
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 	//Hardware specific stuff
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 	OptTransp.enabled=true;
 //DeadCode JON 29Oct00 	OptTransp.selection=Save_Data.detail_3d[DETAIL3D_TRANSSMOKE]?1:0;
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 	OptTextureQuality.enabled=true;
 //DeadCode JON 29Oct00 	OptTextureQuality.selection=Save_Data.textureQuality;
 //DeadCode JON 29Oct00 }
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //DeadCode JON 29Oct00 //Procedure		UpdateSelections2
-//DeadCode JON 29Oct00 //Author		Paul.   
+//DeadCode JON 29Oct00 //Author		Paul.
 //DeadCode JON 29Oct00 //Date			Fri 20 Nov 1998
 //DeadCode JON 29Oct00 //------------------------------------------------------------------------------
 //DeadCode JON 29Oct00 void COverlay::UpdateSelections2()
 //DeadCode JON 29Oct00 {
 //DeadCode JON 29Oct00 	//Hardware specific stuff
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 	Save_Data.textureQuality=OptTextureQuality.selection;
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 	if (OptHorizonFade.selection==0)	Save_Data.detail_3d%=DETAIL3D_HORIZONFADE;
 //DeadCode JON 29Oct00 	else								Save_Data.detail_3d|=DETAIL3D_HORIZONFADE;
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 	if (OptTrees.selection==0)	Save_Data.detail_3d%=DETAIL3D_INCONSEQUENTIALS;
 //DeadCode JON 29Oct00 	else						Save_Data.detail_3d|=DETAIL3D_INCONSEQUENTIALS;
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 	if (OptAutoLand.selection==0)		Save_Data.detail_3d%=DETAIL3D_AUTODETAIL;
 //DeadCode JON 29Oct00 	else								Save_Data.detail_3d|=DETAIL3D_AUTODETAIL;
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 	if (OptTransp.selection==0)		Save_Data.detail_3d%=DETAIL3D_TRANSSMOKE;
 //DeadCode JON 29Oct00 	else							Save_Data.detail_3d|=DETAIL3D_TRANSSMOKE;
 //DeadCode JON 29Oct00 }
@@ -2419,11 +2436,11 @@ void COverlay::SetViewVals(SLong rng,SLong relB,SLong relA)
 //Author		Dave Whiteside
 //Date			Mon 23 Nov 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void COverlay::SetInfoLines(SWord l)
@@ -2436,11 +2453,11 @@ void COverlay::SetInfoLines(SWord l)
 //Author		Dave Whiteside
 //Date			Mon 23 Nov 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void COverlay::StepInfoBarUp()
@@ -2465,7 +2482,7 @@ void COverlay::SetInfoLineVals(SLong s,SLong m,SLong a, SLong h,SLong t)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitInfoTexts
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 16 Dec 1998
 //------------------------------------------------------------------------------
 void COverlay::InitInfoTexts()
@@ -2479,7 +2496,7 @@ void COverlay::InitInfoTexts()
 		if ( i==29 )
 			NOP;
 	}
-	
+
 //DeadCode JON 24Aug00 	MsgText=new CString[2];
 //DeadCode JON 24Aug00 	MsgText[0]=MsgText[1]="";
 //DeadCode JON 24Aug00 	OtherText=new CString("");
@@ -2495,7 +2512,7 @@ void COverlay::InitInfoTexts()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ReleaseInfoTexts
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 16 Dec 1998
 //------------------------------------------------------------------------------
 void COverlay::ReleaseInfoTexts()
@@ -2504,7 +2521,7 @@ void COverlay::ReleaseInfoTexts()
 	{
 		OString* str=OInfoPanelText[i];
 //DeadCode JON 24Aug00 		AfxTrace( "%i: %X: %s\n", i, ULong(str->text), str->text );
-		if ( str->text != NULL ) 
+		if ( str->text != NULL )
 			delete[]str->text,str->text=NULL;
 	}
 //DeadCode JON 24Aug00 	delete[]msgText;
@@ -2535,7 +2552,7 @@ void COverlay::SetToContinueQuitScr()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SetToMapViewScreen
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 11 Mar 1999
 //------------------------------------------------------------------------------
 void COverlay::SetToMapViewScreen()
@@ -2546,7 +2563,7 @@ void COverlay::SetToMapViewScreen()
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SetToOrdersScreen
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 22 Feb 1999
 //------------------------------------------------------------------------------
 void COverlay::SetToOrdersScreen()
@@ -2563,13 +2580,13 @@ void COverlay::SetToOrdersScreen()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SetToMapScreen
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 16 Feb 1999
 //------------------------------------------------------------------------------
 void COverlay::SetToMapScreen()
 {
 	Kludge();
-	if (Manual_Pilot.ControlledAC2->Status.deadtime)	
+	if (Manual_Pilot.ControlledAC2->Status.deadtime)
 		OverLay.pvp->ReturnFromMap();
 	else
 	{
@@ -2624,14 +2641,14 @@ void COverlay::SetToCommsChatScr()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SetToMapAccelScreen
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 3 Mar 1999
 //------------------------------------------------------------------------------
 void COverlay::SetToMapAccelScreen()
 {
 	Kludge();
-	if (Manual_Pilot.ControlledAC2->Status.deadtime)// || 
-//		Manual_Pilot.ControlledAC2->movecode!=AUTO_FOLLOWWP)	
+	if (Manual_Pilot.ControlledAC2->Status.deadtime)// ||
+//		Manual_Pilot.ControlledAC2->movecode!=AUTO_FOLLOWWP)
 		OverLay.pvp->ReturnFromMap();
 	else
 		SetToUIScreen(&accelMapScr);
@@ -2639,7 +2656,7 @@ void COverlay::SetToMapAccelScreen()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SetToReplayScreen
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //------------------------------------------------------------------------------
 void COverlay::SetToReplayScreen()
@@ -2651,7 +2668,7 @@ void COverlay::SetToReplayScreen()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DisplayCommsQuitDialog
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //				returns 00x000==no selection
 //						0x0001==okay selected
@@ -2666,7 +2683,7 @@ UWord COverlay::DisplayCommsQuitDialog()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SetToUIScreen
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 16 Feb 1999
 //------------------------------------------------------------------------------
 bool COverlay::SetToUIScreen(MapScr* pns)
@@ -2686,7 +2703,7 @@ bool COverlay::SetToUIScreen(MapScr* pns)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitMousePos
-//Author		Paul    
+//Author		Paul
 //Date			Sat 20 Feb 1999
 //------------------------------------------------------------------------------
 void COverlay::InitMousePos()
@@ -2698,7 +2715,7 @@ void COverlay::InitMousePos()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		UpdateMousePos
-//Author		Paul    
+//Author		Paul
 //Date			Sat 20 Feb 1999
 //------------------------------------------------------------------------------
 bool COverlay::UpdateMousePos()
@@ -2725,13 +2742,13 @@ bool COverlay::UpdateMousePos()
 		}
 //DeadCode JIM 12Sep00 	}
 
-//	if (newMouseX!=-0x8000)	
+//	if (newMouseX!=-0x8000)
 //	{
 	mouseX=newMouseX*(physicalWidth-10)/65536;
 
 //TEMPCODE RDH 20/05/99 	newMouseX>>=4;
 //TEMPCODE RDH 20/05/99 		if (lastMouseX!=-1)	mouseX+=(newMouseX-lastMouseX);
-//TEMPCODE RDH 20/05/99 
+//TEMPCODE RDH 20/05/99
 //TEMPCODE RDH 20/05/99 		if (mouseX>=0 && mouseX<=physicalWidth)
 //TEMPCODE RDH 20/05/99 		{
 //TEMPCODE RDH 20/05/99 			lastMouseX=newMouseX;
@@ -2752,7 +2769,7 @@ bool COverlay::UpdateMousePos()
  	if (newMouseY==-0x8000) fMouseDisabled=true;
 
 	if (
-//DeadCode JIM 12Sep00 		doInteractiveCockpit && !fMouseDisabled && 
+//DeadCode JIM 12Sep00 		doInteractiveCockpit && !fMouseDisabled &&
 		!(newMouseY==-0x8000))
 	{
 //DeadCode CSB 22Aug00 		newMouseY/=divfactor;
@@ -2764,12 +2781,12 @@ bool COverlay::UpdateMousePos()
 		newMouseY+=32768;
 	}
 
-//	if (newMouseY!=-0x8000)	
+//	if (newMouseY!=-0x8000)
 //	{
 	mouseY=newMouseY*(physicalHeight-10)/65536;
 //TEMPCODE RDH 20/05/99 	newMouseY>>=4;
 //TEMPCODE RDH 20/05/99 		if (lastMouseY!=-1) mouseY+=(newMouseY-lastMouseY);
-//TEMPCODE RDH 20/05/99 
+//TEMPCODE RDH 20/05/99
 //TEMPCODE RDH 20/05/99 		if (mouseY>=0 && mouseY<=physicalHeight)
 //TEMPCODE RDH 20/05/99 		{
 //TEMPCODE RDH 20/05/99 			lastMouseY=newMouseY;
@@ -2786,7 +2803,7 @@ bool COverlay::UpdateMousePos()
 //TEMPCODE RDH 20/05/99 		}
 //TEMPCODE RDH 20/05/99 //	}
 	bool retval;
-		
+
 	SHAPE.LogMousePos(mouseX,mouseY,physicalWidth,physicalHeight,fMouseDisabled);	//RJS 23Nov99
 
 	if (Key_Tests.KeyPress3d(MENUSELECT))
@@ -2798,7 +2815,7 @@ bool COverlay::UpdateMousePos()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		LoaderScreen
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 22 Feb 1999
 //------------------------------------------------------------------------------
 void COverlay::LoaderScreen(int stage)
@@ -2845,7 +2862,7 @@ void COverlay::LoaderScreen(int stage)
 		char* stmp=LdStr(IDS_LOADERSTAGE00+j);
 //DeadCode JON 10Oct00 		SWord tmp=StrPixelLen2(stmp);
 		SWord tmp=StrPixelWidthPadded(stmp);
-		if (tmp>boxWidth) 
+		if (tmp>boxWidth)
 			boxWidth=tmp;
 		delete[]stmp;
 	}
@@ -2887,7 +2904,7 @@ void COverlay::LoaderScreen(int stage)
 	PrintAt2(textx,texty,str);
 	g_lpLib3d->SetGlobal( TOGGLE_TEXTURE_QUALITY, &curQual );				//JON 19Jul00
 	g_lpLib3d->GiveHint( HINT_TRILINEAR ); //note won't go above max avail  //JON 19Jul00
-                                                                           
+
 	textx = 10;
 	texty = 10;
 	char* diagStr;
@@ -2965,7 +2982,7 @@ void COverlay::CommsWaitingScreen(int stage)
 	PrintAt2(textx,texty,str);
 //DeadCode JON 5Nov00 	g_lpLib3d->SetGlobal( TOGGLE_TEXTURE_QUALITY, &curQual );				//JON 19Jul00
 //DeadCode JON 5Nov00 	g_lpLib3d->GiveHint( HINT_TRILINEAR ); //note won't go above max avail  //JON 19Jul00
-                                                                           
+
 	textx = 10;
 	texty = 10;
 	char* diagStr;
@@ -3040,7 +3057,7 @@ void COverlay::CommsWaitingScreen(int stage)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DisplayMouseCursor
-//Author		Paul    
+//Author		Paul
 //Date			Sat 20 Feb 1999
 //------------------------------------------------------------------------------
 void COverlay::DisplayMouseCursor()
@@ -3071,7 +3088,7 @@ void COverlay::DisplayMouseCursor()
 	g_lpLib3d->SetFontColour(0xFFFFFFFF);
 //TEMPCODE RDH 20/05/99 	sx=SLong(Float(sx)*Float(physicalWidth)/Float(640));
 //TEMPCODE RDH 20/05/99 	sy=SLong(Float(sy)*Float(physicalHeight)/Float(480));
-//DEADCODE JON 5/22/00  	R3DVERTEX dp[4]; 
+//DEADCODE JON 5/22/00  	R3DVERTEX dp[4];
 //DEADCODE JON 5/22/00  	dp[0].bodyx.f=Float(sx);
 //DEADCODE JON 5/22/00  	dp[0].bodyy.f=Float(sy);
 //DEADCODE JON 5/22/00  	dp[0].ix=ou;
@@ -3090,7 +3107,7 @@ void COverlay::DisplayMouseCursor()
 //DEADCODE JON 5/22/00  	dp[3].iy=ov+ch;
 
  	Lib3DPoint dp[4];
- 
+
 	dp[0].setPosition( sx, sy, 0.f );
 	dp[0].setIMapCoords( ou, ov );
 	dp[1].setPosition( sx+sw, sy, 0.f );
@@ -3112,7 +3129,8 @@ void COverlay::SetGridDimensions(MapScr *pscr)
 	//find the longest string & count number of lines @ the same time
 	MapScr::OptionList *popt=pscr->optionList;
 	SLong maxChars=0;
-	for (SLong oc=0;popt->key!=SEL_EOL;oc++,popt++)
+	SLong oc;
+	for (oc=0;popt->key!=SEL_EOL;oc++,popt++)
 	{
 		if (popt->resIDOffset!=0xFF &&
 			(popt->resID<IDS_MAPICON00LO || popt->resID>IDS_MAPICON15HI))
@@ -3145,7 +3163,7 @@ void COverlay::SetGridDimensions(MapScr *pscr)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ProcessUIScreen
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 12 Feb 1999
 //------------------------------------------------------------------------------
 void COverlay::ProcessUIScreen()
@@ -3202,7 +3220,7 @@ void COverlay::ProcessUIScreen()
 		g_lpLib3d->GetTextureRAM( totFree );
 		sprintf( tmpStr, "%3.2fpc Free\n", float( ( float(curFree)/float(totFree) )*100.f ) );
 		PrintAt2( posx, posy, tmpStr );
-#endif	
+#endif
 	}
 #endif
 #ifdef _SHOW_RECENT_FRAME_TIMES
@@ -3560,7 +3578,7 @@ void COverlay::ProcessUIScreen()
 					pNewScr=(pCurScr->*(pCurOpt->selRtn))(pCurOpt->resIDOffset,(Key)pCurOpt->key);
 					Kludge();
 				}
-		
+
 
 				else if (	scaledMouseX>=savex && scaledMouseX<(savex+width) &&
 							scaledMouseY>=savey && scaledMouseY<(savey+height)	)
@@ -3687,7 +3705,7 @@ inline void MakeTimeString(char* str,int time)
 //DeadCode JON 8Nov00 	if (nwp==NULL)
 //DeadCode JON 8Nov00 		return nwp;
 //DeadCode JON 8Nov00 	//skip back until prev wp is NULL
-//DeadCode JON 8Nov00 	while (nwp->prev!=NULL) 
+//DeadCode JON 8Nov00 	while (nwp->prev!=NULL)
 //DeadCode JON 8Nov00 		nwp=nwp->prev;
 //DeadCode JON 8Nov00 	//skip forward 'til get a valid waypoint
 //DeadCode JON 8Nov00 	while(nwp!=wp && (uid<nwp->skipunder || uid>nwp->skipover))			//RJS 27Jun00
@@ -3723,7 +3741,7 @@ inline WayPointPtr FindPrevWP(UNIQUE_ID uid,WayPointPtr wp)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		UpdateMessageDisplay
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //------------------------------------------------------------------------------
 void MapScr::UpdateWaypointDisplay()
@@ -3774,7 +3792,7 @@ void MapScr::UpdateWaypointDisplay()
 			cs=temp;
 			OverLay.PrintAt2(localX,localY,const_cast<char*>(LPCTSTR(cs)));
 		}
-	} 
+	}
 	HandleUpDnLftRgtToggleKeys();
 	OverLay.message_caller=NULL;
 	OverLay.message_callee=NULL;
@@ -3798,10 +3816,10 @@ void MapScr::UpdateWaypointDisplay()
 	//allow user to step through waypoints here
 
 	WayPointPtr newWP;
-	if (Key_Tests.KeyPress3d(ZOOMIN) && 
+	if (Key_Tests.KeyPress3d(ZOOMIN) &&
 		(newWP=FindPrevWP(Manual_Pilot.ControlledAC2->uniqueID,OverLay.curr_waypoint))!=NULL)
 		OverLay.curr_waypoint=newWP;
-	else if (Key_Tests.KeyPress3d(ZOOMOUT) && 
+	else if (Key_Tests.KeyPress3d(ZOOMOUT) &&
 		(newWP=FindNextWP(Manual_Pilot.ControlledAC2->uniqueID,OverLay.curr_waypoint))!=NULL)
 		OverLay.curr_waypoint=newWP;
 		*/
@@ -3839,7 +3857,7 @@ void MapScr::UpdateMessageDisplay()
 		}
 		OverLay.MakeDotDotDot(cs);
 		OverLay.PrintAt2(localX,localY,const_cast<char*>(LPCTSTR(cs)));
-	} 
+	}
 	HandleUpDnLftRgtToggleKeys();
 	_MsgBuffer.MessageParticipants(1,OverLay.message_caller,OverLay.message_callee,OverLay.message_target);
 	if (!OverLay.fZoomedMap) ShowItemIcons(false);
@@ -3903,13 +3921,13 @@ void MapScr::UpdateMessageDisplay()
 		csTime+="        "+placeName;
 		OverLay.PrintAt2(messageX,messageY,const_cast<char*>(LPCTSTR(csTime)));
 	}
-	if (Key_Tests.KeyPress3d(ZOOMIN))		
+	if (Key_Tests.KeyPress3d(ZOOMIN))
 	{
 		_MsgBuffer.DecMessageWindow();
 		delete OverLay.pScrollyText;
 		OverLay.pScrollyText=NULL;
 	}
-	else if (Key_Tests.KeyPress3d(ZOOMOUT))	
+	else if (Key_Tests.KeyPress3d(ZOOMOUT))
 	{
 		_MsgBuffer.IncMessageWindow();
 		delete OverLay.pScrollyText;
@@ -3983,9 +4001,9 @@ inline SWord WorldZToSy640(SLong wz,SWord *y)
 //
 //Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 inline	void	WorldToSxy(Coords3D& pos,SWord& screenx, SWord& screeny)
@@ -3993,11 +4011,11 @@ inline	void	WorldToSxy(Coords3D& pos,SWord& screenx, SWord& screeny)
 //DeadCode RJS 27Jun00 	float	rhw = 1./float(Three_Dee.ViewerY());
 //DeadCode RJS 27Jun00 	float	sx = float(OverLay.physicalWidth)*.5;
 //DeadCode RJS 27Jun00 	float	sy = float(OverLay.physicalHeight)*.5;
-//DeadCode RJS 27Jun00 	
+//DeadCode RJS 27Jun00
 //DeadCode RJS 27Jun00 	screenx = (float(pos.X - Three_Dee.ViewerX())*rhw*sx)+sx;
 //DeadCode RJS 27Jun00 	screeny = (float(pos.Z - Three_Dee.ViewerZ())*-rhw*sy)+sy;
 	float	rhw = 1./float(Three_Dee.ViewerY());
-	
+
 	screenx = (float(pos.X - Three_Dee.ViewerX())*rhw*320.)+320.;
 	screeny = (float(pos.Z - Three_Dee.ViewerZ())*-rhw*240.)+240.;
 }
@@ -4020,20 +4038,20 @@ inline SWord WorldZToSy640Zoomed(SLong wz,SLong *y)
 //DeadCode JON 8Nov00 {
 //DeadCode JON 8Nov00 #pragma warnmsg( "ShowBackgroundMap" )
 //DeadCode JON 8Nov00 //deadcode	OverLay.pw->DoSetFontColour(0xFFFFFFFF);
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 	//convert pos X & Z into texel coordinates in the range (0..255,0..511)
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 	SWord tu,tv;
 //DeadCode JON 8Nov00 	tu=WorldXToTu(pos.X);
 //DeadCode JON 8Nov00 	tv=WorldZToTv(pos.Z);
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 	//i want to display the map with this texel in the center of the
 //DeadCode JON 8Nov00 	//screen unless this means that some of the screen window will not
 //DeadCode JON 8Nov00 	//be on the map
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 	SWord x[2],y[2];
 //DeadCode JON 8Nov00 	UWord f;
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 	x[0]=tu-(MAP_SCREEN_WIDTH_640>>1);
 //DeadCode JON 8Nov00 	x[1]=tu+(MAP_SCREEN_WIDTH_640>>1);
 //DeadCode JON 8Nov00 	y[0]=tv-(MAP_SCREEN_HEIGHT_640>>1);
@@ -4043,17 +4061,17 @@ inline SWord WorldZToSy640Zoomed(SLong wz,SLong *y)
 //DeadCode JON 8Nov00 	if (x[1]>=MAP_TEXTURE_WIDTH)	f|=OFFRIGHT;
 //DeadCode JON 8Nov00 	if (y[0]<0)						f|=OFFTOP;
 //DeadCode JON 8Nov00 	if (y[1]>=MAP_TEXTURE_HEIGHT)	f|=OFFBOTTOM;
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 	if (f!=0)
 //DeadCode JON 8Nov00 	{
 //DeadCode JON 8Nov00 		//some of the display window doesn't cover the map
 //DeadCode JON 8Nov00 		//so the center needs adjusting...
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 		if (f&OFFLEFT)		tu+=(0-x[0]);
 //DeadCode JON 8Nov00 		if (f&OFFRIGHT)	tu+=(MAP_TEXTURE_WIDTH-x[1]);
 //DeadCode JON 8Nov00 		if (f&OFFTOP)		tv+=(0-y[0]);
 //DeadCode JON 8Nov00 		if (f&OFFBOTTOM)	tv+=(MAP_TEXTURE_HEIGHT-y[1]);
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 		//regenerate the texture window coordinates
 //DeadCode JON 8Nov00 		x[0]=tu-(MAP_SCREEN_WIDTH_640>>1);
 //DeadCode JON 8Nov00 		x[1]=tu+(MAP_SCREEN_WIDTH_640>>1);
@@ -4065,7 +4083,7 @@ inline SWord WorldZToSy640Zoomed(SLong wz,SLong *y)
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 	const SWord map_screen_y=SWord(Float(MAP_SCREEN_ORIGIN_Y_640)*Float(OverLay.physicalHeight)/Float(480));
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 	const SWord map_screen_width=SWord(Float(MAP_SCREEN_WIDTH_640)*Float(OverLay.physicalWidth)/Float(640));
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 	const SWord map_screen_height=SWord(Float(MAP_SCREEN_HEIGHT_640)*Float(OverLay.physicalHeight)/Float(480));
-//DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 
+//DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 	R3DVERTEX dp[4];
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 	//is the top half of the map texture to be displayed?
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 	if (y[0]<MAP_TEXTURE_HEIGHT>>1)
@@ -4077,7 +4095,7 @@ inline SWord WorldZToSy640Zoomed(SLong wz,SLong *y)
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 		dp[0].bodyy.f=dp[1].bodyy.f=map_screen_y;
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 		dp[0].iy=dp[1].iy=y[0]>>MAP_SCALE;
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 		//points 2 & 3 bodyy & iy are more complicated
-//DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 		//if the texture coordinates for the bottom of the map are 
+//DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 		//if the texture coordinates for the bottom of the map are
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 		//in the top half of the map then there's no problem
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 		if (y[1]<=MAP_TEXTURE_HEIGHT>>1)
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 		{
@@ -4096,7 +4114,7 @@ inline SWord WorldZToSy640Zoomed(SLong wz,SLong *y)
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 		ImageMapDesc* pmap=Image_Map.GetImageMapPtr(THUMBTOPNO);
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 		OverLay.PutA(pmap,dp);
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 	}
-//DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 
+//DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 	//is the bottom half of the map texture to be displayed?
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 	if (y[1]>MAP_TEXTURE_HEIGHT>>1)
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 	{
@@ -4107,9 +4125,9 @@ inline SWord WorldZToSy640Zoomed(SLong wz,SLong *y)
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 		dp[2].bodyy.f=dp[3].bodyy.f=map_screen_y+map_screen_height-1;
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 		dp[2].iy=dp[3].iy=y[1]>>MAP_SCALE;
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 		//points 0 & 1 bodyy & iy are more complicated
-//DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 		//if the texture coordinates for the top of the map are 
+//DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 		//if the texture coordinates for the top of the map are
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 		//in the bottom half of the map then there's no problem
-//DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 
+//DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 		if (y[0]>=MAP_TEXTURE_HEIGHT>>1)
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 		{
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 			dp[0].bodyy.f=dp[1].bodyy.f=map_screen_y;
@@ -4338,27 +4356,27 @@ inline bool ClipLineZoomed(SLong *x,SLong *y,UWord *f,SLong *xc,SLong *yc)
 //DeadCode JON 8Nov00 	};
 //DeadCode JON 8Nov00 	const Float p_w=OverLay.physicalWidth;
 //DeadCode JON 8Nov00 	const Float p_h=OverLay.physicalHeight;
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 	//generate clipping values in physical pixels
 //DeadCode JON 8Nov00 	FRect clip;
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 	clip.left=Float(MAP_SCREEN_ORIGIN_X_640)*p_w/Float(640);
 //DeadCode JON 8Nov00 	clip.right=Float(MAP_SCREEN_ORIGIN_X_640+MAP_SCREEN_WIDTH_640-1)*p_w/Float(640);
 //DeadCode JON 8Nov00 	clip.top=Float(MAP_SCREEN_ORIGIN_Y_640)*p_h/Float(480);
 //DeadCode JON 8Nov00 	clip.bottom=Float(MAP_SCREEN_ORIGIN_Y_640+MAP_SCREEN_HEIGHT_640-1)*p_h/Float(480);
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 	//convert input pixels 640 to physical screen pixels
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 	Float p_x,p_y;
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 	p_x=Float(x)*p_w/Float(640);
 //DeadCode JON 8Nov00 	p_y=Float(y)*p_h/Float(480);
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 	//select icon to render
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 	ImageMapDesc* pmap;
 //DeadCode JON 8Nov00 	SAircraftIconDef* selectedIcon;
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 	if (waypt==Manual_Pilot.ControlledAC2->waypoint)
 //DeadCode JON 8Nov00 	{
 //DeadCode JON 8Nov00 		if (waypt==OverLay.curr_waypoint)	selectedIcon=&waypoint_map.messagesubject;
@@ -4369,17 +4387,17 @@ inline bool ClipLineZoomed(SLong *x,SLong *y,UWord *f,SLong *xc,SLong *yc)
 //DeadCode JON 8Nov00 		if (waypt==OverLay.curr_waypoint)	selectedIcon=&waypoint_map.caller;
 //DeadCode JON 8Nov00 		else								selectedIcon=&waypoint_map.standard;
 //DeadCode JON 8Nov00 	}
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 	pmap=Image_Map.GetImageMapPtr(selectedIcon->mapno);
 //DeadCode JON 8Nov00 	const SWord map_w=selectedIcon->w;
 //DeadCode JON 8Nov00 	const SWord map_h=selectedIcon->h;
 //DeadCode JON 8Nov00 	Float f_w_2,f_h_2;
 //DeadCode JON 8Nov00 	f_w_2=Float(map_w>>1);
 //DeadCode JON 8Nov00 	f_h_2=Float(map_h>>1);
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 #pragma warnmsg( "ShowWaypointIcon" )
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 	R3DVERTEX dp[4];
-//DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 
+//DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 	dp[0].bodyx.f=dp[3].bodyx.f=int(p_x-f_w_2);
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 	dp[0].ix=dp[3].ix=selectedIcon->x;
 //DeadCode JON 8Nov00 //TEMPCODE JON 5/22/00 	dp[1].bodyx.f=dp[2].bodyx.f=dp[3].bodyx.f+map_w;
@@ -4396,7 +4414,7 @@ void WorldToScreenXY( double& sx, double& sy, COORDS3D& pos )				//JON 8Nov00
 	double	rhw = 1.f/double(Three_Dee.ViewerY());
 	const double	sxScale = double(OverLay.physicalWidth)*.5f;
 	const double	syScale = double(OverLay.physicalHeight)*.5f;
-	
+
 	sx = (double(pos.X - Three_Dee.ViewerX())*rhw*sxScale)+sxScale;
 	sy = (double(pos.Z - Three_Dee.ViewerZ())*-rhw*syScale)+syScale;
 }
@@ -4408,7 +4426,7 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 
 	const double sw = OverLay.physicalWidth;
 	const double sh = OverLay.physicalHeight;
-	
+
 	// first generate a clipcode...
 	const ULong CLIP_LEFT = 1;
 	const ULong CLIP_RIGHT = 2;
@@ -4514,23 +4532,23 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 //DeadCode JON 8Nov00 {
 //DeadCode JON 8Nov00 	//skip to itemPtr's first waypoint...
 //DeadCode JON 8Nov00 	WayPointPtr lastwaypt=NULL,waypt=itemPtr->waypoint;
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00 	SWord xc_640[2],yc_640[2];
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00 	xc_640[0]=MAP_SCREEN_ORIGIN_X_640;
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00 	xc_640[1]=MAP_SCREEN_ORIGIN_X_640+MAP_SCREEN_WIDTH_640-1;
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00 	yc_640[0]=MAP_SCREEN_ORIGIN_Y_640;
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00 	yc_640[1]=MAP_SCREEN_ORIGIN_Y_640+MAP_SCREEN_HEIGHT_640-1;
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 	COORDS3D home_pos;
 //DeadCode JON 8Nov00 	COORDS3D start_pos;
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 	if (waypt!=NULL)
 //DeadCode JON 8Nov00 	{
 //DeadCode JON 8Nov00 		UniqueID	itemUID = itemPtr->uniqueID.count;					//RJS 27Jun00
 //DeadCode JON 8Nov00 		if (	itemPtr->fly.expandedsag
 //DeadCode JON 8Nov00 			&& (itemPtr->fly.numinsag==0)	)
 //DeadCode JON 8Nov00 			itemUID = itemPtr->fly.expandedsag->uniqueID.count;			//RJS 27Jun00
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 		waypt=FindFirstWP(itemUID,waypt);	//while (waypt->prev) waypt=waypt->prev;	//RJS 27Jun00
 //DeadCode JON 8Nov00 		start_pos=*::FindDesPos(waypt);
 //DeadCode JON 8Nov00 //DeadCode RJS 27Jun00 		if (itemPtr->ai.homebase)
@@ -4539,13 +4557,13 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 //DeadCode JON 8Nov00 //DeadCode RJS 27Jun00 			//draw a line from home_pos to start_pos
 //DeadCode JON 8Nov00 //DeadCode RJS 27Jun00 			SWord wx[2],wy[2];
 //DeadCode JON 8Nov00 //DeadCode RJS 27Jun00 			UWord cf[2];
-//DeadCode JON 8Nov00 //DeadCode RJS 27Jun00 
+//DeadCode JON 8Nov00 //DeadCode RJS 27Jun00
 //DeadCode JON 8Nov00 //DeadCode RJS 27Jun00 			WorldToSxy(start_pos,wx[0],wy[0]);
 //DeadCode JON 8Nov00 //DeadCode RJS 27Jun00 			WorldToSxy(home_pos,wx[1],wy[1]);
-//DeadCode JON 8Nov00 //DeadCode RJS 27Jun00 
+//DeadCode JON 8Nov00 //DeadCode RJS 27Jun00
 //DeadCode JON 8Nov00 //DeadCode RJS 27Jun00  			cf[0]=MapClipFlags(wx[0],wy[0],xc_640,yc_640);				//RJS 27Jun00
 //DeadCode JON 8Nov00 //DeadCode RJS 27Jun00  			cf[1]=MapClipFlags(wx[1],wy[1],xc_640,yc_640);
-//DeadCode JON 8Nov00 //DeadCode RJS 27Jun00  
+//DeadCode JON 8Nov00 //DeadCode RJS 27Jun00
 //DeadCode JON 8Nov00 //DeadCode RJS 27Jun00  			if ((cf[0]&cf[1])==0)
 //DeadCode JON 8Nov00 //DeadCode RJS 27Jun00  			{
 //DeadCode JON 8Nov00 //DeadCode RJS 27Jun00  				//clip the waypoint line between (wx[0],wy[0]) and (wx[1],wy[1])
@@ -4570,13 +4588,13 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 //DeadCode JON 8Nov00 			COORDS3D end_pos=*::FindDesPos(waypt);
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00 			SWord wx[2],wy[2];
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00 			UWord cf[2];
-//DeadCode JON 8Nov00 //DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00 //DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00 			WorldToSxy(start_pos,wx[0],wy[0]);
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00 			WorldToSxy(end_pos,wx[1],wy[1]);
-//DeadCode JON 8Nov00 //DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00 //DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00 			cf[0]=MapClipFlags(wx[0],wy[0],xc_640,yc_640);				//RJS 27Jun00
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00  			cf[1]=MapClipFlags(wx[1],wy[1],xc_640,yc_640);
-//DeadCode JON 8Nov00 //DeadCode JON 8Nov00  
+//DeadCode JON 8Nov00 //DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00  			if ((cf[0]&cf[1])==0)
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00  			{
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00  				//clip the waypoint line between (wx[0],wy[0]) and (wx[1],wy[1])
@@ -4599,7 +4617,7 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 //DeadCode JON 8Nov00 			{ // it's visible
 //DeadCode JON 8Nov00 				OverLay.DrawLine(SWord( sx ),SWord( sy ),SWord( ex ),SWord( ey ),Colour(252));
 //DeadCode JON 8Nov00 			}
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 			start_pos=end_pos;
 //DeadCode JON 8Nov00 			lastwaypt=waypt;
 //DeadCode JON 8Nov00 			waypt = waypt->NextWP(itemPtr);										//RJS 27Jun00
@@ -4611,13 +4629,13 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 //DeadCode JON 8Nov00 //DeadCode RJS 27Jun00 			//draw a line from home_pos to start_pos
 //DeadCode JON 8Nov00 //DeadCode RJS 27Jun00 			SWord wx[2],wy[2];
 //DeadCode JON 8Nov00 //DeadCode RJS 27Jun00 			UWord cf[2];
-//DeadCode JON 8Nov00 //DeadCode RJS 27Jun00 
+//DeadCode JON 8Nov00 //DeadCode RJS 27Jun00
 //DeadCode JON 8Nov00 //DeadCode RJS 27Jun00 			WorldToSxy(start_pos,wx[0],wy[0]);
 //DeadCode JON 8Nov00 //DeadCode RJS 27Jun00 			WorldToSxy(home_pos,wx[1],wy[1]);
-//DeadCode JON 8Nov00 //DeadCode RJS 27Jun00 
+//DeadCode JON 8Nov00 //DeadCode RJS 27Jun00
 //DeadCode JON 8Nov00 //DeadCode RJS 27Jun00 			cf[0]=MapClipFlags(wx[0],wy[0],xc_640,yc_640);				//RJS 27Jun00
 //DeadCode JON 8Nov00 //DeadCode RJS 27Jun00  			cf[1]=MapClipFlags(wx[1],wy[1],xc_640,yc_640);
-//DeadCode JON 8Nov00 //DeadCode RJS 27Jun00  
+//DeadCode JON 8Nov00 //DeadCode RJS 27Jun00
 //DeadCode JON 8Nov00 //DeadCode RJS 27Jun00  			if ((cf[0]&cf[1])==0)
 //DeadCode JON 8Nov00 //DeadCode RJS 27Jun00  			{
 //DeadCode JON 8Nov00 //DeadCode RJS 27Jun00  				//clip the waypoint line between (wx[0],wy[0]) and (wx[1],wy[1])
@@ -4648,16 +4666,16 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 //DeadCode JON 8Nov00 		{ // it's visible
 //DeadCode JON 8Nov00 			OverLay.DrawLine(SWord( sx ),SWord( sy ),SWord( ex ),SWord( ey ),Colour(252));
 //DeadCode JON 8Nov00 		}
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00 		SWord wx[2],wy[2];
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00 		UWord cf[2];
-//DeadCode JON 8Nov00 //DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00 //DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00 		WorldToSxy(start_pos,wx[0],wy[0]);
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00 		WorldToSxy(home_pos,wx[1],wy[1]);
-//DeadCode JON 8Nov00 //DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00 //DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00  		cf[0]=MapClipFlags(wx[0],wy[0],xc_640,yc_640);				//RJS 27Jun00
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00  		cf[1]=MapClipFlags(wx[1],wy[1],xc_640,yc_640);
-//DeadCode JON 8Nov00 //DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00 //DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00  		if ((cf[0]&cf[1])==0)
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00  		{
 //DeadCode JON 8Nov00 //DeadCode JON 8Nov00  			//clip the waypoint line between (wx[0],wy[0]) and (wx[1],wy[1])
@@ -4681,16 +4699,16 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 //DeadCode JON 8Nov00 {
 //DeadCode JON 8Nov00 	//skip to itemPtr's first waypoint...
 //DeadCode JON 8Nov00 	WayPointPtr lastwaypt=NULL,waypt=itemPtr->waypoint;
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 	SLong xc_640[2],yc_640[2];
 //DeadCode JON 8Nov00 	xc_640[0]=MAP_SCREEN_ORIGIN_X_640;
 //DeadCode JON 8Nov00 	xc_640[1]=MAP_SCREEN_ORIGIN_X_640+MAP_SCREEN_WIDTH_640-1;
 //DeadCode JON 8Nov00 	yc_640[0]=MAP_SCREEN_ORIGIN_Y_640;
 //DeadCode JON 8Nov00 	yc_640[1]=MAP_SCREEN_ORIGIN_Y_640+MAP_SCREEN_HEIGHT_640-1;
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 	COORDS3D home_pos;
 //DeadCode JON 8Nov00 	COORDS3D start_pos;
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 	if (waypt!=NULL)
 //DeadCode JON 8Nov00 	{
 //DeadCode JON 8Nov00 		while (waypt->prev) waypt=waypt->prev;
@@ -4701,16 +4719,16 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 //DeadCode JON 8Nov00 			//draw a line from home_pos to start_pos
 //DeadCode JON 8Nov00 			SLong wx[2],wy[2];
 //DeadCode JON 8Nov00 			UWord cf[2];
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 			wx[0]=WorldXToSx640Zoomed(start_pos.X,x);
 //DeadCode JON 8Nov00 			wy[0]=WorldZToSy640Zoomed(start_pos.Z,y);
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 			wx[1]=WorldXToSx640Zoomed(home_pos.X,x);
 //DeadCode JON 8Nov00 			wy[1]=WorldZToSy640Zoomed(home_pos.Z,y);
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 			cf[0]=MapClipFlagsZoomed(wx[0],wy[0],xc_640,yc_640);
 //DeadCode JON 8Nov00 			cf[1]=MapClipFlagsZoomed(wx[1],wy[1],xc_640,yc_640);
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 			if ((cf[0]&cf[1])==0)
 //DeadCode JON 8Nov00 			{
 //DeadCode JON 8Nov00 				//clip the waypoint line between (wx[0],wy[0]) and (wx[1],wy[1])
@@ -4734,16 +4752,16 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 //DeadCode JON 8Nov00 			COORDS3D end_pos=*::FindDesPos(waypt);
 //DeadCode JON 8Nov00 			SLong wx[2],wy[2];
 //DeadCode JON 8Nov00 			UWord cf[2];
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 			wx[0]=WorldXToSx640Zoomed(start_pos.X,x);
 //DeadCode JON 8Nov00 			wy[0]=WorldZToSy640Zoomed(start_pos.Z,y);
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 			wx[1]=WorldXToSx640Zoomed(end_pos.X,x);
 //DeadCode JON 8Nov00 			wy[1]=WorldZToSy640Zoomed(end_pos.Z,y);
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 			cf[0]=MapClipFlagsZoomed(wx[0],wy[0],xc_640,yc_640);
 //DeadCode JON 8Nov00 			cf[1]=MapClipFlagsZoomed(wx[1],wy[1],xc_640,yc_640);
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 			if ((cf[0]&cf[1])==0)
 //DeadCode JON 8Nov00 			{
 //DeadCode JON 8Nov00 				if (cf[0]==0) ShowWaypointIcon(wx[0],wy[0],lastwaypt);
@@ -4770,16 +4788,16 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 //DeadCode JON 8Nov00 			//draw a line from home_pos to start_pos
 //DeadCode JON 8Nov00 			SLong wx[2],wy[2];
 //DeadCode JON 8Nov00 			UWord cf[2];
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 			wx[0]=WorldXToSx640Zoomed(start_pos.X,x);
 //DeadCode JON 8Nov00 			wy[0]=WorldZToSy640Zoomed(start_pos.Z,y);
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 			wx[1]=WorldXToSx640Zoomed(home_pos.X,x);
 //DeadCode JON 8Nov00 			wy[1]=WorldZToSy640Zoomed(home_pos.Z,y);
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 			cf[0]=MapClipFlagsZoomed(wx[0],wy[0],xc_640,yc_640);
 //DeadCode JON 8Nov00 			cf[1]=MapClipFlagsZoomed(wx[1],wy[1],xc_640,yc_640);
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 			if ((cf[0]&cf[1])==0)
 //DeadCode JON 8Nov00 			{
 //DeadCode JON 8Nov00 				if (cf[0]==0) ShowWaypointIcon(wx[0],wy[0],lastwaypt);
@@ -4806,16 +4824,16 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 //DeadCode JON 8Nov00 		//draw a line from home_pos to start_pos
 //DeadCode JON 8Nov00 		SLong wx[2],wy[2];
 //DeadCode JON 8Nov00 		UWord cf[2];
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 		wx[0]=WorldXToSx640Zoomed(start_pos.X,x);
 //DeadCode JON 8Nov00 		wy[0]=WorldZToSy640Zoomed(start_pos.Z,y);
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 		wx[1]=WorldXToSx640Zoomed(home_pos.X,x);
 //DeadCode JON 8Nov00 		wy[1]=WorldZToSy640Zoomed(home_pos.Z,y);
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 		cf[0]=MapClipFlagsZoomed(wx[0],wy[0],xc_640,yc_640);
 //DeadCode JON 8Nov00 		cf[1]=MapClipFlagsZoomed(wx[1],wy[1],xc_640,yc_640);
-//DeadCode JON 8Nov00 
+//DeadCode JON 8Nov00
 //DeadCode JON 8Nov00 		if ((cf[0]&cf[1])==0)
 //DeadCode JON 8Nov00 		{
 //DeadCode JON 8Nov00 			//clip the waypoint line between (wx[0],wy[0]) and (wx[1],wy[1])
@@ -4857,37 +4875,37 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 //DeadCode RJS 05Jun00 		{MAPCHAPNO,32,0,16,16},	//caller blue outline
 //DeadCode RJS 05Jun00 		{MAPCHAPNO,48,0,16,16}	//message subject blue outline
 //DeadCode RJS 05Jun00 	};
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 	const Float p_w=OverLay.physicalWidth;
 //DeadCode RJS 05Jun00 	const Float p_h=OverLay.physicalHeight;
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 	//generate clipping values in physical pixels
 //DeadCode RJS 05Jun00 	FRect clip;
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 	clip.left=Float(MAP_SCREEN_ORIGIN_X_640)*p_w/Float(640);
 //DeadCode RJS 05Jun00 	clip.right=Float(MAP_SCREEN_ORIGIN_X_640+MAP_SCREEN_WIDTH_640-1)*p_w/Float(640);
 //DeadCode RJS 05Jun00 	clip.top=Float(MAP_SCREEN_ORIGIN_Y_640)*p_h/Float(480);
 //DeadCode RJS 05Jun00 	clip.bottom=Float(MAP_SCREEN_ORIGIN_Y_640+MAP_SCREEN_HEIGHT_640-1)*p_h/Float(480);
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 	//convert input pixels 640 to physical screen pixels
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 	Float p_x,p_y;
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 	p_x=Float(x)*p_w/Float(640);
 //DeadCode RJS 05Jun00 	p_y=Float(y)*p_h/Float(480);
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 	//select icon to render
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 	R3DVERTEX dp[4];
 //DeadCode RJS 05Jun00 	ImageMapDesc* pmap;
 //DeadCode RJS 05Jun00 	SAircraftIconDef* selectedIcon;
 //DeadCode RJS 05Jun00 	SMapAircraft* selectedSide;
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 	if (ip->nationality==NAT_BLUE)	selectedSide=&map_blue_ac;
 //DeadCode RJS 05Jun00 	else							selectedSide=&map_red_ac;
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 	bool noOutline=false;
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 	if (ip==Manual_Pilot.ControlledAC2)				selectedIcon=&selectedSide->playerac;
 //DeadCode RJS 05Jun00 	else if (ip==OverLay.message_caller)			selectedIcon=&selectedSide->caller;
 //DeadCode RJS 05Jun00 	else if (itemptr(ip)==OverLay.message_target)	selectedIcon=&selectedSide->messagesubject;
@@ -4911,27 +4929,27 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 //DeadCode RJS 05Jun00 	dp[2].bodyy.f=dp[3].bodyy.f=dp[1].bodyy.f+map_h;
 //DeadCode RJS 05Jun00 	dp[2].iy=dp[3].iy=selectedIcon->y+map_h;
 //DeadCode RJS 05Jun00 	if (!noOutline) OverLay.ClippedPutC(dp,pmap,clip);
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 	//rotate coordinates to show the ac heading...
 //DeadCode RJS 05Jun00  	SWord sinAng,cosAng;
 //DeadCode RJS 05Jun00 	ANGLES hdgAng=-ip->hdg;
 //DeadCode RJS 05Jun00 	Math_Lib.high_sin_cos(hdgAng,sinAng,cosAng);
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 	//generate 2D rotation matrix
 //DeadCode RJS 05Jun00 	Float m[4];
 //DeadCode RJS 05Jun00 	const Float af(ANGLES_FRACT);
 //DeadCode RJS 05Jun00 	m[0]=m[3]=Float(cosAng)/af;
 //DeadCode RJS 05Jun00 	m[1]=Float(sinAng)/af;
 //DeadCode RJS 05Jun00 	m[2]=-Float(sinAng)/af;
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 	selectedIcon=&selectedSide->standard;
 //DeadCode RJS 05Jun00 	dp[0].ix=dp[3].ix=selectedIcon->x;
 //DeadCode RJS 05Jun00 	dp[1].ix=dp[2].ix=selectedIcon->x+map_w;
 //DeadCode RJS 05Jun00 	dp[0].iy=dp[1].iy=selectedIcon->y;
 //DeadCode RJS 05Jun00 	dp[2].iy=dp[3].iy=selectedIcon->y+map_h;
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 	bool abortDraw=false;
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 	for (int i=3;i>=0 && !abortDraw;i--)
 //DeadCode RJS 05Jun00 	{
 //DeadCode RJS 05Jun00 		Float tx,ty;
@@ -4939,7 +4957,7 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 //DeadCode RJS 05Jun00 		ty=dp[i].bodyy.f-p_y;
 //DeadCode RJS 05Jun00 		dp[i].bodyx.f=p_x+(m[0]*tx+m[1]*ty);
 //DeadCode RJS 05Jun00 		dp[i].bodyy.f=p_y+(m[2]*tx+m[3]*ty);
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 		if (dp[i].bodyx.f<=clip.left ||
 //DeadCode RJS 05Jun00 			dp[i].bodyx.f>=clip.right ||
 //DeadCode RJS 05Jun00 			dp[i].bodyy.f<=clip.top ||
@@ -4948,7 +4966,7 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 //DeadCode RJS 05Jun00 	}
 //DeadCode RJS 05Jun00 	if (!abortDraw) OverLay.ClippedPutC(dp,pmap,clip);
 //DeadCode JON 29Oct00 }
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 void MapScr::ShowAircraftIcons(SWord *x,SWord *y,bool flag)
 //DeadCode JON 29Oct00 {
 //DeadCode RJS 05Jun00 	SWord xc_640[2],yc_640[2];
@@ -4956,19 +4974,19 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 //DeadCode RJS 05Jun00 	xc_640[1]=MAP_SCREEN_ORIGIN_X_640+MAP_SCREEN_WIDTH_640-1;
 //DeadCode RJS 05Jun00 	yc_640[0]=MAP_SCREEN_ORIGIN_Y_640;
 //DeadCode RJS 05Jun00 	yc_640[1]=MAP_SCREEN_ORIGIN_Y_640+MAP_SCREEN_HEIGHT_640-1;
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 	AirStrucPtr itemPtr=(AirStrucPtr)OverLay.pvp->GetFirstAC();
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 	while (itemPtr!=NULL)
 //DeadCode RJS 05Jun00 	{
-//DeadCode RJS 05Jun00 		if (!itemPtr->Status.deadtime && 
+//DeadCode RJS 05Jun00 		if (!itemPtr->Status.deadtime &&
 //DeadCode RJS 05Jun00 			(itemPtr->nationality==Manual_Pilot.ControlledAC2->nationality || Save_Data.gamedifficulty[GD_VISIBLEMIGSCHEAT]))
 //DeadCode RJS 05Jun00 		{
 //DeadCode RJS 05Jun00 			SWord sx_640,sy_640;
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 			sx_640=WorldXToSx640(itemPtr->World.X,x);
 //DeadCode RJS 05Jun00 			sy_640=WorldZToSy640(itemPtr->World.Z,y);
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 			if (itemPtr==Manual_Pilot.ControlledAC2 || (!flag && itemPtr->formpos==0))
 //DeadCode RJS 05Jun00 			{
 //DeadCode RJS 05Jun00 				if (MapClipFlags(sx_640,sy_640,xc_640,yc_640)==0)
@@ -4978,7 +4996,7 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 //DeadCode RJS 05Jun00 		itemPtr=(AirStrucPtr)OverLay.pvp->GetNextAC(itemPtr);
 //DeadCode RJS 05Jun00 	}
 //DeadCode JON 29Oct00 }
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 void MapScr::ShowAircraftIconsZoomed(SLong *x,SLong *y,bool flag)
 //DeadCode JON 29Oct00 {
 //DeadCode RJS 05Jun00 	SWord xc_640[2],yc_640[2];
@@ -4986,18 +5004,18 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 //DeadCode RJS 05Jun00 	xc_640[1]=MAP_SCREEN_ORIGIN_X_640+MAP_SCREEN_WIDTH_640-1;
 //DeadCode RJS 05Jun00 	yc_640[0]=MAP_SCREEN_ORIGIN_Y_640;
 //DeadCode RJS 05Jun00 	yc_640[1]=MAP_SCREEN_ORIGIN_Y_640+MAP_SCREEN_HEIGHT_640-1;
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 	AirStrucPtr itemPtr=(AirStrucPtr)OverLay.pvp->GetFirstAC();
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 	while (itemPtr!=NULL)
 //DeadCode RJS 05Jun00 	{
 //DeadCode RJS 05Jun00 		if (!itemPtr->Status.deadtime)
 //DeadCode RJS 05Jun00 		{
 //DeadCode RJS 05Jun00 			SWord sx_640,sy_640;
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 			sx_640=WorldXToSx640Zoomed(itemPtr->World.X,x);
 //DeadCode RJS 05Jun00 			sy_640=WorldZToSy640Zoomed(itemPtr->World.Z,y);
-//DeadCode RJS 05Jun00 
+//DeadCode RJS 05Jun00
 //DeadCode RJS 05Jun00 			if (itemPtr==Manual_Pilot.ControlledAC2 || !flag)
 //DeadCode RJS 05Jun00 			{
 //DeadCode RJS 05Jun00 				if (MapClipFlags(sx_640,sy_640,xc_640,yc_640)==0)
@@ -5016,27 +5034,27 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 //TEMPCODE JON 5/22/00 		SWord x,y,w,h;
 //TEMPCODE JON 5/22/00 	};
 //TEMPCODE JON 5/22/00 	static SAircraftIconDef targ_icon_def={MAPCHAPNO,0,16,16,16};
-//TEMPCODE JON 5/22/00 
+//TEMPCODE JON 5/22/00
 //TEMPCODE JON 5/22/00 	const Float p_w=OverLay.physicalWidth;
 //TEMPCODE JON 5/22/00 	const Float p_h=OverLay.physicalHeight;
-//TEMPCODE JON 5/22/00 
+//TEMPCODE JON 5/22/00
 //TEMPCODE JON 5/22/00 	//generate clipping values in physical pixels
 //TEMPCODE JON 5/22/00 	FRect clip;
-//TEMPCODE JON 5/22/00 
+//TEMPCODE JON 5/22/00
 //TEMPCODE JON 5/22/00 	clip.left=Float(MAP_SCREEN_ORIGIN_X_640)*p_w/Float(640);
 //TEMPCODE JON 5/22/00 	clip.right=Float(MAP_SCREEN_ORIGIN_X_640+MAP_SCREEN_WIDTH_640-1)*p_w/Float(640);
 //TEMPCODE JON 5/22/00 	clip.top=Float(MAP_SCREEN_ORIGIN_Y_640)*p_h/Float(480);
 //TEMPCODE JON 5/22/00 	clip.bottom=Float(MAP_SCREEN_ORIGIN_Y_640+MAP_SCREEN_HEIGHT_640-1)*p_h/Float(480);
-//TEMPCODE JON 5/22/00 
+//TEMPCODE JON 5/22/00
 //TEMPCODE JON 5/22/00 	//convert input pixels 640 to physical screen pixels
-//TEMPCODE JON 5/22/00 
+//TEMPCODE JON 5/22/00
 //TEMPCODE JON 5/22/00 	Float p_x,p_y;
-//TEMPCODE JON 5/22/00 
+//TEMPCODE JON 5/22/00
 //TEMPCODE JON 5/22/00 	p_x=Float(x)*p_w/Float(640);
 //TEMPCODE JON 5/22/00 	p_y=Float(y)*p_h/Float(480);
-//TEMPCODE JON 5/22/00 
+//TEMPCODE JON 5/22/00
 //TEMPCODE JON 5/22/00 	//select icon to render
-//TEMPCODE JON 5/22/00 
+//TEMPCODE JON 5/22/00
 //TEMPCODE JON 5/22/00 	R3DVERTEX dp[4];
 //TEMPCODE JON 5/22/00 	ImageMapDesc* pmap;
 //TEMPCODE JON 5/22/00 	SAircraftIconDef* selectedIcon=&targ_icon_def;
@@ -5066,7 +5084,7 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 //DeadCode JON 29Oct00 		xc_640[1]=MAP_SCREEN_ORIGIN_X_640+MAP_SCREEN_WIDTH_640-1;
 //DeadCode JON 29Oct00 		yc_640[0]=MAP_SCREEN_ORIGIN_Y_640;
 //DeadCode JON 29Oct00 		yc_640[1]=MAP_SCREEN_ORIGIN_Y_640+MAP_SCREEN_HEIGHT_640-1;
-//DeadCode JON 29Oct00 
+//DeadCode JON 29Oct00
 //DeadCode JON 29Oct00 		SWord sx_640,sy_640;
 //DeadCode JON 29Oct00 		sx_640=WorldXToSx640(itemPtr->World.X,x);
 //DeadCode JON 29Oct00 		sy_640=WorldZToSy640(itemPtr->World.Z,y);
@@ -5076,7 +5094,7 @@ inline bool ClipLineToScreen( double& sx, double& sy, double& ex, double& ey )		
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ShowItemIcons
-//Author		Paul.   
+//Author		Paul.
 //Date			Tue 2 Mar 1999
 //------------------------------------------------------------------------------
 void MapScr::ShowItemIcons(bool flag)
@@ -5103,7 +5121,7 @@ void MapScr::ShowItemIcons(bool flag)
 void MapScr::ShowItemIconsZoomed(bool flag)
 {
 //DeadCode JON 8Nov00 	SLong x[2],y[2];
-//DeadCode JON 8Nov00 	//generate world coordinated of the area covered by the 
+//DeadCode JON 8Nov00 	//generate world coordinated of the area covered by the
 //DeadCode JON 8Nov00 	//map window...
 //DeadCode JON 8Nov00 	SLong offset=OverLay.pvp->World.Y;
 //DeadCode JON 8Nov00 	x[0]=OverLay.pvp->World.X-offset;
@@ -5163,7 +5181,7 @@ void MapScr::ShowPositionIndicators()
 //DeadCode JON 11Aug00 		currentPosX<<=1;
 //DeadCode JON 11Aug00 		endBlockX<<=1;
 //DeadCode JON 11Aug00 	}
-	
+
 	float scx = float(OverLay.physicalWidth)/640.0;
 	float scy = float(OverLay.physicalHeight)/480.0;
 #define SCALE_ME_X( arg ) arg=float(float(arg)*scx)
@@ -5187,7 +5205,7 @@ void MapScr::ShowPositionIndicators()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		HandleUpDnLftRgtToggleKeys
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //------------------------------------------------------------------------------
 void MapScr::HandleUpDnLftRgtToggleKeys()
@@ -5264,16 +5282,16 @@ void MapScr::HandleUpDnLftRgtToggleKeys()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		FirstMapInit
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //------------------------------------------------------------------------------
 Key MapScr::FirstMapInit()
 {
 	OverLay.fZoomedMap=false;
-	if (Manual_Pilot.ControlledAC2 && 
-		Manual_Pilot.ControlledAC2->waypoint)	
+	if (Manual_Pilot.ControlledAC2 &&
+		Manual_Pilot.ControlledAC2->waypoint)
 		OverLay.curr_waypoint=Manual_Pilot.ControlledAC2->waypoint;
-	else			
+	else
 		OverLay.curr_waypoint=NULL;
 	_MsgBuffer.InitMessageWindow();
 	if (!_DPlay.Implemented)
@@ -5285,7 +5303,7 @@ Key MapScr::FirstMapInit()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SelectFromFirstMap
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //------------------------------------------------------------------------------
 MapScr* MapScr::SelectFromFirstMap(UByte&,Key k)
@@ -5348,23 +5366,23 @@ MapScr COverlay::firstMapScr=
 	MapScreenWidth,MapScreenHeight,
 	MapGridXOffset,MapGridYOffset,
 	SET_WIPE_TEXTURE(RADIONO),//NO_BACKGROUND_WIPE,//if the alpha part of this ulong is null then it'll draw it as a colour
-	// otherwise it'll assume it is a imagemap filenum 
+	// otherwise it'll assume it is a imagemap filenum
 	TEXT_MAP_BLACK,
 	TEXT_HI,
 	MapColumnWidth,MapRowHeight,
 	MapGridNumCols,MapGridNumRows,
 	0x0000,
-	MapScr::FirstMapInit,
-	MapScr::UpdateMessageDisplay,
+	MYPREFIX MapScr::FirstMapInit,
+	MYPREFIX MapScr::UpdateMessageDisplay,
 	{
-		{IDS_MAP_ACCEL,0,SEL_1,MapScr::SelectFromFirstMap},
-		{IDS_MAP_WAYPOINTS,0,SEL_2,MapScr::SelectFromFirstMap},
-		{IDS_MAP_RADIO,0,SEL_3,MapScr::SelectFromFirstMap},
-		{IDS_MAP_ZOOM,0,SEL_4,MapScr::SelectFromFirstMap},
+		{IDS_MAP_ACCEL,0,SEL_1,MYPREFIX MapScr::SelectFromFirstMap},
+		{IDS_MAP_WAYPOINTS,0,SEL_2,MYPREFIX MapScr::SelectFromFirstMap},
+		{IDS_MAP_RADIO,0,SEL_3,MYPREFIX MapScr::SelectFromFirstMap},
+		{IDS_MAP_ZOOM,0,SEL_4,MYPREFIX MapScr::SelectFromFirstMap},
 //DeadCode JON 17Oct00 		MSBlankLine,
 		MSBlankLine,
-		MSEscapeLine(MapScr::SelectFromFirstMap),
-		{IDS_MAP_EXIT,0,SEL_0,MapScr::SelectFromFirstMap},
+		MSEscapeLine(MYPREFIX MapScr::SelectFromFirstMap),
+		{IDS_MAP_EXIT,0,SEL_0,MYPREFIX MapScr::SelectFromFirstMap},
 		MSListEnd
 	}
 };
@@ -5379,23 +5397,23 @@ MapScr COverlay::firstMapScrBomber=
 	MapScreenWidth,MapScreenHeight,
 	MapGridXOffset,MapGridYOffset,
 	SET_WIPE_TEXTURE(RADIONO),//NO_BACKGROUND_WIPE,//if the alpha part of this ulong is null then it'll draw it as a colour
-	// otherwise it'll assume it is a imagemap filenum 
+	// otherwise it'll assume it is a imagemap filenum
 	TEXT_MAP_BLACK,
 	TEXT_HI,
 	MapColumnWidth,MapRowHeight,
 	MapGridNumCols,MapGridNumRows,
 	0x0000,
-	MapScr::FirstMapInit,
-	MapScr::UpdateMessageDisplay,
+	MYPREFIX MapScr::FirstMapInit,
+	MYPREFIX MapScr::UpdateMessageDisplay,
 	{
-		{IDS_MAP_ACCEL,0,SEL_1,MapScr::SelectFromFirstMap},
-		{IDS_MAP_WAYPOINTS,0,SEL_2,MapScr::SelectFromFirstMap},
-//		{IDS_MAP_RADIO,0,SEL_3,MapScr::SelectFromFirstMap},
+		{IDS_MAP_ACCEL,0,SEL_1,MYPREFIX MapScr::SelectFromFirstMap},
+		{IDS_MAP_WAYPOINTS,0,SEL_2,MYPREFIX MapScr::SelectFromFirstMap},
+//		{IDS_MAP_RADIO,0,SEL_3,MYPREFIX MapScr::SelectFromFirstMap},
 		MSBlankLine,
-		{IDS_MAP_ZOOM,0,SEL_4,MapScr::SelectFromFirstMap},
+		{IDS_MAP_ZOOM,0,SEL_4,MYPREFIX MapScr::SelectFromFirstMap},
 		MSBlankLine,
-		MSEscapeLine(MapScr::SelectFromFirstMap),
-		{IDS_MAP_EXIT,0,SEL_0,MapScr::SelectFromFirstMap},
+		MSEscapeLine(MYPREFIX MapScr::SelectFromFirstMap),
+		{IDS_MAP_EXIT,0,SEL_0,MYPREFIX MapScr::SelectFromFirstMap},
 		MSListEnd
 	}
 };
@@ -5420,7 +5438,6 @@ MapScr COverlay::firstMapScrBomber=
 //DeadCode JON 17Oct00 	{
 //DeadCode JON 17Oct00 		{IDS_MAP_ACCEL,0,SEL_1,MapScr::SelectFromFirstMap},
 //DeadCode JON 17Oct00 		{IDS_MAP_WAYPOINTS,0,SEL_2,MapScr::SelectFromFirstMap},
-//DeadCode JON 17Oct00 		{IDS_MAP_RADIO,0,SEL_3,MapScr::SelectFromFirstMap},
 //DeadCode JON 17Oct00 		MSBlankLine,
 //DeadCode JON 17Oct00 		{IDS_MAP_COMMSMSG,0,SEL_5,MapScr::SelectFromFirstMap},
 //DeadCode JON 17Oct00 		{IDS_MAP_COMMSRECIPIENT,0,SEL_6,MapScr::SelectFromFirstMap},
@@ -5438,7 +5455,7 @@ MapScr COverlay::firstMapScrBomber=
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SendMessageAndCall
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 1 Apr 1999
 //------------------------------------------------------------------------------
 void COverlay::SendMessageAndCall(MESSAGE_STRUC* msg,DecisionAI* dec)
@@ -5458,7 +5475,7 @@ void COverlay::SendMessageAndCall(MESSAGE_STRUC* msg,DecisionAI* dec)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		MsgOptionSelected
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 1 Apr 1999
 //------------------------------------------------------------------------------
 void COverlay::MsgOptionSelected(MESSAGE_STRUC* msg,SLong op)
@@ -5469,30 +5486,30 @@ void COverlay::MsgOptionSelected(MESSAGE_STRUC* msg,SLong op)
 	DecisionMessage(dec,op,msg->callee,msg->target,msg->callee);
 
 //DeadCode AMM 21May99 	opt+=op;
-//DeadCode AMM 21May99 
+//DeadCode AMM 21May99
 //DeadCode AMM 21May99 	if (_DPlay.Implemented || _Replay.Record)
 //DeadCode AMM 21May99 	{
 //DeadCode AMM 21May99 // COMMS: send message to other players indicating option selected
 //DeadCode AMM 21May99 // decision=0-100=7bits, option=0-9=4 bits, target=UID=14 bits (25 bits, only have 24!)
 //DeadCode AMM 21May99 // callee and caller are sender of packet
-//DeadCode AMM 21May99 
-//DeadCode AMM 21May99 
+//DeadCode AMM 21May99
+//DeadCode AMM 21May99
 //DeadCode AMM 21May99 		UByte option=(UByte)op;
 //DeadCode AMM 21May99 		UniqueID trg=msg->target->uniqueID.count;
 //DeadCode AMM 21May99 		UByte decision=msg->decisionhandler->optionnumber;
-//DeadCode AMM 21May99 
+//DeadCode AMM 21May99
 //DeadCode AMM 21May99 		_DPlay.NewWingmanCommand(decision,option,trg);
-//DeadCode AMM 21May99 
+//DeadCode AMM 21May99
 //DeadCode AMM 21May99 // On receipt Maybe call Send message and call instead of the following 3 lines
-//DeadCode AMM 21May99 
+//DeadCode AMM 21May99
 //DeadCode AMM 21May99 //		MESSAGE_STRUC newMsg(opt->saidmsg,MSG_HIPRIORITY,msg->callee,msg->target,msg->callee);
 //DeadCode AMM 21May99 //		dec->AutoMsgDecision((AirStruc*)msg->callee,msg->target,(AirStruc*)msg->callee,&Art_Int,&newMsg);
 //DeadCode AMM 21May99 //		_Radio.TriggerMsg(newMsg);
-//DeadCode AMM 21May99 
+//DeadCode AMM 21May99
 //DeadCode AMM 21May99 	}
 //DeadCode AMM 21May99 	else
 //DeadCode AMM 21May99 	{
-//DeadCode AMM 21May99 
+//DeadCode AMM 21May99
 //DeadCode AMM 21May99 		MESSAGE_STRUC newMsg(opt->saidmsg,MSG_HIPRIORITY,msg->callee,msg->target,msg->callee);
 //DeadCode AMM 21May99 //DeadCode DAW 06Apr99 		dec->AutoMsgDecision((AirStruc*)msg->callee,msg->target,(AirStruc*)msg->callee,&Art_Int,&newMsg);
 //DeadCode AMM 21May99 //DeadCode DAW 06Apr99 		_Radio.TriggerMsg(newMsg);
@@ -5502,7 +5519,7 @@ void COverlay::MsgOptionSelected(MESSAGE_STRUC* msg,SLong op)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ActionMessage
-//Author		Paul    
+//Author		Paul
 //Date			Tue 9 Mar 1999
 //------------------------------------------------------------------------------
 void COverlay::ActionMessage(MESSAGE_STRUC* msg)
@@ -5511,9 +5528,9 @@ void COverlay::ActionMessage(MESSAGE_STRUC* msg)
 //DEADCODE CSB 23/02/00 	/*
 
 	MapScr::OptionList termOpt=MSListEnd;
-	MapScr::OptionList escOpt=MSEscapeLine(MapScr::SelectFrom3DOrders);
+	MapScr::OptionList escOpt=MSEscapeLine(MYPREFIX MapScr::SelectFrom3DOrders);
 	MapScr::OptionList blankOpt=MSBlankLine;
-	MapScr::OptionList miscOpt={IDS_INDIRECT00,0,SEL_1,MapScr::SelectFrom3DOrders};
+	MapScr::OptionList miscOpt={IDS_INDIRECT00,0,SEL_1,MYPREFIX MapScr::SelectFrom3DOrders};
 
 	Kludge();
 	if (!Manual_Pilot.ControlledAC2->Status.deadtime &&
@@ -5586,12 +5603,12 @@ MapScr* MapScr::SelectFromUserMsg(UByte&,Key k)
 
 	switch (k)
 	{
-		case SEL_1:		
+		case SEL_1:
 			localDec = NULL;
 			if(!toweronly)
 			{
 				if(player->formpos == 0)				localDec = GroupInfoMsg;
-				else 
+				else
 					if(player->nationality == NAT_RAF)	localDec = GroupInfoMsgFolRaf;
 					else								localDec = GroupInfoMsgFolLuf;
 			}
@@ -5634,7 +5651,7 @@ MapScr* MapScr::SelectFromUserMsg(UByte&,Key k)
 				if((player->formpos == 0) && ((player->classtype->visible == JU87) || (player->classtype->visible == ME110)))
 					localDec = Strike;
 		break;
-		
+
 		case SEL_7:
 
 			if (_DPlay.Implemented)//AMM20May
@@ -5647,7 +5664,7 @@ MapScr* MapScr::SelectFromUserMsg(UByte&,Key k)
 			if (_DPlay.Implemented)//AMM20May
 				retval = &COverlay::commsMsgOrdersScr;					//AMM 14May99
 			break;
-	
+
 		default:
 			break;
 	}
@@ -5708,19 +5725,19 @@ MapScr COverlay::commsChatDialog=
 	MapColumnWidth,MapRowHeight,
 	2,5,
 	0x0000,
-	MapScr::CommsTextInit,
-	MapScr::CommsTextUpdateDisplay,
+	MYPREFIX MapScr::CommsTextInit,
+	MYPREFIX MapScr::CommsTextUpdateDisplay,
 	{
-		MSEscapeLine(MapScr::SelectCommsChat),
-		MSEscapeLine(MapScr::SelectCommsChat),
-		MSEscapeLine(MapScr::SelectCommsChat),
-		MSEscapeLine(MapScr::SelectCommsChat),
-		MSEscapeLine(MapScr::SelectCommsChat),
-		MSEscapeLine(MapScr::SelectCommsChat),
-		MSEscapeLine(MapScr::SelectCommsChat),
-		MSEscapeLine(MapScr::SelectCommsChat),
-		{IDS_COMMSDIALOK,		0,	SEL_ENTER,	MapScr::SelectCommsChat},
-		{IDS_COMMSDIALCANCEL,	0,	SEL_0,		MapScr::SelectCommsChat},
+		MSEscapeLine(MYPREFIX MapScr::SelectCommsChat),
+		MSEscapeLine(MYPREFIX MapScr::SelectCommsChat),
+		MSEscapeLine(MYPREFIX MapScr::SelectCommsChat),
+		MSEscapeLine(MYPREFIX MapScr::SelectCommsChat),
+		MSEscapeLine(MYPREFIX MapScr::SelectCommsChat),
+		MSEscapeLine(MYPREFIX MapScr::SelectCommsChat),
+		MSEscapeLine(MYPREFIX MapScr::SelectCommsChat),
+		MSEscapeLine(MYPREFIX MapScr::SelectCommsChat),
+		{IDS_COMMSDIALOK,		0,	SEL_ENTER,	MYPREFIX MapScr::SelectCommsChat},
+		{IDS_COMMSDIALCANCEL,	0,	SEL_0,		MYPREFIX MapScr::SelectCommsChat},
 		MSListEnd
 	}
 };
@@ -5739,17 +5756,17 @@ MapScr COverlay::userMsgScrLead=										//CSB 23/02/00
 	MapColumnWidth,MapRowHeight,
 	MapGridNumCols,MapGridNumRows,
 	0x0000,
-	MapScr::Orders3DInit,
-	MapScr::TimeLimitedDisplay,
+	MYPREFIX MapScr::Orders3DInit,
+	MYPREFIX MapScr::TimeLimitedDisplay,
 	{
-		{IDS_UM_GROUPINFO,	0,	SEL_1,	MapScr::SelectFromUserMsg},
-		{IDS_UM_PRECOMBAT,	0,	SEL_2,	MapScr::SelectFromUserMsg},
-		{IDS_UM_COMBAT,		0,	SEL_3,	MapScr::SelectFromUserMsg},
-		{IDS_UM_POSTCOMBAT,	0,	SEL_4,	MapScr::SelectFromUserMsg},
-		{IDS_UM_TOWER,		0,	SEL_5,	MapScr::SelectFromUserMsg},
-		MSEscapeLine(MapScr::SelectFromUserMsg),
-		MSEscapeLine(MapScr::SelectFromUserMsg),
-		{IDS_MAP_EXIT,		0,	SEL_0,	MapScr::SelectFromUserMsg},
+		{IDS_UM_GROUPINFO,	0,	SEL_1,	MYPREFIX MapScr::SelectFromUserMsg},
+		{IDS_UM_PRECOMBAT,	0,	SEL_2,	MYPREFIX MapScr::SelectFromUserMsg},
+		{IDS_UM_COMBAT,		0,	SEL_3,	MYPREFIX MapScr::SelectFromUserMsg},
+		{IDS_UM_POSTCOMBAT,	0,	SEL_4,	MYPREFIX MapScr::SelectFromUserMsg},
+		{IDS_UM_TOWER,		0,	SEL_5,	MYPREFIX MapScr::SelectFromUserMsg},
+		MSEscapeLine(MYPREFIX MapScr::SelectFromUserMsg),
+		MSEscapeLine(MYPREFIX MapScr::SelectFromUserMsg),
+		{IDS_MAP_EXIT,		0,	SEL_0,	MYPREFIX MapScr::SelectFromUserMsg},
 		MSListEnd
 	}
 };
@@ -5768,17 +5785,17 @@ MapScr COverlay::userMsgScrLeadBomb=									//CSB 23/02/00
 	MapColumnWidth,MapRowHeight,
 	MapGridNumCols,MapGridNumRows,
 	0x0000,
-	MapScr::Orders3DInit,
-	MapScr::TimeLimitedDisplay,
+	MYPREFIX MapScr::Orders3DInit,
+	MYPREFIX MapScr::TimeLimitedDisplay,
 	{
-		{IDS_UM_GROUPINFO,	0,	SEL_1,	MapScr::SelectFromUserMsg},
-		{IDS_UM_PRECOMBAT,	0,	SEL_2,	MapScr::SelectFromUserMsg},
-		{IDS_UM_COMBAT,		0,	SEL_3,	MapScr::SelectFromUserMsg},
-		{IDS_UM_POSTCOMBAT,	0,	SEL_4,	MapScr::SelectFromUserMsg},
-		{IDS_UM_TOWER,		0,	SEL_5,	MapScr::SelectFromUserMsg},
-		{IDS_UM_FAC,		0,	SEL_6,	MapScr::SelectFromUserMsg},
-		MSEscapeLine(MapScr::SelectFromUserMsg),
-		{IDS_MAP_EXIT,		0,	SEL_0,	MapScr::SelectFromUserMsg},
+		{IDS_UM_GROUPINFO,	0,	SEL_1,	MYPREFIX MapScr::SelectFromUserMsg},
+		{IDS_UM_PRECOMBAT,	0,	SEL_2,	MYPREFIX MapScr::SelectFromUserMsg},
+		{IDS_UM_COMBAT,		0,	SEL_3,	MYPREFIX MapScr::SelectFromUserMsg},
+		{IDS_UM_POSTCOMBAT,	0,	SEL_4,	MYPREFIX MapScr::SelectFromUserMsg},
+		{IDS_UM_TOWER,		0,	SEL_5,	MYPREFIX MapScr::SelectFromUserMsg},
+		{IDS_UM_FAC,		0,	SEL_6,	MYPREFIX MapScr::SelectFromUserMsg},
+		MSEscapeLine(MYPREFIX MapScr::SelectFromUserMsg),
+		{IDS_MAP_EXIT,		0,	SEL_0,	MYPREFIX MapScr::SelectFromUserMsg},
 		MSListEnd
 	}
 };
@@ -5797,17 +5814,17 @@ MapScr COverlay::userMsgScrFoll=										//CSB 23/02/00
 	MapColumnWidth,MapRowHeight,
 	MapGridNumCols,MapGridNumRows,
 	0x0000,
-	MapScr::Orders3DInit,
-	MapScr::TimeLimitedDisplay,
+	MYPREFIX MapScr::Orders3DInit,
+	MYPREFIX MapScr::TimeLimitedDisplay,
 	{
-		{IDS_UM_GROUPINFO,	0,	SEL_1,	MapScr::SelectFromUserMsg},
-		MSEscapeLine(MapScr::SelectFromUserMsg),
-		{IDS_UM_COMBAT,		0,	SEL_3,	MapScr::SelectFromUserMsg},
-		MSEscapeLine(MapScr::SelectFromUserMsg),
-		{IDS_UM_TOWER,		0,	SEL_5,	MapScr::SelectFromUserMsg},
-		MSEscapeLine(MapScr::SelectFromUserMsg),
-		MSEscapeLine(MapScr::SelectFromUserMsg),
-		{IDS_MAP_EXIT,		0,	SEL_0,	MapScr::SelectFromUserMsg},
+		{IDS_UM_GROUPINFO,	0,	SEL_1,	MYPREFIX MapScr::SelectFromUserMsg},
+		MSEscapeLine(MYPREFIX MapScr::SelectFromUserMsg),
+		{IDS_UM_COMBAT,		0,	SEL_3,	MYPREFIX MapScr::SelectFromUserMsg},
+		MSEscapeLine(MYPREFIX MapScr::SelectFromUserMsg),
+		{IDS_UM_TOWER,		0,	SEL_5,	MYPREFIX MapScr::SelectFromUserMsg},
+		MSEscapeLine(MYPREFIX MapScr::SelectFromUserMsg),
+		MSEscapeLine(MYPREFIX MapScr::SelectFromUserMsg),
+		{IDS_MAP_EXIT,		0,	SEL_0,	MYPREFIX MapScr::SelectFromUserMsg},
 		MSListEnd
 	}
 };
@@ -5826,17 +5843,17 @@ MapScr COverlay::userMsgScrTower=										//CSB 23/02/00
 	MapColumnWidth,MapRowHeight,
 	MapGridNumCols,MapGridNumRows,
 	0x0000,
-	MapScr::Orders3DInit,
-	MapScr::TimeLimitedDisplay,
+	MYPREFIX MapScr::Orders3DInit,
+	MYPREFIX MapScr::TimeLimitedDisplay,
 	{
-		MSEscapeLine(MapScr::SelectFromUserMsg),
-		MSEscapeLine(MapScr::SelectFromUserMsg),
-		MSEscapeLine(MapScr::SelectFromUserMsg),
-		MSEscapeLine(MapScr::SelectFromUserMsg),
-		{IDS_UM_TOWER,		0,	SEL_5,	MapScr::SelectFromUserMsg},
-		MSEscapeLine(MapScr::SelectFromUserMsg),
-		MSEscapeLine(MapScr::SelectFromUserMsg),
-		{IDS_MAP_EXIT,		0,	SEL_0,	MapScr::SelectFromUserMsg},
+		MSEscapeLine(MYPREFIX MapScr::SelectFromUserMsg),
+		MSEscapeLine(MYPREFIX MapScr::SelectFromUserMsg),
+		MSEscapeLine(MYPREFIX MapScr::SelectFromUserMsg),
+		MSEscapeLine(MYPREFIX MapScr::SelectFromUserMsg),
+		{IDS_UM_TOWER,		0,	SEL_5,	MYPREFIX MapScr::SelectFromUserMsg},
+		MSEscapeLine(MYPREFIX MapScr::SelectFromUserMsg),
+		MSEscapeLine(MYPREFIX MapScr::SelectFromUserMsg),
+		{IDS_MAP_EXIT,		0,	SEL_0,	MYPREFIX MapScr::SelectFromUserMsg},
 		MSListEnd
 	}
 };
@@ -5855,19 +5872,19 @@ MapScr COverlay::userMsgScrCOMMS=
 	MapColumnWidth,MapRowHeight,
 	MapGridNumCols,MapGridNumRows,
 	0x0000,
-	MapScr::Orders3DInit,
-	MapScr::TimeLimitedDisplay,
+	MYPREFIX MapScr::Orders3DInit,
+	MYPREFIX MapScr::TimeLimitedDisplay,
 	{
-		{IDS_UM_GROUPINFO,0,SEL_1,MapScr::SelectFromUserMsg},
-		{IDS_UM_PRECOMBAT,0,SEL_2,MapScr::SelectFromUserMsg},
-		{IDS_UM_COMBAT,0,SEL_3,MapScr::SelectFromUserMsg},
-		{IDS_UM_POSTCOMBAT,0,SEL_4,MapScr::SelectFromUserMsg},
-		{IDS_UM_TOWER,0,SEL_5,MapScr::SelectFromUserMsg},
-		{IDS_UM_FAC,0,SEL_6,MapScr::SelectFromUserMsg},
-		{IDS_UM_COMMSPLAYER,0,SEL_7,MapScr::SelectFromUserMsg},
-		{IDS_UM_COMMSMSG,0,SEL_8,MapScr::SelectFromUserMsg},
-		MSEscapeLine(MapScr::SelectFromUserMsg),
-		{IDS_MAP_EXIT,0,SEL_0,MapScr::SelectFromUserMsg},
+		{IDS_UM_GROUPINFO,0,SEL_1,MYPREFIX MapScr::SelectFromUserMsg},
+		{IDS_UM_PRECOMBAT,0,SEL_2,MYPREFIX MapScr::SelectFromUserMsg},
+		{IDS_UM_COMBAT,0,SEL_3,MYPREFIX MapScr::SelectFromUserMsg},
+		{IDS_UM_POSTCOMBAT,0,SEL_4,MYPREFIX MapScr::SelectFromUserMsg},
+		{IDS_UM_TOWER,0,SEL_5,MYPREFIX MapScr::SelectFromUserMsg},
+		{IDS_UM_FAC,0,SEL_6,MYPREFIX MapScr::SelectFromUserMsg},
+		{IDS_UM_COMMSPLAYER,0,SEL_7,MYPREFIX MapScr::SelectFromUserMsg},
+		{IDS_UM_COMMSMSG,0,SEL_8,MYPREFIX MapScr::SelectFromUserMsg},
+		MSEscapeLine(MYPREFIX MapScr::SelectFromUserMsg),
+		{IDS_MAP_EXIT,0,SEL_0,MYPREFIX MapScr::SelectFromUserMsg},
 		MSListEnd
 	}
 };
@@ -5880,10 +5897,10 @@ Key MapScr::UserOptionsInit()
 //TempCode JON 22Sep00 	#pragma warnmsg ("RadioChat: UserOptionsInit commented out")
 //DEADCODE CSB 23/02/00 	/*
 	MapScr::OptionList termOpt=MSListEnd;
-	MapScr::OptionList escOpt=MSEscapeLine(MapScr::SelectFromUserOptions);
+	MapScr::OptionList escOpt=MSEscapeLine(MYPREFIX MapScr::SelectFromUserOptions);
 	MapScr::OptionList blankOpt=MSBlankLine;
-	MapScr::OptionList quitOpt={IDS_MAP_EXIT,0,SEL_0,MapScr::SelectFromUserOptions};
-	MapScr::OptionList miscOpt={IDS_INDIRECT00,0,SEL_1,MapScr::SelectFromUserOptions};
+	MapScr::OptionList quitOpt={IDS_MAP_EXIT,0,SEL_0,MYPREFIX MapScr::SelectFromUserOptions};
+	MapScr::OptionList miscOpt={IDS_INDIRECT00,0,SEL_1,MYPREFIX MapScr::SelectFromUserOptions};
 
 	DecisionAI* dec=localDec;
 	DecisionAI::OptionRef* opt=dec->GetMsgOptions();
@@ -5903,7 +5920,7 @@ Key MapScr::UserOptionsInit()
 	*ol++=escOpt;
 	*ol++=quitOpt;
 	*ol=termOpt;
-	
+
 //DEADCODE CSB 23/02/00 	*/
 	return SEL_0;
 
@@ -5917,10 +5934,10 @@ Key MapScr::UserOptsMapInit()
 //DeadCode JON 22Sep00 	#pragma warnmsg ("RadioChat: UserOptsMapInit commented out")
 //DEADCODE CSB 23/02/00 /*
 	MapScr::OptionList termOpt=MSListEnd;
-	MapScr::OptionList escOpt=MSEscapeLine(MapScr::SelectFromUserOptsMap);
+	MapScr::OptionList escOpt=MSEscapeLine(MYPREFIX MapScr::SelectFromUserOptsMap);
 //DeadCode JON 20Oct00 	MapScr::OptionList blankOpt=MSBlankLine;
-	MapScr::OptionList quitOpt={IDS_MAP_EXIT,0,SEL_0,MapScr::SelectFromUserOptsMap};
-	MapScr::OptionList miscOpt={IDS_INDIRECT00,0,SEL_1,MapScr::SelectFromUserOptsMap};
+	MapScr::OptionList quitOpt={IDS_MAP_EXIT,0,SEL_0,MYPREFIX MapScr::SelectFromUserOptsMap};
+	MapScr::OptionList miscOpt={IDS_INDIRECT00,0,SEL_1,MYPREFIX MapScr::SelectFromUserOptsMap};
 
 	DecisionAI* dec=localDec;
 	DecisionAI::OptionRef* opt=dec->GetMsgOptions();
@@ -5956,9 +5973,9 @@ MapScr* MapScr::SelectFromUserOptsMap(UByte& a,Key k)
 	if ( Manual_Pilot.ControlledAC2 && Manual_Pilot.ControlledAC2->classtype->aerobaticfactor == AEROBATIC_LOW )
 		return &COverlay::firstMapScrBomber;
 	else
-		return &COverlay::firstMapScr;	
+		return &COverlay::firstMapScr;
 
-	
+
 //DeadCode JON 26Oct00 	return &COverlay::firstMapScr;
 }
 
@@ -5971,26 +5988,26 @@ MapScr COverlay::userOptsMapScr=
 	MapScreenWidth,MapScreenHeight,
 	MapGridXOffset,MapGridYOffset,
 	SET_WIPE_TEXTURE(RADIONO),//NO_BACKGROUND_WIPE,//if the alpha part of this ulong is null then it'll draw it as a colour
-	// otherwise it'll assume it is a imagemap filenum 
+	// otherwise it'll assume it is a imagemap filenum
 	TEXT_MAP_BLACK,
 	TEXT_HI,
 	MapColumnWidth,MapRowHeight,
 	MapGridNumCols,MapGridNumRows+2,
 	0x0000,
-	MapScr::UserOptsMapInit,
-	MapScr::UpdateMessageDisplay,
+	MYPREFIX MapScr::UserOptsMapInit,
+	MYPREFIX MapScr::UpdateMessageDisplay,
 	{
-		{IDS_INDIRECT00,0,SEL_1,MapScr::SelectFromUserOptsMap},
-		{IDS_INDIRECT01,0,SEL_1,MapScr::SelectFromUserOptsMap},
-		{IDS_INDIRECT02,0,SEL_1,MapScr::SelectFromUserOptsMap},
-		{IDS_INDIRECT03,0,SEL_1,MapScr::SelectFromUserOptsMap},
-		{IDS_INDIRECT04,0,SEL_1,MapScr::SelectFromUserOptsMap},
-		{IDS_INDIRECT05,0,SEL_1,MapScr::SelectFromUserOptsMap},
-		{IDS_INDIRECT06,0,SEL_1,MapScr::SelectFromUserOptsMap},
-		{IDS_INDIRECT07,0,SEL_1,MapScr::SelectFromUserOptsMap},
-		{IDS_INDIRECT08,0,SEL_1,MapScr::SelectFromUserOptsMap},
-		MSEscapeLine(MapScr::SelectFromUserOptsMap),
-		{IDS_DEFAULT,0,SEL_0,MapScr::SelectFromUserOptsMap},
+		{IDS_INDIRECT00,0,SEL_1,MYPREFIX MapScr::SelectFromUserOptsMap},
+		{IDS_INDIRECT01,0,SEL_1,MYPREFIX MapScr::SelectFromUserOptsMap},
+		{IDS_INDIRECT02,0,SEL_1,MYPREFIX MapScr::SelectFromUserOptsMap},
+		{IDS_INDIRECT03,0,SEL_1,MYPREFIX MapScr::SelectFromUserOptsMap},
+		{IDS_INDIRECT04,0,SEL_1,MYPREFIX MapScr::SelectFromUserOptsMap},
+		{IDS_INDIRECT05,0,SEL_1,MYPREFIX MapScr::SelectFromUserOptsMap},
+		{IDS_INDIRECT06,0,SEL_1,MYPREFIX MapScr::SelectFromUserOptsMap},
+		{IDS_INDIRECT07,0,SEL_1,MYPREFIX MapScr::SelectFromUserOptsMap},
+		{IDS_INDIRECT08,0,SEL_1,MYPREFIX MapScr::SelectFromUserOptsMap},
+		MSEscapeLine(MYPREFIX MapScr::SelectFromUserOptsMap),
+		{IDS_DEFAULT,0,SEL_0,MYPREFIX MapScr::SelectFromUserOptsMap},
 		MSListEnd
 	}
 };
@@ -6005,10 +6022,10 @@ MapScr* MapScr::SelectFromUserOptions(UByte&,Key k)
 
 	if (localMsg && localMsg->decisionhandler)	dec=localMsg->decisionhandler;
 	else if (localDec)							dec=localDec;
-		
+
 	localMsg=NULL;
 	localDec=NULL;
-		
+
 	if (dec)
 	{
 //DeadCode AMM 21May99 		DecisionAI::OptionRef* opt=dec->GetMsgOptions();
@@ -6058,27 +6075,27 @@ MapScr COverlay::userOptionsScr=
 	MapColumnWidth,MapRowHeight,
 	1,15,
 	0x0000,
-	MapScr::UserOptionsInit,
+	MYPREFIX MapScr::UserOptionsInit,
 	NULL,
 	{
-		{IDS_INDIRECT00,0,SEL_1,MapScr::SelectFromUserOptions},
-		{IDS_INDIRECT01,0,SEL_1,MapScr::SelectFromUserOptions},
-		{IDS_INDIRECT02,0,SEL_1,MapScr::SelectFromUserOptions},
-		{IDS_INDIRECT03,0,SEL_1,MapScr::SelectFromUserOptions},
-		{IDS_INDIRECT04,0,SEL_1,MapScr::SelectFromUserOptions},
-		{IDS_INDIRECT05,0,SEL_1,MapScr::SelectFromUserOptions},
-		{IDS_INDIRECT06,0,SEL_1,MapScr::SelectFromUserOptions},
-		{IDS_INDIRECT07,0,SEL_1,MapScr::SelectFromUserOptions},
-		{IDS_INDIRECT08,0,SEL_1,MapScr::SelectFromUserOptions},
-		MSEscapeLine(MapScr::SelectFromUserOptions),
-		{IDS_DEFAULT,0,SEL_0,MapScr::SelectFromUserOptions},
+		{IDS_INDIRECT00,0,SEL_1,MYPREFIX MapScr::SelectFromUserOptions},
+		{IDS_INDIRECT01,0,SEL_1,MYPREFIX MapScr::SelectFromUserOptions},
+		{IDS_INDIRECT02,0,SEL_1,MYPREFIX MapScr::SelectFromUserOptions},
+		{IDS_INDIRECT03,0,SEL_1,MYPREFIX MapScr::SelectFromUserOptions},
+		{IDS_INDIRECT04,0,SEL_1,MYPREFIX MapScr::SelectFromUserOptions},
+		{IDS_INDIRECT05,0,SEL_1,MYPREFIX MapScr::SelectFromUserOptions},
+		{IDS_INDIRECT06,0,SEL_1,MYPREFIX MapScr::SelectFromUserOptions},
+		{IDS_INDIRECT07,0,SEL_1,MYPREFIX MapScr::SelectFromUserOptions},
+		{IDS_INDIRECT08,0,SEL_1,MYPREFIX MapScr::SelectFromUserOptions},
+		MSEscapeLine(MYPREFIX MapScr::SelectFromUserOptions),
+		{IDS_DEFAULT,0,SEL_0,MYPREFIX MapScr::SelectFromUserOptions},
 		MSListEnd
 	}
 };
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Orders3DInit
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 22 Feb 1999
 //------------------------------------------------------------------------------
 Key MapScr::Orders3DInit()
@@ -6098,12 +6115,12 @@ void MapScr::CommsTextUpdateDisplay()
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		TimeLimitedDisplay
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 22 Feb 1999
 //------------------------------------------------------------------------------
 void MapScr::TimeLimitedDisplay()
 {
-	//decrement timer and select default 
+	//decrement timer and select default
 	//option if time has expired
 
  	OverLay.displayTimeLimit-=OverLay.pvp->getFrameTimeMSecs();
@@ -6128,7 +6145,7 @@ void MapScr::TimeLimitedDisplay()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SelectFrom3DOrders
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 22 Feb 1999
 //------------------------------------------------------------------------------
 MapScr* MapScr::SelectFrom3DOrders(UByte&,Key k)
@@ -6137,7 +6154,7 @@ MapScr* MapScr::SelectFrom3DOrders(UByte&,Key k)
 //DEADCODE CSB 23/02/00 	/*
 	MapScr* retval=this;	//close on selection of an option
 	DecisionAI* dec=NULL;
-	
+
 	MESSAGE_STRUC* theMsg=localMsg;
 	localMsg=NULL;
 
@@ -6193,20 +6210,20 @@ MapScr COverlay::orders3dScr=
 	MapColumnWidth,MapRowHeight,
 	MapGridNumCols,MapGridNumRows,
 	0x0000,
-	MapScr::Orders3DInit,
-	MapScr::TimeLimitedDisplay,
+	MYPREFIX MapScr::Orders3DInit,
+	MYPREFIX MapScr::TimeLimitedDisplay,
 	{
-		{IDS_INDIRECT00,0,SEL_1,MapScr::SelectFrom3DOrders},
-		{IDS_INDIRECT01,0,SEL_1,MapScr::SelectFrom3DOrders},
-		{IDS_INDIRECT02,0,SEL_1,MapScr::SelectFrom3DOrders},
-		{IDS_INDIRECT03,0,SEL_1,MapScr::SelectFrom3DOrders},
-		{IDS_INDIRECT04,0,SEL_1,MapScr::SelectFrom3DOrders},
-		{IDS_INDIRECT05,0,SEL_1,MapScr::SelectFrom3DOrders},
-		{IDS_INDIRECT06,0,SEL_1,MapScr::SelectFrom3DOrders},
-		{IDS_INDIRECT07,0,SEL_1,MapScr::SelectFrom3DOrders},
-		{IDS_INDIRECT08,0,SEL_1,MapScr::SelectFrom3DOrders},
-		MSEscapeLine(MapScr::SelectFrom3DOrders),
-		{IDS_DEFAULT,0,SEL_0,MapScr::SelectFrom3DOrders},
+		{IDS_INDIRECT00,0,SEL_1,MYPREFIX MapScr::SelectFrom3DOrders},
+		{IDS_INDIRECT01,0,SEL_1,MYPREFIX MapScr::SelectFrom3DOrders},
+		{IDS_INDIRECT02,0,SEL_1,MYPREFIX MapScr::SelectFrom3DOrders},
+		{IDS_INDIRECT03,0,SEL_1,MYPREFIX MapScr::SelectFrom3DOrders},
+		{IDS_INDIRECT04,0,SEL_1,MYPREFIX MapScr::SelectFrom3DOrders},
+		{IDS_INDIRECT05,0,SEL_1,MYPREFIX MapScr::SelectFrom3DOrders},
+		{IDS_INDIRECT06,0,SEL_1,MYPREFIX MapScr::SelectFrom3DOrders},
+		{IDS_INDIRECT07,0,SEL_1,MYPREFIX MapScr::SelectFrom3DOrders},
+		{IDS_INDIRECT08,0,SEL_1,MYPREFIX MapScr::SelectFrom3DOrders},
+		MSEscapeLine(MYPREFIX MapScr::SelectFrom3DOrders),
+		{IDS_DEFAULT,0,SEL_0,MYPREFIX MapScr::SelectFrom3DOrders},
 		MSListEnd
 	}
 };
@@ -6226,13 +6243,13 @@ MapScr COverlay::continueQuitScr=
 	MapColumnWidth,MapRowHeight,
 	MapGridNumCols,MapGridNumRows,
 	0x0000,
-	MapScr::ContinueQuitInit,
-	MapScr::TimeLimitedDisplay,
+	MYPREFIX MapScr::ContinueQuitInit,
+	MYPREFIX MapScr::TimeLimitedDisplay,
 	{
-		{IDS_CONTINUE,0,SEL_1,MapScr::SelectFromContinueQuit},
-		{IDS_L_CPS_QUIT,0,SEL_2,MapScr::SelectFromContinueQuit},
-		MSEscapeLine(MapScr::SelectFromContinueQuit),
-	//	{IDS_DEFAULT,0,SEL_0,MapScr::SelectFrom3DOrders},
+		{IDS_CONTINUE,0,SEL_1,MYPREFIX MapScr::SelectFromContinueQuit},
+		{IDS_L_CPS_QUIT,0,SEL_2,MYPREFIX MapScr::SelectFromContinueQuit},
+		MSEscapeLine(MYPREFIX MapScr::SelectFromContinueQuit),
+	//	{IDS_DEFAULT,0,SEL_0,MYPREFIX MapScr::SelectFrom3DOrders},
 		MSListEnd
 	}
 };
@@ -6267,7 +6284,7 @@ MapScr* MapScr::SelectFromContinueQuit(UByte&,Key k)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		COverlay.CancelAccel
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 4 Mar 1999
 //------------------------------------------------------------------------------
 void COverlay::CancelAccel()
@@ -6293,28 +6310,28 @@ void COverlay::CancelAccel()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		AccelMapInit
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //------------------------------------------------------------------------------
 Key MapScr::AccelMapInit()
 {
 	//build list of display options based on whether movecode is autofollowwp or not
 	MapScr::OptionList termOpt=MSListEnd;
-	MapScr::OptionList escOpt=MSEscapeLine(MapScr::SelectFromAccelMap);
+	MapScr::OptionList escOpt=MSEscapeLine(MYPREFIX MapScr::SelectFromAccelMap);
 	MapScr::OptionList blankOpt=MSBlankLine;
-	MapScr::OptionList quitOpt={IDS_MAP_EXIT,0,SEL_0,MapScr::SelectFromAccelMap};
-	MapScr::OptionList fwdOpt={IDS_MAP_FORWARD,0,SEL_1,MapScr::SelectFromAccelMap};
-	MapScr::OptionList wayptOpt={IDS_MAP_NEXTWAYPOINT,0,SEL_2,MapScr::SelectFromAccelMap};
-	MapScr::OptionList msubjOpt={IDS_MAP_MESSAGESUBJECT,0,SEL_3,MapScr::SelectFromAccelMap};
-	MapScr::OptionList missipOpt={IDS_MAP_MISSIONIP,0,SEL_4,MapScr::SelectFromAccelMap};
-	MapScr::OptionList homeOpt={IDS_MAP_HOME,0,SEL_5,MapScr::SelectFromAccelMap};
+	MapScr::OptionList quitOpt={IDS_MAP_EXIT,0,SEL_0,MYPREFIX MapScr::SelectFromAccelMap};
+	MapScr::OptionList fwdOpt={IDS_MAP_FORWARD,0,SEL_1,MYPREFIX MapScr::SelectFromAccelMap};
+	MapScr::OptionList wayptOpt={IDS_MAP_NEXTWAYPOINT,0,SEL_2,MYPREFIX MapScr::SelectFromAccelMap};
+	MapScr::OptionList msubjOpt={IDS_MAP_MESSAGESUBJECT,0,SEL_3,MYPREFIX MapScr::SelectFromAccelMap};
+	MapScr::OptionList missipOpt={IDS_MAP_MISSIONIP,0,SEL_4,MYPREFIX MapScr::SelectFromAccelMap};
+	MapScr::OptionList homeOpt={IDS_MAP_HOME,0,SEL_5,MYPREFIX MapScr::SelectFromAccelMap};
 
 	bool allowall=true;
 	bool allowip=true;
 
 //	if (Manual_Pilot.ControlledAC2)
 //	{
-	if (Persons2::PlayerGhostAC && Persons2::PlayerGhostAC->movecode!=AUTO_FOLLOWWP) 
+	if (Persons2::PlayerGhostAC && Persons2::PlayerGhostAC->movecode!=AUTO_FOLLOWWP)
 			allowall=false;
 	else
 	if (Manual_Pilot.ControlledAC2 && Manual_Pilot.ControlledAC2->waypoint==NULL)//JIM 14Jul99
@@ -6347,7 +6364,7 @@ Key MapScr::AccelMapInit()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SelectFromAccelMap
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //------------------------------------------------------------------------------
 MapScr* MapScr::SelectFromAccelMap(UByte&,Key k)
@@ -6469,19 +6486,19 @@ MapScr COverlay::accelMapScr=
 	MapColumnWidth,MapRowHeight,
 	MapGridNumCols,MapGridNumRows,
 	0x0000,
-	MapScr::AccelMapInit,
-	MapScr::UpdateMessageDisplay,
+	MYPREFIX MapScr::AccelMapInit,
+	MYPREFIX MapScr::UpdateMessageDisplay,
 	{
-		{IDS_MAP_FORWARD,0,SEL_1,MapScr::SelectFromAccelMap},
-		{IDS_MAP_NEXTWAYPOINT,0,SEL_2,MapScr::SelectFromAccelMap},
-		{IDS_MAP_MESSAGESUBJECT,0,SEL_3,MapScr::SelectFromAccelMap},
-		{IDS_MAP_MISSIONIP,0,SEL_4,MapScr::SelectFromAccelMap},
-		{IDS_MAP_HOME,0,SEL_5,MapScr::SelectFromAccelMap},
+		{IDS_MAP_FORWARD,0,SEL_1,MYPREFIX MapScr::SelectFromAccelMap},
+		{IDS_MAP_NEXTWAYPOINT,0,SEL_2,MYPREFIX MapScr::SelectFromAccelMap},
+		{IDS_MAP_MESSAGESUBJECT,0,SEL_3,MYPREFIX MapScr::SelectFromAccelMap},
+		{IDS_MAP_MISSIONIP,0,SEL_4,MYPREFIX MapScr::SelectFromAccelMap},
+		{IDS_MAP_HOME,0,SEL_5,MYPREFIX MapScr::SelectFromAccelMap},
 		MSBlankLine,
 		MSBlankLine,
 		MSBlankLine,
-		MSEscapeLine(MapScr::SelectFromAccelMap),
-		{IDS_MAP_EXIT,0,SEL_0,MapScr::SelectFromAccelMap},
+		MSEscapeLine(MYPREFIX MapScr::SelectFromAccelMap),
+		{IDS_MAP_EXIT,0,SEL_0,MYPREFIX MapScr::SelectFromAccelMap},
 		MSListEnd
 	}
 };
@@ -6493,7 +6510,7 @@ MapScr COverlay::accelMapScr=
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		WaypointMapInit
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //------------------------------------------------------------------------------
 Key MapScr::WaypointMapInit()
@@ -6503,12 +6520,12 @@ Key MapScr::WaypointMapInit()
 //DeadCode JON 8Nov00 	if (_DPlay.Implemented) allowall=false;
 
 //DeadCode JON 8Nov00 	MapScr::OptionList termOpt=MSListEnd;
-//DeadCode JON 8Nov00 	MapScr::OptionList escOpt=MSEscapeLine(MapScr::SelectFromWaypointMap);
+//DeadCode JON 8Nov00 	MapScr::OptionList escOpt=MSEscapeLine(MYPREFIX MapScr::SelectFromWaypointMap);
 //DeadCode JON 8Nov00 	MapScr::OptionList blankOpt=MSBlankLine;
-//DeadCode JON 8Nov00 	MapScr::OptionList quitOpt={IDS_MAP_EXIT,0,SEL_0,MapScr::SelectFromWaypointMap};
-//DeadCode JON 8Nov00 	MapScr::OptionList snwOpt={IDS_MAP_SETNEXTWP,0,SEL_1,MapScr::SelectFromWaypointMap};
-//DeadCode JON 8Nov00 	MapScr::OptionList anwOpt={IDS_MAP_ACCELTONEXTWP,0,SEL_2,MapScr::SelectFromWaypointMap};
-//DeadCode JON 8Nov00 //dead	MapScr::OptionList ahwOpt={IDS_MAP_ACCELTOHILIGHTEDWP,0,SEL_3,MapScr::SelectFromWaypointMap};
+//DeadCode JON 8Nov00 	MapScr::OptionList quitOpt={IDS_MAP_EXIT,0,SEL_0,MYPREFIX MapScr::SelectFromWaypointMap};
+//DeadCode JON 8Nov00 	MapScr::OptionList snwOpt={IDS_MAP_SETNEXTWP,0,SEL_1,MYPREFIX MapScr::SelectFromWaypointMap};
+//DeadCode JON 8Nov00 	MapScr::OptionList anwOpt={IDS_MAP_ACCELTONEXTWP,0,SEL_2,MYPREFIX MapScr::SelectFromWaypointMap};
+//DeadCode JON 8Nov00 //dead	MapScr::OptionList ahwOpt={IDS_MAP_ACCELTOHILIGHTEDWP,0,SEL_3,MYPREFIX MapScr::SelectFromWaypointMap};
 //DeadCode JON 8Nov00 	OptionList* ol=this->optionList;
 //DeadCode JON 8Nov00 	*ol++=snwOpt;
 //DeadCode JON 8Nov00 	*ol++=(allowall)?anwOpt:blankOpt;
@@ -6527,7 +6544,7 @@ Key MapScr::WaypointMapInit()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SelectFromWaypointMap
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //------------------------------------------------------------------------------
 MapScr* MapScr::SelectFromWaypointMap(UByte&,Key k)
@@ -6615,12 +6632,12 @@ MapScr* MapScr::SelectFromWaypointMap(UByte&,Key k)
 			OverLay.keyFlags|=KF_ACCELOFF;
 			Manual_Pilot.AutoToggle(ManualPilot::MANUAL);
 			retval=SelectFromFirstMap(dummy,k);
-		} else 
+		} else
 		{
 			if ( Manual_Pilot.ControlledAC2 && Manual_Pilot.ControlledAC2->classtype->aerobaticfactor == AEROBATIC_LOW )
 				retval=&COverlay::firstMapScrBomber;
 			else
-				retval=&COverlay::firstMapScr;	
+				retval=&COverlay::firstMapScr;
 		}
 		break;
 	default:
@@ -6633,7 +6650,7 @@ MapScr COverlay::waypointMapScr=
 {
 	MapScr::SCALE_GRIDORIGIN+/*MapScr::SCALE_GRIDOFFSETS+*/
 	MapScr::SCALE_DYNAMICSIZE+
-	MapScr::FLAG_MOUSEOVERHI,	
+	MapScr::FLAG_MOUSEOVERHI,
 	MapScreenX,MapScreenY,
 	MapScreenWidth,MapScreenHeight,
 	MapGridXOffset,MapGridYOffset,
@@ -6643,17 +6660,17 @@ MapScr COverlay::waypointMapScr=
 	MapColumnWidth,MapRowHeight,
 	MapGridNumCols,MapGridNumRows,
 	0x0000,
-	MapScr::WaypointMapInit,
-	MapScr::UpdateWaypointDisplay,
+	MYPREFIX MapScr::WaypointMapInit,
+	MYPREFIX MapScr::UpdateWaypointDisplay,
 	{
-		{IDS_MAP_SETNEXTWP,0,SEL_1,MapScr::SelectFromWaypointMap},
-		{IDS_MAP_ACCELTONEXTWP,0,SEL_2,MapScr::SelectFromWaypointMap},
-		{IDS_NEXT,0,SEL_3,MapScr::SelectFromWaypointMap},
-		{IDS_PREV,0,SEL_4,MapScr::SelectFromWaypointMap},
-		{IDS_MAP_ZOOM,0,SEL_5,MapScr::SelectFromWaypointMap},
+		{IDS_MAP_SETNEXTWP,0,SEL_1,MYPREFIX MapScr::SelectFromWaypointMap},
+		{IDS_MAP_ACCELTONEXTWP,0,SEL_2,MYPREFIX MapScr::SelectFromWaypointMap},
+		{IDS_NEXT,0,SEL_3,MYPREFIX MapScr::SelectFromWaypointMap},
+		{IDS_PREV,0,SEL_4,MYPREFIX MapScr::SelectFromWaypointMap},
+		{IDS_MAP_ZOOM,0,SEL_5,MYPREFIX MapScr::SelectFromWaypointMap},
 //DeadCode JON 9Nov00 		MSBlankLine,
-		MSEscapeLine(MapScr::SelectFromWaypointMap),
-		{IDS_MAP_EXIT,0,SEL_0,MapScr::SelectFromWaypointMap},
+		MSEscapeLine(MYPREFIX MapScr::SelectFromWaypointMap),
+		{IDS_MAP_EXIT,0,SEL_0,MYPREFIX MapScr::SelectFromWaypointMap},
 		MSListEnd
 	}
 };
@@ -6664,7 +6681,7 @@ MapScr COverlay::waypointMapScr=
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		RadioMapInit
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //------------------------------------------------------------------------------
 Key MapScr::RadioMapInit()
@@ -6674,7 +6691,7 @@ Key MapScr::RadioMapInit()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SelectFromRadioMap
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //------------------------------------------------------------------------------
 MapScr* MapScr::SelectFromRadioMap(UByte&,Key k)
@@ -6691,12 +6708,12 @@ MapScr* MapScr::SelectFromRadioMap(UByte&,Key k)
 
 	switch (k)
 	{
-		case SEL_1:		
+		case SEL_1:
 			localDec = NULL;
 			if(!toweronly)
 			{
 				if(player->formpos == 0)				localDec = GroupInfoMsg;
-				else 
+				else
 					if(player->nationality == NAT_RAF)	localDec = GroupInfoMsgFolRaf;
 					else								localDec = GroupInfoMsgFolLuf;
 			}
@@ -6739,7 +6756,7 @@ MapScr* MapScr::SelectFromRadioMap(UByte&,Key k)
 				if((player->formpos == 0) && ((player->classtype->visible == JU87) || (player->classtype->visible == ME110)))
 					localDec = Strike;
 		break;
-	
+
 		default:
 			break;
 	}
@@ -6798,20 +6815,20 @@ MapScr COverlay::radioMapScr=
 	MapColumnWidth,MapRowHeight,
 	1,11,			//MapGridNumCols,MapGridNumRows,
 	0x0000,
-	MapScr::RadioMapInit,
-	MapScr::UpdateMessageDisplay,
+	MYPREFIX MapScr::RadioMapInit,
+	MYPREFIX MapScr::UpdateMessageDisplay,
 	{
-		{IDS_UM_GROUPINFO,0,SEL_1,MapScr::SelectFromRadioMap},
-		{IDS_UM_PRECOMBAT,0,SEL_2,MapScr::SelectFromRadioMap},
-		{IDS_UM_COMBAT,0,SEL_3,MapScr::SelectFromRadioMap},
-		{IDS_UM_POSTCOMBAT,0,SEL_4,MapScr::SelectFromRadioMap},
-		{IDS_UM_TOWER,0,SEL_5,MapScr::SelectFromRadioMap},
-		{IDS_UM_FAC,0,SEL_6,MapScr::SelectFromRadioMap},
-//DeadCode JON 17Oct00 		{IDS_UM_COMMSPLAYER,0,SEL_7,MapScr::SelectFromRadioMap},
-//DeadCode JON 17Oct00 		{IDS_UM_COMMSMSG,0,SEL_8,MapScr::SelectFromRadioMap},
+		{IDS_UM_GROUPINFO,0,SEL_1,MYPREFIX MapScr::SelectFromRadioMap},
+		{IDS_UM_PRECOMBAT,0,SEL_2,MYPREFIX MapScr::SelectFromRadioMap},
+		{IDS_UM_COMBAT,0,SEL_3,MYPREFIX MapScr::SelectFromRadioMap},
+		{IDS_UM_POSTCOMBAT,0,SEL_4,MYPREFIX MapScr::SelectFromRadioMap},
+		{IDS_UM_TOWER,0,SEL_5,MYPREFIX MapScr::SelectFromRadioMap},
+		{IDS_UM_FAC,0,SEL_6,MYPREFIX MapScr::SelectFromRadioMap},
+//DeadCode JON 17Oct00 		{IDS_UM_COMMSPLAYER,0,SEL_7,MYPREFIX MapScr::SelectFromRadioMap},
+//DeadCode JON 17Oct00 		{IDS_UM_COMMSMSG,0,SEL_8,MYPREFIX MapScr::SelectFromRadioMap},
 		MSBlankLine,
-		MSEscapeLine(MapScr::SelectFromRadioMap),
-		{IDS_MAP_EXIT,0,SEL_0,MapScr::SelectFromRadioMap},
+		MSEscapeLine(MYPREFIX MapScr::SelectFromRadioMap),
+		{IDS_MAP_EXIT,0,SEL_0,MYPREFIX MapScr::SelectFromRadioMap},
 		MSListEnd
 	}
 };
@@ -6833,17 +6850,17 @@ MapScr COverlay::radioMapScr=
 //DeadCode JON 17Oct00 	MapScr::RadioMapInit,
 //DeadCode JON 17Oct00 	MapScr::UpdateMessageDisplay,
 //DeadCode JON 17Oct00 	{
-//DeadCode JON 17Oct00 		{IDS_UM_GROUPINFO,0,SEL_1,MapScr::SelectFromRadioMap},
-//DeadCode JON 17Oct00 		{IDS_UM_PRECOMBAT,0,SEL_2,MapScr::SelectFromRadioMap},
-//DeadCode JON 17Oct00 		{IDS_UM_COMBAT,0,SEL_3,MapScr::SelectFromRadioMap},
-//DeadCode JON 17Oct00 		{IDS_UM_POSTCOMBAT,0,SEL_4,MapScr::SelectFromRadioMap},
-//DeadCode JON 17Oct00 		{IDS_UM_TOWER,0,SEL_5,MapScr::SelectFromRadioMap},
-//DeadCode JON 17Oct00 		{IDS_UM_FAC,0,SEL_6,MapScr::SelectFromRadioMap},
-//DeadCode JON 17Oct00 		{IDS_UM_COMMSPLAYER,0,SEL_7,MapScr::SelectFromRadioMap},
-//DeadCode JON 17Oct00 		{IDS_UM_COMMSMSG,0,SEL_8,MapScr::SelectFromRadioMap},
+//DeadCode JON 17Oct00 		{IDS_UM_GROUPINFO,0,SEL_1,MYPREFIX MapScr::SelectFromRadioMap},
+//DeadCode JON 17Oct00 		{IDS_UM_PRECOMBAT,0,SEL_2,MYPREFIX MapScr::SelectFromRadioMap},
+//DeadCode JON 17Oct00 		{IDS_UM_COMBAT,0,SEL_3,MYPREFIX MapScr::SelectFromRadioMap},
+//DeadCode JON 17Oct00 		{IDS_UM_POSTCOMBAT,0,SEL_4,MYPREFIX MapScr::SelectFromRadioMap},
+//DeadCode JON 17Oct00 		{IDS_UM_TOWER,0,SEL_5,MYPREFIX MapScr::SelectFromRadioMap},
+//DeadCode JON 17Oct00 		{IDS_UM_FAC,0,SEL_6,MYPREFIX MapScr::SelectFromRadioMap},
+//DeadCode JON 17Oct00 		{IDS_UM_COMMSPLAYER,0,SEL_7,MYPREFIX MapScr::SelectFromRadioMap},
+//DeadCode JON 17Oct00 		{IDS_UM_COMMSMSG,0,SEL_8,MYPREFIX MapScr::SelectFromRadioMap},
 //DeadCode JON 17Oct00 		MSBlankLine,
-//DeadCode JON 17Oct00 		MSEscapeLine(MapScr::SelectFromRadioMap),
-//DeadCode JON 17Oct00 		{IDS_MAP_EXIT,0,SEL_0,MapScr::SelectFromRadioMap},
+//DeadCode JON 17Oct00 		MSEscapeLine(MYPREFIX MapScr::SelectFromRadioMap),
+//DeadCode JON 17Oct00 		{IDS_MAP_EXIT,0,SEL_0,MYPREFIX MapScr::SelectFromRadioMap},
 //DeadCode JON 17Oct00 		MSListEnd
 //DeadCode JON 17Oct00 	}
 //DeadCode JON 17Oct00 };
@@ -6855,7 +6872,7 @@ MapScr COverlay::radioMapScr=
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CommsMsgMapInit
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //------------------------------------------------------------------------------
 Key MapScr::CommsMsgMapInit()
@@ -6865,13 +6882,13 @@ Key MapScr::CommsMsgMapInit()
 
 //DeadCode JON 17Oct00 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //DeadCode JON 17Oct00 //Procedure		SelectFromCommsMsgMap
-//DeadCode JON 17Oct00 //Author		Paul.   
+//DeadCode JON 17Oct00 //Author		Paul.
 //DeadCode JON 17Oct00 //Date			Fri 19 Feb 1999
 //DeadCode JON 17Oct00 //------------------------------------------------------------------------------
 //DeadCode JON 17Oct00 MapScr* MapScr::SelectFromCommsMsgMap(UByte&,Key k)
 //DeadCode JON 17Oct00 {
 //DeadCode JON 17Oct00 	MapScr* retval=_DPlay.Implemented?&COverlay::firstMapScrCOMMS:&COverlay::firstMapScr;
-//DeadCode JON 17Oct00 
+//DeadCode JON 17Oct00
 //DeadCode JON 17Oct00 	switch (k)
 //DeadCode JON 17Oct00 	{
 //DeadCode JON 17Oct00 	case SEL_1:
@@ -6892,7 +6909,7 @@ Key MapScr::CommsMsgMapInit()
 //DeadCode JON 17Oct00 	}
 //DeadCode JON 17Oct00 	return retval;
 //DeadCode JON 17Oct00 }
-//DeadCode JON 17Oct00 
+//DeadCode JON 17Oct00
 //DeadCode JON 17Oct00 MapScr COverlay::commsMsgMapScr=
 //DeadCode JON 17Oct00 {
 //DeadCode JON 17Oct00 	MapScr::SCALE_GRIDORIGIN+/*MapScr::SCALE_GRIDOFFSETS+*/
@@ -6910,16 +6927,16 @@ Key MapScr::CommsMsgMapInit()
 //DeadCode JON 17Oct00 	MapScr::CommsMsgMapInit,
 //DeadCode JON 17Oct00 	MapScr::UpdateMessageDisplay,
 //DeadCode JON 17Oct00 	{
-//DeadCode JON 17Oct00 		{IDS_INDIRECT00,0,SEL_1,MapScr::SelectFromCommsMsgMap},
-//DeadCode JON 17Oct00 		{IDS_INDIRECT01,0,SEL_2,MapScr::SelectFromCommsMsgMap},
-//DeadCode JON 17Oct00 		{IDS_INDIRECT02,0,SEL_3,MapScr::SelectFromCommsMsgMap},
-//DeadCode JON 17Oct00 		{IDS_INDIRECT03,0,SEL_4,MapScr::SelectFromCommsMsgMap},
-//DeadCode JON 17Oct00 		{IDS_INDIRECT04,0,SEL_5,MapScr::SelectFromCommsMsgMap},
-//DeadCode JON 17Oct00 		{IDS_INDIRECT05,0,SEL_6,MapScr::SelectFromCommsMsgMap},
-//DeadCode JON 17Oct00 		{IDS_INDIRECT06,0,SEL_7,MapScr::SelectFromCommsMsgMap},
-//DeadCode JON 17Oct00 		{IDS_INDIRECT07,0,SEL_8,MapScr::SelectFromCommsMsgMap},
-//DeadCode JON 17Oct00 		MSEscapeLine(MapScr::SelectFromCommsMsgMap),
-//DeadCode JON 17Oct00 		{IDS_MAP_EXIT,0,SEL_0,MapScr::SelectFromCommsMsgMap},
+//DeadCode JON 17Oct00 		{IDS_INDIRECT00,0,SEL_1,MYPREFIX MapScr::SelectFromCommsMsgMap},
+//DeadCode JON 17Oct00 		{IDS_INDIRECT01,0,SEL_2,MYPREFIX MapScr::SelectFromCommsMsgMap},
+//DeadCode JON 17Oct00 		{IDS_INDIRECT02,0,SEL_3,MYPREFIX MapScr::SelectFromCommsMsgMap},
+//DeadCode JON 17Oct00 		{IDS_INDIRECT03,0,SEL_4,MYPREFIX MapScr::SelectFromCommsMsgMap},
+//DeadCode JON 17Oct00 		{IDS_INDIRECT04,0,SEL_5,MYPREFIX MapScr::SelectFromCommsMsgMap},
+//DeadCode JON 17Oct00 		{IDS_INDIRECT05,0,SEL_6,MYPREFIX MapScr::SelectFromCommsMsgMap},
+//DeadCode JON 17Oct00 		{IDS_INDIRECT06,0,SEL_7,MYPREFIX MapScr::SelectFromCommsMsgMap},
+//DeadCode JON 17Oct00 		{IDS_INDIRECT07,0,SEL_8,MYPREFIX MapScr::SelectFromCommsMsgMap},
+//DeadCode JON 17Oct00 		MSEscapeLine(MYPREFIX MapScr::SelectFromCommsMsgMap),
+//DeadCode JON 17Oct00 		{IDS_MAP_EXIT,0,SEL_0,MYPREFIX MapScr::SelectFromCommsMsgMap},
 //DeadCode JON 17Oct00 		MSListEnd
 //DeadCode JON 17Oct00 	}
 //DeadCode JON 17Oct00 };
@@ -6930,7 +6947,7 @@ Key MapScr::CommsMsgMapInit()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CommsMsgMapInit
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //------------------------------------------------------------------------------
 Key MapScr::CommsMsgOrdersInit()
@@ -6940,7 +6957,7 @@ Key MapScr::CommsMsgOrdersInit()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SelectFromCommsMsgMap
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //------------------------------------------------------------------------------
 MapScr* MapScr::SelectFromCommsMsgOrders(UByte&,Key k)
@@ -6982,19 +6999,19 @@ MapScr COverlay::commsMsgOrdersScr=
 	MapColumnWidth,MapRowHeight,
 	MapGridNumCols,MapGridNumRows,
 	0x0000,
-	MapScr::CommsMsgOrdersInit,
-	MapScr::TimeLimitedDisplay,
+	MYPREFIX MapScr::CommsMsgOrdersInit,
+	MYPREFIX MapScr::TimeLimitedDisplay,
 	{
-		{IDS_INDIRECT00,0,SEL_1,MapScr::SelectFromCommsMsgOrders},
-		{IDS_INDIRECT01,0,SEL_2,MapScr::SelectFromCommsMsgOrders},
-		{IDS_INDIRECT02,0,SEL_3,MapScr::SelectFromCommsMsgOrders},
-		{IDS_INDIRECT03,0,SEL_4,MapScr::SelectFromCommsMsgOrders},
-		{IDS_INDIRECT04,0,SEL_5,MapScr::SelectFromCommsMsgOrders},
-		{IDS_INDIRECT05,0,SEL_6,MapScr::SelectFromCommsMsgOrders},
-		{IDS_INDIRECT06,0,SEL_7,MapScr::SelectFromCommsMsgOrders},
-		{IDS_INDIRECT07,0,SEL_8,MapScr::SelectFromCommsMsgOrders},
-		MSEscapeLine(MapScr::SelectFromCommsMsgOrders),
-		{IDS_MAP_EXIT,0,SEL_0,MapScr::SelectFromCommsMsgOrders},
+		{IDS_INDIRECT00,0,SEL_1,MYPREFIX MapScr::SelectFromCommsMsgOrders},
+		{IDS_INDIRECT01,0,SEL_2,MYPREFIX MapScr::SelectFromCommsMsgOrders},
+		{IDS_INDIRECT02,0,SEL_3,MYPREFIX MapScr::SelectFromCommsMsgOrders},
+		{IDS_INDIRECT03,0,SEL_4,MYPREFIX MapScr::SelectFromCommsMsgOrders},
+		{IDS_INDIRECT04,0,SEL_5,MYPREFIX MapScr::SelectFromCommsMsgOrders},
+		{IDS_INDIRECT05,0,SEL_6,MYPREFIX MapScr::SelectFromCommsMsgOrders},
+		{IDS_INDIRECT06,0,SEL_7,MYPREFIX MapScr::SelectFromCommsMsgOrders},
+		{IDS_INDIRECT07,0,SEL_8,MYPREFIX MapScr::SelectFromCommsMsgOrders},
+		MSEscapeLine(MYPREFIX MapScr::SelectFromCommsMsgOrders),
+		{IDS_MAP_EXIT,0,SEL_0,MYPREFIX MapScr::SelectFromCommsMsgOrders},
 		MSListEnd
 	}
 };
@@ -7005,7 +7022,7 @@ MapScr COverlay::commsMsgOrdersScr=
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CommsRecipientMapInit
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //------------------------------------------------------------------------------
 Key MapScr::CommsRecipientMapInit()
@@ -7015,13 +7032,13 @@ Key MapScr::CommsRecipientMapInit()
 
 //DeadCode JON 17Oct00 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //DeadCode JON 17Oct00 //Procedure		SelectFromCommsRecipientMap
-//DeadCode JON 17Oct00 //Author		Paul.   
+//DeadCode JON 17Oct00 //Author		Paul.
 //DeadCode JON 17Oct00 //Date			Fri 19 Feb 1999
 //DeadCode JON 17Oct00 //------------------------------------------------------------------------------
 //DeadCode JON 17Oct00 MapScr* MapScr::SelectFromCommsRecipientMap(UByte&,Key k)
 //DeadCode JON 17Oct00 {
 //DeadCode JON 17Oct00 	MapScr* retval=_DPlay.Implemented?&COverlay::firstMapScrCOMMS:&COverlay::firstMapScr;
-//DeadCode JON 17Oct00 
+//DeadCode JON 17Oct00
 //DeadCode JON 17Oct00 	switch (k)
 //DeadCode JON 17Oct00 	{
 //DeadCode JON 17Oct00 	case SEL_1:
@@ -7055,17 +7072,17 @@ Key MapScr::CommsRecipientMapInit()
 //DeadCode JON 17Oct00 	0x0000,
 //DeadCode JON 17Oct00 	MapScr::CommsRecipientMapInit,
 //DeadCode JON 17Oct00 	MapScr::UpdateMessageDisplay,
-//DeadCode JON 17Oct00 	{ 
-//DeadCode JON 17Oct00 		{IDS_EVERYBODY,0,SEL_1,MapScr::SelectFromCommsRecipientMap},
-//DeadCode JON 17Oct00 		{IDS_MYSIDEONLY,0,SEL_2,MapScr::SelectFromCommsRecipientMap},
+//DeadCode JON 17Oct00 	{
+//DeadCode JON 17Oct00 		{IDS_EVERYBODY,0,SEL_1,MYPREFIX MapScr::SelectFromCommsRecipientMap},
+//DeadCode JON 17Oct00 		{IDS_MYSIDEONLY,0,SEL_2,MYPREFIX MapScr::SelectFromCommsRecipientMap},
 //DeadCode JON 17Oct00 		MSBlankLine,
 //DeadCode JON 17Oct00 		MSBlankLine,
 //DeadCode JON 17Oct00 		MSBlankLine,
 //DeadCode JON 17Oct00 		MSBlankLine,
 //DeadCode JON 17Oct00 		MSBlankLine,
 //DeadCode JON 17Oct00 		MSBlankLine,
-//DeadCode JON 17Oct00 		MSEscapeLine(MapScr::SelectFromCommsRecipientMap),
-//DeadCode JON 17Oct00 		{IDS_MAP_EXIT,0,SEL_0,MapScr::SelectFromCommsRecipientMap},
+//DeadCode JON 17Oct00 		MSEscapeLine(MYPREFIX MapScr::SelectFromCommsRecipientMap),
+//DeadCode JON 17Oct00 		{IDS_MAP_EXIT,0,SEL_0,MYPREFIX MapScr::SelectFromCommsRecipientMap},
 //DeadCode JON 17Oct00 		MSListEnd
 //DeadCode JON 17Oct00 	}
 //DeadCode JON 17Oct00 };
@@ -7076,7 +7093,7 @@ Key MapScr::CommsRecipientMapInit()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CommsRecipientMapInit
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //------------------------------------------------------------------------------
 Key MapScr::CommsRecipientOrdersInit()
@@ -7086,7 +7103,7 @@ Key MapScr::CommsRecipientOrdersInit()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SelectFromCommsRecipientMap
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //------------------------------------------------------------------------------
 MapScr* MapScr::SelectFromCommsRecipientOrders(UByte&,Key k)
@@ -7124,20 +7141,20 @@ MapScr COverlay::commsRecipientOrdersScr=
 	MapColumnWidth,MapRowHeight,
 	MapGridNumCols,MapGridNumRows,
 	0x0000,
-	MapScr::CommsRecipientOrdersInit,
+	MYPREFIX MapScr::CommsRecipientOrdersInit,
 //DeadCode AMM 14May99 	MapScr::UpdateMessageDisplay,
-	MapScr::TimeLimitedDisplay,
-	{ 
-		{IDS_EVERYBODY,0,SEL_1,MapScr::SelectFromCommsRecipientOrders},
-		{IDS_MYSIDEONLY,0,SEL_2,MapScr::SelectFromCommsRecipientOrders},
+	MYPREFIX MapScr::TimeLimitedDisplay,
+	{
+		{IDS_EVERYBODY,0,SEL_1,MYPREFIX MapScr::SelectFromCommsRecipientOrders},
+		{IDS_MYSIDEONLY,0,SEL_2,MYPREFIX MapScr::SelectFromCommsRecipientOrders},
 		MSBlankLine,
 		MSBlankLine,
 		MSBlankLine,
 		MSBlankLine,
 		MSBlankLine,
 		MSBlankLine,
-		MSEscapeLine(MapScr::SelectFromCommsRecipientOrders),
-		{IDS_MAP_EXIT,0,SEL_0,MapScr::SelectFromCommsRecipientOrders},
+		MSEscapeLine(MYPREFIX MapScr::SelectFromCommsRecipientOrders),
+		{IDS_MAP_EXIT,0,SEL_0,MYPREFIX MapScr::SelectFromCommsRecipientOrders},
 		MSListEnd
 	}
 };
@@ -7187,7 +7204,7 @@ struct IconEntry COverlay::replayIconTable[]=
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ReplayScreenInit
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //------------------------------------------------------------------------------
 Key MapScr::ReplayScreenInit()
@@ -7197,7 +7214,7 @@ Key MapScr::ReplayScreenInit()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SelectFromReplayScreen
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //------------------------------------------------------------------------------
 MapScr* MapScr::SelectFromReplayScreen(UByte&,Key k)
@@ -7377,22 +7394,22 @@ MapScr COverlay::replayPlayingScr=
 	32,32,
 	12,2,
 	0x00C8,
-	MapScr::ReplayScreenInit,
-	MapScr::ShowPositionIndicators,
+	MYPREFIX MapScr::ReplayScreenInit,
+	MYPREFIX MapScr::ShowPositionIndicators,
 	{
-		{IDS_MAPICON01LO,1,SEL_1,MapScr::SelectFromReplayScreen},		//skip back
-		{IDS_MAPICON02LO,1,SEL_2,MapScr::SelectFromReplayScreen},		//back a block
-		{IDS_MAPICON12LO,1,SEL_3,MapScr::SelectFromReplayScreen},		//back a frame
-		{IDS_MAPICON04LO,1,SEL_4,MapScr::SelectFromReplayScreen},		//play
-//DeadCode AMM 24Feb99 		{IDS_MAPICON03LO,1,SEL_4,MapScr::SelectFromReplayScreen},		//pause
-		{IDS_MAPICON11LO,1,SEL_5,MapScr::SelectFromReplayScreen},		//forward a frame
-		{IDS_MAPICON05LO,1,SEL_6,MapScr::SelectFromReplayScreen},		//forward a block
-		{IDS_MAPICON10LO,1,SEL_7,MapScr::SelectFromReplayScreen},		//skip forward
-		{IDS_MAPICON07LO,1,SEL_8,MapScr::SelectFromReplayScreen},		//save
-		{IDS_MAPICON06LO,1,SEL_9,MapScr::SelectFromReplayScreen},		//clear markers
-		{IDS_MAPICON00LO,1,SEL_0,MapScr::SelectFromReplayScreen},		//eject
-		{IDS_MAPICON08LO,1,SEL_MINUS,MapScr::SelectFromReplayScreen},	//mark start
-		{IDS_MAPICON09LO,1,SEL_PLUS,MapScr::SelectFromReplayScreen},	//mark end
+		{IDS_MAPICON01LO,1,SEL_1,MYPREFIX MapScr::SelectFromReplayScreen},		//skip back
+		{IDS_MAPICON02LO,1,SEL_2,MYPREFIX MapScr::SelectFromReplayScreen},		//back a block
+		{IDS_MAPICON12LO,1,SEL_3,MYPREFIX MapScr::SelectFromReplayScreen},		//back a frame
+		{IDS_MAPICON04LO,1,SEL_4,MYPREFIX MapScr::SelectFromReplayScreen},		//play
+//DeadCode AMM 24Feb99 		{IDS_MAPICON03LO,1,SEL_4,MYPREFIX MapScr::SelectFromReplayScreen},		//pause
+		{IDS_MAPICON11LO,1,SEL_5,MYPREFIX MapScr::SelectFromReplayScreen},		//forward a frame
+		{IDS_MAPICON05LO,1,SEL_6,MYPREFIX MapScr::SelectFromReplayScreen},		//forward a block
+		{IDS_MAPICON10LO,1,SEL_7,MYPREFIX MapScr::SelectFromReplayScreen},		//skip forward
+		{IDS_MAPICON07LO,1,SEL_8,MYPREFIX MapScr::SelectFromReplayScreen},		//save
+		{IDS_MAPICON06LO,1,SEL_9,MYPREFIX MapScr::SelectFromReplayScreen},		//clear markers
+		{IDS_MAPICON00LO,1,SEL_0,MYPREFIX MapScr::SelectFromReplayScreen},		//eject
+		{IDS_MAPICON08LO,1,SEL_MINUS,MYPREFIX MapScr::SelectFromReplayScreen},	//mark start
+		{IDS_MAPICON09LO,1,SEL_PLUS,MYPREFIX MapScr::SelectFromReplayScreen},	//mark end
 		{IDS_MAPICON13LO,0,SEL_BLANK,NULL},								//progress bar start
 		{IDS_MAPICON14LO,0,SEL_BLANK,NULL},								//progress bar middle
 		{IDS_MAPICON14LO,0,SEL_BLANK,NULL},								//progress bar middle
@@ -7405,9 +7422,9 @@ MapScr COverlay::replayPlayingScr=
 		{IDS_MAPICON14LO,0,SEL_BLANK,NULL},								//progress bar middle
 		{IDS_MAPICON14LO,0,SEL_BLANK,NULL},								//progress bar middle
 		{IDS_MAPICON15LO,0,SEL_BLANK,NULL},								//progress bar end
-		MSAltXLine(MapScr::SelectFromReplayScreen),
-		MSPauseLine(MapScr::SelectFromReplayScreen),
-		MSEscapeLine(MapScr::SelectFromReplayScreen),					//escape (eject)
+		MSAltXLine(MYPREFIX MapScr::SelectFromReplayScreen),
+		MSPauseLine(MYPREFIX MapScr::SelectFromReplayScreen),
+		MSEscapeLine(MYPREFIX MapScr::SelectFromReplayScreen),					//escape (eject)
 		MSListEnd
 	}
 };
@@ -7425,22 +7442,22 @@ MapScr COverlay::replayScr=
 	32,32,
 	12,2,
 	0x0014,
-	MapScr::ReplayScreenInit,
-	MapScr::ShowPositionIndicators,
+	MYPREFIX MapScr::ReplayScreenInit,
+	MYPREFIX MapScr::ShowPositionIndicators,
 	{
-		{IDS_MAPICON01LO,1,SEL_1,MapScr::SelectFromReplayScreen},		//skip back
-		{IDS_MAPICON02LO,1,SEL_2,MapScr::SelectFromReplayScreen},		//back a block
-		{IDS_MAPICON12LO,1,SEL_3,MapScr::SelectFromReplayScreen},		//back a frame
-//DeadCode AMM 24Feb99 		{IDS_MAPICON04LO,1,SEL_4,MapScr::SelectFromReplayScreen},		//play
-		{IDS_MAPICON03LO,1,SEL_4,MapScr::SelectFromReplayScreen},		//pause
-		{IDS_MAPICON11LO,1,SEL_5,MapScr::SelectFromReplayScreen},		//forward a frame
-		{IDS_MAPICON05LO,1,SEL_6,MapScr::SelectFromReplayScreen},		//forward a block
-		{IDS_MAPICON10LO,1,SEL_7,MapScr::SelectFromReplayScreen},		//skip forward
-		{IDS_MAPICON07LO,1,SEL_8,MapScr::SelectFromReplayScreen},		//save
-		{IDS_MAPICON06LO,1,SEL_9,MapScr::SelectFromReplayScreen},		//clear markers
-		{IDS_MAPICON00LO,1,SEL_0,MapScr::SelectFromReplayScreen},		//eject
-		{IDS_MAPICON08LO,1,SEL_MINUS,MapScr::SelectFromReplayScreen},	//mark start
-		{IDS_MAPICON09LO,1,SEL_PLUS,MapScr::SelectFromReplayScreen},	//mark end
+		{IDS_MAPICON01LO,1,SEL_1,MYPREFIX MapScr::SelectFromReplayScreen},		//skip back
+		{IDS_MAPICON02LO,1,SEL_2,MYPREFIX MapScr::SelectFromReplayScreen},		//back a block
+		{IDS_MAPICON12LO,1,SEL_3,MYPREFIX MapScr::SelectFromReplayScreen},		//back a frame
+//DeadCode AMM 24Feb99 		{IDS_MAPICON04LO,1,SEL_4,MYPREFIX MapScr::SelectFromReplayScreen},		//play
+		{IDS_MAPICON03LO,1,SEL_4,MYPREFIX MapScr::SelectFromReplayScreen},		//pause
+		{IDS_MAPICON11LO,1,SEL_5,MYPREFIX MapScr::SelectFromReplayScreen},		//forward a frame
+		{IDS_MAPICON05LO,1,SEL_6,MYPREFIX MapScr::SelectFromReplayScreen},		//forward a block
+		{IDS_MAPICON10LO,1,SEL_7,MYPREFIX MapScr::SelectFromReplayScreen},		//skip forward
+		{IDS_MAPICON07LO,1,SEL_8,MYPREFIX MapScr::SelectFromReplayScreen},		//save
+		{IDS_MAPICON06LO,1,SEL_9,MYPREFIX MapScr::SelectFromReplayScreen},		//clear markers
+		{IDS_MAPICON00LO,1,SEL_0,MYPREFIX MapScr::SelectFromReplayScreen},		//eject
+		{IDS_MAPICON08LO,1,SEL_MINUS,MYPREFIX MapScr::SelectFromReplayScreen},	//mark start
+		{IDS_MAPICON09LO,1,SEL_PLUS,MYPREFIX MapScr::SelectFromReplayScreen},	//mark end
 		{IDS_MAPICON13LO,0,SEL_BLANK,NULL},								//progress bar start
 		{IDS_MAPICON14LO,0,SEL_BLANK,NULL},								//progress bar middle
 		{IDS_MAPICON14LO,0,SEL_BLANK,NULL},								//progress bar middle
@@ -7453,16 +7470,16 @@ MapScr COverlay::replayScr=
 		{IDS_MAPICON14LO,0,SEL_BLANK,NULL},								//progress bar middle
 		{IDS_MAPICON14LO,0,SEL_BLANK,NULL},								//progress bar middle
 		{IDS_MAPICON15LO,0,SEL_BLANK,NULL},								//progress bar end
-		MSAltXLine(MapScr::SelectFromReplayScreen),
-		MSPauseLine(MapScr::SelectFromReplayScreen),
-		MSEscapeLine(MapScr::SelectFromReplayScreen),					//escape (eject)
+		MSAltXLine(MYPREFIX MapScr::SelectFromReplayScreen),
+		MSPauseLine(MYPREFIX MapScr::SelectFromReplayScreen),
+		MSEscapeLine(MYPREFIX MapScr::SelectFromReplayScreen),					//escape (eject)
 		MSListEnd
 	}
 };
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CommsDialogInit
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //------------------------------------------------------------------------------
 Key MapScr::CommsDialogInit()
@@ -7489,7 +7506,7 @@ MapScr* MapScr::SelectCommsChat(UByte&,Key k)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SelectFromCommsDialog
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 19 Feb 1999
 //------------------------------------------------------------------------------
 MapScr* MapScr::SelectFromCommsDialog(UByte&,Key k)
@@ -7522,13 +7539,13 @@ MapScr COverlay::commsDialog=
 	32,32,
 	10,1,
 	0x0000,
-	MapScr::CommsDialogInit,
+	MYPREFIX MapScr::CommsDialogInit,
 	NULL,
 	{
 		{IDS_COMMSDIALMSG,0,SEL_NONE,NULL},
 		MSBlankLine,
-		{IDS_COMMSDIALOK,0,SEL_ENTER,MapScr::SelectFromCommsDialog},
-		{IDS_COMMSDIALCANCEL,0,SEL_ESC,MapScr::SelectFromCommsDialog},
+		{IDS_COMMSDIALOK,0,SEL_ENTER,MYPREFIX MapScr::SelectFromCommsDialog},
+		{IDS_COMMSDIALCANCEL,0,SEL_ESC,MYPREFIX MapScr::SelectFromCommsDialog},
 		MSListEnd
 	}
 };
@@ -7578,7 +7595,7 @@ struct IconEntry COverlay::mapViewIconTable[]=
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		MapViewScreenInit
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 11 Mar 1999
 //------------------------------------------------------------------------------
 Key MapScr::MapViewScreenInit()
@@ -7588,7 +7605,7 @@ Key MapScr::MapViewScreenInit()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SelectFromMapViewScreen
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 11 Mar 1999
 //------------------------------------------------------------------------------
 MapScr* MapScr::SelectFromMapViewScreen(UByte&,Key k)
@@ -7642,23 +7659,23 @@ MapScr COverlay::mapViewScr=
 	32,32,
 	6,1,
 	0x0000,
-	MapScr::MapViewScreenInit,
-	MapScr::DisplayTargName,
+	MYPREFIX MapScr::MapViewScreenInit,
+	MYPREFIX MapScr::DisplayTargName,
 	{
-		{IDS_MAPICON00LO,1,SEL_1,MapScr::SelectFromMapViewScreen},		//rotate left
-		{IDS_MAPICON01LO,1,SEL_2,MapScr::SelectFromMapViewScreen},		//rotate right
-		{IDS_MAPICON02LO,1,SEL_3,MapScr::SelectFromMapViewScreen},		//zoom out
-		{IDS_MAPICON03LO,1,SEL_4,MapScr::SelectFromMapViewScreen},		//zoom in
-		{IDS_MAPICON04LO,1,SEL_5,MapScr::SelectFromMapViewScreen},		//reset
-		{IDS_MAPICON05LO,1,SEL_0,MapScr::SelectFromMapViewScreen},		//exit
-		MSEscapeLine(MapScr::SelectFromMapViewScreen),					//exit
+		{IDS_MAPICON00LO,1,SEL_1,MYPREFIX MapScr::SelectFromMapViewScreen},		//rotate left
+		{IDS_MAPICON01LO,1,SEL_2,MYPREFIX MapScr::SelectFromMapViewScreen},		//rotate right
+		{IDS_MAPICON02LO,1,SEL_3,MYPREFIX MapScr::SelectFromMapViewScreen},		//zoom out
+		{IDS_MAPICON03LO,1,SEL_4,MYPREFIX MapScr::SelectFromMapViewScreen},		//zoom in
+		{IDS_MAPICON04LO,1,SEL_5,MYPREFIX MapScr::SelectFromMapViewScreen},		//reset
+		{IDS_MAPICON05LO,1,SEL_0,MYPREFIX MapScr::SelectFromMapViewScreen},		//exit
+		MSEscapeLine(MYPREFIX MapScr::SelectFromMapViewScreen),					//exit
 		MSListEnd
 	}
 };
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SetTargName
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 12 Mar 1999
 //------------------------------------------------------------------------------
 void COverlay::SetTargName(char* tn)
@@ -7668,7 +7685,7 @@ void COverlay::SetTargName(char* tn)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DisplayTargName
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 12 Mar 1999
 //------------------------------------------------------------------------------
 void MapScr::DisplayTargName() {OverLay.DisplayTargName();}
@@ -7738,7 +7755,7 @@ inline R3DVALUE Sy480ToFrac(int sx)
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DoThreat
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 26 Mar 1999
 //------------------------------------------------------------------------------
 void COverlay::DoThreat()
@@ -7786,12 +7803,12 @@ void COverlay::DoThreat()
 //DeadCode JON 13Jun00 	const Float scaled_h=Sy480ToFrac(THREAT_H);
 //DeadCode JON 13Jun00 	const Float scaled_threat_rady=Sy480ToFrac(THREAT_RAD);
 //DeadCode JON 13Jun00 	const Float scaled_threat_disc_hy=Sy480ToFrac(THREAT_DISC_H);
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 	const Float scaled_orix=scaled_x+scaled_w*.5;
 //DeadCode JON 13Jun00 	const Float scaled_oriy=scaled_y+scaled_h*.5;
- 
+
 	ImageMapDesc* pmap=Image_Map.GetImageMapPtr(THREAT01NO);
- 
+
 //DEADCODE JON 5/22/00 	R3DVERTEX *dp;
 //DEADCODE JON 5/22/00 	g_lpLib3d->BeginPoly(HMATERIAL(pmap),4,dp);
 //DEADCODE JON 5/22/00  	//DoPointStruc dp[4];
@@ -7814,19 +7831,19 @@ void COverlay::DoThreat()
 //DEADCODE JON 5/22/00 	g_lpLib3d->EndPoly();
 
 //DeadCode JON 13Jun00 	Lib3DPoint* dp = g_lpLib3d->BeginPoly(HMATERIAL(pmap),4);
-//DeadCode JON 13Jun00  
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 	dp[0].setPosition( scaled_x, scaled_y, 0.f );
 //DeadCode JON 13Jun00 	dp[0].setIMapCoords( 0, 0 );
-//DeadCode JON 13Jun00 	
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 	dp[1].setPosition( scaled_x+scaled_w, scaled_y, 0.f );
 //DeadCode JON 13Jun00 	dp[1].setIMapCoords( 128, 0 );
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 	dp[2].setPosition( scaled_x+scaled_w, scaled_y+scaled_h, 0.f );
 //DeadCode JON 13Jun00 	dp[2].setIMapCoords( 128, 128 );
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 	dp[3].setPosition( scaled_x, scaled_y+scaled_h, 0.f );
 //DeadCode JON 13Jun00 	dp[3].setIMapCoords( 0, 128 );
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 	g_lpLib3d->EndPoly();
 //deadcode	if (!Save_Data.fSoftware)	pw->DoSetFontColour(0xFFFFFFFF);
 //deadcode	else						POLYGON.SetFontColour(WHITE);
@@ -7838,7 +7855,7 @@ void COverlay::DoThreat()
 	Lib3DPoint dp[4];
 	dp[0].setPosition( sTOP_LEFT_X, sTOP_LEFT_Y, 0.f );
 	dp[0].setIMapCoords( 0, 0 );
-	
+
 	dp[1].setPosition( sRADIUS*2+sTOP_LEFT_X, sTOP_LEFT_Y, 0.f );
 	dp[1].setIMapCoords( 128, 0 );
 
@@ -7863,14 +7880,14 @@ void COverlay::DoThreat()
 	{
 		for (int i=0;i<cnt;i++)
 		{
-			//generate the screen coordinates for each 
+			//generate the screen coordinates for each
 			//aircraft on the threat indicator.
 
 //DeadCode JON 30Aug00 			if (crd[i].Y>-THREAT_ALT && crd[i].Y<THREAT_ALT)
 			{
 
 				SWord baseStickX, baseStickY, stickHeight; // screen coords and height in pixels
-				
+
 				baseStickX = ((crd[i].X*sRADIUS)/THREAT_RANGE) + sRADIUS+sTOP_LEFT_X;
 				baseStickY = -((crd[i].Z*sY_RADIUS)/THREAT_RANGE) + sRADIUS+sTOP_LEFT_Y;
 				stickHeight = -(crd[i].Y*sRADIUS)/THREAT_ALT;
@@ -7894,28 +7911,28 @@ void COverlay::DoThreat()
 //DeadCode JON 13Jun00 			Float ix,iy,iz;
 //DeadCode JON 13Jun00 			ix=AbsRoot(Float(crd[i].X)/Float(THREAT_RANGE));
 //DeadCode JON 13Jun00 			iz=AbsRoot(Float(crd[i].Z)/Float(THREAT_RANGE));
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 			ix*=scaled_threat_radx;
 //DeadCode JON 13Jun00 			iz*=scaled_threat_disc_hy;
 //DeadCode JON 13Jun00 			ix=scaled_orix+ix;
 //DeadCode JON 13Jun00 			iz=scaled_oriy-iz;
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 			if (crd[i].Y>-THREAT_ALT && crd[i].Y<THREAT_ALT)
 //DeadCode JON 13Jun00 			{
 //DeadCode JON 13Jun00 				iy=scaled_threat_rady*AbsRoot(Float(crd[i].Y)/Float(THREAT_ALT));
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 				SWord lsx,lsy,lex,ley,lbx,lby,bex,bey;
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 				lbx=SWord(scaled_orix);
 //DeadCode JON 13Jun00 				lby=SWord(scaled_oriy);
 //DeadCode JON 13Jun00 				lsx=lex=SWord(ix);
 //DeadCode JON 13Jun00 				lsy=SWord(iz);
 //DeadCode JON 13Jun00 				ley=lsy-SWord(iy);
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 				if (lsy==ley) ley++;
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 				SWord flag=(lsy>ley)?2:-2;
-//DeadCode JON 13Jun00 
+//DeadCode JON 13Jun00
 //DeadCode JON 13Jun00 				if (col[i])
 //DeadCode JON 13Jun00 				{
 //DeadCode JON 13Jun00 					DrawLine(lbx,lby,lsx,lsy,RED);
@@ -7943,7 +7960,7 @@ void COverlay::DoThreat()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SetupCheatBox
-//Author		Jon.   
+//Author		Jon.
 //Date			Tue 11 Apr 2000
 //------------------------------------------------------------------------------
 void COverlay::SetupCheatBox()
@@ -7968,7 +7985,7 @@ void COverlay::SetupCheatBox()
 
 
 			R3DVERTEX pos;
-			if (pvp->trackeditem2==pvp) // is the thing looked at the camera?? 
+			if (pvp->trackeditem2==pvp) // is the thing looked at the camera??
 			{
 				pos.x=pvp->trackedItem2World.X-pvp->World.X;
 				pos.y=pvp->trackedItem2World.Y-pvp->World.Y;
@@ -7983,7 +8000,7 @@ void COverlay::SetupCheatBox()
 				if(pvp->trackeditem2->Status.size >= MOBILESIZE) // if tracked item2 is moving
 				{
 					MovingItem*	mip = (MovingItem*)pvp->trackeditem2;
-					
+
 					pos.x += float(mip->vel_x + Three_Dee.wind_x)*Three_Dee.fView_dt_frac;
 					pos.y += float(mip->vel_y + Three_Dee.wind_y)*Three_Dee.fView_dt_frac;
 					pos.z += float(mip->vel_z + Three_Dee.wind_z)*Three_Dee.fView_dt_frac;
@@ -7998,7 +8015,7 @@ void COverlay::SetupCheatBox()
 				}
 			}
 
-//DeadCode JON 5Oct00 
+//DeadCode JON 5Oct00
 //DeadCode JON 5Oct00 			R3DVERTEX pos;
 //DeadCode JON 5Oct00 			pos.x = pvp->trackeditem2->World.X-pvp->World.X;
 //DeadCode JON 5Oct00 			pos.y = pvp->trackeditem2->World.Y-pvp->World.Y;
@@ -8006,7 +8023,7 @@ void COverlay::SetupCheatBox()
 //DeadCode JON 5Oct00 			if(pvp->trackeditem2->Status.size >= MOBILESIZE)
 //DeadCode JON 5Oct00 			{
 //DeadCode JON 5Oct00 				MovingItem*	mip = (MovingItem*)pvp->trackeditem2;
-//DeadCode JON 5Oct00 				
+//DeadCode JON 5Oct00
 //DeadCode JON 5Oct00 				pos.x += float(mip->vel_x + Three_Dee.wind_x)*Three_Dee.fView_dt_frac;//RJS 19Sep00
 //DeadCode JON 5Oct00 				pos.y += float(mip->vel_y + Three_Dee.wind_y)*Three_Dee.fView_dt_frac;//RJS 19Sep00
 //DeadCode JON 5Oct00 				pos.z += float(mip->vel_z + Three_Dee.wind_z)*Three_Dee.fView_dt_frac;//RJS 19Sep00
@@ -8027,7 +8044,7 @@ void COverlay::SetupCheatBox()
 //DeadCode JON 5Oct00 				pos.x+=WayPointPtr(pvp->trackeditem2)->target->World.X;
 //DeadCode JON 5Oct00 				pos.y+=WayPointPtr(pvp->trackeditem2)->target->World.Y;
 //DeadCode JON 5Oct00 				pos.z+=WayPointPtr(pvp->trackeditem2)->target->World.Z;
-//DeadCode JON 5Oct00 
+//DeadCode JON 5Oct00
 //DeadCode JON 5Oct00 			}
 			g_lpLib3d->PushMatrix(MATRIX_OBJECT);
 			g_lpLib3d->LoadIdentity(MATRIX_OBJECT);
@@ -8066,7 +8083,7 @@ void COverlay::SetupCheatBox()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DoCheatBox
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 5 May 1999
 //------------------------------------------------------------------------------
 void COverlay::DoCheatBox()
@@ -8077,13 +8094,13 @@ void COverlay::DoCheatBox()
 //DeadCode AMM 12Oct00 	if (!_DPlay.Implemented)
 	{
 		if (	( cheatBoxX > -0.5f )
-			&&	( cheatBoxZ > 1.f)	)								
+			&&	( cheatBoxZ > 1.f)	)
 		{
-			float boxRadius = 30.f * 100.f * cheatBoxScale; // should be 30 metres at that distance	
-			
+			float boxRadius = 30.f * 100.f * cheatBoxScale; // should be 30 metres at that distance
+
 			if( boxRadius < CHEATBOXSIZEMINSIZE )
 				boxRadius = CHEATBOXSIZEMINSIZE;
-			
+
 			DrawLine( cheatBoxX - boxRadius, cheatBoxY, cheatBoxX, cheatBoxY-boxRadius, Colour(120) );
 			DrawLine( cheatBoxX - boxRadius, cheatBoxY, cheatBoxX, cheatBoxY+boxRadius, Colour(120) );
 			DrawLine( cheatBoxX + boxRadius, cheatBoxY, cheatBoxX, cheatBoxY-boxRadius, Colour(120) );
@@ -8181,15 +8198,15 @@ void COverlay::DoCheatBox()
 					}
 
 					WeapAnimData*	weapon;
-					SLong			xpos, ypos, zpos;							
-					ULong			mvel;										
-					UWord			index, mdelay, mburst;								
+					SLong			xpos, ypos, zpos;
+					ULong			mvel;
+					UWord			index, mdelay, mburst;
 					int	totalammo = 0;
-					for(index = 0; index < 6; index++)	
+					for(index = 0; index < 6; index++)
 					{
 						weapon = SHAPE.GetWeaponLauncher(ac, index, xpos, ypos, zpos, mvel, mdelay, mburst, LT_BULLET);
 						if((weapon)	&& (weapon->LoadedStores > 0))
-							totalammo += weapon->LoadedStores;						
+							totalammo += weapon->LoadedStores;
 					}
 					DrawLine(0.86 * sx, (0.12 - 3.6e-5 * totalammo) * sy, 0.86 * sx, 0.12 * sy, Colour(120));
 				}
@@ -8258,8 +8275,8 @@ void COverlay::DoCheatBox()
 
 /*	const SWord DIAMOND_WH=16;
 
-	if (Save_Data.detail_3d[DETAIL3D_PADLOCKCHEAT] && 
-		pvp && 
+	if (Save_Data.detail_3d[DETAIL3D_PADLOCKCHEAT] &&
+		pvp &&
 		pvp->trackeditem2 &&
 		pvp->trackeditem2->Status.size!=WayPointSize &&
 		(pvp->viewnum.viewmode==VM_OutPadlock || pvp->viewnum.viewmode==VM_InPadlock))
@@ -8310,7 +8327,7 @@ void COverlay::DoCheatBox()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DoClippedLine
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 5 May 1999
 //------------------------------------------------------------------------------
 void COverlay::DoClippedLine(SWord x1,SWord y1,SWord x2,SWord y2,Colour col,
@@ -8373,7 +8390,7 @@ void COverlay::DoClippedLine(SWord x1,SWord y1,SWord x2,SWord y2,Colour col,
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DoArtHoriz
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 5 May 1999
 //------------------------------------------------------------------------------
 void COverlay::DoArtHoriz()
@@ -8405,7 +8422,7 @@ void COverlay::DoArtHoriz()
 
 //DeadCode JON 20Oct00 	const Float scaled_orix=scaled_x+scaled_w*.5;
 //DeadCode JON 20Oct00 	const Float scaled_oriy=scaled_y+scaled_h*.5;
- 
+
 //deadcode	SWord oldTQ=pw->DoForceTQ(4);
 //deadcode	bool oldMip=pw->DoSetMipMap(false);
 
@@ -8504,7 +8521,7 @@ void COverlay::DoArtHoriz()
  	Lib3DPoint dp[4];
 	dp[0].setPosition( scaled_x, scaled_y, 0.f );
 	dp[0].setIMapCoords( 0, 0 );
-	
+
 	dp[1].setPosition( scaled_x+scaled_w, scaled_y, 0.f );
 	dp[1].setIMapCoords( 128, 0 );
 
@@ -8534,7 +8551,7 @@ void COverlay::DoArtHoriz()
 //DEADCODE JON 5/22/00 		dp[i].bodyx.f=m[0]*tx+m[1]*tz+ori_x;
 //DEADCODE JON 5/22/00 		dp[i].bodyy.f=m[2]*tx+m[3]*tz+ori_y;
 //DEADCODE JON 5/22/00 	}
-	for (i=0;i<4;i++)
+	for (int i=0;i<4;i++)
 	{
 		Float tx=dp[i].getPosX()-ori_x;
 		Float tz=dp[i].getPosY()-ori_y;
@@ -8547,7 +8564,7 @@ void COverlay::DoArtHoriz()
 
 //deadcode	if (!Save_Data.fSoftware)	pw->DoSetFontColour(0xFFFFFFFF);
 //deadcode	else						POLYGON.SetFontColour(WHITE);
-//deadcode	if (!Save_Data.fSoftware)	
+//deadcode	if (!Save_Data.fSoftware)
 	PutC(pball,dp,offset!=lastArtHorizOffset?true:false);
 
 //DEADCODE JON 5/22/00 	dp2[0].bodyx.f=Float(scaled_x);
@@ -8566,12 +8583,12 @@ void COverlay::DoArtHoriz()
 //DEADCODE JON 5/22/00  	dp2[3].bodyy.f=Float(scaled_y+scaled_h);
 //DEADCODE JON 5/22/00  	dp2[3].ix=0;
 //DEADCODE JON 5/22/00  	dp2[3].iy=128;
-//deadcode	if (Save_Data.fSoftware)	
+//deadcode	if (Save_Data.fSoftware)
 //deadcode	{
 //deadcode		POLYGON.DoPutC(pOuterImage,dp2);
 //deadcode		POLYGON.DoPutC(pball,dp);
 //deadcode	}
-//deadcode	else 
+//deadcode	else
 //DEADCODE JON 5/22/00 	PutC(pOuterImage,dp2);
 //deadcode	pw->DoForceTQ(oldTQ);
 //deadcode	pw->DoSetMipMap(oldMip);
@@ -8600,7 +8617,7 @@ void COverlay::CrossHair()
 		x1 = halfwidth;
 		y1 = halfheight * (1.0 + rady);
 		const FP nolines = 8;
-		FP pi = 3.14159;
+		const FP pi = M_PI;
 		for(int i = 1; i <= nolines; i++)
 		{
 			x2 = (1.0 + radx * FSin(i * pi * (0.5 / nolines))) * halfwidth;
@@ -8733,7 +8750,7 @@ void COverlay::HotKeyTriggerMenu(SWord sel)
 		localDec=NULL;
 
 		AirStrucPtr player = Persons2::PlayerGhostAC;
-		
+
 		bool toweronly = false;
 		if(		((Persons2::PlayerSeenAC->movecode == AUTO_TRAININGTAKEOFF)	|| (Persons2::PlayerSeenAC->movecode == AUTO_TRAININGLANDING))
 			||	(Art_Int.CountFormationSize(Persons2::PlayerGhostAC) == 1)	)
@@ -8741,12 +8758,12 @@ void COverlay::HotKeyTriggerMenu(SWord sel)
 
 		switch (k)
 		{
-			case SEL_1:		
+			case SEL_1:
 				localDec = NULL;
 				if(!toweronly)
 				{
 					if(player->formpos == 0)				localDec = GroupInfoMsg;
-					else 
+					else
 						if(player->nationality == NAT_RAF)	localDec = GroupInfoMsgFolRaf;
 						else								localDec = GroupInfoMsgFolLuf;
 				}
@@ -8789,7 +8806,7 @@ void COverlay::HotKeyTriggerMenu(SWord sel)
 					if((player->formpos == 0) && ((player->classtype->visible == JU87) || (player->classtype->visible == ME110)))
 						localDec = Strike;
 			break;
-		
+
 			default:
 				break;
 		}
@@ -8824,12 +8841,12 @@ void COverlay::HotKeyTriggerMessage(SWord sel1,SWord sel2)
 
 		switch (k)
 		{
-			case SEL_1:		
+			case SEL_1:
 				dec = NULL;
 				if(!toweronly)
 				{
 					if(player->formpos == 0)				dec = GroupInfoMsg;
-					else 
+					else
 						if(player->nationality == NAT_RAF)	dec = GroupInfoMsgFolRaf;
 						else								dec = GroupInfoMsgFolLuf;
 				}
@@ -8872,7 +8889,7 @@ void COverlay::HotKeyTriggerMessage(SWord sel1,SWord sel2)
 					if((player->formpos == 0) && ((player->classtype->visible == JU87) || (player->classtype->visible == ME110)))
 						dec = Strike;
 			break;
-			
+
 			default:
 				break;
 		}
@@ -8925,7 +8942,7 @@ void COverlay::HotKeyTriggerMessage(SWord sel1,SWord sel2)
 void COverlay::Kludge()
 {
 	KeyVal3D keyTable[]=
-	{	
+	{
 	RPM_10,
 	RPM_20,
 	RPM_30,
@@ -9013,18 +9030,18 @@ CString COverlay::ScrollyText::Scroll(CString& in,SWord ft)
 //Author		Andy McMaster
 //Date			Fri 21 May 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void COverlay::DecisionMessage(DecisionAI* dec,SWord option,AirStrucPtr callee,ItemBasePtr target,AirStrucPtr caller,Bool sayvox)
 {
 	if (_DPlay.Implemented || _Replay.Record)
 	{
-		UByte decision=dec->optionnumber;						
+		UByte decision=dec->optionnumber;
 		UniqueID trg;
 
 		if (target)
@@ -9032,7 +9049,7 @@ void COverlay::DecisionMessage(DecisionAI* dec,SWord option,AirStrucPtr callee,I
 		else
 			trg=UID_Null;
 
-		_DPlay.NewWingmanCommand(decision,option,trg);	
+		_DPlay.NewWingmanCommand(decision,option,trg);
 	}
 	else
 	{
@@ -9058,11 +9075,11 @@ void COverlay::DecisionMessage(DecisionAI* dec,SWord option,AirStrucPtr callee,I
 //Author		Andy McMaster
 //Date			Thu 10 Jun 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	COverlay::AccelSelection(UByte hilight,ULong acceltype)
@@ -9075,22 +9092,22 @@ void	COverlay::AccelSelection(UByte hilight,ULong acceltype)
 	if (_DPlay.Implemented)											  //AMM 02/07/99
 		return;														  //AMM 02/07/99
 
-//DeadCode AMM 01Jul99 // in comms only allow accel forward 
-//DeadCode AMM 01Jul99 
+//DeadCode AMM 01Jul99 // in comms only allow accel forward
+//DeadCode AMM 01Jul99
 //DeadCode AMM 01Jul99 	if (_DPlay.Implemented && _DPlay.AccelComms==DPlay::ACCEL_FORWARD)
 //DeadCode AMM 01Jul99 	{
 //DeadCode AMM 01Jul99 // if this is the first time I have pressed accel then send
 //DeadCode AMM 01Jul99 // a message to other players indicating I want accel
-//DeadCode AMM 01Jul99 
+//DeadCode AMM 01Jul99
 //DeadCode AMM 01Jul99 		if (!(_DPlay.accelselected&(1<<_DPlay.mySlot)))
 //DeadCode AMM 01Jul99 		{
 //DeadCode AMM 01Jul99 			_DPlay.SendStartAccelMessage();
 //DeadCode AMM 01Jul99 		}
-//DeadCode AMM 01Jul99 
-//DeadCode AMM 01Jul99 
-//DeadCode AMM 01Jul99 // we are still waiting for players to select accel 
+//DeadCode AMM 01Jul99
+//DeadCode AMM 01Jul99
+//DeadCode AMM 01Jul99 // we are still waiting for players to select accel
 //DeadCode AMM 01Jul99 // dont do it yet
-//DeadCode AMM 01Jul99 
+//DeadCode AMM 01Jul99
 //DeadCode AMM 01Jul99 		if (_DPlay.accelselected!=_DPlay.ActivePlayers)
 //DeadCode AMM 01Jul99 			return;
 //DeadCode AMM 01Jul99 	}
@@ -9167,7 +9184,7 @@ void COverlay::PutC(ImageMapDesc *pmap,const Lib3DPoint* dp,bool forceReload)
 	*(++pRVerts)=dp[3];
 	pRVerts->setPosition( (pRVerts->getPosX()-hx)*sx, (pRVerts->getPosY()-hy)*sy, 0.f );
 	g_lpLib3d->EndPoly();
-	
+
 //DEADCODE JON 5/22/00 	R3DVERTEX *pRVerts;
 //DEADCODE JON 5/22/00 	if (forceReload)
 //DEADCODE JON 5/22/00 		g_lpLib3d->UnloadTexture(pmap);
@@ -9218,16 +9235,16 @@ void COverlay::SmokedGlassBox(SLong x,SLong y,SLong width,SLong height)
 		0.f
 	);
 	dp[2].setIMapCoords( 16, 16 );
-	
+
 	dp[3].setPosition(
 		R3DVALUE(x-hx)*sx,
 		R3DVALUE(y+height-hy)*sy,
 		0.f
 	);
 	dp[3].setIMapCoords( 8, 16 );
-	
+
 	g_lpLib3d->EndPoly();
-	
+
 //DEADCODE JON 5/22/00 	R3DVERTEX *dp;
 //DEADCODE JON 5/22/00 	R3DVALUE hx=R3DVALUE(physicalWidth>>1);
 //DEADCODE JON 5/22/00 	R3DVALUE hy=R3DVALUE(physicalHeight>>1);
@@ -9279,7 +9296,7 @@ inline void COverlay::SmokedGlassBox(const SLong x,const SLong y,const SLong wid
 
 	dp[1].setPosition(
 		R3DVALUE(x+width-hx)*sx,
- 		R3DVALUE(y-hy)*sy, 
+ 		R3DVALUE(y-hy)*sy,
 		0.f
 	);
 
@@ -9288,13 +9305,13 @@ inline void COverlay::SmokedGlassBox(const SLong x,const SLong y,const SLong wid
 		R3DVALUE(y+height-hy)*sy,
 		0.f
 	);
-	
+
 	dp[3].setPosition(
 		R3DVALUE(x-hx)*sx,
 		R3DVALUE(y+height-hy)*sy,
 		0.f
 	);
-	
+
 	g_lpLib3d->EndPoly();
 
 	g_lpLib3d->SetObjectLighting( lf );
@@ -9378,7 +9395,7 @@ inline SLong		COverlay::StrPixelWidthPadded(const char*	theString)
 	if ( !fIsWide )
 	{
 		pixelwidth = SLong(strlen( theString )*(8/*+extra*/));
-	} else 
+	} else
 	{
 		const unsigned char*	str =(const unsigned char*)theString;
 		unsigned char	c;
@@ -9401,9 +9418,9 @@ inline SLong		COverlay::StrPixelWidthPadded(const char*	theString)
 //
 //Description	return width of a string in pixels
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 inline SLong		COverlay::StrPixelWidth(const char*	theString)
@@ -9414,7 +9431,7 @@ inline SLong		COverlay::StrPixelWidth(const char*	theString)
 	if ( !fIsWide )
 	{
 		pixelwidth = SLong(strlen( theString )*(7/*+extra*/));
-	} else 
+	} else
 	{
 		const char*	str = theString;
 		char	c;
@@ -9433,22 +9450,22 @@ inline SLong		COverlay::StrPixelWidth(const char*	theString)
 //DeadCode JON 10Oct00 	SWord	extra=nofontkludge?0:1;
 //DeadCode JON 10Oct00 	UByte	tWidth=8;
 //DeadCode JON 10Oct00 	SWord	this_y,pWidth;
-//DeadCode JON 10Oct00 
+//DeadCode JON 10Oct00
 //DeadCode JON 10Oct00 	while ((c=*str++)!=0)
 //DeadCode JON 10Oct00 	{
 //DeadCode JON 10Oct00 		tWidth=8;
-//DeadCode JON 10Oct00 
+//DeadCode JON 10Oct00
 //DeadCode JON 10Oct00 		if (!fIsWide && c>='a' && c<='z') c=c-'a'+'A';
 //DeadCode JON 10Oct00 		else tWidth=bigWidths[c-32]+1+extra;
-//DeadCode JON 10Oct00 
+//DeadCode JON 10Oct00
 //DeadCode JON 10Oct00 		if (!fIsWide)
 //DeadCode JON 10Oct00  			pWidth=7+extra;		//8;
 //DeadCode JON 10Oct00 		else
 //DeadCode JON 10Oct00  			pWidth=tWidth;
-//DeadCode JON 10Oct00 
+//DeadCode JON 10Oct00
 //DeadCode JON 10Oct00  		pixelwidth+=pWidth;
 //DeadCode JON 10Oct00 	}
-//DeadCode JON 10Oct00 
+//DeadCode JON 10Oct00
 //DeadCode JON 10Oct00 	return pixelwidth;
 }
 
@@ -9457,11 +9474,11 @@ inline SLong		COverlay::StrPixelWidth(const char*	theString)
 //Author		Robert Slater
 //Date			Tue 18 Apr 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	COverlay::PrintCentered(float&	sx, float& sy, const char* theString, const ULong& theCol)
@@ -9474,11 +9491,11 @@ void	COverlay::PrintCentered(float&	sx, float& sy, const char* theString, const 
 //Author		Robert Slater
 //Date			Tue 18 Apr 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	COverlay::PrintCentered(SWord	sx, SWord sy, const char* theString, const ULong& theCol)
@@ -9499,11 +9516,11 @@ void	COverlay::PrintCentered(SWord	sx, SWord sy, const char* theString, const UL
 //Author		Robert Slater
 //Date			Tue 18 Apr 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	COverlay::PrintAt(Coords3D&	pos, CString&	theString, const ULong& theCol)
@@ -9524,7 +9541,7 @@ void	COverlay::PrintAt(Coords3D&	pos, CString&	theString, const ULong& theCol)
 		&&	(sz > 1.)						)					//RJS 10Aug00
 	{
 		const char*		theText = (const char*)theString;
-		
+
 		PrintCentered(sx,sy,theText,theCol);
 	}
 }
@@ -9534,11 +9551,11 @@ void	COverlay::PrintAt(Coords3D&	pos, CString&	theString, const ULong& theCol)
 //Author		Robert Slater
 //Date			Tue 18 Apr 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	COverlay::PrintAt(ItemPtr	theItem, CString&	theString, const ULong& theCol)
@@ -9569,11 +9586,11 @@ void	COverlay::PrintAt(ItemPtr	theItem, CString&	theString, const ULong& theCol)
 //Author		Robert Slater
 //Date			Tue 2 May 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	COverlay::PrintID(ItemPtr	theItem)
@@ -9659,7 +9676,7 @@ void	COverlay::PrintID(ItemPtr	theItem)
 // Date:		22/06/00
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 bool	ScreenShot::SaveScreenShot(CLib3D* g_lpLib3d)
@@ -9696,7 +9713,7 @@ bool	ScreenShot::SaveScreenShot(CLib3D* g_lpLib3d)
 // Date:		22/06/00
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 bool	ScreenShot::SaveVideoStream(CLib3D* g_lpLib3d)
@@ -9760,7 +9777,7 @@ CON	ScreenShot::ScreenShot()	//PANORAMIC
 // Date:		22/06/00
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 bool	ScreenShot::VideoShot(CLib3D* g_lpLib3d)
@@ -9796,7 +9813,7 @@ bool	ScreenShot::VideoShot(CLib3D* g_lpLib3d)
 		screenformat->biWidth=pixeldelta;
 	}
 	g_lpLib3d->ScreenShot(screenformat,framebuffer[currframe]+currpixeloffset*screenformat->biBitCount/8);
-		
+
 	currpixeloffset+=pixeldelta;
 	if (pixeldelta==0 || currpixeloffset>=oldwid)
 	{
@@ -9826,7 +9843,7 @@ void	COverlay::SetUp3DUIMouse()
 //DeadCode AMM 27Jul00 			PreviousMouseState=1;
 //DeadCode AMM 27Jul00 		else
 //DeadCode AMM 27Jul00 			PreviousMouseState=0;
-//DeadCode AMM 27Jul00 
+//DeadCode AMM 27Jul00
 //DeadCode AMM 27Jul00 		Key_Tests.SetMouseShiftMode(SHIFTED);
 //DeadCode AMM 27Jul00 		_Analogue.SetAllAxesFromBackup();
 //DeadCode AMM 27Jul00 		_Analogue.Initialise((int)Master_3d.winst,(int)Master_3d.hinst,Key_Tests.mshift,Key_Tests.jshift,true);
@@ -9842,7 +9859,7 @@ void	COverlay::RestoreMouse()
 //DeadCode AMM 27Jul00 			Key_Tests.SetMouseShiftMode(SHIFTED);
 //DeadCode AMM 27Jul00 		else
 //DeadCode AMM 27Jul00 			Key_Tests.SetMouseShiftMode(NORMAL);
-//DeadCode AMM 27Jul00 
+//DeadCode AMM 27Jul00
 //DeadCode AMM 27Jul00 		_Analogue.SetAllAxesFromBackup();
 //DeadCode AMM 27Jul00 		_Analogue.Initialise((int)Master_3d.winst,(int)Master_3d.hinst,Key_Tests.mshift,Key_Tests.jshift,true);
 //DeadCode AMM 27Jul00 		MouseSet=false;
@@ -9909,11 +9926,11 @@ void	COverlay::Diagnostic(char*	dstr)
 //Author		Robert Slater
 //Date			Wed 23 Aug 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	COverlay::SetInteractiveMode()
@@ -9941,7 +9958,7 @@ void	COverlay::DrawPoly(const int theMap, const SWord& xpos, const SWord& ypos,
 	g_lpLib3d->SetFontColour(0xFFFFFFFF);
 
  	Lib3DPoint dp[4];
- 
+
 	dp[0].setPosition( xpos, ypos, 0.f );
 	dp[0].setIMapCoords( ix0, iy0 );
 	dp[1].setPosition( xpos+width, ypos, 0.f );

@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 //Filename       prof.h
-//System         
-//Author         Paul.   
+//System
+//Author         Paul.
 //Date           Mon 20 Apr 1998
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	PROF_Included
 #define	PROF_Included
@@ -12,7 +12,7 @@
 #include "monotxt.h"
 //To disable profiling code comment out the next line...
 #define PROFILING_ON	"TRUE"
-
+/*
 struct _timerData{
  	ULong	ht,lt;
 };
@@ -111,5 +111,5 @@ inline struct _timerData _readTimer(){
 	SLong outVal=(SLong)##p1.lt;\
 	Mono_Text.PrintAt(0,(lno),outVal,_textOut);\
 }
-
+*/
 #endif

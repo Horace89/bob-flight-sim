@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //Filename       math.h
-//System         
+//System
 //Author         Jim Taylor
 //Date           Thu 21 Sep 1995
 //Description    Starter for 10... base 10 that is!
@@ -24,9 +24,9 @@ extern double	exp( double __x );
 enum	RndVal	{	RndValMIN=0,
 					RND10PC=6553,
 					RND25PC=16384,
-					RND33PC=21843,	//CSB 28/06/99	
+					RND33PC=21843,	//CSB 28/06/99
 					RND50PC=32768,
-					RND67PC=43686,	//CSB 28/06/99	
+					RND67PC=43686,	//CSB 28/06/99
 					RND75PC=49152,
 					RND90PC=58982,
 					RND99PC=64880,//RDH 06Oct96
@@ -68,8 +68,8 @@ public:
 //DeadCode AMM 19Oct100 			MaxRndCount = thisRndCount;							//ARM 03Sep96
 //DeadCode AMM 19Oct100 	}															//ARM 03Sep96
 
-	UWord MathLib::GetRndLookUp (UWord n);						//ARM 04Sep96
-	void MathLib::SetRndLookUp (UWord n, UWord val);			//ARM 04Sep96
+	UWord GetRndLookUp (UWord n);						//ARM 04Sep96
+	void SetRndLookUp (UWord n, UWord val);			//ARM 04Sep96
 
 	UWord Getbval() { return bval; }							//ARM 04Sep96
 	UWord Getcval() { return cval; }							//ARM 04Sep96
@@ -94,9 +94,9 @@ public:
 ULong	a2iend(string&	srctxt);
 ULong	a2iend(string&	srctxt,ULong& datalength);
 void	high_sin_cos(ANGLES ang, SWord& sin_ang, SWord& cos_ang);
-void	high_sin_cos(ANGLES ang, Float& sin_ang, Float& cos_ang);	  //CSB 09/11/99  
+void	high_sin_cos(ANGLES ang, Float& sin_ang, Float& cos_ang);	  //CSB 09/11/99
 int		K8sin128(int v)	{return sincos_table[(v>>3)&0x3ff]>>8;}
-int		K8cos128(int v)	{return sincos_table[(v>>3)&0x3ff]>>8;}
+//int		K8cos128(int v)	{return sincos_table[(v>>3)&0x3ff]>>8;}  //x0r why it is the same as previous?
 int		K8cos(int v)	{return sincos_table[(v>>3)&0x3ff];}
 ANGLES	arctan(SLong dx, SLong dy);
 ANGLES	HighArcTan(SLong, SLong);								//PD 04Jul96
@@ -108,7 +108,7 @@ static Float	DistanceSquared(Float x,Float y)						{return (x*x+y*y);}
 static Float	DistanceSquared(Float x,Float y,Float z)				{return (x*x+y*y+z*z);}
 static Float	DistanceSquared(Float x,Float y,Float z,Float w)		{return (x*x+y*y+z*z+w*w);}
 #ifndef __BCPLUSPLUS__
-static	double	SquareRoot(double d)	{return SQUARE_ROOT(d);}
+static inline	double	SquareRoot(double d)	{return SQUARE_ROOT(d);}
 #endif
 void	HighIntercept (SLong deltax,SLong deltay,SLong deltaz,
 				SLong &Range,SWord &HdgIntercept,SWord &PitchIntercept);		//RDH 01Dec95

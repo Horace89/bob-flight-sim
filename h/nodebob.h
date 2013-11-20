@@ -4,13 +4,20 @@
 //
 // Created:     17/11/99 by DAW
 //
-// Description: 
+// Description:
 //
 //////////////////////////////////////////////////////////////////////
 #ifndef nodebob_DEFINED_17_11_1999
 #define nodebob_DEFINED_17_11_1999
 #include "bitcount.h"
 #include "squad.h"
+#include "misssub.h"
+#include "mapsfx.h"
+#include "radio.g"
+#include <cassert>
+
+#include "package.h"
+
 #ifdef	DEFAULT_NODEBOB
 
 //
@@ -28,7 +35,7 @@
 		base&	Base()	{return *(base*)this;}
 
 	#define	SUBSTRUCT(subname,parentname)				\
-	struct	II_##subname			{typedef	II_##subname	This;	 \
+	struct	II_##subname			{typedef	II_##subname	This; \
 		operator subname&()	{return *(subname*)this;}	  \
 		operator subname*()	{return (subname*)this;}	   \
 		II_##subname*	Next()	{return this+1;}			\
@@ -63,7 +70,6 @@
 	#define	ENDSTRUCT(subname)		};typedef subname	*subname##Ptr;
 #define ONLYFIELDI(Size,Type,name)	ONLYFIELD(Size,Type,name)
 #endif
-#include "package.h"
 //PUT CLEVER INSTANCING DERIVED TYPES HERE
 
 struct	TargetSateliteField;
@@ -83,7 +89,7 @@ typedef	TargetSectorField		*TargetSectorFieldPtr	;
 typedef	TargetNoDetail			*TargetNoDetailPtr		;
 typedef	TargetGroup				*TargetGroupPtr			;
 typedef	TargetRadar				*TargetRadarPtr			;
-typedef	TargetFakeFactory		*TargetFakeFactoryPtr	;	
+typedef	TargetFakeFactory		*TargetFakeFactoryPtr	;
 typedef	TargetFactory			*TargetFactoryPtr		;
 typedef	TargetFighterField		*TargetFighterFieldPtr;
 typedef	TargetConvoy			*TargetConvoyPtr;
@@ -100,6 +106,8 @@ struct	II_TargetConvoy;
 
 BASESTRUCT	(Target)
 #define	virtual	/*fake virtual*/
+
+
 enum	Defenses
 		{AAA_NONE=0x00,AAA_LOW=0x20,AAA_MED=0x40,AAA_HIGH=0x60,AAA_DANGER=0x90,
  		 BALL_NONE=0x0,BALL_LOW=0x2,BALL_MED=0x4,BALL_HIGH=0x6,BALL_DANGER=0x9,
@@ -111,25 +119,25 @@ enum	Defenses
 		MASK_OTHER	=	0xff000000,
 		DEF_LONDON	=	0x01000000,
 		DEF_LW_NE	=	0x10000000,	//if attack is only from 1 region then used AF in that region is key to route
-		DEF_LW_C	=	0x20000000,	
+		DEF_LW_C	=	0x20000000,
 		DEF_LW_SW	=	0x40000000,	//if A/F is from 2 of these 3 regions Rosieres will be used as key to route
 		DEF_LW_SE	=	0x80000000,	//if A/F from this region is used, then used AF in this region is key to route
 		};
 //NOTE: I AM USING HIGHER BITS OF DEFENSES TO SPECIFY CASTING TYPE OF TARGET
 enum	TargetStrucSize
-{	
-	TSS_TargetNoDetail			=0x00100,TSS_SetTargetNoDetail		=0x000100,	
+{
+	TSS_TargetNoDetail			=0x00100,TSS_SetTargetNoDetail		=0x000100,
 	TSS_TargetGroup				=0x00200,TSS_SetTargetGroup			=0x000300,
-	TSS_TargetRadar				=0x00400,TSS_SetTargetRadar			=0x000700,	
-	TSS_TargetConvoy			=0x00800,TSS_SetTargetConvoy		=0x000B00,	
+	TSS_TargetRadar				=0x00400,TSS_SetTargetRadar			=0x000700,
+	TSS_TargetConvoy			=0x00800,TSS_SetTargetConvoy		=0x000B00,
 	TSS_TargetAirfield			=0x01000,TSS_SetTargetAirfield		=0x001300,	TSS_TargetFighterField=TSS_TargetAirfield,
-	TSS_TargetSateliteField		=0x02000,TSS_SetTargetSateliteField	=0x003300,	
+	TSS_TargetSateliteField		=0x02000,TSS_SetTargetSateliteField	=0x003300,
 	TSS_TargetSectorField		=0x04000,TSS_SetTargetSectorField	=0x005300,
 	TSS_TargetFakeFactory		=0x10000,TSS_SetTargetFakeFactory	=0x010300,
 	TSS_TargetFactory			=0x20000,TSS_SetTargetFactory		=0x030300
 
 };
-	
+
 	enum	TargType
 		{	TT_AS_KNOWN,
 //TEMPCODE RDH 05/01/00 			TT_SECTORAF,TT_SATELLITEAF,
@@ -188,7 +196,7 @@ enum	TargetStrucSize
 //DeadCode JON 4Sep00 	Target::TS_MAXIMUM=250,
 //DeadCode JON 4Sep00 	Target::TS_NEARLYDESTROYED
 //DeadCode JON 4Sep00	Target::TS_FLAG_UNKNOWN
-		
+
 	enum	TargStatus
 		{	TS_NEARPERFECT=5,TS_LIGHTDAMAGE=20,TS_BADDAMAGE=60,TS_NEARLYDESTROYED=90,TS_DESTROYED=100,TS_MAXIMUM=250,
 			TS_FLAG1=251,TS_FLAG2=252,TS_FLAG3=253,TS_FLAG4=254,
@@ -201,7 +209,7 @@ enum	TargetStrucSize
 		  	OS_DEST4PERIODSLEFT,  OS_DEST5PERIODSLEFT,  OS_DEST6PERIODSLEFT,
   			OS_DEST7PERIODSLEFT,  OS_DEST8PERIODSLEFT,  OS_DEST9PERIODSLEFT,
 		  	OS_DEST10PERIODSLEFT, OS_DEST11PERIODSLEFT, OS_DEST12PERIODSLEFT,
-		  	OS_DEST13PERIODSLEFT, OS_DEST14PERIODSLEFT, OS_DEST15PERIODSLEFT}; 
+		  	OS_DEST13PERIODSLEFT, OS_DEST14PERIODSLEFT, OS_DEST15PERIODSLEFT};
 enum	Location		{LOC_COAST,LOC_S_LON,LOC_N_LON,LOC_WEST,LOC_NORTH};
 
 enum	Days
@@ -245,9 +253,8 @@ enum	DamageLevel
 		DL_DATEMASK=0x3f
 	};
 
-
 BODYSTRUCT	(Target)
-	
+
 	UniqueID	uid;
 	TargType	truetargtype;
 	TargPriority truepriority;
@@ -292,13 +299,13 @@ BODYSTRUCT	(Target)
 	FreeCast(TargetSateliteField)
 	FreeCast(TargetSectorField)
 	FreeCast(TargetNoDetail)
-	FreeCast(TargetGroup)	
-	FreeCast(TargetConvoy)	
-	FreeCast(TargetRadar)		
+	FreeCast(TargetGroup)
+	FreeCast(TargetConvoy)
+	FreeCast(TargetRadar)
 	FreeCast(TargetFakeFactory)
 	FreeCast(TargetFactory)
 	FreeCast(TargetFighterField)
-////Cant do this no bits! Use targetNoDetail...	FreeCast(Target)		
+////Cant do this no bits! Use targetNoDetail...	FreeCast(Target)
 
 	operator	bool					(){return this!=NULL;}
 	operator	int					(){return this!=NULL;}
@@ -310,7 +317,7 @@ BODYSTRUCT	(Target)
 	bool	operator<(TargetStrucSize tss) {return !IsA(tss);}
 	bool	operator&(TargetStrucSize tss) {return IsA(tss);}
 	bool	London()	{return (truedefenses&DEF_LONDON)!=0;}
-	
+
 //Virtualised functions callable from top level
 //The base function must handle the virtuality...
 
@@ -384,7 +391,7 @@ SUBSTRUCT(TargetSateliteField,TargetFighterField)
 ENDSTRUCT(TargetSateliteField);
 
 SUBSTRUCT(TargetSectorField,TargetFighterField)
-	UniqueID	primarycontrolcentre,	
+	UniqueID	primarycontrolcentre,
 				secondarycontrolcentre;
 	int			sectorname,	groupname;
 	char		minsquadsinsector,maxsquadsinsector;
@@ -397,37 +404,37 @@ struct	Squadron;
 struct	BritSquadron;
 struct	Gruppen;
 enum	PlaneTypeSelect;
-class	CString;
+// it is a template class	CString;
 BASESTRUCT(Squadron)
-	
+
 enum	WaderNum
 {				//on 10th
 
-	WN_JG_3,	//y	
-	WN_JG_26,	
-	WN_JG_51,	
-	WN_JG_52,	
-	WN_JG_54,	
-	WN_ZG_26,	//y	
-	WN_ZG_76,	
-	WN_KG_1,	
-	WN_KG_2,	
-	WN_KG_3,	
-	WN_KG_4,	
-	WN_KG_53,	
+	WN_JG_3,	//y
+	WN_JG_26,
+	WN_JG_51,
+	WN_JG_52,
+	WN_JG_54,
+	WN_ZG_26,	//y
+	WN_ZG_76,
+	WN_KG_1,
+	WN_KG_2,
+	WN_KG_3,
+	WN_KG_4,
+	WN_KG_53,
 	WN_KG_76,
-	
-	WN_JG_2,	
-	WN_JG_27,	
-	WN_JG_53,	
-	WN_SG_1,	//y	
-	WN_SG_2,	
-	WN_SG_77,	
-	WN_ZG_2,	
-	WN_KG_27,	
-	WN_KG_51,	
-	WN_KG_54,	
-	WN_KG_55,	
+
+	WN_JG_2,
+	WN_JG_27,
+	WN_JG_53,
+	WN_SG_1,	//y
+	WN_SG_2,
+	WN_SG_77,
+	WN_ZG_2,
+	WN_KG_27,
+	WN_KG_51,
+	WN_KG_54,
+	WN_KG_55,
 	WN_LAST,
 	GN_I=0,
 	GN_II=1,
@@ -547,7 +554,7 @@ struct	ProductionAC
 	ULong		required;
 	ULong		scrappedaircraft;
 	ULong		spare1;
-	
+
 };
 struct	HistoricInfo
 {
@@ -610,7 +617,7 @@ inline IntelMsg::PVA PVA(IntelMsg::Priority p,IntelMsg::Voice 	v,IntelMsg::About
 
 enum	ScriptTables;
 struct	TargetIndexes;
-class	CString;	
+// x0r a template class	CString;
 class	DeadStream;
 struct	IntelBuffer
 {
@@ -650,12 +657,12 @@ struct	ReviewBuffer:IntelBuffer
 	{
 		repeatedscripts = 0;
 	}
-		
+
 
 //DeadCode JIM 13Nov00 	static	 ScriptTables unrepeatablescripts[];
 	struct 	UnrepeatableScripts
 	{
-		enum	Script	
+		enum	Script
 		{
 			SCRIPT_LUFPAC,SCRIPT_SEALIONONCOURSE,SCRIPT_SEALIONDOUBTS,SCRIPT_RDFHOLES,
 			SCRIPT_BIGWINGUSED,SCRIPT_RAFRADIONET, SCRIPT_RAFRADIONETSUCCESS,SCRIPT_PILOTSHORTAGE,
@@ -714,7 +721,7 @@ public:
 	IntelBuffer		intel;
 	ReviewBuffer		review;
 	static	ProductionAC	production[PT_BADMAX];
-	static	HistoricInfo	historicinfo;	
+	static	HistoricInfo	historicinfo;
 	void	GenerateProductionRates();
 	int		EstimateProduction(Target::TargType testtargtype);
 	int		EstimateProduction(PlaneTypeSelect  testtype);
@@ -787,7 +794,7 @@ public:
 
 
 //DEADCODE JIM 22/02/00 	FileNum TargetToBf(UniqueID targ,bool	inconsequentials=false);
-};	
+};
 extern	NodeData	Node_Data;
 
 #endif	define	DEFAULT_NODEBOB
@@ -797,4 +804,4 @@ extern	NodeData	Node_Data;
 #undef	SUBSTRUCT
 #undef	ENDSTRUCT
 #undef	ONLYFIELDI
-#endif define nodebob_DEFINED_17_11_1999
+#endif // define nodebob_DEFINED_17_11_1999

@@ -61,7 +61,8 @@ questions about this file may be asked at bob@rowansoftware.com a
 better place to ask is http://www.simhq.com/ or even :-
 http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum=Battle+of+Britain&number=40&DaysPrune=20&LastLogin=
 */
-
+/*
+x0r
 #include "_3D.h"
 #include "..\lib3d\lib3d.h"
 #include "..\3D\3dcode.cpp"
@@ -82,6 +83,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //#include "..\3D\Overlay.cpp"
 #include	"..\3d\anmcntrl.cpp"
 #include	"..\3d\impact.cpp"
+*/
 #ifdef	PACKAGE_INCLUDED
 #pragma warnmsg ("PACKAGE.H and NODEBOB.H should not be included in the 3d!!!")
 #endif 

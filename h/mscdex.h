@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 //Filename       mscdex.h
-//System         
-//Author         Paul.   
+//System
+//Author         Paul.
 //Date           Mon 28 Oct 1996
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	MSCDEX_Included
 #define	MSCDEX_Included
@@ -71,7 +71,7 @@ struct LocHead : public CDComm
 {
 	UByte	addressingmode;
 	ULong	locofdrivehead;
-	
+
 	LocHead()	{request=IREQ_LOCHEAD;addressingmode=0;}
 };
 
@@ -80,7 +80,7 @@ struct LocHead : public CDComm
 struct	ErrStat : public CDComm
 {
 	UByte	errstats[128];	//Err stats format is undefined
-	
+
 	ErrStat()	{request=IREQ_ERRSTAT;}
 };
 
@@ -110,7 +110,7 @@ struct	DrvBytes : public CDComm
 	UByte	bytesread;
 
 	UByte	readbuffer[128];
-	
+
 	DrvBytes()	{request=IREQ_DRVBYTES;}
 };
 
@@ -119,7 +119,7 @@ struct	DrvBytes : public CDComm
 struct	DevStat : public CDComm
 {
 	ULong	deviceparameters;
-	
+
 	DevStat()	{request=IREQ_DEVSTAT;}
 };
 
@@ -129,7 +129,7 @@ struct	SectSize : public CDComm
 {
 	UByte	readmode;
 	UWord	sectorsize;
-	
+
 	SectSize()	{request=IREQ_SECTSIZE;readmode=0;}
 };
 
@@ -138,7 +138,7 @@ struct	SectSize : public CDComm
 struct	VolSize : public CDComm
 {
 	ULong	volumesize;
-	
+
 	VolSize()	{request=IREQ_VOLSIZE;}
 };
 
@@ -147,7 +147,7 @@ struct	VolSize : public CDComm
 struct	MedChng : public CDComm
 {
 	UByte	mediabyte;
-	
+
 	MedChng()	{request=IREQ_MEDCHNG;}
 };
 
@@ -158,7 +158,7 @@ struct	DiskInfo : public CDComm
 	UByte	lowesttrackno;
 	UByte	highesttrackno;
 	ULong	leadouttrackstart;
-	
+
 	DiskInfo()	{request=IREQ_DISKINFO;}
 };
 
@@ -169,7 +169,7 @@ struct	TnoInfo : public CDComm
 	UByte	trackno;
 	ULong	trackstart;
 	UByte	trackcontrolinfo;
-	
+
 	TnoInfo()	{request=IREQ_TNOINFO;}
 };
 
@@ -189,7 +189,7 @@ struct	QInfo : public CDComm
 	UByte	AMINorPMIN;
 	UByte	ASECorPSEC;
 	UByte	AFRAMEorPFRAME;
-	
+
 	QInfo()	{request=IREQ_QINFO;}
 };
 
@@ -200,7 +200,7 @@ struct	SubChanInfo : public CDComm
 	ULong	sectorstart;
 	ULong	transferaddress;
 	ULong	sectorstoread;
-	
+
 	SubChanInfo()	{request=IREQ_SUBCHANINFO;}
 };
 
@@ -212,7 +212,7 @@ struct	UPCCode : public CDComm
 	UByte	UPC_EANcode[12];
 	UByte	zero;
 	UByte	aframe;
-	
+
 	UPCCode()	{request=IREQ_UPCCODE;}
 };
 
@@ -223,7 +223,7 @@ struct	AudStat : public CDComm
 	UWord	audiostatus;
 	ULong	lastplaynextresumestart;
 	ULong	lastplaynextresumeend;
-	
+
 	AudStat()	{request=IREQ_AUDSTAT;}
 };
 
@@ -437,7 +437,7 @@ struct	dir_entry
 
 typedef	struct dir_entry DirEntry,*DirEntryP;
 
-
+/* x0r
 extern "C" void __FAR fileman__dosIRend();
 extern "C" void __FAR fileman__dosIRcode();
 extern "C" void __FAR fileman__dosIRstart();
@@ -446,5 +446,5 @@ extern "C" void __FAR fileman__DeviceHdrSeg();
 extern "C" void __FAR fileman__DeviceHdrOff();
 
 extern "C" void __FAR fileman__DriveLetter();
-
+*/
 #endif

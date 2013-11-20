@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -68,21 +68,21 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //
 // Created:     15/02/99 by RDH
 //
-// Description: 
+// Description:
 //
 ////////////////////////////////////////////////////////////////////////
 //
 //Macros defined:
 ////Use in header file ai.h to inter-ref between modules
-//	EXTERNAI(name,type);		
+//	EXTERNAI(name,type);
 //
 ////Use at top of defining module
 //	DECISIONAI(name,type);			//If it has a decision table
-//								
+//
 //	OPTIONAI(name,type);			//If it has no decision table
 //
 ////Use in body of file
-//	TABLEAI(name,type)				//To define the decision table			
+//	TABLEAI(name,type)				//To define the decision table
 //	{								//Usually preceeds INSTANCEAI()
 //		{text,routine,speech}
 //	};
@@ -175,12 +175,12 @@ OPTIONAI(SecretStartTrucks,ItemPtr);
 // Date:        15/02/99
 // Author:      RDH
 //
-// Description: 
+// Description:
 //
 ////////////////////////////////////////////////////////////////////////
 TABLEAI(GroupInfoMsg,ItemPtr)
 {
-	{PHRASE_CALLIN,			&CallIn, 			SCRIPT_CALLIN},	
+	{PHRASE_CALLIN,			&CallIn, 			SCRIPT_CALLIN},
 	{PHRASE_CALLPOSN,		&CallPosition,	 	SCRIPT_CALLPOSN},
 	{PHRASE_CALLFUEL,		&CallFuel,			SCRIPT_CALLFUEL},
 	{PHRASE_CALLSTATUS,		&CallStatus,		SCRIPT_CALLSTATUS},
@@ -192,8 +192,8 @@ TABLEAI(GroupInfoMsg,ItemPtr)
 INSTANCEAI(GroupInfoMsg,ItemPtr)	{return false;}
 
 INSTANCEAI(CallIn, ItemPtr)
-{		 
-	bool buddy = false;	
+{
+	bool buddy = false;
 
 	for(AirStrucPtr eltlead = caller; eltlead; eltlead = eltlead->fly.nextflight)
 		for(AirStrucPtr eltwing = eltlead; eltwing; eltwing = eltwing->Follower())
@@ -213,7 +213,7 @@ INSTANCEAI(CallIn, ItemPtr)
 //DEADCODE CSB 23/02/00 	AirStrucPtr	sayto=leader;
 //DEADCODE CSB 23/02/00 	if (leader!=callee)
 //DEADCODE CSB 23/02/00 		sayto=callee;
-//DEADCODE CSB 23/02/00 
+//DEADCODE CSB 23/02/00
 //DEADCODE CSB 23/02/00 	bool	buddy = false;											  //RDH 10/05/99
 //DEADCODE CSB 23/02/00 	for (AirStrucPtr eltlead=leader;eltlead;eltlead=eltlead->fly.nextflight)
 //DEADCODE CSB 23/02/00 		for (AirStrucPtr eltwing=eltlead;eltwing;eltwing=eltwing->Follower())
@@ -225,10 +225,10 @@ INSTANCEAI(CallIn, ItemPtr)
 //DEADCODE CSB 23/02/00 				else
 //DEADCODE CSB 23/02/00 					_Radio.TriggerMsg(MESSAGE_STRUC (SCRIPT_CALLER, MSG_STATUSRESPONSE_DELAY_LP_RPT, eltwing, NULL, leader));
 //DEADCODE CSB 23/02/00 			}
-//DEADCODE CSB 23/02/00 
+//DEADCODE CSB 23/02/00
 //DEADCODE CSB 23/02/00 	if (!buddy)														  //RDH 10/05/99
 //DEADCODE CSB 23/02/00 		_Radio.TriggerMsg(MESSAGE_STRUC(OLDPHRASE_THINKING, MSG_CLEAR_RPT , NULL, NULL, caller)); //RDH 10/05/99
-//DEADCODE CSB 23/02/00 
+//DEADCODE CSB 23/02/00
 //DEADCODE CSB 23/02/00 	return true;
 }
 
@@ -312,8 +312,8 @@ INSTANCEAI(CallStatus,ItemPtr)
 			{
 				buddy = true;										  //RDH 10/05/99
 
-				if(eltwing->ai.manoeuvre == MANOEUVRE_WELDEDWINGMAN) 
-					script = SCRIPT_STATUSWING; 
+				if(eltwing->ai.manoeuvre == MANOEUVRE_WELDEDWINGMAN)
+					script = SCRIPT_STATUSWING;
 				else
 				{
 					script = SCRIPT_STATUSFREE;
@@ -338,7 +338,7 @@ INSTANCEAI(CallStatus,ItemPtr)
 							{
 								if((AirStrucPtr(eltwing->ai.unfriendly))->classtype->aerobaticfactor == AEROBATIC_HIGH)
 									script = SCRIPT_STATUSCHASEBANDIT;
-								else 
+								else
 									script = SCRIPT_STATUSCHASEINDIAN;
 
 								break;
@@ -417,12 +417,12 @@ INSTANCEAI(TightRightTurn, ItemPtr)
 // Date:        11/02/00
 // Author:      Craig Beeston
 //
-// Description: 
+// Description:
 //
 ////////////////////////////////////////////////////////////////////////
 TABLEAI(GroupInfoMsgFolRaf, ItemPtr)
 {
-	{PHRASE_LOWFUEL,			&LowFuel,	 		SCRIPT_RAF_LOWFUEL},	
+	{PHRASE_LOWFUEL,			&LowFuel,	 		SCRIPT_RAF_LOWFUEL},
 	{PHRASE_WHEREAREYOU,		&WhereAreYou,	 	SCRIPT_WHEREAREYOU},
 	{PHRASE_NULL},
 	{PHRASE_NULL},
@@ -440,12 +440,12 @@ INSTANCEAI(GroupInfoMsgFolRaf, ItemPtr)	{return false;}
 // Date:        11/02/00
 // Author:      Craig Beeston
 //
-// Description: 
+// Description:
 //
 ////////////////////////////////////////////////////////////////////////
 TABLEAI(GroupInfoMsgFolLuf, ItemPtr)
 {
-	{PHRASE_LOWFUEL,			&LowFuel,	 		SCRIPT_LW_LOWFUEL},	
+	{PHRASE_LOWFUEL,			&LowFuel,	 		SCRIPT_LW_LOWFUEL},
 	{PHRASE_WHEREAREYOU,		&WhereAreYou,	 	SCRIPT_WHEREAREYOU},
 	{PHRASE_NULL},
 	{PHRASE_NULL},
@@ -458,7 +458,7 @@ INSTANCEAI(GroupInfoMsgFolLuf, ItemPtr)	{return false;}
 
 
 INSTANCEAI(LowFuel, ItemPtr)
-{		 
+{
 	AirStrucPtr lead = callee->FindFormpos0();
 	SLong fuel = 0;
 	SLong maxfuel = 0;
@@ -481,7 +481,7 @@ INSTANCEAI(LowFuel, ItemPtr)
 
 
 INSTANCEAI(WhereAreYou, ItemPtr)
-{		 
+{
 	AirStrucPtr lead = caller->Leader();
 	if(!lead)
 		lead = caller->fly.leadflight;
@@ -503,14 +503,14 @@ INSTANCEAI(WhereAreYou, ItemPtr)
 // Date:        15/02/99
 // Author:      RDH
 //
-// Description: 
+// Description:
 //
 ////////////////////////////////////////////////////////////////////////
 TABLEAI(PreCombatMsg, ItemPtr)
 {
-	{PHRASE_TESTGUNS,		&TestGuns, 			SCRIPT_TESTGUNS},	
-	{PHRASE_S_PATROL,		&PatrolRaf,			SCRIPT_PATROLRAF},	
-	{PHRASE_S_EAVECTOR,		&EAVectorRaf, 		SCRIPT_INTECEPTRAF}, 
+	{PHRASE_TESTGUNS,		&TestGuns, 			SCRIPT_TESTGUNS},
+	{PHRASE_S_PATROL,		&PatrolRaf,			SCRIPT_PATROLRAF},
+	{PHRASE_S_EAVECTOR,		&EAVectorRaf, 		SCRIPT_INTECEPTRAF},
 	{PHRASE_S_AIRBORNE,		&AmAirborneRaf,		SCRIPT_AIRBORNE},
 	{PHRASE_S_GIVEFREEDOM,	&AutoVectoringOn,	SCRIPT_PICKOWNTARGETS},
 	{PHRASE_S_TAKESTOPND,	&AutoVectoringOff,	SCRIPT_WAITFORORDER},
@@ -522,9 +522,9 @@ INSTANCEAI(PreCombatMsg, ItemPtr)	{return false;}
 
 TABLEAI(PreCombatMsgLuf, ItemPtr)
 {
-	{PHRASE_TESTGUNS,		&TestGuns, 			SCRIPT_TESTGUNS},	
+	{PHRASE_TESTGUNS,		&TestGuns, 			SCRIPT_TESTGUNS},
 	{PHRASE_S_PATROL,		&PatrolLuf,			SCRIPT_ESCORTLWAIR},
-	{PHRASE_S_EAVECTOR,		&EAVectorLuf, 		SCRIPT_INTECEPTRAF}, 
+	{PHRASE_S_EAVECTOR,		&EAVectorLuf, 		SCRIPT_INTECEPTRAF},
 	{PHRASE_S_AIRBORNE,		&AmAirborneLuf,		SCRIPT_LWAIRBORNE},
 	{PHRASE_S_GIVEFREEDOM,	&AutoVectoringOn,	SCRIPT_PICKOWNTARGETS},
 	{PHRASE_S_TAKESTOPND,	&AutoVectoringOff,	SCRIPT_WAITFORORDER},
@@ -561,7 +561,7 @@ INSTANCEAI(RealTestGuns,ItemPtr)
 INSTANCEAI(PatrolRaf, ItemPtr)
 {
 	WayPointPtr wp = caller->waypoint->FindWP(WPNAME_PatrolS);
-	_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_PATROLRAF_REPLY, MSG_DENTISTREPORT_REPEAT, VOICE_DENTIST, wp, caller)); 
+	_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_PATROLRAF_REPLY, MSG_DENTISTREPORT_REPEAT, VOICE_DENTIST, wp, caller));
 	return(true);
 }
 
@@ -570,7 +570,7 @@ INSTANCEAI(PatrolLuf, ItemPtr)
 {
 	AirStrucPtr escortee = caller->FindFormpos0()->fly.leadflight;
 	if(escortee)
-		_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_CALLPOSNREP, MSG_STATUSRESPONSE_RPT, escortee, escortee, caller)); 
+		_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_CALLPOSNREP, MSG_STATUSRESPONSE_RPT, escortee, escortee, caller));
 	else
 	{
 		WayPointPtr wp = caller->waypoint->FindWP(WPNAME_PatrolS);
@@ -591,13 +591,13 @@ INSTANCEAI(EAVectorRaf, ItemPtr)
 			prioritymessage->SetScript(SCRIPT_INTERCEPTRAFCLOSE);		//RJS 15Sep00
 		switch(Math_Lib.rnd(3))
 		{
-			case 0:		
+			case 0:
 				_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_VECTORPLUSBANDITS, MSG_BOGEYCALLDENTIST, VOICE_DENTIST, bandit, caller));
 				break;
-			case 1:		
+			case 1:
 				_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_VECTORPLUSBANDITSANDBUSTER, MSG_BOGEYCALLDENTIST, VOICE_DENTIST, bandit, caller));
 				break;
-			case 2:		
+			case 2:
 				_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_VECTOR, MSG_BOGEYCALLDENTIST, VOICE_DENTIST, bandit, caller));
 				break;
 		}
@@ -656,7 +656,7 @@ INSTANCEAI(EAVectorLuf, ItemPtr)
 	if(bandit)
 	{
 		prioritymessage->SetScript(SCRIPT_INTERCEPTLWCLOSE);			//RJS 15Sep00
-		_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_BANDIT_RELPOS, MSG_BANDITCALL_DELAY_LP_RPT, buddy, bandit, caller)); 
+		_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_BANDIT_RELPOS, MSG_BANDITCALL_DELAY_LP_RPT, buddy, bandit, caller));
 	}
 	else
 	{
@@ -680,11 +680,11 @@ INSTANCEAI(EAVectorLuf, ItemPtr)
 
 			if(bandit)
 			{
-				_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_BOMBERSPOTSBANDITS, MSG_BANDITCALL_DELAY_LP_RPT, VOICE_GROUND, bandit, caller)); 
+				_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_BOMBERSPOTSBANDITS, MSG_BANDITCALL_DELAY_LP_RPT, VOICE_GROUND, bandit, caller));
 				return(true);
 			}
 			else
-				_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_NORAFACTIVITY, MSG_BANDITCALL_DELAY_LP_RPT, bomber, bandit, caller)); 
+				_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_NORAFACTIVITY, MSG_BANDITCALL_DELAY_LP_RPT, bomber, bandit, caller));
 		}
 		else
 			_Radio.TriggerMsg(MESSAGE_STRUC(PHRASE_THINKING, MSG_CLEAR_RPT , NULL, NULL, caller));//RJS 27Mar00
@@ -695,7 +695,7 @@ INSTANCEAI(EAVectorLuf, ItemPtr)
 
 INSTANCEAI(AmAirborneRaf, ItemPtr)
 {
-	_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_VECTORPLUSBANDITSANDBUSTER, MSG_DENTISTREPORT_REPEAT, VOICE_DENTIST, caller, caller)); 
+	_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_VECTORPLUSBANDITSANDBUSTER, MSG_DENTISTREPORT_REPEAT, VOICE_DENTIST, caller, caller));
 	return(true);
 }
 
@@ -717,11 +717,11 @@ INSTANCEAI(AmAirborneLuf, ItemPtr)
 INSTANCEAI(AutoVectoringOn,ItemPtr)
 {
 	Save_Data.gamedifficulty |= GD_AUTOVECTORING;
-	SendMsgAndCall(MESSAGE_STRUC(PHRASE_TALLYHO, MSG_CHOSENMANOEUVRE, caller, trg, caller), Bandit);	
+	SendMsgAndCall(MESSAGE_STRUC(PHRASE_TALLYHO, MSG_CHOSENMANOEUVRE, caller, trg, caller), Bandit);
 	return(true);
 }
 
- 
+
 INSTANCEAI(AutoVectoringOff,ItemPtr)
 {
 	Save_Data.gamedifficulty %= GD_AUTOVECTORING;
@@ -735,14 +735,14 @@ INSTANCEAI(AutoVectoringOff,ItemPtr)
 // Date:        15/02/99
 // Author:      RDH
 //
-// Description: 
+// Description:
 //
 ////////////////////////////////////////////////////////////////////////
 TABLEAI(CombatMsg, ItemPtr)
 {
 	{PHRASE_S_BANDITS,			&Bandit,			PHRASE_TALLYHO},//RJS 13Sep00
 	{PHRASE_S_SIGHTREQUEST,		&SightingRequest,	SCRIPT_WHERE},
-	{PHRASE_VBREAK,				&CallBreak,			SCRIPT_BREAK},	
+	{PHRASE_VBREAK,				&CallBreak,			SCRIPT_BREAK},
 	{PHRASE_S_COVERING,			&Covering,			SCRIPT_COVERING},
 	{PHRASE_HELPSHORT,			&AttackMyTarget,	PHRASE_HELPSHORT},
 	{PHRASE_NULL},
@@ -756,7 +756,7 @@ TABLEAI(CombatMsgFolRaf, ItemPtr)
 {
 	{PHRASE_S_BANDITS,			&CallBandit,		PHRASE_TALLYHO},//RJS 13Sep00
 	{PHRASE_S_SIGHTREQUEST,		&SightingRequest,	SCRIPT_WHERE},
-	{PHRASE_VBREAK,				&CallBreak,			SCRIPT_BREAK},	
+	{PHRASE_VBREAK,				&CallBreak,			SCRIPT_BREAK},
 	{PHRASE_SIXCLR,				&SixClr,			SCRIPT_YOUCLEAR},
 	{PHRASE_NOTCLEAR0,			&NotClr,			SCRIPT_NOTCLEAR},
 	{PHRASE_ACKACKFIRE,			&FlakSighted,		PHRASE_ACKACKFIRE},
@@ -770,7 +770,7 @@ TABLEAI(CombatMsgFolLuf, ItemPtr)
 {
 	{PHRASE_S_BANDITS,			&CallBandit,		PHRASE_TALLYHO},//RJS 13Sep00
 	{PHRASE_S_SIGHTREQUEST,		&SightingRequest,	SCRIPT_WHERE},
-	{PHRASE_VBREAK,				&CallBreak,			SCRIPT_BREAK},	
+	{PHRASE_VBREAK,				&CallBreak,			SCRIPT_BREAK},
 	{PHRASE_SIXCLR,				&SixClr,			SCRIPT_YOUCLEAR},
 	{PHRASE_NOTCLEAR0,			&NotClr,			SCRIPT_NOTCLEAR},
 	{PHRASE_HELPSHORT,			&AttackMyTarget,	PHRASE_HELPSHORT},
@@ -784,7 +784,7 @@ INSTANCEAI(Bandit, ItemPtr)
 {
 	if(_DPlay.Implemented)
 		return(false);
-	
+
 	SWord spotheadg = -View_Point->hdg;
 	SWord spotpitch = -View_Point->pitch;
 	const SWord vheadg = ANGLES_15Deg;
@@ -835,9 +835,9 @@ INSTANCEAI(Bandit, ItemPtr)
 //DeadCode RJS 13Sep100 	prioritymessage->scriptno = PHRASE_THINKING;
 
 	if(caller->follower)
-		_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_CANTSEE, MSG_CLEAR_RPT, caller->Follower(), NULL, caller)); 
+		_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_CANTSEE, MSG_CLEAR_RPT, caller->Follower(), NULL, caller));
 	else if(caller->fly.nextflight)
-		_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_CANTSEE, MSG_CLEAR_RPT, caller->fly.nextflight, NULL, caller)); 
+		_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_CANTSEE, MSG_CLEAR_RPT, caller->fly.nextflight, NULL, caller));
 
 	return(false);
 }
@@ -847,7 +847,7 @@ INSTANCEAI(CallBandit, ItemPtr)
 {
 	if(_DPlay.Implemented)
 		return(false);
-	
+
 	AirStrucPtr lead = caller->FindFormpos0();
 	SWord spotheadg = -View_Point->hdg;
 	SWord spotpitch = -View_Point->pitch;
@@ -902,7 +902,7 @@ INSTANCEAI(CallBandit, ItemPtr)
 	}
 
 //DeadCode RJS 13Sep100 	prioritymessage->scriptno = PHRASE_THINKING;
-	_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_CANTSEE, MSG_CLEAR_RPT, lead, NULL, caller)); 
+	_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_CANTSEE, MSG_CLEAR_RPT, lead, NULL, caller));
 
 
 	return(false);
@@ -914,7 +914,7 @@ INSTANCEAI(SightingRequest, ItemPtr)
 {
 	AirStrucPtr buddy = caller->FindAcInGroup();
 	AirStrucPtr bandit = NULL;
-	if(prioritymessage) 
+	if(prioritymessage)
 	{
 		if(caller->nationality == NAT_LUF)
 			prioritymessage->SetScript(SCRIPT_WHEREISINDIAN);			//RJS 15Sep00
@@ -923,18 +923,18 @@ INSTANCEAI(SightingRequest, ItemPtr)
 
 		if(buddy)
 			prioritymessage->callee = buddy;		//null if no buddy
-	}	
+	}
 
 	if (buddy)
 	{
 		if((caller->ai.unfriendly) && (caller->ai.unfriendly->Status.size == AIRSTRUCSIZE))
 			bandit = AirStrucPtr(caller->ai.unfriendly);
 		int  count = -1;
-			
+
 		if (!bandit)
 			bandit = caller->FindBandit(count);
 		if((!bandit) || (caller->Distance3DSquared(&bandit->World) > FP(VISIBLERANGE) * FP(VISIBLERANGE)))
-			_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_DONTKNOW, MSG_NOBANDITCALL_DELAY_LP_RPT, buddy , NULL, caller));	
+			_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_DONTKNOW, MSG_NOBANDITCALL_DELAY_LP_RPT, buddy , NULL, caller));
 		else
 			_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_BANDIT_RELPOS, MSG_BANDITCALL_DELAY_LP_RPT, buddy, bandit, caller));
 	}
@@ -966,7 +966,7 @@ INSTANCEAI(CallBreak, ItemPtr)
 	if(breaker)
 		return(false);
 
-	for(nf = caller->FindFormpos0(); (nf) && (!breaker); nf = nf->fly.nextflight)
+	for(AirStrucPtr nf = caller->FindFormpos0(); (nf) && (!breaker); nf = nf->fly.nextflight)
 		for(AirStrucPtr f = nf; (f) && (!breaker); f = f->Follower())
 			if(		(f != caller)
 				&&	(caller->Distance3DSquared(&f->World) < FP(REDUCEDVISIBILITY) * FP(REDUCEDVISIBILITY))
@@ -979,7 +979,7 @@ INSTANCEAI(CallBreak, ItemPtr)
 						+ FP(f->ai.attacker->vel_y) * FP(f->World.Y - f->ai.attacker->World.Y)
 						+ FP(f->ai.attacker->vel_z) * FP(f->World.Z - f->ai.attacker->World.Z) > 0)	)
 				breaker = f;
-	
+
 	if(breaker)
 	{
 		caller->BreakCallReaction(breaker, breaker->ai.attacker);
@@ -1044,7 +1044,7 @@ INSTANCEAI(FlakSighted, ItemPtr)
 		return(true);
 	}
 	else
-		_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_CANTSEE, MSG_CLEAR_RPT, lead, NULL, caller)); 
+		_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_CANTSEE, MSG_CLEAR_RPT, lead, NULL, caller));
 	return(false);
 }
 
@@ -1116,7 +1116,7 @@ INSTANCEAI(AttackMyTarget, ItemPtr)
 {
 	if(_DPlay.Implemented)
 		return(false);
-	
+
 	AirStrucPtr buddy = caller->FindBuddy();
 	AirStrucPtr replyto = AirStrucPtr(caller);
 	if(!buddy)
@@ -1172,7 +1172,7 @@ INSTANCEAI(Regroup, ItemPtr)
 				f->manoeuvretime = 0;
 				f->ai.manoeuvre = MANOEUVRE_SCREWYOUGUYSIMGOINGHOME;
 			}
-	
+
 //DeadCode CSB 13Sep00 	DisEngageAll(caller, prioritymessage);
 	return(true);
 }
@@ -1228,7 +1228,7 @@ INSTANCEAI(SendEveryoneHome, ItemPtr)
 // Date:        15/02/99
 // Author:      RDH
 //
-// Description: 
+// Description:
 //
 ////////////////////////////////////////////////////////////////////////
 TABLEAI(TowerMsg,ItemPtr)
@@ -1236,12 +1236,12 @@ TABLEAI(TowerMsg,ItemPtr)
 	{PHRASE_MAYDAY,				&MayDay,			SCRIPT_MAYDAY},
 	{PHRASE_S_HOMETOWER,		&CallHomeTower,		SCRIPT_GIMMEAVECTOR},
 	{PHRASE_S_NEARESTTOWER,		&CallNearestTower,	SCRIPT_GIMMEAVECTOR},
-	{PHRASE_S_SURFACEWIND,		&WindUpdateLow,		SCRIPT_SURFACEWINDREQUEST}, 
-	{PHRASE_S_ALTWIND,			&WindUpdateHigh,	SCRIPT_ALTWINDREQUEST}, 
-	{PHRASE_S_HOMELANDCLEARANCE,	&HomeLandClear,		SCRIPT_LANDCLEARANCE}, 
+	{PHRASE_S_SURFACEWIND,		&WindUpdateLow,		SCRIPT_SURFACEWINDREQUEST},
+	{PHRASE_S_ALTWIND,			&WindUpdateHigh,	SCRIPT_ALTWINDREQUEST},
+	{PHRASE_S_HOMELANDCLEARANCE,	&HomeLandClear,		SCRIPT_LANDCLEARANCE},
 	{PHRASE_S_NEARLANDCLEARANCE,	&NearLandClear,		SCRIPT_LANDCLEARANCE},
-	{PHRASE_NULL}, 
-	{PHRASE_NULL} 
+	{PHRASE_NULL},
+	{PHRASE_NULL}
 };
 INSTANCEAI(TowerMsg,ItemPtr)   {return false;}
 
@@ -1252,7 +1252,7 @@ INSTANCEAI(MayDay,ItemPtr)
 
 	ItemPtr af = NULL;
 	FP range2 = FP(MILES50) * FP(MILES50);
-	
+
 	int	start=RAF_FighterAFBAND,stop=CLRadarBAND;
 	if (caller->nationality==NAT_BLUE)
 		start=LUF_FighterLF2BAND,stop=LUF_BomberBANDEND;
@@ -1266,13 +1266,13 @@ INSTANCEAI(MayDay,ItemPtr)
 			af = thisaf;
 		}
 	}
-		
+
 	if(af)
 	{
 		_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_CALLEE_NEARESTAIRFIELD, MSG_MEDHIPRIORITY, VOICE_TOWER, af, caller));
 		return(true);
 	}
-	
+
 	_Radio.TriggerMsg(MESSAGE_STRUC(PHRASE_THINKING, MSG_CLEAR_RPT , caller, NULL, caller));//RJS 27Mar00
 	return(false);
 }
@@ -1293,7 +1293,7 @@ INSTANCEAI(CallNearestTower,ItemPtr)
 {
 	ItemPtr af = NULL;
 	FP range2 = FP(MILES50) * FP(MILES50);
-	
+
 	int	start=RAF_FighterAFBAND,stop=CLRadarBAND;
 	if (caller->nationality==NAT_BLUE)
 		start=LUF_FighterLF2BAND,stop=LUF_BomberBANDEND;
@@ -1307,14 +1307,14 @@ INSTANCEAI(CallNearestTower,ItemPtr)
 			af = thisaf;
 		}
 	}
-		
+
 	if(af)
 	{
 		Persons2::PlayerSeenAC->BreakForm();
 		_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_CALLEE_STEER_RANGE, MSG_MEDHIPRIORITY, VOICE_TOWER, af, caller));
 		return(true);
 	}
-	
+
 	_Radio.TriggerMsg(MESSAGE_STRUC(PHRASE_THINKING, MSG_CLEAR_RPT , caller, NULL, caller));//RJS 27Mar00
 	return(false);
 }
@@ -1360,7 +1360,7 @@ INSTANCEAI(HomeLandClear,ItemPtr)
 		if(callee->Range < MILES05)
 		{
 			_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_CALLEE_CLEARTOLAND, MSG_MEDHIPRIORITY, VOICE_TOWER, caller, caller));//, TRUE));
-			
+
 			if(!caller->formpos)
 				for(AirStrucPtr nf = caller; nf; nf = nf->fly.nextflight)
 					for(AirStrucPtr f = nf; f; f = f->Follower())
@@ -1377,7 +1377,7 @@ INSTANCEAI(NearLandClear,ItemPtr)
 {
 	ItemPtr af = NULL;
 	FP range2 = FP(MILES50) * FP(MILES50);
-	
+
 	int	start=RAF_FighterAFBAND,stop=CLRadarBAND;
 	if (caller->nationality==NAT_BLUE)
 		start=LUF_FighterLF2BAND,stop=LUF_BomberBANDEND;
@@ -1391,7 +1391,7 @@ INSTANCEAI(NearLandClear,ItemPtr)
 			af = thisaf;
 		}
 	}
-		
+
 	if(af)
 	{
 		Persons2::PlayerSeenAC->BreakForm();
@@ -1401,7 +1401,7 @@ INSTANCEAI(NearLandClear,ItemPtr)
 			_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_TOWER_NOTSEEN_STEER_RANGE, MSG_MEDHIPRIORITY, VOICE_TOWER, af, caller));
 		return(true);
 	}
-	
+
 	_Radio.TriggerMsg(MESSAGE_STRUC(PHRASE_THINKING, MSG_CLEAR_RPT , caller, NULL, caller));//RJS 27Mar00
 	return(false);
 }
@@ -1413,7 +1413,7 @@ INSTANCEAI(NearLandClear,ItemPtr)
 // Date:        11/02/00
 // Author:      Craig Beeston
 //
-// Description: 
+// Description:
 //
 ////////////////////////////////////////////////////////////////////////
 TABLEAI(Strike, ItemPtr)
@@ -1514,7 +1514,7 @@ INSTANCEAI(LeaveArea, ItemPtr)
 // Date:        18/09/00
 // Author:      Craig Beeston
 //
-// Description: 
+// Description:
 //
 ////////////////////////////////////////////////////////////////////////
 //DeadCode JON 31Oct00 TABLEAI(QuitContinue, ItemPtr)
@@ -1532,20 +1532,20 @@ INSTANCEAI(LeaveArea, ItemPtr)
 //DeadCode JON 31Oct00 {
 //DeadCode JON 31Oct00 	return(false);
 //DeadCode JON 31Oct00 }
-//DeadCode JON 31Oct00 
-//DeadCode JON 31Oct00 
+//DeadCode JON 31Oct00
+//DeadCode JON 31Oct00
 //DeadCode JON 31Oct00 INSTANCEAI(Continue, ItemPtr)
 //DeadCode JON 31Oct00 {
 //DeadCode JON 31Oct00 	return(false);
 //DeadCode JON 31Oct00 }
-//DeadCode JON 31Oct00 
+//DeadCode JON 31Oct00
 //DeadCode JON 31Oct00 INSTANCEAI(Quit, ItemPtr)
 //DeadCode JON 31Oct00 {
 //DeadCode JON 31Oct00 	_DPlay.SimulateExitKey = TRUE;
 //DeadCode JON 31Oct00 	return(true);
 //DeadCode JON 31Oct00 }
 
-				
+
 INSTANCEAI(SetupQuitContinue, ItemPtr)
 {
 //DeadCode JON 31Oct00 	bool autovectoringon = Save_Data.gamedifficulty[GD_AUTOVECTORING];
@@ -1559,19 +1559,19 @@ INSTANCEAI(SetupQuitContinue, ItemPtr)
 }
 
 
-				
+
 //////////////////////////////////////////////////////////////////////
 //
 // Function:    SecretMessages
 // Date:		10/06/99
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 TABLEAI(SecretMessages,ItemPtr)
 {
-//DEADCODE DAW 23/02/99 	{PHRASE_INITIATECONTACT,	&InitiateContact, SCRIPT_MAKECONTACTWITHFAC},	
+//DEADCODE DAW 23/02/99 	{PHRASE_INITIATECONTACT,	&InitiateContact, SCRIPT_MAKECONTACTWITHFAC},
 	{PHRASE_NULL,	&SecretStartTrucks,		PHRASE_NULL},
 	{PHRASE_NULL},
 	{PHRASE_NULL}
@@ -1592,7 +1592,7 @@ INSTANCEAI(SecretStartTrucks,ItemPtr)
 // Date:        15/02/99
 // Author:      RDH
 //
-// Description: 
+// Description:
 //
 ////////////////////////////////////////////////////////////////////////
 //TempCode RDH 22Feb99 TABLEAI(CommsPlyrMsg,ItemPtr)
@@ -1609,7 +1609,7 @@ INSTANCEAI(SecretStartTrucks,ItemPtr)
 // Date:        15/02/99
 // Author:      RDH
 //
-// Description: 
+// Description:
 //
 ////////////////////////////////////////////////////////////////////////
 //TempCode RDH 22Feb99 TABLEAI(CommsMsgMsg,ItemPtr)
@@ -1668,10 +1668,10 @@ void ArtInt::DisEngageAll(AirStruc* caller, MESSAGE_STRUC* prioritymessage)
 	{
 //DEADCODE CSB 14/02/00 		if (leader->fly.leadflight)
 //DEADCODE CSB 14/02/00 			leader = leader->fly.leadflight;
-		
+
 		if(leader->movecode == AUTO_COMBAT)
 		{
-			leader->ai.manoeuvre = MANOEUVRE_TOPCOVER;		//this ensure everybody tries to disengage	
+			leader->ai.manoeuvre = MANOEUVRE_TOPCOVER;		//this ensure everybody tries to disengage
 			leader->SetUnfriendly(NULL);								//CSB 1Aug00
 //DeadCode CSB 1Aug00 			if(		(leader->ai.unfriendly)
 //DeadCode CSB 1Aug00 				&&	(leader->ai.unfriendly->Status.size == AIRSTRUCSIZE)
@@ -1724,7 +1724,7 @@ WayPointPtr WayPoint::FindWP(WPNames name)
 		if(newwp->wpname == name)
 			return(newwp);
 
-	for(newwp = this; newwp; newwp = newwp->prev)
+	for(WayPointPtr newwp = this; newwp; newwp = newwp->prev)
 		if(newwp->wpname == name)
 			return(newwp);
 
@@ -1742,7 +1742,7 @@ WayPointPtr WayPoint::FindWP(WPNames name)
 //DeadCode CSB 12Sep00 			return (newwp);
 //DeadCode CSB 12Sep00 		else
 //DeadCode CSB 12Sep00 			return (this);
-//DeadCode CSB 12Sep00 	}else 
+//DeadCode CSB 12Sep00 	}else
 //DeadCode CSB 12Sep00 	{
 //DeadCode CSB 12Sep00 		while (	(newwp) && (newwp->wpnum != 0 || newwp->wpname != name))
 //DeadCode CSB 12Sep00 			newwp = newwp->next;
@@ -1750,6 +1750,6 @@ WayPointPtr WayPoint::FindWP(WPNames name)
 //DeadCode CSB 12Sep00 			return (newwp);
 //DeadCode CSB 12Sep00 		else
 //DeadCode CSB 12Sep00 			return (this);
-//DeadCode CSB 12Sep00 
+//DeadCode CSB 12Sep00
 //DeadCode CSB 12Sep00 	}
 }

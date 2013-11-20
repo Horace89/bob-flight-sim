@@ -5,6 +5,9 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CRScrlBar wrapper class
+#ifndef rscrlbar_INCLUDED
+#pragma once
+#define rscrlbar_INCLUDED
 
 class CRScrlBar : public CWnd
 {
@@ -56,3 +59,4 @@ public:
 public:
 	void Move(long left, long top, long right, long bottom);
 };
+#endif

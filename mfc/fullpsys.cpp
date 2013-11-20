@@ -846,7 +846,7 @@ void RFullPanelDial::OnMciDidQuit(int wParam,int lParam)
 
 // this function is called when a message is recieved from the smacker...	
 void RFullPanelDial::OnMciNotify(int wParam,int lParam)
-{
+{return;/*
 	LONG		evCode;
 	LONG		evParam1;
 	LONG		evParam2;
@@ -865,7 +865,7 @@ void RFullPanelDial::OnMciNotify(int wParam,int lParam)
 				break;
 			} // Finished
 		} // Spin through the events
-
+*/
 //DeadCode JON 10Nov00 	switch (lParam)
 //DeadCode JON 10Nov00 	{
 //DeadCode JON 10Nov00 	case	MCI_MODE_STOP:

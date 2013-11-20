@@ -85,6 +85,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include "monotxt.h"
 #include "uiicons.h"
 #include "overlay.h"
+#include "files.g"
 
 #ifdef _DEBUG
 //#define new DEBUG_NEW
@@ -458,6 +459,7 @@ BOOL CMIGApp::InitInstance()
 	// Dispatch commands specified on the command line
 	if (!ProcessShellCommand(cmdInfo))
 		return FALSE;
+		
 //	Rtestsh1::tmpinst=new Inst3d;
 //	if (!Rtestsh1::tmpview)
 //	{
@@ -645,14 +647,20 @@ int CMIGApp::Run()
 //DeadCode AMM 28Oct98 
 			break;
 
+#if     _MSC_VER >= 1300
+#define AFXATTR &(AfxGetThreadState()->m_msgCur)
+#else
+#define AFXATTR &m_msgCur
+#endif
+
 		case WAIT_OBJECT_0+Mast3d::NUM_EVENTS:
-			while (::PeekMessage(&m_msgCur, NULL, NULL, NULL, PM_NOREMOVE))
+			while (::PeekMessage(AFXATTR, NULL, NULL, NULL, PM_NOREMOVE))
 			{
 //DEADCODE JIM 21/06/00 				Mono_Text.Print(m_msgCur.message,(UByteP)"Message");
 				bool fIn3d=Inst3d::InThe3D();
-				if ((Rtestsh1::tempblockkeys || fIn3d) && m_msgCur.message>=WM_KEYFIRST &&  m_msgCur.message<=WM_KEYLAST)
+				if ((Rtestsh1::tempblockkeys || fIn3d) && AfxGetThreadState()->m_msgCur.message>=WM_KEYFIRST &&  AfxGetThreadState()->m_msgCur.message<=WM_KEYLAST)
 				{
-					while (::PeekMessage(&m_msgCur, NULL, WM_KEYFIRST, WM_KEYLAST,PM_REMOVE))
+					while (::PeekMessage(AFXATTR, NULL, WM_KEYFIRST, WM_KEYLAST,PM_REMOVE))
 					{}
 				}
 				else
@@ -675,7 +683,7 @@ int CMIGApp::Run()
 					}
 				}
 			}
-			if (IsIdleMessage(&m_msgCur))
+			if (IsIdleMessage(AFXATTR))
 			{
 				lIdleCount = 0;
 			}

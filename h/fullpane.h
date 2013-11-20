@@ -30,11 +30,11 @@ struct FullScreen
 			enum {X1=0,CENTRE,X2} flags; //default topleft,x1
 			FileNum PanelArt;
 		} dials[3];
-		
+
 		int ListX,ListY;
 	} resolutions [6];
 	enum Align
-	{	
+	{
 		LEFT=0,RIGHT,CENTRE,ONSPACE,
 		VERT=0,HORIZ=4,
 		TOP=0,BOT=8,MID=16
@@ -51,10 +51,10 @@ struct FullScreen
 			CancelProc;
 };
 
-inline FullScreen::Align operator | 
+inline FullScreen::Align operator |
 (FullScreen::Align a,FullScreen::Align b)
 {return FullScreen::Align(int(a)|int(b));}
-inline FullScreen::Align operator + 
+inline FullScreen::Align operator +
 (FullScreen::Align a,FullScreen::Align b)
 {return (a|b);}
 
@@ -76,13 +76,13 @@ public:
 	static	bool	incomms,in3d,specialevent;
 	enum	GameStates	{TITLE,QUICK,HOT,MATCH, PILOT, COMMANDER, DIARY};
 //DEADCODE RDH 06/04/00 		CAMP,WAR,MATCH, PILOT, COMMANDER, DIARY};
-		
+
 	static	GameStates	gamestate;
 	enum	GameSide	{SIDE_RAF, SIDE_LW};
 	static	GameSide	gameside;
 	RFullPanelDial(CWnd* pParent = NULL);   // standard constructor
 	~RFullPanelDial();
-	FullScreen* m_pStartScreen;	
+	FullScreen* m_pStartScreen;
 	void PositionRListBox();
 	CRect GetDialPosition(RDialog* dial, UINT dialID);
 	void UpdateSize();
@@ -113,7 +113,7 @@ public:
 // *********** sheet declarations go here:
 
 
-	static FullScreen 
+	static FullScreen
 		demotitle,
 		quickmissionflight,
 		introsmack,
@@ -386,4 +386,4 @@ public:
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_FULLPANE_H__F4F91440_EF0E_11D1_A1F0_0080C8582DE4__INCLUDED_)
-
+

@@ -187,7 +187,7 @@ BOOL CRadio::OnInitDialog()
 		{
 			for (char i = 0; i < PT_BRIT_NONFLY;i++)
 				combo->AddString(RESLIST(MK_SPIT_A,i));
-			for (i = PT_GER_FLYABLE; i < PT_GER_NONFLY;i++)
+			for (char i = PT_GER_FLYABLE; i < PT_GER_NONFLY;i++)
 				combo->AddString(RESLIST(MK_SPIT_A,i));
 
 			maxindex = PT_BRIT_NONFLY + PT_GER_NONFLY - PT_GER_FLYABLE - 1;

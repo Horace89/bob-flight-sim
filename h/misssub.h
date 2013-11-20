@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 //Filename       misssub.h
-//System         
+//System
 //Author         Jim Taylor
 //Date           Thu 22 Aug 1996
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	MISSSUB_Included
 #define	MISSSUB_Included
@@ -14,7 +14,8 @@
 #include	"ranges.h"
 //#include	"node.h"
 #include "package.h"
-enum	{	
+#include "myangles.h"
+enum	{
 				MAXTNKWPINROUTE = 2
 
 			};
@@ -45,10 +46,10 @@ enum	SpecialEventBit {SpecialEventMIN = 0,HOMEBASEDESTROYED = 0,
 //DeadCode RDH 13Mar97 						SO_WON,SO_LOST,
 //DeadCode RDH 25Aug96 //tank debriefs
 //DeadCode RDH 25Aug96 						HITTANKANIM,
-//DeadCode RDH 13Mar97 
+//DeadCode RDH 13Mar97
 //DeadCode RDH 13Mar97 						EVACUATEFAILED,EVACUATESUCCESSFUL,
 //DeadCode RDH 13Mar97 						SO_EVACUATEFAILED,SO_EVACUATESUCCESSFUL,//RDH 18Dec96
-//DeadCode RDH 13Mar97 
+//DeadCode RDH 13Mar97
 //DeadCode RDH 13Mar97 //tank lost
 //DeadCode RDH 13Mar97 						TANKCAMPAIGNLOST,TANK_BUILDPONTOONBRIDGE,TANKNEARBRIDGES,
 
@@ -81,7 +82,7 @@ enum	NewsEvent {NewsEventMIN = 0, NEWSWOUNEDRECOVERED, NEWSACEIN,
 //last mission
 						NEWSLASTMISSIONOFCAMPAIGN,
 //updates
-						NEWSCRCUPDATE,	
+						NEWSCRCUPDATE,
 						NEWS_HAT_25_GOOD,
 						NEWS_HAT_25_BAD,
 						NEWS_HAT_50_GOOD,
@@ -116,11 +117,11 @@ enum	pilotstatus	{NOTFLYING = 0,FLYING, WOUNDED, MIA, IS_DEAD = MIA, KIA};
 //DeadCode RDH 23Sep96 		MERIT_LFT = 8000,
 //DeadCode RDH 23Sep96 		MERIT_CAPTAIN = 12000,MERIT_MAJOR =18000,MERIT_MAJORHONOUR = 27000,
 //DeadCode RDH 23Sep96 		MERIT_MAJORHONOURPLUS = 30000,MERIT_TOP = 65534,MERIT_IMPOSSIBLE = 65535,
-//DeadCode RDH 23Sep96 		
-//DeadCode RDH 23Sep96 //Spring Offensive merits to get operational		
+//DeadCode RDH 23Sep96
+//DeadCode RDH 23Sep96 //Spring Offensive merits to get operational
 //DeadCode RDH 23Sep96 		MERIT_OPERATIONAL = 3000
-//DeadCode RDH 23Sep96 			
-//DeadCode RDH 23Sep96 
+//DeadCode RDH 23Sep96
+//DeadCode RDH 23Sep96
 //DeadCode RDH 23Sep96 		};
 //DeadCode RDH 23Sep96 //aims is to get 30000 merit points by end of campaign			//RDH 23Sep96
 //DeadCode RDH 23Sep96 //Circus	36 kills: 2 kills a mission, 20 missions -> 750 merit per kill
@@ -141,7 +142,7 @@ enum	pilotstatus	{NOTFLYING = 0,FLYING, WOUNDED, MIA, IS_DEAD = MIA, KIA};
 //DeadCode RDH 23Sep96 		MERIT_OP_SEENBYCO = -1000,
 //DeadCode RDH 23Sep96 		MERIT_OP_NOTSEENBYCO =1000,
 //DeadCode RDH 23Sep96 		MERIT_OP_HITSNEARCO = 3000
-//DeadCode RDH 23Sep96 
+//DeadCode RDH 23Sep96
 //DeadCode RDH 23Sep96 		};
 
 
@@ -150,7 +151,7 @@ enum	pilotstatus	{NOTFLYING = 0,FLYING, WOUNDED, MIA, IS_DEAD = MIA, KIA};
 //DeadCode RDH 09Sep96 			MORALE_MINUSHALFSTAGE = -20,
 //DeadCode RDH 09Sep96 		MORALE_POOR =80,MORALE_MEDIUM = 120,MORALE_GOOD =160,MORALE_VERYGOOD = 200,MORALE_EXCELLENT = 240,MORALE_TOPMORALE = 255 };
 //DeadCode JIM 10Jun96 enum	CharacterType	- now in flyinit.h
-//DeadCode JIM 10Jun96 		{CHAR_TACTICIAN = 0,CHAR_MRAVERAGE,CHAR_CAVALIER,CHAR_align=255};		
+//DeadCode JIM 10Jun96 		{CHAR_TACTICIAN = 0,CHAR_MRAVERAGE,CHAR_CAVALIER,CHAR_align=255};
 enum 	RankType {SECLIEUTENANT= 0,SECLIEUTENANT_EXPERT,LIEUTENANT,CAPTAIN,MAJOR, RANK_INC = 1};
 enum					{MAXCONVOYS = 12,MAXTANKCONVOYS = 8,MAXTRUCKCONVOYS = 6,MAXROUTES = 4,MAXGUNS = 16};
 
@@ -197,7 +198,7 @@ enum	{
 		FLYINGFLIGHTSPERSQUADRON= 32,//(int)FLIGHTSPERSQUADRON - 1,//Jim 30 jun 98
 
 		WRAPMIGSQUADRONS		=4,
-		MAXMIGSQUADRONS			=12,		
+		MAXMIGSQUADRONS			=12,
 //		MAXIMAGEMAPSPERAIRCRAFT = 8,
 		};
 
@@ -230,10 +231,11 @@ struct FormationType
 	int		numentries;
 //	TextRef			name;
 #pragma warning( disable : 4200)
-	FormationPos	wingpos[];//MAXAC_FORMATIONS_NUM];
+	FormationPos	wingpos[];
+//x0r	FormationPos	wingpos[MAXAC_FORMATIONS_NUM+MAXAC_EXTENDEDFORMATIONS_NUM];
 #pragma warning( default : 4200)
 //DeadCode RDH 24Sep96 	FormationPos	wingpos [MAXAC_FORMATIONS_NUM];
-	int	GetPerFl(int totalac)	
+	int	GetPerFl(int totalac)
 	{	int fl,fl2,fln=numentries;
 		if (fln<0)	return -fln;
 		if (fln<10) return fln;
@@ -252,7 +254,7 @@ struct FormationType
 struct	ExtFormationType
 {
 	FormationType formationtype;
-//	FormationPos	extrawingpos[MAXAC_EXTENDEDFORMATIONS_NUM];	
+//	FormationPos	extrawingpos[MAXAC_EXTENDEDFORMATIONS_NUM];
 
 };
 
@@ -273,13 +275,13 @@ struct	WayPointOffset
 //DEADCODE JIM 10/12/99 	int numentries;
 //DEADCODE JIM 10/12/99 //	TextRef			name;
 //DEADCODE JIM 10/12/99 	FormationPos	wingpos [FLYINGFLIGHTSPERSQUADRON];
-//DEADCODE JIM 10/12/99 
+//DEADCODE JIM 10/12/99
 //DEADCODE JIM 10/12/99 };
 
 typedef FormationType* SingleFormation;
 extern SingleFormation Aircraft_Formations [];	//Index by FORMTYPE_WING
 extern SingleFormation Squadron_Formations [];	//Index by FORMTYPE_SQUAD+FORMTYPE_WING
-extern SingleFormation Escort_Formations [];	//Index by FORMTYPE_INTERCHILD+FORMTYPE_SQUAD	
+extern SingleFormation Escort_Formations [];	//Index by FORMTYPE_INTERCHILD+FORMTYPE_SQUAD
 extern	ExtFormationType	TakeOff_FormationWing, TakeOff_FormationSquad,	TakeOff_RefuelSpots;
 //DEADCODE JIM 22/01/00 extern	ExtFormationType	Truck_VFormation,	Truck_LineFormation;
 extern	WayPointOffset		WayPointOffsets_Escort,*WayPointOffsets_CourseSel[];
@@ -294,9 +296,9 @@ extern SingleFormation Ground_Formations [];	//Index by FORMTYPE_WING
 //DEADCODE JIM 25/03/99 	SLong		mapx;
 //DEADCODE JIM 25/03/99 	SLong		mapy;
 //DEADCODE JIM 25/03/99 	SWord		flags;
-//DEADCODE JIM 25/03/99 
+//DEADCODE JIM 25/03/99
 //DEADCODE JIM 25/03/99 };
-//DEADCODE JIM 25/03/99 
+//DEADCODE JIM 25/03/99
 //DEADCODE JIM 25/03/99 struct TnkMapWpSet {										//RDH 08Oct96
 //DEADCODE JIM 25/03/99 					UniqueID	target_uid;
 //DEADCODE JIM 25/03/99 					SLong		worldx;
@@ -306,10 +308,10 @@ extern SingleFormation Ground_Formations [];	//Index by FORMTYPE_WING
 //DEADCODE JIM 25/03/99 					SLong		mapx;
 //DEADCODE JIM 25/03/99 					SLong		mapy;
 //DEADCODE JIM 25/03/99 					SWord		flags;
-//DEADCODE JIM 25/03/99 
+//DEADCODE JIM 25/03/99
 //DEADCODE JIM 25/03/99 					};
-//DEADCODE JIM 25/03/99 
-//DEADCODE JIM 25/03/99 
+//DEADCODE JIM 25/03/99
+//DEADCODE JIM 25/03/99
 //DEADCODE JIM 25/03/99 struct PaperMaps
 //DEADCODE JIM 25/03/99 {
 //DEADCODE JIM 25/03/99 	SLong		mapx;
@@ -317,7 +319,7 @@ extern SingleFormation Ground_Formations [];	//Index by FORMTYPE_WING
 //DEADCODE JIM 25/03/99 	SLong		mapw;
 //DEADCODE JIM 25/03/99 	SLong		maph;
 //DEADCODE JIM 25/03/99 };
-//DEADCODE JIM 25/03/99 
+//DEADCODE JIM 25/03/99
 //#define MAXPLAYERS 12
 
 
@@ -409,14 +411,14 @@ enum	HideSkills
 //DEADCODE JIM 25/03/99 	SLong	timeofday;
 //DEADCODE JIM 25/03/99 	WpListType* wplist;
 //DEADCODE JIM 25/03/99 	FileNum	playerbf;
-//DEADCODE JIM 25/03/99 	SWord	numofsquadronac;	
-//DEADCODE JIM 25/03/99 	SWord	numofflightac;	
+//DEADCODE JIM 25/03/99 	SWord	numofsquadronac;
+//DEADCODE JIM 25/03/99 	SWord	numofflightac;
 //DEADCODE JIM 25/03/99 	FormationTypeIndex	formationtypeindex;
 //DEADCODE JIM 25/03/99 	SWord		weathernum;											//RDH 02Oct96
 //DEADCODE JIM 25/03/99 	SWord	windspeed;
 //DEADCODE JIM 25/03/99 	ANGLESInst	winddirection;			//direction from which the wind comes
 //DEADCODE JIM 25/03/99 	FileNum	backdropart;
-//DEADCODE JIM 25/03/99 
+//DEADCODE JIM 25/03/99
 //DEADCODE JIM 25/03/99 };
 //DEADCODE JIM 25/03/99 //------------------------------------------------------------------------------
 //DEADCODE JIM 25/03/99 struct	BfTypeList
@@ -424,53 +426,53 @@ enum	HideSkills
 //DEADCODE JIM 25/03/99  	SWord	noofentries;
 //DEADCODE JIM 25/03/99 	SWord	bfields[2];
 //DEADCODE JIM 25/03/99 };
-//DEADCODE JIM 25/03/99 
+//DEADCODE JIM 25/03/99
 
 
 
 //DEADCODE JIM 24/05/00  	enum		{MAX_PACKAGE_NUM = 5,MAX_COMPONENT_NUM = 4};
-//DEADCODE JIM 24/05/00 
+//DEADCODE JIM 24/05/00
 //DEADCODE JIM 24/05/00 	enum	FamilyType{PFT_NULL = 4,
 //DEADCODE JIM 24/05/00 					PFT_HEAVYSTRIKE = 0,
-//DEADCODE JIM 24/05/00 					PFT_STRIKE = 1,		
-//DEADCODE JIM 24/05/00 					PFT_PATROL = 2,		
+//DEADCODE JIM 24/05/00 					PFT_STRIKE = 1,
+//DEADCODE JIM 24/05/00 					PFT_PATROL = 2,
 //DEADCODE JIM 24/05/00 					PFT_CAS = 3,
 //DEADCODE JIM 24/05/00 					PFT_ALIGN = 0xffff
 //DEADCODE JIM 24/05/00 					};
 //DEADCODE JIM 24/05/00 inline	SWord&	operator *(FamilyType& f){return(SWord&) f;}
-//DEADCODE JIM 24/05/00 					
-//DEADCODE JIM 24/05/00 
+//DEADCODE JIM 24/05/00
+//DEADCODE JIM 24/05/00
 //DEADCODE JIM 24/05/00 	enum	Type{
-//DEADCODE JIM 24/05/00 			HS_BASE = 0,	
-//DEADCODE JIM 24/05/00 			HS_ALPHADIRECT = HS_BASE,	
-//DEADCODE JIM 24/05/00 			HS_ALPHAINDIRECT,	
-//DEADCODE JIM 24/05/00 			HS_BETADIRECT,		
-//DEADCODE JIM 24/05/00 			HS_BETAINDIRECT,	
-//DEADCODE JIM 24/05/00 			HS_UNESCORTED,		
+//DEADCODE JIM 24/05/00 			HS_BASE = 0,
+//DEADCODE JIM 24/05/00 			HS_ALPHADIRECT = HS_BASE,
+//DEADCODE JIM 24/05/00 			HS_ALPHAINDIRECT,
+//DEADCODE JIM 24/05/00 			HS_BETADIRECT,
+//DEADCODE JIM 24/05/00 			HS_BETAINDIRECT,
+//DEADCODE JIM 24/05/00 			HS_UNESCORTED,
 //DEADCODE JIM 24/05/00 			HS_UNESCORTEDNIGHT,
-//DEADCODE JIM 24/05/00 			S_BASE,	
-//DEADCODE JIM 24/05/00 			S_BOMB = S_BASE,	
-//DEADCODE JIM 24/05/00 			S_ROCKET,	
+//DEADCODE JIM 24/05/00 			S_BASE,
+//DEADCODE JIM 24/05/00 			S_BOMB = S_BASE,
+//DEADCODE JIM 24/05/00 			S_ROCKET,
 //DEADCODE JIM 24/05/00 			S_CRACKBURN,
-//DEADCODE JIM 24/05/00 			S_NAPALM,	
+//DEADCODE JIM 24/05/00 			S_NAPALM,
 //DEADCODE JIM 24/05/00 			S_STRAFF,
-//DEADCODE JIM 24/05/00 			PTRL_BASE,		
-//DEADCODE JIM 24/05/00 			PTRL_BARCAP = PTRL_BASE,		
+//DEADCODE JIM 24/05/00 			PTRL_BASE,
+//DEADCODE JIM 24/05/00 			PTRL_BARCAP = PTRL_BASE,
 //DEADCODE JIM 24/05/00 			PTRL_TACTICALINTERDICT,
 //DEADCODE JIM 24/05/00 			PTRL_AGGCAP,
-//DEADCODE JIM 24/05/00 			CAS_BASE,	
-//DEADCODE JIM 24/05/00 			CAS_BOMB = CAS_BASE,	
-//DEADCODE JIM 24/05/00 			CAS_ROCKET,	
+//DEADCODE JIM 24/05/00 			CAS_BASE,
+//DEADCODE JIM 24/05/00 			CAS_BOMB = CAS_BASE,
+//DEADCODE JIM 24/05/00 			CAS_ROCKET,
 //DEADCODE JIM 24/05/00 			CAS_CRACKBURN,
-//DEADCODE JIM 24/05/00 			CAS_NAPALM,	
+//DEADCODE JIM 24/05/00 			CAS_NAPALM,
 //DEADCODE JIM 24/05/00 			CAS_STRAFF,
 //DEADCODE JIM 24/05/00 			T_NULL,
 //DEADCODE JIM 24/05/00 			T_ALIGN = 0xffff
 //DEADCODE JIM 24/05/00 				};
-//DEADCODE JIM 24/05/00 
+//DEADCODE JIM 24/05/00
 //DEADCODE JIM 24/05/00 inline	SWord&	operator *(Type& f){return(SWord&) f;}
-//DEADCODE JIM 24/05/00 
-//DEADCODE JIM 24/05/00 
+//DEADCODE JIM 24/05/00
+//DEADCODE JIM 24/05/00
 //DEADCODE JIM 24/05/00 enum	Stores	{
 //DEADCODE JIM 24/05/00 				GUNSONLY = 0,	B29_STD = 0,
 //DEADCODE JIM 24/05/00 				LR_BOMB = 1,	B29_TARZON = 1,
@@ -482,7 +484,7 @@ enum	HideSkills
 //DEADCODE JIM 24/05/00 				CAS_NR,
 //DEADCODE JIM 24/05/00 				STORES_ALIGN = 0xffff
 //DEADCODE JIM 24/05/00 			};
-//DEADCODE JIM 24/05/00 
+//DEADCODE JIM 24/05/00
 //DEADCODE JIM 24/05/00 inline	SWord&	operator *(Stores& f){return(SWord&) f;}
 
 //DEADCODE DAW 25/11/99 enum	Squadron{
@@ -491,19 +493,19 @@ enum	HideSkills
 //DEADCODE DAW 25/11/99 		F80Squad,
 //DEADCODE DAW 25/11/99 		F51Squad,
 //DEADCODE DAW 25/11/99 		B29Squad,
-//DEADCODE DAW 25/11/99 
-//DEADCODE DAW 25/11/99 
-//DEADCODE DAW 25/11/99 
-//DEADCODE DAW 25/11/99 
+//DEADCODE DAW 25/11/99
+//DEADCODE DAW 25/11/99
+//DEADCODE DAW 25/11/99
+//DEADCODE DAW 25/11/99
 //DEADCODE DAW 25/11/99 		};
 
 //DEADCODE DAW 25/11/99 inline	SWord&	operator *(Squadron& f){return(SWord&) f;}
 
-//DEADCODE JIM 25/03/99 
+//DEADCODE JIM 25/03/99
 //DEADCODE JIM 25/03/99 enum  	{
 //DEADCODE JIM 25/03/99 			PASSIVE,ACTIVE,SIBLING,CONTROL
-//DEADCODE JIM 25/03/99 		};	
-//DEADCODE JIM 25/03/99 
+//DEADCODE JIM 25/03/99 		};
+//DEADCODE JIM 25/03/99
 //DEADCODE JIM 25/03/99 enum	ListControl{LISTINACTIVE,LISTACTIVE};
 //DEADCODE JIM 25/03/99 enum	{LISTCONTROLMAX = 16, STORESPERACMAX = 8,CONFIGSTORESAC = 6};
 
@@ -515,13 +517,13 @@ enum	HideSkills
 //DEADCODE JIM 28/01/00 	MIGEV_SAFEPAT,
 //DEADCODE JIM 28/01/00 	MIGEV_INTERSOUTH1,
 //DEADCODE JIM 28/01/00 	MIGEV_STRAIGHTRUN,	//straight run down with no diversions - easy to stop
-//DEADCODE JIM 28/01/00 	MIGEV_INTERCEPT1,	
+//DEADCODE JIM 28/01/00 	MIGEV_INTERCEPT1,
 //DEADCODE JIM 28/01/00 	MIGEV_BOMBERS1,
 //DEADCODE JIM 28/01/00 //-------------------------------------------------------------------
 //DEADCODE JIM 28/01/00 	MIGEV_INTERSOUTH2,
 //DEADCODE JIM 28/01/00 	MIGEV_INTERCEPT2,
 //DEADCODE JIM 28/01/00 	MIGEV_WAITWEAK,
-//DEADCODE JIM 28/01/00 	MIGEV_CUTWEAK,	
+//DEADCODE JIM 28/01/00 	MIGEV_CUTWEAK,
 //DEADCODE JIM 28/01/00 //-------------------------------------------------------------------
 //DEADCODE JIM 28/01/00 	MIGEV_CONTRAILFOCUS,
 //DEADCODE JIM 28/01/00 	MIGEV_BOMBERS2,
@@ -571,7 +573,7 @@ enum	HideSkills
 //DEADCODE JIM 28/01/00 //DeadCode RDH 05Mar99 	MIGEV_SLIGHTHAND,
 //DEADCODE JIM 28/01/00 	MIGEV_MAX
 //DEADCODE JIM 28/01/00 };
-//DEADCODE JIM 28/01/00 
+//DEADCODE JIM 28/01/00
 //DEADCODE JIM 28/01/00 struct	MigEvent
 //DEADCODE JIM 28/01/00 {
 //DEADCODE JIM 28/01/00 	FileNum					eventbf,alteventbf;			//2 versions: 50-50 chance
@@ -592,21 +594,21 @@ enum	HideSkills
 //DEADCODE JIM 28/01/00 								DECOY_TARGET=65,//local with a target
 //DEADCODE JIM 28/01/00 								DECLOC_TARGET=73,
 //DEADCODE JIM 28/01/00 							};	//this enum could be more compact...
-//DEADCODE JIM 28/01/00 	int						eventdoes;		
+//DEADCODE JIM 28/01/00 	int						eventdoes;
 //DEADCODE JIM 28/01/00 	tFirstEncounterTactics	firsttactics;
 //DEADCODE JIM 28/01/00 	tThreatLevel			mainthreat, secthreat;
 //DEADCODE JIM 28/01/00 };
-//DEADCODE JIM 28/01/00 
-//DEADCODE JIM 28/01/00 
+//DEADCODE JIM 28/01/00
+//DEADCODE JIM 28/01/00
 //DEADCODE JIM 28/01/00 //DeadCode JIM 19Feb99 struct AcComponent
 //DEADCODE JIM 28/01/00 //DeadCode JIM 19Feb99 {
 //DEADCODE JIM 28/01/00 //DeadCode JIM 19Feb99 	DutyType	duty;
 //DEADCODE JIM 28/01/00 //DeadCode JIM 19Feb99 	Squadron	squadron;
 //DEADCODE JIM 28/01/00 //DeadCode JIM 19Feb99 	SWord		numofflights;
 //DEADCODE JIM 28/01/00 //DeadCode JIM 19Feb99 	Stores		stores;
-//DEADCODE JIM 28/01/00 //DeadCode JIM 19Feb99 
+//DEADCODE JIM 28/01/00 //DeadCode JIM 19Feb99
 //DEADCODE JIM 28/01/00 //DeadCode JIM 19Feb99 };
-//DEADCODE JIM 28/01/00 //DeadCode JIM 19Feb99 
+//DEADCODE JIM 28/01/00 //DeadCode JIM 19Feb99
 //DEADCODE JIM 28/01/00 //DeadCode JIM 19Feb99 struct WeaponSets
 //DEADCODE JIM 28/01/00 //DeadCode JIM 19Feb99 {
 //DEADCODE JIM 28/01/00 //DeadCode JIM 19Feb99 	ranges		range;
@@ -621,19 +623,19 @@ enum	HideSkills
 //DEADCODE JIM 28/01/00 //DeadCode JIM 19Feb99 	WayPoint*	maintroute;
 //DEADCODE JIM 28/01/00 //DeadCode JIM 19Feb99 	AcComponent component[MAX_COMPONENT_NUM];
 //DEADCODE JIM 28/01/00 //DeadCode JIM 19Feb99 	char		name[30];
-//DEADCODE JIM 28/01/00 //DeadCode JIM 19Feb99 
+//DEADCODE JIM 28/01/00 //DeadCode JIM 19Feb99
 //DEADCODE JIM 28/01/00 //DeadCode JIM 19Feb99 };
-//DEADCODE JIM 28/01/00 
+//DEADCODE JIM 28/01/00
 //DEADCODE JIM 28/01/00 //DeadCode RDH 11Mar97 struct	AirFieldInfo
 //DEADCODE JIM 28/01/00 //DeadCode RDH 11Mar97 {
 //DEADCODE JIM 28/01/00 //DeadCode RDH 11Mar97 	Nationality		nationality;
-//DEADCODE JIM 28/01/00 //DeadCode RDH 11Mar97 	UniqueIDDummy		airfield;	
+//DEADCODE JIM 28/01/00 //DeadCode RDH 11Mar97 	UniqueIDDummy		airfield;
 //DEADCODE JIM 28/01/00 //DeadCode RDH 11Mar97 	SupplyNode*			northnodes[2];		//used to decide when airfield changes hands
 //DEADCODE JIM 28/01/00 //DeadCode RDH 11Mar97 	SupplyNode*			southnodes[2];		//
-//DEADCODE JIM 28/01/00 //DeadCode RDH 11Mar97 
+//DEADCODE JIM 28/01/00 //DeadCode RDH 11Mar97
 //DEADCODE JIM 28/01/00 //DeadCode RDH 11Mar97 };
-//DEADCODE JIM 28/01/00 
-//DEADCODE JIM 28/01/00 
+//DEADCODE JIM 28/01/00
+//DEADCODE JIM 28/01/00
 //DEADCODE JIM 28/01/00 //extern Package	Predefined_Package[];
 //DEADCODE JIM 28/01/00 //extern WeaponSets Predefined_WeapSet [CONFIGSTORESAC][STORESPERACMAX];
 //DEADCODE JIM 28/01/00 //extern ListControl listcontrol [LISTCONTROLMAX];
@@ -642,7 +644,7 @@ enum	HideSkills
 //DEADCODE JIM 28/01/00 struct	SupplyNode;
 //DEADCODE JIM 28/01/00 struct	SupplyRoute;
 //DEADCODE JIM 28/01/00 struct	SupplyLine;
-//DEADCODE JIM 28/01/00 
+//DEADCODE JIM 28/01/00
 //DEADCODE JIM 28/01/00 enum	{MAXMISSIONS = 20, MAXDIRECTIVES = 8,  MAXACPERSQUAD = 16, MAX_DIRGROUPS = 5,
 //DEADCODE JIM 28/01/00 				WAVE2_FLAK=3, WAVE2_ESCORT=4};
 //DEADCODE JIM 28/01/00 struct	DirGroup
@@ -650,7 +652,7 @@ enum	HideSkills
 //DEADCODE JIM 28/01/00 	char		squadron;
 //DEADCODE JIM 28/01/00 	char		numflights;
 //DEADCODE JIM 28/01/00 };
-//DEADCODE JIM 28/01/00 
+//DEADCODE JIM 28/01/00
 //DEADCODE JIM 28/01/00 struct	Mission
 //DEADCODE JIM 28/01/00 {
 //DEADCODE JIM 28/01/00 	int			score;
@@ -665,7 +667,7 @@ enum	HideSkills
 //DEADCODE JIM 28/01/00 	bool		missionset;
 //DEADCODE JIM 28/01/00 	SupplyNode*	node;
 //DEADCODE JIM 28/01/00 };
-//DEADCODE JIM 28/01/00 
+//DEADCODE JIM 28/01/00
 //DEADCODE JIM 28/01/00 struct	SG_Directive
 //DEADCODE JIM 28/01/00 {
 //DEADCODE JIM 28/01/00 	char		type;
@@ -685,7 +687,7 @@ enum	HideSkills
 //DEADCODE JIM 28/01/00 	bool		B29avail;
 //DEADCODE JIM 28/01/00 	bool		alphastrikesallowed;
 //DEADCODE JIM 28/01/00 	char		dayssinceB29;
-//DEADCODE JIM 28/01/00 
+//DEADCODE JIM 28/01/00
 //DEADCODE JIM 28/01/00 };
 //DEADCODE JIM 28/01/00 struct	SG_DirControl:DirControlData
 //DEADCODE JIM 28/01/00 {
@@ -695,35 +697,35 @@ enum	HideSkills
 //DEADCODE JIM 28/01/00 struct	DirControl:DirControlData
 //DEADCODE JIM 28/01/00 {
 //DEADCODE JIM 28/01/00 	Directive	directives[MAXDIRECTIVES];
-//DEADCODE JIM 28/01/00 
+//DEADCODE JIM 28/01/00
 //DEADCODE JIM 28/01/00 	CON	DirControl();
 //DEADCODE JIM 28/01/00 		void	AllocateAc();
-//DEADCODE JIM 28/01/00 
+//DEADCODE JIM 28/01/00
 //DEADCODE JIM 28/01/00    enum	{ALPHASTRIKE, MEDIUMBOMBERSTRIKE, FBSTRIKE, UNDECIDEDSTRIKE};
-//DEADCODE JIM 28/01/00 
+//DEADCODE JIM 28/01/00
 //DEADCODE JIM 28/01/00 UniqueID targetsalloc[10];		//Profile::MAX_PACKS];
 //DEADCODE JIM 28/01/00 int TotalStrikeAc;
-//DEADCODE JIM 28/01/00 int TotalFighterAC; 
-//DEADCODE JIM 28/01/00 
+//DEADCODE JIM 28/01/00 int TotalFighterAC;
+//DEADCODE JIM 28/01/00
 //DEADCODE JIM 28/01/00 int TotalStrikeAcInUse;
-//DEADCODE JIM 28/01/00 int TotalFighterACInUse; 
+//DEADCODE JIM 28/01/00 int TotalFighterACInUse;
 //DEADCODE JIM 28/01/00 int	MissionsAlreadyDefined;
 //DEADCODE JIM 28/01/00 int	TargetsAlreadyDefined;
 //DEADCODE JIM 28/01/00 enum {FBTYPES = 3, ACTYPES = 7};
 //DEADCODE JIM 28/01/00 enum	{ACT_NOTSET = 0,ACT_PROP, ACT_JET};
 //DEADCODE JIM 28/01/00 char	acresource[ACTYPES];
 //DEADCODE JIM 28/01/00 char	acalreadyinuse[ACTYPES];
-//DEADCODE JIM 28/01/00 
+//DEADCODE JIM 28/01/00
 //DEADCODE JIM 28/01/00 int firsttype;
 //DEADCODE JIM 28/01/00 DirGroup	tmpgroup[MAX_DIRGROUPS];				//MAX_GROUPS];
-//DEADCODE JIM 28/01/00 
+//DEADCODE JIM 28/01/00
 //DEADCODE JIM 28/01/00 //char	tempacused[ACTYPES];
 //DEADCODE JIM 28/01/00 int maxscore[7];			//number of directives - resting
-//DEADCODE JIM 28/01/00 
-//DEADCODE JIM 28/01/00 //DEADCODE JIM 28/01/00 char	jetfirst[PT_BRIT_NONFLY]; 
+//DEADCODE JIM 28/01/00
+//DEADCODE JIM 28/01/00 //DEADCODE JIM 28/01/00 char	jetfirst[PT_BRIT_NONFLY];
 //DEADCODE JIM 28/01/00 //DEADCODE JIM 28/01/00 char	propfirst[PT_BRIT_NONFLY];
-//DEADCODE JIM 28/01/00 
-//DEADCODE JIM 28/01/00 
+//DEADCODE JIM 28/01/00
+//DEADCODE JIM 28/01/00
 //DEADCODE JIM 28/01/00 //	void	FindScoresAndProfile(int pack, UniqueID uid, SupplyNode* node, int& score, int& maxscore, FileNum& profile, int& type);
 //DEADCODE JIM 28/01/00 //	FileNum	FindProfile();
 //DEADCODE JIM 28/01/00 //	void	AllocateAcToOneTarget(int pack, UniqueID uid, bool countall);
@@ -733,18 +735,18 @@ enum	HideSkills
 //DEADCODE JIM 28/01/00 //	void AddMission(int d,int j,SupplyNode*  currnode);
 //DEADCODE JIM 28/01/00 //	void AddAfMission(int d, int j, int af, int score);
 //DEADCODE JIM 28/01/00 //	void ListAirfields(int d);
-//DEADCODE JIM 28/01/00 
+//DEADCODE JIM 28/01/00
 //DEADCODE JIM 28/01/00 //	void ListSupplyNodes(int d);
 //DEADCODE JIM 28/01/00 //	void AddChokeMission(int d, int j, SupplyRoute*  currroute);
 //DEADCODE JIM 28/01/00 //	void ListChokes(int d);
 //DEADCODE JIM 28/01/00 //	void ListRoutes(int d, SWord type);
 //DEADCODE JIM 28/01/00 //	void AddRouteMission(int d, int j, SupplyRoute*  currroute, SWord type);
 //DEADCODE JIM 28/01/00 //	void ListFrontLines(int d);
-//DEADCODE JIM 28/01/00 
+//DEADCODE JIM 28/01/00
 //DEADCODE JIM 28/01/00 //	void	ProcessFrontLine(int d, SupplyLine* sl);
 //DEADCODE JIM 28/01/00 //	void	AddCASMission(int d, int j, int score, SupplyLine* sl);
-//DEADCODE JIM 28/01/00 
-//DEADCODE JIM 28/01/00 
+//DEADCODE JIM 28/01/00
+//DEADCODE JIM 28/01/00
 //DEADCODE JIM 28/01/00 //	void	FindTargets(int directive);
 //DEADCODE JIM 28/01/00 //	void	AllocateStrike(int d, int i, char& note, int profile);
 //DEADCODE JIM 28/01/00 //	void	AllocateFighters(int fightersrequired, int d, int i);
@@ -753,7 +755,7 @@ enum	HideSkills
 //DEADCODE JIM 28/01/00 //
 //DEADCODE JIM 28/01/00 //	void	AircraftAlreadyUsed(int excludedpack, bool countall);
 //DEADCODE JIM 28/01/00 //	void	InitAc();
-//DEADCODE JIM 28/01/00 
+//DEADCODE JIM 28/01/00
 //DEADCODE JIM 28/01/00 //	int 	MedBomberStrikeRequired(int d, int i, UniqueID target);
 //DEADCODE JIM 28/01/00 //	bool 	AllocMedBomberStrike(int strike,  int type);
 //DEADCODE JIM 28/01/00 //	int 	FBStrikeRequired(int d, int i, UniqueID target);
@@ -766,7 +768,7 @@ enum	HideSkills
 //DEADCODE JIM 28/01/00 //	void	UpdatePackageAircraft(int packnum, int d, int i);
 //DEADCODE JIM 28/01/00 //	void	SetPackagesFromDirectives();
 //DEADCODE JIM 28/01/00 //	int		DirControl::CategoryAvailable(int d, int squad);
-//DEADCODE JIM 28/01/00 
+//DEADCODE JIM 28/01/00
 //DEADCODE JIM 28/01/00 //	void AutoGenerate();
 //DEADCODE JIM 28/01/00 //	int		CalcAcUsedofType(int squad);
 //DEADCODE JIM 28/01/00 //	bool	TargetAlreadyAlloc(UniqueID target);
@@ -775,10 +777,10 @@ enum	HideSkills
 //DEADCODE JIM 28/01/00 //	void	InitDirectivesStruct();
 //DEADCODE JIM 28/01/00 //	void	ModifyAcInGrp(int packnum, int wavenum, int groupnum, int squad, int numflights);
 //DEADCODE JIM 28/01/00 //	int		MakePackage(int d, int i);
-//DEADCODE JIM 28/01/00 
-//DEADCODE JIM 28/01/00 
-//DEADCODE JIM 28/01/00 
-//DEADCODE JIM 28/01/00 
+//DEADCODE JIM 28/01/00
+//DEADCODE JIM 28/01/00
+//DEADCODE JIM 28/01/00
+//DEADCODE JIM 28/01/00
 //DEADCODE JIM 28/01/00 };
 
 //DEADCODE ROD 17/12/99 enum	AccelSwitches	{AS_FAVE,AS_ENG,AS_TARG,AS_COAST,AS_TAKEOFF,AS_RECONCOAST,AS_MAX};
@@ -796,7 +798,7 @@ MAKEFIELD(AccelSwitches,0,AS_MAX);
 
 enum	HostileListFilters	{
 							HL_FORMING,
-							HL_INCOMING,	
+							HL_INCOMING,
 							HL_TARGETAREA,
 							HL_DETAILRAID,
 							HL_ENEMYSIGHTED,
@@ -838,20 +840,20 @@ enum	SelectTargetMode	{STM_NORMAL,STM_LWAC,STM_RAFAC,STM_GROUND};
 //////////////////////////////////////////////////////////////////////
 //struct	Directives ;
 #ifdef	PACKAGE_INCLUDED
-#include "flyinit.h" 
+#include "flyinit.h"
 #define	DIRECTIVES_DEFINED
 
 struct	Directives
-{	
+{
 	typedef	Profile::AttackMethod	AttackMethod;
 	typedef	Profile::BetterRule	BetterRule;
 	struct	LW	//LUFTWAFFE SPECIFIC DIRECTIVES
 	{
 		enum	MissTypes {PATROL,RECON,ATTACK,MAXMISSTYPES};
 		enum	HistTypes {LWHISTORICALPHASE1A, LWHISTORICALPHASE1B,LWHISTORICALPHASE1C,LWHISTORICALPHASE1D,
-							LWHISTORICALPHASE2A, LWHISTORICALPHASE2B, LWHISTORICALPHASE2C, LWHISTORICALPHASE2D, 
-							LWHISTORICALPHASE3A, LWHISTORICALPHASE3B, LWHISTORICALPHASE3C, LWHISTORICALPHASE3D, 
-							LWHISTORICALPHASE4A, LWHISTORICALPHASE4B, LWHISTORICALPHASE4C, LWHISTORICALPHASE4D, 
+							LWHISTORICALPHASE2A, LWHISTORICALPHASE2B, LWHISTORICALPHASE2C, LWHISTORICALPHASE2D,
+							LWHISTORICALPHASE3A, LWHISTORICALPHASE3B, LWHISTORICALPHASE3C, LWHISTORICALPHASE3D,
+							LWHISTORICALPHASE4A, LWHISTORICALPHASE4B, LWHISTORICALPHASE4C, LWHISTORICALPHASE4D,
 							MAXHISTTYPES};
 		enum	Ju87Usage	{JU_NONE,JU_AM,JU_MD,JU_PM,JU_ANY};
 		MAKEFIELD(AttackMethod,Profile::AM_FIELD_MIN,Profile::AM_FIELD_MAX);
@@ -884,7 +886,7 @@ struct	Directives
 			ULong		mainalt;	//in cm
 
 		};
-		struct Reconn 
+		struct Reconn
 		{
 			UByte	missions;	//spin
 			UByte	ac;			//spin 1-3
@@ -920,7 +922,7 @@ struct	Directives
 		static void	SetUpReconn();
 
 
-	}	
+	}
 	lw;
 
 
@@ -948,7 +950,7 @@ struct	Directives
 			ONLYFIELD(UWord,BetterRule,			acselectionrules);		//And straffing
 			ONLYFIELD(UByte,Profile::AttackMethod,	packageattackmethod);	//tactics
 			int	mainalt;
-			struct	PerType		
+			struct	PerType
 			{
 				SByte				numac;		//div 12 to get squads	or use -ve numbers
 				ONLYFIELD(UByte,Profile::SubMethod,		what);	//avoid bombers/fighters
@@ -970,7 +972,7 @@ struct	Directives
 			float	gr1012afpat,gr1012acfactpat,gr1012supfactpat;		//remainder from 1.0 can intercept
 
 			//The squads on intercept are applied using the following rules
-			
+
 			float	convoylevel;			//1.0 is matched
 			bool	interceptbeforetarget;	//
 			GeneralSize	unitsize;
@@ -1050,13 +1052,13 @@ struct	LWDirectivesResults
 	static	int	HowManyReconEscortRequiredThisPeriod(LWDirectivesResults* dr);
 	static	int	 FillOneDirectivesLine(LWDirectivesResults* dr, int i, int k, int& missions);
 	static 	void FindAcAvail(LWDirectivesResults* dr);
-	static int LWDirectivesResults::FindMaxSquads(LWDirectivesResults* dr);
+	static int FindMaxSquads(LWDirectivesResults* dr);
 	static	void SetLWDirectivesResults();
 	static	void FillTargetLists(LWDirectivesResults* d);
 	static	void MakeLWPackages(LWDirectivesResults* dr, bool manual);
 	static	void AutoLWPackages();
 	static	void LaunchDirectiveMissions();
-	static  void LWDirectivesResults::SetUpLWDirectives(Directives::LW::HistTypes dirtype);
+	static  void SetUpLWDirectives(Directives::LW::HistTypes dirtype);
  	static Directives::LW::MissTypes  LWMissType();
 //DEADCODE RDH 05/04/00 	static  void SetSecondaryTargets(LWDirectivesResults* dr,int i, int packnum);
 
@@ -1120,7 +1122,7 @@ struct	RAFDirectivesResults
 	static	void MakeRAFPatrols(RAFDirectivesResults* dr);
 	static	void AutoRAFPatrols();
 	static	void SetRAFIntercept(int pack, int raid,bool afteregress);
-	static	void RAFDirectivesResults::RaidAcNumbers(int pack,int raid, int& strike, int& detachedescort, int& attachedescort, int& returnescort);
+	static	void RaidAcNumbers(int pack,int raid, int& strike, int& detachedescort, int& attachedescort, int& returnescort);
 	void 	MoveSquadronswrtFrontLine();
 	static	int FindAirfield(int priority, int maxaf, AirField* Airfields);
 
@@ -1129,7 +1131,7 @@ struct	RAFDirectivesResults
 	static	void	SetUpRAFDirectives(Directives::RAF::HistTypes dirtype);
 	static  int	InterceptSanctioned(int pack, int raid);
    	static Directives::RAF::MissTypes  RAFMissType(int packnum);
-	static Directives::RAF::MissTypes  RAFDirectivesResults::RAFInterceptType(int lwpack, int sqnum);
+	static Directives::RAF::MissTypes  RAFInterceptType(int lwpack, int sqnum);
 
 
 };
@@ -1173,7 +1175,7 @@ struct	LastWeekReview:PeriodReviewBase
 };
 struct	PeriodReview:PeriodReviewBase
 {
-	operator=(LastWeekReview* lwr) 
+	void operator=(LastWeekReview* lwr)
 	{ *(PeriodReviewBase*)this=*(PeriodReviewBase*)lwr;	}
 };
 

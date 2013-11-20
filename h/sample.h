@@ -10,7 +10,8 @@
 
 #define	DEFAULT_SAMPLE 0
 
-#include "dsound.h"
+#include <mmsystem.h>
+#include <dsound.h>
 
 #define NUMEVENTSPERCHANNEL 2 
 #define NUMCHANNELS	16

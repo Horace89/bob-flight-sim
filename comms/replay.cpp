@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -68,7 +68,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //------------------------------------------------------------------------------
 
 #include	"dosdefs.h"
-#define F_GRAFIX										
+#define F_GRAFIX
 #define F_BATTLE
 #define F_COMMON
 #undef  F_SOUNDS
@@ -85,17 +85,17 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include	"ai.h"
 #include	"worldinc.h"
 #include	"myangles.h"
-#include	"3dcom.h"											
-#include	"miles.h"											
-#include	"world.h"											
-#include	"transite.h"										
-#include	"modvec.h"											
-#include	"model.h"											
+#include	"3dcom.h"
+#include	"miles.h"
+#include	"world.h"
+#include	"transite.h"
+#include	"modvec.h"
+#include	"model.h"
 #include	"shapes.h"
 #include	"3dcode.h"
 #include	"stub3d.h"
 #include	"transite.h"
-#include	"areatype.h"							
+#include	"areatype.h"
 #include	"..\mfc\resource.h"
 #include	"savegame.h"
 #include	"aaa.h"
@@ -105,7 +105,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 // for fuel in setflightparam purposes need multiple of 256
 #define	FRAMESINBLOCK 512
 #define REPLAYFRAMESPERSEC 100/Timer_Code.FRAMETIME
-extern BAD_RV;
+extern int BAD_RV;
 
 #define VELSHIFT	6
 
@@ -118,7 +118,7 @@ Bool	Replay::OpenRecordLog()
 {
 	DWORD err;
 
-	Record=TRUE;	
+	Record=TRUE;
 	GetReplayFileName();
 	Record=FALSE;
 
@@ -138,7 +138,7 @@ Bool	Replay::OpenRecordLog()
 			flags,
 			NULL);
 
-// instead of deleting file, just truncate to zero 
+// instead of deleting file, just truncate to zero
 
 	if (ResetFileFlag)
 	{
@@ -285,7 +285,7 @@ Bool	Replay::StoreDeltas()
 
 	_DPlay.MakeDeltaPacket(&output);
 
-// apply deltas 
+// apply deltas
 
 	shiftfactor=output.Shift;
 
@@ -307,7 +307,7 @@ Bool	Replay::StoreDeltas()
 
 // rate divider is always 1 in replay
 
-	gac->fly.dhdg=rval; ///_DPlay.RateDivider;	
+	gac->fly.dhdg=rval; ///_DPlay.RateDivider;
 
 	rval=_DPlay.GetVal(output.Pitch,shiftfactor);
 	_DPlay.Deltas.Pitch.a-=rval;
@@ -315,7 +315,7 @@ Bool	Replay::StoreDeltas()
 
 // comms and replay always set cpitch to pitch each frame
 
-	gac->fly.cpitch=gac->pitch;		
+	gac->fly.cpitch=gac->pitch;
 
 	rval=_DPlay.GetVal(output.Roll,shiftfactor);
 
@@ -324,7 +324,7 @@ Bool	Replay::StoreDeltas()
 
 	rval=_DPlay.GetVal(output.Velocity_,shiftfactor);
 
-	SLong newvel=abs(rval)<<velshifttest;
+	SLong newvel=SLong(abs(rval))<<velshifttest;
 	if (rval<0)
 		newvel=-newvel;
 
@@ -332,8 +332,8 @@ Bool	Replay::StoreDeltas()
 	gac->vel_+=newvel;
 
 
-	UpdatePosBuffer();									
-	_DPlay.CalcVels();									
+	UpdatePosBuffer();
+	_DPlay.CalcVels();
 
 // check for collision etc
 
@@ -357,7 +357,7 @@ Bool	Replay::StoreDeltas()
 
 // want to begin storing new block after next movecycle
 
-		StoreHeader=true;								
+		StoreHeader=true;
 	}
 
 // RPM update
@@ -366,8 +366,8 @@ Bool	Replay::StoreDeltas()
 		UWord	rpmleft = Persons2::PlayerSeenAC->fly.rpm;
 
  		rpmleft = (rpmleft * 4)/Persons2::PlayerSeenAC->classtype->maxrpm;
-		if (!rpmleft && Persons2::PlayerSeenAC->fly.rpm)				
-			rpmleft = 1;												
+		if (!rpmleft && Persons2::PlayerSeenAC->fly.rpm)
+			rpmleft = 1;
 
 		if (rpmleft != lastRpmLeft)
 		{
@@ -430,7 +430,7 @@ Bool	Replay::LoadDeltas()
 
 // rate divider is always 1 in replay
 
-	gac->fly.dhdg=val; ///_DPlay.RateDivider;			
+	gac->fly.dhdg=val; ///_DPlay.RateDivider;
 
 	val=_DPlay.GetVal(input.Pitch,input.Shift);
 	gac->pitch.a+=val;
@@ -439,25 +439,25 @@ Bool	Replay::LoadDeltas()
 
 	gac->roll.a+=val;
 
-	gac->fly.cpitch=gac->pitch;		
+	gac->fly.cpitch=gac->pitch;
 
 	val=_DPlay.GetVal(input.Velocity_,input.Shift);
 
-	SLong newvel=abs(val)<<velshifttest;
+	SLong newvel=SLong(abs(val))<<velshifttest;
 	if (val<0)
 		newvel=-newvel;
 
 	gac->vel_+=newvel;
 
-	if (sac->fly.pModel)				
+	if (sac->fly.pModel)
 	{
 		sac->fly.pModel->Pos.y=gac->World.Y;	//Set to allow contrails to appear
 
 //This is so CalcLauncherVel will work...
 
-		sac->fly.pModel->replay_pitch = gac->pitch.a;	
-		sac->fly.pModel->replay_hdg = gac->hdg.a;		
-		sac->fly.pModel->replay_roll = gac->roll.a;	
+		sac->fly.pModel->replay_pitch = gac->pitch.a;
+		sac->fly.pModel->replay_hdg = gac->hdg.a;
+		sac->fly.pModel->replay_roll = gac->roll.a;
 
 // set up old vals so that view does not stutter in replay
 
@@ -467,14 +467,14 @@ Bool	Replay::LoadDeltas()
 
 //not sure why this is set up, must be a reason
 
-		if (gac->World.Y < HIGHESTGROUND)		
+		if (gac->World.Y < HIGHESTGROUND)
 			sac->fly.pModel->GroundHeight = Land_Scape.GetGroundLevel(gac);
 		else
 			sac->fly.pModel->GroundHeight = 0;
 	}
 
-	UpdatePosBuffer();									
-	_DPlay.CalcVels();									
+	UpdatePosBuffer();
+	_DPlay.CalcVels();
 
 // update seenac vels from ghostac vels for rocket launches etc
 
@@ -486,7 +486,7 @@ Bool	Replay::LoadDeltas()
 
 	_DPlay.ProcessExtraPacket((LPACPACKET)&input, Persons2::PlayerSeenAC, 0);
 
-	switch (ReplayDeathMode)								
+	switch (ReplayDeathMode)
 	{
 		case RDEATH_SKID:
 			DummyCrashSkid();
@@ -497,7 +497,7 @@ Bool	Replay::LoadDeltas()
 		case RDEATH_DIVE:
 			DummyCrashDive();
 			break;
-	}												
+	}
 
 #ifdef DEBUGMOVE2
 	FILE*fp=fopen("playback.txt","at");
@@ -543,7 +543,7 @@ void	Replay::DeleteReplayLog()
 Bool	Replay::StoreRandomList()
 {
 	UWord RndPacket [RNDPACKETSIZE],n;
-	
+
 	for (n=0; n<(RNDPACKETSIZE - 2); n++)
 		RndPacket[n] = Math_Lib.GetRndLookUp(n);
 
@@ -565,7 +565,7 @@ Bool	Replay::StoreRandomList()
 Bool	Replay::LoadRandomList()
 {
 	UWord RndPacket [RNDPACKETSIZE],n;
-	
+
 	if (!ReplayRead((UByte*)&RndPacket,RNDPACKETSIZE*sizeof(UWord)))
 		return FALSE;
 
@@ -729,7 +729,7 @@ Bool	Replay::StoreDeadItems()
 //------------------------------------------------------------------------------
 Bool	Replay::LoadDeadItems()
 {
-// construct a deadstream struc 
+// construct a deadstream struc
 
 	WorldStuff &world = mobileitem::GetWorld();
 	Bool	end=FALSE;
@@ -809,7 +809,7 @@ void	Replay::UpdateGhostAC()
 
 #define MAKEDELTAS(src,dest,shift)	  \
 	{								   \
-		val=(abs(src))>>shift;			\
+		val=SLong(abs(src))>>shift;			\
 		if (val!=0 && src<0)			 \
 		{								  \
 			val|=128;					   \
@@ -842,12 +842,12 @@ void	Replay::UpdateGhostAC()
   	_DPlay.Deltas.Heading.a-=rval;
 	gac->hdg+=rval;
 
-	gac->fly.dhdg=rval;											
+	gac->fly.dhdg=rval;
 
 	rval=_DPlay.GetVal(output.Pitch,shiftfactor);
 	_DPlay.Deltas.Pitch.a-=rval;
 	gac->pitch+=rval;
-	gac->fly.cpitch=gac->pitch;				
+	gac->fly.cpitch=gac->pitch;
 
 	rval=_DPlay.GetVal(output.Roll,shiftfactor);
 
@@ -857,7 +857,7 @@ void	Replay::UpdateGhostAC()
 
 	rval=_DPlay.GetVal(output.Velocity_,shiftfactor);
 
-	SLong newvel=abs(rval)<<velshifttest;
+	SLong newvel=SLong(abs(rval))<<velshifttest;
 	if (rval<0)
 		newvel=-newvel;
 
@@ -866,8 +866,8 @@ void	Replay::UpdateGhostAC()
 
 
 
-	UpdatePosBuffer();									
-	_DPlay.CalcVels();									
+	UpdatePosBuffer();
+	_DPlay.CalcVels();
 
 #ifdef VELCHECK
 	AirStrucPtr sac=Persons2::PlayerSeenAC;
@@ -877,7 +877,7 @@ void	Replay::UpdateGhostAC()
 		sac->fly.pModel->Vel.y,sac->fly.pModel->Vel.z);
 	fclose(fp);
 #endif
-}	
+}
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		LoadItemAnims
@@ -894,7 +894,7 @@ Bool	Replay::LoadItemAnims()
 	ItemPtr i;
 	UWord id=0;
 
-// ac anims first 
+// ac anims first
 
 	do
 	{
@@ -907,9 +907,9 @@ Bool	Replay::LoadItemAnims()
 
 		if (ac)
 		{
-			if (!prescan) 
+			if (!prescan)
 			{
-				if (ac->Anim == NULL)			   
+				if (ac->Anim == NULL)
 				{
 // I dont think this should ever happen, maybe in mig super flight?
 
@@ -922,7 +922,7 @@ Bool	Replay::LoadItemAnims()
 				return FALSE;
 
 			temp=num;
-			n = 0;	
+			n = 0;
 
 			while (num--)
 			{
@@ -932,14 +932,14 @@ Bool	Replay::LoadItemAnims()
 				if (!ReplayRead((UByte*)&newval,sizeof(UByte)))
 					return FALSE;
 
-				if (!prescan) 
+				if (!prescan)
 				{
 					SHAPE.AnimDeltaList[n].deltaoffset=offset;
 					SHAPE.AnimDeltaList[n++].newbyte=newval;
 				}
 			}
 
-			if (!prescan) 
+			if (!prescan)
 				SHAPE.PatchAnimData((ItemPtr)ac,n);
 		}
 	}
@@ -949,13 +949,13 @@ Bool	Replay::LoadItemAnims()
 	{
 		//Stop muzzleflash for player...
 		AircraftAnimData*	adptr = (AircraftAnimData*) Persons2::PlayerSeenAC->Anim;
-		adptr->gunshooting = 0;											
-		adptr->cannonshooting = 0;										
+		adptr->gunshooting = 0;
+		adptr->cannonshooting = 0;
 	}
 
 // mobiles
 
-	do 
+	do
 	{
 		if (!ReplayRead((UByte*)&id,sizeof(UWord)))
 			return FALSE;
@@ -966,7 +966,7 @@ Bool	Replay::LoadItemAnims()
 		{
 			if (!prescan)
 			{
-				if (item->Anim == NULL)		
+				if (item->Anim == NULL)
 				{
 					SHAPE.SetAnimData(item,0);
 				}
@@ -977,7 +977,7 @@ Bool	Replay::LoadItemAnims()
 				return FALSE;
 
 			temp=num;
-			n = 0;    
+			n = 0;
 
 			while (num--)
 			{
@@ -987,7 +987,7 @@ Bool	Replay::LoadItemAnims()
 				if (!ReplayRead((UByte*)&newval,sizeof(UByte)))
 					return FALSE;
 
-				if (!prescan) 
+				if (!prescan)
 				{
 					SHAPE.AnimDeltaList[n].deltaoffset=offset;
 					SHAPE.AnimDeltaList[n++].newbyte=newval;
@@ -1015,19 +1015,19 @@ Bool	Replay::LoadItemAnims()
 
 		if (sag)
 		{
-			if (sag->Anim == NULL)			
+			if (sag->Anim == NULL)
 			{
 // I dont think this should ever happen, maybe in mig super flight?
 
 				SHAPE.SetAnimData(sag,sag->weap.Weapons);
 			}
-			SHAPE.ResetAnimData_NewShape(sag,sag->shape,sag->weap.Weapons);	
+			SHAPE.ResetAnimData_NewShape(sag,sag->shape,sag->weap.Weapons);
 
 			if (!ReplayRead((UByte*)&num,sizeof(ULong)))
 				return FALSE;
 
 			temp=num;
-			n = 0;	
+			n = 0;
 
 			while (num--)
 			{
@@ -1037,14 +1037,14 @@ Bool	Replay::LoadItemAnims()
 				if (!ReplayRead((UByte*)&newval,sizeof(UByte)))
 					return FALSE;
 
-				if (!prescan) 
+				if (!prescan)
 				{
 					SHAPE.AnimDeltaList[n].deltaoffset=offset;
 					SHAPE.AnimDeltaList[n++].newbyte=newval;
 				}
 			}
 
-			if (!prescan)										
+			if (!prescan)
 				SHAPE.PatchAnimData((ItemPtr)sag,n);
 		}
 	}
@@ -1208,7 +1208,7 @@ Bool	Replay::BlockForward()
 
 	SLong skip=n*m;
 	playbackfilepos+=skip;
-	
+
 	if (!LoadBlockHeader())
 	{
 		playbackfilepos=temp;
@@ -1507,7 +1507,7 @@ Bool	Replay::SaveReplayData(char* name)
 	HANDLE file;
 	char	buffer[150];
 	char	buffer2[150];
-	
+
 	if (RestorePosition)
 	{
 		strcpy(buffer,"tblock.dat");
@@ -1570,7 +1570,7 @@ FileNum	Replay::LoadBFieldNum()
 //------------------------------------------------------------------------------
 Bool	Replay::StoreBFieldNum(FileNum bf)
 {
-	if (!ReplayWrite((UByte*)&bf,sizeof(FileNum)))	
+	if (!ReplayWrite((UByte*)&bf,sizeof(FileNum)))
 		return FALSE;
 
 	return TRUE;
@@ -1630,7 +1630,7 @@ Bool	Replay::StoreItemData()
 			return FALSE;
 
 		ac->fly.cpitch=ac->pitch;
-		ac->CalcXYZVel();		
+		ac->CalcXYZVel();
 
 // need to store this for anim purposes for all ac
 
@@ -1699,7 +1699,7 @@ Bool	Replay::StoreItemData()
 		if (!StorePrimaryMIData(item))
 			return FALSE;
 
-		item->CalcXYZVel();								
+		item->CalcXYZVel();
 
 		item=item->nextmobile;
 	}
@@ -1778,11 +1778,11 @@ Bool	Replay::LoadItemData()
 			return FALSE;
 
 		RestorePrimaryASValues( ac,&aspv);
-	
+
 		RestorePrimaryMIValues((MobileItemPtr)ac,&mipv);
 
-		ac->fly.cpitch=ac->pitch;								
-		ac->CalcXYZVel();										
+		ac->fly.cpitch=ac->pitch;
+		ac->CalcXYZVel();
 
 
 		PAERODEVICE pAeroDevice=ac->fly.pModel->DeviceList;
@@ -1793,7 +1793,7 @@ Bool	Replay::LoadItemData()
 				return FALSE;
 
 			if (!prescan)
-				RestoreAeroDevData(&adv,pAeroDevice);				
+				RestoreAeroDevData(&adv,pAeroDevice);
 
 			pAeroDevice=pAeroDevice->List.NextItem();
 		}
@@ -1814,7 +1814,7 @@ Bool	Replay::LoadItemData()
 			world.AddToWorld((MobileItemPtr)ac);
 		}
 
-		if (((!ac->ai.simpleacm && ac->movecode==AUTO_COMBAT) || ac->movecode==AUTO_FOLLOWTHELEADER) && !ac->Status.deaded) 
+		if (((!ac->ai.simpleacm && ac->movecode==AUTO_COMBAT) || ac->movecode==AUTO_FOLLOWTHELEADER) && !ac->Status.deaded)
 		{
 			if (ac!=Persons2::PlayerSeenAC)
 			{
@@ -1844,7 +1844,7 @@ Bool	Replay::LoadItemData()
 			ResetSecondaryFMValues(ac);
 
 		ac=*ac->nextmobile;
-	}	
+	}
 
  	item=mobileitem::MobileList;
 
@@ -1872,7 +1872,7 @@ Bool	Replay::LoadItemData()
 			}
 		}
 
-		item->CalcXYZVel();						
+		item->CalcXYZVel();
 
  		item=item->nextmobile;
  	}
@@ -1905,7 +1905,7 @@ Bool	Replay::LoadItemData()
 			RestorePrimarySAGValues(sag,&sagpv);
 
 			RestorePrimaryASValues( (AirStrucPtr)sag,&aspv);
-	
+
 			RestorePrimaryMIValues((MobileItemPtr)sag,&mipv);
 
 			newsector=world.GetSector((MobileItemPtr)sag);
@@ -1949,7 +1949,7 @@ void	Replay::GetPrimaryFMData(AirStrucPtr ac, LPFMPRIMARYVALUES fmpv)
 {
 //model.h
 
-	fmpv->FirstCycle=ac->fly.pModel->FirstCycle;				
+	fmpv->FirstCycle=ac->fly.pModel->FirstCycle;
 	fmpv->RotVel=ac->fly.pModel->RotVel;
 	fmpv->Elevator=ac->fly.pModel->Elevator;
 	fmpv->Aileron=ac->fly.pModel->Aileron;
@@ -1967,7 +1967,7 @@ void	Replay::GetPrimaryFMData(AirStrucPtr ac, LPFMPRIMARYVALUES fmpv)
 	fmpv->TotalBuffet=ac->fly.pModel->TotalBuffet;
 
 // acmmodel.h
-	
+
 	fmpv->lastdeltapitch=ac->fly.pAcmModel->lastdeltapitch;
 	fmpv->deltapitchsum=ac->fly.pAcmModel->deltapitchsum;
 	fmpv->deltarollsum=ac->fly.pAcmModel->deltarollsum;
@@ -2031,8 +2031,8 @@ void	Replay::GetPrimaryEngineData(LPPRIMARYENGINEVALUES enpv, PENGINE pEngine)
 
 	enpv->FuelInPipes=pEngine->FuelInPipes;
 
-	enpv->ThrottleSetting=pEngine->ThrottleSetting;				
-	enpv->PropSetting=pEngine->PropSetting;						
+	enpv->ThrottleSetting=pEngine->ThrottleSetting;
+	enpv->PropSetting=pEngine->PropSetting;
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -2098,7 +2098,7 @@ void	Replay::RestorePrimaryFMData(AirStrucPtr ac,LPFMPRIMARYVALUES fmpv)
 {
 //model.h
 
-	ac->fly.pModel->FirstCycle=fmpv->FirstCycle;			
+	ac->fly.pModel->FirstCycle=fmpv->FirstCycle;
 	ac->fly.pModel->RotVel=fmpv->RotVel;
 	ac->fly.pModel->Elevator=fmpv->Elevator;
 	ac->fly.pModel->Aileron=fmpv->Aileron;
@@ -2155,8 +2155,8 @@ void	Replay::RestorePrimaryEngineData(LPPRIMARYENGINEVALUES e, PENGINE pEngine)
 
 	pEngine->FuelInPipes=e->FuelInPipes;
 
-	pEngine->ThrottleSetting=e->ThrottleSetting;				
-	pEngine->PropSetting=e->PropSetting;						
+	pEngine->ThrottleSetting=e->ThrottleSetting;
+	pEngine->PropSetting=e->PropSetting;
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -2307,10 +2307,10 @@ void	Replay::ResetSecondaryFMValues(AirStrucPtr ac)
 	ac->fly.pAcmModel->CtrlElevator=0;
 	ac->fly.pAcmModel->CtrlAileron=0;
 	ac->fly.pAcmModel->CtrlAoA=0.0;
-	ac->fly.pAcmModel->OldAoa=0.0;					
+	ac->fly.pAcmModel->OldAoa=0.0;
 
 // engine.h
-	
+
 	// none
 
 // elmt.h
@@ -2340,21 +2340,21 @@ void	Replay::ResetSecondaryFMValues(AirStrucPtr ac)
 	{
 		NullVec(pCylinder->Force);
 	}
-  
+
 
 //call updatemodel
 //call calcairvel
 //call gearcalcs
 //call accurategroundaltitude
 //call SetAirStrucOrientation - WHY?????
-// calc cpitch 
+// calc cpitch
 // calc i_a_s - INSTRUMENTS NOT NEEDED
 // calc vel_cms
 
 	ac->fly.pModel->UpdateModel(ac);
-	ac->fly.pModel->UpdateAirStruc(ac);							
-	ac->fly.pModel->UpdateMassInertias(ac);						
-	ac->fly.pModel->ACMInstruments(ac);			
+	ac->fly.pModel->UpdateAirStruc(ac);
+	ac->fly.pModel->UpdateMassInertias(ac);
+	ac->fly.pModel->ACMInstruments(ac);
 
 // update model resets rotvel, so update it again!
 
@@ -2378,7 +2378,7 @@ void	Replay::ResetSecondaryFMValues(AirStrucPtr ac)
 
 	Playback=realplayback;
 
-	Trans_Obj.ClearWeaponChain(ac);						
+	Trans_Obj.ClearWeaponChain(ac);
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -2408,7 +2408,7 @@ void	Replay::AddFileAndGlobRefsToList(FileNum file,ULong bfctrl)
 
 	temp2->file=file;
 	temp2->bfctrl=bfctrl;
-	
+
 	temp2->list=NULL;
 	GetGlobRefs(temp2->list);
 	temp2->next=NULL;
@@ -2483,7 +2483,7 @@ void	Replay::DeleteFileAndGlobRefList(LPGRLIST& list)
 	while (temp)
 	{
 		temp2=temp->next;
-		
+
 		t1=temp->list;
 
 		DeleteGRList(t1);
@@ -2629,7 +2629,7 @@ void	Replay::SkipToEnd()
 	{
 		m=numframes[currblock-1];
 		skip=n*m;
-		
+
 		temp=playbackfilepos;
 		playbackfilepos+=skip;
 	}
@@ -2683,7 +2683,7 @@ ULong	Replay::FrameRewind()
 	else
 	{
 // at beginning of file, dont do anything
-		
+
 	}
 	return skip;
 }
@@ -2853,7 +2853,7 @@ void	Replay::GetPrimaryASData(AirStrucPtr ac, LPASPRIMARYVALUES aspv)
 	aspv->manoeuvre=ac->ai.manoeuvre;
 	aspv->ManStep=ac->ai.ManStep;
 	aspv->simpleacm=ac->ai.simpleacm;
-	aspv->beenseen=ac->ai.beenseen;							
+	aspv->beenseen=ac->ai.beenseen;
 	aspv->morale=ac->ai.morale;
 	aspv->moraleinc=ac->ai.moraleinc;
 	aspv->desiredroll=ac->ai.desiredroll;
@@ -2888,8 +2888,8 @@ void	Replay::GetPrimaryASData(AirStrucPtr ac, LPASPRIMARYVALUES aspv)
 	aspv->cdrag=ac->weap.centre.drag;
 	aspv->ldrag=ac->weap.left.drag;
 
-	for(n = 0; n < 4; n++)						
-		aspv->fuel_cont[n] = ac->fly.fuel_content[n];	
+	for(n = 0; n < 4; n++)
+		aspv->fuel_cont[n] = ac->fly.fuel_content[n];
 
 	aspv->shpweapindex=ac->weap.shpweapindex;
 	aspv->ShootDelay=ac->weap.ShootDelay;
@@ -2934,8 +2934,8 @@ void	Replay::GetPrimaryASData(AirStrucPtr ac, LPASPRIMARYVALUES aspv)
 		aspv->use_this_tank[n]=ac->fly.use_this_tank[n];
 
 	aspv->FuelCockPos=ac->fly.FuelCockPos;
-	if(ac->fly.pModel)													
-		aspv->FrameCount = ac->fly.pModel->FrameCount;				
+	if(ac->fly.pModel)
+		aspv->FrameCount = ac->fly.pModel->FrameCount;
 
 	aspv->lasthitter=ac->lasthitter;
 
@@ -2966,10 +2966,10 @@ void	Replay::UpdateSeenAIData()
 //Procedure		StorePrimaryMIData
 //Date			Tue 29 Sep 1998
 //------------------------------------------------------------------------------
-Bool	Replay::StorePrimaryMIData(MobileItemPtr ac) 
+Bool	Replay::StorePrimaryMIData(MobileItemPtr ac)
 {
 	MIPRIMARYVALUES mipv;
-	
+
 	GetPrimaryMIData(ac, &mipv);
 
 	if (!ReplayWrite((UByte*)&mipv,sizeof(MIPRIMARYVALUES)))
@@ -3035,27 +3035,27 @@ void	Replay::GetPrimaryMIData(MobileItemPtr ac, LPMIPRIMARYVALUES mipv)
 
 	mipv->shape=seenac->shape;
 
-	if (seenac->Status.size>=FORMATIONSIZE)						
-	{															
-		if (((FormationItemPtr)(seenac))->leader)				
+	if (seenac->Status.size>=FORMATIONSIZE)
+	{
+		if (((FormationItemPtr)(seenac))->leader)
 			ID=((FormationItemPtr)(seenac))->leader->uniqueID.count;
-		else													
-			ID=UID_Null;										
-	}															
+		else
+			ID=UID_Null;
+	}
 
-	mipv->leader=ID;											
+	mipv->leader=ID;
 
-	if (seenac->Status.size>=FORMATIONSIZE)						
-	{															
-		if (((FormationItemPtr)(seenac))->follower)				
+	if (seenac->Status.size>=FORMATIONSIZE)
+	{
+		if (((FormationItemPtr)(seenac))->follower)
 			ID=((FormationItemPtr)(seenac))->follower->uniqueID.count;
-		else													
-			ID=UID_Null;										
-		
-		mipv->manoeuvretime=((FormationItemPtr)(seenac))->manoeuvretime;
-	}															
+		else
+			ID=UID_Null;
 
-	mipv->follower=ID;											
+		mipv->manoeuvretime=((FormationItemPtr)(seenac))->manoeuvretime;
+	}
+
+	mipv->follower=ID;
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -3089,10 +3089,10 @@ void	Replay::RestorePrimaryASValues(AirStrucPtr ac, LPASPRIMARYVALUES aspv)
 	if (ac->ai.attacker==Persons2::PlayerSeenAC)
 		ac->ai.attacker=Persons2::PlayerGhostAC;
 
-	ac->ai.spottedunfriendly[0] = (AirStrucPtr)Persons2::ConvertPtrUID(aspv->spottedunfriendly0);	
-	ac->ai.spottedunfriendly[1] = (AirStrucPtr)Persons2::ConvertPtrUID(aspv->spottedunfriendly1);	
-	ac->ai.spottedunfriendly[2] = (AirStrucPtr)Persons2::ConvertPtrUID(aspv->spottedunfriendly2);	
-	ac->ai.spottedunfriendly[3] = (AirStrucPtr)Persons2::ConvertPtrUID(aspv->spottedunfriendly3);	
+	ac->ai.spottedunfriendly[0] = (AirStrucPtr)Persons2::ConvertPtrUID(aspv->spottedunfriendly0);
+	ac->ai.spottedunfriendly[1] = (AirStrucPtr)Persons2::ConvertPtrUID(aspv->spottedunfriendly1);
+	ac->ai.spottedunfriendly[2] = (AirStrucPtr)Persons2::ConvertPtrUID(aspv->spottedunfriendly2);
+	ac->ai.spottedunfriendly[3] = (AirStrucPtr)Persons2::ConvertPtrUID(aspv->spottedunfriendly3);
 
 	ac->fly.expandedsag=(AirStrucPtr)Persons2::ConvertPtrUID(aspv->expandedsag);
 
@@ -3105,7 +3105,7 @@ void	Replay::RestorePrimaryASValues(AirStrucPtr ac, LPASPRIMARYVALUES aspv)
 	ac->ai.manoeuvre=aspv->manoeuvre;
 	ac->ai.ManStep=aspv->ManStep;
 	ac->ai.simpleacm=aspv->simpleacm;
-	ac->ai.beenseen=aspv->beenseen;									
+	ac->ai.beenseen=aspv->beenseen;
 	ac->ai.morale=aspv->morale;
 	ac->ai.moraleinc=aspv->moraleinc;
 	ac->ai.desiredroll=aspv->desiredroll;
@@ -3138,8 +3138,8 @@ void	Replay::RestorePrimaryASValues(AirStrucPtr ac, LPASPRIMARYVALUES aspv)
 	ac->weap.centre.drag=aspv->cdrag;
 	ac->weap.left.drag=aspv->ldrag;
 
-	for(n = 0; n < 4; n++)					
-		ac->fly.fuel_content[n] = aspv->fuel_cont[n];	
+	for(n = 0; n < 4; n++)
+		ac->fly.fuel_content[n] = aspv->fuel_cont[n];
 
 	ac->weap.shpweapindex=aspv->shpweapindex;
 	ac->weap.ShootDelay=aspv->ShootDelay;
@@ -3177,8 +3177,8 @@ void	Replay::RestorePrimaryASValues(AirStrucPtr ac, LPASPRIMARYVALUES aspv)
 		ac->fly.use_this_tank[n]=aspv->use_this_tank[n];
 
 	ac->fly.FuelCockPos=aspv->FuelCockPos;
-	if(ac->fly.pModel)												
-		ac->fly.pModel->FrameCount = aspv->FrameCount;				
+	if(ac->fly.pModel)
+		ac->fly.pModel->FrameCount = aspv->FrameCount;
 
 	ac->lasthitter=aspv->lasthitter;
 	ac->weap.Weapons=aspv->Weapons;
@@ -3217,22 +3217,22 @@ void	Replay::RestorePrimaryMIValues(MobileItemPtr ac, LPMIPRIMARYVALUES mipv)
 
 	ac->shape=mipv->shape;
 
-	if (ac->Status.size>=FORMATIONSIZE)							
-	{															
-		FormationItemPtr fip=(FormationItemPtr)ac;				
+	if (ac->Status.size>=FORMATIONSIZE)
+	{
+		FormationItemPtr fip=(FormationItemPtr)ac;
 
 		fip->leader=(FormationItemPtr)Persons2::ConvertPtrUID(mipv->leader);
 
-		if (fip->leader==Persons2::PlayerSeenAC)				
-			fip->leader=Persons2::PlayerGhostAC;				
+		if (fip->leader==Persons2::PlayerSeenAC)
+			fip->leader=Persons2::PlayerGhostAC;
 
 		fip->follower=(FormationItemPtr)Persons2::ConvertPtrUID(mipv->follower);
 
-		if (fip->follower==Persons2::PlayerSeenAC)				
-			fip->follower=Persons2::PlayerGhostAC;				
+		if (fip->follower==Persons2::PlayerSeenAC)
+			fip->follower=Persons2::PlayerGhostAC;
 
 		fip->manoeuvretime=mipv->manoeuvretime;
-	}															
+	}
 
 	if (ac==Persons2::PlayerSeenAC)
 	{
@@ -3312,7 +3312,7 @@ void	Replay::StoreFinalRecordData()
 	Record=FALSE;
 
 	StoreSuperHeaderEnd();
-		
+
 	if (StoreBlockHeader())
 		Record=TRUE;
 
@@ -3332,7 +3332,7 @@ void	Replay::LoadFinalPlaybackData()
 
 	BackupPrefs(false);
 
-	PreScanReplayFile();										
+	PreScanReplayFile();
 
 	if (LoadBlockHeader())
 		Playback=TRUE;
@@ -3350,10 +3350,10 @@ void	Replay::LoadFinalPlaybackData()
 void	Replay::ResetAICount()
 {
 	Art_Int.ACArrayInd=0;
-	Art_Int.MemberListInd = -1;						
-	Art_Int.CollideListInd = 0;						
-	Art_Int.gunstimer=0;							
-	Art_Int.exittimer=0;							
+	Art_Int.MemberListInd = -1;
+	Art_Int.CollideListInd = 0;
+	Art_Int.gunstimer=0;
+	Art_Int.exittimer=0;
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -3366,17 +3366,17 @@ void	Replay::RemoveAllTransients(Bool	totalremove)
 
 	while (temp)
 	{
-		temp->isOwned = 0;									
-		temp->isArmed = 0;									
-		Trans_Obj.AddTransientItemToDeadList(temp,true);	
+		temp->isOwned = 0;
+		temp->isArmed = 0;
+		Trans_Obj.AddTransientItemToDeadList(temp,true);
 
 		temp=temp->nexttrans;
 	}
 
-	if (totalremove)										
+	if (totalremove)
 	{
-		SHAPE.GenerateProbeTrails();								
-		SHAPE.KillVapourStreamDeadList();							
+		SHAPE.GenerateProbeTrails();
+		SHAPE.KillVapourStreamDeadList();
 
 		Trans_Obj.RemoveDeadListFromWorld();
 	}
@@ -3452,7 +3452,7 @@ Bool	Replay::StoreSmkData(LPREPLAYSMOKE smokey,UByteP pointlist)
 					SmokeList[index].LifeTime = npoint->LifeTime;
 					SmokeList[index].FadeTime = npoint->FadeTime;
 					SmokeList[index].KillMe = npoint->KillMe;
-					index++;										
+					index++;
 				}
 			}
 			else
@@ -3464,7 +3464,7 @@ Bool	Replay::StoreSmkData(LPREPLAYSMOKE smokey,UByteP pointlist)
 		while (apoint)
 		{
 			//Save...
-			if (!apoint->KillMe)								
+			if (!apoint->KillMe)
 			{
 				SmokeList[index].x = apoint->trailpoint.gx;
 				SmokeList[index].y = apoint->trailpoint.gy;
@@ -3593,7 +3593,7 @@ void	Replay::MarkBlockBeginning()
 		{
 // if begin mark is after end mark, end mark becomes eof
 
-			if (currblock-1>endmark.blocknum 
+			if (currblock-1>endmark.blocknum
 			|| (currblock-1==endmark.blocknum && replayframecount>endmark.framenum))
 			{
 				RemoveEndMark();
@@ -3687,7 +3687,7 @@ Bool	Replay::SaveBlock()
 		GENERIC_WRITE,
 		FILE_SHARE_WRITE,
 		NULL,
-		CREATE_ALWAYS,	// overwrite any existing file 
+		CREATE_ALWAYS,	// overwrite any existing file
 		FILE_ATTRIBUTE_NORMAL,
 		NULL);
 
@@ -3868,7 +3868,7 @@ void	Replay::DummyCrashSkid()
 
 	if (sac->vel_ <= 0)
 	{
-		_Miles.StopEngine();						
+		_Miles.StopEngine();
 
 		SHAPE.DetatchAllVapourStreams(sac,0);
 		adptr->hasdust = FALSE;
@@ -3972,7 +3972,7 @@ void	Replay::DummyCrashRoll()
 
 	if (sac->vel_ > 0)
 	{
-		if (adptr->RIGHTWINGIN == BS_DEAD)						
+		if (adptr->RIGHTWINGIN == BS_DEAD)
 		{
 			tmproll = sac->roll;
 			if (tmproll < -ANGLES_90Deg)
@@ -3980,7 +3980,7 @@ void	Replay::DummyCrashRoll()
 		}
 		else
 		{
-			if (adptr->LEFTWINGIN == BS_DEAD)						
+			if (adptr->LEFTWINGIN == BS_DEAD)
 			{
 				tmproll = sac->roll;
 				if (tmproll > ANGLES_90Deg)
@@ -3993,9 +3993,9 @@ void	Replay::DummyCrashRoll()
 		SWord	maxangle = ANGLES_170Deg;
 		bool	tipleft = false;
 
-		_Miles.StopEngine();				
+		_Miles.StopEngine();
 
-		SHAPE.DetatchAllVapourStreams(sac,0);			
+		SHAPE.DetatchAllVapourStreams(sac,0);
 		adptr->hasdust = FALSE;
 
 		tmproll = sac->roll;
@@ -4189,9 +4189,9 @@ bool	Replay::ValidReplayFile()
 void	Replay::BeginNewBlock()
 {
 	StoreRealFrameCounts(replayframecount,0,replayframecount-1);
-	StopRecord(true);												
+	StopRecord(true);
 
-	StartRecordFlag=TRUE;										
+	StartRecordFlag=TRUE;
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -4310,8 +4310,8 @@ Bool	Replay::LoadSuperHeaderBeginning()
 	if (!LoadSuperHeaderID())
 		return FALSE;
 
-	if (!LoadSaveGame())												
-		return FALSE;													
+	if (!LoadSaveGame())
+		return FALSE;
 
 	if (!LoadGRRandomList())
 		return FALSE;
@@ -4369,8 +4369,8 @@ Bool	Replay::StoreSuperHeaderBeginning()
 	if (!StoreSuperHeaderID())
 		return FALSE;
 
-	if (!StoreSaveGame())												
-		return FALSE;													
+	if (!StoreSaveGame())
+		return FALSE;
 
 	if (!StoreGRRandomList())
 		return FALSE;
@@ -4442,9 +4442,9 @@ Bool	Replay::StoreBlockHeader()
 	ULong size3,size4;
 
 	ResetAICount();
-	_DPlay.ResetDeltas();											
+	_DPlay.ResetDeltas();
 
-	SetWaypointData();											
+	SetWaypointData();
 
 	if (!StoreHeaderID())
 		return FALSE;
@@ -4473,11 +4473,11 @@ Bool	Replay::StoreBlockHeader()
 	if (!StoreItemAnims())
 		return FALSE;
 
-	if (!StoreAAAList())												
-		return FALSE;												  	
+	if (!StoreAAAList())
+		return FALSE;
 
-	if (!StoreArmedTransients())								
-		return FALSE;											
+	if (!StoreArmedTransients())
+		return FALSE;
 
 	if (!StoreDeathMoveState())
 		return FALSE;
@@ -4550,9 +4550,9 @@ Bool	Replay::LoadBlockHeader()
 	ULong n;
 
 	ResetAICount();
-	_DPlay.ResetDeltas();											  
+	_DPlay.ResetDeltas();
 
-	SetWaypointData();												
+	SetWaypointData();
 
 	headmems[0][currblock]=playbackfilepos;
 
@@ -4572,7 +4572,7 @@ Bool	Replay::LoadBlockHeader()
 // before new smoke trails etc can be launched. The only time this should not happen is
 // during normal playback in which case smoke trail stuff is not done
 
-	if (DoSmokeTrailStuff)		
+	if (DoSmokeTrailStuff)
 	{
 		RemoveAllTransients();
 		Land_Scape.WipeSmokeClouds();
@@ -4580,12 +4580,12 @@ Bool	Replay::LoadBlockHeader()
 
 	if (!LoadRandomList())
 		return FALSE;
-			   
+
 	if (!LoadGamePrefs())
 		return FALSE;
 
-	if (DoSmokeTrailStuff)		
-		ResetItemAnim();		
+	if (DoSmokeTrailStuff)
+		ResetItemAnim();
 
 	if (!LoadDeadItems())
 		return FALSE;
@@ -4599,11 +4599,11 @@ Bool	Replay::LoadBlockHeader()
 	if (!LoadItemAnims())
 		return FALSE;
 
-	if (!LoadAAAList())									
-		return FALSE;									
+	if (!LoadAAAList())
+		return FALSE;
 
-	if (!LoadArmedTransients())							
-		return FALSE;									
+	if (!LoadArmedTransients())
+		return FALSE;
 
 	if (!LoadDeathMoveState())
 		return FALSE;
@@ -4670,7 +4670,7 @@ Bool	Replay::LoadBlockHeader()
 
 	if (thisblockstartframe!=0)
 	{
-		ReplayFlag=RF_SKIPFRAMES;			
+		ReplayFlag=RF_SKIPFRAMES;
 		framestoskip=thisblockstartframe;
 	}
 
@@ -4782,7 +4782,7 @@ bool	Replay::LoadSaveGame()
 			retval=FALSE;
 
 	}
-	else 
+	else
 		retval=FALSE;
 
 	delete savedata;
@@ -4847,7 +4847,7 @@ Bool	Replay::StoreSaveGame()
 			{
 				retval=TRUE;
 			}
-			
+
 			delete [] save;
 		}
 		CloseHandle(savegame);
@@ -5028,13 +5028,13 @@ void	Replay::PreScanReplayFile()
 		}
 		n++;
 	}
-	
+
 	prescan=false;
-	
+
 // should never happen, but best to be sure
 
 	if (!TotalFrames)
-		TotalFrames=1; 
+		TotalFrames=1;
 
 	if (!RestorePosition)
 	{
@@ -5069,7 +5069,7 @@ void	Replay::SkipToPreviousMark()
 10:if position is up to 1 sec after begin mark skip to beginning
 */
 
-	if ((currblock-1)<beginmark.blocknum 
+	if ((currblock-1)<beginmark.blocknum
 	|| ((currblock-1)==beginmark.blocknum && replayframecount<=beginmark.framenum+1))
 	{
 		SkipToBeginning();
@@ -5385,7 +5385,7 @@ bool	Replay::LoadFMMass(AirStrucPtr ac)
 	if (!prescan)
 		ac->fly.pModel->Mass=m;
 
-	return true; 
+	return true;
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -5452,15 +5452,15 @@ void	Replay::InitPosBuffer()
 	PosBuffer.SetTempCurr();
 
 	SWord num=POSBSIZE-1;
-	SLong vx=Persons2::PlayerGhostAC->vel_x; 
-	SLong vy=Persons2::PlayerGhostAC->vel_y; 
-	SLong vz=Persons2::PlayerGhostAC->vel_z; 
+	SLong vx=Persons2::PlayerGhostAC->vel_x;
+	SLong vy=Persons2::PlayerGhostAC->vel_y;
+	SLong vz=Persons2::PlayerGhostAC->vel_z;
 
-	SLong wx, wy, wz;												
-	MMC.Sky.GetWind(Persons2::PlayerGhostAC->World.Y, wx, wy, wz);	
-	vx += wx;														
-	vy += wy;														
-	vz += wz;														
+	SLong wx, wy, wz;
+	MMC.Sky.GetWind(Persons2::PlayerGhostAC->World.Y, wx, wy, wz);
+	vx += wx;
+	vy += wy;
+	vz += wz;
 
 	COORDS3D	pos;
 	COORDS3D	acpos=Persons2::PlayerGhostAC->World;
@@ -5510,10 +5510,10 @@ bool	Replay::StorePrevPosBuffer()
 //------------------------------------------------------------------------------
 bool	Replay::LoadPrevPosBuffer()
 {
-	PosBuffer.InitBuffer();									
+	PosBuffer.InitBuffer();
 
-	for (int n=0;n<POSBSIZE-1;n++)							
-		PosBuffer.UpdateNext();								
+	for (int n=0;n<POSBSIZE-1;n++)
+		PosBuffer.UpdateNext();
 
 	PosBuffer.SetTempCurr();
 
@@ -5805,10 +5805,10 @@ bool	Replay::LoadTimeOfDay()
 	return true;
 }
 
-void	Replay::SetTimeOfDay(int time)					
-{														
-	inst->timeofday=time;								
-}														
+void	Replay::SetTimeOfDay(int time)
+{
+	inst->timeofday=time;
+}
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		StoreCampaignStruc
@@ -5854,7 +5854,7 @@ void	Replay::BackupGRRandomList()
 bool	Replay::LoadGRRandomList()
 {
 	UWord RndPacket [RNDPACKETSIZE],n;
-	
+
 	if (!ReplayRead((UByte*)&RndPacket,RNDPACKETSIZE*sizeof(UWord)))
 		return FALSE;
 
@@ -6013,8 +6013,8 @@ bool	Replay::StoreArmedTransients()
 			at.Pos.Y=temp->World.Y;
 			at.Pos.Z=temp->World.Z;
 
-			at.hdg=temp->hdg;									
-			at.pitch=temp->pitch;								
+			at.hdg=temp->hdg;
+			at.pitch=temp->pitch;
 
 			at.vel_x=temp->vel_x;
 			at.vel_y=temp->vel_y;
@@ -6024,10 +6024,10 @@ bool	Replay::StoreArmedTransients()
 			at.movecode=(UByte)(temp->movecode);
 			at.launcher=(UWord)(temp->Launcher->uniqueID.count);
 
-			if (temp->Status.deadtime)	at.deadtime = 1;		
+			if (temp->Status.deadtime)	at.deadtime = 1;
 			else at.deadtime=0;
-			at.transrandom = temp->TransRandom;					
-			at.trailindex = 0;									
+			at.transrandom = temp->TransRandom;
+			at.trailindex = 0;
 
 			hitstrength = 0;
 			ShapeDescPtr	sdptr = SHAPESTUFF.GetShapePtr(temp->shape);
@@ -6036,23 +6036,23 @@ bool	Replay::StoreArmedTransients()
 				MissileAnimData*	adptr = (MissileAnimData*)temp->Anim;
 				hitstrength = adptr->hitstrength;
 			}
-			else												
-			{													
-				if (sdptr->AnimDataSize == MOVEGUNANIM)			
-				{												
+			else
+			{
+				if (sdptr->AnimDataSize == MOVEGUNANIM)
+				{
 					MoveGunAnimData*	adptr = (MoveGunAnimData*)temp->Anim;
 					at.trailindex = adptr->weaponlaunchers[0].hdg;
-				}												
-			}													
-			
+				}
+			}
+
 			at.shape = temp->shape;
 			at.strength=hitstrength;
 
 			if (!ReplayWrite((UByte*)&at,sizeof(ArmedTransient)))
 				return FALSE;
 
-			if (!SHAPE.WriteReplayGroup(temp))						
-				return false;										
+			if (!SHAPE.WriteReplayGroup(temp))
+				return false;
 		}
 		temp=temp->nexttrans;
 	}
@@ -6076,8 +6076,8 @@ bool	Replay::LoadArmedTransients()
 
 	bool end=false;
 	ArmedTransient at;
-	UByte	noInGroup;													
-	ReplayGroupInfo	tmpGrpInfo;											
+	UByte	noInGroup;
+	ReplayGroupInfo	tmpGrpInfo;
 
 	while (!end)
 	{
@@ -6088,20 +6088,20 @@ bool	Replay::LoadArmedTransients()
 		if (at.shape==0)
 			break;
 
-		if (!ReplayRead(&noInGroup,sizeof(UByte)))						
+		if (!ReplayRead(&noInGroup,sizeof(UByte)))
 			return FALSE;
 
 		if (DoSmokeTrailStuff)
 		{
 // only process if block jump
 
-			if (!Trans_Obj.LaunchReplayWeapon((UByte*)&at,noInGroup))	
-				return false;											
+			if (!Trans_Obj.LaunchReplayWeapon((UByte*)&at,noInGroup))
+				return false;
 		}
 		else
 		{
 // skip group info...
-			while (noInGroup)											
+			while (noInGroup)
 			{
 				if (!ReplayRead(UByteP(&tmpGrpInfo),sizeof(ReplayGroupInfo)))
 					return FALSE;
@@ -6184,8 +6184,8 @@ void	Replay::Rewind_X_Frames(ULong num)
 	bool ok=true;
 
 // while there are more frames to rewind than there are in current block minus any
-// unviewable frame at beginning then rewind to previous block, set the position to 
-// end of block minus and unviewable frames and reduce number left to rewind by 
+// unviewable frame at beginning then rewind to previous block, set the position to
+// end of block minus and unviewable frames and reduce number left to rewind by
 // number of frames jumped minus number of unviewable frames
 
 	while (num>replayframecount-markers[0][currblock-1])
@@ -6205,7 +6205,7 @@ void	Replay::Rewind_X_Frames(ULong num)
 
 // add skip to beginning of previous block
 
-			currblock--; 
+			currblock--;
 
 			skip+=(numframes[currblock-1]*n);
 			skip+=headlength[currblock-1];
@@ -6551,7 +6551,7 @@ bool	Replay::StoreSagGlobs()
 
 		if (!ReplayWrite((UByte*)&sags,sizeof(SAGGLOBS)))
 			return false;
-	}	
+	}
 
 	if (!ReplayWrite((UByte*)&Persons3::SagExpansionCounter::totalexpanded,sizeof(int)))
 		return false;
@@ -6627,7 +6627,7 @@ bool	Replay::LoadACArray()
 		ArtInt::ACArray[index]=NULL;
 	}
 
-	do 
+	do
 	{
 		if (!ReplayRead((UByte*)&index,sizeof(int)))
 			return false;

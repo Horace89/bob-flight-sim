@@ -17,8 +17,7 @@
 #include	"flyinit.h"
 #include	"ranges.h"
 
-class CString;
-#include "CString.h"
+#include "cstring.h"
 #include "batnode.h"
 #include "package.h"
 #include "savegame.h"

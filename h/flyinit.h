@@ -57,7 +57,7 @@ enum	PlaneTypeSelect											//RDH 06Aug96
 /**/		PT_VEHCOUNT=+PT_BADMAX- +PT_VEHICLES,
 
 		};
-#define SquadSelect PlaneTypeSelect
+typedef PlaneTypeSelect SquadSelect;
 //DEADCODE DAW 18/11/99 enum	SquadSelect	 		
 //DEADCODE DAW 18/11/99 //The five fully populated flyable blue squadrons must come first in this list,
 //DEADCODE DAW 18/11/99 //then non-flyable blues, then flyable reds, then non-flyable reds
@@ -110,7 +110,7 @@ enum	tAggressionLevel	{
 
 enum AcTactics {WELDEDWING, TOPCOVER, SWORDANDSHIELD, LOOSEDEUCE};
 
-#define	MAX_NUM_AC_IN_SQUADRON 19
+const size_t	MAX_NUM_AC_IN_SQUADRON = 19;
 
 enum	tFirstEncounterTactics
 			{

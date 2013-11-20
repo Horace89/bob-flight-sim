@@ -12,6 +12,11 @@
 #endif // _MSC_VER >= 1000
 // SControl.h : header file
 //
+#include "rdialog.h"
+#include "..\mfc\resource.h"
+#include "rstatic.h"
+#include "redtbt.h"
+#include "rbutton.h"
 #ifndef AXIS_USES
 #define	AXIS_USES
 enum	AxisUses		{	AU_UNASSIGNED=-1,

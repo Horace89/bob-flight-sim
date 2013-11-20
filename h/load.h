@@ -19,10 +19,10 @@
 //	CString wildcard,					//filename search string
 //	CString& defaultandreturn,			//default filename and selected filename
 //	LoadSaveDescriminate& loadsavediscriminator=loadsaveallowall,
-//										//AllowFile() called for each selected file 
+//										//AllowFile() called for each selected file
 //		CWnd* pParent = NULL);			//std
 //
-//dialresource 
+//dialresource
 //	Allows extra text fields to be added and dialog to be resized.
 //	LOAD must have:
 //	CRButton	m_IDC_FILEOK;
@@ -33,7 +33,7 @@
 //	CRListBox	m_IDC_RLISTBOXFILE;
 //	CREdit		m_IDC_SAVENAME;
 //initialstate
-//	The active or only dialog panel should be	LSD_LOAD or LSD_SAVE 
+//	The active or only dialog panel should be	LSD_LOAD or LSD_SAVE
 //	Any other panel should be LSD_LOAD_DESELECT or LSD_SAVE_DESELECT
 //loadsavediscriminator
 //	This class can be subclassed to provide checking for priority and
@@ -134,4 +134,3 @@ protected:
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_LOAD_H__11348503_787F_11D2_9FD5_D0EC00C10000__INCLUDED_)
-

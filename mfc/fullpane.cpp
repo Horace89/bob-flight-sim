@@ -298,7 +298,7 @@ Bool RFullPanelDial::QuickViewInit()
 
 	int	ilch[8][2]={{0}};
 	int initindch=0;
-	for (wave=0;wave<8;wave++)
+	for (int wave=0;wave<8;wave++)
 		for (int grp=0;grp<3;grp++)
 //DeadCode AMM 10Aug00 			if (CSQuick1::*quickdef.line[1][wave][grp].flights)
 			if (CSQuick1::quickdef.line[0][wave][grp].flights)	//AMM 10Aug00
@@ -371,7 +371,7 @@ Bool RFullPanelDial::StartFlying()
 		flybox=MakeTopDialog(PLACEMENT,DialBox(OverLay.loader_art,new Rtestsh1(NULL,fIsRunning),EDGES_NOSCROLLBARS)));
 
 #undef PLACEMENT 
-	localnote=(OnFlyingClosed);
+	localnote=(&RFullPanelDial::OnFlyingClosed);
 	return TRUE;
 }
 
@@ -1892,7 +1892,8 @@ Bool	RFullPanelDial::TitleInit()
 
 Bool	RFullPanelDial::SetUpHotShot(FullScreen*&fs)
 {
-	for (int i=0;CSQuick1::quickmissions[i].titlename!=IDS_CONFIGIGNORED;i++)
+	int i;
+	for (i=0;CSQuick1::quickmissions[i].titlename!=IDS_CONFIGIGNORED;i++)
 	{}
 	CSQuick1::currquickmiss=i;
 	CSQuick1::quickdef=CSQuick1::quickmissions[i]; //FB strike

@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -63,7 +63,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 */
 
 //Filename       persons.cpp
-//System         
+//System
 //Author         Jim Taylor
 //Date           Tue 5 Dec 1995
 //Description    New 'persons' to process new battlefield format.
@@ -80,6 +80,8 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 	#include	"dosdefs.h"
 	#include	"files.g"
 	#include	"myerror.h"
+        #undef assert
+        #include <assert.h>
 
 	#include	"worldinc.h"
 	#include	"bfnumber.h"
@@ -124,12 +126,12 @@ int inline operator!=(char a,TokenCode b) {return (int)a!=(int)b;}
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 
 
-extern  BAD_RV; //=0x80000000;
+//x0r extern  BAD_RV; //=0x80000000;
 //ULong GR_FriendlyChargeType00;									//JIM 09Apr96
 //extern Replay _Replay;
 //extern DPlay _DPlay;												//AMM 01Jun98
 
-UniqueIDBand	Persons2::uidbandbase[UIDTABLESIZE]= 
+UniqueIDBand	Persons2::uidbandbase[UIDTABLESIZE]=
 {
 		PilotedAcBAND,
 		WayPointBAND,
@@ -188,15 +190,15 @@ UniqueIDBand	Persons2::uidbandbase[UIDTABLESIZE]=
 		IllegalBAND,
 //array must be filled for getband to work, rdh
 		IllegalBAND,
-		IllegalBAND,			
-		IllegalBAND,			
-		IllegalBAND,			
-		IllegalBAND,			
-		IllegalBAND,			
-		IllegalBAND,			
-		IllegalBAND,			
-		IllegalBAND,			
-		IllegalBAND		
+		IllegalBAND,
+		IllegalBAND,
+		IllegalBAND,
+		IllegalBAND,
+		IllegalBAND,
+		IllegalBAND,
+		IllegalBAND,
+		IllegalBAND,
+		IllegalBAND
 };
 
 UniqueID		Persons2::uidbandmax[UIDTABLESIZE];
@@ -214,7 +216,7 @@ CON	Persons2::Persons2(WorldStuff* world,ViewPoint* vp)
 	inst3d=NULL;
 	viewpoint=vp;
 //DEADCODE JIM 17/03/99 	eventloglist=NULL;
-	myworld=world;	
+	myworld=world;
 	if (world)
 		pItem=world->pItem;
 	rootuidnode = NULL;
@@ -228,9 +230,9 @@ ItemBase&		Persons2::ConvertPtrUID(UniqueID tmpUID)
 {
 	if (tmpUID==0)
 		return *(ItemBase*)NULL;
-#ifndef	__BCPLUSPLUS__
+//#ifndef	__BCPLUSPLUS__
 	assert (tmpUID>0 && tmpUID<=IllegalSepID);
-#endif
+//#endif
 //DEADCODE JIM 24/01/00 	if (tmpUID==0x107)		//DEBUG TEST FOR SPECIFIC VALUE
 //DEADCODE JIM 24/01/00 		tmpUID=tmpUID;
 	return(pItem[tmpUID][0]);
@@ -358,11 +360,11 @@ int	Persons2::getbandnumfromUID(UniqueID	tmpUID)
 //Author		Jim Taylor
 //Date			Tue 18 Jun 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //;;------------------------------------------------------------------------------
@@ -417,11 +419,11 @@ void Persons2::InitSetPiece()
 //Author		Jim Taylor
 //Date			Tue 5 Dec 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //void Persons2::LoadSetPiece(WorldStuff *worldptr, FileNum filenumber)
@@ -451,7 +453,7 @@ void Persons2::InitSetPiece()
 //------------------------------------------------------------------------------
 void Persons2::LoadSetPiece(WorldStuff *worldptr)
 {
-	static go=0;
+	static int go=0;
 	SENT_REQ=FALSE;
 //DEADCODE DAW 08/03/00 	TruckLog=TargLog=PlayerLog=NULL;
 	FileNum	filelist;
@@ -479,7 +481,7 @@ void Persons2::LoadSetPiece(WorldStuff *worldptr)
 				fp=fopen("grcheckr.txt","at");
 			else if (_Replay.Playback)
 				fp=fopen("grcheckp.txt","at");
-			else 
+			else
 				fp=fopen("grcheckn.txt","at");
 
 			bool	finished=false;
@@ -524,9 +526,9 @@ void Persons2::LoadSetPiece(WorldStuff *worldptr)
 //
 //Description	NOW IN PERSONS3.CPP
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 FileNum Persons4::FindCommsNextBf (Persons2::BattlefieldType& bfctrl)		//ARM 27Sep96
@@ -541,13 +543,13 @@ FileNum Persons4::FindCommsNextBf (Persons2::BattlefieldType& bfctrl)		//ARM 27S
 //
 //Description	Loads 1 battlefield
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Persons2::LoadSubPiece(WorldStuff *worldptr, FileNum filenumber,int bfindex,JustScanning scanning)
-{  
+{
 	if (bfindex<LOADEDBFS)
 		loadedBF[bfindex]=filenumber;
 
@@ -555,13 +557,13 @@ void Persons2::LoadSubPiece(WorldStuff *worldptr, FileNum filenumber,int bfindex
 string
 	bfieldptr = (string)getdata(bfield_file);
 
-	while (*(bfieldptr++));
+	while (*(bfieldptr++));  //Scan for end of string
 	LoadSubPiece(worldptr,bfieldptr,bfindex,scanning);
 }
 
 
 void Persons2::LoadSubPiece(WorldStuff *worldptr, string& bfieldptr,int bfindex,JustScanning scanning)
-{  
+{
 	int	oldbfindex=currbfindex;
 	currbfindex=bfindex;
 //	if (bfindex<LOADEDBFS)
@@ -589,11 +591,11 @@ void Persons2::LoadSubPiece(WorldStuff *worldptr, string& bfieldptr,int bfindex,
 //Author		Jim Taylor
 //Date			Tue 5 Dec 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Persons2::processbfieldtoplevel(string& bfieldptr)
@@ -654,8 +656,9 @@ UniqueID	lastsupergroup=currsupergroup;
 				currsupergroup=(UniqueID)constructvalue(bfieldptr,TRUE).Evaluate();
 				AddSGToList(currsupergroup);
 			break;
-	 		case T_inform:	
-				numinform=make_itemgroupcount(constructvalue(bfieldptr));
+	 		case T_inform:
+	 		    {EventVal tmp = constructvalue(bfieldptr);
+				numinform=make_itemgroupcount(tmp);}
 			break;
 			case T_itemS:		toplevel_itemS(bfieldptr,(numinform>=0));				break;
 			case T_itemgrp:		toplevel_itemgrp(bfieldptr);			break;
@@ -784,11 +787,11 @@ void	Persons2::toplevel_gndgrp(string	&bfieldptr)
 //Author		Jim Taylor
 //Date			Tue 5 Dec 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Persons2::toplevel_airgrp(string	&bfieldptr)
@@ -870,11 +873,11 @@ int	loopcount=getloopcount(bfieldptr);
 //Author		Jim Taylor
 //Date			Tue 5 Dec 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 UniqueID	Persons2::toplevel_route(string	&bfieldptr)
@@ -898,11 +901,11 @@ int	loopcount=getloopcount(bfieldptr);
 			{
 UniqueID		tmpUID=toplevel_route(bfieldptr);
 WayPointPtr		tmpwp2=(WayPointPtr)ConvertPtrUID(tmpUID);
-				assert((tmpwp2),"nested route must exist");
+				bobassert((tmpwp2),"nested route must exist");
 				if ((int)firstwp!=(int)IllegalSepID)
 				{
 WayPointPtr			tmpwp1=(WayPointPtr)ConvertPtrUID(chainwp);
-					assert((tmpwp1),"nested route must exist");
+					bobassert((tmpwp1),"nested route must exist");
 					tmpwp1->next=tmpwp2;
 					while (tmpwp1->next)
 						tmpwp1=tmpwp1->next;
@@ -1071,8 +1074,8 @@ void		Persons2::midlevel_event(string& bfieldptr,info_event& I)
 			default:
 					_Error.EmitSysErr("Type of symbol not valid in Events mid level");
 			}
-		I.allsetvals=I.usedsetvals;	
-		
+		I.allsetvals=I.usedsetvals;
+
 	}
 	else
 		I.bfields=constructvalue(bfieldptr);
@@ -1085,9 +1088,9 @@ void		Persons2::midlevel_event(string& bfieldptr,info_event& I)
 //
 //Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 
@@ -1120,11 +1123,11 @@ int	loopcount=getloopcount(bfieldptr);
 //Author		Jim Taylor
 //Date			Tue 5 Dec 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Persons2::toplevel_setval(string	&bfieldptr)
@@ -1146,9 +1149,9 @@ int	loopcount=getloopcount(bfieldptr);
 //
 //Description	chain down to get globallocations table index and get that.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SLong	Persons2::evaluateglobvar(string &bfieldptr,FormationIndex fi)
@@ -1371,11 +1374,11 @@ EventVal	Persons2::constructvalue(string &bfieldptr,Bool isform)
 //Author		Jim Taylor
 //Date			Mon 16 Jun 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 EventVal Persons2::constructangles(string& bfieldptr)
@@ -1467,9 +1470,9 @@ int	loopcount=getloopcount(bfieldptr);
 //
 //Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 EventVal Persons2::constructposition(string& bfieldptr)
@@ -1538,7 +1541,7 @@ WorldExpr* Persons2::constructposition(string& bfieldptr,WorldExpr*	W)
 				||	(	W->rotate.complex
 					&&	(*bfieldptr==T_icpt || *bfieldptr==T_range || *bfieldptr==T_rangepc)
 				)	)
-				
+
 			{
 				WorldExpr*	t=new WorldExpr;
 				*t=*W;
@@ -1678,7 +1681,7 @@ WorldExpr* Persons2::constructposition(string& bfieldptr,WorldExpr*	W)
 //
 //Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void		Persons2::throwtree(string& bfieldptr)
@@ -1721,11 +1724,11 @@ int		count=(*(bfieldptr++));
 //Author		Jim Taylor
 //Date			Wed 6 Dec 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int	Persons2::getloopcount(string & bfieldptr)
@@ -1745,11 +1748,11 @@ int	Persons2::getloopcount(string & bfieldptr)
 //Author		Jim Taylor
 //Date			Wed 31 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	Persons2::lowlevel_squadron(string& bfieldptr,info_airgrp& I)
@@ -1786,7 +1789,7 @@ void	Persons2::AddSGToList(UniqueID newSGT)
 {
 	if (justscanning)
 		return;
-	if (!newSGT) 
+	if (!newSGT)
 		return;
 	for (int i=0;i<LOADEDSGS;i++)
 		if (loadedSG[i]==newSGT)

@@ -157,7 +157,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 		c=2*(dy-dx);
 		incr1=2*c;
 		D=incr1+dx;
-		for (i=0;i<xend;i++)
+		for (int i=0;i<xend;i++)
 		{
 			++x;
 			--x1;

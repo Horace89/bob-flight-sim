@@ -61,7 +61,6 @@ questions about this file may be asked at bob@rowansoftware.com a
 better place to ask is http://www.simhq.com/ or even :-
 http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum=Battle+of+Britain&number=40&DaysPrune=20&LastLogin=
 */
-
 #include "stdafx.h"
 #include "_mfc.h"
 

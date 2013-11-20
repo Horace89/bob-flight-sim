@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -91,8 +91,8 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include "sagmove.h"
 #define	 sagmove_REQUIRED	SAGairgrp:info_airgrp
 #define PARAMS	int p, int s
-#include "sagmove.h"  
-#include "mymath.h"	  
+#include "sagmove.h"
+#include "mymath.h"
 #include "animdata.h"
 #include "shpinstr.h"
 #include "savegame.h"
@@ -124,7 +124,7 @@ extern RequiredBankDataElement 	CombatReqBankData[];
 // Date:		10/09/00
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 bool	ItemBase::OverFrance(Coords3D& w)
@@ -138,7 +138,7 @@ bool	ItemBase::OverFrance(Coords3D& w)
 // Date:		03/12/99
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	SAGAirstruc::MoveAllSAGs(WorldStuff& world)
@@ -176,7 +176,7 @@ void	SAGAirstruc::MoveAllSAGs(WorldStuff& world)
 	}
 
 	if ((timeofday & 511) == 0)
-		for (i=SagBAND;i!=SagBANDEND;i++)
+		for (int i=SagBAND;i!=SagBANDEND;i++)
 		{
 			SAGAirstruc* as=Persons2::ConvertPtrUID(UniqueID(i));
 			if (as)
@@ -193,7 +193,7 @@ void	SAGAirstruc::MoveSAG()
 	AutoMoveCodeTypeSelect lastmovecode=movecode;
 	switch (movecode)
 	{
-	case	AUTOSAG_WAITTAKEOFF:	SAGMovementWaitTakeOff();		break;	
+	case	AUTOSAG_WAITTAKEOFF:	SAGMovementWaitTakeOff();		break;
 	case	AUTOSAG_TAKEOFF:		SAGMovementTakeOff();			break;
 	case	AUTOSAG_FOLLOWWP:		SAGMovementFollowWP();			break;
 	case	AUTOSAG_FOLLOWWPHOME:	SAGMovementFollowWP();			break;
@@ -248,8 +248,8 @@ void	SAGAirstruc::DecideSAG()
 	assert(((movecode &-2)!=AUTOSAG_TRACKEXPFOLLOW) == (fly.expandedsag==NULL));
 	AutoMoveCodeTypeSelect lastmovecode=movecode;
 
-	if(		(movecode != AUTOSAG_TRACKEXPFOLLOW) 
-		&&	(movecode != AUTOSAG_TRACKEXPCOMBAT) 
+	if(		(movecode != AUTOSAG_TRACKEXPFOLLOW)
+		&&	(movecode != AUTOSAG_TRACKEXPCOMBAT)
 		&&	(movecode != AUTOSAG_DESTROYED)		)
 	{
 		GroupItterator gi(shape,Anim);	//Check elements are turned on
@@ -273,7 +273,7 @@ void	SAGAirstruc::DecideSAG()
 
 	switch (movecode)
 	{
-	case	AUTOSAG_WAITTAKEOFF:	SAGDecisionWaitTakeOff();			break;	
+	case	AUTOSAG_WAITTAKEOFF:	SAGDecisionWaitTakeOff();			break;
 	case	AUTOSAG_TAKEOFF:		SAGDecisionTakeOff();				break;
 	case	AUTOSAG_FOLLOWWP:		SAGDecisionFollowWP();				break;
 	case	AUTOSAG_FOLLOWWPHOME:	SAGDecisionFollowWP();				break;
@@ -292,14 +292,14 @@ void	SAGAirstruc::DecideSAG()
 	}
 	assert(((movecode &-2)!=AUTOSAG_TRACKEXPFOLLOW) == (fly.expandedsag==NULL));
 	lastmovecode=movecode;
-	
+
 	if(		(movecode != AUTOSAG_REFUELLING)
-		&&	(movecode != AUTOSAG_DESTROYED)	
-		&&	(movecode != AUTOSAG_DEATHGLIDE)	
+		&&	(movecode != AUTOSAG_DESTROYED)
+		&&	(movecode != AUTOSAG_DEATHGLIDE)
 		&&	(movecode != AUTOSAG_LAST)	)
 		if((movecode == AUTOSAG_COMBAT) || (ai.attacker))
 			TryToExpandSag(true);
-		else 
+		else
 			TryToExpandSag(false);
 
 	assert(((movecode &-2)!=AUTOSAG_TRACKEXPFOLLOW) == (fly.expandedsag==NULL));
@@ -308,7 +308,7 @@ void	SAGAirstruc::DecideSAG()
 //DEADCODE AMM 24/02/00 		//This current test is very crude
 //DEADCODE AMM 24/02/00 		//need much more refined ones
 //DEADCODE AMM 24/02/00 		PlaneTypeSelect actype=classtype->planetext;
-//DEADCODE AMM 24/02/00 		int factor1=4;	//change this to represent different scenarios 
+//DEADCODE AMM 24/02/00 		int factor1=4;	//change this to represent different scenarios
 //DEADCODE AMM 24/02/00 						//eg close to player/bomber/under attack/far from player
 //DEADCODE AMM 24/02/00 						//also need to keep a check on total expanded a/c<256
 //DEADCODE AMM 24/02/00 		if (	(Persons3::sagexpcounts[actype].numactive)*factor1
@@ -316,7 +316,7 @@ void	SAGAirstruc::DecideSAG()
 //DEADCODE AMM 24/02/00 		{	//over 2/3 available aircraft used up excluding this flight
 //DEADCODE AMM 24/02/00 			//If this flight is all in formation then we can re-compact it
 //DEADCODE AMM 24/02/00 			ExpandSag(false);
-//DEADCODE AMM 24/02/00 
+//DEADCODE AMM 24/02/00
 //DEADCODE AMM 24/02/00 		}
 //DEADCODE AMM 24/02/00 	}
 }
@@ -468,7 +468,7 @@ void AirStruc::PreExpandSags(int baseSAGshape)
 	{
 		for(int ac = PT_BRIT_FLYABLE; ac <= PT_GER_NONFLY; ac++)
 			if(Persons3::sagexpcounts[ac].numavailable - Persons3::sagexpcounts[ac].numactive < 16)
-				for(i = 0; i < ArtInt::ACARRAYSIZE; i++)
+				for(int i = 0; i < ArtInt::ACARRAYSIZE; i++)
 					if(array[i])
 					{
 						PlaneTypeSelect actype = MergeTypes(array[i]->classtype->planetext);
@@ -482,7 +482,7 @@ void AirStruc::PreExpandSags(int baseSAGshape)
 					}
 
 		int closesti = -1;
-		for(i = 0; i < ArtInt::ACARRAYSIZE; i++)
+		for(int i = 0; i < ArtInt::ACARRAYSIZE; i++)
 			if(array[i])
 			{
 				if((closesti == -1) || (dist2[i] < dist2[closesti]))
@@ -497,7 +497,7 @@ void AirStruc::PreExpandSags(int baseSAGshape)
 				for(AirStrucPtr ld = array[closesti]->fly.expandedsag; ld; ld = ld->fly.nextflight)
 					for(AirStrucPtr ac = ld; ac; ac = ac->Follower())
 					{
-						const COMBATRADIUS = 50000;
+						const int COMBATRADIUS = 50000;
 
 						mobileitem::currworld->RemoveFromWorld(ac);		//RJS 27Oct00
 
@@ -575,10 +575,10 @@ void	info_grndgrp::MoveConvoySAGs()
 // Date:		30/10/00
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
-int		NodeData::GroundVisible(item* trg,int* failedspotter)	
+int		NodeData::GroundVisible(item* trg,int* failedspotter)
 {return GroundVisible(trg->World,failedspotter); }
 int		NodeData::GroundVisible(Coords3D& trg,int* failedspotter)
 {
@@ -633,7 +633,7 @@ struct	GroundDetection
 // Date:		10/03/00
 // Author:		DAW
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 struct RAFDetectRAF:GroundDetection
@@ -672,7 +672,7 @@ struct RAFDetectRAF:GroundDetection
 // Date:		10/03/00
 // Author:		DAW
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 struct LWDetectRAF:GroundDetection
@@ -701,7 +701,7 @@ struct LWDetectRAF:GroundDetection
 		{
 			if (Todays_Packages[p].raidnumentries[re].detector==Profile::NOWLOST)
 				Todays_Packages[p][s].squaddetected=false;
-//DeadCode JIM 12Nov00 			
+//DeadCode JIM 12Nov00
 //DeadCode JIM 12Nov00 				Todays_Packages[p][s].playercansee=false;
 		}
 		return rv;
@@ -712,7 +712,7 @@ struct LWDetectRAF:GroundDetection
 // Date:		10/03/00
 // Author:		DAW
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 struct LWDetectLW:GroundDetection
@@ -751,7 +751,7 @@ struct LWDetectLW:GroundDetection
 		}
 		if (unseen)
 			rv=true;
-		
+
 		Todays_Packages[p][s].playercansee=true;
 		Todays_Packages[p][s].squaddetected=true;	//thios is so map always shows as active.
 		if (as->target.Evaluate()!=ENABLE_COMPLEX_VAL && as->target.Evaluate()!=0)									//JIM 8Oct00
@@ -783,15 +783,15 @@ struct LWDetectLW:GroundDetection
 				Todays_Packages[p].raidnumentries[re].prevpositions[2].Y=0;
 
 				if (re && Todays_Packages[p].raidnumentries[0].raidnum)
-				{		
-				
+				{
+
 				}//	Node_Data.intel.AddMessage(IntelMsg::HIGH_SPOTTING_WOMAN,SCRIPT_RAIDSPLITS ,Todays_Packages[p][s].instance,Todays_Packages[p][s].instance);
 				else
 				{
 					//ROD: JUST HERE WE WANT TO AUTO-LAUNCH A RESPONSE (First place of 2)
 					info_waypointPtr wp=Persons2::ConvertPtrUID(as->wpref);
 					if (	(Todays_Packages[p][s].method<Profile::AM_ESCORTTYPES && wp->uid!=-SGR_WPP_BombRendezvous)
-						||	(Todays_Packages[p][s].method>=Profile::AM_ESCORTTYPES && wp->uid!=-SGR_WPP_EscRendezvous)	
+						||	(Todays_Packages[p][s].method>=Profile::AM_ESCORTTYPES && wp->uid!=-SGR_WPP_EscRendezvous)
 						)
 						if (!Todays_Packages[p].raidnumentries[re].raidintercepted)
 							RAFDirectivesResults::SetRAFIntercept(p,re,false);
@@ -802,7 +802,7 @@ struct LWDetectLW:GroundDetection
 		}
 //DeadCode JIM 9Nov00 		else
 //DeadCode JIM 9Nov00 			Todays_Packages[p][s].squaddetected=false;
-//DeadCode JIM 9Nov00 
+//DeadCode JIM 9Nov00
 		return rv;
 }	};
 //////////////////////////////////////////////////////////////////////
@@ -811,12 +811,12 @@ struct LWDetectLW:GroundDetection
 // Date:		10/03/00
 // Author:		DAW
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 struct RAFDetectLW:GroundDetection
 {	bool	SetDetectionLevel(int p,int s,int re,SAGairgrp* as)
-	{  
+	{
 		if (Todays_Packages[p][s].numacleft==0)
 		{
 			Todays_Packages[p][s].playercansee=false;
@@ -898,7 +898,7 @@ struct RAFDetectLW:GroundDetection
 				{
 					info_waypointPtr wp=Persons2::ConvertPtrUID(as->wpref);
 					if (	(Todays_Packages[p][s].method<Profile::AM_ESCORTTYPES && wp->uid!=-SGR_WPP_BombRendezvous)
-						||	(Todays_Packages[p][s].method>=Profile::AM_ESCORTTYPES && wp->uid!=-SGR_WPP_EscRendezvous)	
+						||	(Todays_Packages[p][s].method>=Profile::AM_ESCORTTYPES && wp->uid!=-SGR_WPP_EscRendezvous)
 						)
 						if (!Todays_Packages[p].raidnumentries[re].raidintercepted)
 							RAFDirectivesResults::SetRAFIntercept(p,re,false);
@@ -924,7 +924,7 @@ struct RAFDetectLW:GroundDetection
 // Date:		10/03/00
 // Author:		DAW
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 int	DEBUGACPACKNUM=0,DEBUGSQNUM=0;
@@ -996,7 +996,7 @@ void	SAGairgrp::MoveAllSAGs(WorldStuff&)
 							{}
 				}
 			}
-			
+
 			DEBUGMOVECODE=0x103;
 			if (Todays_Packages[p].raidnumentries && Todays_Packages[p].packagestatus!=Profile::PS_COMPLETE)
 				for (int r=0;Todays_Packages[p].raidnumentries[r].squadliststart!=Profile::RNEC_LISTVALISLASTREC;r++)
@@ -1018,7 +1018,7 @@ void	SAGairgrp::MoveAllSAGs(WorldStuff&)
 							Node_Data.intel.AddMessage(IntelMsg::HIGH_SPOTTING_LW_WOMAN,AS_NOTSWITCH,SCRIPT_RAIDUPDATE   ,Todays_Packages[p][s].instance,Todays_Packages[p][s].instance,TargetIndexes(Todays_Packages[p][s].squadnum,Todays_Packages[p].CountRaid(s)));
 
 				}
-		
+
 	}
 	if (MMC.curracceltype>MMC.ACCEL_NORMAL)
 	{
@@ -1042,9 +1042,9 @@ void	SAGairgrp::MoveAllSAGs(WorldStuff&)
 //TempCode MS 27Oct00 //DeadCode MS 18Oct00 				ULong	numacoriginal:4,			//Unchanged from launch
 //TempCode MS 27Oct00 //DeadCode MS 18Oct00 						numacleft:4,				//Left+ditched=original
 //TempCode MS 27Oct00 //DeadCode MS 18Oct00 						numacditched:4,
-//TempCode MS 27Oct00 //DeadCode MS 18Oct00 						numacrecoveredlow:4,		//these don't go in ditched or reduce left 
+//TempCode MS 27Oct00 //DeadCode MS 18Oct00 						numacrecoveredlow:4,		//these don't go in ditched or reduce left
 //TempCode MS 27Oct00 //DeadCode MS 18Oct00 						numacrecoveredmed:4,		//recoveredmed+recoveredbad+pilotslost<=ditched
-//TempCode MS 27Oct00 //DeadCode MS 18Oct00 						numacrecoveredbad:4,		
+//TempCode MS 27Oct00 //DeadCode MS 18Oct00 						numacrecoveredbad:4,
 //TempCode MS 27Oct00 //DeadCode MS 18Oct00 						numpilotslost:4,
 //TempCode MS 27Oct00 //DeadCode MS 18Oct00 						leaderlost:1,
 //TempCode MS 27Oct00 				for (int si=0;si<maxs && col<120;si++)
@@ -1103,7 +1103,7 @@ void	SAGairgrp::MoveAllSAGs(WorldStuff&)
 //TempCode JIM 9Nov00 		if (DEBUGCOLUMN>=80)
 //TempCode JIM 9Nov00 			DEBUGCOLUMN=2;
 //TempCode JIM 9Nov00 		COMBATSHIFT=0;
-//TempCode JIM 9Nov00 
+//TempCode JIM 9Nov00
 //TempCode JIM 9Nov00 		for (int i=0;i<24;i++)
 //TempCode JIM 9Nov00 		{
 //TempCode JIM 9Nov00 			info_airgrpPtr ag=Persons2::ConvertPtrUID(UniqueID(SagBAND+i));
@@ -1127,7 +1127,7 @@ void	SAGairgrp::MoveAllSAGs(WorldStuff&)
 //TempCode JIM 9Nov00 			}
 //TempCode JIM 9Nov00 			Mono_Text.PrintAt(0,i,buff);
 //TempCode JIM 9Nov00 		}
-//TempCode JIM 9Nov00 
+//TempCode JIM 9Nov00
 //TempCode JIM 9Nov00 	}
 #endif
 
@@ -1139,7 +1139,7 @@ void	SAGairgrp::MoveSAG(int p,int s)
 	DEBUGMOVECODE=movecode.Evaluate();
 	switch (movecode.Evaluate())
 	{
-	case	AUTOSAG_WAITTAKEOFF:	SAGMovementWaitTakeOff(p,s);		break;	
+	case	AUTOSAG_WAITTAKEOFF:	SAGMovementWaitTakeOff(p,s);		break;
 	case	AUTOSAG_TAKEOFF:		SAGMovementTakeOff(p,s);			break;
 	case	AUTOSAG_FOLLOWWP:		SAGMovementFollowWP(p,s);			break;
 	case	AUTOSAG_FOLLOWWPHOME:	SAGMovementFollowWP(p,s);			break;
@@ -1163,7 +1163,7 @@ void	SAGairgrp::DecideSAG(int p,int s)
 	DEBUGMOVECODE=-movecode.Evaluate();
 	switch (movecode.Evaluate())
 	{
-	case	AUTOSAG_WAITTAKEOFF:	SAGDecisionWaitTakeOff(p,s);		break;	
+	case	AUTOSAG_WAITTAKEOFF:	SAGDecisionWaitTakeOff(p,s);		break;
 	case	AUTOSAG_TAKEOFF:		SAGDecisionTakeOff(p,s);			break;
 	case	AUTOSAG_FOLLOWWP:		SAGDecisionFollowWP(p,s);			break;
 	case	AUTOSAG_FOLLOWWPHOME:	SAGDecisionFollowWP(p,s);			break;
@@ -1190,7 +1190,7 @@ void	SAGairgrp::DecideSAG(int p,int s)
 // Date:		03/12/99
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	SAGAirstruc::SAGMovementWaitTakeOff()
@@ -1220,11 +1220,11 @@ void	SAGAirstruc::SAGDecisionWaitTakeOff()
 						w=w->next;
 		}
 		waypoint=w;
-		
+
 	}
 }
 void	SAGairgrp::SAGDecisionWaitTakeOff(int p,int s)
-{	
+{
 	int remainingtime=MMC.currtime-Todays_Packages[p][s].takeofftime;
 	if (remainingtime>-SECSPERSAGFRAME)
 	{
@@ -1268,7 +1268,7 @@ void	SAGairgrp::SAGDecisionWaitTakeOff(int p,int s)
 			movecode=AUTOSAG_TAKEOFF;
 			Todays_Packages[p].packagestatus=Profile::PS_TAKINGOFF;
 			Todays_Packages[p][s].SetStatus(Profile::PS_TAKINGOFF);
-		
+
 			World=Persons2::ConvertPtrUID(Todays_Packages[p][s].takeoffwp)->World;
 		}
 	}
@@ -1279,7 +1279,7 @@ void	SAGairgrp::SAGDecisionWaitTakeOff(int p,int s)
 // Date:		03/12/99
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	SAGAirstruc::SAGMovementTakeOff()
@@ -1290,9 +1290,9 @@ void	SAGAirstruc::SAGMovementTakeOff()
 	if(PatchAppropriate())
 	{
 		if (duty>=PACK_AM_ESCORT)
-			PatchGroupAndAnim(&TakeOff_FormationWing.formationtype,&TakeOff_FormationSquad.formationtype,4);	
+			PatchGroupAndAnim(&TakeOff_FormationWing.formationtype,&TakeOff_FormationSquad.formationtype,4);
 		else
-			PatchGroupAndAnim(&TakeOff_FormationWing.formationtype,&TakeOff_FormationSquad.formationtype);	
+			PatchGroupAndAnim(&TakeOff_FormationWing.formationtype,&TakeOff_FormationSquad.formationtype);
 	}
 }
 void	SAGairgrp::SAGMovementTakeOff(int p,int s)
@@ -1349,12 +1349,12 @@ void	SAGairgrp::SAGDecisionTakeOff(int p,int s)
 // Date:		04/02/00
 // Author:		DAW
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 bool	info_grndgrp::GetCruiseToWp(int seconds,bool escortfighter,bool ignorerange,
-/*returned values*/					int& travel,info_waypoint* &wp,	WaypointOffsetSub& wos								
-									
+/*returned values*/					int& travel,info_waypoint* &wp,	WaypointOffsetSub& wos
+
 									)
 {
 	assert(wpref==0 || wpref>10);
@@ -1367,9 +1367,9 @@ bool	info_grndgrp::GetCruiseToWp(int seconds,bool escortfighter,bool ignorerange
 	InterceptandRange(&despos);			//angle
 	AirStruc::ModifyHdgRangeForFormation(wos.deltahori);
 	Range-=Math_Lib.AbsSign(SLong(wos.deltahori));
-	if (!ignorerange && wp->range.Evaluate()!=ENABLE_COMPLEX_VAL) 
+	if (!ignorerange && wp->range.Evaluate()!=ENABLE_COMPLEX_VAL)
 		Range-=wp->range.Evaluate();
-//fix to offset secondary flights. 
+//fix to offset secondary flights.
 //This code is functionally equivalent to the code in InterceptandRangeFindDesPosAndVel
 	ANGLES reqpi=PitchIntercept;
 	int vel=GetCruiseAt(World,PitchIntercept);
@@ -1396,7 +1396,7 @@ bool	info_grndgrp::GetCruiseToWp(int seconds,bool escortfighter,bool ignorerange
 						PitchIntercept=Angles(PitchIntercept+(vel-reqvel)/30);
 						vel=reqvel;
 					}
-			
+
 		}
 	}
 	Range-=Math_Lib.AbsSign((SLong)wos.deltahori);
@@ -1409,9 +1409,9 @@ bool	info_grndgrp::GetCruiseToWp(int seconds,bool escortfighter,bool ignorerange
 	if (reqpi>PitchIntercept)		//if pitch has been clipped
 		Range-=(despos.Y-World.Y);
 	if (Range<0)
-		Range=0; 
+		Range=0;
 	//If you want I could do a pythagorean comparrison
-	//delta alt, wos.deltahori, and waypoint->range are all at right angles, 
+	//delta alt, wos.deltahori, and waypoint->range are all at right angles,
 	//Range does NOT form the hypotenuse, but the unsquared hypotenuse could be subtracted off
 	//This just leaves travel?
 	travel=seconds*vel;
@@ -1550,7 +1550,7 @@ int	SAGairgrp::FuelUse(Coords3D& pos,int velumcs,int timesecs)
 		case	AUTOSAG_BOMB:			rate = 75;	break;
 		case	AUTOSAG_DEATHGLIDE:		rate = 0;	break;
 	}
-	
+
 	int	ptype=type.Evaluate();
 	if (ptype>SQ_BR_START)
 		ptype=Node_Data[SquadNum(ptype)].AcType();
@@ -1569,8 +1569,8 @@ int	SAGairgrp::FuelUse(Coords3D& pos,int velumcs,int timesecs)
 //DeadCode CSB 13Jul00 	else if((&pitchintercept != NULL) && (-pitchintercept > ANGLES_1Deg))
 //DeadCode CSB 13Jul00 		usage = wi->fuelaboff * timesec * 100;
 
-	return(usage);	
-//DeadCode CSB 13Jul00 	return 1000;	
+	return(usage);
+//DeadCode CSB 13Jul00 	return 1000;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -1585,15 +1585,15 @@ int	SAGairgrp::FuelUse(Coords3D& pos,int velumcs,int timesecs)
 bool	SAGairgrp::SendFighterPatrols(UniqueID packtrg,UniqueID instance,int pt,int st)
 {
 	for (int pp=0;pp<Profile::MAX_PACKS;pp++)
-		if (	Todays_Packages[pp].attackmethod==Profile::AM_PATROL 
-			&&	Todays_Packages[pp].packagestatus==Profile::PS_TARGETAREA 
+		if (	Todays_Packages[pp].attackmethod==Profile::AM_PATROL
+			&&	Todays_Packages[pp].packagestatus==Profile::PS_TARGETAREA
 			&&	packtrg == (UniqueID)Todays_Packages[pp].packagetarget[0]
 			)
 		{	//Divert this patrol...
 			Todays_Packages[pp].packagestatus=Profile::PS_DETAILRAID;
 			Todays_Packages[pp].packagetarget[1]=instance;			//RDH 16Sep00
 			for (int sp=0,spmax=Todays_Packages[pp].squadlist;sp<spmax;sp++)
-			{	
+			{
 				Todays_Packages[pp][sp].status=Profile::PS_DETAILRAID;	//RDH 16Sep00
 				info_airgrpPtr ag=Persons2::ConvertPtrUID(Todays_Packages[pp][sp].instance);
 				ag->movecode=AUTOSAG_PRECOMBAT;
@@ -1603,7 +1603,7 @@ bool	SAGairgrp::SendFighterPatrols(UniqueID packtrg,UniqueID instance,int pt,int
 //DeadCode RJS 12Nov00 						if (Todays_Packages[pt][st].status<Profile::PS_ACTIVE_MAX && Todays_Packages[pt][st].status>Profile::PS_TAKINGOFF)
 //DeadCode RJS 12Nov00 							instance=Todays_Packages[pt][ns=st].instance;
 //DeadCode RJS 12Nov00 				if (ns==-1)
-//DeadCode JIM 11Nov00 				if (Todays_Packages[pt][st].status>=Profile::PS_ACTIVE_MAX)	
+//DeadCode JIM 11Nov00 				if (Todays_Packages[pt][st].status>=Profile::PS_ACTIVE_MAX)
 				if (Todays_Packages[pt][st].status>=Profile::PS_ACTIVE_MAX)
 					for (st=Todays_Packages[pt].squadlist.Max()-1;st>=0;st--)
 						if (Todays_Packages[pt][st].status<Profile::PS_ACTIVE_MAX && Todays_Packages[pt][st].status>Profile::PS_TAKINGOFF)
@@ -1615,7 +1615,7 @@ bool	SAGairgrp::SendFighterPatrols(UniqueID packtrg,UniqueID instance,int pt,int
 			}
 //DeadCode JIM 12Sep00 			AccelSwitches as = AS_LARGE_ENGAGEMENT;
 //DeadCode JIM 12Sep00 			if (Todays_Packages[pt].squadlist <= 2)
-//DeadCode JIM 12Sep00 				as = AS_SMALL_ENGAGEMENT;																	
+//DeadCode JIM 12Sep00 				as = AS_SMALL_ENGAGEMENT;
 //DeadCode JIM 12Sep00 			Node_Data.intel.AddMessage(IntelMsg::HIGH_ENGAGEMENT_WOMAN,as,SCRIPT_INTERCEPTING  ,Todays_Packages[pp][0].instance,instance,TargetIndexes(Todays_Packages[pp][0].squadnum,Todays_Packages[pt][st].numacleft));
 //DeadCode JIM 12Sep00 			Node_Data.intel.AddMessage(IntelMsg::HIGH_ENGAGEMENT_LW,as,SCRIPT_INTERCEPTED  ,instance,Todays_Packages[pp][0].instance,TargetIndexes(Todays_Packages[pt][st].squadnum,Todays_Packages[pp][0].numacleft));
 			return true;
@@ -1629,7 +1629,7 @@ bool	SAGairgrp::SendFighterPatrols(UniqueID packtrg,UniqueID instance,int pt,int
 // Date:		03/12/99
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	info_grndgrp::AutoFollowWP(TargetConvoy* c)
@@ -1671,7 +1671,7 @@ info_airgrp*	SAGairgrp::GetValidEscortee(int p,int s)
 	bool	amwingsquad=false;
 	int es=-1;
 	//Is there someone I can escort?
-	{	
+	{
  		UniqueID lu=UID_NULL;
 		if (s!=0)
 			if (leader.Evaluate()!=ENABLE_COMPLEX_VAL && leader.Evaluate()!=UID_NULL)
@@ -1679,7 +1679,7 @@ info_airgrp*	SAGairgrp::GetValidEscortee(int p,int s)
 				lu=UniqueID(leader.Evaluate());
 				if (Todays_Packages[p][s].squadnum==Todays_Packages[p][s-1].squadnum)
 					if (!(	(Todays_Packages[p][s].method&Profile::AM_GROUPMASK)==Profile::AM_ATTACHED
-						||	(Todays_Packages[p][s].method&Profile::AM_GROUPMASK)==Profile::AM_RETURNESCORT	
+						||	(Todays_Packages[p][s].method&Profile::AM_GROUPMASK)==Profile::AM_RETURNESCORT
 						))
 						amwingsquad=true;
 //DeadCode JIM 13Nov100 					else
@@ -1687,7 +1687,7 @@ info_airgrp*	SAGairgrp::GetValidEscortee(int p,int s)
 //DeadCode JIM 13Nov100 				else
 //DeadCode JIM 13Nov100 				{NOP;}
 				for (es=0;Todays_Packages[p][es].instance!=lu;es++)
-					assert (es!=s,"Escortee must be before escort");
+					bobassert (es!=s,"Escortee must be before escort");
 			}
 		if (lu)
 			escortee=Persons2::ConvertPtrUID(lu);
@@ -1758,7 +1758,7 @@ info_airgrp*	SAGairgrp::GetValidEscortee(int p,int s)
 }
 int DEBUGWPACTION;
 void	SAGairgrp::SAGExecuteWaypoint(int p,int s)
-{	
+{
 	info_waypoint* wp=Persons2::ConvertPtrUID(wpref);
 	UniqueID nextwpuid=wp->NextWP(s,Todays_Packages[p][s].WaveNum());
 	DEBUGWPACTION=-wp->uid.Evaluate();
@@ -1796,7 +1796,7 @@ void	SAGairgrp::SAGExecuteWaypoint(int p,int s)
 		{
 			if ((UniqueID)Todays_Packages[p].packagetarget[0]&(UID_BIT14+UID_BIT15))
 			{	//Target has landed. Go home.
-				
+
 				while (wp->uid.Evaluate()!=-SGR_WPP_Egress)
 				{
 					nextwpuid=wp->NextWP(s);
@@ -1815,13 +1815,13 @@ void	SAGairgrp::SAGExecuteWaypoint(int p,int s)
 //DeadCode JIM 12Sep00 					int pt,st;Todays_Packages.GetACSquadEntry(Todays_Packages[p].packagetarget[0],pt,st);
 //DeadCode JIM 12Sep00 					AccelSwitches as = AS_LARGE_ENGAGEMENT;
 //DeadCode JIM 12Sep00 					if (Todays_Packages[pt].squadlist <= 2)
-//DeadCode JIM 12Sep00 						as = AS_SMALL_ENGAGEMENT;																	
+//DeadCode JIM 12Sep00 						as = AS_SMALL_ENGAGEMENT;
 //DeadCode JIM 12Sep00 					Node_Data.intel.AddMessage(IntelMsg::HIGH_ENGAGEMENT_WOMAN,as,SCRIPT_INTERCEPTING  ,uniqueID.count,Todays_Packages[p].packagetarget[0],TargetIndexes(Todays_Packages[p][s].squadnum,Todays_Packages[p][s].numacleft));
 //DeadCode JIM 12Sep00 					Node_Data.intel.AddMessage(IntelMsg::HIGH_ENGAGEMENT_LW,as,SCRIPT_INTERCEPTED  ,Todays_Packages[p].packagetarget[0],uniqueID.count,TargetIndexes(Todays_Packages[pt][st].squadnum,Todays_Packages[p][s].numacleft));
 //DeadCode JIM 12Sep00 				}
 			}
 		}
-		else 
+		else
 		if (Todays_Packages[p][s].method==Profile::AM_PATROL)
 		{
 			Squad_Diary.ArrivedAtTarget(Todays_Packages[p][s].diaryentry,&Persons2::ConvertPtrUID(Todays_Packages[p].SquadTarget(s)));	//RJS 4Sep00
@@ -1831,7 +1831,7 @@ void	SAGairgrp::SAGExecuteWaypoint(int p,int s)
 				TargetRadarPtr(Node_Data[Todays_Packages[p].packagetarget[0]])->patroller=true;
 		}
 
-		else  
+		else
 		if (Todays_Packages[p][s].method>=Profile::AM_LWPACKS)
 		{
 			Squad_Diary.ArrivedAtTarget(Todays_Packages[p][s].diaryentry,&Persons2::ConvertPtrUID(Todays_Packages[p].SquadTarget(s)));	//RJS 4Sep00
@@ -1847,7 +1847,7 @@ void	SAGairgrp::SAGExecuteWaypoint(int p,int s)
 					{
 					case CLRadarBAND:
 					case CHRadarBAND:
-						script=SCRIPT_RDFUNDERATTACK;	
+						script=SCRIPT_RDFUNDERATTACK;
 					break;
 					case RAF_FighterAFBAND:
 						script=SCRIPT_AIRFIELDUNDERATTACK;
@@ -1866,7 +1866,7 @@ void	SAGairgrp::SAGExecuteWaypoint(int p,int s)
 					Node_Data.intel.AddMessage(IntelMsg::HIGH_FLIGHT_LW_WOMAN,AS_TARG,script  ,uniqueID.count,Todays_Packages[p].packagetarget[targnum],TargetIndexes(Todays_Packages[p][s].squadnum,Todays_Packages[p].CountRaid(s)));
 			}
 			Todays_Packages[p][s].SetStatus(Profile::PS_TARGETAREA);
-			
+
 
 
 		}
@@ -1969,7 +1969,7 @@ void	SAGairgrp::SAGExecuteWaypoint(int p,int s)
 	//INTENTIONAL FALL-THROUGH!
 
 	case -SGR_WPP_DogLeg:
-	default:	
+	default:
 	{
 		UniqueID wpref2=wp->NextWP(s,SGR_Pack_BlankZero);
 		if (wpref2)
@@ -2080,7 +2080,7 @@ void	SAGAirstruc::SAGDecisionFollowWP()
 	case	wpdisperseno:		SetDisperse();					break;	//RJS 29Feb00
 	case	wpstartloopno:		SetBreakLoop(false);			break;
 	case	wpbreakloop:		SetBreakLoop(false);			break;
-	case	wpstoploopchkno:	SetBreakLoop(true);				break;				
+	case	wpstoploopchkno:	SetBreakLoop(true);				break;
 	case	wpreccyno:		/*dead?*/							break;
 	case	wpartspotno:	/*dead?*/							break;
 //DeadCode CSB 7Aug00 	case	wpengagetargetno:		movecode=AUTOSAG_BOMBAPPROACH;		break;
@@ -2098,13 +2098,13 @@ void	SAGAirstruc::SAGDecisionFollowWP()
 	information = IF_OUT_POS;
 	ai.LastAction()=wpacnoactionno;
 }
-void	SAGAirstruc::SetBreakLoop(bool isendofloop)	
+void	SAGAirstruc::SetBreakLoop(bool isendofloop)
 {
 //TempCode CSB 7Aug00 	WayPointPtr el=waypoint;
 //TempCode CSB 7Aug00 	if (!isendofloop)
 //TempCode CSB 7Aug00 	{
-//TempCode CSB 7Aug00 
-//TempCode CSB 7Aug00 
+//TempCode CSB 7Aug00
+//TempCode CSB 7Aug00
 //TempCode CSB 7Aug00 	}
 
 
@@ -2177,7 +2177,7 @@ void	SAGairgrp::SAGDecisionFollowWP(int p,int s)
 // Date:		03/12/99
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	SAGAirstruc::SAGMovementLanding()
@@ -2185,9 +2185,9 @@ void	SAGAirstruc::SAGMovementLanding()
 	if(PatchAppropriate())
 	{
 		if (duty>=PACK_AM_ESCORT)
-			PatchGroupAndAnim(&TakeOff_FormationWing.formationtype,&TakeOff_FormationSquad.formationtype,4);	
+			PatchGroupAndAnim(&TakeOff_FormationWing.formationtype,&TakeOff_FormationSquad.formationtype,4);
 		else
-			PatchGroupAndAnim(&TakeOff_FormationWing.formationtype,&TakeOff_FormationSquad.formationtype);	
+			PatchGroupAndAnim(&TakeOff_FormationWing.formationtype,&TakeOff_FormationSquad.formationtype);
 	}
 
 	if((ai.ManStep <= 6) || (ai.ManStep >= 14))
@@ -2270,7 +2270,7 @@ void	SAGAirstruc::SAGMovementLanding()
 	}
 }
 
-	
+
 void	SAGairgrp::SAGMovementLanding(int p,int s)
 {
 
@@ -2279,7 +2279,7 @@ void	SAGairgrp::SAGMovementLanding(int p,int s)
 
 void	SAGAirstruc::SAGDecisionLanding()
 {
-//DeadCode CSB 17Jul00 	PatchGroupAndAnim(&TakeOff_FormationWing.formationtype,&TakeOff_FormationSquad.formationtype);	
+//DeadCode CSB 17Jul00 	PatchGroupAndAnim(&TakeOff_FormationWing.formationtype,&TakeOff_FormationSquad.formationtype);
 }
 
 
@@ -2303,7 +2303,7 @@ void	SAGAirstruc::SAGMovementLanded()
 {
 }
 void	SAGairgrp::SAGMovementLanded(int p,int s)
-{	
+{
 }
 void	SAGAirstruc::SAGDecisionLanded()
 {	//need to take off and patrol, now!
@@ -2316,7 +2316,7 @@ void	SAGairgrp::SAGDecisionLanded(int p,int s)
 		{
 			if (Todays_Packages[p][s].method==Profile::AM_RECON)		//CSB 12Jul00
 			{	//if reconn and diary status is MR_RECONCOMPLETED then can set known target status!
-				Diary::RaidGroup* rg=Squad_Diary.GetRaidGroup(Squad_Diary.GetDiaryPtr(Todays_Packages[p][s].diaryentry));	
+				Diary::RaidGroup* rg=Squad_Diary.GetRaidGroup(Squad_Diary.GetDiaryPtr(Todays_Packages[p][s].diaryentry));
 				if (rg->missresult==MR_RECONCOMPLETED)
 				{
 					Target& t=Node_Data[Todays_Packages[p].SquadTarget(s)];
@@ -2353,13 +2353,13 @@ void	SAGairgrp::SAGDecisionLanded(int p,int s)
 // Date:		03/12/99
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	SAGAirstruc::SAGMovementPreCombat()
 {	//Fly towards unfriendly
-	if(PatchAppropriate())	
-		PatchGroupAndAnim();	
+	if(PatchAppropriate())
+		PatchGroupAndAnim();
 
 	if(!ai.unfriendly)
 		movecode = AUTOSAG_FOLLOWWP;
@@ -2389,9 +2389,9 @@ void	SAGAirstruc::SAGMovementPreCombat()
 	SetFlightParams();
 }
 
-//DeadCode CSB 2Nov00 	if(PatchAppropriate())	
-//DeadCode CSB 2Nov00 		PatchGroupAndAnim();	
-//DeadCode CSB 2Nov00 
+//DeadCode CSB 2Nov00 	if(PatchAppropriate())
+//DeadCode CSB 2Nov00 		PatchGroupAndAnim();
+//DeadCode CSB 2Nov00
 //DeadCode CSB 2Nov00 	if(!ai.unfriendly)
 //DeadCode CSB 2Nov00 		Art_Int.BreakOff(this);
 //DeadCode CSB 2Nov00 	else
@@ -2402,18 +2402,18 @@ void	SAGAirstruc::SAGMovementPreCombat()
 //DeadCode CSB 2Nov00 			PitchIntercept = Angles(bestpitch);
 //DeadCode CSB 2Nov00 //DeadCode CSB 2Nov00 		if(PitchIntercept < ANGLES_0Deg)
 //DeadCode CSB 2Nov00 //DeadCode CSB 2Nov00 			PitchIntercept = ANGLES_0Deg;
-//DeadCode CSB 2Nov00 
+//DeadCode CSB 2Nov00
 //DeadCode CSB 2Nov00 		AutoCalcPitch();
 //DeadCode CSB 2Nov00 		CalcHdgRoll();
 //DeadCode CSB 2Nov00 		CalcVelAlt();
 //DeadCode CSB 2Nov00 		CalcXYZVel();
-//DeadCode CSB 2Nov00 		
+//DeadCode CSB 2Nov00
 //DeadCode CSB 2Nov00 //DeadCode CSB 2Nov00 		SLong delta = ai.unfriendly->World.Y - World.Y;
 //DeadCode CSB 2Nov00 //DeadCode CSB 2Nov00 		if(delta > 0)
 //DeadCode CSB 2Nov00 //DeadCode CSB 2Nov00 			Range -= delta;
 //DeadCode CSB 2Nov00 //DeadCode CSB 2Nov00 		else
 //DeadCode CSB 2Nov00 //DeadCode CSB 2Nov00 			Range -= -delta;
-//DeadCode CSB 2Nov00 		
+//DeadCode CSB 2Nov00
 //DeadCode CSB 2Nov00 		if(Range < COMBATRANGE)
 //DeadCode CSB 2Nov00 			movecode = AUTOSAG_COMBAT;
 //DeadCode CSB 2Nov00 //DeadCode CSB 2Nov00 		{
@@ -2422,21 +2422,21 @@ void	SAGAirstruc::SAGMovementPreCombat()
 //DeadCode CSB 2Nov00 //DeadCode CSB 1Aug00 				ai.unfriendly = unf->fly.expandedsag;
 //DeadCode CSB 2Nov00 //DeadCode CSB 2Nov00 			Art_Int.SetEngage(this, unf, MANOEUVRE_TURNINGFIGHT, ANGLES_0Deg, ANGLES_0Deg, FALSE);
 //DeadCode CSB 2Nov00 //DeadCode CSB 2Nov00 		}
-//DeadCode CSB 2Nov00 //DeadCode CSB 2Nov00 
+//DeadCode CSB 2Nov00 //DeadCode CSB 2Nov00
 //DeadCode CSB 2Nov00 //DeadCode CSB 2Nov00 		if((Range < RECOGNISERANGE) && (nationality == AirStrucPtr(ai.unfriendly)->nationality))
 //DeadCode CSB 2Nov00 //DeadCode CSB 2Nov00 			Art_Int.BreakOff(this);
 //DeadCode CSB 2Nov00 	}
-//DeadCode CSB 2Nov00 
+//DeadCode CSB 2Nov00
 //DeadCode CSB 2Nov00 	NewPosition ();
 //DeadCode CSB 2Nov00 	SetFlightParams ();
-//DeadCode CSB 2Nov00 
+//DeadCode CSB 2Nov00
 //DeadCode CSB 2Nov00 //	Move().AutoPreCombat();
 //DeadCode CSB 2Nov00 }
 
 
 void	SAGairgrp::SAGMovementPreCombat(int p,int s)
 {	//need to cruise to target
-	if (target.Evaluate()<0||target.Evaluate()>IllegalBAND)	
+	if (target.Evaluate()<0||target.Evaluate()>IllegalBAND)
 		INT3;
 	info_airgrpPtr a=Persons2::ConvertPtrUID(UniqueID(target.Evaluate()));
 	if(a)
@@ -2444,7 +2444,7 @@ void	SAGairgrp::SAGMovementPreCombat(int p,int s)
 		InterceptandRange(&a->World);
 		if (	Todays_Packages[p].packagestatus!=Profile::PS_DETAILRAID
 			||	Range>METRES10KM)
-		{  
+		{
 			int	deltaalt=a->World.Y-World.Y;
 			if (Range>METRES5000 || deltaalt<FT_2000)
 			{
@@ -2455,7 +2455,7 @@ void	SAGairgrp::SAGMovementPreCombat(int p,int s)
 				attitude[2]=PitchIntercept;
 				hdg=HdgIntercept;
 				int	travel=SECSPERSAGFRAME*vel;
-			
+
 				Float sh,ch,sp,cp;
 				Math_Lib.high_sin_cos(HdgIntercept,sh,ch);
 				Math_Lib.high_sin_cos(PitchIntercept,sp,cp);
@@ -2473,7 +2473,7 @@ void	SAGairgrp::SAGMovementPreCombat(int p,int s)
 			}
 		}
 	}
-	
+
 }
 void	SAGAirstruc::SAGDecisionPreCombat()
 {
@@ -2494,7 +2494,7 @@ UniqueID	SAGairgrp::SelectUnfriendly(int trgpack,int trgraid,int submethod,int& 
 	for (;sqmin<=sqmax;sqmax--)
 	{
 		info_airgrpPtr p=Persons2::ConvertPtrUID(Todays_Packages[trgpack][sqmax].instance);
-		if (	Todays_Packages[trgpack][sqmax].status<Profile::PS_ACTIVE_MAX 
+		if (	Todays_Packages[trgpack][sqmax].status<Profile::PS_ACTIVE_MAX
 			&&	Todays_Packages[trgpack][sqmax].status>Profile::PS_TAKINGOFF
 			&&	Todays_Packages[trgpack][sqmax].numacleft)	//MS 3Jul00
 		{
@@ -2567,7 +2567,7 @@ UniqueID	SAGairgrp::SelectUnfriendly(int trgpack,int trgraid,int submethod,int& 
 // Date:		27/10/00
 // Author:		MS
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 static bool	RunOutOfFightTime(int diaryentry,int enemydiary)
@@ -2596,19 +2596,19 @@ static bool	RunOutOfFightTime(int diaryentry,int enemydiary)
 			time=(MMC.currtime-*timeref);
 		else
 			*timeref=time=MMC.currtime;
-	time+=killcount*30;	
+	time+=killcount*30;
 	if (time<10*SECSPERMIN)			//THIS SHOULD BE LOWER	//THERE MUST NOT BE MORE THAN 5 MINS DIFFERENCE BETWEEN THESE 2
-		return false;									
+		return false;
 	else if (time>15*SECSPERMIN)	//THIS SHOULD BE HIGHER
 		return true;
-	else 
+	else
 	{
 		int v=Math_Lib.rnd();	 //240=4 mins.
 		v=(v&(v>>8)&255);	//high values are improbable
 		if (time+v>15*SECSPERMIN)	//THIS SHOULD BE THE HIGHER VALUE
 			return true;
 		else											//MARK: COMMENT OUT DOWN TO HERE IF MY MATHS IS SCREWED UP
-			return false;								
+			return false;
 	}
 }
 //////////////////////////////////////////////////////////////////////
@@ -2628,7 +2628,7 @@ static bool	RunOutOfFightTime(int diaryentry,int enemydiary)
 //////////////////////////////////////////////////////////////////////
 void	SAGairgrp::SAGDecisionPreCombat(int p,int s)
 {
-	if (target.Evaluate()<0||target.Evaluate()>IllegalBAND)	
+	if (target.Evaluate()<0||target.Evaluate()>IllegalBAND)
 		INT3;
 	int	livesqs=0;
 	info_airgrpPtr a=Persons2::ConvertPtrUID(UniqueID(target.Evaluate()));
@@ -2656,13 +2656,13 @@ void	SAGairgrp::SAGDecisionPreCombat(int p,int s)
 	{
 		InterceptandRange(&a->World);
 		if (	Todays_Packages[p].packagestatus==Profile::PS_DETAILRAID
-			&&	Range<METRES15KM 
+			&&	Range<METRES15KM
 			&& s==0)	 //probability calc takes in to account our force size already!
 		{	//OK... we are close enough to see the unfriendly
 			//Check the weather and the range and the pilot skill to decide if a spot will occur.
 			int tp,ts;
 			Todays_Packages.GetACSquadEntry(UniqueID(target.Evaluate()),tp,ts);
-			
+
 			int testrange=METRES15KM;
 			if (MMC.Sky.Press0<960)
 				testrange*=0.1;
@@ -2688,8 +2688,8 @@ void	SAGairgrp::SAGDecisionPreCombat(int p,int s)
 //DeadCode MS 25Oct00 				Todays_Packages[p][s].SetStatus(Profile::PS_ENEMYSIGHTED);
 				AccelSwitches as = AS_LARGE_ENGAGEMENT;
 				if (Todays_Packages[tp].squadlist <= 2)
-					as = AS_SMALL_ENGAGEMENT;		
-				
+					as = AS_SMALL_ENGAGEMENT;
+
 				Squad_Diary.ArrivedAtTarget(Todays_Packages[p][s].diaryentry,&Persons2::ConvertPtrUID(UniqueID(target.Evaluate())));	//RJS 5Oct00
 				//Ok... at this point the RAF have spotted the LW.
 				//If they are unescorted they may turn now.
@@ -2751,7 +2751,7 @@ void	SAGairgrp::SAGDecisionPreCombat(int p,int s)
 			Todays_Packages.GetACSquadEntry(UniqueID(target.Evaluate()),tp,ts);
 			if (	Todays_Packages[p].CalcFuel(&p0,&p1,pt,pt,0)+1000000>Todays_Packages[p][s].fuelleft
 				||	Todays_Packages[p][s].fightperiods>17	//RunOutOfFightTime(Todays_Packages[p][s].diaryentry,Todays_Packages[tp][ts].diaryentry)
-				) 
+				)
 			{
 				livesqs=0;
 			}
@@ -2766,7 +2766,7 @@ void	SAGairgrp::SAGDecisionPreCombat(int p,int s)
 				if (Range<METRES2500 && deltaalt<FT_2000)
 				{	//Go into combat
 					movecode=AUTOSAG_COMBAT;
-					if (target.Evaluate()<0||target.Evaluate()>IllegalBAND)	
+					if (target.Evaluate()<0||target.Evaluate()>IllegalBAND)
 						INT3;
 				}
 			}
@@ -2790,14 +2790,14 @@ void	SAGairgrp::SAGDecisionPreCombat(int p,int s)
 // Date:		03/12/99
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void SAGAirstruc::SAGMovementCombat()
 {
 	if(PatchAppropriate())
-		PatchGroupAndAnim();	
-	
+		PatchGroupAndAnim();
+
 	if(!((ai.unfriendly) && (ai.unfriendly->Status.size == AIRSTRUCSIZE)))
 	{
 		hdg += Angles(ACMAS().CalcHdg ());
@@ -2838,7 +2838,7 @@ void SAGAirstruc::SAGMovementCombat()
 		{
 			SWord MaxRoll = ANGLES_75_5Deg;
 			AutoCalcPitch();
-			
+
 			SWord reqdeltahdg = hdg - HdgIntercept;
 		 	SWord reqroll = FindRequiredRoll(reqdeltahdg, CombatReqBankData);
 			if(SWord(reqroll) >  MaxRoll)	reqroll =  MaxRoll;
@@ -2903,7 +2903,7 @@ void SAGAirstruc::SAGMovementCombat()
 			if((Range < 100000) && (ai.manoeuvre == MANOEUVRE_TURNINGFIGHT))
 			{
 	  			FP reqval = 4500.0 * FP(Art_Int.CountSquadronSize(this)) * (256.0 + FP(ai.combatskill)) / (FP(Art_Int.CountSquadronSize(unf)) * (256.0 + FP(unf->ai.combatskill)));
-				if(Math_Lib.rnd() < reqval)	
+				if(Math_Lib.rnd() < reqval)
 					damagethem = true;
 
 //DeadCode CSB 3Nov00 				if(!unf->fly.expandedsag)
@@ -2941,7 +2941,7 @@ void SAGAirstruc::SAGMovementCombat()
 			{
 	  			FP reqval = 4000.0 * acstrengthus * FP(Art_Int.CountSquadronSize(this)) * (256.0 + FP(ai.combatskill))
 								/ (acstrengththem * FP(Art_Int.CountSquadronSize(unf)) * (256.0 + FP(unf->ai.combatskill)));
-				if(Math_Lib.rnd() < reqval)	
+				if(Math_Lib.rnd() < reqval)
 					damagethem = true;
 			}
 		}
@@ -3017,7 +3017,7 @@ void SAGAirstruc::SAGMovementCombat()
 //DeadCode CSB 2Nov00 					AirStrucPtr victim = Art_Int.FindTailie(AirStrucPtr(ai.unfriendly));
 //DeadCode CSB 2Nov00 //DEADCODE CSB 30/05/00 					AircraftAnimData* adptr = (AircraftAnimData*)victim->Anim;
 //DeadCode CSB 2Nov00 //DEADCODE CSB 30/05/00 					switch(Math_Lib.rnd(3))
-//DeadCode CSB 2Nov00 //DEADCODE CSB 30/05/00 					{	
+//DeadCode CSB 2Nov00 //DEADCODE CSB 30/05/00 					{
 //DeadCode CSB 2Nov00 //DEADCODE CSB 30/05/00 						case 0:	SHAPE.ForceDamage(victim, this, &adptr->LEFTWINGIN, BS_DEAD);	break;
 //DeadCode CSB 2Nov00 //DEADCODE CSB 30/05/00 						case 1:	SHAPE.ForceDamage(victim, this, &adptr->RIGHTWINGIN, BS_DEAD);	break;
 //DeadCode CSB 2Nov00 //DEADCODE CSB 30/05/00 						case 2:	SHAPE.ForceDamage(victim, this, &adptr->ENGINELEFT, BS_DEAD);	break;
@@ -3026,7 +3026,7 @@ void SAGAirstruc::SAGMovementCombat()
 //DeadCode CSB 2Nov00 				}
 //DeadCode CSB 2Nov00 			}
 //DeadCode CSB 2Nov00 		}
-//DeadCode CSB 2Nov00 
+//DeadCode CSB 2Nov00
 //DeadCode CSB 2Nov00 		if(!((ai.unfriendly) && (ai.unfriendly->Status.size == AIRSTRUCSIZE)))
 //DeadCode CSB 2Nov00 		{
 //DeadCode CSB 2Nov00 //DeadCode CSB 7Aug00 			hdg += Angles(ACMAS().CalcHdg ());
@@ -3035,7 +3035,7 @@ void SAGAirstruc::SAGMovementCombat()
 //DeadCode CSB 2Nov00 			movecode = AUTOSAG_FOLLOWWP;
 //DeadCode CSB 2Nov00 			return;
 //DeadCode CSB 2Nov00 		}
-//DeadCode CSB 2Nov00 
+//DeadCode CSB 2Nov00
 //DeadCode CSB 2Nov00 		if((Range < 25000) && (AirStrucPtr(ai.unfriendly)->classtype->aerobaticfactor == AEROBATIC_LOW) && (AirStrucPtr(ai.unfriendly)->fly.numinsag))
 //DeadCode CSB 2Nov00 		{
 //DeadCode CSB 2Nov00 			FP reqval = (Art_Int.CountSquadronSize(unf) * unf->ai.combatskill) / (Art_Int.CountSquadronSize(this) * ai.combatskill);
@@ -3050,7 +3050,7 @@ void SAGAirstruc::SAGMovementCombat()
 //DeadCode CSB 2Nov00 //DeadCode CSB 4Aug00 					movecode = AUTOSAG_DESTROYED;
 //DeadCode CSB 2Nov00 			}
 //DeadCode CSB 2Nov00 		}
-//DeadCode CSB 2Nov00 
+//DeadCode CSB 2Nov00
 //DeadCode CSB 2Nov00 		if(GroupShouldGoHome(0.5))
 //DeadCode CSB 2Nov00 		{
 //DeadCode CSB 2Nov00 			ai.ManStep = 0;
@@ -3074,7 +3074,7 @@ void SAGAirstruc::SAGMovementCombat()
 //DeadCode CSB 2Nov00 			ai.manoeuvre = MANOEUVRE_SCREWYOUGUYSIMGOINGHOME;
 //DeadCode CSB 2Nov00 		}
 //DeadCode CSB 2Nov00 //DeadCode CSB 17Oct00 		else if(	(fly.leadflight) && (fly.leadflight->classtype->aerobaticfactor == AEROBATIC_LOW)
-//DeadCode CSB 2Nov00 //DeadCode CSB 17Oct00 				&&	(Distance3DSquared(&fly.leadflight->World) > FP(VISIBLERANGE) * FP(VISIBLERANGE))	)	
+//DeadCode CSB 2Nov00 //DeadCode CSB 17Oct00 				&&	(Distance3DSquared(&fly.leadflight->World) > FP(VISIBLERANGE) * FP(VISIBLERANGE))	)
 //DeadCode CSB 2Nov00 //DeadCode CSB 17Oct00 		{
 //DeadCode CSB 2Nov00 //DeadCode CSB 17Oct00 			ai.ManStep = 0;
 //DeadCode CSB 2Nov00 //DeadCode CSB 17Oct00 			manoeuvretime = 0;
@@ -3095,7 +3095,7 @@ void	SAGAirstruc::SAGDecisionCombat()
 	if((!ai.unfriendly) || (AirStrucPtr(ai.unfriendly)->movecode == AUTOSAG_DESTROYED))
 		movecode = AUTOSAG_FOLLOWWP;
 
-	 
+
 //DeadCode CSB 17Jul00 	PatchGroupAndAnim();	//reset heading! Should arrange to do 1 flight per frame
 	if (ai.LastAction()==wpengagetargetno)
 	{
@@ -3104,7 +3104,7 @@ void	SAGAirstruc::SAGDecisionCombat()
 //DeadCode CSB 2Aug00 //	SagExpansionCounter::totalexpanded=0;
 //DeadCode CSB 2Aug00 //	SagExpansionCounter::highdemandrange=METRES2000;					//DAW 15/02/00
 //DeadCode CSB 2Aug00 		Range*=1.5;	  //prefer to see combat a/c expanded
-//DeadCode CSB 2Aug00 
+//DeadCode CSB 2Aug00
 //DeadCode CSB 2Aug00 		PlaneTypeSelect actype=classtype->planetext;
 //DeadCode CSB 2Aug00 		assert (actype<PT_GER_NONFLY);
 //DeadCode CSB 2Aug00 		if (Range<Persons3::SagExpansionCounter::highdemandrange)
@@ -3120,8 +3120,8 @@ void	SAGAirstruc::SAGDecisionCombat()
 //DeadCode CSB 2Aug00 					ExpandSag();
 //DeadCode CSB 2Aug00 //DeadCode CSB 28Jun00 */;
 //DeadCode CSB 2Aug00 			}
-//DeadCode CSB 2Aug00 
-//DeadCode CSB 2Aug00 
+//DeadCode CSB 2Aug00
+//DeadCode CSB 2Aug00
 	}
 	ai.LastAction()=wpacnoactionno;
 }
@@ -3132,12 +3132,12 @@ void	SAGAirstruc::SAGDecisionCombat()
 // Date:		05/07/00
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	SAGairgrp::SAGMovementCombat(int p,int s)
 {
-	if (target.Evaluate()<0||target.Evaluate()>IllegalBAND)	
+	if (target.Evaluate()<0||target.Evaluate()>IllegalBAND)
 		INT3;
 	info_airgrpPtr a=Persons2::ConvertPtrUID(UniqueID(target.Evaluate()));
 	if (a && Math_Lib.DistanceSquared(a->World.X-World.X,a->World.Y-World.Y,a->World.Z-World.Z)>METRES3000*METRES3000)
@@ -3255,19 +3255,19 @@ return skilldiff;
 //DeadCode MS 28Oct00 		killcount/=3;	//There are usually 3 squads per Grupp. Modify this for a tuning RAF/LW factor
 //DeadCode MS 28Oct00 	}
 //DeadCode MS 28Oct00 	time=(MMC.currtime-time);
-//DeadCode MS 28Oct00 	time+=killcount*30;	
-//DeadCode MS 28Oct00 	if (time<14*SECSPERMIN)			
-//DeadCode MS 28Oct00 		return false;									
-//DeadCode MS 28Oct00 	else if (time>20*SECSPERMIN)	
+//DeadCode MS 28Oct00 	time+=killcount*30;
+//DeadCode MS 28Oct00 	if (time<14*SECSPERMIN)
+//DeadCode MS 28Oct00 		return false;
+//DeadCode MS 28Oct00 	else if (time>20*SECSPERMIN)
 //DeadCode MS 28Oct00 		return true;
-//DeadCode MS 28Oct00 	else 
+//DeadCode MS 28Oct00 	else
 //DeadCode MS 28Oct00 	{
 //DeadCode MS 28Oct00 		int v=Math_Lib.rnd();	 //240=4 mins.
 //DeadCode MS 28Oct00 		v=(v&(v>>8)&255);	//high values are improbable
 //DeadCode MS 28Oct00 		if (time+v>20*SECSPERMIN)
 //DeadCode MS 28Oct00 			return true;
-//DeadCode MS 28Oct00 		else						
-//DeadCode MS 28Oct00 			return false;								
+//DeadCode MS 28Oct00 		else
+//DeadCode MS 28Oct00 			return false;
 //DeadCode MS 28Oct00 	}
 //DeadCode MS 28Oct00 }
 
@@ -3310,7 +3310,7 @@ void	SAGairgrp::SAGDecisionCombat(int p,int s)
 		p0=World;
 		p1=Persons2::ConvertPtrUID(Todays_Packages[p][s].Squadron().homeairfield)->World;
 		PlaneTypeSelect pt=Todays_Packages[p][s].Squadron().AcType();
-		if (Todays_Packages[p].CalcFuel(&p0,&p1,pt,pt,0)+1000000>Todays_Packages[p][s].fuelleft) 
+		if (Todays_Packages[p].CalcFuel(&p0,&p1,pt,pt,0)+1000000>Todays_Packages[p][s].fuelleft)
 		{
 			forcetobreak=true;attackergohome=true;
 			Todays_Packages[p][s].submethod=Profile::SubMethod(Todays_Packages[p][s].submethod|Profile::SM_109RETURNING);
@@ -3367,7 +3367,7 @@ void	SAGairgrp::SAGDecisionCombat(int p,int s)
 
 					a->target=Todays_Packages[p][s].instance;
 					if (a->target.Evaluate()<0||a->target.Evaluate()>IllegalBAND)
-						INT3;	
+						INT3;
 				}
 				else
 				{
@@ -3399,7 +3399,7 @@ void	SAGairgrp::SAGDecisionCombat(int p,int s)
 						}
 				}
 
-			}			
+			}
 			if (defenderline)
 			{
 				if (ptr->movecode==AUTOSAG_COMBAT|| ptr->movecode==AUTOSAG_COMBATCIRCLES)
@@ -3413,7 +3413,7 @@ void	SAGairgrp::SAGDecisionCombat(int p,int s)
 				int sqmax=Todays_Packages[tp].RaidNumEntriesMaxSq(re);
 				int	sparesq=-1,escortsq=-1;
 				for (;sqmin<=sqmax;sqmax--)
-					if (	Todays_Packages[tp][sqmax].method>=Profile::AM_DETACHED 
+					if (	Todays_Packages[tp][sqmax].method>=Profile::AM_DETACHED
 						&&	Todays_Packages[tp][sqmax].status<Profile::PS_ACTIVE_MAX
 						&&	Todays_Packages[tp][sqmax].status>Profile::PS_TAKINGOFF
 						&&	!(Todays_Packages[tp][sqmax].submethod&Profile::SM_109RETURNING)
@@ -3426,7 +3426,7 @@ void	SAGairgrp::SAGDecisionCombat(int p,int s)
 								if (Math_Lib.DistanceSquared(p->World.X-World.X,p->World.Z-World.Z)<METRES20KM*METRES20KM)
 									if (Math_Lib.DistanceSquared(p->World.X-World.X,p->World.Z-World.Z)<METRES10KM*METRES10KM)
 										if (p->leader.Evaluate()==Todays_Packages[tp][ts].instance
-											&& (	Todays_Packages[tp][sqmax].method<=Profile::AM_RETURNESCORT 
+											&& (	Todays_Packages[tp][sqmax].method<=Profile::AM_RETURNESCORT
 												||	p->movecode!=AUTOSAG_FOLLOWWP
 											)	)
 											escortsq=sqmax;
@@ -3445,7 +3445,7 @@ void	SAGairgrp::SAGDecisionCombat(int p,int s)
 				if (sparesq==-1)
 				{	//look at detached escorts
 					for (sqmin=0,sqmax=Todays_Packages[tp].squadlist-1;sqmin<=sqmax;sqmax--)
-						if (	Todays_Packages[tp][sqmax].method>=Profile::AM_DETACHED 
+						if (	Todays_Packages[tp][sqmax].method>=Profile::AM_DETACHED
  							&&	Todays_Packages[tp][sqmax].status<Profile::PS_TAKINGOFF
  							&&	Todays_Packages[tp][sqmax].status>Profile::PS_ACTIVE_MAX
 							&&	!(Todays_Packages[tp][sqmax].submethod&Profile::SM_109RETURNING)
@@ -3485,7 +3485,7 @@ void	SAGairgrp::SAGDecisionCombat(int p,int s)
 					}
 
 					ap->target=Todays_Packages[p][s].instance;				//RDH 17/05/00
-					if (ap->target.Evaluate()<0||ap->target.Evaluate()>IllegalBAND)	
+					if (ap->target.Evaluate()<0||ap->target.Evaluate()>IllegalBAND)
 						INT3;
 
 				}
@@ -3506,7 +3506,7 @@ void	SAGairgrp::SAGDecisionCombat(int p,int s)
 							a->wpref=currwp;
 				    	assert (wpref);
 
-						if (a->target.Evaluate()<0||a->target.Evaluate()>IllegalBAND)	
+						if (a->target.Evaluate()<0||a->target.Evaluate()>IllegalBAND)
 							INT3;
 
 					}
@@ -3535,7 +3535,7 @@ void	SAGairgrp::SAGDecisionCombat(int p,int s)
 					sharedleader=-2;
 
 				for (int sqmin=0,sqmax=Todays_Packages[tp].squadlist-1;sqmin<=sqmax;sqmax--)
-					if (	Todays_Packages[tp][sqmax].method>=Profile::AM_DETACHED 
+					if (	Todays_Packages[tp][sqmax].method>=Profile::AM_DETACHED
  						&&	Todays_Packages[tp][sqmax].status<Profile::PS_ACTIVE_MAX
 						&&	Todays_Packages[tp][sqmax].status>Profile::PS_TAKINGOFF
 						&&	!(Todays_Packages[tp][sqmax].submethod&Profile::SM_109RETURNING)
@@ -3647,7 +3647,7 @@ void	SAGairgrp::SAGDecisionCombat(int p,int s)
 			Todays_Packages[p][s].ApplyFlyingLosses(Todays_Packages[p].squadlist.AcBitsSquad(s));
 			if (Todays_Packages[p].squadlist.AllInStatus(Profile::PS_COMPLETE))
 				Todays_Packages[p].PackageComplete(); //UI can recover package...
-		}		
+		}
 		if (Todays_Packages[tp].StopFighting(ts,a,iftargetstopfightingforcegohome))
 		{
 			Todays_Packages.ChangeMessagesUID(Todays_Packages[tp][ts].instance,UID_BIT14+((tp)<<5)+Todays_Packages[tp].GetRaidIndFromSquadEntry(ts));
@@ -3689,7 +3689,7 @@ bool	Profile::StopFighting(int sl,info_airgrpPtr a,bool forcegohome)
 
 		return true;
 	}
-	elseif 	(	!forcegohome 
+	elseif 	(	!forcegohome
 			&&	squad.numacleft*2>squad.numacoriginal	)
 	{	//stop this fight but can fight again	- but only if in combat!!!
 		if (a->movecode==AUTOSAG_COMBAT || a->movecode==AUTOSAG_COMBATCIRCLES)
@@ -3798,7 +3798,7 @@ bool	Profile::StopFighting(int sl,info_airgrpPtr a,bool forcegohome)
 int	Profile::Squad::KillSome(int howmanytokill,Profile::Squad& killer)
 {
 	assert ((method<AM_LWPACKS)!=(killer.method<AM_LWPACKS));
-	enum	
+	enum
 	{	//Input chance is 2 to 14 per 20 or 40 second period for fighters, and 1 for bombers
 		PER_FR_FACTOR=75	//90												//JIM 30Sep00	//MS 16Nov00
 	};
@@ -3821,9 +3821,9 @@ int	Profile::Squad::KillSome(int howmanytokill,Profile::Squad& killer)
 //	ULong	numacoriginal:8,			//Unchanged from launch
 //			numacleft:4,				//Left+ditched=original
 //			numacditched:4,
-//			numacrecoveredlow:4,		//recoveredlow<left - only if ditched 
+//			numacrecoveredlow:4,		//recoveredlow<left - only if ditched
 //			numacrecoveredmed:4,		//recoveredmed+recoveredbad+pilotsleft<ditched
-//			numacrecoveredbad:4,		
+//			numacrecoveredbad:4,
 //			numpilotslost:4;
 // Diary:
 //	UByte		numlosses;	// filled in when ac in this squadron is killed
@@ -3858,7 +3858,7 @@ int	Profile::Squad::KillSome(int howmanytokill,Profile::Squad& killer)
 
 			int level=Math_Lib.rnd();
 			if (level>KILL_LOSS)
-			{	
+			{
 				rv+=1;
 				if (Math_Lib.rnd(numacleft)<numacrecoveredlow)
 				{
@@ -3874,7 +3874,7 @@ int	Profile::Squad::KillSome(int howmanytokill,Profile::Squad& killer)
 				Coords3D& w=Persons2::ConvertPtrUID(instance)->World;
 				if (method>=AM_LWPACKS && !ItemBase::OverFrance(w))
 					level+=(w.Z-w.X+METRES100KM)/METRES10;
-					
+
 
 				if (level>KILL_PILOT)
 				{
@@ -3940,7 +3940,7 @@ int	Profile::Squad::KillSome(int howmanytokill,Profile::Squad& killer)
 // Date:		03/12/99
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	SAGAirstruc::SAGMovementCombatCircles()
@@ -3970,7 +3970,7 @@ void	SAGairgrp::SAGDecisionCombatCircles(int p,int s)
 // Date:		03/12/99
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	SAGAirstruc::SAGMovementPostCombat()
@@ -3979,8 +3979,8 @@ void	SAGAirstruc::SAGMovementPostCombat()
 	SAGMovementFollowWP();
 
 	if(PatchAppropriate())
-		PatchGroupAndAnim();	
-	
+		PatchGroupAndAnim();
+
 	int DoNothingForABreakpoint = 0;
 }
 
@@ -4001,7 +4001,7 @@ void	SAGairgrp::SAGDecisionPostCombat(int p,int s)
 // Date:		03/12/99
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	SAGAirstruc::SAGMovementBombingApproach()
@@ -4010,8 +4010,8 @@ void	SAGAirstruc::SAGMovementBombingApproach()
 	ai.unfriendly = NULL;
 
 	if(PatchAppropriate())
-		PatchGroupAndAnim();	
-	
+		PatchGroupAndAnim();
+
 	Move().AutoFollowWp();
 }
 
@@ -4037,8 +4037,8 @@ void	SAGairgrp::SAGDecisionBombingApproach(int p,int s)
 {
 	int travel;
 	info_waypoint* wp;
-	WaypointOffsetSub wos;								
-	if (!GetCruiseToWp(5,false,true,	travel,wp,wos))								
+	WaypointOffsetSub wos;
+	if (!GetCruiseToWp(5,false,true,	travel,wp,wos))
 		movecode=AUTOSAG_BOMB;
 }
 //////////////////////////////////////////////////////////////////////
@@ -4047,14 +4047,14 @@ void	SAGairgrp::SAGDecisionBombingApproach(int p,int s)
 // Date:		03/12/99
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	SAGAirstruc::SAGMovementBombing()
 {
 	if(PatchAppropriate())
-		PatchGroupAndAnim();	
-	
+		PatchGroupAndAnim();
+
 	Move().AutoBomb();
 }
 
@@ -4072,10 +4072,10 @@ void	SAGAirstruc::SAGDecisionBombing()
 
 void	SAGairgrp::SAGDecisionBombing(int p,int s)
 {
-	//damage the target	
+	//damage the target
 	//I think the waypoint has already moved on.
 	Todays_Packages[p][s].SetStatus(Profile::PS_OUTGOING);
-	Diary::RaidGroup* rg=Squad_Diary.GetRaidGroup(Squad_Diary.GetDiaryPtr(Todays_Packages[p][s].diaryentry));	
+	Diary::RaidGroup* rg=Squad_Diary.GetRaidGroup(Squad_Diary.GetDiaryPtr(Todays_Packages[p][s].diaryentry));
 	if (Todays_Packages[p][s].method==Profile::AM_RECON)
 	{
 		rg->missresult=MR_RECONCOMPLETED;
@@ -4099,7 +4099,7 @@ void	SAGairgrp::SAGDecisionBombing(int p,int s)
 					newlevel=FakeDamage(Todays_Packages[p].SquadTarget(s),Todays_Packages[p][s].numacleft,Todays_Packages[p][s].Squadron().AcType(),Todays_Packages[p][s].instance);	//JIM 14Sep00
 				if (newlevel<Target::TS_LIGHTDAMAGE)
 					rg->missresult=MR_ATTACKNODAMAGE;
-				else 
+				else
 					if (newlevel<Target::TS_BADDAMAGE)
 						rg->missresult=MR_ATTACKSLIGHTDAMAGE;
 					else
@@ -4116,14 +4116,14 @@ void	SAGairgrp::SAGDecisionBombing(int p,int s)
 // Date:		15/08/00
 // Author:		Craig Beeston
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	SAGAirstruc::SAGMovementDeathGlide()
 {
 	if(PatchAppropriate())
-		PatchGroupAndAnim();	
-	
+		PatchGroupAndAnim();
+
 	Move().AutoDeathGlide();
 }
 
@@ -4134,7 +4134,7 @@ void	SAGAirstruc::SAGMovementDeathGlide()
 // Date:		03/12/99
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	SAGAirstruc::SAGMovementTrackExpanded()
@@ -4218,7 +4218,7 @@ void	SAGAirstruc::SAGDecisionTrackExpanded()
 		TriggerRange2 *= TriggerRange2;																						//CSB 27Jul00
 		if((movecode == AUTOSAG_TRACKEXPCOMBAT)	|| (ai.attacker))															//CSB 27Jul00
 			Range2 *= (1.0 / (4.0 * 4.0));																					//CSB 27Jul00
-																														
+
 		if(Range2 > TriggerRange2)
 		{
 			if(Range2 > 4 * TriggerRange2)
@@ -4231,7 +4231,7 @@ void	SAGAirstruc::SAGDecisionTrackExpanded()
 						if(!w->information)
 							inform = false;
 				if(inform)
-					ContractSag(false);	
+					ContractSag(false);
 			}
 		}
 	}
@@ -4243,7 +4243,7 @@ void	SAGAirstruc::SAGDecisionTrackExpanded()
 //DeadCode CSB 27Jul00 	//May decide to close up.
 //DeadCode CSB 27Jul00 	Persons2::PlayerGhostAC->InterceptandRange(&World);
 //DeadCode CSB 27Jul00 	PlaneTypeSelect actype = classtype->planetext;
-//DeadCode CSB 27Jul00 		
+//DeadCode CSB 27Jul00
 //DeadCode CSB 27Jul00 	if(classtype->planetext > PT_GER_NONFLY)
 //DeadCode CSB 27Jul00 	{
 //DeadCode CSB 27Jul00 //DeadCode CSB 27Jul00 		Range *= 4;													//CSB 14Jul00	//CSB 14Jul00
@@ -4251,7 +4251,7 @@ void	SAGAirstruc::SAGDecisionTrackExpanded()
 //DeadCode CSB 27Jul00 	}
 //DeadCode CSB 27Jul00 	if(movecode == AUTOSAG_TRACKEXPCOMBAT)
 //DeadCode CSB 27Jul00 		Range /= 2;													//CSB 14Jul00
-//DeadCode CSB 27Jul00 
+//DeadCode CSB 27Jul00
 //DeadCode CSB 27Jul00 //DeadCode CSB 27Jul00 	if (Range < Persons3::SagExpansionCounter::highdemandrange)
 //DeadCode CSB 27Jul00 	if(Range < Persons3::sagexpcounts[actype].currenttriggerrange)		//CSB 27Jul00
 //DeadCode CSB 27Jul00 	{
@@ -4281,7 +4281,7 @@ void	SAGAirstruc::SAGDecisionTrackExpanded()
 //DeadCode CSB 27Jul00 						if(!w->information || w == Persons2::PlayerGhostAC)
 //DeadCode CSB 27Jul00 							inform = false;
 //DeadCode CSB 27Jul00 				if(inform)
-//DeadCode CSB 27Jul00 					ContractSag(false);	
+//DeadCode CSB 27Jul00 					ContractSag(false);
 //DeadCode CSB 27Jul00 			}
 //DeadCode CSB 27Jul00 		}
 //DeadCode CSB 27Jul00 //DeadCode CSB 27Jul00 		if(		(Persons3::SagExpansionCounter::totalexpanded < 150)
@@ -4301,11 +4301,11 @@ void	SAGAirstruc::SAGDecisionTrackExpanded()
 //DeadCode CSB 27Jul00 //DeadCode CSB 27Jul00 						if (!w->information || w==Persons2::PlayerGhostAC)
 //DeadCode CSB 27Jul00 //DeadCode CSB 27Jul00 							inform=false;
 //DeadCode CSB 27Jul00 //DeadCode CSB 27Jul00 				if (inform)
-//DeadCode CSB 27Jul00 //DeadCode CSB 27Jul00 					ContractSag(false);	
+//DeadCode CSB 27Jul00 //DeadCode CSB 27Jul00 					ContractSag(false);
 //DeadCode CSB 27Jul00 //DeadCode CSB 27Jul00 			}
 //DeadCode CSB 27Jul00 //DeadCode CSB 27Jul00 			else
 //DeadCode CSB 27Jul00 //DeadCode CSB 27Jul00 		}
-//DeadCode CSB 3Aug00 
+//DeadCode CSB 3Aug00
 //DeadCode CSB 3Aug00 	assert((movecode&-2)!=AUTOSAG_TRACKEXPFOLLOW || fly.expandedsag);
 //DeadCode CSB 3Aug00 }
 
@@ -4321,7 +4321,7 @@ void	SAGairgrp::SAGDecisionTrackExpanded(int p,int s)
 // Date:		03/12/99
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	SAGAirstruc::SAGMovementTrackExpandedCombat()
@@ -4336,7 +4336,7 @@ void	SAGairgrp::SAGMovementTrackExpandedCombat(int p,int s)
 
 
 void	SAGAirstruc::SAGDecisionTrackExpandedCombat()
-{	
+{
 	SAGDecisionTrackExpanded();
 }
 
@@ -4374,13 +4374,13 @@ void	SAGairgrp::SAGDecisionDestroyed(int p,int s)
 // Date:		04/08/00
 // Author:		Craig Beeston
 //
-// Description:	
+// Description:
 //
 //////////////////////////////////////////////////////////////////////
 void AirStruc::DestroySag()
 {
 //DeadCode CSB 7Aug00 	DoAllSAGChecks();
-	
+
 	if((fly.expandedsag) && (!fly.expandedsag->Status.deadtime))
 		INT3;
 
@@ -4416,7 +4416,7 @@ void AirStruc::DestroySag()
 // Date:		15/08/00
 // Author:		Craig Beeston
 //
-// Description:	
+// Description:
 //
 //////////////////////////////////////////////////////////////////////
 Bool AirStruc::SAGDeathSequenceOverride(AutoMoveCodeTypeSelect newmovecode)
@@ -4446,11 +4446,11 @@ void AirStruc::RecycleAC()
 
 	if(movecode == AUTO_SPAREAC)
 		return;
-	
+
 	if(		(leader) || (follower) || (ai.unfriendly) || (ai.attacker)
 		||	(fly.leadflight) || (fly.nextflight) || (fly.expandedsag)	)
 		BreakForm();
-	
+
 	if(currworld->vp->trackeditem2 == this)
 		currworld->vp->trackeditem2 = NULL;
 
@@ -4500,7 +4500,7 @@ bool SAGAirstruc::PatchAppropriate()
 {
 	if(Distance3DSquared(&Persons2::PlayerGhostAC->World) > FP(VISIBLERANGE) * FP(VISIBLERANGE) * 3.0)
 		return(false);
-		
+
 	bool retval = false;
 
 	switch(movecode)
@@ -4514,13 +4514,13 @@ bool SAGAirstruc::PatchAppropriate()
 			if((timeofday & 2047) == 0)
 				retval = true;
 			break;
-			
+
 		case AUTOSAG_TAKEOFF:
 		case AUTOSAG_FOLLOWWP:
 		case AUTOSAG_FOLLOWWPHOME:
 		case AUTOSAG_LANDING:
-		case AUTOSAG_PRECOMBAT:	
-		case AUTOSAG_COMBAT:	
+		case AUTOSAG_PRECOMBAT:
+		case AUTOSAG_COMBAT:
 		case AUTOSAG_COMBATCIRCLES:
 		case AUTOSAG_POSTCOMBAT:
 		case AUTOSAG_BOMBAPPROACH:
@@ -4560,7 +4560,7 @@ bool SAGAirstruc::PatchAppropriate()
 //
 //////////////////////////////////////////////////////////////////////
 void	AirStruc::PatchGroupAndAnim(ShapeNum newshape,int numactoenable)
-{	
+{
 //DeadCode CSB 22Aug00 	if (numactoenable)
 	{	//initialise anim data
 		fly.numinsag=numactoenable;
@@ -4582,7 +4582,7 @@ void	AirStruc::PatchGroupAndAnim(ShapeNum newshape,int numactoenable)
 
 void	AirStruc::PatchGroupAndAnim(FormationTypeIndex formation)
 {
-	SingleFormation	
+	SingleFormation
 		wingmanpos=Aircraft_Formations[(formation&FORMTYPE_WING)>>FORMTYPE_WING_SH],
 		leaderpos=Squadron_Formations[(formation&(FORMTYPE_WING+FORMTYPE_SQUAD))>>FORMTYPE_WING_SH];
 	PatchGroupAndAnim(wingmanpos,leaderpos);
@@ -4605,7 +4605,7 @@ void	AirStruc::PatchGroupAndAnim(SingleFormation wingmanpos,SingleFormation lead
 	if((shapeuid) && (shapeuid != uniqueID.count) && (shapeuid >= SagBAND) && (shapeuid < SagBANDEND))
 	{
 		AirStrucPtr setter = AirStrucPtr(Persons2::ConvertPtrUID(shapeuid));
-		if(		(!setter)	
+		if(		(!setter)
 			||	(setter->shape != shape)
 			||	(setter->fly.expandedsag)
 			||	((setter->movecode != AUTO_FOLLOWWP) && (movecode == AUTO_FOLLOWWP))
@@ -4619,14 +4619,14 @@ void	AirStruc::PatchGroupAndAnim(SingleFormation wingmanpos,SingleFormation lead
 
 //DeadCode CSB 7Nov00 	if((fly.leadflight) && (fly.leadflight->shape == shape) && (fly.leadflight->fly.expandedsag == NULL))
 //DeadCode CSB 7Nov00 		return;	//we share the leader's sag so there is no point us recalculating position.
-//DeadCode CSB 7Nov00 	
+//DeadCode CSB 7Nov00
 //DeadCode CSB 7Nov00 	if((fly.leadflight) && (fly.leadflight->shape == shape))
 //DeadCode CSB 7Nov00 		for(int i = 0; i < Art_Int.ACARRAYSIZE; i++)
 //DeadCode CSB 7Nov00 		{
 //DeadCode CSB 7Nov00 			AirStrucPtr ac = Art_Int.ACArray[i];
 //DeadCode CSB 7Nov00 			if(ac == this)
 //DeadCode CSB 7Nov00 				break;
-//DeadCode CSB 7Nov00 
+//DeadCode CSB 7Nov00
 //DeadCode CSB 7Nov00 			if(ac)
 //DeadCode CSB 7Nov00 				if(ac->shape == shape)
 //DeadCode CSB 7Nov00 					if(ac->fly.leadflight == fly.leadflight)
@@ -4723,14 +4723,14 @@ void	AirStruc::PatchGroupAndAnim(SingleFormation wingmanpos,SingleFormation lead
 // Date:		14/02/00
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	AirStruc::ContractSag(bool forcedcontract)
 {	//for each aircraft I need to vape (if one has been made):
-	//the leadflight/nextflight link 
+	//the leadflight/nextflight link
 	//the unfriendly/attacker link
-	
+
 	//I DON'T KNOW WHAT THIS CODE WILL DO IF ASKED TO CONTRACT ELEMENT ORGANISED FLIGHTS
 
 // sag expansion/contraction now based on distance from ghostAC not on
@@ -4754,7 +4754,7 @@ void	AirStruc::ContractSag(bool forcedcontract)
 
 //CHECK ALL MEMBER POINTERS AGAINST ACLIST
 	//UNFRIENDLY,	ATTACKER,	NEXTFLIGHT, LEADFLIGHT
-	
+
 //DeadCode CSB 10Aug00 	while(fly.expandedsag->movecode == AUTO_NOPPILOT)					//CSB 1Aug00
 //DeadCode CSB 10Aug00 		fly.expandedsag->BreakForm();									//CSB 1Aug00
 
@@ -4764,13 +4764,13 @@ void	AirStruc::ContractSag(bool forcedcontract)
 			for(int i = 0; i < ArtInt::ACARRAYSIZE; i++)
 				if((ArtInt::ACArray[i]) && (ArtInt::ACArray[i] != this))
 				{
-					AirStrucPtr sag = ArtInt::ACArray[i]; 
+					AirStrucPtr sag = ArtInt::ACArray[i];
 					MobileItemPtr acmob = MobileItemPtr(thisfoll);
 					if(sag->ai.unfriendly  == acmob)	INT3;//sag->ai.unfriendly = thissag;
 					if(sag->ai.attacker    == thisfoll)	INT3;//sag->ai.attacker   = this;
 					if(sag->fly.leadflight == thisfoll)	sag->fly.leadflight= this;
 					if(sag->fly.nextflight == thisfoll)	sag->fly.nextflight= this;
-					
+
 					for(AirStrucPtr lac = sag->fly.expandedsag; lac; lac = lac->fly.nextflight)
 						for(AirStrucPtr fac = lac; fac; fac = fac->Follower())
 						{
@@ -4826,9 +4826,9 @@ void	AirStruc::ContractSag(bool forcedcontract)
 //DEADCODE JIM 14/02/00 		case		AUTOSAG_BOMB:			separatemovecode=AUTO_BOMB;	break;
 		case	AUTO_DEATHGLIDE	:	separatemovecode = AUTOSAG_DEATHGLIDE;	break;
 		default:
-		case		AUTOSAG_TRACKEXPFOLLOW:	
-		case		AUTOSAG_TRACKEXPCOMBAT:	
-		case		AUTOSAG_DESTROYED:		
+		case		AUTOSAG_TRACKEXPFOLLOW:
+		case		AUTOSAG_TRACKEXPCOMBAT:
+		case		AUTOSAG_DESTROYED:
 		case		AUTOSAG_LAST:			INT3;	break;
 	}
 	movecode=separatemovecode;
@@ -4891,7 +4891,7 @@ void	AirStruc::ContractSag(bool forcedcontract)
 					acnum = 0;											//CSB 16Aug00
 				}														//CSB 16Aug00
 			}															//CSB 16Aug00
-			
+
 			w2=w->Follower();
 //DEADCODE JIM 14/02/00 			totalac--;
 			//COPY anim data to gi
@@ -4908,7 +4908,7 @@ void	AirStruc::ContractSag(bool forcedcontract)
 			w->currworld->AddToWorld(w);								//CSB 9Aug00
 
 			Persons3::SagExpansionCounter::totalexpanded--;
-			
+
 #ifdef _OLDWORLD															//CSB 7Aug00
 			w->OldWorld = w->World;											//CSB 7Aug00
 			w->OldSector = w->currworld->GetSector(w);						//CSB 8Aug00
@@ -4959,7 +4959,7 @@ void	AirStruc::ContractSag(bool forcedcontract)
 // Date:		14/02/00
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 AirStrucPtr	AirStruc::ExpandSag(bool forcedexpand)
@@ -4983,7 +4983,7 @@ AirStrucPtr	AirStruc::ExpandSag(bool forcedexpand)
 //DeadCode AMM 7Sep00 			_DPlay.SendExpandSAGMessage(this->uniqueID.count);
 //DeadCode AMM 7Sep00 			sentexpanded=TRUE;
 //DeadCode AMM 7Sep00 		}
-//DeadCode AMM 7Sep00 
+//DeadCode AMM 7Sep00
 //DeadCode AMM 7Sep00 		return NULL;
 //DeadCode AMM 7Sep00 	}
 
@@ -5001,7 +5001,7 @@ AirStrucPtr	AirStruc::ExpandSag(bool forcedexpand)
 		int wingnum=0, flightnum=0,
 			groupnum=fly.originalformpos&InFormMAX;
 //DeadCode JIM 20Oct00 		int	numused=0;
-		SingleFormation	
+		SingleFormation
 			wingmanpos=Aircraft_Formations[(formation&FORMTYPE_WING)>>FORMTYPE_WING_SH];
 		int totalac=fly.numinsag;
 		int perfl=wingmanpos->GetPerFl(totalac);					//JIM 7Jul00
@@ -5021,10 +5021,10 @@ AirStrucPtr	AirStruc::ExpandSag(bool forcedexpand)
 			AirStrucPtr grplead=fly.leadflight;
 			if (grplead->fly.numinsag==0)
 				grplead=grplead->fly.expandedsag;
-			
+
 //DEADCODE DAW 13/03/00 			if (grplead->classtype==classtype)
 //DEADCODE DAW 13/03/00 			{
-//DEADCODE DAW 13/03/00 
+//DEADCODE DAW 13/03/00
 //DEADCODE DAW 13/03/00 				callnumbase=(grplead->fly.numinsag+perfl-1)/perfl;	//callsigns per squadron
 //DEADCODE DAW 13/03/00 				if ((formation&FORMTYPE_INTER)==FTI_ABREST && callnumbase==2)
 //DEADCODE DAW 13/03/00 					callnumbase=callnumbase
@@ -5035,7 +5035,7 @@ AirStrucPtr	AirStruc::ExpandSag(bool forcedexpand)
 		AutoMoveCodeTypeSelect separatemovecode=AUTO_FOLLOWWP;
 		switch (movecode)
 		{
-			case	AUTOSAG_WAITTAKEOFF:	separatemovecode=AUTO_WAIT4TIME;	break;	
+			case	AUTOSAG_WAITTAKEOFF:	separatemovecode=AUTO_WAIT4TIME;	break;
 			case	AUTOSAG_TAKEOFF:		separatemovecode=AUTO_TAKEOFF;	break;
 			case	AUTOSAG_FOLLOWWP:		separatemovecode=AUTO_FOLLOWWP;	break;
 			case	AUTOSAG_FOLLOWWPHOME:	separatemovecode=AUTO_FOLLOWWP;	break;
@@ -5048,30 +5048,30 @@ AirStrucPtr	AirStruc::ExpandSag(bool forcedexpand)
 			case	AUTOSAG_BOMBAPPROACH:	separatemovecode=AUTO_BOMB;	break;
 			case	AUTOSAG_BOMB:			separatemovecode=AUTO_BOMB;	break;
 			case	AUTOSAG_DEATHGLIDE:		separatemovecode = AUTO_DEATHGLIDE;	break;
-			case	AUTOSAG_TRACKEXPFOLLOW:	
-			case	AUTOSAG_TRACKEXPCOMBAT:	
-			case	AUTOSAG_DESTROYED:		
+			case	AUTOSAG_TRACKEXPFOLLOW:
+			case	AUTOSAG_TRACKEXPCOMBAT:
+			case	AUTOSAG_DESTROYED:
 			case	AUTOSAG_LAST:			INT3;	break;
 		}
-		
+
 		switch (movecode)
 		{
-			case	AUTOSAG_WAITTAKEOFF:		
-			case	AUTOSAG_TAKEOFF:		
-			case	AUTOSAG_FOLLOWWP:		
-			case	AUTOSAG_FOLLOWWPHOME:	
+			case	AUTOSAG_WAITTAKEOFF:
+			case	AUTOSAG_TAKEOFF:
+			case	AUTOSAG_FOLLOWWP:
+			case	AUTOSAG_FOLLOWWPHOME:
 			case	AUTOSAG_LANDING:		movecode=AUTOSAG_TRACKEXPFOLLOW;	break;
 			case	AUTOSAG_REFUELLING:		movecode=AUTOSAG_TRACKEXPFOLLOW;	break;
-			case	AUTOSAG_PRECOMBAT:		
-			case	AUTOSAG_COMBAT:			
-			case	AUTOSAG_COMBATCIRCLES:	
+			case	AUTOSAG_PRECOMBAT:
+			case	AUTOSAG_COMBAT:
+			case	AUTOSAG_COMBATCIRCLES:
 			case	AUTOSAG_POSTCOMBAT:		movecode=AUTOSAG_TRACKEXPCOMBAT;	break;
-			case	AUTOSAG_BOMBAPPROACH:	
+			case	AUTOSAG_BOMBAPPROACH:
 			case	AUTOSAG_BOMB:			movecode=AUTOSAG_TRACKEXPFOLLOW;	break;
 			case	AUTOSAG_DEATHGLIDE:		movecode=AUTOSAG_TRACKEXPFOLLOW;	break;
-			case	AUTOSAG_TRACKEXPFOLLOW:	
-			case	AUTOSAG_TRACKEXPCOMBAT:	
-			case	AUTOSAG_DESTROYED:		
+			case	AUTOSAG_TRACKEXPFOLLOW:
+			case	AUTOSAG_TRACKEXPCOMBAT:
+			case	AUTOSAG_DESTROYED:
 			case	AUTOSAG_LAST:			INT3;	break;
 		}
 
@@ -5085,7 +5085,7 @@ AirStrucPtr	AirStruc::ExpandSag(bool forcedexpand)
 			{
 				gi.AnimDataMAD().IsInvisible=true;
 				AirStrucPtr p=ActivateACFromSag(gi);
-				assert(p,"oops! not got an aircraft to expand to!");
+				bobassert(p,"oops! not got an aircraft to expand to!");
 				Persons3::sagexpcounts[actype].numactive++;
 				p->fly.originalformpos=(InWing)wingnum+(InForm)groupnum;
 				p->formpos=(InWing)wingnum+(InForm)flightnum;
@@ -5120,7 +5120,7 @@ AirStrucPtr	AirStruc::ExpandSag(bool forcedexpand)
 
 				p->Status = Status;										//CSB 8Aug00
 				p->fly.expandedsag=this;								//CSB 02/06/00
-				p->fly.callname=fly.callname;	  
+				p->fly.callname=fly.callname;
 				p->fly.callnum=(groupnum)*5+wingnum;
 				p->SetLettering(lettering+0x10000*(flightnum*perfl+wingnum));
 				p->ai.pilotnum<<=ai.pilotnum;
@@ -5235,7 +5235,7 @@ AirStrucPtr	AirStruc::ExpandSag(bool forcedexpand)
 								fac->ai.unfriendly = fly.expandedsag;
 						}
 
-		Status.deadtime = 0;	
+		Status.deadtime = 0;
 
 #ifndef NDEBUG
 		int newsize = Art_Int.CountSquadronSize(this);
@@ -5371,18 +5371,18 @@ AirStrucPtr AirStruc::ActivateACFromSag(GroupItterator& gi)
 		currac->sentcontracted=FALSE;
 		currac->nationality=(Nationality)nationality;
 		currac->waypoint=waypoint;
-		currac->information = IF_ALLBAD;		
+		currac->information = IF_ALLBAD;
 		currac->vel_=vel_;
-		currac->vel_x =vel_x;					
-		currac->vel_y =vel_y;					
+		currac->vel_x =vel_x;
+		currac->vel_y =vel_y;
 		currac->vel_z =vel_z;
 	//DEADCODE JIM 10/12/99 	currac->fly.vel_cms = 	fly.vel_cms;
-		currac->fly.cpitch = fly.cpitch;		
-		currac->fly.aileron = fly.aileron;						
-		currac->fly.elevator = fly.elevator;					
-		currac->fly.rudder = fly.rudder;						
+		currac->fly.cpitch = fly.cpitch;
+		currac->fly.aileron = fly.aileron;
+		currac->fly.elevator = fly.elevator;
+		currac->fly.rudder = fly.rudder;
 		currac->weap.ShootDelay=0;
-		currac->fly.callname=fly.callname;	  
+		currac->fly.callname=fly.callname;
 		currac->fly.callnum=fly.callnum;
 		currac->ai.pilotnum<<=ai.pilotnum;
 		currac->roll=roll;
@@ -5430,7 +5430,7 @@ AirStrucPtr AirStruc::ActivateACFromSag(GroupItterator& gi)
 // Date:		02/06/00
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 int SAGairgrp::FakeDamage(UniqueID target,int numattacks,PlaneTypeSelect attackertype,UniqueID reportsuccess)
@@ -5456,7 +5456,7 @@ int SAGairgrp::FakeDamage(UniqueID target,int numattacks,PlaneTypeSelect attacke
 //If the fuel store is destroyed, then the RAF are grounded to the end of the day,
 //so are vulnerable indefinitely.
 //Otherwise the first squadron will park for 15 mins after landing to refuel.
-//If another squadron lands while the first is refuelling then their refuelling 
+//If another squadron lands while the first is refuelling then their refuelling
 //may be delayed while the first squad is finished, if:
 //		The airfield is satelite and number refuelling is greater than 1-1xdamagepc
 //Or	The airfield is large and number refuelling is greater than 3-3xdamagepc
@@ -5467,13 +5467,13 @@ int SAGairgrp::FakeDamage(UniqueID target,int numattacks,PlaneTypeSelect attacke
 //Repair will be split into 3 levels:
 //	Very light damage can be repaired on satellite airfields if repair facility is live
 //	Light damage can be repaired at main airfield if that's repair facility is live.
-//		The aircraft will remain a member of the satellite airfield, and will take 
+//		The aircraft will remain a member of the satellite airfield, and will take
 //		longer to repair than if it was on the main airfield.
-//	Heavy damage will lose the aircraft, but depending on the exact level 
-//	(can we do this?), we would up aircraft production fractionally to account 
+//	Heavy damage will lose the aircraft, but depending on the exact level
+//	(can we do this?), we would up aircraft production fractionally to account
 //	for the extra spare parts availability.
 //All repairs will be faster if 2 squads of same a/c type at same airfield and only 1 is damaged.
-	
+
 int	SAGairgrp::GetRefuellingTime(SquadNum sq)
 {
 	if (sq>SQ_LW_START)
@@ -5530,9 +5530,9 @@ void	Profile::ApplyDiaryLosses()
 //				ULong	numacoriginal:4,			//Unchanged from launch
 //						numacleft:4,				//Left+ditched=original
 //						numacditched:4,
-//						numacrecoveredlow:4,		//recoveredlow<left - only if ditched 
+//						numacrecoveredlow:4,		//recoveredlow<left - only if ditched
 //						numacrecoveredmed:4,		//recoveredmed+recoveredbad+pilotsleft<ditched
-//						numacrecoveredbad:4,		
+//						numacrecoveredbad:4,
 //						numpilotslost:4,
 //						leaderlost:1,
 //						other:3;
@@ -5645,9 +5645,9 @@ void	Profile::Squad::ApplyDiaryLosses(int moreslots)
 //				ULong	numacoriginal:4,			//Unchanged from launch
 //						numacleft:4,				//Left+ditched=original
 //						numacditched:4,
-//						numacrecoveredlow:4,		//recoveredlow<left - only if ditched 
+//						numacrecoveredlow:4,		//recoveredlow<left - only if ditched
 //						numacrecoveredmed:4,		//recoveredmed+recoveredbad+pilotsleft<ditched
-//						numacrecoveredbad:4,		
+//						numacrecoveredbad:4,
 //						numpilotslost:4,
 //						leaderlost:1,
 //						other:3;
@@ -5670,7 +5670,7 @@ void	Profile::ApplyFlyingLossesDiary()
 			if (squaddiary->squadnum >= SQ_LW_START)							//RJS 13Nov00
 			{
 				Diary::Gruppen*	gptr = (Diary::Gruppen*)squaddiary;
-				
+
 				MMC.thisweekreview.Note(squadron.AcType(),PT_SPIT_A,gptr->kills[0]);
 				MMC.thisweekreview.Note(squadron.AcType(),PT_HURR_A,gptr->kills[1]);
 			}
@@ -5690,13 +5690,13 @@ void	Profile::ApplyFlyingLossesDiary()
 				Diary::Intercept*	squadintercept=Squad_Diary.GetIntercept(squaddiary);
 				Diary::RaidGroup* raidgroup=Squad_Diary.GetRaidGroup(squadintercept);
 				if (Squad_Diary.GetFirstSquadron(raidgroup))	   //If undiverted patrol then not set
-					squadron.periodstatus=squadron.GOT_ACTION;	  
+					squadron.periodstatus=squadron.GOT_ACTION;
 			}
 			else
 			{
 				Diary::RaidGroup* raidgroup=Squad_Diary.GetRaidGroup(squaddiary);
 				if (Squad_Diary.GetFirstIntercept(raidgroup))
-					squadron.periodstatus=squadron.GOT_ACTION;	  
+					squadron.periodstatus=squadron.GOT_ACTION;
 			}
 			int kills=0,losses=0,pilotlosses=0;
 			Diary::Squadron* squaddiarydetail=(Diary::Squadron*)squaddiary;
@@ -5872,7 +5872,7 @@ void AirStruc::DoSAGChecks()
 				INT3;
 		}
 	}
-#endif	
+#endif
 }
 
 
@@ -5917,7 +5917,7 @@ void AirStruc::DoAllSAGChecks()
 		if((sag->Status.deadtime) && (sag->fly.numinsag) && (sag->movecode != AUTOSAG_DESTROYED) && (sag->movecode != AUTOSAG_DEATHGLIDE))
 			INT3;
 
-		if(		(sag->Status.deadtime) && (!sag->fly.numinsag) 
+		if(		(sag->Status.deadtime) && (!sag->fly.numinsag)
 			&&	(sag->movecode != AUTO_SPAREAC)
 			&&	(sag->movecode != AUTO_NOPPILOT)
 			&&	(sag->movecode != AUTO_SPIRAL2GROUND)
@@ -5929,7 +5929,7 @@ void AirStruc::DoAllSAGChecks()
 			&&	(sag->movecode != AUTO_CRASHONEWHEEL)
 			&&	(sag->movecode != AUTO_CRASHNOSE)
 			&&	(sag->movecode != AUTO_CRASHFLIP)
-			&&	(sag->movecode != AUTO_CRASHTUMBLE)		)	
+			&&	(sag->movecode != AUTO_CRASHTUMBLE)		)
 			INT3;
 
 		if(		(sag->fly.numinsag) && (!sag->ai.unfriendly)
@@ -5938,7 +5938,7 @@ void AirStruc::DoAllSAGChecks()
 
 		if((sag->ai.attacker) && (sag->ai.attacker->ai.unfriendly != sag))
 			INT3;
-		
+
 		if(		(sag->fly.numinsag) && (sag->fly.expandedsag)
 			&&	((sag->movecode != AUTOSAG_TRACKEXPFOLLOW) && (sag->movecode != AUTOSAG_TRACKEXPCOMBAT))	)
 			INT3;
@@ -5976,7 +5976,7 @@ void AirStruc::DoAllSAGChecks()
 		if(		((sag->leader)         && (!sag->Leader()->fly.expandedsag)       && (sag->Leader()->Status.deadtime))
 			||	((sag->follower)       && (!sag->Follower()->fly.expandedsag)     && (sag->Follower()->Status.deadtime))
 			||	((sag->fly.leadflight) && (!sag->fly.leadflight->fly.expandedsag) && (sag->fly.leadflight->Status.deadtime))
-			||	((sag->fly.nextflight) && (!sag->fly.nextflight->fly.expandedsag) && (sag->fly.nextflight->Status.deadtime))	
+			||	((sag->fly.nextflight) && (!sag->fly.nextflight->fly.expandedsag) && (sag->fly.nextflight->Status.deadtime))
 			||	((sag->ai.attacker)    && (!sag->ai.attacker->fly.expandedsag)    && (sag->ai.attacker->Status.deadtime))	)
 			INT3;
 
@@ -5999,7 +5999,7 @@ void AirStruc::DoAllSAGChecks()
 		if((sag->classtype->aerobaticfactor == AEROBATIC_LOW) && (sag->ai.unfriendly) && (sag->ai.unfriendly->Status.size == AIRSTRUCSIZE))
 			INT3;
 
-		if(		(sag->ai.unfriendly) && (sag->ai.unfriendly->Status.size == AIRSTRUCSIZE) 
+		if(		(sag->ai.unfriendly) && (sag->ai.unfriendly->Status.size == AIRSTRUCSIZE)
 			&&	(AirStrucPtr(sag->ai.unfriendly)->nationality == sag->nationality)		)
 			INT3;
 
@@ -6012,10 +6012,10 @@ void AirStruc::DoAllSAGChecks()
 
 		if(sag->fly.numinsag)
 			SimpleAircraftAnimData* adptr = (SimpleAircraftAnimData*)sag->Anim;
-			
+
 		if(!sag->fly.numinsag)
 			AircraftAnimData* adptr = (AircraftAnimData*)sag->Anim;
-			
+
 		if((!sag->fly.numinsag) && (sag->fly.expandedsag) && (sag != Persons2::PlayerSeenAC))
 		{
 			bool foundme = false;
@@ -6055,7 +6055,7 @@ void AirStruc::DoAllSAGChecks()
 //DeadCode CSB 23Aug00 			}
 //DeadCode CSB 23Aug00 		}
 
-//////////////////////////////////////////////////////////////////////////////////////////////////		
+//////////////////////////////////////////////////////////////////////////////////////////////////
 		if((sag->fly.numinsag) && (!sag->nextmobile))
 			sag = AirStrucPtr(ACList);
 	}
@@ -6069,11 +6069,11 @@ void AirStruc::DoAllSAGChecks()
 			for(AirStrucPtr ac = AirStrucPtr(ACList); ac; ac = AirStrucPtr(ac->nextmobile))
 				if((ac->movecode != AUTO_SPAREAC) && (ac != Persons2::PlayerGhostAC))
 				{
-					PlaneTypeSelect actype = ac->classtype->planetext;	
-					if(actype > PT_GER_NONFLY)	
-						actype = PT_GER_NONFLY;	
+					PlaneTypeSelect actype = ac->classtype->planetext;
+					if(actype > PT_GER_NONFLY)
+						actype = PT_GER_NONFLY;
 					if(actype == i)
-						numactive++;	
+						numactive++;
 				}
 
 			if(numactive != Persons3::sagexpcounts[i].numactive)
@@ -6087,7 +6087,7 @@ void AirStruc::DoAllSAGChecks()
 
 #endif
 
-#endif	
+#endif
 }
 
 
@@ -6115,7 +6115,7 @@ void AirStruc::ClearUpAI()
 		if(		(ac->ai.unfriendly) && (ac->ai.unfriendly->Status.size != AIRSTRUCSIZE)
 			&&	((ac->movecode != AUTO_BOMB) && (!((ac->fly.expandedsag) && (ac->fly.expandedsag->movecode == AUTO_BOMB))))	)
 			ac->ai.unfriendly = NULL;
-	
+
 //////////////////////////////////////////////////////////////////////////
 		if((!ac->fly.numinsag) && (!ac->nextmobile) && (SAGList))
 			ac = AirStrucPtr(SAGList);

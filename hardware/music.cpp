@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -64,7 +64,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //------------------------------------------------------------------------------
 //Filename       music.cpp
-//System         
+//System
 //Author         Andy McMaster
 //Date           Tue 5 Oct 1999
 //Description    Everything to do with manipulating a piece of music
@@ -83,7 +83,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 // Date:		20/10/99
 // Author:		Macca
 //
-//Description:	set up Direct Music object, performance, loader and 
+//Description:	set up Direct Music object, performance, loader and
 //				enumerate music devices
 //
 //////////////////////////////////////////////////////////////////////
@@ -91,7 +91,7 @@ bool Music::Init(DigitalDriver* drvr)
 {
 	if (this && drvr)
 	{
-		HRESULT res;			
+		HRESULT res;
 
 //ensure that a DirectSound object exists, if not then no music
 
@@ -122,7 +122,7 @@ bool Music::Init(DigitalDriver* drvr)
 // let performance create DirectMusic object
 // link to existing DirectSound object
 
-		res=gpPerf->Init(&gpDMusic,drvr->lpds,NULL);	
+		res=gpPerf->Init(&gpDMusic,drvr->lpds,NULL);
 
 		if (res!=S_OK)
 		{
@@ -267,7 +267,7 @@ void Music::Stop()
 // Date:		20/10/99
 // Author:		Macca
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void Music::ReleasePort()
@@ -292,7 +292,7 @@ void Music::ReleasePort()
 // Author:		Macca
 //
 //Description:	Given an index into the list of music devices, create a port
-//				for this device and assign it to the performance ready for 
+//				for this device and assign it to the performance ready for
 //				some music to be played on it.
 //
 //////////////////////////////////////////////////////////////////////
@@ -322,11 +322,11 @@ bool Music::CreateAndAddPort(ULong index)
 //Author		Andy McMaster
 //Date			Mon 22 Nov 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 bool Music::CreateAndAddPort(GUID portguid)
@@ -345,21 +345,21 @@ bool Music::CreateAndAddPort(GUID portguid)
 		params.dwSize=sizeof(DMUS_PORTPARAMS);
 
 // set up what port parameters we require here
-/*	DWORD dwValidParams;	
-    DWORD dwVoices;	
-    DWORD dwChannelGroups;	
-    DWORD dwAudioChannels;	
-    DWORD dwSampleRate;	
-    DWORD dwEffectFlags;	
-    DWORD fShare;	
-	
-	DMUS_PORTPARAMS_VOICES	
-	DMUS_PORTPARAMS_CHANNELGROUPS	
-	DMUS_PORTPARAMS_AUDIOCHANNELS	
-	DMUS_PORTPARAMS_SAMPLERATE	
-	DMUS_PORTPARAMS_EFFECTS	
-	DMUS_PORTPARAMS_SHARE 	
-*/	
+/*	DWORD dwValidParams;
+    DWORD dwVoices;
+    DWORD dwChannelGroups;
+    DWORD dwAudioChannels;
+    DWORD dwSampleRate;
+    DWORD dwEffectFlags;
+    DWORD fShare;
+
+	DMUS_PORTPARAMS_VOICES
+	DMUS_PORTPARAMS_CHANNELGROUPS
+	DMUS_PORTPARAMS_AUDIOCHANNELS
+	DMUS_PORTPARAMS_SAMPLERATE
+	DMUS_PORTPARAMS_EFFECTS
+	DMUS_PORTPARAMS_SHARE
+*/
 
 		params.dwChannelGroups=1;
 		params.dwValidParams |= DMUS_PORTPARAMS_CHANNELGROUPS;
@@ -476,7 +476,7 @@ void Music::AddDefaultPortToList()
 // Date:		20/10/99
 // Author:		Macca
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 bool Music::CreateLoader()
@@ -533,7 +533,7 @@ void Music::Play(void*	dataPtr, int	dataLength, bool MusicTest)
 
 			if (caps.dwFlags & DMUS_PC_DLS)
 			{
-// This parameter must be set for any segment based on a standard MIDI file before 
+// This parameter must be set for any segment based on a standard MIDI file before
 // any instruments are downloaded
 
 				res=gpSegment->SetParam(GUID_StandardMIDIFile,0xffffffff,0,0,NULL);
@@ -584,9 +584,9 @@ void Music::Play(void*	dataPtr, int	dataLength, bool MusicTest)
 //
 //Description	Try to load the given file into a segment
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Music::AttemptFileOpen(void*	dataPtr, int	dataLength, bool MusicTest)
@@ -664,7 +664,7 @@ void Music::AttemptFileOpen(void*	dataPtr, int	dataLength, bool MusicTest)
 // Date:		20/10/99
 // Author:		Macca
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void Music::SetVolume(int vol, int fadetime)
@@ -679,7 +679,7 @@ void Music::SetVolume(int vol, int fadetime)
 		currentfadetime = fadetime;
 
 //Scale to master volume (0-128)...
-		
+
 		vol *= mastervolume;
 		vol >>= 7;
 
@@ -695,7 +695,7 @@ void Music::SetVolume(int vol, int fadetime)
 // Date:		20/10/99
 // Author:		Macca
 //
-//Description:	release all interfaces 
+//Description:	release all interfaces
 //
 //////////////////////////////////////////////////////////////////////
 void Music::CleanUpMusic()
@@ -738,7 +738,7 @@ void Music::CleanUpMusic()
 // Date:		20/10/99
 // Author:		Macca
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void Music::Process()
@@ -789,7 +789,7 @@ void Music::DeletePortList()
 // Date:		20/10/99
 // Author:		Macca
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 bool Music::Playing()
@@ -807,11 +807,11 @@ bool Music::Playing()
 //Author		Robert Slater
 //Date			Tue 9 Nov 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int	Music::GetVolume()
@@ -824,11 +824,11 @@ int	Music::GetVolume()
 //Author		Robert Slater
 //Date			Tue 9 Nov 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Music::SetMasterVolume(int	theVol)
@@ -852,9 +852,9 @@ void	Music::SetMasterVolume(int	theVol)
 //Description	Checks to see if the GUID of the music device in the savegame is
 //				valid, i.e. one of the enumerated devices
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DeadCode AMM 22Nov99 bool	Music::IsMusicDeviceValid()
@@ -869,9 +869,9 @@ void	Music::SetMasterVolume(int	theVol)
 //
 //Description	Sets the music device to be used to the default and sets savegame setting
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 bool	Music::AssignDefaultMusicDevice()
@@ -899,11 +899,11 @@ bool	Music::AssignDefaultMusicDevice()
 //Author		Andy McMaster
 //Date			Mon 22 Nov 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 bool SaveData::InitMusicDevice()
@@ -927,9 +927,9 @@ bool SaveData::InitMusicDevice()
 //
 //Description	Checks to see if the GUID of the music device in the savegame is
 //				valid, i.e. one of the enumerated devices
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 bool SaveData::LoadedMusicDeviceOK()
@@ -963,9 +963,9 @@ bool SaveData::LoadedMusicDeviceOK()
 //Description	Called when option in prefs is selected to evaluate quality
 //				of music device.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Music::TestMusic()
@@ -988,9 +988,9 @@ void Music::TestMusic()
 //
 //Description	Called when music device in preferences is changed
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 bool Music::ChangeMusicDevice(ULong index)
@@ -1016,11 +1016,11 @@ bool Music::ChangeMusicDevice(ULong index)
 //Author		Andy McMaster
 //Date			Mon 29 Nov 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 bool	Music::MDI_valid()

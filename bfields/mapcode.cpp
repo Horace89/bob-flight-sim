@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -68,8 +68,8 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //
 //
 //
-#include	"dosdefs.h"	
-#define		F_COMMON  
+#include	"dosdefs.h"
+#define		F_COMMON
 //DEADCODE JIM 09/02/00 #include	"text.h"
 #include	"uniqueID.h"
 #include	"bfnumber.h"
@@ -87,19 +87,24 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include <stdarg.h>
 #include "replay.h"
 #include "monotxt.h"
+#include "myerror.h"
+#undef assert
+#include <cassert>
 
 ///////////////////////////////////////////////
 ItemBasePtr	WorldStuff::pItem[WorldStuff::PITEMTABLESIZE];
 ItemBasePtr WorldStuff::pMapItemHead;
 ///////////////////////////////////////////////
 extern CString		CSprintf(const char* format,...);
-inline	CString	LoadResString(int resnum)
+
+CString	LoadResString(int resnum);
+/*
 {
 	CString s;
 	s.LoadString(resnum);
 	return s;
 };
-
+*/
 
 //////////////////////////////////////////////////////////////////////
 //
@@ -156,12 +161,12 @@ void	Persons4::StartUpMapWorld(bool loadpackages, char* name)
 //DEADCODE JIM 16/11/99 				Persons_4.LoadSubPiece(NULL,bf,front+1,LOAD);
 //DEADCODE JIM 16/11/99 				SupplyTree::supplylines[front]->groundbattle.LoadBattleNodes(bn);
 //DEADCODE JIM 16/11/99 				SupplyTree::supplylines[front]->groundbattle.LinkBattleNodes();
-//DEADCODE JIM 16/11/99 
+//DEADCODE JIM 16/11/99
 //DEADCODE JIM 16/11/99 #ifndef NDEBUG
 //DEADCODE JIM 16/11/99 				CString missingnodes="";
 //DEADCODE JIM 16/11/99 				for(int node=0;node<SupplyTree::supplylines[front]->groundbattle.usednodes;node++)
 //DEADCODE JIM 16/11/99 				{
-//DEADCODE JIM 16/11/99 					SuperBattleNode* bn=&SupplyTree::supplylines[front]->groundbattle.nodelist[node];	
+//DEADCODE JIM 16/11/99 					SuperBattleNode* bn=&SupplyTree::supplylines[front]->groundbattle.nodelist[node];
 //DEADCODE JIM 16/11/99 					CString onenode="";
 //DEADCODE JIM 16/11/99 					if (bn->in.uid && Persons2::ConvertPtrUID(bn->in.uid)==NULL)
 //DEADCODE JIM 16/11/99 						onenode+=CSprintf(" I:%04x",bn->in.uid);
@@ -175,7 +180,7 @@ void	Persons4::StartUpMapWorld(bool loadpackages, char* name)
 //DEADCODE JIM 16/11/99 				if (missingnodes!="")
 //DEADCODE JIM 16/11/99 					_Error.EmitSysErr(CString("The following nodes are not in the file %s:\n")+missingnodes,File_Man.namenumberedfile(bf));
 //DEADCODE JIM 16/11/99 #endif
-//DEADCODE JIM 16/11/99 
+//DEADCODE JIM 16/11/99
 //DEADCODE JIM 16/11/99 			}
 //DEADCODE JIM 16/11/99 		}			   //END OF JIM EDIT
 	if(loadpackages)
@@ -213,7 +218,7 @@ void	Persons4::StartUpMapWorld(bool loadpackages, char* name)
 //	SupplyTree::NodeReview ();
 //init and test code
 //	MMC.currtime = HR11;
-	
+
 //	MMC.Sky.SetMissionConditions ();
 //DeadCode CSB 3Oct00 	Mono_Text.Print((UByteP)")StartUpMapWorld");
 
@@ -229,7 +234,7 @@ void	NodeData::LoadConvoys()
 		if (convoy->keydates[0]!=daynum)
 			for (dateslot=1;convoy->keydates[dateslot];dateslot++)
 				breakif(convoy->keydates[dateslot]==daynum);
-		if (	convoy->keydates[dateslot]==daynum 
+		if (	convoy->keydates[dateslot]==daynum
 			&&	(dateslot==0 || daynum!=0)	)
 			{
 				Persons4	Persons_4;
@@ -264,7 +269,7 @@ void	NodeData::LoadConvoys()
 		else
 			convoy->wpnum=-1;
 	}
-	assert(bfnum<=Persons2::RELOADABLEBOUNDARY," Too many convoys loaded today");
+	bobassert(bfnum<=Persons2::RELOADABLEBOUNDARY," Too many convoys loaded today");
 }
 
 void	Persons4::ShutDownMapWorld()
@@ -304,7 +309,7 @@ void	Persons4::ShutDownMapWorld()
 //DeadCode JIM 17Aug00 		if (name)
 //DeadCode JIM 17Aug00 			fil = File_Man.fakefile(fil,name);
 //DeadCode JIM 17Aug00 		fil=FileNum(fil+filecount);
-//DeadCode JIM 17Aug00 
+//DeadCode JIM 17Aug00
 //DeadCode JIM 17Aug00 		pack[packnum].SetTargetUIDs();
 //DeadCode JIM 17Aug00 		Persons_4.LoadSubPiece(NULL,fil,Persons4::LOADEDBFS+packnum,Persons4::LOAD);
 //DeadCode JIM 17Aug00 		FixupAircraft(packnum);
@@ -313,7 +318,7 @@ void	Persons4::ShutDownMapWorld()
 
 //DEADCODE JIM 31/03/00 void Profile::SetACTypesFromGeneric()
 //DEADCODE JIM 31/03/00 {
-//DEADCODE JIM 31/03/00 
+//DEADCODE JIM 31/03/00
 //DEADCODE JIM 31/03/00 }
 
 
@@ -337,7 +342,7 @@ void	PackageList::FixupAircraft(int packnum)
 		int i;
 //DeadCode JIM 20Oct00 		UniqueID	baseac=Persons2::assignuid(SagBAND);
 
-		//NOTE: 
+		//NOTE:
 			//Coming back from the 3d, the information represented here
 			//is not up to date.
 			//We need to have recorded the new position, waypoint and strength
@@ -377,7 +382,7 @@ void	PackageList::FixupAircraft(int packnum)
 		info_airgrpPtr a=Persons2::ConvertPtrUID(pack[packnum].squadlist[i].instance);
 		a->knownposition=a->World;
 		a->knowntime=a->lasttime=MMC.currtime;
-		assert(a," Just loaded. What's going on?");
+		bobassert(a," Just loaded. What's going on?");
 		a->package=&pack[packnum];
 		if (a->wpref)
 		{
@@ -418,7 +423,7 @@ void	PackageList::LoadGame(BIStream& bis)
 	while (ind<last)
 	{	assert (packnum<Profile::MAX_PACKS);
 		pack[packnum].DecodePackage(ind,true);
-		while (*ind++)	
+		while (*ind++)
 		{}
 		if (ind>buffer+SIZ && !fend)	   //more than half way through
 		{
@@ -462,7 +467,7 @@ void	PackageList::LoadGame(BIStream& bis)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitViewFromMap
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 11 Mar 1999
 //------------------------------------------------------------------------------
 static FileNum	targetdetail1,targetdetail2;
@@ -503,7 +508,7 @@ void Persons4::InitViewFromMap(UniqueID trg_uid)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ShutDownViewFromMap
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 12 Mar 1999
 //------------------------------------------------------------------------------
 void Persons4::ShutDownViewFromMap()

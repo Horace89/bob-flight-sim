@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //Filename       keytest.h
-//System         
+//System
 //Author         Jim Taylor
 //Date           Mon 23 Oct 1995
 //Description    Keyboard test ISR data structures.
@@ -9,12 +9,12 @@
 //	Also recorded is wether it was a key press, hold, or release,
 //  and the mouse position at that moment.
 //	This queue is translated in the queue reading loop using a table into
-//	recognised codes. 
+//	recognised codes.
 //	The translation is done at this stage so the user can type ahead and
 //	we can apply different schemas on different sheets.
 //  The interrupt queue management code should be modified so that it refuses
 //  additional 'held' events when there are only enough spaces to release all
-//  the pressed keys. At present release events will be lost if the queue is 
+//  the pressed keys. At present release events will be lost if the queue is
 //  full of held events. DOS doesn't handle release events at all.
 //
 //In 3d schema the keyboard sets bits in a bitfield.
@@ -23,7 +23,7 @@
 //	There is a private array of 1 bit per scancode and a translation table
 //	to a second bit table. This table indicates wether that scancode is
 //	currently pressed or released.
-//	All the interesting key combinations will be assigned entries in this 
+//	All the interesting key combinations will be assigned entries in this
 //  second table, and a translation will be logged.
 //	Each key has 2 consecutive bits (could change to 2 arrays of 1 bit)
 //	The first bit shows if the key combination is currently pressed or released
@@ -34,19 +34,19 @@
 #ifndef	KEYTEST_Included
 #define	KEYTEST_Included
 #include	"dosdefs.h"
+#include	"keymaps.h"
+#include "files.g"
+
 //#include "display.h"
 
 //DEADCODE DAW 29/01/00 #include	"files.g"
 enum	FileNum;
 #define	DEFAULT_KEYTEST 0
 
-const	MAXqueuesize=32;	//Pointer to end of queue
-const	TOTALKEYBITFLAGS=768;
-
 enum	KeyBounce	{KEYHIT,KEYDBLHIT,KEYHELD,KEYREL,KEYHOT,KEYENDOFLIST};
 
-//Keyshifts: 8 in total. 
-//Lowest numbered has priority. 
+//Keyshifts: 8 in total.
+//Lowest numbered has priority.
 //No bit set is equivalent to bit zero set = normal
 //bit 0: normal
 //bit 1: extra shift (grey keys)
@@ -70,12 +70,12 @@ enum	KeyBounce	{KEYHIT,KEYDBLHIT,KEYHELD,KEYREL,KEYHOT,KEYENDOFLIST};
 //DEADCODE AMM 07/12/99 						KEYSH_BN_ShiftL=6,		KEYSH_BN_ShiftR=7
 //DEADCODE AMM 07/12/99 					};
 enum	KeyValUI	{KeyValUI_MAX=32767};
-#ifdef __BCPLUSPLUS__
+/*#ifdef __BCPLUSPLUS__
 enum	KeyVal3D	{keyVal3D_MAX=TOTALKEYBITFLAGS};
 enum	KeyShift_BN	{	KEYSH_BN_norm=0,
 						KEYSH_BN_extsh=1,
-						KEYSH_BN_AltL=2,		
-						KEYSH_BN_CtrlL=3,		
+						KEYSH_BN_AltL=2,
+						KEYSH_BN_CtrlL=3,
 						KEYSH_BN_ShiftL=4,
 						KEYSH_BN_Msg=5,
 						KEYSH_BN_ShMsg=6,
@@ -85,7 +85,7 @@ enum	KeyShift_BN	{	KEYSH_BN_norm=0,
 enum	KeyShift_BN	;
 enum	KeyVal3D;//	{keyVal3D_MAX=TOTALKEYBITFLAGS};
 enum	FileNum;
-#endif
+#endif*/
 struct	UIKeyNoMouse		//This is used by joystick key emulators and similar
 {							//to generate key presses in ECX probably.
 UByte		keycode,		//Scancode. Top bits available for mouse events
@@ -144,7 +144,7 @@ UByte	bitflags[(TOTALKEYBITFLAGS+7)/4];
 
 
 enum	MouseMode
-{	
+{
 	PANNING=0,
 	INTERACTIVE,
 	GUNNER
@@ -159,9 +159,9 @@ enum	DeviceMode
 //------------------------------------------------------------------------------
 //Author		Jim Taylor
 //Date			Mon 23 Oct 1995
-//Modified	
+//Modified
 //
-//Description	Keyboard test class. 
+//Description	Keyboard test class.
 //				Mainly management of interrupts and DOS memory blocks
 //------------------------------------------------------------------------------
 struct KeyMapping;
@@ -225,4 +225,3 @@ extern	"C" void	keytests__dexISRcode();
 extern	"C" void	keytests__dexISRend();
 
 #endif
-#include	"keymaps.h"

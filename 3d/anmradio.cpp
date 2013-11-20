@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -64,10 +64,10 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //------------------------------------------------------------------------------
 //Filename       anmradio.cpp
-//System         
+//System
 //Author         Robert Slater
 //Date           Fri 5 Feb 1999
-//Description    
+//Description
 //				Radio chatter triggered by damage....
 //
 //------------------------------------------------------------------------------
@@ -78,7 +78,13 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include	"rchatter.h"
 #include	"anmradio.h"										//RJS 04Feb99
 #include	"3dinstr.h"											//RJS 13May99
-
+#include	"radio.g"											//RJS 13May99
+#include	"animdata.h"
+#include	"flymodel.h"
+#include	"mymath.h"
+#include	"ai.h"
+#include	"transite.h"
+#include	"persons2.h"
 
 #ifndef	NDEBUG
 
@@ -108,11 +114,11 @@ DamageChat::DamageChat()
 //Author		Robert Slater
 //Date			Thu 4 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::ExecuteRadio(	ItemPtr				itm,
@@ -143,7 +149,7 @@ void	DamageChat::ExecuteRadio(	ItemPtr				itm,
 		if (acHit->nationality != acHitter->nationality)			//RJS 25Jun99
 		{
  			buddy = acHit->FindBuddy();
- 	
+
  			if (acHit->nationality != Manual_Pilot.ControlledAC2->nationality)
  			{
  				acHitIsFriend = FALSE;
@@ -171,7 +177,7 @@ void	DamageChat::ExecuteRadio(	ItemPtr				itm,
 						return;														//CSB 3Aug00
 				}																	//CSB 3Aug00
  			}
- 
+
  			switch (hitstruc.val)
  			{
  			case RADIO_GENERAL_LV1:
@@ -227,11 +233,11 @@ void	DamageChat::ExecuteRadio(	ItemPtr				itm,
 //Author		Robert Slater
 //Date			Fri 5 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::OtherSideDamageLevel1()
@@ -278,11 +284,11 @@ void	DamageChat::OtherSideDamageLevel1()
 //Author		Robert Slater
 //Date			Fri 5 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::OtherSideDamageLevel2()
@@ -327,20 +333,20 @@ void	DamageChat::OtherSideDamageLevel2()
 //DeadCode RJS 31Jan00 			}
 //DeadCode RJS 31Jan00 		}
 //DeadCode RJS 31Jan00 	}
-
+/*
 #ifdef	_CHATTRACE_
 	UWord cw=GETFPCW();
 	::AfxTrace("\tOtherSideDamageLevel2\t%d\n",Math_Lib.GetRndCount());
 	SETFPCW(cw);
-#endif
+#endif */
 	UWord	voxrandom = Math_Lib.rnd();							//RJS 31Jan00
 	if ((voxrandom < VOX_RAND_1IN8) && acHitAlive)						//RJS 26Jun00
-	{
+	{/*
 #ifdef	_CHATTRACE_
 	UWord cw=GETFPCW();
 	::AfxTrace("\t...IN\n");
 	SETFPCW(cw);
-#endif
+#endif */
 		if (!acHitter->AcIsPlayer())
 		{
 			buddy = acHitter->FindABuddyWithPlayerGivenPriority();
@@ -349,10 +355,12 @@ void	DamageChat::OtherSideDamageLevel2()
 				_Radio.ClearMessages(MSG_DAMAGELEVEL1,acHit);
 				if (acHitter->ai.combatskill < SKILL_REGULAR)
 				{
+#ifdef USE_PHRASE_ONE_AIRCRAFT
 					if (	(acHit->classtype->phrasename == PHRASE_JU87)
 						||	(acHit->classtype->phrasename == PHRASE_BF110))
 						_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_RATSINBARREL, MSG_DAMAGELEVEL2, acHitter, acHit, buddy));
 					else
+#endif
 			 			_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_CALLEE_OTHERDAMAGE2LOW, MSG_DAMAGELEVEL2, acHitter, acHit, buddy));
 				}
 				else
@@ -385,11 +393,11 @@ void	DamageChat::OtherSideDamageLevel2()
 //Author		Robert Slater
 //Date			Fri 5 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::PlayerSideDamageLevel1()
@@ -406,12 +414,12 @@ void	DamageChat::PlayerSideDamageLevel1()
 //DeadCode RJS 31Jan00 				if (!acHit->AcIsPlayer())
 //DeadCode RJS 31Jan00 				{
 //DeadCode RJS 31Jan00 		 			ScriptTables	theScript;
-//DeadCode RJS 31Jan00 
+//DeadCode RJS 31Jan00
 //DeadCode RJS 31Jan00 	 				if ((acHit->ai.morale < MORALE_MEDIUM) && !acHit->InPlayersElement())
 //DeadCode RJS 31Jan00  						theScript = OLDSCRIPT_CALLEE_PLAYERDAMAGE1COWARD;
 //DeadCode RJS 31Jan00  					else
 //DeadCode RJS 31Jan00  						theScript = OLDSCRIPT_CALLEE_PLAYERDAMAGE1LOW;
-//DeadCode RJS 31Jan00 
+//DeadCode RJS 31Jan00
 //DeadCode RJS 31Jan00 	 				_Radio.TriggerMsg(MESSAGE_STRUC(theScript, MSG_DAMAGELEVEL1, acHit, acHit, buddy));
 //DeadCode RJS 31Jan00 				}
 //DeadCode RJS 31Jan00  			}
@@ -493,7 +501,7 @@ void	DamageChat::PlayerSideDamageLevel1()
 						damagemsg = MSG_PLAYERDAMAGELEVEL1;
 					else
 						damagemsg = MSG_DAMAGELEVEL1;
-					
+
 					if (acHit->ai.combatskill < SKILL_ACE)
 					{
 						if (acHit->nationality == NAT_RED)
@@ -514,11 +522,11 @@ void	DamageChat::PlayerSideDamageLevel1()
 //Author		Robert Slater
 //Date			Fri 5 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::PlayerSideDamageLevel2()
@@ -532,8 +540,8 @@ void	DamageChat::PlayerSideDamageLevel2()
 //DeadCode RJS 31Jan00  			ScriptTables	theScript;
 //DeadCode RJS 31Jan00  			Bool			haveTrigger = TRUE;
 //DeadCode RJS 31Jan00  			RndVal	rndpc = (RndVal)Math_Lib.rnd(RndValMAX);		  //RDH 28/05/99
-//DeadCode RJS 31Jan00 
-//DeadCode RJS 31Jan00 
+//DeadCode RJS 31Jan00
+//DeadCode RJS 31Jan00
 //DeadCode RJS 31Jan00  			if (	(acHit->ai.morale < MORALE_GOOD)	&& (rndpc <  RND10PC))
 //DeadCode RJS 31Jan00 			{
 //DeadCode RJS 31Jan00   				Art_Int.BreakOff(acHit);							  //RDH 06/06/99
@@ -558,7 +566,7 @@ void	DamageChat::PlayerSideDamageLevel2()
 //DeadCode RJS 31Jan00 						if (	(Math_Lib.rnd() < VOX_RAND)			//RJS 01Jul99
 //DeadCode RJS 31Jan00 							&&	(mad->itemstate == ALIVE)	)		//RJS 01Jul99
 //DeadCode RJS 31Jan00  							_Radio.TriggerMsg(MESSAGE_STRUC(OLDSCRIPT_CALLER_PLAYERDAMAGE2CONV0RR,MSG_DAMAGELEVEL2,acHit,acHit,buddy));
-//DeadCode RJS 31Jan00 
+//DeadCode RJS 31Jan00
 //DeadCode RJS 31Jan00 						//Eject...
 //DeadCode RJS 31Jan00 						Trans_Obj.LaunchCanopyEject(acHit,*mobileitem::currworld);				//RJS 28Apr99
 //DeadCode RJS 31Jan00  					}
@@ -599,7 +607,7 @@ void	DamageChat::PlayerSideDamageLevel2()
 	SETFPCW(cw);
 #endif
 	 	buddy = acHit->FindABuddyWithPlayerGivenPriority();
-		
+
 		if (acHit->ai.morale < MORALE_POOR)
 		{
 			if (!acHit->AcIsPlayer())
@@ -673,11 +681,11 @@ void	DamageChat::PlayerSideDamageLevel2()
 //Author		Robert Slater
 //Date			Fri 5 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::FuelLeak()
@@ -737,11 +745,11 @@ void	DamageChat::FuelLeak()
 //Author		Robert Slater
 //Date			Fri 5 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::LeaderLeaking()
@@ -752,23 +760,23 @@ void	DamageChat::LeaderLeaking()
 //DeadCode RJS 31Jan00  		if (buddy->ai.morale < MORALE_GOOD)
 //DeadCode RJS 31Jan00  		{
 //DeadCode RJS 31Jan00  			_Radio.TriggerMsg(MESSAGE_STRUC(OLDSCRIPT_SEEFUEL, MSG_STATUSRESPONSE_X, buddy, acHit, acHit));//v2
-//DeadCode RJS 31Jan00  
+//DeadCode RJS 31Jan00
 //DeadCode RJS 31Jan00  			EjectMsg(buddy);
 //DeadCode RJS 31Jan00  		}
-//DeadCode RJS 31Jan00  
+//DeadCode RJS 31Jan00
 //DeadCode RJS 31Jan00  		if (!acHit->AcIsPlayer())
 //DeadCode RJS 31Jan00  		{
 //DeadCode RJS 31Jan00  			if (buddy->ai.morale < MORALE_GOOD)
 //DeadCode RJS 31Jan00  			{
 //DeadCode RJS 31Jan00  				//TakeOverGroup(THISISCALLER,???);
 //DeadCode RJS 31Jan00  				//Eject...;
-//DeadCode RJS 31Jan00 
+//DeadCode RJS 31Jan00
 //DeadCode RJS 31Jan00 				Trans_Obj.LaunchCanopyEject(acHit,*mobileitem::currworld);				//RJS 28Apr99
 //DeadCode RJS 31Jan00  			}
 //DeadCode RJS 31Jan00  			else
 //DeadCode RJS 31Jan00  			{
 //DeadCode RJS 31Jan00  				_Radio.TriggerMsg(MESSAGE_STRUC(OLDSCRIPT_HAVELEAK, MSG_DAMAGELEVEL2, buddy, acHit, acHit));//v2
-//DeadCode RJS 31Jan00  
+//DeadCode RJS 31Jan00
 //DeadCode RJS 31Jan00  				//TakeOverGroup(THISISCALLER,???);
 //DeadCode RJS 31Jan00  			}
 //DeadCode RJS 31Jan00  		}
@@ -785,11 +793,11 @@ void	DamageChat::LeaderLeaking()
 //Author		Robert Slater
 //Date			Fri 5 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::FollowerLeaking()
@@ -805,7 +813,7 @@ void	DamageChat::FollowerLeaking()
 //DeadCode RJS 31Jan00  			else
 //DeadCode RJS 31Jan00  			{
 //DeadCode RJS 31Jan00  				//SendHome();
-//DeadCode RJS 31Jan00  
+//DeadCode RJS 31Jan00
 //DeadCode RJS 31Jan00  				_Radio.TriggerMsg(MESSAGE_STRUC(OLDSCRIPT_USEORLOSE, MSG_DAMAGELEVEL2, buddy, acHit, acHit));
 //DeadCode RJS 31Jan00  			}
 //DeadCode RJS 31Jan00  		}
@@ -822,17 +830,17 @@ void	DamageChat::FollowerLeaking()
 //Author		Robert Slater
 //Date			Fri 5 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::FuelLeakMsg(AirStrucPtr	recipient)
 {
 //DeadCode RJS 31Jan00  	ScriptTables	theScript;
-//DeadCode RJS 31Jan00  
+//DeadCode RJS 31Jan00
 //DeadCode RJS 31Jan00  	if ((acHit->ai.combatskill > SKILL_REGULAR) && (acHit->ai.morale > MORALE_MEDIUM))
 //DeadCode RJS 31Jan00  		theScript = OLDSCRIPT_FUELLEAKMSG_CALLER;
 //DeadCode RJS 31Jan00  	else
@@ -842,7 +850,7 @@ void	DamageChat::FuelLeakMsg(AirStrucPtr	recipient)
 //DeadCode RJS 31Jan00  		else
 //DeadCode RJS 31Jan00  			theScript = OLDSCRIPT_FUELLEAKMSG;
 //DeadCode RJS 31Jan00  	}
-//DeadCode RJS 31Jan00  
+//DeadCode RJS 31Jan00
 //DeadCode RJS 31Jan00  	_Radio.TriggerMsg(MESSAGE_STRUC(theScript, MSG_STATUSRESPONSE_X, acHit, acHit, recipient));
 #ifdef	_CHATTRACE_
 	UWord cw=GETFPCW();
@@ -856,11 +864,11 @@ void	DamageChat::FuelLeakMsg(AirStrucPtr	recipient)
 //Author		Robert Slater
 //Date			Fri 5 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::BlackSmoke()
@@ -875,7 +883,7 @@ void	DamageChat::BlackSmoke()
 //DeadCode RJS 31Jan00  				SmokingBadly(buddy);
 //DeadCode RJS 31Jan00  				if (!buddy->AcIsPlayer())
 //DeadCode RJS 31Jan00  					EjectMsg(buddy);
-//DeadCode RJS 31Jan00  
+//DeadCode RJS 31Jan00
 //DeadCode RJS 31Jan00  				//if (acHit != Manual_Pilot.ControlledAC2)
 //DeadCode RJS 31Jan00  					//TakeOverGroup(THISISCALLER,???);
 //DeadCode RJS 31Jan00  			}
@@ -896,12 +904,12 @@ void	DamageChat::BlackSmoke()
 //DeadCode RJS 31Jan00  	else
 //DeadCode RJS 31Jan00  	{
 //DeadCode RJS 31Jan00  		ScriptTables	theScript;
-//DeadCode RJS 31Jan00 
+//DeadCode RJS 31Jan00
 //DeadCode RJS 31Jan00 		//Randomly say this if player is the killer...
 //DeadCode RJS 31Jan00 		UWord			randchance = 0;									//RJS 25Jun99
 //DeadCode RJS 31Jan00 		if (acHitter->AcIsPlayer())
 //DeadCode RJS 31Jan00 			randchance = Math_Lib.rnd();
-//DeadCode RJS 31Jan00  
+//DeadCode RJS 31Jan00
 //DeadCode RJS 31Jan00 		if (randchance < 16384)
 //DeadCode RJS 31Jan00 		{
 //DeadCode RJS 31Jan00 			buddy = acHitter->FindABuddyWithPlayerGivenPriority();					//RJS 25May99
@@ -911,7 +919,7 @@ void	DamageChat::BlackSmoke()
 //DeadCode RJS 31Jan00  					theScript = OLDSCRIPT_ENEMYSMOKING;
 //DeadCode RJS 31Jan00  				else
 //DeadCode RJS 31Jan00  					theScript = OLDSCRIPT_CALLEE_ENEMYSMOKING;
-//DeadCode RJS 31Jan00  
+//DeadCode RJS 31Jan00
 //DeadCode RJS 31Jan00  				_Radio.TriggerMsg(MESSAGE_STRUC(theScript, (MsgType)(MSG_DAMAGELEVEL2+MSG_DELAY), acHitter, acHit, buddy));
 //DeadCode RJS 31Jan00  			}
 //DeadCode RJS 31Jan00 			else
@@ -950,7 +958,7 @@ void	DamageChat::BlackSmoke()
 						_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_SMOKINGBADLY,mtype,buddy,acHit,acHit));
 					else
 						_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_FIREINENGINE,mtype,buddy,acHit,acHit));
-				}	
+				}
 			}
 			else
 			{
@@ -1005,11 +1013,11 @@ void	DamageChat::BlackSmoke()
 //Author		Robert Slater
 //Date			Fri 5 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::SmokingBadly(AirStrucPtr	buddy)
@@ -1034,17 +1042,17 @@ void	DamageChat::SmokingBadly(AirStrucPtr	buddy)
 //Author		Robert Slater
 //Date			Fri 5 Feb 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::BlackSmokeMsg(AirStrucPtr	buddy)
 {
 //DeadCode RJS 31Jan00  	ScriptTables theScript = OLDSCRIPT_NULL;
-//DeadCode RJS 31Jan00  
+//DeadCode RJS 31Jan00
 //DeadCode RJS 31Jan00  	if (acHit->ai.morale < MORALE_GOOD)
 //DeadCode RJS 31Jan00  	{
 //DeadCode RJS 31Jan00  		if ((!acHit->AcIsPlayer()) && (Math_Lib.rnd() > 50000))
@@ -1053,7 +1061,7 @@ void	DamageChat::BlackSmokeMsg(AirStrucPtr	buddy)
 //DeadCode RJS 31Jan00 		 	_Radio.TriggerMsg(MESSAGE_STRUC(theScript, MSG_DAMAGELEVEL2, acHit, acHit, buddy));
 //DeadCode RJS 31Jan00 		}
 //DeadCode RJS 31Jan00  	}
-//DeadCode RJS 31Jan00  
+//DeadCode RJS 31Jan00
 //DeadCode RJS 31Jan00  	if (theScript != OLDSCRIPT_NULL)
 //DeadCode RJS 31Jan00 	 	_Radio.TriggerMsg(MESSAGE_STRUC(OLDSCRIPT_SMOKE, MSG_DAMAGELEVEL2, acHit, acHit, buddy));
 
@@ -1071,9 +1079,9 @@ void	DamageChat::BlackSmokeMsg(AirStrucPtr	buddy)
 //
 //Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::EjectMsg(AirStrucPtr	caller)
@@ -1088,7 +1096,7 @@ void	DamageChat::EjectMsg(AirStrucPtr	caller)
 		if (!caller->AcIsPlayer())									//RDH 14May99
 		{
  			ScriptTables	theScript;
- 
+
  			if ((caller->ai.combatskill > SKILL_REGULAR) && (caller->ai.morale > MORALE_MEDIUM))
  				theScript = SCRIPT_EJECT_CALLER;
  			else
@@ -1098,7 +1106,7 @@ void	DamageChat::EjectMsg(AirStrucPtr	caller)
  				else
  					theScript = SCRIPT_EJECT;
  			}
- 
+
  			_Radio.TriggerMsg(MESSAGE_STRUC(theScript, MSG_DAMAGELEVEL2REPLY, caller, acHit, acHit));
 		}
 	}
@@ -1106,14 +1114,14 @@ void	DamageChat::EjectMsg(AirStrucPtr	caller)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		PlayerSideKilled
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Thu 29 Apr 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::PlayerSideKilled()
@@ -1176,14 +1184,14 @@ void	DamageChat::PlayerSideKilled()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		OtherSideKilled
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Thu 29 Apr 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::OtherSideKilled()
@@ -1205,7 +1213,7 @@ void	DamageChat::OtherSideKilled()
 	::AfxTrace("\t...IN\n");
 	SETFPCW(cw);
 #endif
-			MsgType	mtype;		
+			MsgType	mtype;
 
 			buddy = acHitter->FindABuddyWithPlayerGivenPriority();
 			if (buddy)
@@ -1253,14 +1261,14 @@ void	DamageChat::OtherSideKilled()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		PlayerSideBlewUp
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Thu 29 Apr 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::PlayerSideBlewUp(AirStrucPtr	ac)
@@ -1297,7 +1305,7 @@ void	DamageChat::PlayerSideBlewUp(AirStrucPtr	ac)
 				{
 					AirStruc*	lead = ((AirStruc*) buddy->leader);
 					if (	(lead)
-						&&	(lead->fly.leadflight)	
+						&&	(lead->fly.leadflight)
 						&&	(lead->fly.leadflight != ac)	)
 						_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_CALLER_PLYRSIDEKILLED0, MSG_BLOWUPREPORT, buddy, ac,lead ));
 				}
@@ -1314,14 +1322,14 @@ void	DamageChat::PlayerSideBlewUp(AirStrucPtr	ac)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		OtherSideBlewUp
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Thu 29 Apr 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::OtherSideBlewUp(AirStrucPtr	ac,AirStrucPtr	acDead,bool	migdead)
@@ -1356,7 +1364,7 @@ void	DamageChat::OtherSideBlewUp(AirStrucPtr	ac,AirStrucPtr	acDead,bool	migdead)
 //DeadCode RJS 31Jan00 								ScriptTables script = OLDSCRIPT_BOASTKILLREPLY;
 //DeadCode RJS 31Jan00 								if (ac->classtype->phrasename != OLDPHRASE_MIGS)
 //DeadCode RJS 31Jan00 									script = OLDSCRIPT_BOASTKILLREPLY_MIGS;
-//DeadCode RJS 31Jan00 
+//DeadCode RJS 31Jan00
 //DeadCode RJS 31Jan00 								_Radio.TriggerMsg(MESSAGE_STRUC(script,MSG_BLOWUPREPORTREPLY, buddy, acDead, ac));//RDH 18May99
 //DeadCode RJS 31Jan00 							}
 						}
@@ -1379,7 +1387,7 @@ void	DamageChat::OtherSideBlewUp(AirStrucPtr	ac,AirStrucPtr	acDead,bool	migdead)
 //DeadCode RJS 31Jan00 										_Radio.TriggerMsg(MESSAGE_STRUC(OLDSCRIPT_OTHERSIDEBLEWHIMIG,MSG_BLOWUPREPORT, ac, acDead, buddy));//RDH 18May99
 //DeadCode RJS 31Jan00 									else
 //DeadCode RJS 31Jan00 										_Radio.TriggerMsg(MESSAGE_STRUC(OLDSCRIPT_OTHERSIDEBLEWHI,MSG_BLOWUPREPORT, ac, acDead, buddy));//RDH 18May99
-//DeadCode RJS 31Jan00 
+//DeadCode RJS 31Jan00
 //DeadCode RJS 31Jan00 									if (!buddy->AcIsPlayer())
 //DeadCode RJS 31Jan00 										_Radio.TriggerMsg(MESSAGE_STRUC(OLDPHRASE_ROGER2,(MsgType)(MSG_BLOWUPREPORTREPLY+MSG_BLOCKCHATTER), buddy, acDead, ac));//RJS 06Jul99
 //DeadCode RJS 31Jan00 								}
@@ -1395,7 +1403,7 @@ void	DamageChat::OtherSideBlewUp(AirStrucPtr	ac,AirStrucPtr	acDead,bool	migdead)
 //DeadCode RJS 31Jan00 							}
 						}
 					}
-				}		 
+				}
 //DeadCode RJS 31Jan00 				else
 //DeadCode RJS 31Jan00 				{
 //DeadCode RJS 31Jan00 					//Don't want to hear 'Splash one' all the time, cos it's annoying
@@ -1436,14 +1444,14 @@ void	DamageChat::OtherSideBlewUp(AirStrucPtr	ac,AirStrucPtr	acDead,bool	migdead)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		PlayerSidePiledIn
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Thu 29 Apr 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::PlayerSidePiledIn(AirStrucPtr	ac)
@@ -1490,11 +1498,11 @@ void	DamageChat::PlayerSidePiledIn(AirStrucPtr	ac)
 //Author		Robert Slater
 //Date			Thu 13 May 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::SayWeapon(SLong	index)
@@ -1514,7 +1522,7 @@ void	DamageChat::SayWeapon(SLong	index)
  		theScript = PHRASE_GUNSANDCANNON;
  	break;
  	}
- 
+
  	_Radio.TriggerMsg(MESSAGE_STRUC(theScript,MsgType(MSG_HIPRIORITY+MSG_DONTBUFFER),Manual_Pilot.ControlledAC2,NULL,NULL));	//RJS 23Aug00
 }
 
@@ -1525,9 +1533,9 @@ void	DamageChat::SayWeapon(SLong	index)
 //
 //Description	Tell everyone to bugger off if there are no bandits left to kill.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::AlertGoHome(AirStrucPtr	killer)
@@ -1574,11 +1582,11 @@ void	DamageChat::AlertGoHome(AirStrucPtr	killer)
 //Author		Robert Slater
 //Date			Mon 31 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::EngineDamage()
@@ -1602,11 +1610,11 @@ void	DamageChat::EngineDamage()
 //Author		Robert Slater
 //Date			Mon 31 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	DamageChat::EngineDamageGlycol()

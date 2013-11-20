@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 //Filename       vector.h
-//System         
-//Author         Paul.   
+//System
+//Author         Paul.
 //Date           Tue 19 Mar 1996
 //Description    HEY PAUL... YOU HAVEN@T PUT THE HIGH DWORD FIRST?????//JIM 06Aug96
 //				My alternate codings put low dword first.
@@ -141,7 +141,7 @@ extern	void	SDLongMul(sdlong&, sdlong& );
 //					BDh		BDl
 //			ADh		ADl
 //			CBh		CBl+
-//	 ACh	ACl	
+//	 ACh	ACl
 //	 discarded	===============
 //
 //If you discard overflow digits mul and imul give same result.
@@ -586,7 +586,7 @@ inline	Bool operator!=(sdlong a,sdlong b)
 inline	Bool operator>(sdlong a,sdlong b)
 {
 	if (a.hi > b.hi)	return	(Bool)TRUE;
-	
+
 	if (a.hi < b.hi)	return	(Bool)FALSE;
 
 	if (a.lo == b.lo)	return	(Bool)FALSE;
@@ -603,7 +603,7 @@ inline	Bool operator>(sdlong a,sdlong b)
 inline	Bool operator>=(const sdlong& a,const sdlong& b)		//PD 02Apr96
 {
 	if (a.hi > b.hi)	return	(Bool)TRUE;
-	
+
 	if (a.hi < b.hi)	return	(Bool)FALSE;
 
 	if (a.lo == b.lo)	return	(Bool)TRUE;
@@ -620,7 +620,7 @@ inline	Bool operator>=(const sdlong& a,const sdlong& b)		//PD 02Apr96
 inline	Bool operator<(sdlong a,sdlong b)
 {
 	if (a.hi < b.hi)	return	(Bool)TRUE;
-	
+
 	if (a.hi > b.hi)	return	(Bool)FALSE;
 
 	if (a.lo == b.lo)	return	(Bool)FALSE;
@@ -637,7 +637,7 @@ inline	Bool operator<(sdlong a,sdlong b)
 inline	Bool operator<=(sdlong a,sdlong b)
 {
 	if (a.hi < b.hi)	return	(Bool)TRUE;
-	
+
 	if (a.hi > b.hi)	return	(Bool)FALSE;
 
 	if (a.lo == b.lo)	return	(Bool)TRUE;
@@ -856,7 +856,7 @@ inline	sdlong& sdlong::operator/=(sdlong x)
 		}
 
 //DeadCode JIM 06Aug96 		div_this += by_this;
-//DeadCode JIM 06Aug96 
+//DeadCode JIM 06Aug96
 //DeadCode JIM 06Aug96 		result--;
 
 		div_this<<=(SLong )1;
@@ -1003,7 +1003,7 @@ inline	vector operator%(vector A, vector B)
 	prod %= B;
 
 	return	prod;
-}	
+}
 
 //---------------------------------------------------
 //

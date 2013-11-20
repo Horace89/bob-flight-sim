@@ -18,6 +18,25 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CURSOR1             CURSOR  DISCARDABLE     "res\\cursor1.cur"
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
 // English (U.K.) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
@@ -18961,9 +18980,6 @@ BEGIN
     IDS_FONT3_INTEL         "Intel\nTimes New Roman\nTimes\nArial"
     IDS_FONT4_FC_GLAMOUR    "FC-Glamour-Bold\nFC-Glamour\nTimes New Roman Bold\nTimes New Roman\nTimes\nArial"
     IDS_FONT5_COURIER       "Courier New\nCourier\nArial"
-    IDS_LANGUAGE_fdwCharSet "1=DEFAULT_ <== Please set this value so that the right characterset is displayed, from lists below (WINGDI.H). PUT X if you don't want the above fonts to be tried! You may also need to set LANGUAGE and CODEPAGE (line 25)"
-    IDS_LANGUAGE_fdwCharSet31 "0=ANSI_ 1=DEFAULT_ 2=SYMBOL_ 128=SHIFTJIS_ 129=HANGEUL_ 129=HANGUL_ 134=GB2312_ 136=CHINESEBIG5_ 255=OEM_"
-    IDS_LANGUAGE_fdwCharSet95 "130=JOHAB_ 177=HEBREW_ 178=ARABIC_ 161=GREEK_ 162=TURKISH_ 163=VIETNAMESE_ 222=THAI_ 238=EASTEUROPE_ 204=RUSSIAN_ 77=MAC_ 186=BALTIC_"
     IDS_NONE                " "
     IDS_TITLE1              "Preferences"
     IDS_SINGLEPLAYER        "Single Player"
@@ -18971,6 +18987,27 @@ BEGIN
     IDS_REPLAYTITLE         "Replay"
     IDS_CREDITSTITLE        "Credits"
     IDS_TITLE7              "Quit"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PHOTO               "Photo"
+    IDS_ROUTES              "Routes"
+    IDS_RESPOND             "Respond"
+    IDS_NO_AIRCRAFT         "None"
+    IDS_ACE                 "Ace"
+    IDS_LANGUAGE_fdwCharSet "1=DEFAULT_ <== Please set this value so that the right characterset is displayed, from lists below (WINGDI.H). PUT X if you don't want the above fonts to be tried! You may also need to set LANGUAGE and CODEPAGE (line 25)"
+    IDS_LANGUAGE_fdwCharSet31 
+                            "0=ANSI_ 1=DEFAULT_ 2=SYMBOL_ 128=SHIFTJIS_ 129=HANGEUL_ 129=HANGUL_ 134=GB2312_ 136=CHINESEBIG5_ 255=OEM_"
+    IDS_LANGUAGE_fdwCharSet95 
+                            "130=JOHAB_ 177=HEBREW_ 178=ARABIC_ 161=GREEK_ 162=TURKISH_ 163=VIETNAMESE_ 222=THAI_ 238=EASTEUROPE_ 204=RUSSIAN_ 77=MAC_ 186=BALTIC_"
+    IDS_MAINTAINPERCENTAGE  "Maintain %"
+    IDS_RETURNINGESCORT     "Return Escort"
+    IDS_NEXTAVAILABLE       "Next Available"
+    IDS_BELOW               "Below"
+    IDS_INFRONT             "In Front"
+    IDS_MIXED               "Mixed"
+    IDS_STAFFEL             "Staffel"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -19085,22 +19122,6 @@ END
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_NOTAVAILABLE        "Not Available"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_PHOTO               "Photo"
-    IDS_ROUTES              "Routes"
-    IDS_RESPOND             "Respond"
-    IDS_NO_AIRCRAFT         "None"
-    IDS_ACE                 "Ace"
-    IDS_MAINTAINPERCENTAGE  "Maintain %"
-    IDS_RETURNINGESCORT     "Return Escort"
-    IDS_NEXTAVAILABLE       "Next Available"
-    IDS_BELOW               "Below"
-    IDS_INFRONT             "In Front"
-    IDS_MIXED               "Mixed"
-    IDS_STAFFEL             "Staffel"
 END
 
 STRINGTABLE DISCARDABLE 

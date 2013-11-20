@@ -1,17 +1,17 @@
 //------------------------------------------------------------------------------
 //Filename       acmmodel.h
-//System         
+//System
 //Author         Andrew McRae
 //Date           Wed 16 Apr 1997
 //				major tidy up 20/9/98, rdh
 //
-//Description    
+//Description
 //------------------------------------------------------------------------------
 //variables commented to indicate action required for replay, rdh
 //				save			need to savethe variable in the replay file
 //				set by ***		use the function *** to set the variable
 //				unchanged		the variable, once set is never changed
-//				zero			the variable should be zeroed on replaying 
+//				zero			the variable should be zeroed on replaying
 
 
 
@@ -40,7 +40,7 @@ public:
 		ACM_PITCH,
 		ACM_VELPITCH,
 		ACM_ROLL,
-		ACM_FASTROLL,	//CSB 21/03/99	
+		ACM_FASTROLL,	//CSB 21/03/99
 		ACM_SPEED,
 		ACM_CLIMBRATE,
 		ACM_TURNRATE,
@@ -136,7 +136,7 @@ public:
 	void Control (FORI&, FP);
 	void Null ();
 	// fly to aim ????
-	
+
 //	FP LimitAcceleration (FP);
 
 //	void MaxMinNormalAcceleration (FP& maxg, FP& ming);
@@ -197,7 +197,7 @@ public:
 
 	inline void	ModYawRate(AirStrucPtr const ControlledAC);
 
-	void AcmModel::ZeroIntControl();
+	void ZeroIntControl();
 
 	Bool NearMaxAoA(AirStrucPtr const ControlledAC);
 	FP	fLimitAoa(AirStrucPtr const ControlledAC);
@@ -287,7 +287,7 @@ public:
 
 	void VelPitch (FP pitch)
 	{
-		CtrlPitch = Rowan2Rads(pitch);	
+		CtrlPitch = Rowan2Rads(pitch);
 		AcmMode |= ACM_VELPITCH;
 	}
 
@@ -442,13 +442,13 @@ SWord CtrlShiftRight (SWord, SWord);
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		AngleSign
 //Author		Andrew McRae
-//Date			
+//Date
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 inline Float AngleSign (Float ang)
@@ -470,9 +470,9 @@ inline Float AngleSign (Float ang)
 //
 //Description	Returns the Absolute value of an angle and checks for 32768 problem
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 inline SWord AbsAngle(SWord ang)
@@ -492,9 +492,9 @@ inline SWord AbsAngle(SWord ang)
 //
 //Description	Returns the Absolute value of an angle and checks for 32768 problem
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DEADCODE CSB 20/01/00 inline ANGLES AbsAngle(ANGLES ang)

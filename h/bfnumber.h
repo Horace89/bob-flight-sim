@@ -5,6 +5,7 @@
 
 #include	"bfenum.h"
 #include        "stdio.h"
+#include	"package.h"
 
 
 
@@ -27,6 +28,8 @@ struct	HP
 #endif
 ;
 
+
+	enum SavedGlobrefs;
 class	BOStream;
 struct	EventVal
 {
@@ -53,7 +56,7 @@ struct	EventVal
 	Expr&		operator *()	{return *complex;}
 	EventVal&		operator [] (int i);	//passes param to Expr to select element
 	EventVal	Clone();
-	Bool		operator==(EventVal& e);   
+	Bool		operator==(EventVal& e);
 //private:
 //	operator	bool()	{return (Evaluate()!=ENABLE_COMPLEX_VAL);}
 public:
@@ -67,7 +70,7 @@ public:
 		//For integers:			returns IllegalSepID as error
 		//For World:			returns coordinates
 		//For UID:				returns coordinates of item or UID of not loaded item
-		//For icpt & rot:		returns generated deltas or UID if not loaded, or IllegalSep if no length 
+		//For icpt & rot:		returns generated deltas or UID if not loaded, or IllegalSep if no length
 	UniqueID	EvalA(HP& c);
 		//For integers:			returns IllegalSepID as error
 		//For World:			returns IllegalSepID as error
@@ -167,7 +170,7 @@ virtual	DES			~Expr()				{;}
 
 };
 
-inline int	operator == (Expr::Type a,Expr::Type b)	{return	(int)a==(int)b;}
+//x0r inline int	operator == (Expr::Type a,Expr::Type b)	{return	(int)a==(int)b;}
 
 ////////EventVal
 
@@ -244,12 +247,12 @@ inline	EventVal	EventVal::Clone()
 inline	Bool		EventVal::operator==(EventVal& e)
 {
  	if (e.complex && complex)
-		if (e.complex->type==complex->type)
-			return (*complex==e.complex);
+		if (e.complex->type == complex->type)
+			return (*complex == e.complex);
 		else
 			return FALSE;
 	else
-		if (e.complex==complex && e.value==value)
+		if (e.complex == complex && e.value == value)
 			return TRUE;
 		else
 			return FALSE;
@@ -447,7 +450,7 @@ struct	RndExpr:Expr
 	{
 		RndExpr *e=(RndExpr*)f;
 		return Bool
-		(	
+		(
 			(int)e->maxstepsiscallertype==(int)maxstepsiscallertype
 		&&	e->base==base
 		&&	e->stepsize==stepsize
@@ -540,7 +543,7 @@ struct	SelExpr:Expr
 	{
 		SelExpr *e=(SelExpr*)f;
 		return Bool
-		(	
+		(
 			(int)e->stepsiscallertype==(int)stepsiscallertype
 		&&	e->base==base
 		&&	e->stepsize==stepsize

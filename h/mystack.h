@@ -1,14 +1,15 @@
 //------------------------------------------------------------------------------
 //Filename       stack.h
-//System         
-//Author         Paul.   
+//System
+//Author         Paul.
 //Date           Wed 29 Nov 1995
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	STACK_Included
 #define	STACK_Included
 
 #define	DEFAULT_STACK 0
+#include "myerror.h"
 
 template<class T>
 class	Stack
@@ -23,13 +24,13 @@ class	Stack
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Stack
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 29 Nov 1995
 //
 //Description	initialises a stack of objects of type T
 //
 //Inputs		name = stack ID
-//				s	 = stack size required	
+//				s	 = stack size required
 //------------------------------------------------------------------------------
 		Stack(char *name, int s)
 		{
@@ -40,7 +41,7 @@ class	Stack
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		~Stack
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 29 Nov 1995
 //
 //Description	Deletes stack object.
@@ -52,8 +53,8 @@ class	Stack
 		}
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
-//Procedure		
-//Author		Paul.   
+//Procedure
+//Author		Paul.
 //Date			Wed 29 Nov 1995
 //
 //Description	Push an object of type T onto the stack
@@ -69,13 +70,13 @@ class	Stack
 		}
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
-//Procedure		
-//Author		Paul.   
+//Procedure
+//Author		Paul.
 //Date			Wed 29 Nov 1995
 //
 //Description	Pops an object of type T off the stack
 //
-//Returns		Object of type T	
+//Returns		Object of type T
 //
 //------------------------------------------------------------------------------
 		T		Pop()
@@ -87,8 +88,8 @@ class	Stack
 		}
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
-//Procedure		
-//Author		Paul.   
+//Procedure
+//Author		Paul.
 //Date			Wed 29 Nov 1995
 //
 //Description	Gets currently allocated size of a stack.

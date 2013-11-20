@@ -37,13 +37,27 @@ char	wtype[]={'w',type,0};
 	retval->lasttell=0;
 	retval->buffer=NULL;
 	retval->written=FALSE;
-	retval->f=fopen(name,mtype);
-	if (retval->f==NULL)
+	if(type!='w')
 	{
-		retval->written=TRUE;
-		retval->f=fopen(name,wtype);
+	    retval->f=fopen(name,mtype);
+
+		  if (retval->f==NULL)
+	        {
+		      retval->written=TRUE;
+		      retval->f=fopen(name,wtype);
+	        }
+
 	}
 	else
+	{
+		retval->written=TRUE;
+   	    retval->f=fopen(name,"w");
+	}
+	printf("file: %s\n",name);
+	
+	assert (retval->f!=NULL);
+
+	if (retval->f!=NULL)
 		retval->buffer= new char [BUFFERSIZE];
 	if (retval->f==NULL)
 	{

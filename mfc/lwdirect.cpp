@@ -1474,7 +1474,7 @@ int	LWDirectivesResults::FillOneDirectivesLine(LWDirectivesResults* dr,int i, in
 	float gr; 
 	bool me110bombing = false;
 	Profile::BetterRule br = Profile::BR_NONE;
-
+    int actype;
 	for (int actype = PT_JU87; actype < PT_VEHICLES;actype++)
 	{
 		gr = dr->tempdir.targetlines[i][actype]* dr->LWGrAvail[actype -  PT_GER_FLYABLE]+truncingfix;
@@ -1486,19 +1486,19 @@ int	LWDirectivesResults::FillOneDirectivesLine(LWDirectivesResults* dr,int i, in
 				br = (Profile::BetterRule)(br+ Profile::BR_R_JU87ONLY);
 				MMC.directives.lw.userprofiles[Directives::LW::ATTACK].bomberattackmethod =  Profile::AM_DIVEBOMB;
 			}
-			if (actype == PT_JU88)
+			else if (actype == PT_JU88)
 			{
 				dr->dirresults[k].squadsavail[PT_JU88]	= (gr)*3;
 				MMC.directives.lw.userprofiles[Directives::LW::ATTACK].bomberattackmethod =  Profile::AM_LEVELBOMB;
 				br = (Profile::BetterRule)(br + Profile::BR_R_JU88ONLY);
 			}
-			if (actype == PT_DO17)
+			else if (actype == PT_DO17)
 			{
 				dr->dirresults[k].squadsavail[PT_DO17]	= (gr)*3;
 				MMC.directives.lw.userprofiles[Directives::LW::ATTACK].bomberattackmethod =  Profile::AM_LEVELBOMB;
 				br = (Profile::BetterRule)(br + Profile::BR_R_DO17ONLY);
 			}
-			if (actype == PT_HE111)
+			else if (actype == PT_HE111)
 			{
 				dr->dirresults[k].squadsavail[PT_HE111]	= (gr)*3;
 				MMC.directives.lw.userprofiles[Directives::LW::ATTACK].bomberattackmethod =  Profile::AM_LEVELBOMB;

@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -64,20 +64,19 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //------------------------------------------------------------------------------
 //Filename       error.cpp
-//System         
-//Author         Martin Alderton   
+//System
+//Author         Martin Alderton
 //Date           Fri 6 Oct 1995
-//Description    
+//Description
 //------------------------------------------------------------------------------
 
-// xor #include "stdafx.h"
+//#include "stdafx.h"
 
 #include	<stdio.h>
 #include	<stdlib.h>
 #include	<stdarg.h>
 #include	<conio.h>										//pd 01Nov95
 #include	<dos.h>										//pd 01Nov95
-#include	<windows.h>
 #include	"DosDefs.h"
 //DeadCode DAW 01Mar96 #include	"Files.g"
 #include	"Palette.h"
@@ -85,7 +84,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //#include	"wrapper.h"
 #include	"myerror.h"
 //DeadCode DAW 19Mar96 #include	"getset.h"
-#include	"myAngles.H"	
+#include	"myAngles.H"
 
 #include	"WorldInc.H"
 #include	"World.h"
@@ -113,14 +112,14 @@ extern		void	TrackMemUse();
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Error
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 13 Oct 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Error::Error()
@@ -134,14 +133,14 @@ Error::Error()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Error
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 13 Oct 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Error::~Error()
@@ -154,27 +153,41 @@ Error::~Error()
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure	Error::EmitSysErr
 //------------------------------------------------------------------------------
-//Author	Martin Alderton   
+//Author	Martin Alderton
 //Date		Friday 6 Oct 1995
-//Modified	
+//Modified
 //
-//Description	
+//Description
 //
-//Inputs	
+//Inputs
 //
-//Returns	
+//Returns
 //
 //Externals
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 
-Error& Error::ExitMode()	
+Error& Error::ExitMode()
 {
 	Master_3d.Stop();
-	return this _;
+	return this[0];
 }
-Error& Error::Say(char *txt, ...)	
-{exitmsg=txt;return this _;}
+
+/*
+Error&	Error::Say( const char * format, ... )
+{
+  va_list args;
+  va_start (args, format);
+  vfprintf (stderr, format, args);
+  va_end (args);
+  fprintf (stderr, "\n");
+
+  return *this;
+}
+*/
+Error& __cdecl Error::Say(char *txt, ...)
+{exitmsg=txt;return *this;}
+
 //BOOL IsDebuggerPresent(VOID);
 int	Hell_Freezes_Over=0;
 Error& Error::SayAndQuit(const char *fmt, ...)
@@ -193,7 +206,7 @@ static	char String [2048];												//RJS 8Nov00
 
 
 //DeadCode AMM 24Aug00 	Master_3d.QuitGame();
-									   
+
   	vsprintf(String, fmt, marker);
 	if (exitmsg==NULL)
 		exitmsg="Error: Press Retry to debug";
@@ -227,7 +240,7 @@ static	char String [2048];												//RJS 8Nov00
 
 //TempCode ARM 20Jun96 	fprintf(stdout, "\n");
 //TempCode ARM 10Jul96 	assert(FALSE);
-	exit(0);
+	exit(1);
 	return	*(Error*)NULL;
 
 }
@@ -235,14 +248,14 @@ static	char String [2048];												//RJS 8Nov00
 	#if	DEBUGGING
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		screenswap
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 20 Oct 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //TempCode ARM 05Aug96 void Error::screenswap(Display *screen)							//JIM 12Dec95
@@ -252,14 +265,14 @@ static	char String [2048];												//RJS 8Nov00
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		OpenLog
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 13 Oct 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Error::OpenLog()
@@ -271,14 +284,14 @@ void Error::OpenLog()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		WriteToLog
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 13 Oct 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Error::WriteToLog(char *fmt,...)
@@ -292,14 +305,14 @@ void Error::WriteToLog(char *fmt,...)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CloseLog
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 13 Oct 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Error::CloseLog()
@@ -309,14 +322,14 @@ void Error::CloseLog()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		KeyTrap
-//Author		Paul.   
+//Author		Paul.
 //Date			Fri 13 Oct 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Error::KeyTrap()

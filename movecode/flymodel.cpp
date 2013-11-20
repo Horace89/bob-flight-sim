@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -63,8 +63,8 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 */
 
 //Filename       flymodel.cpp
-//System         
-//Author         R. Hyde 
+//System
+//Author         R. Hyde
 //Date           Mon 11 Sep 1995
 //Description    THIS IS THE OLD INTEGER BASED FLIGHT MODEL, OR REMNANTS OF IT!
 //------------------------------------------------------------------------------
@@ -112,7 +112,7 @@ extern DPlay _DPlay;
 
 										//ARM 06Nov96
 //-----------------------------------------------------------------------------------------
-//1	Permanent notes on the flight model	
+//1	Permanent notes on the flight model
 //
 //
 //	1	Units
@@ -124,17 +124,17 @@ extern DPlay _DPlay;
 //				airdensity			g/m^3
 //				sos					m/s
 //				angles				all use full word
-//				trig functions		signed word, 7fff = 1.0, 8000 = -1	
+//				trig functions		signed word, 7fff = 1.0, 8000 = -1
 //
 //	2	In the model, y is reversed:
 //
 //			cposy = -ControlledAC->World.Y; 		world y postion of ac
-//			
-//	3	Angles 					
+//
+//	3	Angles
 //			    roll right wing down = +ve
 //				hdg change to right  = +ve
 //				pitch up			 = +ve
-//				
+//
 //		When the ac is pointing above the velocity vector, then aoa = +ve
 //		When the ac has a bigger heading than velocity vector, then slip = -ve
 //
@@ -153,7 +153,7 @@ extern DPlay _DPlay;
 //DeadCode RDH 26Mar98 //			balance adverse drag
 //DeadCode RDH 26Mar98 //
 //DeadCode RDH 26Mar98 //
-//DeadCode RDH 26Mar98 //			In old model 1,3,4 absent 
+//DeadCode RDH 26Mar98 //			In old model 1,3,4 absent
 //DeadCode RDH 26Mar98 //
 //DeadCode RDH 26Mar98 //
 //DeadCode RDH 26Mar98 //			When rudder is applied, aircraft skids. Side slip angle
@@ -166,7 +166,7 @@ extern DPlay _DPlay;
 //DeadCode RDH 26Mar98 //
 //DeadCode RDH 26Mar98 //	7	Aileron effects
 //DeadCode RDH 26Mar98 //
-//DeadCode RDH 26Mar98 //			On applying aileron, drag on wings in changed in opposite 
+//DeadCode RDH 26Mar98 //			On applying aileron, drag on wings in changed in opposite
 //DeadCode RDH 26Mar98 //			directions. This can produce an adverse yaw
 //DeadCode RDH 26Mar98 //
 //DeadCode RDH 26Mar98 //
@@ -179,13 +179,13 @@ extern DPlay _DPlay;
 //DeadCode RDH 26Mar98 //		+ve slip gives -roll
 //DeadCode RDH 26Mar98 //				effect increased by dihedral
 //DeadCode RDH 26Mar98 //				effect caused by dihedral gving bigger aoa for one wing
-//DeadCode RDH 26Mar98 //				and reduced lift on wing in shadow of body		
+//DeadCode RDH 26Mar98 //				and reduced lift on wing in shadow of body
 //DeadCode RDH 26Mar98 //
 //DeadCode RDH 26Mar98 //		torque on prop (and rotary engines)
 //DeadCode RDH 26Mar98 //					opposite and equal, is it rate of change of torque or magnitude
 //DeadCode RDH 26Mar98 //
 //DeadCode RDH 26Mar98 //		ailerons
-//DeadCode RDH 26Mar98 //				increase aoa on upper wing	
+//DeadCode RDH 26Mar98 //				increase aoa on upper wing
 //DeadCode RDH 26Mar98 //
 //DeadCode RDH 26Mar98 //		roll of aircraft (lateral damping)
 //DeadCode RDH 26Mar98 //				relative wind on down wing produce higher aoa, hence increases lift
@@ -205,10 +205,10 @@ extern DPlay _DPlay;
 //DeadCode RDH 26Mar98 //
 //DeadCode RDH 26Mar98 //
 //DeadCode RDH 26Mar98 //		p effect
-//DeadCode RDH 26Mar98 //		
+//DeadCode RDH 26Mar98 //
 //DeadCode RDH 26Mar98 //
 //DeadCode RDH 26Mar98 //		adverse yaw
-//DeadCode RDH 26Mar98 //			rolling wing means lift difference which means drag difference	
+//DeadCode RDH 26Mar98 //			rolling wing means lift difference which means drag difference
 //DeadCode RDH 26Mar98 //		weather cocking
 //DeadCode RDH 26Mar98 //			tail moves ac into relative wind
 //DeadCode RDH 26Mar98 //
@@ -234,22 +234,22 @@ extern DPlay _DPlay;
 //	2	Changing from auto to manual has changed, I will probably need to know
 //		so that trim can be allowed
 //
-//	3	
-// 
-//DeadCode RDH 26Mar98 //	4	SetFlags, WayPointUpdate and FuelLeft is commented out	
+//	3
+//
+//DeadCode RDH 26Mar98 //	4	SetFlags, WayPointUpdate and FuelLeft is commented out
 //DeadCode RDH 26Mar98 //
 //DeadCode RDH 26Mar98 //	5	The thrust routine needs to be accessed indirectly
 //DeadCode RDH 26Mar98 //
 //DeadCode RDH 26Mar98 //	6	damage lights needed for effect on thrust, aileron and elevator
 //DeadCode RDH 26Mar98 //
 //DeadCode RDH 26Mar98 //
-//	8	
+//	8
 //	 	if (ControlledAC2 == ControlledAC)
 //				true for manual pilot
 //
-//DeadCode RDH 26Mar98 //	9	
+//DeadCode RDH 26Mar98 //	9
 //DeadCode RDH 26Mar98 //
-//DeadCode RDH 26Mar98 //	10	
+//DeadCode RDH 26Mar98 //	10
 //DeadCode RDH 26Mar98 //
 //DeadCode RDH 26Mar98 //
 //DeadCode RDH 26Mar98 //	12	I've introduced a 1cm/sec velocty field for the flight model, vel_cms.
@@ -259,7 +259,7 @@ extern DPlay _DPlay;
 //DeadCode RDH 26Mar98 //
 //DeadCode RDH 26Mar98 //-----------------------------------------------------------------------------------------
 //DeadCode RDH 26Mar98 //Static data
-//DeadCode RDH 26Mar98 
+//DeadCode RDH 26Mar98
 //DeadCode RDH 26Mar98 //elevator deflection constant,  see taillift and Theory of Flight p502
 //DeadCode RDH 26Mar98 //increments in 5 deg deviation steps
 //DeadCode RDH 26Mar98 //DeadCode RDH 17Jun96 static UWord 	ElevatorDeflection_Data[] =
@@ -272,7 +272,7 @@ extern DPlay _DPlay;
 //DeadCode RDH 26Mar98 //DeadCode RDH 17Jun96  //45
 //DeadCode RDH 26Mar98 //DeadCode RDH 17Jun96  					280
 //DeadCode RDH 26Mar98 //DeadCode RDH 17Jun96  			};
-//DeadCode RDH 26Mar98 
+//DeadCode RDH 26Mar98
 //DeadCode RDH 26Mar98 static UWord 	ElevatorDeflection_Data[] =
 //DeadCode RDH 26Mar98  			{
 //DeadCode RDH 26Mar98  						0,15,30,50,
@@ -284,14 +284,14 @@ extern DPlay _DPlay;
 //DeadCode RDH 26Mar98  //DeadCode RDH 07Dec96 					175
 //DeadCode RDH 26Mar98  					190											//RDH 07Dec96
 //DeadCode RDH 26Mar98  			};
- 
-//DeadCode RDH 26Mar98 
-//DeadCode RDH 26Mar98 
+
+//DeadCode RDH 26Mar98
+//DeadCode RDH 26Mar98
 //DeadCode RDH 26Mar98 //increments in 1000m steps
 //DeadCode RDH 26Mar98 //mach in m/s
 //DeadCode RDH 26Mar98 static UWord 	Mach_Data[] =
 //DeadCode RDH 26Mar98 			{
-//DeadCode RDH 26Mar98 
+//DeadCode RDH 26Mar98
 //DeadCode RDH 26Mar98 				340,
 //DeadCode RDH 26Mar98 				337,
 //DeadCode RDH 26Mar98 				333,
@@ -316,12 +316,12 @@ extern DPlay _DPlay;
 //DeadCode RDH 26Mar98 				298,
 //DeadCode RDH 26Mar98 				299
 //DeadCode RDH 26Mar98 			};
-//DeadCode RDH 26Mar98 
-//DeadCode RDH 26Mar98 
-//DeadCode RDH 26Mar98 
+//DeadCode RDH 26Mar98
+//DeadCode RDH 26Mar98
+//DeadCode RDH 26Mar98
 //DeadCode RDH 26Mar98 //increments in 1000m steps
 //DeadCode RDH 26Mar98 //density in g/m^3
-//DeadCode RDH 26Mar98 static UWord AirDensity_Data[] = 
+//DeadCode RDH 26Mar98 static UWord AirDensity_Data[] =
 //DeadCode RDH 26Mar98 			{
 //DeadCode RDH 26Mar98 				1225,
 //DeadCode RDH 26Mar98 				1112,
@@ -348,11 +348,11 @@ extern DPlay _DPlay;
 //DeadCode RDH 26Mar98 				76,
 //DeadCode RDH 26Mar98 				65
 //DeadCode RDH 26Mar98 			};
-//DeadCode RDH 26Mar98 
-//DeadCode RDH 26Mar98 
+//DeadCode RDH 26Mar98
+//DeadCode RDH 26Mar98
 //DeadCode RDH 26Mar98 //Table of SQR(DensityRatio) * 65536
-//DeadCode RDH 26Mar98 //DensityRatio is ratio of air density at altitude to air density at sea level 
-//DeadCode RDH 26Mar98 
+//DeadCode RDH 26Mar98 //DensityRatio is ratio of air density at altitude to air density at sea level
+//DeadCode RDH 26Mar98
 //DeadCode RDH 26Mar98 static UWord AirDensity_Ratio[] =
 //DeadCode RDH 26Mar98 			{
 //DeadCode RDH 26Mar98 				65535,
@@ -380,8 +380,8 @@ extern DPlay _DPlay;
 //DeadCode RDH 26Mar98 				27125,
 //DeadCode RDH 26Mar98 				25750
 //DeadCode RDH 26Mar98 	};
-//DeadCode RDH 26Mar98 
-//DeadCode RDH 26Mar98 
+//DeadCode RDH 26Mar98
+//DeadCode RDH 26Mar98
 //DeadCode RDH 26Mar98 //DeadCode RDH 25Jun96 static UWord ManualPilot::airdensityratiosquareroot[] =
 //DeadCode RDH 26Mar98 //DeadCode RDH 25Jun96 			{
 //DeadCode RDH 26Mar98 //DeadCode RDH 25Jun96 				65535,
@@ -409,9 +409,9 @@ extern DPlay _DPlay;
 //DeadCode RDH 26Mar98 //DeadCode RDH 25Jun96 				42162,
 //DeadCode RDH 26Mar98 //DeadCode RDH 25Jun96 				41080
 //DeadCode RDH 26Mar98 //DeadCode RDH 25Jun96 	};
-//DeadCode RDH 26Mar98 //DeadCode RDH 25Jun96 
-//DeadCode RDH 26Mar98 
-//DeadCode RDH 26Mar98 static UWord Shok_Data[] = 
+//DeadCode RDH 26Mar98 //DeadCode RDH 25Jun96
+//DeadCode RDH 26Mar98
+//DeadCode RDH 26Mar98 static UWord Shok_Data[] =
 //DeadCode RDH 26Mar98 	{
 //DeadCode RDH 26Mar98 		0,
 //DeadCode RDH 26Mar98 		0,
@@ -436,7 +436,7 @@ extern DPlay _DPlay;
 //DeadCode RDH 26Mar98 		1490,
 //DeadCode RDH 26Mar98 		1500
 //DeadCode RDH 26Mar98 	};
-//DeadCode RDH 26Mar98 
+//DeadCode RDH 26Mar98
 //DeadCode RDH 26Mar98 //flight model equates
 //DeadCode RDH 26Mar98 SLong const 	SHORTGRASSCOEFF 	=	30;						//RDH 22Oct96
 //DeadCode RDH 26Mar98 SLong const 	LONGGRASSCOEFF 		=	40;
@@ -448,7 +448,7 @@ extern DPlay _DPlay;
 //DeadCode RDH 26Mar98 SLong const 	WORD_FRACT   	=	65536;
 //DeadCode RDH 26Mar98 SLong const 	LIFTCONST   	=	100 * 65536 / 360;
 //DeadCode RDH 26Mar98 SLong const 	ROWANS_PER_RAD  =	10430;		//65536 / 2PI;
-//DeadCode RDH 26Mar98 SLong const 	PITCHCOEFF   	=	104;		//PITCHCOEFF = 	WORD_FRACT / TWOPI100			
+//DeadCode RDH 26Mar98 SLong const 	PITCHCOEFF   	=	104;		//PITCHCOEFF = 	WORD_FRACT / TWOPI100
 //DeadCode RDH 26Mar98 SLong const 	GROUNDEFFECT 	=	1000;		//cms
 //DeadCode RDH 26Mar98 SLong const 	K_MACH  	 	=	21500;
 //DeadCode RDH 26Mar98 SLong const 	LIMOLDPITCH     =	0x1200;
@@ -478,31 +478,31 @@ extern DPlay _DPlay;
 //DeadCode RDH 26Mar98 SLong const		AOA_MAXSLIPSTREAM = 600;
 //DeadCode RDH 26Mar98 //DeadCode RDH 23Jul96 SLong const		FLIGHTMODEL_TIMEFRAME = 2;						//RDH 25Apr96
 //DeadCode RDH 26Mar98 SLong const		FLIGHTMODEL_TIMEFRAME = TimerCode::FIXEDFRAMETIME;						//RDH 25Apr96
-//DeadCode RDH 26Mar98 
+//DeadCode RDH 26Mar98
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //INSTANCE		Manual_Pilot
 //Author		Jim Taylor
 //Date			Tue 31 Oct 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 ManualPilot	Manual_Pilot;
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ManualPilot	CONSTRUCTOR
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Thu 26 Oct 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 	ManualPilot::ManualPilot()
@@ -527,9 +527,9 @@ ManualPilot	Manual_Pilot;
 //				May also be used to flag auto/manual switch,
 //				so put any trim init code here!
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ManualPilot::Associate	(
@@ -564,24 +564,24 @@ void	ManualPilot::AutoToggle(CONTROLMODE dead)
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date		Wed 30 Aug 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ManualPilot::MainManualPilot()
 {
-//TempCode PD 3Nov97 
+//TempCode PD 3Nov97
 //	return;
-//TempCode PD 3Nov97 
+//TempCode PD 3Nov97
 
 //Add timing thing here	//CSB 02/03/99
-	
+
 	if (ControlledAC2)
 	{
 		WorldStuff &world = mobileitem::GetWorld();
@@ -610,19 +610,19 @@ void	ManualPilot::MainManualPilot()
 
 //DeadCode AMM 01Dec98 		}
 //DeadCode AMM 01Dec98 //DeadCode CSB 15/09/98		 	ControlledAC2->FuelLeft ();								//RDH 03Jun96
-//DeadCode AMM 01Dec98 
+//DeadCode AMM 01Dec98
 //DeadCode AMM 01Dec98 		if (controlmode == MANUAL)
 //DeadCode AMM 01Dec98 		{
 			if (!_Replay.Playback)
 			{
 				_DPlay.CheckSeen();
-				_DPlay.AddDeltas(Persons2::PlayerSeenAC,FALSE,1); 				
+				_DPlay.AddDeltas(Persons2::PlayerSeenAC,FALSE,1);
 #ifndef	_NOFLIGHTMODEL_
  				FlightModelFixedTime(Persons2::PlayerSeenAC);
 #endif
  				Persons2::PlayerSeenAC->SetManualFlightParams ();
 
-				_DPlay.AddDeltas(Persons2::PlayerSeenAC,TRUE,1);				
+				_DPlay.AddDeltas(Persons2::PlayerSeenAC,TRUE,1);
 				_DPlay.BackupSeen();
 			}
 
@@ -653,20 +653,20 @@ void	ManualPilot::MainManualPilot()
 
 //DeadCode AMM 16Jun98 			if(_DPlay.Implemented)								//AMM 15Apr97
 			if (!_Replay.Playback)
-			{													
+			{
 // this moves players ac if player is not in control i.e autospiral, autores etc
-																
-//				WorldStuff &world = mobileitem::GetWorld();		
-									
+
+//				WorldStuff &world = mobileitem::GetWorld();
+
 				_DPlay.CheckSeen();
-				_DPlay.AddDeltas(ControlledAC2,FALSE,3);			
+				_DPlay.AddDeltas(ControlledAC2,FALSE,3);
 				mobileitem::MoveItem((MobileItemPtr)(ControlledAC2),world);
 				_DPlay.AddDeltas(ControlledAC2,TRUE,3);
 				_DPlay.BackupSeen();
 
 // update info line
 				if (_DPlay.Implemented)
-		 			OverLay.SetInfoLineVals(Persons2::PlayerSeenAC->vel_ * 0.001, 0, Persons2::PlayerSeenAC->World.Y * (3.2808 / 100), Persons2::PlayerSeenAC->hdg / 182, Persons2::PlayerSeenAC->fly.thrustpercent); 
+		 			OverLay.SetInfoLineVals(Persons2::PlayerSeenAC->vel_ * 0.001, 0, Persons2::PlayerSeenAC->World.Y * (3.2808 / 100), Persons2::PlayerSeenAC->hdg / 182, Persons2::PlayerSeenAC->fly.thrustpercent);
 			}
 			else												//AMM 31Aug98
 			{													//AMM 31Aug98
@@ -706,11 +706,11 @@ void	ManualPilot::MainManualPilot()
 //Author		Robert Slater
 //Date			Wed 15 Apr 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DeadCode AMM 26Jan99 Bool	ManualPilot::DeathSequenceOverride(ItemPtr	itm, int	newmovecode)//DAW 03Sep98
@@ -824,7 +824,7 @@ Bool	ManualPilot::DeathSequenceOverride(ItemPtr	itm, int	newmovecode,bool commsc
 					acptr->movecode = (AutoMoveCodeTypeSelect) newmovecode;
 			}
 
-			//Make sure it is dead!								
+			//Make sure it is dead!
 			ShapeDescPtr	sdptr = SHAPESTUFF.GetShapePtr(acptr->shape);	//RJS 17May99
 			acptr->Status.deadtime = sdptr->DeadTime;						//RJS 17May99
 			acptr->Status.deadscale = sdptr->DeadScale;						//RJS 17May99
@@ -836,7 +836,7 @@ Bool	ManualPilot::DeathSequenceOverride(ItemPtr	itm, int	newmovecode,bool commsc
 				Persons2::PlayerGhostAC->Status.deaded = TRUE;
 				Persons2::PlayerGhostAC->overview_movecode=acptr->overview_movecode;
 			}
-			
+
 			mad->itemstate = DEAD;								//RJS 23May99
 
 			if (sdptr->AnimDataSize == AIRCRAFTANIM)
@@ -853,7 +853,7 @@ Bool	ManualPilot::DeathSequenceOverride(ItemPtr	itm, int	newmovecode,bool commsc
 		}
 		if (	(acptr->movecode == AUTO_NOPPILOT)							//RJS 22Jun00
 			&&	(	!(_Replay.Record || _Replay.Playback || _DPlay.Implemented)
-				||	!BoxCol::GetTestState()	))			
+				||	!BoxCol::GetTestState()	))
 			acptr->vel_x = acptr->vel_y = acptr->vel_z = acptr->vel_ = 0;	//RJS 22Jun00
 	}
 
@@ -882,14 +882,14 @@ Bool	ManualPilot::DeathSequenceOverride(ItemPtr	itm, int	newmovecode,bool commsc
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		FlightModelFixedTime
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Sun 7 Apr 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ManualPilot::FlightModelFixedTime(AirStrucPtr const ControlledAC2)
@@ -930,14 +930,14 @@ void	ManualPilot::FlightModelFixedTime(AirStrucPtr const ControlledAC2)
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date		Wed 30 Aug 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ManualPilot::ACMManualPilot(AirStrucPtr const ControlledAC2)
@@ -950,11 +950,11 @@ void	ManualPilot::ACMManualPilot(AirStrucPtr const ControlledAC2)
 // All of the next bit is done in the flight model
 //DeadCode CSB 15/09/98			if(!(ControlledAC2->fly.pModel->FrameCount & EVERY256cs))	//This will do the following commands for each aircraft
 //DeadCode CSB 15/09/98			{											//once every n operations.
-//DeadCode CSB 15/09/98				MMC.Sky.Ambient (ControlledAC2->fly.pModel->Pos.y, 
+//DeadCode CSB 15/09/98				MMC.Sky.Ambient (ControlledAC2->fly.pModel->Pos.y,
 //DeadCode CSB 15/09/98				 				 ControlledAC2->fly.pModel->AmbDensity,
 //DeadCode CSB 15/09/98								 ControlledAC2->fly.pModel->AmbTemp,
 //DeadCode CSB 15/09/98								 ControlledAC2->fly.pModel->AmbPres);
-//DeadCode CSB 15/09/98				ControlledAC->FuelLeft(CalcFuelRate(ControlledAC));	
+//DeadCode CSB 15/09/98				ControlledAC->FuelLeft(CalcFuelRate(ControlledAC));
 //DeadCode CSB 15/09/98			}
 //DeadCode CSB 15/09/98			ControlledAC2->fly.pModel->FrameCount++;
 //DeadCode CSB 15/09/98		 	ControlledAC2->FuelLeft ();								//RDH 03Jun96
@@ -969,7 +969,7 @@ void	ManualPilot::ACMManualPilot(AirStrucPtr const ControlledAC2)
 
 //DeadCode RDH 31Jul98//컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //DeadCode RDH 31Jul98//Procedure		ModifyControlInput
-//DeadCode RDH 31Jul98//Author		R. Hyde 
+//DeadCode RDH 31Jul98//Author		R. Hyde
 //DeadCode RDH 31Jul98//Date			Mon 1 Apr 1996
 //DeadCode RDH 31Jul98//
 //DeadCode RDH 31Jul98//Description	The control input is modified by the velocity.
@@ -985,9 +985,9 @@ void	ManualPilot::ACMManualPilot(AirStrucPtr const ControlledAC2)
 //DeadCode RDH 31Jul98//
 //DeadCode RDH 31Jul98//				Similar effects at high g were tried but were not successful
 //DeadCode RDH 31Jul98//
-//DeadCode RDH 31Jul98//Inputs		
+//DeadCode RDH 31Jul98//Inputs
 //DeadCode RDH 31Jul98//
-//DeadCode RDH 31Jul98//Returns	
+//DeadCode RDH 31Jul98//Returns
 //DeadCode RDH 31Jul98//
 //DeadCode RDH 31Jul98//------------------------------------------------------------------------------
 //DeadCode RDH 31Jul98void	ManualPilot::ModifyControlInput(AirStrucPtr const ControlledAC)
@@ -1006,7 +1006,7 @@ void	ManualPilot::ACMManualPilot(AirStrucPtr const ControlledAC2)
 //DeadCode RDH 31Jul98//DeadCode RJS 21Feb97 	ULong	*dflagptr;											//RJS 29Oct96
 //DeadCode RDH 31Jul98
 //DeadCode RDH 31Jul98//DeadCode RJS 21Feb97 	dflagptr = (ULong*) &(adptr->dammageflags);
-//DeadCode RDH 31Jul98//DeadCode RJS 21Feb97 
+//DeadCode RDH 31Jul98//DeadCode RJS 21Feb97
 //DeadCode RDH 31Jul98//DeadCode RJS 21Feb97 	damflagstate = (*dflagptr)>>BF_Pilot;						//RJS 29Oct96
 //DeadCode RDH 31Jul98//DeadCode RJS 21Feb97 	damflagstate = damflagstate & BS_DEAD;
 //DeadCode RDH 31Jul98	damflagstate = adptr->PILOTLEFT;								//RJS 21Feb97
@@ -1027,7 +1027,7 @@ void	ManualPilot::ACMManualPilot(AirStrucPtr const ControlledAC2)
 //DeadCode RDH 31Jul98//DeadCode RDH 05Dec96 				ControlledAC->fly.aileron = ControlledAC->fly.aileron * ((4 - (SWord)damflagstate))/4;
 //DeadCode RDH 31Jul98//DeadCode RDH 05Dec96 				ControlledAC->fly.rudder = ControlledAC->fly.rudder * ((4 - (SWord)damflagstate))/4;
 //DeadCode RDH 31Jul98//DeadCode RDH 05Dec96 			}
-//DeadCode RDH 31Jul98//DeadCode RDH 05Dec96 		
+//DeadCode RDH 31Jul98//DeadCode RDH 05Dec96
 //DeadCode RDH 31Jul98//DeadCode RDH 05Dec96 	}
 //DeadCode RDH 31Jul98//DeadCode RJS 21Feb97 	damflagstate = (*dflagptr)>>BF_Engine;
 //DeadCode RDH 31Jul98//DeadCode RJS 21Feb97 	damflagstate = damflagstate & BS_DEAD;
@@ -1071,25 +1071,25 @@ void	ManualPilot::ACMManualPilot(AirStrucPtr const ControlledAC2)
 //DeadCode RDH 31Jul98}
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date		Wed 30 Aug 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ManualPilot::SubManualPilot(AirStrucPtr const ControlledAC)
 {
 //DeadCode RDH 26Mar98     	ControlledAC->fly.cposy = -ControlledAC->World.Y;			//RDH 28Feb96
-    
+
 //DeadCode RDH 26Mar98     	MachDensity (ControlledAC);
 //DeadCode RDH 26Mar98    //TempCode RDH 26Oct95 	classtype->ModelPatch_Thrust ();
 //DeadCode RDH 26Mar98     	WW2Thrust(ControlledAC);
 //DeadCode RDH 26Mar98     	CalcLift (ControlledAC);
-//DeadCode RDH 26Mar98 
+//DeadCode RDH 26Mar98
 //DeadCode RDH 26Mar98 		AircraftAnimData*	adptr;
 //DeadCode RDH 26Mar98 		adptr = (AircraftAnimData *)ControlledAC->Anim;
 //DeadCode RDH 26Mar98 //DeadCode RJS 21Feb97 		UWord	lcldamflag;
@@ -1102,7 +1102,7 @@ void	ManualPilot::SubManualPilot(AirStrucPtr const ControlledAC)
 //DeadCode RDH 26Mar98 	    	CalcRudderLift (ControlledAC);
 //DeadCode RDH 26Mar98 	    	CalcRudderDrag (ControlledAC);
 //DeadCode RDH 26Mar98 		}
-//DeadCode RDH 26Mar98 
+//DeadCode RDH 26Mar98
 //DeadCode RDH 26Mar98     	CalcSideForce (ControlledAC);
 //DeadCode RDH 26Mar98     	CalcDrag (ControlledAC);
 //DeadCode RDH 26Mar98 //DeadCode RDH 06Nov96    		if (keyboardcontrol)
@@ -1140,14 +1140,14 @@ void	ManualPilot::SubManualPilot(AirStrucPtr const ControlledAC)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitManualPilot
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 2 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ManualPilot::InitManualPilot(AirStrucPtr const ControlledAC)
@@ -1169,14 +1169,14 @@ void ManualPilot::InitManualPilot(AirStrucPtr const ControlledAC)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InitManualPilot
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 2 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ManualPilot::InitManualPilotSub(AirStrucPtr const ControlledAC)
@@ -1247,7 +1247,7 @@ void ManualPilot::InitFlightModelPos(AirStrucPtr const ControlledAC)
 {
 	InitSimpleAc(ControlledAC);
 //init aoa for first frame where it may be used before it is set
-		
+
 	ControlledAC->fly.elevator = 0;
 	ControlledAC->fly.aileron  = 0;
 	ControlledAC->fly.rudder   = 0;
@@ -1288,9 +1288,9 @@ UByte&	item::AnimByte(Animfieldref)
 //				with diary wrapper...
 //				(it must not be embedded deep within damage or other death code)
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 bool	ManualPilot::DeathSequenceOverrideDiary(ItemPtr	itm, int	newmovecode,bool commscalled)

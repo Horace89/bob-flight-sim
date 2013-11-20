@@ -14,7 +14,7 @@
 #ifndef assert
 #include <assert.h>
 #endif
-#include <windows.h>
+//#include <windows.h>
 #include <ddraw.h>
 #include <d3d.h>
 #include "mystack.h"

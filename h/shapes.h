@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 //Filename       shapes.h
-//System         
-//Author         Paul.   
+//System
+//Author         Paul.
 //Date           Mon 18 Sep 1995
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	SHAPES_Included
 #define	SHAPES_Included
@@ -13,6 +13,7 @@
 #include	"shapenum.g"										//PD 27Aug96
 
 #include	"bitfield.h"										//PD 27Aug96
+#include	"fileman.h"										//PD 27Aug96
 
 MAKEFIELD	(ShapeNum,ShapeNumMIN,ShapeNumMAX);					//PD 27Aug96
 
@@ -86,7 +87,7 @@ ShapeDesc,
 
 class	shapestuff
 		{
-			
+
 		friend	class	fileman;
 		friend	class	fileblock;
 		friend 	class	shape;
@@ -108,7 +109,7 @@ class	shapestuff
 		}
 		shpinstfix,
 		*shpinstfixptr;
-		
+
 		fileblock*		*shapetable;							//PD 15Mar96
 
 		ShapeNum		ShapeFixing;							//RJS 23Apr97

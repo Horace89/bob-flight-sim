@@ -1137,12 +1137,12 @@ GR_CloudBase =		{"CloudBase",
 									&HideProcess,
 									5000
 								},
-//GR_firstobject =		{"FirstObject",
-//									IDS_CLOUDBASE,
-//									IDS_HELP_CLOUDBASE,
-//									&HideProcess,
-//									5000
-//								},
+GR_firstobject =		{"FirstObject",
+									IDS_CLOUDBASE,
+									IDS_HELP_CLOUDBASE,
+									&HideProcess,
+									5000
+								},
 GR_Quit3DNow =		{"OkToQuit3DNow",
 									IDS_OKTOQUIT3DNOW,
 									IDS_HELP_OKTOQUIT3DNOW,

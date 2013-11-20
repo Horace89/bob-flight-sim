@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -67,7 +67,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 // Module:	Model.cpp
 //------------------------------------------------------------------------------
 //Filename       model.cpp
-//System         
+//System
 //Author         Andrew McRae
 //Date           Tue 7 Jan 1997
 //Description    Mig Alley Flight Model
@@ -128,7 +128,7 @@ extern WayPoint WP_PATROL_BASE1;
 //
 // Notes:
 //
-// Units								
+// Units
 //
 // Displacement			UNITY = 0.01 Metres
 // Force				UNITY = 1 Newton
@@ -139,11 +139,11 @@ extern WayPoint WP_PATROL_BASE1;
 //
 // Parameter units								SI equiv
 //
-// Position				1 = 1cm					= 1e-2 M				
+// Position				1 = 1cm					= 1e-2 M
 // Velocity				1 = 1cm / 1csec			= 1e+0 M/s
 // Acceleration			1 = 1cm / 1csec^2		= 1e+2 M/s^2
 // Angle				1 = 1radian				= 1e+0 1
-// Angular Velocity		1 = 1rad / 1csec		= 1e+2 1/s 
+// Angular Velocity		1 = 1rad / 1csec		= 1e+2 1/s
 // Angular Accel		1 = 1rad / 1csec^2		= 1e+4 1/s^2
 // Torque				1 = 1N * 1cm			= 1e-2 N.M
 // Moment of inertia	1 = 0.01kg * 1cm^2		= 1e-6 kg.M^2
@@ -191,7 +191,7 @@ Bool NewModel (AirStrucPtr const ControlledAC)
 	ControlledAC->fly.pModel->Ident = Count;
 	Count ++;
 
-	ControlledAC->fly.pModel->FrameCount = ControlledAC->uniqueID.count;//->fly.pModel->Ident;	
+	ControlledAC->fly.pModel->FrameCount = ControlledAC->uniqueID.count;//->fly.pModel->Ident;
 
 	ControlledAC->fly.pAcmModel = &ControlledAC->fly.pModel->ACMModel;
 	ControlledAC->fly.pInst = &ControlledAC->fly.pModel->Inst;
@@ -211,7 +211,7 @@ Bool NewModel (AirStrucPtr const ControlledAC)
 //
 //Inputs		AirStrucPtr
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void DeleteModel (AirStrucPtr const ControlledAC)
@@ -221,7 +221,7 @@ void DeleteModel (AirStrucPtr const ControlledAC)
 		delete ControlledAC->fly.pModel;
 		ControlledAC->fly.pModel = NULL;
 	}
-}	
+}
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Model
@@ -230,9 +230,9 @@ void DeleteModel (AirStrucPtr const ControlledAC)
 //
 //Description	Model Class Constructor
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Model::Model ()
@@ -254,9 +254,9 @@ Model::Model ()
 
 	ControlLossV0 = 150;
 	ControlLossV1 = 180;
-	
+
 	ControlForce = 100;			// Relative amount of force feedback
-	BuffetForce  = 100; 
+	BuffetForce  = 100;
 
 	List.Attach (&ModelList, this);
 
@@ -271,9 +271,9 @@ Model::Model ()
 //
 //Description	Destructor
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Model::~Model ()
@@ -288,11 +288,11 @@ Model::~Model ()
 //Author		Andrew McRae
 //Date			Fri 21 Mar 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::ClearLists ()
@@ -315,9 +315,9 @@ void Model::ClearLists ()
 //
 //Description	Set up model params
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::Initialise (AirStrucPtr const ControlledAC, Bool status)
@@ -405,7 +405,7 @@ void Model::Initialise (AirStrucPtr const ControlledAC, Bool status)
 
 	ContrailDuration = 0;										//D 02Apr98
 
-	SlipstreamRudder = 0;	//CSB 28/10/99	
+	SlipstreamRudder = 0;	//CSB 28/10/99
 
 #ifdef RESET_AC_POS
 	// Temporary
@@ -460,7 +460,7 @@ void Model::Initialise (AirStrucPtr const ControlledAC, Bool status)
 
 // Crappy weapon init fix.....								//RJS 10Jun97
 //DeadCode RJS 21Jun00 	ControlledAC->weap.weapontype = LT_BULLET;					//RJS 11May98
-	fixgunsight = true;	//CSB 09/06/99	
+	fixgunsight = true;	//CSB 09/06/99
 
 
 	if (Controlled)
@@ -468,27 +468,27 @@ void Model::Initialise (AirStrucPtr const ControlledAC, Bool status)
 		switch(Type)
 		{
 			case AT_SPITFIRE:
-			{	
+			{
 				Inst.SetFuelGaugeSelector(0, 11700000, 1, 9500000, -1, -1, -1, -1);
 				break;
 			}
 			case AT_HURRICANE:
-			{	
+			{
 				Inst.SetFuelGaugeSelector(0, 11700000, 2, 9500000, 1, 11700000, -1, -1);
 				break;
 			}
 			case AT_BF109:
-			{	
+			{
 				Inst.SetFuelGaugeSelector(0, 30000000, -1, -1, -1, -1, -1, -1);
 				break;
 			}
 			case AT_BF110:
-			{	
+			{
 				Inst.SetFuelGaugeSelector(2, 30000000, 0, 30000000, 1, 30000000, 3, 30000000);
 				break;
 			}
 			case AT_JU87B:
-			{	
+			{
 				Inst.SetFuelGaugeSelector(0, 19500000, 1, 19500000, -1, -1, -1, -1);
 				break;
 			}
@@ -711,13 +711,13 @@ void Model::Initialise (AirStrucPtr const ControlledAC, Bool status)
 				Inst.AddAutoDial(adptr,&adptr->acradiatortemp,&Inst,&Inst.I_RadiatorTemperature0, 0, 150);
 				Inst.AddAutoDial(adptr,&adptr->acoiltemp,&Inst,&Inst.I_OilTemperature, 0, 150);
 				Inst.AddAutoDial(adptr,&adptr->acoilcontent,&Inst,&Inst.I_OilContent, 0, 150);
-				
+
 				Inst.AddAutoDial(adptr,&adptr->acfuelpressure,&Inst,&Inst.I_FuelPressure, -30, 30);
 				Inst.AddAutoDial(adptr,&adptr->accompass,&Inst,&Inst.I_Heading, 0, 360);
 
 				Inst.AddAutoDial(adptr,&adptr->acgyrocompass,&Inst,&Inst.I_Heading,0.0,360.0,-182.04);//RJS 06Apr00
 				Inst.AddTimedDial(adptr,&adptr->acgyrocompass,ARC_1SEC,ARC_1SEC<<1);//RJS 06Apr00
-				
+
 				//Dive Preset Indicator
 
 				Inst.AddAutoDial(adptr,&adptr->i_throttle, &Inst,&Inst.C_Throttle0, 0, 100);
@@ -753,9 +753,9 @@ void Model::Initialise (AirStrucPtr const ControlledAC, Bool status)
 	if(ControlledAC->ai.homebase)
 		AltHome = ControlledAC->ai.homebase->World.Y;
 	FP Altitude = (ControlledAC->World.Y - AltHome) * 0.032808;
-		
+
 	if (Controlled)
-		OverLay.SetInfoLineVals(ControlledAC->vel_ / 1000, 0, Altitude, Inst.I_Heading, ControlledAC->fly.thrustpercent); 
+		OverLay.SetInfoLineVals(ControlledAC->vel_ / 1000, 0, Altitude, Inst.I_Heading, ControlledAC->fly.thrustpercent);
 }
 
 
@@ -764,11 +764,11 @@ void Model::Initialise (AirStrucPtr const ControlledAC, Bool status)
 //Author		Andrew McRae
 //Date			Fri 31 Jan 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::SetupAircraft (AirStrucPtr const ControlledAC)
@@ -789,9 +789,9 @@ void Model::SetupAircraft (AirStrucPtr const ControlledAC)
 //
 //Description	Flight Model Main Function,	called every movecode loop.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::Base (AirStrucPtr const ControlledAC)
@@ -837,9 +837,9 @@ void Model::Base (AirStrucPtr const ControlledAC)
 //
 //Description	Flight Model Main Function,	called !!!TWICE!!! every movecode loop.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::SubBase (AirStrucPtr const ControlledAC)
@@ -890,7 +890,7 @@ void Model::SubBase (AirStrucPtr const ControlledAC)
 				Save_Data.flightdifficulty %= FD_ENGINEMANAGMENT;
 				Save_Data.flightdifficulty %= FD_PROPPITCH;
 			}
-			else 
+			else
 				if(Save_Data.flightdifficulty[FD_ENGINEMANAGMENT])
 					Save_Data.flightdifficulty |= FD_PROPPITCH;
 		}
@@ -922,11 +922,11 @@ void Model::SubBase (AirStrucPtr const ControlledAC)
 //Author		Andrew McRae
 //Date			Thu 8 May 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::RealBase (AirStrucPtr const ControlledAC)
@@ -944,18 +944,18 @@ void Model::RealBase (AirStrucPtr const ControlledAC)
 //DeadCode CSB 21Sep00 		ControlledAC->vel_x = ControlledAC->fly.leadflight->vel_x;
 //DeadCode CSB 21Sep00 		ControlledAC->vel_y = ControlledAC->fly.leadflight->vel_y;
 //DeadCode CSB 21Sep00 		ControlledAC->vel_z = ControlledAC->fly.leadflight->vel_z;
-//DeadCode CSB 21Sep00 
+//DeadCode CSB 21Sep00
 //DeadCode CSB 21Sep00 		static FP distbehind = 10000.0;
 //DeadCode CSB 21Sep00 		static FP distabove  = 0.0;
-//DeadCode CSB 21Sep00 
+//DeadCode CSB 21Sep00
 //DeadCode CSB 21Sep00 		ControlledAC->World.X -= distbehind * FP(ControlledAC->vel_x) / FP(ControlledAC->vel_);
 //DeadCode CSB 21Sep00 		ControlledAC->World.Y -= distbehind * FP(ControlledAC->vel_y) / FP(ControlledAC->vel_) - distabove;
 //DeadCode CSB 21Sep00 		ControlledAC->World.Z -= distbehind * FP(ControlledAC->vel_z) / FP(ControlledAC->vel_);
 //DeadCode CSB 21Sep00 		ControlledAC->uniqueID.changed = TRUE;
-//DeadCode CSB 21Sep00 
+//DeadCode CSB 21Sep00
 //DeadCode CSB 21Sep00 		UpdateModel(ControlledAC);
 //DeadCode CSB 21Sep00 		FrameCount++;
-//DeadCode CSB 21Sep00 
+//DeadCode CSB 21Sep00
 //DeadCode CSB 21Sep00 		return;
 //DeadCode CSB 21Sep00 	}
 
@@ -971,12 +971,12 @@ void Model::RealBase (AirStrucPtr const ControlledAC)
 //DeadCode CSB 11Sep00 		ControlledAC->vel_y = ControlledAC->fly.leadflight->vel_y;
 //DeadCode CSB 11Sep00 		ControlledAC->vel_z = ControlledAC->fly.leadflight->vel_z;
 //DeadCode CSB 11Sep00 		ControlledAC->uniqueID.changed = TRUE;
-//DeadCode CSB 11Sep00 
+//DeadCode CSB 11Sep00
 //DeadCode CSB 11Sep00 		Pos.x = ControlledAC->World.X;
 //DeadCode CSB 11Sep00 		Pos.y = ControlledAC->World.Y;
 //DeadCode CSB 11Sep00 		Pos.z = ControlledAC->World.Z;
 //DeadCode CSB 11Sep00 		FrameCount++;
-//DeadCode CSB 11Sep00 
+//DeadCode CSB 11Sep00
 //DeadCode CSB 11Sep00 static FP dist = 0;
 //DeadCode CSB 11Sep00 dist += 0.04 * FP(ControlledAC->vel_) * 0.0001;
 //DeadCode CSB 11Sep00 if(!(FrameCount & 0x0f))
@@ -987,7 +987,7 @@ void Model::RealBase (AirStrucPtr const ControlledAC)
 //DeadCode CSB 11Sep00 			PrintVar(60, 11, " %.0f ", FP(FP(ControlledAC->fly.leadflight->waypoint->World.Y + ControlledAC->fly.leadflight->waypoint->target->World.Y) * 0.03808));
 //DeadCode CSB 11Sep00 		else
 //DeadCode CSB 11Sep00 			PrintVar(60, 11, " %.0f ", FP(FP(ControlledAC->fly.leadflight->waypoint->World.Y) * 0.03808));
-//DeadCode CSB 11Sep00 
+//DeadCode CSB 11Sep00
 //DeadCode CSB 11Sep00 	PrintVar(70, 10, " %.0f ", FP(dist * 0.001));
 //DeadCode CSB 11Sep00 }
 //DeadCode CSB 11Sep00 		return;
@@ -1003,7 +1003,7 @@ void Model::RealBase (AirStrucPtr const ControlledAC)
 	GroundHeight = _Collide.GroundAltitude(AcPos);
 	Pos.y = GroundHeight + 180;
 	UpdateAirStruc(ControlledAC);
-#endif	
+#endif
 /*
 	if(!(FrameCount & EVERY64cs))
 	{
@@ -1043,7 +1043,7 @@ void Model::RealBase (AirStrucPtr const ControlledAC)
 							case DO17:		PrintString(47, y, "DO17 ");	break;
 							case JU52:		PrintString(47, y, "HE59 ");	break;
 						}
-					
+
 						PrintVar(52, y, "%.0f ", FP(AirStrucPtr(ac->ai.unfriendly)->formpos));
 					}
 
@@ -1160,10 +1160,10 @@ void Model::RealBase (AirStrucPtr const ControlledAC)
 */
 //DEADCODE CSB 01/03/00 if(Key_Tests.KeyPress3d(RPM_10))
 //DEADCODE CSB 01/03/00 	FP Breakpoint = 0;
-//DEADCODE CSB 01/03/00 
+//DEADCODE CSB 01/03/00
 //DEADCODE CSB 25/02/00 PrintVar(40, 10, "pitch %.0f ", FP(SWord(ControlledAC->pitch)));
 //DEADCODE CSB 25/02/00 PrintVar(40, 11, "shunt %.0f ", FP(ControlledAC->World.Y - GroundHeight));
-//DEADCODE CSB 25/02/00 
+//DEADCODE CSB 25/02/00
 //DEADCODE CSB 25/02/00 {
 //DEADCODE CSB 25/02/00 for(PGEAR pGear = GearList; pGear; pGear = pGear->List.NextItem())
 //DEADCODE CSB 25/02/00 {
@@ -1271,7 +1271,7 @@ return;
 
 	if( (Save_Data.flightdifficulty [FD_EXCESSIVEACCELDAMAGE]) && (!(FrameCount & EVERY8cs)) )
 		WingDamage(ControlledAC, force.y);
-		
+
 	force.z += ControlledAC->weap.weapforce;
 
 	ProcessGears(ControlledAC, force.x, force.y, force.z, moment.y);
@@ -1313,7 +1313,7 @@ return;
 	CalcAcc ();
 	CalcRotAcc ();
 	MovePilotEye();
-  
+
 
 #ifdef LOCK_X_Z_POS
 	FP posx = Pos.x;
@@ -1325,8 +1325,8 @@ return;
 	Pos.z = posz;
 	RotInt (ALL);
 #else
-	RotInt (ALL);	
-	TransInt (ALL, 1);	
+	RotInt (ALL);
+	TransInt (ALL, 1);
 #endif
 
 	CheckGearPos(ControlledAC);
@@ -1362,7 +1362,7 @@ return;
 			else if(pEngine->Starter == ES_INERTIA)
 				left_engine.rpm_starter = pEngine->StarterSpeed;
 		}
-		left_engine.rattle = adptr->ENGINELEFT;			
+		left_engine.rattle = adptr->ENGINELEFT;
 		left_engine.cockpitnobble = cocknobble;
 		left_engine.velocity = ControlledAC->vel_;				//RJS 9Jun00
 		left_engine.xoffset = pEngine->pThrustPoint->Pos.x;
@@ -1382,7 +1382,7 @@ return;
 				else if(pEngine->Starter == ES_INERTIA)
 					right_engine.rpm_starter = pEngine->StarterSpeed;
 			}
-			right_engine.rattle = adptr->ENGINERIGHT;			
+			right_engine.rattle = adptr->ENGINERIGHT;
 			right_engine.cockpitnobble = cocknobble;
 			right_engine.velocity = ControlledAC->vel_;			//RJS 9Jun00
 			right_engine.xoffset = pEngine->pThrustPoint->Pos.x;
@@ -1395,7 +1395,7 @@ return;
 //JET_Code CSB 22/09/99			if (EngineList->Type == ET_JET)
 //JET_Code CSB 22/09/99			{
 //JET_Code CSB 22/09/99				ThrustVol = (170 * EngineList->Thrust) / EngineList->T100;			//RJS 14Jan99
-//JET_Code CSB 22/09/99				
+//JET_Code CSB 22/09/99
 //JET_Code CSB 22/09/99				if(Save_Data.flightdifficulty [FD_THRUSTPOWERCONTROL])
 //JET_Code CSB 22/09/99					if(Inst.ExhaustTemp > 225)	//Throttle advanced too quickly
 //JET_Code CSB 22/09/99						if(FrameCount & 0x0002)
@@ -1405,7 +1405,7 @@ return;
 	}
 
 	_Miles.PlayWindyMiller(ControlledAC);										//RJS 21May99
-	
+
 //	Force Feedback Stuff		//CSB		21/8/98
 	if (_Analogue.FFdevice)
 		CalcStickForceFeedback();	//fix this !!!!
@@ -1413,16 +1413,16 @@ return;
 	if(FirstCycle)
 		NullVec(AveRotVel);
 
-	const fSmooth = 75;
+	const int fSmooth = 75;
 	AveRotVel.x = ((fSmooth - 1) * AveRotVel.x + RotVel.x) / fSmooth;//AMM 25Jun99
 	AveRotVel.y = ((fSmooth - 1) * AveRotVel.y + RotVel.y) / fSmooth;//AMM 25Jun99
 	AveRotVel.z = ((fSmooth - 1) * AveRotVel.z + RotVel.z) / fSmooth;//AMM 25Jun99
 
-	if(ControlledAC->movecode == AUTO_TRAININGTAKEOFF) 
+	if(ControlledAC->movecode == AUTO_TRAININGTAKEOFF)
 		TrainingTakeoff(ControlledAC);
 	else if(ControlledAC->movecode == AUTO_TRAININGLANDING)
 		TrainingLanding(ControlledAC);
-		
+
 	static SByte landed2;
 	if(FirstCycle)
 		landed2 = -1;
@@ -1454,11 +1454,11 @@ return;
 //Author		Andrew McRae
 //Date			Thu 8 May 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::ACMBase (AirStrucPtr const ControlledAC)
@@ -1482,25 +1482,25 @@ void Model::ACMBase (AirStrucPtr const ControlledAC)
 
 //DeadCode CSB 01/06/99		PrintVar(20, 2, "Range  %.0f ", (FP)(ControlledAC->Range / 100.0));
 //DeadCode CSB 01/06/99		PrintVar(20, 3, "Vel    %.1f ", (FP)(ControlledAC->vel / 10.0));
-//DeadCode CSB 01/06/99	
+//DeadCode CSB 01/06/99
 //DeadCode CSB 01/06/99		PrintVar(20, 5, "Accel  %.4f ", (FP)(ControlledAC->CalcAccel(32000) / 2560.0));
 //DeadCode CSB 01/06/99		PrintVar(20, 6, "Deccel %.4f ", (FP)(ControlledAC->CalcAccel(0)     / 2560.0));
-//DeadCode CSB 01/06/99	
+//DeadCode CSB 01/06/99
 //DeadCode CSB 01/06/99		PrintVar(20, 8, "Acc.z  %.4f ", (FP)(Acc.z * 100.0));
-//DeadCode CSB 01/06/99	
-//DeadCode CSB 01/06/99	
-//DeadCode CSB 01/06/99		
+//DeadCode CSB 01/06/99
+//DeadCode CSB 01/06/99
+//DeadCode CSB 01/06/99
 //DeadCode CSB 01/06/99		PrintVar(20, 10, "Thrust %.0f ", (FP)ControlledAC->fly.thrustpercent);
 
 //DEADCODE DAW 25/11/99 	if(Key_Tests.KeyHeld3d(RPM_30))
 //DEADCODE DAW 25/11/99 		MainPlaneList->Cdo -= 0.00001;
 //DEADCODE DAW 25/11/99 	if(Key_Tests.KeyHeld3d(RPM_40))
 //DEADCODE DAW 25/11/99 		MainPlaneList->Cdo += 0.00001;
-//DEADCODE DAW 25/11/99 
+//DEADCODE DAW 25/11/99
 //DEADCODE DAW 25/11/99 	PrintVar(40, 15, "Alt %.0f ", FP(Pos.y * 0.032808));
 //DEADCODE DAW 25/11/99 	PrintVar(40, 16, "Vel %.1f ", FP(Speed * 2.236936));
 //DEADCODE DAW 25/11/99 	PrintVar(40, 17, "CD0 %.6f ", FP(MainPlaneList->Cdo));
-	
+
 //**********************************************
 //********  TEST CODE	//CSB 07/05/99	********
 //**********************************************
@@ -1577,7 +1577,7 @@ void Model::ACMBase (AirStrucPtr const ControlledAC)
 //DeadCode AMM 3Jul00 		}
 
 		force.z += ControlledAC->weap.weapforce;
-		
+
 		// ThrustPoints
 		PTHRUSTPOINT pThrust = ThrustList;
 		while (pThrust != NULL)
@@ -1595,10 +1595,10 @@ void Model::ACMBase (AirStrucPtr const ControlledAC)
 		CopyVec (moment, NettMoment);
 
 		CalcAcc ();
-	   
+
 		CalcRotAcc ();
 
-		
+
 		if( (CheatAcc.x != 32767) || (CheatAcc.y != 32767) || (CheatAcc.z != 32767) )
 		{
 			FCRD OldAcc;
@@ -1678,7 +1678,7 @@ void Model::ACMBase (AirStrucPtr const ControlledAC)
 		case AT_BF109:		{ PrintString(0, 23, "AT_BF109		");    break; }
 		case AT_BF110:		{ PrintString(0, 23, "AT_BF110		");    break; }
 	}
-	
+
 	switch (ControlledAC->ai.manoeuvre)
 	{
 		case MANOEUVRE_SELECT:						{ PrintString(0,  24, "MANOEUVRE_SELECT						");    break; }
@@ -1765,9 +1765,9 @@ void Model::ACMBase (AirStrucPtr const ControlledAC)
 //
 //Description	Calcs Air velocity in local coords relative to aircraft cg
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::CalcAirVel (AirStrucPtr const ControlledAC)
@@ -1793,10 +1793,10 @@ void Model::CalcAirVel (AirStrucPtr const ControlledAC)
 
 	Speed = VecLen (Vel);
 
-	// Botch to prevent aircraft rotating into					
-	// wind when on ground and not moving.						
-	FP wind_frac = 1;											
-//DeadCode CSB 09/02/99		if (GearTouched && (Speed < 10)) wind_frac = Speed * 0.1;	
+	// Botch to prevent aircraft rotating into
+	// wind when on ground and not moving.
+	FP wind_frac = 1;
+//DeadCode CSB 09/02/99		if (GearTouched && (Speed < 10)) wind_frac = Speed * 0.1;
 
 
 	AirVel.x = (wind_frac * wind.x) - Vel.x;
@@ -1809,10 +1809,10 @@ void Model::CalcAirVel (AirStrucPtr const ControlledAC)
 	AirSpeed = VecLen (AirVel);
 
 	// Instrument Version of AirVel - without above botch
-//DEADCODE CSB 23/12/99 	InstAirVel.x = wind.x - Vel.x;								
-//DEADCODE CSB 23/12/99 	InstAirVel.y = wind.y - Vel.y;								
-//DEADCODE CSB 23/12/99 	InstAirVel.z = wind.z - Vel.z;								
-//DEADCODE CSB 23/12/99 	TnsAxs (InstAirVel, InstAirVel, Ori);						
+//DEADCODE CSB 23/12/99 	InstAirVel.x = wind.x - Vel.x;
+//DEADCODE CSB 23/12/99 	InstAirVel.y = wind.y - Vel.y;
+//DEADCODE CSB 23/12/99 	InstAirVel.z = wind.z - Vel.z;
+//DEADCODE CSB 23/12/99 	TnsAxs (InstAirVel, InstAirVel, Ori);
 
 	DynamicPressure = 0.5 * AmbDensity * AirSpeed * AirSpeed;
 
@@ -1825,12 +1825,12 @@ void Model::CalcAirVel (AirStrucPtr const ControlledAC)
 //Author		Craig Beeston
 //Date			Thu 26 Nov 1998
 //
-//Description	When a model is processed for the first time, the pitch is set to achieve 
+//Description	When a model is processed for the first time, the pitch is set to achieve
 //				1 g flight
 //				Assumes only one Wing
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::TrimAircraft(AirStrucPtr const ControlledAC)
@@ -1861,7 +1861,7 @@ void Model::TrimAircraft(AirStrucPtr const ControlledAC)
 		CalcNettForceMoment(NettForce, NettMoment);
 
 		FP NormG  = NettForce.y / (Mass * GRAVITY);
-		
+
 		FP GError = NormG - 1.0;
 		if( (GError > -0.001) && (GError < 0.001) ) break;
 		AirVel.y += AirVel.z * GError * 0.02;
@@ -1890,9 +1890,9 @@ void Model::TrimAircraft(AirStrucPtr const ControlledAC)
 //
 //Description	Used to set the gust for an individual aircraft due to an explosion in the area
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::SetLocalGust(COORDS3D AcPos, COORDS3D HitPos, SWord Strength)
@@ -1905,7 +1905,7 @@ void Model::SetLocalGust(COORDS3D AcPos, COORDS3D HitPos, SWord Strength)
 	NrmVec(DirVec, DirVec);
 
 	Gust.ACTIVE = TRUE;
-	
+
 	Gust.Vec.x = DirVec.x * (FP)Strength;
 	Gust.Vec.y = DirVec.y * (FP)Strength;
 	Gust.Vec.z = DirVec.z * (FP)Strength;
@@ -1920,9 +1920,9 @@ void Model::SetLocalGust(COORDS3D AcPos, COORDS3D HitPos, SWord Strength)
 //
 //Description	Processes all aircraft engines so that they start at approx the right speed
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::InitialiseEngines (AirStrucPtr const ControlledAC)
@@ -1944,14 +1944,14 @@ void Model::InitialiseEngines (AirStrucPtr const ControlledAC)
 		{
 			case ET_VOID:
 			break;
-				
+
 			case ET_PISTON:
 			{
 				if(ControlledAC->vel_ < 100000)
 				{
 					if(		(ControlledAC == Persons2::PlayerSeenAC) && (!Persons2::PlayerGhostAC->fly.expandedsag)
 						&&	(Save_Data.flightdifficulty[FD_ENGINEMANAGMENT])	)
-						
+
 					{
 						pEngine->Speed = 0;
 						pEngine->PropInc = pEngine->PropMinPitch;
@@ -2017,7 +2017,7 @@ void Model::InitialiseEngines (AirStrucPtr const ControlledAC)
 
 				break;
 			}
-		
+
 //JET_Code CSB 22/09/99				case ET_JET:
 //JET_Code CSB 22/09/99				{
 //JET_Code CSB 22/09/99					FP RootTempRatio = FSqrt(AmbTemp / 288.15);
@@ -2040,14 +2040,14 @@ void Model::InitialiseEngines (AirStrucPtr const ControlledAC)
 //
 //Description	Process all aircraft engines
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::ProcessEngines (AirStrucPtr const ControlledAC)
 {
-	if(FirstCycle) 
+	if(FirstCycle)
 		InitialiseEngines(ControlledAC);	//CSB 24/11/98
 
 	for(SWord i = 0; i < 4; i++)
@@ -2079,15 +2079,15 @@ void Model::ProcessEngines (AirStrucPtr const ControlledAC)
 //
 //Description	Restarts all aircraft jet engines
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::RestartEngines (AirStrucPtr const ControlledAC)
 {
 //JET_Code CSB 22/09/99		PENGINE pEngine = EngineList;
-//JET_Code CSB 22/09/99	
+//JET_Code CSB 22/09/99
 //JET_Code CSB 22/09/99		while (pEngine != NULL)
 //JET_Code CSB 22/09/99		{
 //JET_Code CSB 22/09/99			if( (pEngine->Type == ET_JET) && (pEngine->EngineOut) )
@@ -2114,7 +2114,7 @@ void Model::RestartEngines (AirStrucPtr const ControlledAC)
 //														   1 engine at max thrust  - usage = 1
 //														   2 engines at max thrust - usage = 1
 //
-//Inputs		
+//Inputs
 //
 //Returns		The rate of fuel usage for whole aircraft
 //
@@ -2156,9 +2156,9 @@ FP Model::CalcFuelRate (AirStrucPtr const ControlledAC)
 //
 //Description	Sets the appropriate fuel tanks to use
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::SetFuelTank(AirStrucPtr const ControlledAC, bool player)
@@ -2168,7 +2168,7 @@ void Model::SetFuelTank(AirStrucPtr const ControlledAC, bool player)
 		bool usingdroptanks = false;
 		SLong maxfuel  = 0;
 		SLong bestcock = 0;
-		
+
 		for(SWord cock = 0; cock < 4; cock++)	//Find best fuel cock setting using droptanks
 		{
 			SLong totfuel = 0;
@@ -2181,7 +2181,7 @@ void Model::SetFuelTank(AirStrucPtr const ControlledAC, bool player)
 				maxfuel  = totfuel;
 			}
 		}
-		
+
 		if(maxfuel == 0)			//Find best fuel cock setting using fixed tanks
 		{
 
@@ -2196,14 +2196,14 @@ void Model::SetFuelTank(AirStrucPtr const ControlledAC, bool player)
 
 				if(biggesttank > 0)
 				{
-					for(tank = 0; tank < 4; tank++)
+					for(SWord tank = 0; tank < 4; tank++)
 						if(FuelCockTanks[cock][tank])
 						{
 							totfuel -= 1;
 							if((ControlledAC->classtype->fueltankcap[tank] == biggesttank) && (ControlledAC->fly.fuel_content[tank]))
 								totfuel += ControlledAC->classtype->fueltankcap[tank];
 						}
-					
+
 					if(totfuel > maxfuel)
 					{
 						bestcock = cock;
@@ -2212,7 +2212,7 @@ void Model::SetFuelTank(AirStrucPtr const ControlledAC, bool player)
 				}
 			}
 		}
-		
+
 		for(SWord i = 0; i < 4; i++)
 			ControlledAC->fly.use_this_tank[i] = FuelCockTanks[bestcock][i];
 
@@ -2229,9 +2229,9 @@ void Model::SetFuelTank(AirStrucPtr const ControlledAC, bool player)
 //
 //Description	Flaps, slats, speed brakes, etc.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::ProcessDevices ()
@@ -2289,9 +2289,9 @@ void Model::GearDown (AirStrucPtr const ControlledAC)
 //
 //Description	Processes all aircraft elements
 //
-//Inputs		
+//Inputs
 //																	   MControlPower
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::ProcessMainElements (AirStrucPtr const ControlledAC)
@@ -2353,7 +2353,7 @@ void Model::ProcessMainElements (AirStrucPtr const ControlledAC)
 		pThrust = pThrust->List.NextItem ();
 	}
 
-	
+
 //DEADCODE CSB 06/03/00 	if(Save_Data.flightdifficulty [FD_STORESWEIGHTDRAG])		//CSB	//03 Sep 98
 		ProcessStoresDrag(ControlledAC);
 
@@ -2366,7 +2366,7 @@ void Model::ProcessMainElements (AirStrucPtr const ControlledAC)
 	TempFCRD.z = RotVel.z * RotInertia.z;
 
 	CPrd(InertiaMoment, TempFCRD, RotVel);
-	
+
 	InertiaMoment.x *= -1;
 	InertiaMoment.y *= -1;
 	InertiaMoment.z *= -1;
@@ -2380,19 +2380,19 @@ void Model::ProcessMainElements (AirStrucPtr const ControlledAC)
 //Author		Craig Beeston
 //Date			Thu 03 Sep 1998
 //
-//Description	Calculated the drag and yawing moment on the aircraft due to the 
+//Description	Calculated the drag and yawing moment on the aircraft due to the
 //				weapons/drop tanks.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::ProcessStoresDrag (AirStrucPtr const ControlledAC)
 {
 	StoresForce.x = 0.0;
 	StoresForce.y = 0.0;
-	StoresForce.z = -( ControlledAC->weap.left.drag + ControlledAC->weap.centre.drag 
+	StoresForce.z = -( ControlledAC->weap.left.drag + ControlledAC->weap.centre.drag
 						+ ControlledAC->weap.right.drag );
 	StoresForce.z *= DynamicPressure;
 
@@ -2410,9 +2410,9 @@ void Model::ProcessStoresDrag (AirStrucPtr const ControlledAC)
 //
 //Description	Calculates total force and moment on the aircraft
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::CalcNettForceMoment (FCRD& Force, FCRD& Moment)
@@ -2435,7 +2435,7 @@ void Model::CalcNettForceMoment (FCRD& Force, FCRD& Moment)
 			{
 				AddVec (Force,  Force,  pMainPlane->eForce[wing][section]);
 				AddVec (Moment, Moment, pMainPlane->eMoment[wing][section]);
-		
+
 				CPrd (dmoment, pMainPlane->eForce[wing][section], pMainPlane->Pos[wing][section]);
 				AddVec (Moment, Moment, dmoment);
 
@@ -2547,7 +2547,7 @@ void Model::CalcNettForceMoment (FCRD& Force, FCRD& Moment)
 //DeadCode AMM 3Jul00 			Moment.x,
 //DeadCode AMM 3Jul00 			Moment.y,
 //DeadCode AMM 3Jul00 			Moment.x);
-//DeadCode AMM 3Jul00 
+//DeadCode AMM 3Jul00
 //DeadCode AMM 3Jul00 		fprintf(fp,"complex rot\n");
 //DeadCode AMM 3Jul00 	}
 	// Moment due to complex rotation
@@ -2559,7 +2559,7 @@ void Model::CalcNettForceMoment (FCRD& Force, FCRD& Moment)
 //DeadCode AMM 3Jul00 			Moment.x,
 //DeadCode AMM 3Jul00 			Moment.y,
 //DeadCode AMM 3Jul00 			Moment.x);
-//DeadCode AMM 3Jul00 
+//DeadCode AMM 3Jul00
 //DeadCode AMM 3Jul00 		fclose(fp);
 //DeadCode AMM 3Jul00 	}
 	// Limit forces and moments to sensible limits
@@ -2671,11 +2671,11 @@ void Model::CalcNettForceMoment (FCRD& Force, FCRD& Moment)
 //Author		Craig Beeston
 //Date			Fri 22 Jan 1999
 //
-//Description	Check to see in the aircraft is pulling V high G 
+//Description	Check to see in the aircraft is pulling V high G
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::WingDamage (AirStrucPtr const ControlledAC, FP forcey)
@@ -2692,7 +2692,7 @@ void Model::WingDamage (AirStrucPtr const ControlledAC, FP forcey)
 		_Miles.PlayOnce(FIL_SFX_CREAK7, (int)(128.0 * (StressLevel - 0.5)));//RJS 20May99
 	else
 	{
-		if(Math_Lib.rnd() <= 6554 * Timer_Code.FRAMETIME)	// 1 second	//CSB 17/05/99	
+		if(Math_Lib.rnd() <= 6554 * Timer_Code.FRAMETIME)	// 1 second	//CSB 17/05/99
 		{
 			AircraftAnimData*	adptr = (AircraftAnimData*) ControlledAC->Anim;
 			if(Type == AT_BF109)
@@ -2721,9 +2721,9 @@ void Model::WingDamage (AirStrucPtr const ControlledAC, FP forcey)
 //
 //Description	Calculates acceleration on the aircraft, in local coords
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::CalcAcc ()
@@ -2736,7 +2736,7 @@ void Model::CalcAcc ()
 	Acc.z = NettForce.z / Mass - GRAVITY * Ori.z.y;// + RotVel.x * GroundVel.y - RotVel.y * GroundVel.x;
 
 	TnsPnt(NettForce, wAcc, Ori);	//Calc acc in world coords
-	
+
 	wAcc.x /= Mass;
 	wAcc.y /= Mass;
 	wAcc.z /= Mass;
@@ -2751,9 +2751,9 @@ void Model::CalcAcc ()
 //
 //Description	calculates rotation acceleration on ac, in local coords
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::CalcRotAcc ()
@@ -2771,9 +2771,9 @@ void Model::CalcRotAcc ()
 //
 //Description	Moves the eye position to model an elastic neck
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::MovePilotEye ()
@@ -2787,9 +2787,9 @@ void Model::MovePilotEye ()
 
 	if(Trans_Obj.View_Object->trackeditem2)
 	{
-		DeltaEye.x = 0;	
+		DeltaEye.x = 0;
 		DeltaEye.y = 0;
-		DeltaEye.z = 0;	
+		DeltaEye.z = 0;
 	}
 	else
 	{
@@ -2813,10 +2813,10 @@ void Model::MovePilotEye ()
 		NumG.y *= OneOverG;
 		NumG.z *= OneOverG;
 
-		DeltaEye.x = -NumG.x * Scale * 4.0;	
+		DeltaEye.x = -NumG.x * Scale * 4.0;
 		DeltaEye.y = -(NumG.y - 1.0) * Scale * 1.0;
-		DeltaEye.z = -NumG.z * Scale * 4.0;	
-		
+		DeltaEye.z = -NumG.z * Scale * 4.0;
+
 		MODLIMIT(DeltaEye.x, 4.0 * Scale);
 		MODLIMIT(DeltaEye.y, 4.0 * Scale);
 		MODLIMIT(DeltaEye.z, 4.0 * Scale);
@@ -2826,7 +2826,7 @@ void Model::MovePilotEye ()
 //DeadCode RJS 27Mar00 	EyePos.roll  = 0;
 
 	if( (TotalBuffet) && (!GearTouched) )
-	{	
+	{
 		if(FrameCount & 0x0001)
 			DeltaEye.y += 0.075 * Scale * TotalBuffet;//0.125
 		else
@@ -2845,7 +2845,7 @@ void Model::MovePilotEye ()
 	fastMath.FloatToInt(&EyePos.delta.X,DeltaEye.x);		//RJS 27Mar00
 	fastMath.FloatToInt(&EyePos.delta.Y,DeltaEye.y);		//RJS 27Mar00
 	fastMath.FloatToInt(&EyePos.delta.Z,DeltaEye.z);		//RJS 27Mar00
-	
+
 	EyePos.delta.X += (stretchyNeck<<10);
 
 //DEADCODE CSB 06/03/00 /* TEST CODE CSB 25/08/99 */	static SWord HeadX = 0;
@@ -2853,7 +2853,7 @@ void Model::MovePilotEye ()
 //DEADCODE CSB 06/03/00 /* TEST CODE CSB 25/08/99 */	for(PAERODEVICE pDevice = DeviceList; pDevice; pDevice = pDevice->List.NextItem())
 //DEADCODE CSB 06/03/00 /* TEST CODE CSB 25/08/99 */		if((pDevice->Type == AeroDevice::DT_CANOPY) && (pDevice->Val < 0x4000))
 //DEADCODE CSB 06/03/00 /* TEST CODE CSB 25/08/99 */			MaxHeadX = 25;
-//DEADCODE CSB 06/03/00 /* TEST CODE CSB 25/08/99 */	
+//DEADCODE CSB 06/03/00 /* TEST CODE CSB 25/08/99 */
 //DEADCODE CSB 06/03/00 /* TEST CODE CSB 25/08/99 */	const SWord HeadRate = 10 * MODEL_DT;
 //DEADCODE CSB 06/03/00 /* TEST CODE CSB 25/08/99 */
 //DEADCODE CSB 06/03/00 /* TEST CODE CSB 25/08/99 */	if(HeadX <= 0)
@@ -2887,11 +2887,11 @@ void Model::MovePilotEye ()
 //DeadCode CSB 24/03/99		EyePos.delta.X = 0;
 //DeadCode CSB 24/03/99		EyePos.delta.Y = 0;
 //DeadCode CSB 24/03/99		EyePos.delta.Z = 0;
-//DeadCode CSB 24/03/99	
+//DeadCode CSB 24/03/99
 //DeadCode CSB 24/03/99		EyePos.hdg   = 0;
 //DeadCode CSB 24/03/99		EyePos.pitch = 0;
 //DeadCode CSB 24/03/99		EyePos.roll  = 0;
-					
+
 	SHAPE.SetCockpitBuffet(pEyePos);							//RJS 27Mar00
 
 	if(Save_Data.hardwareconfig[HW_GEFFECTS])
@@ -2904,14 +2904,14 @@ void Model::MovePilotEye ()
 		FP G = Inst.I_NormalAcc;
 		if(Blood <= 1)
 		{
-			FP OldBlood = Blood;	
+			FP OldBlood = Blood;
 			FP BloodFlow = (gBlack - G) * 0.00025;
 			if(	   ((BloodFlow > 0) && (Blood < 1))
 				|| ((BloodFlow < 0) && (Blood > 0)) )
 				Blood += BloodFlow * MODEL_DT;
 			if(    ((OldBlood > 0.6667) && (Blood < 0.6667))
 				|| ((OldBlood > 0.5)    && (Blood < 0.5)) )
-				_Miles.PlayOnce(FIL_SFX_OUT_OF_BREATH2,128);		//RJS 21May99	//CSB 09/06/99	
+				_Miles.PlayOnce(FIL_SFX_OUT_OF_BREATH2,128);		//RJS 21May99	//CSB 09/06/99
 
 		}
 		else
@@ -2967,7 +2967,7 @@ void	Model::HandleHead(SLong	flags, SLong frameTime, SWord& eyeDeltaX)	//RJS 12O
 //DeadCode CSB 15Jun00 			}
 //DeadCode CSB 15Jun00 		}
 //DeadCode CSB 15Jun00 	}
-//DeadCode CSB 15Jun00 
+//DeadCode CSB 15Jun00
 //DeadCode CSB 15Jun00 	if(stretchyNeck >= 0)										//JON 27Mar00
 //DeadCode CSB 15Jun00 	{
 //DeadCode CSB 15Jun00 		if(flags == ZR_HeadRight)
@@ -2997,12 +2997,12 @@ void	Model::HandleHead(SLong	flags, SLong frameTime, SWord& eyeDeltaX)	//RJS 12O
 //Author		Craig Beeston
 //Date			Wed 12 Dec 1998
 //
-//Description	Overwrites the acceleration in the z direction in order to keep the target aircraft the 
+//Description	Overwrites the acceleration in the z direction in order to keep the target aircraft the
 //				correct distance in front of the player
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::SetSpeed(AirStrucPtr const ControlledAC, FP desiredspeed)
@@ -3016,7 +3016,7 @@ void Model::SetSpeed(AirStrucPtr const ControlledAC, FP desiredspeed)
 		if(pEngine->Type == ET_JET) TotalThrust += pEngine->MaxThrust;
 		pEngine = pEngine->List.NextItem ();
 	}
-	
+
 	FP MaxAccel = 0;
 	if(TotalThrust > 0) MaxAccel = TotalThrust / Mass;
 	else MaxAccel = 0.1;	//Quite generous
@@ -3024,7 +3024,7 @@ void Model::SetSpeed(AirStrucPtr const ControlledAC, FP desiredspeed)
 	MaxAccel *= 4.0;
 	if(Save_Data.flightdifficulty [FD_POWERBOOST])
 		MaxAccel *= 1.5;
-	
+
 	FCRD GroundVel;
 	TnsAxs(Vel, GroundVel, Ori);
 
@@ -3052,7 +3052,7 @@ void Model::SetSpeed(AirStrucPtr const ControlledAC, FP desiredspeed)
 //
 //Inputs		Old and Desired acceleration in ac local axes
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::ModifyAcc(FCRD OldAcc, FCRD NewAcc)
@@ -3073,12 +3073,12 @@ void Model::ModifyAcc(FCRD OldAcc, FCRD NewAcc)
 //Author		Craig Beeston
 //Date			Mon 14 Dec 1998
 //
-//Description	Overwrites the rotational acceleration of the aircraft so that 
+//Description	Overwrites the rotational acceleration of the aircraft so that
 //				in one model loop the directions will change by the specified amounts
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::ChangeDirection(AirStrucPtr const ControlledAC, FP DeltaPitch, FP DeltaYaw, FP DeltaRoll)
@@ -3090,9 +3090,9 @@ void Model::ChangeDirection(AirStrucPtr const ControlledAC, FP DeltaPitch, FP De
 	MODMAXMIN(DeltaYaw  , -0.00125 * MODEL_DT, 0.00125 * MODEL_DT);
 	MODMAXMIN(DeltaRoll , -0.02500 * MODEL_DT, 0.02500 * MODEL_DT);
 
-	RotOriXVec(Ori, DeltaPitch);	
-	RotOriYVec(Ori, DeltaYaw);	
-	RotOriZVec(Ori, DeltaRoll);	
+	RotOriXVec(Ori, DeltaPitch);
+	RotOriYVec(Ori, DeltaYaw);
+	RotOriZVec(Ori, DeltaRoll);
 
 	NrmVec(Ori.y, Ori.y);
 	NrmVec(Ori.z, Ori.z);
@@ -3114,9 +3114,9 @@ void Model::ChangeDirection(AirStrucPtr const ControlledAC, FP DeltaPitch, FP De
 //
 //Description	Integrates in translation to get new velocity and position
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::TransInt (ITERATION_MASK mask, FP TimeFactor)
@@ -3134,7 +3134,7 @@ void Model::TransInt (ITERATION_MASK mask, FP TimeFactor)
 			MODLIMIT(Vel.y, 500);
 			MODLIMIT(Vel.z, 500);
 
-			
+
 			Pos.x += Vel.x * dT;
 			Pos.y += Vel.y * dT;
 			Pos.z += Vel.z * dT;
@@ -3168,9 +3168,9 @@ void Model::TransInt (ITERATION_MASK mask, FP TimeFactor)
 //
 //Description	Integrates in rotation to get new rot velocity and orientation
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::RotInt (ITERATION_MASK mask)
@@ -3203,11 +3203,11 @@ void Model::RotInt (ITERATION_MASK mask)
 //Author		Andrew McRae
 //Date			Fri 18 Apr 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::RotVelInt ()
@@ -3229,16 +3229,16 @@ void Model::RotVelInt ()
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		RemoveStore
 //Author		rdh
-//Date			
+//Date
 //
-//Description	
+//Description
 //				pos < 0   ... left store,
 //				pos > 0   ... right store,
 //				pos = 0   ... centre store
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::RemoveStore(weap_info *weapptr,SLong pos,int mass, int drag, Bool fueltank)
@@ -3283,11 +3283,11 @@ void Model::RemoveMass(FP amount,FP massX, FP massY, FP massZ)
 
 	FP distance;
 	distance     =  VecLen2D (massY, massZ);
-	RotInertia.x -= amount * distance * distance;	
-	
+	RotInertia.x -= amount * distance * distance;
+
 	distance     =  VecLen2D (massX, massZ);
-	RotInertia.y -= amount* distance * distance;	
-	
+	RotInertia.y -= amount* distance * distance;
+
 	distance     =  VecLen2D (massX, massY);
 	RotInertia.z -= amount * distance * distance;
 
@@ -3315,16 +3315,16 @@ void Model::RemoveMass(FP amount,FP massX, FP massY, FP massZ)
 void Model::AddMass(FP amount,FP massX, FP massY, FP massZ)
 {
 	Mass += amount;
-	
+
 	FP distance;
 	distance     =  VecLen2D (massY, massZ);
-	RotInertia.x += amount * distance * distance;	
-	
+	RotInertia.x += amount * distance * distance;
+
 	distance     =  VecLen2D (massX, massZ);
-	RotInertia.y += amount * distance * distance;	
-	
+	RotInertia.y += amount * distance * distance;
+
 	distance     =  VecLen2D (massX, massY);
-	RotInertia.z += amount * distance * distance;	
+	RotInertia.z += amount * distance * distance;
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -3332,19 +3332,19 @@ void Model::AddMass(FP amount,FP massX, FP massY, FP massZ)
 //Author		Craig Beeston
 //Date			Tue 08 Sep 1998
 //
-//Description	Sets up the inertia of the aircraft empty, and adds the 
+//Description	Sets up the inertia of the aircraft empty, and adds the
 //				mass of fuel and mass and inertia of stores.
 //
 //Inputs		Aircraft mass, 3 inertias
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::SetMassInertias (AirStrucPtr const ControlledAC, FP EmptyIxx, FP EmptyIyy, FP EmptyIzz)
 {
 //for scramble factor is 2 for normal missions factor is 1
 	int	fuelfactor = 2;
-	
+
 //DEADCODE CSB 28/01/00 	InertiaEmpty.x = EmptyIxx * 1355827;		//slug ft2 -> 0.01 kg cm2
 //DEADCODE CSB 28/01/00 	InertiaEmpty.y = EmptyIyy * 1355827;
 //DEADCODE CSB 28/01/00 	InertiaEmpty.z = EmptyIzz * 1355827;
@@ -3364,40 +3364,40 @@ void Model::SetMassInertias (AirStrucPtr const ControlledAC, FP EmptyIxx, FP Emp
 //DEADCODE CSB 24/02/00 	}
 
 	UpdateMassInertias(ControlledAC);
-	
+
 //DEADCODE CB 05/11/99 //for scramble factor is 2 for normal missions factor is 1
 //DEADCODE CB 05/11/99 	int	fuelfactor = 2;
-//DEADCODE CB 05/11/99 	
+//DEADCODE CB 05/11/99
 //DEADCODE CB 05/11/99 	Mass     = ControlledAC->classtype->weightempty;
 //DEADCODE CB 05/11/99 	int fuel = ControlledAC->classtype->maxintfuel/fuelfactor;	// 0.01 kg
 //DEADCODE CB 05/11/99 	Mass += fuel;												// 0.01 kg
 //DEADCODE CB 05/11/99 	ControlledAC->weap.centre.int_fuel = 500 * fuel;			// 0.01 g	Robs Stuff//RJS 25Mar99
 //DEADCODE CB 05/11/99 	ControlledAC->weap.left.int_fuel = 250 * fuel;			// 0.01 g	Robs Stuff//RJS 25Mar99
 //DEADCODE CB 05/11/99 	ControlledAC->weap.right.int_fuel = 250 * fuel;			// 0.01 g	Robs Stuff//RJS 25Mar99
-//DEADCODE CB 05/11/99 	
+//DEADCODE CB 05/11/99
 //DEADCODE CB 05/11/99 	InertiaEmpty.x = EmptyIxx * 1355827;		//slug ft2 -> 0.01 kg cm2
 //DEADCODE CB 05/11/99 	InertiaEmpty.y = EmptyIyy * 1355827;
 //DEADCODE CB 05/11/99 	InertiaEmpty.z = EmptyIzz * 1355827;
-//DEADCODE CB 05/11/99 
+//DEADCODE CB 05/11/99
 //DEADCODE CB 05/11/99 	RotInertia = InertiaEmpty;
-//DEADCODE CB 05/11/99 
+//DEADCODE CB 05/11/99
 //DEADCODE CB 05/11/99 	if(Save_Data.flightdifficulty [FD_STORESWEIGHTDRAG])		//CSB	//03 Sep 98
-//DEADCODE CB 05/11/99 	{	
+//DEADCODE CB 05/11/99 	{
 //DEADCODE CB 05/11/99 		AddMass(ControlledAC->weap.right.mass * 0.001,      MainPlaneList->Pos[0][0].x, 0, 0);			//0.01 kg, cm
 //DEADCODE CB 05/11/99 		AddMass(ControlledAC->weap.right.ext_fuel * 0.001,  MainPlaneList->Pos[0][0].x, 0, 0);
 //DEADCODE CB 05/11/99 		AddMass(ControlledAC->weap.centre.mass * 0.001,		0,		  0, 0);
 //DEADCODE CB 05/11/99 		AddMass(ControlledAC->weap.centre.ext_fuel * 0.001, 0,        0, 0);
-//DEADCODE CB 05/11/99 		AddMass(ControlledAC->weap.left.mass * 0.001,	    MainPlaneList->Pos[1][0].x, 0, 0);	
+//DEADCODE CB 05/11/99 		AddMass(ControlledAC->weap.left.mass * 0.001,	    MainPlaneList->Pos[1][0].x, 0, 0);
 //DEADCODE CB 05/11/99 		AddMass(ControlledAC->weap.left.ext_fuel * 0.001,   MainPlaneList->Pos[1][0].x, 0, 0);
 //DEADCODE CB 05/11/99 	}
-//DEADCODE CB 05/11/99 
+//DEADCODE CB 05/11/99
 //DEADCODE CB 05/11/99 	if(	   (ControlledAC->weap.right.ext_fuel != 0)
 //DEADCODE CB 05/11/99 		|| (ControlledAC->weap.centre.ext_fuel != 0)
 //DEADCODE CB 05/11/99 		|| (ControlledAC->weap.left.ext_fuel != 0)
 //DEADCODE CB 05/11/99 	   )
 //DEADCODE CB 05/11/99 			ControlledAC->weap.UseIntFuel = FALSE;
 }
-	
+
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SetTrim
@@ -3406,9 +3406,9 @@ void Model::SetMassInertias (AirStrucPtr const ControlledAC, FP EmptyIxx, FP Emp
 //
 //Description	Sets up the range of trim for the aircraft
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::SetTrim (SWord elevtrim, SWord ailtrim, SWord rudtrim)
@@ -3426,9 +3426,9 @@ void Model::SetTrim (SWord elevtrim, SWord ailtrim, SWord rudtrim)
 //
 //Description	Sets up the fuel tank combimation for the fuel cock
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::SetFuelCockTanks(SWord index, bool b0, bool b1, bool b2, bool b3)
@@ -3447,9 +3447,9 @@ void Model::SetFuelCockTanks(SWord index, bool b0, bool b1, bool b2, bool b3)
 //
 //Description	calculates the total mass and iniertias of an aircraft
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::UpdateMassInertias (AirStrucPtr const ControlledAC)
@@ -3461,7 +3461,7 @@ void Model::UpdateMassInertias (AirStrucPtr const ControlledAC)
 		return;
 
 	for(SWord i = 0; i < 4; i++)
-//DEADCODE CSB 06/03/00 		if((ControlledAC->classtype->fueltanktype[i] == FT_FIXED) || (Save_Data.flightdifficulty [FD_STORESWEIGHTDRAG])) 
+//DEADCODE CSB 06/03/00 		if((ControlledAC->classtype->fueltanktype[i] == FT_FIXED) || (Save_Data.flightdifficulty [FD_STORESWEIGHTDRAG]))
 		{
 			FP mass = ControlledAC->fly.fuel_content[i] * 0.001;
 			FP dist = ControlledAC->classtype->fueltankxpos[i];
@@ -3493,9 +3493,9 @@ void Model::UpdateMassInertias (AirStrucPtr const ControlledAC)
 //
 //Description	Calcs instrument settings
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::Instruments (AirStrucPtr const ControlledAC)
@@ -3509,26 +3509,26 @@ void Model::Instruments (AirStrucPtr const ControlledAC)
 		if(ControlledAC->ai.homebase)
 			AltHome = ControlledAC->ai.homebase->World.Y;
 		FP Altitude = (ControlledAC->World.Y - AltHome) * 0.032808;
-		
+
 //DeadCode RJS 5Oct00 		WeapAnimData*	weapon;
-//DeadCode RJS 5Oct00 		SLong			xpos, ypos, zpos;							
-//DeadCode RJS 5Oct00 		ULong			mvel;										
-//DeadCode RJS 5Oct00 		UWord			index, mdelay, mburst;								
+//DeadCode RJS 5Oct00 		SLong			xpos, ypos, zpos;
+//DeadCode RJS 5Oct00 		ULong			mvel;
+//DeadCode RJS 5Oct00 		UWord			index, mdelay, mburst;
 //DeadCode RJS 5Oct00 		int	totalammo = 0;
-//DeadCode RJS 5Oct00 		for(index = 0; index < 6; index++)	
+//DeadCode RJS 5Oct00 		for(index = 0; index < 6; index++)
 //DeadCode RJS 5Oct00 		{
 //DeadCode RJS 5Oct00 			weapon = SHAPE.GetWeaponLauncher(ControlledAC,index,xpos,ypos,zpos,mvel,mdelay,mburst,LT_BULLET);
 //DeadCode RJS 5Oct00 			if((weapon)	&& (weapon->LoadedStores > 0))
-//DeadCode RJS 5Oct00 				totalammo += weapon->LoadedStores;						
+//DeadCode RJS 5Oct00 				totalammo += weapon->LoadedStores;
 //DeadCode RJS 5Oct00 			weapon = SHAPE.GetWeaponLauncher(ControlledAC,index,xpos,ypos,zpos,mvel,mdelay,mburst,LT_CANNON);
 //DeadCode RJS 5Oct00 			if((weapon)	&& (weapon->LoadedStores > 0))
-//DeadCode RJS 5Oct00 				totalammo += weapon->LoadedStores;						
-//DeadCode RJS 5Oct00 		}											
+//DeadCode RJS 5Oct00 				totalammo += weapon->LoadedStores;
+//DeadCode RJS 5Oct00 		}
 
 		PolyPitAnimData*	ppadptr = (PolyPitAnimData*)ControlledAC->Anim;
 		int		totalammo = ppadptr->actotalammoleft;
 
- 		OverLay.SetInfoLineVals(10 * Speed, totalammo, Altitude, Inst.I_Heading, ControlledAC->fly.thrustpercent); 
+ 		OverLay.SetInfoLineVals(10 * Speed, totalammo, Altitude, Inst.I_Heading, ControlledAC->fly.thrustpercent);
 		if (ControlledAC->ai.unfriendly)
 		{
 			ControlledAC->InterceptandRange (&ControlledAC->ai.unfriendly->World);
@@ -3555,9 +3555,9 @@ void Model::Instruments (AirStrucPtr const ControlledAC)
 //
 //Description	Calcs instrument settings for basics only (needed by ACM)
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::ACMInstruments (AirStrucPtr const ControlledAC)
@@ -3586,9 +3586,9 @@ void Model::ACMInstruments (AirStrucPtr const ControlledAC)
 //Description	Ground Collision Interaction		//Checks for parts of aircraft touching ground and plays sounds
 //				Not Undercarriage Suspension or Brakes
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::Ground (AirStrucPtr const ControlledAC)
@@ -3636,11 +3636,11 @@ void Model::Ground (AirStrucPtr const ControlledAC)
 //Author		Robert Slater
 //Date			Tue 10 Feb 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Model::DeathSequenceOverride(int	newmovecode)
@@ -3686,12 +3686,12 @@ void	Model::ProcessAeroPacket(AirStrucPtr const ControlledAC, UByte DeviceID, SW
 //Author		Craig Beeston
 //Date			Thu 20 Aug 98
 //
-//Description	Calculates the Stiffness's, Forces and Sine Waves to be sent 
+//Description	Calculates the Stiffness's, Forces and Sine Waves to be sent
 //				to Force Feedbank JoyStick Forces
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::CalcStickForceFeedback()
@@ -3703,7 +3703,7 @@ void Model::CalcStickForceFeedback()
 
 	SWord WhatThisFrame = _Damping;
 	WhatThisFrame = FrameCount & 0x03;
-	
+
 	switch(WhatThisFrame)
 	{
 		case _Damping:
@@ -3758,7 +3758,7 @@ void Model::CalcStickForceFeedback()
 
 		case _WaveX:
 		{
-			FP FwaveX = 0, MwaveX = 0; 
+			FP FwaveX = 0, MwaveX = 0;
 			Bool SetForce = FALSE;
 			if((!Key_Tests.KeyHeld3d(SHOOT)) || (!_Analogue.FF_gun))
 			{
@@ -3805,12 +3805,12 @@ void Model::CalcStickForceFeedback()
 		{
 			if(!Save_Data.flightdifficulty[FD_FF_AIRFRAME])
 				break;
-			
+
 			PENGINE pEngine = EngineList;
 			if(pEngine->Type != ET_PISTON)			//Prop Aircraft
 				break;
 
-			FP FwaveZ = 0, MwaveZ = 0; 
+			FP FwaveZ = 0, MwaveZ = 0;
 			FwaveZ = pEngine->Speed * 16;								//Engine Frequency
 			MwaveZ = (pEngine->Power + 4000) * 1 * 0.01 * BuffetForce;
 
@@ -3833,11 +3833,11 @@ void Model::CalcStickForceFeedback()
 //Author		Robert Slater
 //Date			Mon 13 Mar 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Model::SetGunOri(Float	vx, Float vy, Float vz)
@@ -3854,11 +3854,11 @@ void	Model::SetGunOri(Float	vx, Float vy, Float vz)
 //Author		Robert Slater
 //Date			Mon 13 Mar 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 bool	Model::GetGunOri(Float&	vx, Float& vy, Float& vz)
@@ -3872,14 +3872,14 @@ bool	Model::GetGunOri(Float&	vx, Float& vy, Float& vz)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CalcLauncherVel
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 30 Nov 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Model::CalcLauncherVel(SLong mvel, SLong &vx, SLong &vy, SLong &vz, SLong gunposx, SLong gunposy, SLong gunposz)
@@ -3910,7 +3910,7 @@ void	Model::CalcLauncherVel(SLong mvel, SLong &vx, SLong &vy, SLong &vz, SLong g
 		return;
 	}
 #endif
-	
+
 	float	muzvel = float(mvel)*0.0001;//10000);		//to ms
 	float	vvx;
 	float	vvy;
@@ -3971,11 +3971,11 @@ void	Model::CalcLauncherVel(SLong mvel, SLong &vx, SLong &vy, SLong &vz, SLong g
 //Author		Robert Slater
 //Date			Fri 25 Jun 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Model::BackupForGunsight()
@@ -3983,7 +3983,7 @@ void	Model::BackupForGunsight()
 	BakRotVel = AveRotVel;
 	BakOri = Ori;
 }
-	
+
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CalcGunsightPos
 //Author		Craig Beeston
@@ -3991,9 +3991,9 @@ void	Model::BackupForGunsight()
 //
 //Description	Calculates the position of the gunsight for a GYROSCOPIC LEAD COMPUTING OPTICAL SIGHT
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Model::CalcGunsightPos(SLong range, SWord gunvel, SLong& dx, SLong& dy, SLong& dz)
@@ -4035,7 +4035,7 @@ void	Model::CalcGunsightPos(SLong range, SWord gunvel, SLong& dx, SLong& dy, SLo
 
 	FCRD targvel;
 	CPrd(targvel, sightoffset, gRotVel);
-	
+
 	sightoffset.x -= targvel.x * ftime;
 	sightoffset.y -= targvel.y * ftime;
 	sightoffset.z -= targvel.z * ftime;
@@ -4096,14 +4096,14 @@ void	Model::CalcLauncherPos(SLong&	posx, SLong& posy, SLong& posz)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		RememberForGunSight
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 30 Nov 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Model::RememberForGunSight(bool fixsight, AirStrucPtr	ac)
@@ -4137,14 +4137,14 @@ void	Model::RememberForGunSight(bool fixsight, AirStrucPtr	ac)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SetPlayerMoving
-//Author		Craig Beeston 
+//Author		Craig Beeston
 //Date			Thu 11 Feb 1999
 //
 //Description	Checks the players speed and uses it to set flag to allow flight to take off
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Model::SetPlayerMoving(AirStrucPtr const ControlledAC)
@@ -4152,7 +4152,7 @@ void	Model::SetPlayerMoving(AirStrucPtr const ControlledAC)
 //DEADCODE CSB 04/05/00 	static Bool WindUp = FALSE;
 //DEADCODE CSB 04/05/00 	static Bool Wait   = FALSE;
 //DEADCODE CSB 04/05/00 	if(AirStruc::playermoving) return;
-//DEADCODE CSB 04/05/00 	
+//DEADCODE CSB 04/05/00
 //DEADCODE CSB 04/05/00 	if(ControlledAC->fly.thrustpercent > 75)
 //DEADCODE CSB 04/05/00 	{
 //DEADCODE CSB 04/05/00 		if(!WindUp)
@@ -4177,14 +4177,14 @@ void	Model::SetPlayerMoving(AirStrucPtr const ControlledAC)
 //DEADCODE CSB 04/05/00 				_Radio.TriggerMsg(MESSAGE_STRUC(OLDSCRIPT_ROLLING, MSG_TAKEOFFROLLING, ControlledAC->Leader(), NULL, ControlledAC));
 //DEADCODE CSB 04/05/00 		}
 //DEADCODE CSB 04/05/00 	}
-//DEADCODE CSB 04/05/00 	
+//DEADCODE CSB 04/05/00
 //DEADCODE CSB 04/05/00 	if(!Wait)
 //DEADCODE CSB 04/05/00 		if((!LeftWheelBrake) && (!RightWheelBrake) && (ControlledAC->fly.thrustpercent < 75))
 //DEADCODE CSB 04/05/00 		{
 //DEADCODE CSB 04/05/00 			Wait = TRUE;
 //DEADCODE CSB 04/05/00 			_Radio.TriggerMsg(MESSAGE_STRUC(OLDSCRIPT_WAITFOR, MSG_TAKEOFFBRAKEMSG, ControlledAC->FindBuddy(), NULL, ControlledAC));
 //DEADCODE CSB 04/05/00 		}
-//DEADCODE CSB 04/05/00 
+//DEADCODE CSB 04/05/00
 //DEADCODE CSB 04/05/00 	if((ControlledAC->vel_ > 100000) && (!AirStruc::playermoving))	//jim 01Jul99
 //DEADCODE CSB 04/05/00 	{
 //DEADCODE CSB 04/05/00 		if (_DPlay.Implemented || _Replay.Record)				//AMM 22Jun99
@@ -4200,7 +4200,7 @@ void	Model::SetPlayerMoving(AirStrucPtr const ControlledAC)
 //DEADCODE CSB 04/05/00 	}
 }
 
-///////////////////////////////////////////////////////////////////////////////	
+///////////////////////////////////////////////////////////////////////////////
 
 #ifdef DISPLAY_MONO_DATA
 
@@ -4219,8 +4219,8 @@ void PrintModelData (AirStrucPtr const ControlledAC,Model* mod, ULong x, ULong y
 	Bool Gear		 = FALSE;//TRUE;//
 	Bool Acm		 = FALSE;
 	Bool AnglesForces= FALSE;//TRUE;//
-	Bool Fin		 = FALSE;//TRUE;//	//CSB 07/05/99	
-	Bool Tune		 = FALSE;//TRUE;//	//CSB 13/05/99	
+	Bool Fin		 = FALSE;//TRUE;//	//CSB 07/05/99
+	Bool Tune		 = FALSE;//TRUE;//	//CSB 13/05/99
 
 	ULong n;
 
@@ -4353,7 +4353,7 @@ void PrintModelData (AirStrucPtr const ControlledAC,Model* mod, ULong x, ULong y
 
 		}
 
-	}	
+	}
 
 
 	if (Controls)
@@ -4361,7 +4361,7 @@ void PrintModelData (AirStrucPtr const ControlledAC,Model* mod, ULong x, ULong y
 //		y++;
 
 		// CONTROLS
-	
+
 		for (n=0; n<32; n++) strg[n] = 0;
 //		sprintf (strg, "Aileron  %d    ",ControlledAC->fly.aileron);
 		sprintf (strg, "Aileron  %d    ",mod->Aileron);
@@ -4393,8 +4393,8 @@ void PrintModelData (AirStrucPtr const ControlledAC,Model* mod, ULong x, ULong y
 		if (strg[31] == 0)
 			Mono_Text.PrintAt (x,y++,(UByte*)strg);
 
-		
-		
+
+
 
 	}
 
@@ -4524,9 +4524,9 @@ void PrintModelData (AirStrucPtr const ControlledAC,Model* mod, ULong x, ULong y
 		y++;
 		PrintVar (x,y++, "ACM  %.8x   ", (ULong)ControlledAC->ai.manoeuvre);
 		PrintVar (x,y++, "Phase %ld   ", ControlledAC->ai.ManStep);
-	}	
+	}
 
-//*****************************************************************************	
+//*****************************************************************************
 	if( (AnglesForces) && (!mod->bACM) )	//CSB 07/12/98
 	{
 		x = 35;
@@ -4547,7 +4547,7 @@ void PrintModelData (AirStrucPtr const ControlledAC,Model* mod, ULong x, ULong y
 //Gusts
 //DeadCode CSB 30/04/99			x = 50;
 //DeadCode CSB 30/04/99			y = 1;
-//DeadCode CSB 30/04/99	
+//DeadCode CSB 30/04/99
 //DeadCode CSB 30/04/99			PrintVar(x+0, y++, "Gust.x: %.2f ", (FP)mod->Gust.Vec.x);
 //DeadCode CSB 30/04/99			PrintVar(x+0, y++, "Gust.y: %.2f ", (FP)mod->Gust.Vec.y);
 //DeadCode CSB 30/04/99			PrintVar(x+0, y++, "Gust.z: %.2f ", (FP)mod->Gust.Vec.z);
@@ -4560,7 +4560,7 @@ void PrintModelData (AirStrucPtr const ControlledAC,Model* mod, ULong x, ULong y
 		PrintVar(x+0, y++, "Hdg:   %.2f ", (FP)(mod->fHdg * 57.3));
 		PrintVar(x+0, y++, "Roll   %.2f ", (FP)(mod->fRoll * 57.3));
 
-		
+
 //Velocities
 		x = 0;
 		y = 0;
@@ -4620,7 +4620,7 @@ void PrintModelData (AirStrucPtr const ControlledAC,Model* mod, ULong x, ULong y
 
 		PrintVar(50, 13, "DownWash S %.1f ", FP(mod->MainPlaneList->DownWashAng[0] * 57.3));
 		PrintVar(50, 14, "DownWash P %.1f ", FP(mod->MainPlaneList->DownWashAng[1] * 57.3));
-		
+
 
 		PCYLINDER Cylinder = mod->CylinderList;
 		while (Cylinder != NULL)
@@ -4634,7 +4634,7 @@ void PrintModelData (AirStrucPtr const ControlledAC,Model* mod, ULong x, ULong y
 
 			Cylinder = Cylinder->List.NextItem ();
 		}
-	
+
 		y++;
 		y++;
 
@@ -4647,7 +4647,7 @@ void PrintModelData (AirStrucPtr const ControlledAC,Model* mod, ULong x, ULong y
 			PrintVar(x, yy++, "S Fx: %.0f ", FP(Surface->Force.x));
 			PrintVar(x, yy++, "S Fy: %.0f ", FP(Surface->Force.y));
 			PrintVar(x, yy++, "S Fz: %.0f ", FP(Surface->Force.z));
-	
+
 			Surface = Surface->List.NextItem ();
 		}
 
@@ -4690,7 +4690,7 @@ void PrintModelData (AirStrucPtr const ControlledAC,Model* mod, ULong x, ULong y
 			Gear = Gear->List.NextItem();
 		}
 	}
-/*	
+/*
 	if(Fin)
 	{
 		PSURFACE Surface = mod->SurfaceList;
@@ -4821,11 +4821,11 @@ void PrintVLine (ULong x, ULong y, ULong size, char* c)
 //Author		Robert Slater
 //Date			Tue 23 Mar 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Model::CalcParachuteVel(SLong &vvx,
@@ -4836,7 +4836,7 @@ void	Model::CalcParachuteVel(SLong &vvx,
 								SWord theroll,
 								SLong vel,
 								SLong pushvel,
-								SLong Alt)	//CSB 13/06/99	
+								SLong Alt)	//CSB 13/06/99
 {
 	Float	vx;
 	Float	vy;
@@ -4860,12 +4860,12 @@ void	Model::CalcParachuteVel(SLong &vvx,
 		Vel.y = Float(vel) * Ori.z.y;
 		Vel.z = Float(vel) * Ori.z.z;
 
-		SLong wx, wy, wz;					//CSB 13/06/99	
-		MissManCampSky().GetWind(Alt, wx, wy, wz);	//CSB 13/06/99	
-											//CSB 13/06/99	
-		Vel.x += wx * 0.0001;					//CSB 13/06/99	
-		Vel.y += wy * 0.0001;					//CSB 13/06/99	
-		Vel.z += wz * 0.0001;					//CSB 13/06/99	
+		SLong wx, wy, wz;					//CSB 13/06/99
+		MissManCampSky().GetWind(Alt, wx, wy, wz);	//CSB 13/06/99
+											//CSB 13/06/99
+		Vel.x += wx * 0.0001;					//CSB 13/06/99
+		Vel.y += wy * 0.0001;					//CSB 13/06/99
+		Vel.z += wz * 0.0001;					//CSB 13/06/99
 	}
 
 	vx = Ori.y.x;
@@ -4894,9 +4894,9 @@ void	Model::CalcParachuteVel(SLong &vvx,
 //Description	Resets all the flight model variables to rubbish values.
 //				This can be used to prove that record / replay is storing all necessary values.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::TrashModelData(AirStrucPtr const ControlledAC)
@@ -4912,13 +4912,13 @@ void Model::TrashModelData(AirStrucPtr const ControlledAC)
 	NullOri(GunOri);
 	NullOri(BakOri);
 	NullVec(BakRotVel);
-																
+
 	NullVec(Vel);
 	NullVec(GunVel);
 	Speed = 0;
 	NullVec(CheatAcc);
 
-	Gust.ACTIVE = TRUE;	
+	Gust.ACTIVE = TRUE;
 	Gust.Time   = 10000;
 	NullVec(Gust.Vec);
 //DEADCODE AMM 18/01/00 	GUST Gust;													//Zero
@@ -5015,7 +5015,7 @@ void Model::TrashModelData(AirStrucPtr const ControlledAC)
 		NullVec(pMainPlane->eForce[0][1]);
 		NullVec(pMainPlane->eForce[1][0]);
 		NullVec(pMainPlane->eForce[1][1]);
-		
+
 		NullVec(pMainPlane->eMoment[0][0]);
 		NullVec(pMainPlane->eMoment[0][1]);
 		NullVec(pMainPlane->eMoment[1][0]);
@@ -5038,7 +5038,7 @@ void Model::TrashModelData(AirStrucPtr const ControlledAC)
 	{
 		NullVec(pCylinder->Force);
 	}
-  
+
 	for(PAERODEVICE pDevice = DeviceList; pDevice; pDevice = pDevice->List.NextItem())
 	{
 		pDevice->Val		  = 32767;
@@ -5076,9 +5076,9 @@ void Model::TrashModelData(AirStrucPtr const ControlledAC)
 //Description	Simple flight model which models aircraft performance accurately
 //				but no dynamic or ideosyncratic effects
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::ArcadeBase (AirStrucPtr const ControlledAC)
@@ -5113,12 +5113,12 @@ void Model::ArcadeBase (AirStrucPtr const ControlledAC)
 
 	int totalfuel =		ControlledAC->fly.fuel_content[0] + ControlledAC->fly.fuel_content[1]
 					+	ControlledAC->fly.fuel_content[2] + ControlledAC->fly.fuel_content[3];
-			
+
 	FP Throttle = FP(ControlledAC->fly.thrustpercent) * 0.01;
 
 	if(totalfuel <= 0)
 		Throttle = 0;
-	
+
 	if((Type == AT_SPITFIRE) || (Type == AT_HURRICANE))
 		if(Inst.I_NormalAcc < 0)
 			Throttle = 0;
@@ -5168,7 +5168,7 @@ void Model::ArcadeBase (AirStrucPtr const ControlledAC)
 				speed = 0;
 			speed *= 0.001047197;
 
-			pEngine->Speed += (speed - pEngine->Speed) * MODEL_DT / 50; 
+			pEngine->Speed += (speed - pEngine->Speed) * MODEL_DT / 50;
 			pEngine->SlipVel = AirSpeed;
 			if(Throttle)
 				pEngine->FuelInPipes = 1;
@@ -5210,7 +5210,7 @@ void Model::ArcadeBase (AirStrucPtr const ControlledAC)
 	Area *= (1.0 - (FP(adptr->RIGHTWINGIN) + FP(adptr->RIGHTWINGOUT) + FP(adptr->LEFTWINGIN) + FP(adptr->LEFTWINGOUT)) * (1.0 / (4.0 * 255.0)));
 
 	FP qS = 0.5 * AmbDensity * airspeed * airspeed * Area;
-	
+
 	GearTouched = FALSE;
 	FP GroundAlt;
 	int geary = 0;
@@ -5274,7 +5274,7 @@ void Model::ArcadeBase (AirStrucPtr const ControlledAC)
 			Alpha -= 91.0;	//0.5 deg
 			Pos.y += 5;
 		}
-		
+
 		PitchRate = 0.002;
 		RollRate  = 0;
 		if(-ControlledAC->roll > ANGLES_1Deg)	RollRate += 0.001;
@@ -5306,7 +5306,7 @@ void Model::ArcadeBase (AirStrucPtr const ControlledAC)
 		FP oldalpha = Rads2Rowan(pMainPlane->aoa[0][0]);
 		if((desalpha >= oldalpha - maxdelta) && (desalpha <= oldalpha + maxdelta))
 			Alpha = desalpha;
-		else 
+		else
 			if(desalpha < oldalpha - maxdelta)
 				Alpha = oldalpha - maxdelta;
 			else
@@ -5316,7 +5316,7 @@ void Model::ArcadeBase (AirStrucPtr const ControlledAC)
 		CD = pMainPlane->Cdo + pMainPlane->k * CL * CL + DeltaCd * AreaFrac;
 		Lift = CL * qS;
 		Drag = CD * qS;
-		
+
 		Float SinR, CosR;
 		Math_Lib.high_sin_cos(ControlledAC->roll, SinR, CosR);
 
@@ -5337,7 +5337,7 @@ void Model::ArcadeBase (AirStrucPtr const ControlledAC)
 		PitchRate += (alpharad - pMainPlane->aoa[0][0]) / MODEL_DT;
 		pMainPlane->aoa[0][0] = alpharad;
 		pMainPlane->aoa[1][0] = alpharad;
-		if(alpharad < pMainPlane->buffetAoa0) 
+		if(alpharad < pMainPlane->buffetAoa0)
 			alpharad = pMainPlane->buffetAoa0;
 		TotalBuffet = 4.0 * (alpharad - pMainPlane->buffetAoa0) / (pMainPlane->buffetAoa1 - pMainPlane->buffetAoa0);
 	}
@@ -5345,7 +5345,7 @@ void Model::ArcadeBase (AirStrucPtr const ControlledAC)
 	Float SinA, CosA;
 	Math_Lib.high_sin_cos(Angles(SWord(Alpha)), SinA, CosA);
 
-	
+
 	FP acc = (Thrust * CosA - Drag) / Mass - GRAVITY * Vel.y / Speed;
 	if(GearTouched)
 	{
@@ -5372,9 +5372,9 @@ void Model::ArcadeBase (AirStrucPtr const ControlledAC)
 	LocalVel.y = -Speed * SinA;
 	LocalVel.z =  Speed * CosA;
 
-	
+
 	TnsPnt(LocalVel, Vel, Ori);
-	
+
 	SLong wx = 0;
 	SLong wy = 0;
 	SLong wz = 0;
@@ -5388,7 +5388,7 @@ void Model::ArcadeBase (AirStrucPtr const ControlledAC)
 	RotVel.x = PitchRate;
 	RotVel.y = -YawRate;
 	RotVel.z = RollRate;
-	
+
 	RotVelInt();
 
 	NettForce.x = (-RotVel.y * Speed + GRAVITY * Ori.x.y) * Mass;
@@ -5397,7 +5397,7 @@ void Model::ArcadeBase (AirStrucPtr const ControlledAC)
 	else
 		NettForce.y = Lift;
 	NettForce.z	= Thrust - Drag;
-		
+
 	CalcAcc();
 
 //#define ARCADE_MODEL_DATA
@@ -5425,7 +5425,7 @@ void Model::ArcadeBase (AirStrucPtr const ControlledAC)
 /* TEST CODE CSB 14/09/99 */	PrintVar(30, 6, "Drag    %.0f ", FP(Drag));
 /* TEST CODE CSB 14/09/99 */	PrintVar(30, 7, "Acc     %.4f ", FP(Acc * 100.0));
 #endif
-	
+
 	Instruments (ControlledAC);
 	MovePilotEye();
 
@@ -5453,7 +5453,7 @@ void Model::ArcadeBase (AirStrucPtr const ControlledAC)
 //JET_Code CSB 22/09/99			if (EngineList->Type == ET_JET)
 //JET_Code CSB 22/09/99			{
 //JET_Code CSB 22/09/99				ThrustVol = (170 * EngineList->Thrust) / EngineList->T100;			//RJS 14Jan99
-//JET_Code CSB 22/09/99				
+//JET_Code CSB 22/09/99
 //JET_Code CSB 22/09/99				if(Save_Data.flightdifficulty [FD_THRUSTPOWERCONTROL])
 //JET_Code CSB 22/09/99					if(Inst.ExhaustTemp > 225)	//Throttle advanced too quickly
 //JET_Code CSB 22/09/99						if(FrameCount & 0x0002)
@@ -5477,11 +5477,11 @@ void Model::ArcadeBase (AirStrucPtr const ControlledAC)
 	if (_Analogue.FFdevice)
 		CalcStickForceFeedback();	//fix this !!!!
 
-	if(ControlledAC->movecode == AUTO_TRAININGTAKEOFF) 
+	if(ControlledAC->movecode == AUTO_TRAININGTAKEOFF)
 		TrainingTakeoff(ControlledAC);
 	else if(ControlledAC->movecode == AUTO_TRAININGLANDING)
 		TrainingLanding(ControlledAC);
-		
+
 	static SByte landed;
 	if(FirstCycle)
 		landed = -1;
@@ -5515,9 +5515,9 @@ void Model::ArcadeBase (AirStrucPtr const ControlledAC)
 //
 //Description	Damage hydraulics and force a wheel to lower....
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Model::DamageGear(Coords3D&	hitpos)
@@ -5541,9 +5541,9 @@ void	Model::DamageGear(Coords3D&	hitpos)
 //
 //Description	Triggers radio messages and keep score
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::TrainingTakeoff(AirStrucPtr ControlledAC)
@@ -5574,7 +5574,7 @@ void Model::TrainingTakeoff(AirStrucPtr ControlledAC)
 					windrep = SCRIPT_CALLEE_SURFACEWIND_BEARINGNO_SPEED_GUSTS;
 				else
 					windrep = SCRIPT_CALLEE_SURFACEWIND_BEARINGNO_SPEED;
-						
+
 			_Radio.TriggerMsg(MESSAGE_STRUC(windrep, MSG_WIND_LOW_REPORT, VOICE_TOWER, NULL, callee));
 		}
 		finished	= false;
@@ -5613,22 +5613,22 @@ void Model::TrainingTakeoff(AirStrucPtr ControlledAC)
 
 //DeadCode RJS 30Oct00 		if((!stalled) && (!wingdrop) && (!bounced))
 //DeadCode RJS 30Oct00 		{
-//DeadCode RJS 30Oct00 			if(takeofftime < goodtakeofftime) 
+//DeadCode RJS 30Oct00 			if(takeofftime < goodtakeofftime)
 //DeadCode RJS 30Oct00 				_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_WELLDONE_TO, MSG_STATUS, VOICE_TOWER, NULL, ControlledAC));
-//DeadCode RJS 30Oct00 			else if(takeofftime < oktakeofftime) 
+//DeadCode RJS 30Oct00 			else if(takeofftime < oktakeofftime)
 //DeadCode RJS 30Oct00 				_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_NICE_TO, MSG_STATUS, VOICE_TOWER, NULL, ControlledAC));
-//DeadCode RJS 30Oct00 			else if(takeofftime < badtakeofftime) 
+//DeadCode RJS 30Oct00 			else if(takeofftime < badtakeofftime)
 //DeadCode RJS 30Oct00 				_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_TOOSLOW, MSG_STATUS, VOICE_TOWER, NULL, ControlledAC));
 //DeadCode RJS 30Oct00 			else
 //DeadCode RJS 30Oct00 				_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_MINCEMEAT, MSG_STATUS, VOICE_TOWER, NULL, ControlledAC));
 //DeadCode RJS 30Oct00 		}
 //DeadCode RJS 30Oct00 		else
 //DeadCode RJS 30Oct00 		{
-//DeadCode RJS 30Oct00 			if(takeofftime < goodtakeofftime) 
+//DeadCode RJS 30Oct00 			if(takeofftime < goodtakeofftime)
 //DeadCode RJS 30Oct00 				_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_QUICKUNTIDY, MSG_STATUS, VOICE_TOWER, NULL, ControlledAC));
-//DeadCode RJS 30Oct00 			else if(takeofftime < badtakeofftime) 
+//DeadCode RJS 30Oct00 			else if(takeofftime < badtakeofftime)
 //DeadCode RJS 30Oct00 			{
-//DeadCode RJS 30Oct00 				if(takeofftime < oktakeofftime) 
+//DeadCode RJS 30Oct00 				if(takeofftime < oktakeofftime)
 //DeadCode RJS 30Oct00 					_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_SLOWUNTIDY, MSG_STATUS, VOICE_TOWER, NULL, ControlledAC));
 //DeadCode RJS 30Oct00 				else
 //DeadCode RJS 30Oct00 					_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_TOOSLOW, MSG_STATUS, VOICE_TOWER, NULL, ControlledAC));
@@ -5643,22 +5643,22 @@ void Model::TrainingTakeoff(AirStrucPtr ControlledAC)
 
 		if((!stalled) && (!wingdrop) && (!bounced))
 		{
-			if(takeofftime < goodtakeofftime) 
+			if(takeofftime < goodtakeofftime)
 				theScript = SCRIPT_WELLDONE_TO;
-			else if(takeofftime < oktakeofftime) 
+			else if(takeofftime < oktakeofftime)
 				theScript = SCRIPT_NICE_TO;
-			else if(takeofftime < badtakeofftime) 
+			else if(takeofftime < badtakeofftime)
 				theScript = SCRIPT_TOOSLOW;
 			else
 				theScript = SCRIPT_MINCEMEAT;
 		}
 		else
 		{
-			if(takeofftime < goodtakeofftime) 
+			if(takeofftime < goodtakeofftime)
 				theScript = SCRIPT_QUICKUNTIDY;
-			else if(takeofftime < badtakeofftime) 
+			else if(takeofftime < badtakeofftime)
 			{
-				if(takeofftime < oktakeofftime) 
+				if(takeofftime < oktakeofftime)
 					theScript = SCRIPT_SLOWUNTIDY;
 				else
 					theScript = SCRIPT_TOOSLOW;
@@ -5687,9 +5687,9 @@ void Model::TrainingTakeoff(AirStrucPtr ControlledAC)
 //
 //Description	Triggers radio messages and keep score
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::TrainingLanding(AirStrucPtr ControlledAC)
@@ -5711,7 +5711,7 @@ void Model::TrainingLanding(AirStrucPtr ControlledAC)
 				windrep = SCRIPT_CALLEE_SURFACEWIND_BEARINGNO_SPEED_GUSTS;
 			else
 				windrep = SCRIPT_CALLEE_SURFACEWIND_BEARINGNO_SPEED;
-					
+
 		_Radio.TriggerMsg(MESSAGE_STRUC(windrep, MSG_WIND_LOW_REPORT, VOICE_TOWER, NULL, callee));
 		finished	= false;
 		enddamaged	= false;
@@ -5763,7 +5763,7 @@ void Model::TrainingLanding(AirStrucPtr ControlledAC)
 //DeadCode RJS 30Oct00 				_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_GOODLANDING, MSG_STATUS, VOICE_TOWER, NULL, ControlledAC));
 //DeadCode RJS 30Oct00 			else
 //DeadCode RJS 30Oct00 				_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_BADLANDING, MSG_STATUS, VOICE_TOWER, NULL, ControlledAC));
-//DeadCode RJS 30Oct00 
+//DeadCode RJS 30Oct00
 //DeadCode RJS 30Oct00 			if(startbadlydamaged)
 //DeadCode RJS 30Oct00 				_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_LANDEDBADLYDAMAGEDAC, MSG_STATUS, VOICE_TOWER, NULL, ControlledAC));
 //DeadCode RJS 30Oct00 			else if(startdamaged)
@@ -5802,9 +5802,9 @@ void Model::TrainingLanding(AirStrucPtr ControlledAC)
 //
 //Description	When you've landed counts up a timer and will rearm, refuel, repair.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void Model::CommsChecks(AirStrucPtr ControlledAC)
@@ -5837,9 +5837,9 @@ void Model::CommsChecks(AirStrucPtr ControlledAC)
 //
 //Description	Is the aircraft position within 1 km of a friendly airfield
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 bool Model::OnAnAirfield(AirStrucPtr ControlledAC)

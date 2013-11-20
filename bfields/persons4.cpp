@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -114,7 +114,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //int	info_debug::highestaddr=0;
 //int	info_debug::numelts=0;
 
-Bool	operator == (TokenCode a,TokenCode b)	{return Bool(int(a)==int(b));}
+//x0r Bool	operator == (TokenCode a,TokenCode b)	{return Bool(int(a)==int(b));}
 //Nationality		defaultside=NAT_GREEN;
 
 #define EvalOrDefault(field,type,expr,default)				\
@@ -222,7 +222,7 @@ void	Persons4::make_airgrp(info_airgrp& I)
 //DeadCode MS 26Sep00 					assert(	w->target.Evaluate()==J->homebase.Evaluate());
 //DeadCode MS 26Sep00 			}
 //DeadCode MS 26Sep00 #endif
-		//NOTE: 
+		//NOTE:
 			//Coming back from the 3d, the information represented here
 			//is not up to date.
 			//We need to have recorded the new position, waypoint and strength
@@ -230,7 +230,7 @@ void	Persons4::make_airgrp(info_airgrp& I)
 			//This note is repeated in mapcode.cpp
 			//
 #ifndef NDEBUG
-		assert (loadedSAGcount<MAX_LOADEDSAG,": Too many sags loaded!");
+		bobassert (loadedSAGcount<MAX_LOADEDSAG,": Too many sags loaded!");
 		loadedSAG[loadedSAGcount++]=J->uniqueID.count;
 #endif
 		J->bfieldindex=currbfindex;
@@ -376,7 +376,7 @@ void	Persons4::make_gndgrp(info_grndgrp& I)
 		logUID(J);
 //		FixupRouteOwner(J->uniqueID.count,J->wpref);
   //		FixupRouteOwner(J->uniqueID.count,J->wpref);
-	}                                               
+	}
 	else
 		if (justscanning==SCANNAMES)
 		{
@@ -494,7 +494,7 @@ void	Persons4::make_setval(EventVar& es)
 	if (justscanning)
     	if (bfdesc)
 ;//ME 			bfdesc->defrefs[bfdesc->useddefrefs++]=es;
-        else;    
+        else;
 	else
 		SetLoc(es.index,es.Evaluate());
 }
@@ -519,8 +519,8 @@ void	Persons4::used_globref(int index)
 ;//ME 		for (int i=0;i<bfdesc->usedreqrefs;i++)
 ;//ME 			if (bfdesc->reqrefs[i]==index)
 ;//ME 				return;
-;//ME 
-;//ME 
+;//ME
+;//ME
 ;//ME 		bfdesc->reqrefs[bfdesc->usedreqrefs++]=index;
 	}
 }
@@ -556,7 +556,7 @@ void	Persons4::make_string(string src,int len,TokenCode t)
 //DEADCODE JIM 16/11/99 ;//ME 				trg=bfdesc->news;
 //DEADCODE JIM 16/11/99 ;//ME 				if (len>=DESCRIPT_LEN)
 //DEADCODE JIM 16/11/99 ;//ME 					len=DESCRIPT_LEN-1;
-//DEADCODE JIM 16/11/99 ;//ME 
+//DEADCODE JIM 16/11/99 ;//ME
 //DEADCODE JIM 16/11/99 ;//ME 			}
 //DEADCODE JIM 16/11/99 ;//ME 			else
 //DEADCODE JIM 16/11/99 ;//ME 			{
@@ -565,7 +565,7 @@ void	Persons4::make_string(string src,int len,TokenCode t)
 //DEADCODE JIM 16/11/99 ;//ME 					len=DESCRIPT_LEN-1;
 //DEADCODE JIM 16/11/99 ;//ME 			}
 //DEADCODE JIM 16/11/99 ;//ME 		else
-		if (t==T_family)
+		if ((long)t==(long)T_family)
 		{
 ;//ME 			trg=bfdesc->family;
 			if (len>=TITLE_LEN)
@@ -582,7 +582,7 @@ void	Persons4::make_string(string src,int len,TokenCode t)
 	if (justscanning==SCANSQUADS)
 		SquadAddDesc(src,len,t);
 
-	if (t==T_family && src[0]<='9')
+	if ((long)t==(long)T_family && src[0]<='9')
 		if (justscanning)
 		{
 			int	dummy;
@@ -714,9 +714,9 @@ void	Persons2::tabulateUID(ItemBasePtr	selecteditem)
 	theuid = selecteditem->uniqueID.count;
 	if (theuid==0x100)
 		NOP;
-	assert(pItem[theuid]==NULL,"UID already used!");
+	bobassert(pItem[theuid]==NULL,"UID already used!");
 
-	assert(pItem[theuid]==0,"Reused!");
+	bobassert(pItem[theuid]==0,"Reused!");
 	pItem[theuid] = selecteditem;
 
 }
@@ -740,7 +740,7 @@ void	Persons2::delUID(UniqueID u)
 //
 //Description	get and put statuses of items. Use in State3d destructor.
 //
-//Inputs		
+//Inputs
 //
 //Returns
 //

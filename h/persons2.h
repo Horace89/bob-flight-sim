@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 //Filename       persons2.h
-//System         
-//Author         Jim Taylor				 
+//System
+//Author         Jim Taylor
 //Date           Tue 5 Dec 1995
 //Description    New 'persons' to process new battlefield format.
 //------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ enum	TokenCode	{};
 //DEADCODE JIM 17/03/99 		eventwstart=0;
 //DEADCODE JIM 17/03/99 		eventwend=0;
 //DEADCODE JIM 17/03/99 	}
-//DEADCODE JIM 17/03/99 
+//DEADCODE JIM 17/03/99
 //DEADCODE JIM 17/03/99 	~EventRec()
 //DEADCODE JIM 17/03/99 	{	delete [] eventlist;			//delete list array
 //DEADCODE JIM 17/03/99 		EventRec**	ev2=&eventbase;		//find this record in static list
@@ -58,7 +58,7 @@ enum	TokenCode	{};
 //DEADCODE JIM 17/03/99 		*ev2=eventlink;					//remove
 //DEADCODE JIM 17/03/99 	}
 //DEADCODE JIM 17/03/99 };
-//DEADCODE JIM 17/03/99 
+//DEADCODE JIM 17/03/99
 //------------------------------------------------------------------------------
 struct	PosCtrl
 {
@@ -128,10 +128,10 @@ struct  UnresolvedUidNode
 //DEADCODE DAW 08/03/00 {
 //DEADCODE DAW 08/03/00 	EventLog*	next;
 //DEADCODE DAW 08/03/00 	UniqueID	targetuid;	//can distinguish friend/enemy a/c or ground
-//DEADCODE DAW 08/03/00 
+//DEADCODE DAW 08/03/00
 //DEADCODE DAW 08/03/00 	Nationality	nat;
 //DEADCODE DAW 08/03/00 //	Had famekill and fameloss in old engine
-//DEADCODE DAW 08/03/00 
+//DEADCODE DAW 08/03/00
 //DEADCODE DAW 08/03/00 	EventLog(EventLog* last)	{	next=last;stage=EMPTY;encsize=losses=hits=0;
 //DEADCODE DAW 08/03/00 									nat=NAT_AMBER;place=-1;homebase=UID_NULL;
 //DEADCODE DAW 08/03/00 									encounteredtype=PT_VEHICLES;escorttype=PT_BADMAX;	}
@@ -156,7 +156,7 @@ struct  UnresolvedUidNode
 //DeadCode RJS 27Jan99 					GOHOME,			//Going Home/Killed/Assume Lead/Low/no fuel/ammo / too damaged
 //DeadCode RJS 27Jan99 					FRIENDLY,		//Shooting a friendly
 //DeadCode RJS 27Jan99 					OBJECTIVE,		//sighted/destroyed/balloonflamed
-//DeadCode RJS 27Jan99 
+//DeadCode RJS 27Jan99
 //DeadCode RJS 27Jan99 					COMMSKILL1,		//killed in comms 1 - 8
 //DeadCode RJS 27Jan99 					COMMSKILL2,		//killed in comms 1 - 8
 //DeadCode RJS 27Jan99 					COMMSKILL3,		//killed in comms 1 - 8
@@ -167,14 +167,14 @@ struct  UnresolvedUidNode
 //DeadCode RJS 27Jan99 					COMMSKILL8,		//killed in comms 1 - 8
 //DeadCode RJS 27Jan99 					COMMSKILLU,		//unfriendly
 //DeadCode RJS 27Jan99 					COMMSKILLF,		//friendly
-//DeadCode RJS 27Jan99 
+//DeadCode RJS 27Jan99
 //DeadCode RJS 27Jan99 					LEFTGAME,		// comms player has left game //AMM 18Jun97
 //DeadCode RJS 27Jan99 				}
 //DeadCode RJS 27Jan99 				reason;
 //DeadCode RJS 27Jan99 	ItemBasePtr	trgplace;	//for angle and range do intercept to trgplace
 //DeadCode RJS 27Jan99 	TextSnip0	trgname;
 //DeadCode RJS 27Jan99 	UserMsg& operator = (UserMsg& s)
-//DeadCode RJS 27Jan99 		{	
+//DeadCode RJS 27Jan99 		{
 //DeadCode RJS 27Jan99 			reason=s.reason;
 //DeadCode RJS 27Jan99 			if (s.trgplace==&s)
 //DeadCode RJS 27Jan99 			{
@@ -186,17 +186,17 @@ struct  UnresolvedUidNode
 //DeadCode RJS 27Jan99 			trgname=s.trgname;
 //DeadCode RJS 27Jan99 			return	(*this);
 //DeadCode RJS 27Jan99 		}
-//DeadCode RJS 27Jan99 
+//DeadCode RJS 27Jan99
 //DeadCode RJS 27Jan99 };
-//DeadCode RJS 27Jan99 
+//DeadCode RJS 27Jan99
 //DeadCode RJS 27Jan99 struct	UserMessages
 //DeadCode RJS 27Jan99 {
 //DeadCode RJS 27Jan99 	enum	{MAX=5};
 //DeadCode RJS 27Jan99 	UserMsg	line[MAX];
 //DeadCode RJS 27Jan99 	Bool	newmessages;
-//DeadCode RJS 27Jan99 
+//DeadCode RJS 27Jan99
 //DeadCode RJS 27Jan99 };
-//DeadCode RJS 27Jan99 
+//DeadCode RJS 27Jan99
 //DeadCode RJS 27Jan99 struct	LastMsg
 //DeadCode RJS 27Jan99 {
 //DeadCode RJS 27Jan99 	UserMsg::Reason		reason;
@@ -206,8 +206,14 @@ struct  UnresolvedUidNode
 //------------------------------------------------------------------------------
 
 
-
-#if  defined(__WATCOMC__) || defined (__MSVC__) || defined (__BORLANDC__)
+/*
+struct GlobalsInfo;
+#if  defined (__BORLANDC__)
+extern	GlobalsInfo	GR_firstobject;
+#endif
+#define	firstobject ((UniqueID&)GR_firstobject)
+*/
+#if  defined(__WATCOMC__) || defined (__MSVC__)
 extern	ULong&	GR_firstobject;
 #endif
 #define	firstobject ((UniqueID&)GR_firstobject)
@@ -230,7 +236,7 @@ class	SupplyTree;
 // Date:		24/03/00
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 class	Persons2
@@ -394,13 +400,13 @@ virtual Bool		make_agname(string src,int len,info_airgrp& A)=0;
 virtual void		make_events(info_event*& I,ItemBasePtr P)=0;
 virtual void		used_globref(int index)=0;
 
-void		getrelpos(string &bfieldptr,PosCtrl &position);
-void		getposition(string &bfieldptr,PosCtrl &position);
-void		pos_icpt(string&bfieldptr,ANGLES&tmpasp,ANGLES&tmpbrg,SLong&tmprange);
+void		getrelpos(string& bfieldptr,PosCtrl &position);
+void		getposition(string& bfieldptr,PosCtrl &position);
+void		pos_icpt(string& bfieldptr,ANGLES&tmpasp,ANGLES&tmpbrg,SLong&tmprange);
 WayPoint*	getroute(string& bfieldptr);
 
 void		throwtree(string& bfieldptr);
-int			getloopcount(string & bfieldptr);
+int			getloopcount(string& bfieldptr);
 Bool	lowlevel_squadron(int snequ);
 
 //virtual void		fixupengagements(AirStrucPtr	firstac)=0;
@@ -462,7 +468,7 @@ FileNum	FindNextBf (BattlefieldType &nextbftype);
 FileNum	LaunchMigPatrol(SquadSelect squad,int prefsize,UniqueID takeoff,int migdaytype,int migcaptime);
 //DEADCODE JIM 28/02/00 	UniqueID	bluenemigcap;
 //DEADCODE JIM 28/02/00 	UniqueID	blueswmigcap;
-//DEADCODE JIM 28/02/00 
+//DEADCODE JIM 28/02/00
 Bool	LaunchConvoy(FileNum,SWord);					//RDH 30Sep96
 void	SetSecondWP (WayPointPtr	tmpitem);
 
@@ -557,7 +563,7 @@ struct PilotType;
 // Date:		24/03/00
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -660,7 +666,7 @@ private:
 //void		adduidrequest(ItemBasePtr trgitemptr,UniqueID srcuid,EventVal& pos,UILogType request)
 //{Persons2::adduidrequest(trgitemptr,srcuid,pos,request);}
 void		fixupengagements(AirStrucPtr	eyeF,AirStrucPtr trg);
-void	Persons3::FixWavesToLastRoute();
+void	FixWavesToLastRoute();
 static	Post3DInfo*	post3dinfo;
 
 public:
@@ -699,7 +705,7 @@ static 	void	RestoreAircraftPositions();
 // Date:		24/03/00
 // Author:		JIM
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 class	Persons4:public	Persons2

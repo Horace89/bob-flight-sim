@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //Filename       ai.h
-//System         
+//System
 //Author         Jim Taylor
 //Date           Tue 28 May 1996
 //Description    artificial stupidity....
@@ -12,14 +12,16 @@
 //DEADCODE MS 31/01/00 #else
 //DEADCODE MS 31/01/00 	typedef	int	PhraseTables;
 //DEADCODE MS 31/01/00 #endif
+#include "radio.g"
+#include "rchatter.h"
 #ifndef	__BCPLUSPLUS__
 enum	PhraseTables;
 enum	ScriptTables;
 enum	MsgType;
 #else
-typedef	int	PhraseTables,ScriptTables,MsgType;
+//typedef	int	PhraseTables,ScriptTables,MsgType;
 #endif
-
+class	ArtInt;
 #define	DEFAULT_AI 0
 #define	FRAMES_PER_SPOT 5
 
@@ -38,7 +40,7 @@ struct	OptionRef													  //JIM 22/01/99
 																  //JIM 22/01/99
 	bool	UserMsgDecision(AirStrucPtr callee,ItemBasePtr trg,			  //JIM 22/01/99
 		AirStrucPtr caller,ArtInt* artint,MESSAGE_STRUC* PriorityMessage);
-	virtual OptionRef*	GetMsgOptions()=NULL;								  //JIM 22/01/99
+	virtual OptionRef*	GetMsgOptions()=0;								  //JIM 22/01/99
 	virtual	bool													  //JIM 22/01/99
 		AutoMsgDecision(AirStrucPtr callee,ItemBasePtr trg,			  //JIM 22/01/99
 		AirStrucPtr caller,ArtInt* artint,MESSAGE_STRUC* PriorityMessage=NULL)=0;						  //JIM 22/01/99
@@ -66,19 +68,14 @@ class	ArtInt
 	friend	struct	SleepList;											//CSB 20/03/00
 	int		spotcount;
 //DEADCODE CSB 02/02/00 	enum	{ACARRAYSIZE = 256,	MEMBERLISTSIZE = 4};				  //CSB 01/02/00
-	enum	{ACARRAYSIZE = 128,	MEMBERLISTSIZE = 4,	COLLIDECHECKLISTSIZE = 16,	COLLIDEAGAINSTLISTSIZE = 32};				  //CSB 01/02/00
-	static	AirStruc*	ACArray[ACARRAYSIZE];
-	static	AirStrucPtr	MemberList[MEMBERLISTSIZE];					  //CSB 01/02/00
-	static	float		Dist2List[MEMBERLISTSIZE];					  //CSB 02/02/00
-
-	static	AirStrucPtr	CollideCheckList[COLLIDECHECKLISTSIZE];
-	static	AirStrucPtr	CollideAgainstList[COLLIDEAGAINSTLISTSIZE];
 protected:
+	enum	{ACARRAYSIZE = 128,	MEMBERLISTSIZE = 4,	COLLIDECHECKLISTSIZE = 16,	COLLIDEAGAINSTLISTSIZE = 32};				  //CSB 01/02/00
 	int		gunstimer;
 	enum	tGroupLevel {GROUP_LONER, GROUP_ELEMENT, GROUP_FLIGHT, GROUP_SQUADRON};
 	enum	UnitSize {UNIT_VOID,	UNIT_RAF_WING,	  UNIT_RAF_SQUADRON, UNIT_RAF_FLIGHT,   UNIT_RAF_SECTION, UNIT_RAF_SINGLE,
 			   UNIT_LUF_GESCHWADER, UNIT_LUF_GRUPPEN, UNIT_LUF_STAFFEL,	 UNIT_LUF_SCHWARME, UNIT_LUF_ROTTE,	  UNIT_LUF_SINGLE};
 public:
+   	static	AirStruc*	ACArray[ACARRAYSIZE];
 	int		exittimer;
 	DecisionAI*	blocking;
 	ArtInt()	{blocking=NULL;}
@@ -101,37 +98,37 @@ public:
 	void	CollisionCheck();										  //CSB 03/02/00
 	void	MakeCollisionLists();									  //CSB 03/02/00
 	void	CollisionAvoidance(AirStrucPtr ac1, AirStrucPtr ac2);
-	void	ArtInt::VisibleAcCheck();
-	void	ArtInt::MakeMemberList(AirStrucPtr ac);
-	void	ArtInt::AddToMemberList(AirStrucPtr eye, AirStrucPtr ac, float dist2);	  //CSB 02/02/00
+	void	VisibleAcCheck();
+	void	MakeMemberList(AirStrucPtr ac);
+	void	AddToMemberList(AirStrucPtr eye, AirStrucPtr ac, float dist2);	  //CSB 02/02/00
 //DeadCode AMM 20Oct100 	void	ArtInt::ProcessWPEvents();
 //DeadCode AMM 20Oct100 	void	ArtInt::LaunchMiGs(AirStruc* trg,tAggressionLevel al);
 //DeadCode AMM 20Oct100 	void	ArtInt::VisibleContrailsCheck();
-	void	ArtInt::VisibleAAACheck();
+	void	VisibleAAACheck();
 //DeadCode AMM 20Oct100 	void	ArtInt::SpottedContrails(AirStruc* eye,AirStruc* trg);
 //DeadCode AMM 20Oct100 	void	ArtInt::SpottedOldContrails(AirStruc* eye,AirStruc* trg);
-	bool	ArtInt::AlertFighters(AirStruc* eye,AirStruc* trg, AirStruc* friendlythatneedshelp);
-	void ArtInt::InterceptRangeFromTo(AirStruc* from, AirStruc* to);
-	SLong ArtInt::RangeFromTo(AirStruc* from, AirStruc* to);
+	bool	AlertFighters(AirStruc* eye,AirStruc* trg, AirStruc* friendlythatneedshelp);
+	void InterceptRangeFromTo(AirStruc* from, AirStruc* to);
+	SLong RangeFromTo(AirStruc* from, AirStruc* to);
 //DeadCode AMM 20Oct100 	bool ArtInt::AcHasBombs(AirStruc* trg);
 //DeadCode AMM 20Oct100 	bool ArtInt::ForceHasBombers(AirStruc* trg);
 //DeadCode AMM 20Oct100 	bool ArtInt::BingoFuel(AirStruc* trg);
 //DeadCode AMM 20Oct100 	bool ArtInt::Winchester(AirStruc* trg);
-	void ArtInt::ResetUnfriendly();
-	bool ArtInt::LeaveTopCover(AirStruc* caller, AirStruc* trg);	  //CSB 21/01/00
- 	bool ArtInt::EngageFormation(AirStrucPtr caller, AirStrucPtr trg);	  //CSB 21/01/00
- 	bool ArtInt::EngageTrg(AirStrucPtr caller, AirStrucPtr trg);	  //CSB 21/01/00
- 	bool ArtInt::MeBombersYouFighters(AirStrucPtr caller, AirStrucPtr trg);	  //CSB 21/01/00
- 	bool ArtInt::MeFightersYouBombers(AirStrucPtr caller, AirStrucPtr trg);	  //CSB 21/01/00
+	void ResetUnfriendly();
+	bool LeaveTopCover(AirStruc* caller, AirStruc* trg);	  //CSB 21/01/00
+ 	bool EngageFormation(AirStrucPtr caller, AirStrucPtr trg);	  //CSB 21/01/00
+ 	bool EngageTrg(AirStrucPtr caller, AirStrucPtr trg);	  //CSB 21/01/00
+ 	bool MeBombersYouFighters(AirStrucPtr caller, AirStrucPtr trg);	  //CSB 21/01/00
+ 	bool MeFightersYouBombers(AirStrucPtr caller, AirStrucPtr trg);	  //CSB 21/01/00
 
 //DeadCode AMM 20Oct100 	void	ArtInt::GroupEngage(AirStruc* caller,AirStruc* trg);
-	tGroupLevel ArtInt::GroupLevel(AirStruc* caller);
-	tGroupLevel ArtInt::GroupLevelNotInFormation(AirStruc* caller);	  //RDH 10/05/99
+	tGroupLevel GroupLevel(AirStruc* caller);
+	tGroupLevel GroupLevelNotInFormation(AirStruc* caller);	  //RDH 10/05/99
 
 //DeadCode AMM 20Oct100 	void	ArtInt::DefensiveSplitHiLo(AirStruc* caller,AirStruc* caller2,AirStruc* trg);
 //DeadCode AMM 20Oct100 	void	ArtInt::ChooseSplitManoeuvre(AirStruc* caller,AirStruc* caller2,AirStruc* trg);
 //DeadCode AMM 20Oct100 	void	ArtInt::SetUpPincer(AirStruc* caller,AirStruc* caller2,AirStruc* trg);
-	void	ArtInt::SetUpRemainderOfGroupToEngage(AirStruc* caller,AirStruc* trg,MANOEUVRE manoeuvre,ANGLES desiredhdg,ANGLES  desiredpitch, bool TRUE);
+	void	SetUpRemainderOfGroupToEngage(AirStruc* caller,AirStruc* trg,MANOEUVRE manoeuvre,ANGLES desiredhdg,ANGLES  desiredpitch, bool TRUE);
 //DeadCode AMM 20Oct100 	bool	ArtInt::MakeForceToRespond (AirStruc* caller, AirStruc* trg, tGroupLevel group, bool& splitmanappropriate);
 //DeadCode AMM 20Oct100 	bool	ArtInt::TrgIsVulnerable(AirStruc* caller, AirStruc* trg);
 
@@ -162,12 +159,12 @@ public:
 	void FindGroupAndLeader2(AirStruc*& caller, AirStruc*& caller2,tGroupLevel& group);
 
 	ANGLES HdgIntFromTo(AirStruc* ac,AirStruc* trg);
-	bool	ArtInt::TargetOnCallerTail(AirStruc*  caller,AirStruc*  trg,ANGLES angle);
+	bool	TargetOnCallerTail(AirStruc*  caller,AirStruc*  trg,ANGLES angle);
 //DeadCode AMM 20Oct100 	bool	ArtInt::CallerOnTargetTail(AirStruc*  caller,AirStruc*  trg,ANGLES angle);
 
-	bool	ArtInt::TargetFacingCaller(AirStruc*  caller,AirStruc*  trg,ANGLES angle);
+	bool	TargetFacingCaller(AirStruc*  caller,AirStruc*  trg,ANGLES angle);
 //DeadCode AMM 20Oct100 	bool	ArtInt::CallerFacingTarget(AirStruc*  caller,AirStruc*  trg,ANGLES angle);
-	AirStrucPtr	ArtInt::SetFollowerEngage(AirStrucPtr eye,AirStrucPtr trg,MANOEUVRE  manoeuvre,ANGLES desiredhdg,ANGLES  desiredpitch, bool surprised);
+	AirStrucPtr	SetFollowerEngage(AirStrucPtr eye,AirStrucPtr trg,MANOEUVRE  manoeuvre,ANGLES desiredhdg,ANGLES  desiredpitch, bool surprised);
 //DeadCode AMM 20Oct100 	AirStrucPtr	ArtInt::SetFlightEngage(AirStrucPtr eye,AirStrucPtr trg,MANOEUVRE  manoeuvre,ANGLES desiredhdg,ANGLES  desiredpitch, bool surprised);
 
 
@@ -180,8 +177,8 @@ public:
 	bool	AttackSpareInLeadersGroup(AirStruc* eye);				  //RDH 13/06/99
 //DeadCode AMM 20Oct100 	bool	LeadersGroupInCombat(AirStruc* eye);
 
-	void	ArtInt::SetEngage(AirStrucPtr eye,AirStrucPtr trg,MANOEUVRE manoeuvre,ANGLES   desiredhdg,ANGLES   desiredpitch, bool surprised);
-	void	ArtInt::PrepareForCombat(AirStrucPtr caller);			  //RDH 04/03/99
+	void	SetEngage(AirStrucPtr eye,AirStrucPtr trg,MANOEUVRE manoeuvre,ANGLES   desiredhdg,ANGLES   desiredpitch, bool surprised);
+	void	PrepareForCombat(AirStrucPtr caller);			  //RDH 04/03/99
 
 	int		CountFormationSize(AirStrucPtr);
 	int		CountSquadronSize(AirStrucPtr);							  //CSB 20/01/00
@@ -206,15 +203,21 @@ public:
 	bool	PersonalThreat(AirStrucPtr trg,AirStrucPtr agg, bool process=FALSE);
 	void	PersonalThreatMsg(AirStrucPtr trg,AirStrucPtr agg);
 	MANOEUVRE ChooseEvasiveManoeuvre(AirStrucPtr trg, AirStrucPtr agg);
-	void	DisEngageAll(AirStruc* caller, MESSAGE_STRUC* prioritymessage);	
+	void	DisEngageAll(AirStruc* caller, MESSAGE_STRUC* prioritymessage);
 	void	AllChangeMovecode(AirStrucPtr leadac, AirStrucPtr trg, AutoMoveCodeTypeSelect movecode);
 	AirStrucPtr SplitUnit(AirStrucPtr ac, UnitSize& unitsize);
 	AirStrucPtr FindTailie(AirStrucPtr ac);								//CSB 13/03/00
 	bool	CanAttackType(AirStrucPtr ac, AirStrucPtr trg);				//CSB 21/03/00
-		
+
 	bool	SendMsgAndCall(const MESSAGE_STRUC& msg,DecisionAI* processor);
-	void	ArtInt::ExpandMigs(AirStrucPtr placeholder);
-	void	ArtInt::ReallyExpandMigs(AirStrucPtr placeholder);
+	void	ExpandMigs(AirStrucPtr placeholder);
+	void	ReallyExpandMigs(AirStrucPtr placeholder);
+private:
+ 	static	AirStrucPtr	MemberList[MEMBERLISTSIZE];					  //CSB 01/02/00
+	static	float		Dist2List[MEMBERLISTSIZE];					  //CSB 02/02/00
+
+	static	AirStrucPtr	CollideCheckList[COLLIDECHECKLISTSIZE];
+	static	AirStrucPtr	CollideAgainstList[COLLIDEAGAINSTLISTSIZE];
 
 };
 extern	ArtInt	Art_Int;
@@ -225,7 +228,7 @@ extern	ArtInt	Art_Int;
 // Date:		18/05/99
 // Author:		RDH
 //
-//Description: 
+//Description:
 //		An AcArrayItterator object pretends to be an AirStrucPtr
 //		However, it has a member function .Next()
 //		which moves it through the ArtInt::ACArray
@@ -238,10 +241,10 @@ struct	AcArrayItterator
 	AirStrucPtr		THISTHIS;
 	AirStrucPtr*	THISTHIS2;
 	int	index;
-	AcArrayItterator()	
+	AcArrayItterator()
 	{index=-1;THISTHIS2=Art_Int.ACArray-1;THISTHIS=NULL;}
 	bool	Next()		//true means there is a next one
-	{	
+	{
 		index++;
 		THISTHIS2++;
 		if (index<ArtInt::ACARRAYSIZE)
@@ -314,7 +317,8 @@ DecisionAI::OptionRef	trgtype##_##name::opts[]	=
 //	{PHRASE_,	&DecisionAI,	SCRIPT_},
 //};
 
-#define	INSTANCEAI(name,trgtype,options)							 \
+//x0r #define	INSTANCEAI(name,trgtype,options)
+#define	INSTANCEAI(name,trgtype)							 \
 trgtype##_##name	trgtype##_inst_##name;							  \
 DecisionAI*	name=	&trgtype##_inst_##name;								\
 bool	trgtype##_##name##_AI::name(AirStrucPtr callee,trgtype trg,AirStrucPtr caller,DecisionAI* currdecision,MESSAGE_STRUC* prioritymessage)

@@ -81,9 +81,10 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include "files.g"
 #include "ImageMap.h"
 #include "ImageMap.g"
-#include "MigLand.h"
 #include "display.h"
 #include "worldinc.h"
+#include "MigLand.h"
+
 #include "3dcode.h"
 #include "mymath.h"
 #include "TileMake.h"

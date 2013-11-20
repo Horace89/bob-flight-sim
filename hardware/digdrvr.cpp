@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -64,10 +64,10 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //------------------------------------------------------------------------------
 //Filename       digdrvr.cpp
-//System         
+//System
 //Author         Andy McMaster
 //Date           Fri 15 Oct 1999
-//Description    
+//Description
 //------------------------------------------------------------------------------
 
 #include	"sample.h"
@@ -76,7 +76,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include	"winmove.h"
 #include	"miles.h"
 #include	"cguid.h"
-
+#define NULL 0
 
 //DeadCode RJS 08Nov99 DigitalDriver Dig_Driver;
 
@@ -128,7 +128,7 @@ void	DigitalDriver::Unlock()
 //Description:  called by every HSAMPLE function, 1st check.
 //
 //////////////////////////////////////////////////////////////////////
-bool	DigitalDriver::DIG_valid()	
+bool	DigitalDriver::DIG_valid()
 {
 	bool	retval = false;
 	if (this && valid)
@@ -437,7 +437,7 @@ void	DigitalDriver::DirectSound_Commit()
 // Date:		16/07/99
 // Author:		AMM
 //
-//Description: Create the DirectSound object, establish a cooperative 
+//Description: Create the DirectSound object, establish a cooperative
 //level, and set the primary buffer format.
 //
 // initialise buffers and flags
@@ -540,7 +540,7 @@ bool	DigitalDriver::InitPrimaryBuffer(WAVEFORMATEX*	wfx, int& oldVol)
 
 // set primary buffer format
 
-	res = lpdsbPrimary->SetFormat(wfx); 
+	res = lpdsbPrimary->SetFormat(wfx);
 
 	if (res!=DS_OK)
 		return false;
@@ -569,7 +569,7 @@ bool DigitalDriver::Create3DListener()
 // Get listener interface
 
     if FAILED(lpdsbPrimary->QueryInterface(IID_IDirectSound3DListener,(LPVOID *)&lpds3dListener))
-    {    
+    {
 		return false;
     }
 
@@ -677,9 +677,9 @@ void DigitalDriver::Test3DSound()
 //
 //Description	Scales linear vol 0 - 511 to decibels * 100.
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int	DigitalDriver::GetDecibels(int	theVol)
@@ -690,13 +690,13 @@ int	DigitalDriver::GetDecibels(int	theVol)
 //DeadCode AMM 12Oct00 void	DPlay::CommitDodge()
 //DeadCode AMM 12Oct00 {
 //DeadCode AMM 12Oct00 	ListenerStruc	l;
-//DeadCode AMM 12Oct00 
+//DeadCode AMM 12Oct00
 //DeadCode AMM 12Oct00 	ZeroMemory(&l,sizeof(ListenerStruc));
-//DeadCode AMM 12Oct00 
+//DeadCode AMM 12Oct00
 //DeadCode AMM 12Oct00 	_Miles.dig->Set3DListener(l);
 //DeadCode AMM 12Oct00 	_Miles.dig->Test3DSound();
 //DeadCode AMM 12Oct00 //	_Miles.dig->DirectSound_Commit();
-//DeadCode AMM 12Oct00 
+//DeadCode AMM 12Oct00
 //DeadCode AMM 12Oct00 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -704,11 +704,11 @@ int	DigitalDriver::GetDecibels(int	theVol)
 //Author		Andy McMaster
 //Date			Mon 29 Nov 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void DigitalDriver::AddDefaultDeviceToList()
@@ -728,11 +728,11 @@ void DigitalDriver::AddDefaultDeviceToList()
 //Author		Andy McMaster
 //Date			Mon 29 Nov 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 bool SaveData::InitSoundDevice(int wh)
@@ -750,11 +750,11 @@ bool SaveData::InitSoundDevice(int wh)
 //Author		Andy McMaster
 //Date			Mon 29 Nov 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 bool SaveData::LoadedSFXDeviceOK()
@@ -781,11 +781,11 @@ bool SaveData::LoadedSFXDeviceOK()
 //Author		Robert Slater
 //Date			Wed 18 Oct 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 HRESULT	DigitalDriver::SetVolumeDirect(int volume)

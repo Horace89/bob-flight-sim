@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 //Filename       3dcom.h
-//System         
-//Author         Paul.   
+//System
+//Author         Paul.
 //Date           Fri 22 Sep 1995
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	D3DCOM_Included
 #define	D3DCOM_Included
@@ -13,7 +13,7 @@
 #include	"animdata.h"
 #define	DEFAULT_D3DCOM 0
 
-const	SLong	MAX_DOPOINTS	= 1024;									//JON 5/26/00
+//const	SLong	MAX_DOPOINTS	= 1024;									//JON 5/26/00
 class	Window;
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //				      STRUCTURE/CLASS/TYPE DEFINITIONS
@@ -310,7 +310,7 @@ class	shape
 //DeadCode RJS 17Sep97 								depth:2;						//RJS 17Sep97
 //DeadCode RJS 17Sep97 				COORDS3DLIST*	next;							//RJS 21May97
 //DeadCode RJS 17Sep97 			} Coords3DList, *Coords3DListPtr;					//RJS 19Sep96
-//DeadCode RJS 17Sep97 
+//DeadCode RJS 17Sep97
 //DeadCode RJS 17Sep97  			typedef struct	TRAILRECORD
 //DeadCode RJS 17Sep97  			{
 //DeadCode RJS 17Sep97  				Coords3DListPtr	thelist;
@@ -503,8 +503,8 @@ class	shape
 
 
 
-			shape::shape(void );
-			shape::~shape();									//PD 15Jan96
+			shape(void );
+			~shape();									//PD 15Jan96
 
 			void process_shape(CLib3D*,ViewPoint* vp,Obj3DPtr,FPMATRIX_PTR,Bool	subshape=FALSE,FPMATRIX_PTR this_objmatrix=NULL);//RJS 07Feb00
 
@@ -655,7 +655,7 @@ class	shape
 
 
 
-							  
+
 
 		private:
 			void	MovePointWRTGun(ANGLES&,ANGLES&,Coords3D&,Coords3D&,D3DVECTOR&);//RJS 14Mar00
@@ -729,7 +729,7 @@ class	shape
 			void	BridgeItemAnim(ExplodeAnimData* );			//RJS 20Nov96
 			void	BirdLauncherItemAnim(BirdLauncherAnimData*,Coords3D&);//RJS 01Dec99
 
-			
+
 			void	AddNewVapourPoint(TrailRecord*,SLong,SLong,SLong,ULong,ULong );//RJS 24Nov98
 			Float	DoTrailPoint(UWord, SLong, SLong, SLong);	//RJS 19May97
 			void*	FindWeapRecord(ShapeNum,SLong&);			//RJS 03Aug98
@@ -784,8 +784,8 @@ class	shape
 
 		protected:
 
-			static	void shape::makeViewLightVec();
-			static	SWord shape::plainPolyLight(DoPointStruc**);
+			static	void makeViewLightVec();
+			static	SWord plainPolyLight(DoPointStruc**);
 			static	bool doingHW3D;
 
  			static	InterpProc

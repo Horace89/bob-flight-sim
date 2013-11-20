@@ -84,4 +84,3 @@ protected:
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_COMMSPNT_H__0239C701_584E_11D2_9FD5_D0EC00C10000__INCLUDED_)
-

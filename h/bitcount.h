@@ -35,8 +35,8 @@
 //#define	TRACKBADASSIGNMENTS
 #ifdef	TRACKBADASSIGNMENTS
 #define	BITFIELD_AGGREGATOR	struct
-#define	BITFIELD_COPY(t)	t&	operator <<= (t& v) {value=v.value;return *this; }			\
-							private: void	operator = (t& v);
+#define	BITFIELD_COPY(t)	t&	operator <<= (t& v) {value=v.value;return *this; }		\
+ 	                          private: void	operator = (t& v);
 #else
 #define	BITFIELD_AGGREGATOR	union
 #define	BITFIELD_COPY(t)	t&	operator <<= (t& v) {value=v.value;return *this; }

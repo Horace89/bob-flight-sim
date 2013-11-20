@@ -1,15 +1,15 @@
 //------------------------------------------------------------------------------
 //Filename       elmt.h
-//System         
+//System
 //Author         Andrew McRae
 //Date           Thu 24 Apr 1997
-//Description    
+//Description
 //------------------------------------------------------------------------------
 
 #ifndef	ELMT_Included
 #define	ELMT_Included
 
-
+#include "modvec.h"
 // Aircraft Element Types (order specific)
 enum ELMT_TYPE
 {
@@ -46,7 +46,7 @@ enum SURFACE_DESCRIPTION
 	SD_FIN
 };
 
-	
+
 
 // thrust types
 enum THRUST_TYPE
@@ -70,7 +70,7 @@ public:
 //DeadCode AMM 29Jun99 	PCTRL pCtrls;
 	PNEWCTRL pNewCtrls;
 
-	FCRD Pos[2][2];		//CSB 06/11/98	
+	FCRD Pos[2][2];		//CSB 06/11/98
 	FORI Ori[2][2];		//CSB 06/11/98
 	FP MaskAngle[2][2];	//CSB 25/11/98	//This is the sideslip angle at which the element
 	char MaskArea[2][2];									//is totally within the fuselage wake (Local Coords)
@@ -118,7 +118,7 @@ public:
 				SWord span1)
 
 	{
-		pModel	= pmodel;	
+		pModel	= pmodel;
 		wArea[0]	= area0;
 		wArea[1]	= area1;
 		Area		= 2 * (area0 + area1);
@@ -272,7 +272,7 @@ public:
 		MaskArea[0][1] = Area1;
 		MaskArea[1][1] = Area1;
 	}
-	
+
 	void Process (AirStrucPtr const ControlledAC);
 
 	void SetCurves (
@@ -325,7 +325,7 @@ public:
 	}
 
 	void SetSlipstream (PTHRUSTPOINT thrust0, PTHRUSTPOINT thrust1, char percentage)
-	{ 
+	{
 		pSlipThrustPoint[0] = thrust0;
 		pSlipThrustPoint[1] = thrust1;
 		AmountInSlipstream = percentage;
@@ -370,7 +370,7 @@ public:
 	Surface (PMODEL pmodel, SURFACE_TYPE type, SURFACE_DESCRIPTION desc,
 				FP area, FP span)	//, FP chord)
 	{
-		pModel = pmodel;	
+		pModel = pmodel;
 		Type = type;
 		Desc = desc;
 		Area = area;
@@ -428,7 +428,7 @@ public:
 		MaskAngle = ang;
 		MaskArea  = area;
 	}
-		
+
 	void Process (AirStrucPtr const ControlledAC);
 
 	void SetCurves (char* accl, char* cl, char* accd, char* cd)
@@ -448,14 +448,14 @@ public:
 //DeadCode CSB 25/02/99				pCmCurve = _CurveRsc.FindCurve (accm, cm);
 //DeadCode CSB 25/02/99			else
 //DeadCode CSB 25/02/99				pCmCurve = NULL;
-//DeadCode CSB 25/02/99	
+//DeadCode CSB 25/02/99
 //DeadCode CSB 25/02/99			if ((*accdm != 0) && (*cdm != 0))
 //DeadCode CSB 25/02/99				pCdMCurve = _CurveRsc.FindCurve (accdm, cdm);
 //DeadCode CSB 25/02/99			else
 //DeadCode CSB 25/02/99				pCdMCurve = NULL;
 	}
 	void SetSlipstream (PTHRUSTPOINT thrust, char percentage)
-	{ 
+	{
 		pSlipThrustPoint = thrust;
 		AmountInSlipstream = percentage;
 	}
@@ -482,7 +482,7 @@ public:
 
 	Cylinder (PMODEL pmodel, FP length, FP diameterx, FP diametery)
 	{
-		pModel    = pmodel;	
+		pModel    = pmodel;
 		Length    = length;
 		DiameterX = diameterx;
 		DiameterY = diametery;
@@ -574,7 +574,7 @@ public:
 
 	void SetEngine (PENGINE pengine) { pEngine = pengine; };
 	void Process ();
-	
+
 };
 typedef class ThrustPoint THRUSTPOINT, *PTHRUSTPOINT;
 

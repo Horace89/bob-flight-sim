@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 //Filename       mathasm.h
-//System         
+//System
 //Author         Jim Taylor
 //Date           Fri 12 Jul 1996
-//Description 
+//Description
 //
 //Math based assembler inline code.	  //JIM 20/05/99				  //JIM 20/05/99
 //
@@ -12,7 +12,7 @@
 //	param2:		EDX
 //	param3..	on stack
 //	return val	EAX
-//	To get the optimiser to bother generating code, we must write the 
+//	To get the optimiser to bother generating code, we must write the
 //  following dummy statements which the optimiser will remove (yippee!):
 //		mov	ecx,param1
 //		mov	edx,param2
@@ -20,9 +20,9 @@
 //	At present I don't know wether the optimiser assumes you may damage ecx and edx
 //	The routines I wrote today never damage ecx or edx
 //
-//	Occasionally, the compiler/optimiser can do better than we can 
+//	Occasionally, the compiler/optimiser can do better than we can
 //	and using __stdcall will allow the compiler to present the values to
-//	our assembly code more efficiently, but often we need to do defensive 
+//	our assembly code more efficiently, but often we need to do defensive
 //	stacking, losing the benefit.
 //
 //------------------------------------------------------------------------------
@@ -30,6 +30,7 @@
 #define	MATHASM_Included
 
 #define	DEFAULT_MATHASM 0
+#include "cmath"
 
 #pragma warning(disable:4035)
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -37,8 +38,8 @@
 //Author		Jim Taylor
 //Date			Fri 3 Nov 1995
 //
-//Description	bit test and reset assembler macro. 
-//				Tests a whole array of memory... up to 512Mb in principal! 
+//Description	bit test and reset assembler macro.
+//				Tests a whole array of memory... up to 512Mb in principal!
 //
 //Inputs		pointer to word memory
 //				index to test
@@ -128,8 +129,8 @@ extern	ULong	BITRESETI(ULong,ULong);
 //-----------------------------------------------------------------------------
 inline ULong __fastcall BITRESETI(ULong num1,ULong num2)
 {
-	_asm 
-	{  
+	_asm
+	{
 		mov	eax,num1
 		mov	edx,num2
 		btr	eax,edx
@@ -171,11 +172,11 @@ extern	Bool	BITSET(void*,ULong);
 // Author       Paul
 // Date         31/10/97
 //
-// Description  
+// Description
 //
-// Inputs       
+// Inputs
 //
-// Returns      
+// Returns
 //
 //-----------------------------------------------------------------------------
 inline bool __fastcall BITSET(void* num1,ULong num2)
@@ -186,7 +187,7 @@ inline bool __fastcall BITSET(void* num1,ULong num2)
 		mov	edx,num2
 		bts	ds:[ecx],edx
 		setc	al
-	}
+}
 }
 #else
 extern	Bool	BITSET(void*,ULong);
@@ -209,16 +210,16 @@ extern	ULong	BITSETI(ULong,ULong);
 // Author       Paul
 // Date         31/10/97
 //
-// Description  
+// Description
 //
-// Inputs       
+// Inputs
 //
-// Returns      
+// Returns
 //
 //-----------------------------------------------------------------------------
 inline ULong __fastcall BITSETI(ULong num1, ULong num2)
 {
-	_asm 
+	_asm
 	{
 		mov	eax,num1
 		mov	edx,num2
@@ -235,7 +236,7 @@ inline ULong __fastcall BITSETI(ULong num1, ULong num2)
 //Author		Jim Taylor
 //Date			Fri 3 Nov 1995
 //
-//Description	bit test and reset assembler macro. 
+//Description	bit test and reset assembler macro.
 //				Tests a whole array of memory... up to 512Mb in principal!
 //
 //Inputs		pointer to word memory
@@ -278,7 +279,7 @@ inline bool __fastcall BITTEST(const void* num1,ULong num2)
 		mov	edx,num2
 		bt	ds:[ecx],edx
 		setc	al
-	}
+}
 }
 #else
 extern	Bool	BITTEST(const void*,ULong);
@@ -302,16 +303,16 @@ extern	Bool	BITTESTI(int,ULong);
 // Author       Paul
 // Date         31/10/97
 //
-// Description  
+// Description
 //
 // Inputs
 //
-// Returns      
+// Returns
 //
 //-----------------------------------------------------------------------------
 inline bool __fastcall BITTESTI(int num1,ULong num2)
 {
-	_asm 
+	_asm
 	{
 		mov	ecx,num1
 		mov	edx,num2
@@ -327,8 +328,8 @@ inline bool __fastcall BITTESTI(int num1,ULong num2)
 //Author		Jim Taylor
 //Date			Fri 3 Nov 1995
 //
-//Description	bit test and reset assembler macro. 
-//				Tests a whole array of memory... up to 512Mb in principal! 
+//Description	bit test and reset assembler macro.
+//				Tests a whole array of memory... up to 512Mb in principal!
 //
 //Inputs		pointer to word memory
 //				index to test
@@ -353,11 +354,11 @@ extern	Bool	BITCOMP(void*,ULong);
 // Author       Paul
 // Date         31/10/97
 //
-// Description  
+// Description
 //
-// Inputs       
+// Inputs
 //
-// Returns      
+// Returns
 //
 //-----------------------------------------------------------------------------
 inline bool __fastcall BITCOMP(void* num1,ULong num2)
@@ -392,16 +393,16 @@ extern	ULong	BITCOMPI(ULong,ULong);
 // Author       Paul
 // Date         31/10/97
 //
-// Description  
+// Description
 //
-// Inputs       
+// Inputs
 //
-// Returns      
+// Returns
 //
 //-----------------------------------------------------------------------------
 inline ULong __fastcall BITCOMPI(ULong num1,ULong num2)
 {
-	_asm 
+	_asm
 	{
 		mov	eax,num1
 		mov	edx,num2
@@ -418,7 +419,7 @@ inline ULong __fastcall BITCOMPI(ULong num1,ULong num2)
 //Date			Fri 3 Nov 1995
 //
 //Description	Return the lowest/highest set bit number
-//				If the input has no bits set then errcode is returned... 
+//				If the input has no bits set then errcode is returned...
 //				The keyboard uses 0. Other code may use -1 or 32.
 //				NOTE:	These routines test a register value - i.e. 1 location
 //
@@ -470,11 +471,11 @@ extern	ULong	BITSCANLOWEST(ULong bits,ULong errcode);
 // Author       Paul
 // Date         31/10/97
 //
-// Description  
+// Description
 //
-// Inputs       
+// Inputs
 //
-// Returns      
+// Returns
 //
 //-----------------------------------------------------------------------------
 inline ULong __fastcall BITSCANLOWEST(ULong bits,ULong errcode=0)
@@ -505,11 +506,11 @@ extern	ULong	BITSCANHIGHEST(ULong bits,ULong errcode);
 // Author       Paul
 // Date         31/10/97
 //
-// Description  
+// Description
 //
-// Inputs       
+// Inputs
 //
-// Returns      
+// Returns
 //
 //-----------------------------------------------------------------------------
 inline ULong __fastcall BITSCANHIGHEST(ULong bits,ULong errcode=0)
@@ -534,9 +535,9 @@ inline ULong __fastcall BITSCANHIGHEST(ULong bits,ULong errcode=0)
 //				Note: if the division doesn't result in 32 bits you are in trouble
 //
 //Inputs		2 multipliers and a divisor
-//				
 //
-//Returns		
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 
@@ -552,15 +553,15 @@ extern	ULong MULSHUNS (ULong,ULong,UByte);
 #ifdef __MSVC__
 
 //-----------------------------------------------------------------------------
-// Procedure    MULSHUNS 
+// Procedure    MULSHUNS
 // Author       Paul
 // Date         31/10/97
 //
-// Description  
+// Description
 //
-// Inputs       
+// Inputs
 //
-// Returns      
+// Returns
 //
 //-----------------------------------------------------------------------------
 inline ULong __fastcall MULSHUNS (ULong num1, ULong num2, UByte num3)
@@ -594,15 +595,15 @@ extern	SLong	MULSHSIN (SLong,SLong,UByte);
 #ifdef __MSVC__
 
 //-----------------------------------------------------------------------------
-// Procedure    MULSHSIN 
+// Procedure    MULSHSIN
 // Author       Paul
 // Date         31/10/97
 //
-// Description  
+// Description
 //
-// Inputs       
+// Inputs
 //
-// Returns      
+// Returns
 //
 //-----------------------------------------------------------------------------
 inline SLong __fastcall MULSHSIN (SLong num1, SLong num2, UByte num3)
@@ -618,7 +619,7 @@ inline SLong __fastcall MULSHSIN (SLong num1, SLong num2, UByte num3)
 		shrd	eax,edx,cl
 		pop		edx
 		pop		ecx
-    }
+}
 }
 #else
 extern	SLong	MULSHSIN (SLong,SLong,UByte);
@@ -646,14 +647,14 @@ extern	ULong SHDIVUNS (ULong,UByte,ULong);
 // Author       Paul
 // Date         31/10/97
 //
-// Description  
+// Description
 //	No point optimising to __fastcall as parameter ordering is bad!
 //	p1 is in ecx - want in eax and edx
 //	p2 is in edx - want in ecx
 //
-// Inputs       
+// Inputs
 //
-// Returns      
+// Returns
 //
 //-----------------------------------------------------------------------------
 inline ULong SHDIVUNS (ULong num1, UByte num2, ULong num3)
@@ -695,15 +696,15 @@ extern	ULong SHDIVSIN (SLong,UByte,ULong);
 #ifdef __MSVC__
 
 //-----------------------------------------------------------------------------
-// Procedure    SHDIVSIN 
+// Procedure    SHDIVSIN
 // Author       Paul
 // Date         31/10/97
 //
-// Description  
+// Description
 //
-// Inputs       
+// Inputs
 //
-// Returns      
+// Returns
 //
 //-----------------------------------------------------------------------------
 inline ULong SHDIVSIN (SLong num1,UByte num2,ULong num3)
@@ -722,7 +723,7 @@ inline ULong SHDIVSIN (SLong num1,UByte num2,ULong num3)
 		idiv	num3
 		pop		edx
 		pop		ecx
-    }
+}
 }
 #else
 extern	ULong SHDIVSIN (SLong,UByte,ULong);
@@ -741,15 +742,15 @@ extern	ULong	MULDIVUNS (ULong,ULong,ULong);
 #ifdef __MSVC__
 
 //-----------------------------------------------------------------------------
-// Procedure    MULDIVUNS 
+// Procedure    MULDIVUNS
 // Author       Paul
 // Date         31/10/97
 //
-// Description  
+// Description
 //
-// Inputs       
+// Inputs
 //
-// Returns      
+// Returns
 //
 //-----------------------------------------------------------------------------
 inline ULong MULDIVUNS (ULong num1, ULong num2, ULong num3)
@@ -783,15 +784,15 @@ extern	SLong	MULDIVSIN (SLong,SLong,SLong);
 #ifdef __MSVC__
 
 //-----------------------------------------------------------------------------
-// Procedure    MULDIVSIN 
+// Procedure    MULDIVSIN
 // Author       Paul
 // Date         31/10/97
 //
-// Description  
+// Description
 //
-// Inputs       
+// Inputs
 //
-// Returns      
+// Returns
 //
 //-----------------------------------------------------------------------------
 inline SLong MULDIVSIN (SLong num1,SLong num2,SLong num3)
@@ -808,7 +809,7 @@ inline SLong MULDIVSIN (SLong num1,SLong num2,SLong num3)
 		idiv	ecx
 		pop		ecx
 		pop		edx
-    }
+}
 }
 #endif
 #endif
@@ -831,9 +832,9 @@ extern	SWord	mathlib_w_getsign(SWord);
 //
 // Description  optimiser puts expr straight in ax!
 //
-// Inputs       
+// Inputs
 //
-// Returns      
+// Returns
 //
 //-----------------------------------------------------------------------------
 inline SWord mathlib_w_getsign(SWord num)
@@ -866,9 +867,9 @@ extern	SWord	mathlib_w_applysign(SWord,SWord);
 //
 // Description  return value in ax...
 //
-// Inputs       
+// Inputs
 //
-// Returns      
+// Returns
 //
 //-----------------------------------------------------------------------------
 inline SWord _fastcall mathlib_w_applysign(SWord num1,SWord num2)
@@ -938,11 +939,11 @@ extern	SLong	mathlib_l_applysign(SLong,SLong);
 // Author       Paul
 // Date         31/10/97
 //
-// Description  
+// Description
 //
-// Inputs       
+// Inputs
 //
-// Returns      
+// Returns
 //
 //-----------------------------------------------------------------------------
 inline SLong __fastcall mathlib_l_applysign(SLong num1,SLong num2)

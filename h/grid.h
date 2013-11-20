@@ -15,17 +15,18 @@ public:
 
 	enum { WORLDSPACEMOD = 17 };
 	enum { TYPE_BIT, TYPE_BYTE, TYPE_WORD, TYPE_LONG };
-#undef new
+//#undef new
 	inline void* operator new( size_t s, void* inplacelocation );
-	inline void* operator new []( size_t s ) { return(::operator new(s)); } // equivalent to the normal one
+/*	inline void* operator new []( size_t s ) { return(::operator new(s)); } // equivalent to the normal one
 	inline void* operator new( size_t s ) { return(::operator new(s)); } // equivalent to the normal one
-
+*/
 	inline void operator delete( void* ,void* inplacelocation ) {}
-	inline void operator delete( void* rv ) {::operator delete(rv); } // equivalent to the normal one
+/*	inline void operator delete( void* rv ) {::operator delete(rv); } // equivalent to the normal one
 	inline void operator delete []( void* rv ) {::operator delete(rv); } // equivalent to the normal one
-#ifdef	DEBUG_NEW
+*/
+/*#ifdef	DEBUG_NEW
 	#define	new DEBUG_NEW
-#endif
+#endif*/
 	inline long getMod( const int &x, const int &y ) { return get( x+64, y+64 ); }
 	inline long getWorld( ULong x, ULong y ) { return get( (x>>WORLDSPACEMOD)+64, (y>>WORLDSPACEMOD)+64 ); }
 	virtual long get( int x, int y ) = 0;		// pure virtual

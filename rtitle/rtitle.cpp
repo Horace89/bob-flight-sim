@@ -77,7 +77,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 ////////////////////////////////////////////////////////////////////////		
 // RTitle.cpp : Implementation of CRTitleApp and DLL registration.
 
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "RTitle.h"
 
 #ifdef _DEBUG

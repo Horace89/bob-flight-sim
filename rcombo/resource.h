@@ -8,7 +8,7 @@
 #define IDB_RCOMBOBUTTON                182
 #define IDS_RCOMBO_PPG_CAPTION          200
 #define IDD_PROPPAGE_RCOMBO             200
-#define IDC_RLISTBOXCTRL1               201
+//#define IDC_RLISTBOXCTRL1               201
 #define IDC_FONT_NUMBER                 202
 #define IDC_LISTBOX_LENGTH              203
 #define IDI_RCOMBOBUTTON                204

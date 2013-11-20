@@ -58,8 +58,8 @@ RC_SRCS               = $(lib3d_dll_RC_SRCS)
 
 ### Tools
 
-CC = winegcc
-CXX = wineg++
+CC = c:\\clang\\bin\\clang.exe
+CXX = c:\\clang\\bin\\clang++.exe
 RC = wrc
 
 

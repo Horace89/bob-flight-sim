@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 //Filename       areatype.h
-//System         
+//System
 //Author         Paul
 //Date           Thu 13 Aug 1998
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	AREATYPE_Included
 #define	AREATYPE_Included
@@ -16,16 +16,16 @@
 enum AreaType
 {
 	AT_darkGrass=0, AT_midGrass,	AT_lightGrass,	AT_garden,
-	AT_golfCourse,	AT_field1,		AT_field2,		AT_field3,		
-	AT_field4,		AT_field5,		AT_spread1,		AT_spread2,		
-	AT_spread3,		AT_spread4,		AT_spread5,		AT_woods,		
-	AT_swamp,		AT_rough,		AT_roughGrass,	AT_patchyGrass,	
-	AT_sea,			AT_stream,		AT_village,		AT_denseTown,	
-	AT_sparseTown,	AT_denseCity,	AT_sparseCity,	AT_cityBase,	
+	AT_golfCourse,	AT_field1,		AT_field2,		AT_field3,
+	AT_field4,		AT_field5,		AT_spread1,		AT_spread2,
+	AT_spread3,		AT_spread4,		AT_spread5,		AT_woods,
+	AT_swamp,		AT_rough,		AT_roughGrass,	AT_patchyGrass,
+	AT_sea,			AT_stream,		AT_village,		AT_denseTown,
+	AT_sparseTown,	AT_denseCity,	AT_sparseCity,	AT_cityBase,
 	AT_sand,		AT_whiteChalk,	AT_airField,	AT_urbanBuildup,
 
 	AT_MASK=0x1F,
-	AT_ROT0=0x1F,	AT_ROT1=0x3F,	AT_ROT2=	0x5F,	AT_ROT3=0x7F, 
+	AT_ROT0=0x1F,	AT_ROT1=0x3F,	AT_ROT2=	0x5F,	AT_ROT3=0x7F,
 	// OR texture with AT_MASK and then compare to find which rotation of textute.
 	RT_Lowest=128,
 	RT_ARoad=RT_Lowest,
@@ -47,7 +47,7 @@ enum AreaType
 	RT_HedgerowThick=150,
 	RT_HedgerowThin,
 
-	RT_magic=1,													
+	RT_magic=1,
 	HEDGE_HEIGHT=1500, //15m
 //DeadCode JON 4Oct00 	CLIFF_HEIGHT=10000, //100m
 	AT_NULL=255, // a null value used for flagging...
@@ -55,7 +55,7 @@ enum AreaType
 	FULLHTOFFSET=32, // offset for the full heights in RaiseLookUp
 	PT_NULL = 255, // null point value
 
-	// route area's - note all sub RT_LOWEST to get the type so the rot masks can be used 
+	// route area's - note all sub RT_LOWEST to get the type so the rot masks can be used
 	RA_AROAD = 128 - RT_Lowest,
 	RA_BROAD = 129 - RT_Lowest,
 	RA_CROSSING1 = 132 - RT_Lowest,
@@ -167,7 +167,7 @@ inline RaiseFlag PreCalcRaise( const long viewer_y, SLong &hedgeHeight )//, SLon
 //DeadCode JON 4Oct00 				cliffHeight = CLIFF_HEIGHT;
 				for ( int i=0; i<FULLHTOFFSET; i++ )
 					memcpy( &RaiseLookUp[i].rot0Alt,&RaiseLookUp[i+FULLHTOFFSET].rot0Alt,sizeof( SLong )*4 );
-//DeadCode JON 20Sep00 					RaiseLookUp[i]=RaiseLookUp[i+FULLHTOFFSET];	
+//DeadCode JON 20Sep00 					RaiseLookUp[i]=RaiseLookUp[i+FULLHTOFFSET];
 			}
 			break;
 //DeadCode JON 4Oct00 			case SCALEDRAISE:
@@ -184,8 +184,8 @@ inline RaiseFlag PreCalcRaise( const long viewer_y, SLong &hedgeHeight )//, SLon
 //DeadCode JON 4Oct00 					RaiseLookUp[i].rot2Alt-=SLong(double(RaiseLookUp[i].rot2Alt)*raiseScale);
 //DeadCode JON 4Oct00 					RaiseLookUp[i].rot3Alt-=SLong(double(RaiseLookUp[i].rot3Alt)*raiseScale);
 //DeadCode JON 4Oct00 					hedgeHeight=HEDGE_HEIGHT-SLong(double(HEDGE_HEIGHT)*raiseScale);
-//DeadCode JON 4Oct00 
-//DeadCode JON 4Oct00 					
+//DeadCode JON 4Oct00
+//DeadCode JON 4Oct00
 //DeadCode JON 4Oct00 //DeadCode JON 4Oct00 					RaiseLookUp[i].rot0Alt-=RaiseLookUp[i].rot0Alt*(viewer_y-FT_5000)/(FT_10000-FT_5000);
 //DeadCode JON 4Oct00 //DeadCode JON 4Oct00 					RaiseLookUp[i].rot1Alt-=RaiseLookUp[i].rot1Alt*(viewer_y-FT_5000)/(FT_10000-FT_5000);
 //DeadCode JON 4Oct00 //DeadCode JON 4Oct00 					RaiseLookUp[i].rot2Alt-=RaiseLookUp[i].rot2Alt*(viewer_y-FT_5000)/(FT_10000-FT_5000);
@@ -208,7 +208,7 @@ inline RaiseFlag PreCalcRaise( const long viewer_y, SLong &hedgeHeight )//, SLon
 			}
 			break;
 			default:
-			_assume(0); // assume we can never get here
+			assert(false); // assume we can never get here
 			break;
 		}
 	}
@@ -221,7 +221,7 @@ inline long GetUnscaledRaiseHt( UByte at )
 	switch (at|AT_MASK)
 	{
 	case AT_ROT0:
-		retVal = RaiseLookUp[(at&AT_MASK)+FULLHTOFFSET].rot0Alt; 
+		retVal = RaiseLookUp[(at&AT_MASK)+FULLHTOFFSET].rot0Alt;
 		break;
 	case AT_ROT1:
 		retVal = RaiseLookUp[(at&AT_MASK)+FULLHTOFFSET].rot1Alt;
@@ -244,7 +244,7 @@ inline int GetRaisePtOffset( UByte at )
 	int ptOffset;
 	if ( at == AT_NULL )
 		ptOffset = 0;
-	else 
+	else
 	{
 		switch (at|AT_MASK)
 		{
@@ -276,12 +276,12 @@ inline long GetRaiseInfo( UByte at, int& ptOffset )
 	long retVal;
 	if ( at == AT_NULL )
 		retVal = 0;
-	else 
+	else
 	{
 		switch (at|AT_MASK)
 		{
 		case AT_ROT0:
-			retVal = RaiseLookUp[at&AT_MASK].rot0Alt; 
+			retVal = RaiseLookUp[at&AT_MASK].rot0Alt;
 			ptOffset = RaiseLookUp[at&AT_MASK].rot0index;
 			break;
 		case AT_ROT1:
@@ -311,12 +311,12 @@ inline long GetRaiseHeight( UByte at )
 	long retVal;
 	if ( at == AT_NULL )
 		retVal = 0;
-	else 
+	else
 	{
 		switch (at|AT_MASK)
 		{
 		case AT_ROT0:
-			retVal = RaiseLookUp[at&AT_MASK].rot0Alt; 
+			retVal = RaiseLookUp[at&AT_MASK].rot0Alt;
 			break;
 		case AT_ROT1:
 			retVal = RaiseLookUp[at&AT_MASK].rot1Alt;
@@ -363,10 +363,10 @@ struct raiseSide
 
 //static raiseSide* SideLookUp = NULL;
 
-inline bool IsCliffBottom(UByte at) 
+inline bool IsCliffBottom(UByte at)
 {
-//DeadCode JON 4Oct00 	at&=AT_MASK; 
-//DeadCode JON 4Oct00 	return (/*at==AT_coastRock||*/at==AT_sea||at==AT_sand||at==AT_whiteChalk); 
+//DeadCode JON 4Oct00 	at&=AT_MASK;
+//DeadCode JON 4Oct00 	return (/*at==AT_coastRock||*/at==AT_sea||at==AT_sand||at==AT_whiteChalk);
 	ULong at_shift = 1UL<<(at&AT_MASK);
 	const ULong at_shift_mask =
 				(1UL<<(AT_sea)) |
@@ -375,16 +375,16 @@ inline bool IsCliffBottom(UByte at)
 	return ( (at_shift&at_shift_mask) != 0 );
 
 }
-inline bool IsRaised(UByte at) 
+inline bool IsRaised(UByte at)
 {
-//DeadCode JON 4Oct00 	at&=AT_MASK; 
+//DeadCode JON 4Oct00 	at&=AT_MASK;
 //DeadCode JON 4Oct00 	return (at==AT_woods||at==AT_denseTown/*||at==AT_sparseTown*/||at==AT_denseCity||at==AT_sparseCity);
 	ULong at_shift = 1UL<<(at&AT_MASK);
 	const ULong at_shift_mask =
 				(1UL<<(AT_denseTown)) |
 				(1UL<<(AT_denseCity)) |
 				(1UL<<(AT_woods))     |
-				(1UL<<(AT_sparseCity));				
+				(1UL<<(AT_sparseCity));
 return ( (at_shift&at_shift_mask) != 0 );
 
 }
@@ -403,7 +403,7 @@ inline bool IsHirez(UByte at)
 	return ( (at_shift&at_shift_mask) != 0 );
 
 }
-inline bool IsWater(UByte at) 
+inline bool IsWater(UByte at)
 {
 //DeadCode JON 4Oct00 	return (at==AT_sea||at==AT_stream );
 	ULong at_shift = 1UL<<(at&AT_MASK);
@@ -415,12 +415,12 @@ inline bool IsWater(UByte at)
 }
 inline bool IsForest(UByte at) {at&=AT_MASK; return (at==AT_woods);}
 inline bool IsWooded(UByte at) {return false;}
-inline bool IsValidRoute(UByte at) 
+inline bool IsValidRoute(UByte at)
 {
 //DeadCode JON 4Oct00 	return (at==RT_ARoad		|| at==RT_BRoad			|| at==RT_MinorRoad ||
 //DeadCode JON 4Oct00 			at==RT_Footpath		|| at==RT_MajorRail		|| at==RT_MinorRail ||
-//DeadCode JON 4Oct00 			at==RT_MajorRiver	|| at==RT_MinorRiver	|| at==RT_Tributary || 
-//DeadCode JON 4Oct00 			at==RT_HedgerowThick|| at==RT_HedgerowThin	|| at==RT_Coast		|| 
+//DeadCode JON 4Oct00 			at==RT_MajorRiver	|| at==RT_MinorRiver	|| at==RT_Tributary ||
+//DeadCode JON 4Oct00 			at==RT_HedgerowThick|| at==RT_HedgerowThin	|| at==RT_Coast		||
 //DeadCode JON 4Oct00 			at==RT_AirField		|| at==RT_Cliff			|| at==RT_CliffRot);
 // optimised to:
 //	at&=AT_MASK;

@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 //Filename       groupitt.h
-//System         
+//System
 //Author         Robert Slater
 //Date           Mon 15 Feb 1999
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	GROUPITT_Included
 #define	GROUPITT_Included
@@ -20,7 +20,7 @@
 //	This should set itself up with info for the first element
 //	immediately available.
 //
-//	
+//
 //
 //
 
@@ -48,7 +48,7 @@ struct GroupItterator
 		InitGroupFields();
 	}
 	CON	GroupItterator(ShapeNum	s,DeadStream::DeadBlockItterator* d)
-	{	
+	{
 		group=shape=s;											//RJS 21Apr99
 		if (d)
 		{
@@ -76,7 +76,7 @@ struct GroupItterator
 	bool		hitlimit;										//RJS 15Feb99
 
 //THE FOLLOWING FUNCTIONS ALLOW THE ITTERATOR TO ITTERATE
-//DeadCode RJS 15Feb99 	bool	operator++(int);//		{status++;return (status<10);}				
+//DeadCode RJS 15Feb99 	bool	operator++(int);//		{status++;return (status<10);}
 	bool	operator++(int)
 	{
 		bool rv;
@@ -92,8 +92,8 @@ struct GroupItterator
 				NextDeadIttElt(deadstream,deadittfirstbyte,deadittpostlaunchercount,deadittpostlauncherdata);
 		}
 		return(rv);	// no wrap.
-	}				
-	//move on to next element? 
+	}
+	//move on to next element?
 	//if not NULL Push animdata,grpindexer, and deadstream forward
 	operator bool()	{return (!hitlimit);}	//reached end of group?
 
@@ -112,7 +112,7 @@ struct GroupItterator
 	int			DamageWeight();
 	bool		IsStoresToken();
 	DOGROUP_PTR	GetGroupElt()	{return (DOGROUP_PTR)grpindexer;}
-private:					
+private:
 	//call these routines to move and read deaditterator
 static 	DeadStream::DeadBlockItterator*	DeadIttCopy(DeadStream::DeadBlockItterator*);
 static 	void	DeadIttDelete(DeadStream::DeadBlockItterator*);

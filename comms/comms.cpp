@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -72,8 +72,9 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include	<stdio.h>
 #include	<stdlib.h>
 
-#include 	<windows.h>
-#include	"dplay.h"
+//#include 	<windows.h>
+//#include	"dplay.h"
+#include <mmsystem.h>
 #include	"dplobby.h"
 
 #include	"myerror.h"
@@ -126,16 +127,20 @@ DPlay _DPlay;
 
 //MOVED TO GENERAL\STATIC.CPP
 #ifndef	BOB_DEMO_VER
-DEFINE_GUID(BOB_GUID); 
-//DEFINE_GUID(MIGALLEY_GUID); 
+//x0r DEFINE_GUID(BOB_GUID);
+DEFINE_GUID(BOB_GUID,
+0xc3a51900, 0xef77, 0x11d3, 0x81, 0x63, 0x00, 0xa0, 0xd2, 0x1b, 0x17, 0x13);
+//DEFINE_GUID(MIGALLEY_GUID);
 //0x38305683, 0x1eb, 0x11d2, 0xb1, 0xa4, 0x0, 0x40, 0x5, 0x24, 0x7c, 0x3d);
 #else
-DEFINE_GUID(BOB_GUID); 
-//DEFINE_GUID(MIGALLEY_GUID); 
+//DEFINE_GUID(BOB_GUID);
+DEFINE_GUID(BOB_GUID,
+0xc3a51900, 0xef77, 0x11d3, 0x81, 0x63, 0x00, 0xa0, 0xd2, 0x1b, 0x17, 0x13);
+//DEFINE_GUID(MIGALLEY_GUID);
 //0x38305683, 0x1eb, 0x11d2, 0xb1, 0xa4, 0x0, 0x40, 0x5, 0x24, 0x7c, 0x4d);
-#endif 
+#endif
 
-// Callback Functions	
+// Callback Functions
 
 BOOL WINAPI	EnumConnectionsCallback(LPCGUID lpguidSP, LPVOID lpConnection, DWORD dwConnectionSize,
 									LPCDPNAME lpName, DWORD dwFlags, LPVOID pContext);
@@ -158,7 +163,7 @@ void DPlay::ExitDirectPlay ()
 	singlesession=false;
 	SideSelected=false;
 	Host=FALSE;
-	csync=false;	
+	csync=false;
 
 	delete [] CommsPacketPtr;
 	CommsPacketPtr=NULL;
@@ -264,7 +269,7 @@ Bool DPlay::UISelectServiceProvider(char* servicename)
 		temp=temp->Next;
 	}
 
-	if (res!=DP_OK)										
+	if (res!=DP_OK)
 		return FALSE;
 
 	return TRUE;
@@ -277,7 +282,7 @@ Bool DPlay::UISelectServiceProvider(char* servicename)
 //------------------------------------------------------------------------------
 bool DPlay::UIGetSessionListUpdate ()
 {
-	HRESULT res=DP_OK;						
+	HRESULT res=DP_OK;
 	DPSESSIONDESC2 DPSessionDesc2;
 
 	DeleteSessionList();
@@ -285,7 +290,7 @@ bool DPlay::UIGetSessionListUpdate ()
 	ZeroMemory( &DPSessionDesc2,sizeof(DPSESSIONDESC2));
 
 	DPSessionDesc2.dwSize = sizeof (DPSESSIONDESC2);
- 	DPSessionDesc2.guidApplication=*lpAppGuid;					
+ 	DPSessionDesc2.guidApplication=*lpAppGuid;
 
 	if (lpDP4)
 		res = lpDP4->EnumSessions (
@@ -296,7 +301,7 @@ bool DPlay::UIGetSessionListUpdate ()
 			(DWORD)(DPENUMSESSIONS_AVAILABLE|DPENUMSESSIONS_ASYNC)
 			);
 
-	if (res!=DP_OK) 
+	if (res!=DP_OK)
 		return false;
 
 	return true;
@@ -343,19 +348,19 @@ Bool DPlay::UINewPlayer (char* Name, char* SessionName)
 
 		DPSessionDesc2.dwSize = sizeof (DPSESSIONDESC2);
 		DPSessionDesc2.dwMaxPlayers = MAXPLAYERS+1;	 // allow for aggregator
-		DPSessionDesc2.guidApplication=*lpAppGuid;				
+		DPSessionDesc2.guidApplication=*lpAppGuid;
 		DPSessionDesc2.dwCurrentPlayers=0;
 
 		DPSessionDesc2.lpszSessionNameA=new char[PLAYERNAMELEN];
 		strcpy( DPSessionDesc2.lpszSessionNameA, _DPlay.SessionName);
-		
-		
+
+
 // create session
 
 		DPSessionDesc2.dwFlags|=DPSESSION_DIRECTPLAYPROTOCOL	// need asyncronous send
 								|DPSESSION_KEEPALIVE			// keep track of player falling out
 								| DPSESSION_OPTIMIZELATENCY; // no nagling
-								
+
 		res=lpDP4->Open(&DPSessionDesc2,DPOPEN_CREATE);
 
 		delete [] DPSessionDesc2.lpszSessionNameA;
@@ -373,7 +378,7 @@ Bool DPlay::UINewPlayer (char* Name, char* SessionName)
 
 		if (!strlen(SessionName))
 			return FALSE;
-	
+
 // Connect to an existing Session
 
 		ZeroMemory( &DPSessionDesc2, sizeof(DPSESSIONDESC2));
@@ -383,7 +388,7 @@ Bool DPlay::UINewPlayer (char* Name, char* SessionName)
 		DPSessionDesc2.guidApplication = *lpAppGuid;
 		DPSessionDesc2.lpszSessionNameA=new char[PLAYERNAMELEN];
 		strcpy( DPSessionDesc2.lpszSessionNameA, _DPlay.SessionName);
-		
+
 // get session data
 
 		res = lpDP4->EnumSessions (
@@ -442,7 +447,7 @@ void DPlay::UIUpdateMainSheet ()
 	if (LeaveCommsFlag)
 		return;
 
-// make sure status is not 3D!									
+// make sure status is not 3D!
 
 	Implemented=FALSE;
 
@@ -469,12 +474,12 @@ void DPlay::UIUpdateMainSheet ()
 			retval=ProcessSystemMessage(RecPacket);
 		else
 		{
-// if aggregated packet ignore 
+// if aggregated packet ignore
 
 			if (from!=aggID)
 			{
 				retval=ProcessPlayerMessage(RecPacket,RecPacketLen,from);
-				if (!retval) 
+				if (!retval)
 					break;
 			}
 		}
@@ -483,7 +488,7 @@ void DPlay::UIUpdateMainSheet ()
 	if (Host)
 		EmptyAggregatorQueue();
 
-	if (MainSheetCount) 
+	if (MainSheetCount)
 	{
 // First time in
 
@@ -545,7 +550,7 @@ Bool DPlay::UISendPrefs (ULong to)
 		Save_Data.gamedifficulty|=GD_VULNERABLE;
 		Save_Data.gamedifficulty|=GD_GROUNDCOLLISIONS;
 
-		Save_Data.gamedifficulty|=GD_COLLISIONS;			
+		Save_Data.gamedifficulty|=GD_COLLISIONS;
 
 // dont want any engine management in comms, ever.
 
@@ -618,35 +623,35 @@ Bool DPlay::UINetworkSelectFly ()
 #endif
 
 
-	CountPlayers(false);									
-															
-	if (Host)												
-	{														
-		if (GameType>TEAMPLAY)								
-		{													
-			if (!AllPlayersHaveSlots())						
-			{												
-				CommsMessage(IDS_NOTSLOTS);	
+	CountPlayers(false);
+
+	if (Host)
+	{
+		if (GameType>TEAMPLAY)
+		{
+			if (!AllPlayersHaveSlots())
+			{
+				CommsMessage(IDS_NOTSLOTS);
 #ifdef CTRACE
 		fclose(fp);
-#endif				
-				return FALSE;								
-			}												
-		}													
-		else												
-		{													
-			for (n=0;n<MAXPLAYERS;n++)						
-			{												
+#endif
+				return FALSE;
+			}
+		}
+		else
+		{
+			for (n=0;n<MAXPLAYERS;n++)
+			{
 				if (H2H_Player[n].status!=CPS_NONE && H2H_Player[n].status!=CPS_READYROOM)
 				{
 #ifdef CTRACE
 		fclose(fp);
-#endif		
-					return FALSE;	
-				}							
-			}													
-		}														
-	}															
+#endif
+					return FALSE;
+				}
+			}
+		}
+	}
 
 	if (!PlayerCreated)
 	{
@@ -689,9 +694,9 @@ Bool DPlay::UINetworkSelectFly ()
 				{
 #ifdef CTRACE
 		fclose(fp);
-#endif		
-					return FALSE;	
-				}	
+#endif
+					return FALSE;
+				}
 	}
 #ifdef CTRACE
 		fprintf(fp,"begin info collection\n");
@@ -711,9 +716,9 @@ Bool DPlay::UINetworkSelectFly ()
 		H2H_Player[n].kills=0;
 		H2H_Player[n].deaths=0;
 		H2H_Player[n].assists=0;
-		MyTeamKills=0;		
+		MyTeamKills=0;
 		MyTeamDeaths=0;
-		EnemyTeamKills=0;		
+		EnemyTeamKills=0;
 		EnemyTeamDeaths=0;
 	}
 
@@ -741,8 +746,8 @@ Bool DPlay::UINetworkSelectFly ()
 			{
 #ifdef CTRACE
 		fclose(fp);
-#endif		
-					return FALSE;	
+#endif
+					return FALSE;
 			}
 		}
 		else
@@ -751,9 +756,9 @@ Bool DPlay::UINetworkSelectFly ()
 				{
 #ifdef CTRACE
 		fclose(fp);
-#endif		
-					return FALSE;	
-				}	
+#endif
+					return FALSE;
+				}
 		}
 	}
 
@@ -767,7 +772,7 @@ Bool DPlay::UINetworkSelectFly ()
 	{
 		FillCSQuickStruc();
 
-// position 
+// position
 
 		for (n=0;n<=PT_GER_NONFLY;n++)
 		{
@@ -823,10 +828,10 @@ Bool	DPlay::CreateDPlayInterface()
 {
 	HRESULT res;
 
-	res = CoCreateInstance( CLSID_DirectPlay, NULL, CLSCTX_INPROC_SERVER, 
+	res = CoCreateInstance( CLSID_DirectPlay, NULL, CLSCTX_INPROC_SERVER,
 		IID_IDirectPlay4A, (LPVOID*)&lpDP4);
-	
-	lpAppGuid=(LPGUID)&BOB_GUID;		
+
+	lpAppGuid=(LPGUID)&BOB_GUID;
 
 	if (res!=DP_OK)
 		return FALSE;
@@ -989,7 +994,7 @@ Bool	DPlay::ProcessSystemMessage(char* message)
 {
 	LPDPMSG_GENERIC Mess,Mess2;
 	ULong n;
-	
+
 	Mess=(LPDPMSG_GENERIC)message;
 
 	switch (Mess->dwType)
@@ -1057,9 +1062,9 @@ Bool	DPlay::ProcessSystemMessage(char* message)
 					if (H2H_Player[slot].status==CPS_3D)
 						wasin3d=true;
 				}
-				
-				ProcessPlayerGone(Mess8->dpId,TRUE); 
-				ProcessPlayerGone(Mess8->dpId,FALSE); 
+
+				ProcessPlayerGone(Mess8->dpId,TRUE);
+				ProcessPlayerGone(Mess8->dpId,FALSE);
 
 				if (H2H_Player[mySlot].status==CPS_READYROOM)
 					DisplayInfo=TRUE;
@@ -1176,7 +1181,7 @@ Bool	DPlay::ProcessPlayerMessage(char* message,ULong size,ULong from)
 	case PID_CSSTRUCNEW:
 		Process_PM_CSStruc(message,false);
 		break;
-			
+
 	case PID_UNIQUEID:
 		Process_PM_UniqueID(message,from);
 		break;
@@ -1360,7 +1365,7 @@ Bool	DPlay::UISendFlyNow()
 	UIPlayerData.PlayerID = myDPlayID;
 	UIPlayerData.Slot = mySlot;
 	UIPlayerData.PacketID = PID_FLYNOW;
-	
+
 	if (!SendMessageToGroup((char*)&UIPlayerData,sizeof(UIPLAYERDATA)))
 	{
 		return FALSE;
@@ -1380,7 +1385,7 @@ void	DPlay::InitMainSheetInfo()
 	{
 // Signal this player is not in 3D
 // on entry to game this is not needed because the data is already sent in the
-// PID_IMHERE packet, however we still need this for when players come from 3d 
+// PID_IMHERE packet, however we still need this for when players come from 3d
 // to ready room
 
 		(H2H_Player + mySlot)->status = CPS_READYROOM; // ready
@@ -1484,11 +1489,11 @@ Bool	DPlay::LaunchedByLobbyCheck()
 
 	_Replay.Record=FALSE;
 	_Replay.Playback=FALSE;
-	_Replay.BackupPrefs(true);										
+	_Replay.BackupPrefs(true);
 	BackupHostPrefs();
  	Save_Data.gamedifficulty|=GD_VULNERABLE;
- 	Save_Data.gamedifficulty|=GD_GROUNDCOLLISIONS;			
- 	Save_Data.gamedifficulty|=GD_COLLISIONS;			
+ 	Save_Data.gamedifficulty|=GD_GROUNDCOLLISIONS;
+ 	Save_Data.gamedifficulty|=GD_COLLISIONS;
 	Save_Data.flightdifficulty%=FD_ENGINEMANAGMENT;
 
 	return TRUE;
@@ -1539,7 +1544,7 @@ Bool DPlay::FinishLobbySetup()
 {
 	LPDPLCONNECTION lpDPC=(LPDPLCONNECTION)templpDPC;
 
-	lpAppGuid=(LPGUID)&BOB_GUID;						
+	lpAppGuid=(LPGUID)&BOB_GUID;
 
 	if (lpDPC->dwFlags&DPLCONNECTION_CREATESESSION)
 	{
@@ -1614,7 +1619,7 @@ Bool	DPlay::SetUpPlayerInfo(char* name)
 	if (lpDP4->GetCaps(&dpCaps,0)!=DP_OK)
 		return FALSE;
 
-	if (Host) 
+	if (Host)
 	{
 		mySlot=0;
 	}
@@ -1624,7 +1629,7 @@ Bool	DPlay::SetUpPlayerInfo(char* name)
 
 	InitH2HPArray();
 
-// fill in name ,initial null dialogue, 0 kills and deaths 
+// fill in name ,initial null dialogue, 0 kills and deaths
 
 	(H2H_Player+mySlot)->dpid=myDPlayID;
 
@@ -1782,7 +1787,7 @@ void	DPlay::RemoveNameFromVisitorsBook(char* name)
 						a->next=NULL;
 						delete [] a->vis_name;
 						delete a;
-						
+
 						break;
 					}
 					a=a->next;
@@ -1953,7 +1958,7 @@ Bool DPlay::SetUpPlayer()
 {
 	if(Host)
 	{
-// if I am the host then set up aggregator ID 
+// if I am the host then set up aggregator ID
 // create group and get ID
 
 // aggregator gets its own thread - provide handle
@@ -1986,7 +1991,7 @@ ULong DPlay::AttemptToJoin()
 	ULong	Buflen;
 	LPGAMESTUFF gs;
 	Bool	result=FALSE;
-	
+
 	pack.PacketID=PID_PASSWORD;
 	pack.PlayerID=myDPlayID;
 	strncpy(&pack.pword[0],&Password[0],10);
@@ -2054,10 +2059,10 @@ Bool	DPlay::ReceiveNextMessageToMe(char*&data, ULong& len, ULong& from,ULong fla
 	HRESULT res;
 	ULong To=myDPlayID;
 
-	if (!PlayerCreated) 
+	if (!PlayerCreated)
 		return FALSE;
 
-// receive message to mydplayid in case I am aggregator. Dont want to receive packets 
+// receive message to mydplayid in case I am aggregator. Dont want to receive packets
 // sent to aggregator here!!!!
 
 	while (true)
@@ -2143,7 +2148,7 @@ bool	DPlay::SendMyPlayerInfo(bool request)
 	UIPLAYERDATA pack;
 
 	pack.PacketID=PID_PLAYERUPDATE;
-	pack.Slot=mySlot; 
+	pack.Slot=mySlot;
 
 	CopyMemory((char*)&pack.playerinfo,(char*)&H2H_Player[mySlot],sizeof(H2HPlayerInfo));
 
@@ -2345,7 +2350,7 @@ Bool	DPlay::GetCS()
 
 		if (time.TimedOut(now))
 			return FALSE;
-		
+
 		if (ReceiveNextMessageToMe(Buffer,BufferLen,From,0))
 		{
 			if (From==DPID_SYSMSG)
@@ -2498,7 +2503,7 @@ void	DPlay::SelectPlayerToChatTo(ULong playerslot)
 					slot=n;
 					break;
 				}
-						  	
+
 				count++;
 			}
 		}
@@ -2660,21 +2665,21 @@ Bool	DPlay::SendMissionConditions(bool request)
 		mc.Press0=MMC.Sky.Press0;
 		mc.Density0=MMC.Sky.Density0;
 		mc.wind0=MMC.Sky.wind0;
-		mc.dir0=MMC.Sky.dir0;				
-		mc.windalt=MMC.Sky.windalt;			
-		mc.diralt=MMC.Sky.diralt;				
-		mc.Wind0=MMC.Sky.Wind0;				
-		mc.WindAlt=MMC.Sky.WindAlt;			
-		mc.WindAltHeight=MMC.Sky.WindAltHeight;		
-		mc.MinDuration=MMC.Sky.MinDuration;		
-		mc.MaxDuration=MMC.Sky.MaxDuration;		
-		mc.MinMagnitude=MMC.Sky.MinMagnitude;		
-		mc.MaxMagnitude=MMC.Sky.MaxMagnitude;		
-		mc.Frequency=MMC.Sky.Frequency;		
+		mc.dir0=MMC.Sky.dir0;
+		mc.windalt=MMC.Sky.windalt;
+		mc.diralt=MMC.Sky.diralt;
+		mc.Wind0=MMC.Sky.Wind0;
+		mc.WindAlt=MMC.Sky.WindAlt;
+		mc.WindAltHeight=MMC.Sky.WindAltHeight;
+		mc.MinDuration=MMC.Sky.MinDuration;
+		mc.MaxDuration=MMC.Sky.MaxDuration;
+		mc.MinMagnitude=MMC.Sky.MinMagnitude;
+		mc.MaxMagnitude=MMC.Sky.MaxMagnitude;
+		mc.Frequency=MMC.Sky.Frequency;
 		mc.ContrailBandCentre=MMC.Sky.ContrailBandCentre;
 		mc.ContrailBandWidth=MMC.Sky.ContrailBandWidth;
-		mc.Visibility=MMC.Sky.Visibility;			
-		mc.Conditions=MMC.Sky.Conditions;			
+		mc.Visibility=MMC.Sky.Visibility;
+		mc.Conditions=MMC.Sky.Conditions;
 		mc.CloudLayer=MMC.Sky.CloudLayer;
 
 		for (i=0;i<3;i++)
@@ -2733,7 +2738,7 @@ void	DPlay::ProcessConditionsPacket(char* message)
 	MMC.Sky.diralt=mc->diralt;
 	MMC.Sky.Wind0=mc->Wind0;
 	MMC.Sky.WindAlt=mc->WindAlt;
-	MMC.Sky.WindAltHeight=mc->WindAltHeight;	
+	MMC.Sky.WindAltHeight=mc->WindAltHeight;
 	MMC.Sky.MinDuration=mc->MinDuration;
 	MMC.Sky.MaxDuration=mc->MaxDuration ;
 	MMC.Sky.MinMagnitude=mc->MinMagnitude;
@@ -2931,8 +2936,8 @@ bool	DPlay::ReceiveSaveGame(bool startup,ULong num,ULong size)
 	{
 		retval=LoadDummySavegame("dcomms.dat");
 
-		if (H2H_Player[mySlot].status==CPS_FRAG)	
-			FragChanged=true;		
+		if (H2H_Player[mySlot].status==CPS_FRAG)
+			FragChanged=true;
 	}
 
 	delete [] save;
@@ -3024,7 +3029,7 @@ Bool	DPlay::JoinComms()
 		CommsMessage(IDS_HOSTBUSY);
 	}
 
-	SessionName[0]='/0';					
+	SessionName[0]='\0';
 	strcpy(_DPlay.PlayerName,"");
 
 	_DPlay.lpDP4->DestroyPlayer(_DPlay.myDPlayID);
@@ -3213,18 +3218,18 @@ void	DPlay::InitialFlagReset()
 	AllowSuicide=TRUE;
 	GameRunning=TRUE;
 	deadplayers=0;
-	Implemented = TRUE;								
-	firsttimein = TRUE; 
-	synched=FALSE; 
-	csync=false; 
-	ResyncPhase=FALSE; 
-	Initiator=FALSE; 
-	realfirsttimein=TRUE; 
-	resyncsgot=0; 
-	SimulateExitKey=FALSE; 
-	InitSyncData(true); 
-	FrameCount = 0; 
-	ResetSync=true; 
+	Implemented = TRUE;
+	firsttimein = TRUE;
+	synched=FALSE;
+	csync=false;
+	ResyncPhase=FALSE;
+	Initiator=FALSE;
+	realfirsttimein=TRUE;
+	resyncsgot=0;
+	SimulateExitKey=FALSE;
+	InitSyncData(true);
+	FrameCount = 0;
+	ResetSync=true;
 	resetreceivesync=false;
 	resyncsgot=0;
 	PlayerSync=false;
@@ -3356,7 +3361,7 @@ bool DPlay::Process_PM_PlayerQuit(ULong from)
 		EnemyTeamKills=0;
 		EnemyTeamDeaths=0;
 
-		SimulateExitKey=TRUE; 
+		SimulateExitKey=TRUE;
 		LeaveCommsFlag=TRUE;
 
 		return false;
@@ -3452,7 +3457,7 @@ void DPlay::Process_PM_IAmIn(char* message, ULong from)
 	{
 		ULong slot;
 		LPGENERIC pack=(LPGENERIC)message;
-		
+
 		slot=DPID2Slot(from);
 		H2H_Player[slot].status=CPS_3D;
 		AddPlayerToGame(slot,pack->PlayerID,pack->Slot);
@@ -3489,7 +3494,7 @@ bool DPlay::Process_PM_NeedResync()
 	if (H2H_Player[mySlot].status==CPS_3D && !Joining)
 	{
 		if (!ResyncPhase)
-		{ 
+		{
 			BeginSyncPhase();
 			return false;
 		}
@@ -3581,7 +3586,7 @@ void DPlay::UpdateChatBox()
 Bool DPlay::LobbyConnect()
 {
 	Bool res=TRUE;;
-	
+
 	if (lpDPL->ConnectEx(0,IID_IDirectPlay4A,(void**)&_DPlay.lpDP4,NULL)!=DP_OK)
 		res=FALSE;
 
@@ -3778,7 +3783,7 @@ bool	DPlay::SendCommsMessage(char* data, ULong len, ULong to_id,bool onego)
 		while (res!=DP_OK && res!=DPERR_PENDING && !onego)
 		{
 			now=timeGetTime();
-			if (time.TimedOut(now)) 
+			if (time.TimedOut(now))
 			{
 				return false;
 			}
@@ -4048,22 +4053,22 @@ bool	DPlay::AllPlayersStillReady()
 	int n;
 
 	for (n=0;n<MAXPLAYERS;n++)
-	{						
+	{
 		if (GameType<COMMSQUICKMISSION)
 		{
 			if (H2H_Player[n].status!=CPS_NONE && H2H_Player[n].status!=CPS_READYROOM)
 			{
-				return false;								
+				return false;
 			}
 		}
 		else
 		{
 			if (H2H_Player[n].status!=CPS_NONE && H2H_Player[n].status!=CPS_FRAG)
 			{
-				return false;								
+				return false;
 			}
 		}
-	}													
+	}
 	return true;
 }
 

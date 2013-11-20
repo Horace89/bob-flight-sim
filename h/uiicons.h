@@ -1,14 +1,15 @@
 //------------------------------------------------------------------------------
 //Filename       uiicons.h
-//System         
-//Author         R. Hyde 
+//System
+//Author         R. Hyde
 //Date           Mon 1 Nov 1999
-//Description    
+//Description
 //BOOL BitBlt( int x, int y, int nWidth, int nHeight, CDC* pSrcDC, int xSrc, int ySrc, DWORD dwRop );
 //------------------------------------------------------------------------------
 #ifndef	UIICONS_Included
 #define	UIICONS_Included
 
+#include <ddraw.h>
 #define	DEFAULT_UIICONS 0
 
 enum	{BIGGEST_ICON_RADIUS=33};
@@ -25,7 +26,7 @@ enum	IconsUI
 	ICON_SELECT_SHIFT=24,
 	ICON_PAGE_BASE=0x10000,
 	ICON_PAGE_1=0x10000,
-	ICON_PAGE_1_BEFORE=ICON_PAGE_1-1,
+	ICON_PAGE_1_BEFORE= (int)ICON_PAGE_1 - 1,
 	#include "iconnum.g"
 	#include "iconnum2.g"
 	ICON_PAGE_1_LAST,
@@ -62,7 +63,7 @@ struct	IconPlace
 class	IconDescUI;
 enum	FileNum;
 class	IconDescUI
-{  
+{
 	friend class	CMIGApp;
 	enum	Alignment	{MINIMUM,CENTRE,MAXIMUM};
 	CDC*	imagemap;
@@ -89,7 +90,7 @@ public:
 //inspect functions:
 	operator IconsUI() {return selectedicon;}
 	operator IconModes()	{return selectedmode;}
-	operator bool()			{return selectedicon!=ICON_NO_ICON;}
+	operator bool()			{return (int)selectedicon!=(int)ICON_NO_ICON;}
 	CPoint WH() const;
 
 //draw functions:

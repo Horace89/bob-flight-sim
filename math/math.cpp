@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -64,19 +64,19 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //------------------------------------------------------------------------------
 //Filename       math.cpp
-//System         
-//Author         Paul.   
+//System
+//Author         Paul.
 //Date           Tue 22 Aug 1995
-//Description    
+//Description
 //------------------------------------------------------------------------------
 //The format, then, for the various sizes is as follows:
 //
-//		n	BYTE n		BYTE n-1	BYTE n-2	BYTE n-3  ... BYTE 0 
-//real*4	SXXX XXXX	XMMM MMMM	MMMM MMMM	MMMM MMMM   
-//real*8	SXXX XXXX	XXXX MMMM	MMMM MMMM	MMMM MMMM ... MMMM MMMM 
-//real*10	SXXX XXXX	XXXX XXXX	1MMM MMMM	MMMM MMMM ... MMMM MMMM 
+//		n	BYTE n		BYTE n-1	BYTE n-2	BYTE n-3  ... BYTE 0
+//real*4	SXXX XXXX	XMMM MMMM	MMMM MMMM	MMMM MMMM
+//real*8	SXXX XXXX	XXXX MMMM	MMMM MMMM	MMMM MMMM ... MMMM MMMM
+//real*10	SXXX XXXX	XXXX XXXX	1MMM MMMM	MMMM MMMM ... MMMM MMMM
 //
-								
+
 	#include	"DOSDefs.h"
 	#include	"myAngles.h"
 //DeadCode DAW 15Apr96 	#include	"screen.h"
@@ -95,7 +95,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //DeadCode PD 29Nov95 	class mathlib	_mathlib;
 	class	MathLib	Math_Lib;									//PD 29Nov95
-	
+
 #define	sin_index	0
 #define	cos_index	256
 
@@ -557,9 +557,9 @@ void MathLib::SetRndLookUp (UWord n, UWord val)					//ARM 04Sep96
 //DEADCODE DAW 08/05/00 //////////////////////////////////////////////////////////////////////
 //DEADCODE DAW 08/05/00 One for the future...
 //DEADCODE DAW 08/05/00 Need to test exact bit patterns.
-//DEADCODE DAW 08/05/00 
+//DEADCODE DAW 08/05/00
 //DEADCODE DAW 08/05/00 UWord	MathLib::SqrtLookup[65536];
-//DEADCODE DAW 08/05/00 
+//DEADCODE DAW 08/05/00
 //DEADCODE DAW 08/05/00 void	MathLib::FillFastSqrt()
 //DEADCODE DAW 08/05/00 {
 //DEADCODE DAW 08/05/00 	union
@@ -574,7 +574,7 @@ void MathLib::SetRndLookUp (UWord n, UWord val)					//ARM 04Sep96
 //DEADCODE DAW 08/05/00 		SqrtLookup[i]=(y.i>>7)&0xffff;
 //DEADCODE DAW 08/05/00 	}
 //DEADCODE DAW 08/05/00 }
-//DEADCODE DAW 08/05/00 
+//DEADCODE DAW 08/05/00
 //DEADCODE DAW 08/05/00 float	MathLib::FastSqrt(float in)
 //DEADCODE DAW 08/05/00 {
 //DEADCODE DAW 08/05/00 	union
@@ -584,20 +584,20 @@ void MathLib::SetRndLookUp (UWord n, UWord val)					//ARM 04Sep96
 //DEADCODE DAW 08/05/00 	}	x,y,z;
 //DEADCODE DAW 08/05/00 	x.f=in;
 //DEADCODE DAW 08/05/00 	y.i=(( ((x.i+(1<<23))&0x7f800000))>>1)+(126<<22)+(SqrtLookup[(x.i>>8)&0xffff]<<7);
-//DEADCODE DAW 08/05/00 
+//DEADCODE DAW 08/05/00
 //DEADCODE DAW 08/05/00 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure	sin_cos
 //------------------------------------------------------------------------------
-//Author		Paul.   
+//Author		Paul.
 //Date		Tue 22 Aug 1995
-//Modified	
+//Modified
 //
-//Description	
+//Description
 //
-//Inputs	
+//Inputs
 //
-//Returns	
+//Returns
 //
 //Externals
 //------------------------------------------------------------------------------
@@ -614,18 +614,18 @@ void MathLib::sin_cos(ANGLES ang, SWord& sin_ang, SWord& cos_ang)
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure	high_sin_cos
 //------------------------------------------------------------------------------
-//Author		Rod prepared shell   
+//Author		Rod prepared shell
 //Date		//RDH 30Oct95
-//Modified	
+//Modified
 //
-//Description	
+//Description
 //Description	Return Sin&Cos for 64K angle
 //		First approx is from sin/cos table
 //		This is improved by the relationships:
 //		Sin(A+B)=Sin(A)*Cos(B)+Sin(B)*Cos(A)
 //		Cos(A+B)=Cos(A)*Cos(B)-Sin(A)*Sin(B)
 //		And the approximations for B:
-//		B ranges from 0 to pi/1024 
+//		B ranges from 0 to pi/1024
 //		Cos(B)*65536>65535
 //		Sin(B[0-63])*65536 is linear between 0 and 398
 //		25*B=0-1575 /4=394
@@ -633,9 +633,9 @@ void MathLib::sin_cos(ANGLES ang, SWord& sin_ang, SWord& cos_ang)
 //		Sin(A+B)=Sin(A)+Cos(A)*25B/4
 //		Cos(A+B)=Cos(A)-Sin(A)*25B/4
 //
-//Inputs	
+//Inputs
 //
-//Returns	
+//Returns
 //
 //Externals
 //------------------------------------------------------------------------------
@@ -656,15 +656,15 @@ void MathLib::high_sin_cos(ANGLES ang, SWord& sin_ang, SWord& cos_ang)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		high_sin_cos
-//Author		Craig Beeston   
+//Author		Craig Beeston
 //Date			09 Nov 1999
-//Modified	
+//Modified
 //------------------------------------------------------------------------------
 void MathLib::high_sin_cos(ANGLES ang, Float& sin_ang, Float& cos_ang)
 {
 	SWord SW_sin, SW_cos;
 	sin_cos(ang, SW_sin, SW_cos);
-	
+
 	Float s = SW_sin * 0.000030517;
 	Float c = SW_cos * 0.000030517;
 
@@ -679,15 +679,15 @@ void MathLib::high_sin_cos(ANGLES ang, Float& sin_ang, Float& cos_ang)
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure	arcsin
 //------------------------------------------------------------------------------
-//Author		Martin   
+//Author		Martin
 //Date			Tue 19 Sep 1995
-//Modified	
+//Modified
 //
-//Description	
+//Description
 //
-//Inputs	
+//Inputs
 //
-//Returns	
+//Returns
 //
 //Externals
 //------------------------------------------------------------------------------
@@ -697,7 +697,7 @@ void MathLib::high_sin_cos(ANGLES ang, Float& sin_ang, Float& cos_ang)
 //DeadCode JIM 20Oct00 {
 //DeadCode JIM 20Oct00 	ANGLES ang;
 //DeadCode JIM 20Oct00 	SWord i;
-//DeadCode JIM 20Oct00 
+//DeadCode JIM 20Oct00
 //DeadCode JIM 20Oct00 	for (i=0;i<256;i++)											//RJS 17Nov97
 //DeadCode JIM 20Oct00 	{															//RJS 17Nov97
 //DeadCode JIM 20Oct00 		if (sincos_table[i]==ax)								//RJS 17Nov97
@@ -711,12 +711,12 @@ void MathLib::high_sin_cos(ANGLES ang, Float& sin_ang, Float& cos_ang)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		high_arc_cos
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 23 May 1996
 //
-//Description	
+//Description
 //
-//Inputs		cosine of angle	
+//Inputs		cosine of angle
 //
 //Returns		Angle in the range 0 Deg to 180 Deg
 //
@@ -732,8 +732,8 @@ ANGLES MathLib::high_arc_cos(SWord ca)
 	oneminuscosang=1.-cosang;
 	cosang=oneminuscosang/cosang;
 	_asm {
-			fld cosang; 
-			fsqrt; 
+			fld cosang;
+			fsqrt;
 			fstp cosang;
 	}
 	cosang=10430.387*FPATan(cosang,1.);
@@ -743,12 +743,12 @@ ANGLES MathLib::high_arc_cos(SWord ca)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		high_arc_sin
-//Author		Paul.   
+//Author		Paul.
 //Date			Thu 23 May 1996
 //
-//Description	
+//Description
 //
-//Inputs		sine of angle	
+//Inputs		sine of angle
 //
 //Returns		Angle in the range -90 Deg to 90 Deg
 //
@@ -776,15 +776,15 @@ ANGLES MathLib::high_arc_sin(SWord sa)
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure	arccos
 //------------------------------------------------------------------------------
-//Author		Martin   
+//Author		Martin
 //Date			Tue 19 Sep 1995
-//Modified	
+//Modified
 //
-//Description	
+//Description
 //
-//Inputs	
+//Inputs
 //
-//Returns	
+//Returns
 //
 //Externals
 //------------------------------------------------------------------------------
@@ -793,7 +793,7 @@ ANGLES MathLib::high_arc_sin(SWord sa)
 //DeadCode JON 30Aug00 {
 //DeadCode JON 30Aug00 	ANGLES ang;
 //DeadCode JON 30Aug00 	SWord i;
-//DeadCode JON 30Aug00 
+//DeadCode JON 30Aug00
 //DeadCode JON 30Aug00 	for (i=0;i<256;i++)
 //DeadCode JON 30Aug00 		{
 //DeadCode JON 30Aug00 			if (sincos_table[i+cos_index]==ax)
@@ -802,7 +802,7 @@ ANGLES MathLib::high_arc_sin(SWord sa)
 //DeadCode JON 30Aug00 				}
 //DeadCode JON 30Aug00 		}
 //DeadCode JON 30Aug00 	return(ang);
-//DeadCode JON 30Aug00 	
+//DeadCode JON 30Aug00
 //DeadCode JON 30Aug00 }
 
 
@@ -814,11 +814,11 @@ ANGLES MathLib::high_arc_sin(SWord sa)
 //Modified		   	//RDH 03Nov95
 //				   = changed to ==
 //					return (ang) added after each ang =
-//Description	
+//Description
 //
-//Inputs	
+//Inputs
 //
-//Returns	
+//Returns
 //
 //Externals
 //------------------------------------------------------------------------------
@@ -832,8 +832,8 @@ ANGLES MathLib::arctan(SLong dx, SLong dy)
 	ang = 10430.387 * FPATan ((Float)dx,(Float)dy);
 	intang = (int)ang;
 	return ((Angles)intang);
-	
-/*	
+
+/*
 	ANGLES ang;
 	SLong temp,temp2;
 
@@ -970,14 +970,14 @@ ANGLES MathLib::arctan(SLong dx, SLong dy)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		HighArcTan
-//Author		Paul.   
+//Author		Paul.
 //Date			Wed 3 Jul 1996
 //
-//Description	
+//Description
 //
 //Inputs		Are words to prevent any overflows
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 ANGLES MathLib::HighArcTan(SLong dx, SLong dy)
@@ -1122,15 +1122,15 @@ ANGLES MathLib::HighArcTan(SLong dx, SLong dy)
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure	tan
 //------------------------------------------------------------------------------
-//Author		Paul. & Martin   
+//Author		Paul. & Martin
 //Date		Tue 22 Aug 1995
-//Modified	Mon 18 Sep 1995	
+//Modified	Mon 18 Sep 1995
 //			//RDH 30Nov95   not debugged!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//Description	
+//Description
 //
-//Inputs	
+//Inputs
 //
-//Returns	
+//Returns
 //
 //Externals
 //------------------------------------------------------------------------------
@@ -1160,7 +1160,7 @@ SWord MathLib::tan(ANGLES ang)
 //DeadCode JON 30Aug00 {
 //DeadCode JON 30Aug00 	ANGLES a0, angmod;
 //DeadCode JON 30Aug00 	SLong tan0, tan1, reqtan;
-//DeadCode JON 30Aug00 
+//DeadCode JON 30Aug00
 //DeadCode JON 30Aug00 	if (!(ang & ANGLES_90Deg))										//RDH 30Nov95
 //DeadCode JON 30Aug00 	{
 //DeadCode JON 30Aug00 		angmod = (Angles)(ang & ANGLES_90Deg-1);
@@ -1179,7 +1179,7 @@ SWord MathLib::tan(ANGLES ang)
 //DeadCode JON 30Aug00 			angmod++;
 //DeadCode JON 30Aug00 		tan1 = -tan_table[256 - angmod];
 //DeadCode JON 30Aug00 	}
-//DeadCode JON 30Aug00 
+//DeadCode JON 30Aug00
 //DeadCode JON 30Aug00 //	reqtan = 256 * tan0 + 256 * (tan1 - tan0) * (ang - a0 * 64)/64
 //DeadCode JON 30Aug00 	reqtan = 256 * tan0 + 4 * (tan1 - tan0) * (ang - a0 * 64);
 //DeadCode JON 30Aug00 	return (reqtan);
@@ -1188,20 +1188,20 @@ SWord MathLib::tan(ANGLES ang)
 //Author		Martin Alderton
 //Date			Mon 18 Sep 1995
 //
-//Description	
+//Description
 //
 //		SQRT( dx^2 + dy^2 + dz^2)
 //	is dammed close to (one of)
 //		MAX(dx,dy,dz) + MED(dx,dy,dz)/4 + MIN(dx,dy,dz)/4     +/- 13%
-//	or								   
+//	or
 //		MAX(dx,dy,dz) + MED(dx,dy,dz)5/16 + MIN(dx,dy,dz)/4   +/-  9% (1/4=4/16)
 //	or
 //		MAX(dx,dy,dz) + MED(dx,dy,dz)11/32 + MIN(dx,dy,dz)/4  +/-  8%	(1/4=8/32)
 //
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 ULong MathLib::distance3d(SLong ddx, SLong dy, SLong dz)
@@ -1250,7 +1250,7 @@ _asm	{
 }
 //Old_Code DAW 30Nov95 {
 //Old_Code DAW 30Nov95 	ULong x,y,z,dist,a,b,c;
-//Old_Code DAW 30Nov95 
+//Old_Code DAW 30Nov95
 //Old_Code DAW 30Nov95 	if (dx<0)
 //Old_Code DAW 30Nov95 		{
 //Old_Code DAW 30Nov95 			x = -dx;
@@ -1275,7 +1275,7 @@ _asm	{
 //Old_Code DAW 30Nov95 		{
 //Old_Code DAW 30Nov95 			z = dz;
 //Old_Code DAW 30Nov95 		}
-//Old_Code DAW 30Nov95 
+//Old_Code DAW 30Nov95
 //Old_Code DAW 30Nov95 	if ((x>y) && (y>z))
 //Old_Code DAW 30Nov95 		{
 //Old_Code DAW 30Nov95 			a=x;
@@ -1354,7 +1354,7 @@ _asm	{
 //Old_Code DAW 30Nov95 			b=z;
 //Old_Code DAW 30Nov95 			c=y;
 //Old_Code DAW 30Nov95 		}
-//Old_Code DAW 30Nov95 		
+//Old_Code DAW 30Nov95
 //Old_Code DAW 30Nov95 	dist = (a+((11*b)/32)+(c/4));
 //Old_Code DAW 30Nov95 	return(dist);
 //Old_Code DAW 30Nov95 }
@@ -1362,16 +1362,16 @@ _asm	{
 //Author		Martin Alderton
 //Date			Mon 18 Sep 1995
 //
-//Description	
+//Description
 // This routine calculates the distance between two points using approximation.
 // A = 45Deg * SHORT / LONG
 // DISTANCE = LONG * COS(A) + SHORT * SIN(A)
 //
 //	debugged	cos (1) = 32768 (ANGLES_FRACT) in our system												//RDH 30Nov95
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 UWord MathLib::Distance_Unsigned(UWord dx, UWord dy)
@@ -1393,7 +1393,7 @@ UWord MathLib::Distance_Unsigned(UWord dx, UWord dy)
  		temp = dy * ANGLES_45Deg /dx;							//RDH 30Nov95
 		sin_cos((Angles) temp,sin_ang,cos_ang);
 		temp = (sin_ang * dy /ANGLES_FRACT) + (cos_ang *dx /ANGLES_FRACT);
-//DeadCode MGA 19Sep95 		return(temp);		
+//DeadCode MGA 19Sep95 		return(temp);
 		}
 	else
 		{
@@ -1410,9 +1410,9 @@ UWord MathLib::Distance_Unsigned(UWord dx, UWord dy)
 //
 //Description	Changed to work with longs	//RDH 30Nov95
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 ULong  MathLib::Distance2d(SLong dx, SLong dy)
@@ -1464,20 +1464,20 @@ ULong	MathLib::DistAbsSum(SLong x,SLong y,SLong z,SLong w)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Intercept
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Thu 30 Nov 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void MathLib::Intercept (SLong deltax,SLong deltay,SLong deltaz,
 				SLong &Range,SWord &HdgIntercept,SWord &PitchIntercept)
-						 
-{						 
+
+{
 
 //DeadCode JIM 26Sep96 	SLong	modifier,maxdelta;
 //DeadCode JIM 26Sep96 	SWord	moddeltax,moddeltay,moddeltaz;
@@ -1491,8 +1491,8 @@ void MathLib::Intercept (SLong deltax,SLong deltay,SLong deltaz,
 
 void MathLib::HighIntercept (SLong deltax,SLong deltay,SLong deltaz,
 				SLong &Range,SWord &HdgIntercept,SWord &PitchIntercept)
-						 
-{						 
+
+{
 
 //DeadCode JIM 26Sep96 	SLong	modifier,maxdelta;
 //DeadCode JIM 26Sep96 	SWord	moddeltax,moddeltay,moddeltaz;
@@ -1502,7 +1502,7 @@ void MathLib::HighIntercept (SLong deltax,SLong deltay,SLong deltaz,
 //DeadCode JIM 26Sep96 	range2d = MathLib::Distance2d(deltax,deltaz);
 	HdgIntercept = MathLib::HighArcTan(deltax,deltaz);
 	SWord	s,c;
-	
+
 	high_sin_cos((Angles)HdgIntercept,s,c);
 	if (AbsSign(s)>AbsSign(c))
 		range2d=SHDIVSIN(deltax,ANGLES_SHIFT,s);
@@ -1524,23 +1524,23 @@ void MathLib::HighIntercept (SLong deltax,SLong deltay,SLong deltaz,
 //
 //Description	Changed to work with longs	//RDH 30Nov95
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void MathLib::InterceptHdg(ULong Wx1, ULong Wz1, ULong Wx2, ULong Wz2, ULong &dist, UWord &hdg)
 {
-	
+
 	SLong dx,dy;
 
 	dx = Wx2 - Wx1;
 	dy = Wz2 - Wz1;
 	dist = Distance2d(dx,dy);
 	hdg = arctan(dx,dy);
-	
+
 }
-		
+
 //DeadCode DAW 28Nov95 mathlib	Math_Lib;
 
 ULong	MathLib::a2iend(string&	source)
@@ -1565,18 +1565,18 @@ ULong	MathLib::a2iend				//returns numeric value found
 }
 //DeadCode JIM 02May96 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //DeadCode JIM 02May96 //Procedure		Pos
-//DeadCode JIM 02May96 //Author		R. Hyde 
+//DeadCode JIM 02May96 //Author		R. Hyde
 //DeadCode JIM 02May96 //Date			Fri 27 Oct 1995
 //DeadCode JIM 02May96 //
 //DeadCode JIM 02May96 //Description	New, efficient inline version.
 //DeadCode JIM 02May96 //
-//DeadCode JIM 02May96 //Inputs		
+//DeadCode JIM 02May96 //Inputs
 //DeadCode JIM 02May96 //
-//DeadCode JIM 02May96 //Returns	
+//DeadCode JIM 02May96 //Returns
 //DeadCode JIM 02May96 //
 //DeadCode JIM 02May96 //------------------------------------------------------------------------------
 //DeadCode JIM 02May96 void MathLib::Pos (SWord inputvar, SWord &posvar,SWord &signvar)
-//DeadCode JIM 02May96 
+//DeadCode JIM 02May96
 //DeadCode JIM 02May96 {
 //DeadCode JIM 02May96 	if (inputvar >= 0)
 //DeadCode JIM 02May96 	{
@@ -1593,9 +1593,9 @@ ULong	MathLib::a2iend				//returns numeric value found
 //DeadCode JIM 02May96 			posvar = (SWord)-inputvar;
 //DeadCode JIM 02May96 		}
 //DeadCode JIM 02May96 	}
-//DeadCode JIM 02May96 
+//DeadCode JIM 02May96
 //DeadCode JIM 02May96 }
-//DeadCode JIM 02May96 
+//DeadCode JIM 02May96
 
 
 
@@ -1603,14 +1603,14 @@ ULong	MathLib::a2iend				//returns numeric value found
 //For Flying Corps the origin is midnight on 1st Jan 1917
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		MonthFromDays
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Thu 4 Jan 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SWord MathLib::MonthFromDays (SWord daysinyear, SWord &daysinfullmonth, SWord leapyear)
@@ -1636,14 +1636,14 @@ SWord MathLib::MonthFromDays (SWord daysinyear, SWord &daysinfullmonth, SWord le
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DateFromSecs
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Thu 4 Jan 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void MathLib::DateFromSecs (SLong secs,SWord &day, SWord &month, SWord &year)
@@ -1663,14 +1663,14 @@ void MathLib::DateFromSecs (SLong secs,SWord &day, SWord &month, SWord &year)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		TimeFromSecs
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Thu 4 Jan 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void MathLib::TimeFromSecs (SLong secs,SWord &hr, SWord &mins)
@@ -1683,7 +1683,7 @@ void MathLib::TimeFromSecs (SLong secs,SWord &hr, SWord &mins)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SunPosFromSecs
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 22 Apr 1996
 //
 //Description	returns the angle of the sun ANGLES_0Deg 	= 	6am
@@ -1691,13 +1691,13 @@ void MathLib::TimeFromSecs (SLong secs,SWord &hr, SWord &mins)
 //											 ANGLES_180Deg	=	6pm
 //
 //				//JIM 03Jun96
-//				This is not what I want in AI. 
+//				This is not what I want in AI.
 //				For there, I want a relative heading and pitch.
 //				Also, I want the value up to 2,000 times per second
 //				We only need to update the sun position about every 20 secs
 //				as this gives 2000 updates /12 hours
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void MathLib::SunPosFromSecs(SLong secs,ANGLES& pos)
@@ -1710,14 +1710,14 @@ void MathLib::SunPosFromSecs(SLong secs,ANGLES& pos)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DofCampFromSecs
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Thu 4 Jan 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SWord MathLib::DofCampFromSecs (SLong secs,SLong beginning)
@@ -1728,14 +1728,14 @@ SWord MathLib::DofCampFromSecs (SLong secs,SLong beginning)
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		YearFromDays
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Thu 4 Jan 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SWord MathLib::YearFromDays (SWord day, SWord &daysinfullyears, SWord &leapyear)
@@ -1764,14 +1764,14 @@ SWord MathLib::YearFromDays (SWord day, SWord &daysinfullyears, SWord &leapyear)
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		YearFromSecs
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Thu 4 Jan 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SWord MathLib::YearFromSecs (SLong secs)
@@ -1784,11 +1784,11 @@ SWord MathLib::YearFromSecs (SLong secs)
 	return (years);
 
 }
-	
+
 RndVal	MathLib::Query()
 {
 	if (rndcount+1>=MAX_RND)
-	{	
+	{
 		UWord b;
 		if (bval>20)
 			if (bval>40)											  //JIM 26/03/99
@@ -1815,7 +1815,7 @@ RndVal	MathLib::Query()
 		return(RndVal)(b);
 	}
 }
-	
+
 RndVal	MathLib::rnd()
 {
 	rndcount++;													//ARM 03Sep96

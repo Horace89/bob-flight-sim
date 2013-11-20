@@ -60,4 +60,3 @@ protected:
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_SCALEBAR_H__E28110A1_DAB5_11D1_A1F0_0080C8582DE4__INCLUDED_)
-

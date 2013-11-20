@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -64,10 +64,10 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //------------------------------------------------------------------------------
 //Filename       sqddiary.cpp
-//System         
+//System
 //Author         Robert Slater
 //Date           Tue 25 Jan 2000
-//Description    
+//Description
 //------------------------------------------------------------------------------
 
 #include	"dosdefs.h"
@@ -130,7 +130,7 @@ BIStream&	operator>>(BIStream&	bi, Diary::Master* dptr)
 	dptr->playerdescspace = new char[dptr->maxplayerdesc];
 	if (dptr->playerdescspace)
 		bi.read((char*)dptr->playerdescspace,dptr->maxplayerdesc*sizeof(char));
-	
+
 	return bi;
 }
 
@@ -138,17 +138,17 @@ BIStream&	operator>>(BIStream&	bi, Diary::Master* dptr)
 
 static	int	endStatusLookUp[]=
 {
-	{IDS_L_EFS_NULL},					//EFS_NULL
-	{IDS_EFS_LandedOK},				//EFS_LandedOK,		
-	{IDS_EFS_LandedOtherAF},		//EFS_LandedOtherAF,
-	{IDS_EFS_LandedField},			//EFS_LandedField,	
-	{IDS_EFS_DitchedField},			//EFS_DitchedField,	
-//DeadCode RJS 30Oct00 	{IDS_EFS_BadCrashAF},					//EFS_BadCrashAF,		
-	{IDS_EFS_ACLOST},			//EFS_ACLOST,			
-	{IDS_EFS_KIA},				//EFS_KIA,
-	{IDS_EFS_BadCrashAF},			//EFS_BadCrashAF,
-	{IDS_EFS_PILOTLOST},			//EFS_PILOTLOST,		
-	{IDS_EFS_Parachute}			//EFS_Parachute,		
+	IDS_L_EFS_NULL,					//EFS_NULL
+	IDS_EFS_LandedOK,				//EFS_LandedOK,
+	IDS_EFS_LandedOtherAF,		//EFS_LandedOtherAF,
+	IDS_EFS_LandedField,			//EFS_LandedField,
+	IDS_EFS_DitchedField,			//EFS_DitchedField,
+//DeadCode RJS 30Oct00 	{IDS_EFS_BadCrashAF,					//EFS_BadCrashAF,
+	IDS_EFS_ACLOST,			//EFS_ACLOST,
+	IDS_EFS_KIA,				//EFS_KIA,
+	IDS_EFS_BadCrashAF,			//EFS_BadCrashAF,
+	IDS_EFS_PILOTLOST,			//EFS_PILOTLOST,
+	IDS_EFS_Parachute			//EFS_Parachute,
 };
 
 
@@ -157,11 +157,11 @@ static	int	endStatusLookUp[]=
 //Author		Robert Slater
 //Date			Fri 28 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::Load(BIStream&	loadfile)
@@ -178,11 +178,11 @@ void	Diary::Load(BIStream&	loadfile)
 //Author		Robert Slater
 //Date			Fri 28 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::Save(BOStream&	savefile)
@@ -208,11 +208,11 @@ void	Diary::Save(BOStream&	savefile)
 //Author		Robert Slater
 //Date			Fri 28 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::New()
@@ -227,7 +227,7 @@ void	Diary::New()
 		NewDay_Squad();
 	}
 
-	NewSession();														//RJS 30Oct00	
+	NewSession();														//RJS 30Oct00
 
 	isQuickMission = false;												//RJS 9Nov00
 }
@@ -237,11 +237,11 @@ void	Diary::New()
 //Author		Robert Slater
 //Date			Wed 26 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::NewDay_RaidPack()
@@ -272,11 +272,11 @@ void	Diary::NewDay_RaidPack()
 //Author		Robert Slater
 //Date			Wed 26 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::NewDay_RaidGroup()
@@ -307,11 +307,11 @@ void	Diary::NewDay_RaidGroup()
 //Author		Robert Slater
 //Date			Wed 26 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::NewDay_Gruppen()
@@ -342,11 +342,11 @@ void	Diary::NewDay_Gruppen()
 //Author		Robert Slater
 //Date			Wed 26 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::NewDay_Intercept()
@@ -369,7 +369,7 @@ void	Diary::NewDay_Intercept()
 
 			delete [] oldptr;
 		}
-	}	
+	}
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -377,11 +377,11 @@ void	Diary::NewDay_Intercept()
 //Author		Robert Slater
 //Date			Wed 26 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::NewDay_Squad()
@@ -412,11 +412,11 @@ void	Diary::NewDay_Squad()
 //Author		Robert Slater
 //Date			Wed 26 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::NewDay_Player()
@@ -447,11 +447,11 @@ void	Diary::NewDay_Player()
 //Author		Robert Slater
 //Date			Wed 26 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int		Diary::NewDay_Desc(int	nochars)
@@ -491,11 +491,11 @@ int		Diary::NewDay_Desc(int	nochars)
 //Author		Robert Slater
 //Date			Wed 26 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 bool	Diary::AllocateGruppen(SLong	squadno, UWord raidgroupindex, ULong&	index)
@@ -518,7 +518,7 @@ bool	Diary::AllocateGruppen(SLong	squadno, UWord raidgroupindex, ULong&	index)
 		retval = true;
 
 		diaryptr->gruppentablenext++;
-	
+
 		realindex = diaryptr->gruppentablenext;
 		if (realindex >= diaryptr->gruppentablemax)
 			NewDay_Gruppen();
@@ -537,11 +537,11 @@ bool	Diary::AllocateGruppen(SLong	squadno, UWord raidgroupindex, ULong&	index)
 //Author		Robert Slater
 //Date			Wed 26 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int		Diary::AllocateSquadron(SLong intercept, SLong squadnum)
@@ -565,11 +565,11 @@ int		Diary::AllocateSquadron(SLong intercept, SLong squadnum)
 //Author		Robert Slater
 //Date			Wed 26 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int		Diary::AllocateIntercept(SLong raidgroup, SLong takeOffTime)
@@ -577,7 +577,7 @@ int		Diary::AllocateIntercept(SLong raidgroup, SLong takeOffTime)
 	int		index;
 //DeadCode RJS 29Aug00 	ULong	raidpackindex = diaryptr->raidgrouptable[raidgroup].diaryraidpackindex;
 //DeadCode RJS 29Aug00 	bool	foundone = false;
-//DeadCode RJS 29Aug00 
+//DeadCode RJS 29Aug00
 //DeadCode RJS 29Aug00 	for (index=diaryptr->raidpacktable[raidpackindex].firstinterceptrec;index<diaryptr->intercepttablenext;index++)
 //DeadCode RJS 29Aug00 	{
 //DeadCode RJS 29Aug00 		if (diaryptr->intercepttable[index].diaryraidindex == raidgroup)
@@ -586,7 +586,7 @@ int		Diary::AllocateIntercept(SLong raidgroup, SLong takeOffTime)
 //DeadCode RJS 29Aug00 			break;
 //DeadCode RJS 29Aug00 		}
 //DeadCode RJS 29Aug00 	}
-//DeadCode RJS 29Aug00 
+//DeadCode RJS 29Aug00
 //DeadCode RJS 29Aug00 	if (!foundone)
 //DeadCode RJS 29Aug00 	{
 //DeadCode RJS 7Sep00 		RaidPack*	packptr = GetRaidPack(&diaryptr->raidgrouptable[raidgroup]);
@@ -610,14 +610,14 @@ int		Diary::AllocateIntercept(SLong raidgroup, SLong takeOffTime)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		AllocateIntercept
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 21 Feb 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int		Diary::AllocateIntercept(RaidGroup* groupptr, SLong takeOffTime)
@@ -628,7 +628,7 @@ int		Diary::AllocateIntercept(RaidGroup* groupptr, SLong takeOffTime)
 
 		return AllocateIntercept(rubbishfix,takeOffTime);				//RJS 7Sep00
 	}
-	
+
 	return -1;
 }
 
@@ -637,11 +637,11 @@ int		Diary::AllocateIntercept(RaidGroup* groupptr, SLong takeOffTime)
 //Author		Robert Slater
 //Date			Wed 26 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int		Diary::AllocateRaidPack()
@@ -664,11 +664,11 @@ int		Diary::AllocateRaidPack()
 //Author		Robert Slater
 //Date			Wed 26 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int		Diary::AllocateRaidGroup(SLong	raidpack)
@@ -691,11 +691,11 @@ int		Diary::AllocateRaidGroup(SLong	raidpack)
 //Author		Robert Slater
 //Date			Wed 26 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int		Diary::AllocatePlayer(SLong	diaryentry,bool isLW)
@@ -721,11 +721,11 @@ int		Diary::AllocatePlayer(SLong	diaryentry,bool isLW)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int		Diary::AllocateDesc()
@@ -746,11 +746,11 @@ int		Diary::AllocateDesc()
 //Author		Robert Slater
 //Date			Wed 26 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::CreateEntry(PackageList	&packlist, SLong packno)
@@ -768,11 +768,11 @@ void	Diary::CreateEntry(PackageList	&packlist, SLong packno)
 //Author		Robert Slater
 //Date			Wed 26 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::CreateLWEntry(Profile*	theProfile)
@@ -807,7 +807,7 @@ void	Diary::CreateLWEntry(Profile*	theProfile)
 //DEADCODE DAW 15/05/00 			else
 //DEADCODE DAW 15/05/00 			{
 //DEADCODE DAW 15/05/00 				raidgroupids[trgno] = AllocateRaidGroup(raidpack);
-//DEADCODE DAW 15/05/00 				diaryptr->raidgrouptable[raidgroupids[trgno]].target = theProfile->packagetarget[trgno].currentid; 
+//DEADCODE DAW 15/05/00 				diaryptr->raidgrouptable[raidgroupids[trgno]].target = theProfile->packagetarget[trgno].currentid;
 //DEADCODE DAW 15/05/00 				diaryptr->raidgrouptable[raidgroupids[trgno]].targettime = theProfile->primarytargetETA + theProfile->playerETAdelta;
 //DEADCODE DAW 15/05/00 				notargets++;
 //DEADCODE DAW 15/05/00 			}
@@ -824,11 +824,11 @@ void	Diary::CreateLWEntry(Profile*	theProfile)
 					raidgroupno = raidgroupids[trgno];
 					if (raidgroupno==0xffff)
 					{
-						raidgroupids[trgno] = 
+						raidgroupids[trgno] =
 							raidgroupno =
 								AllocateRaidGroup(raidpack);
 
-						diaryptr->raidgrouptable[raidgroupno].target = theProfile->packagetarget[trgno].currentid; 
+						diaryptr->raidgrouptable[raidgroupno].target = theProfile->packagetarget[trgno].currentid;
 						diaryptr->raidgrouptable[raidgroupno].targettime = theProfile->primarytargetETA + theProfile->playerETAdelta;
 						diaryptr->raidgrouptable[raidgroupno].firstgruppenrec = diaryptr->gruppentablenext + 1;//RJS 14Sep00
 
@@ -862,13 +862,13 @@ void	Diary::CreateLWEntry(Profile*	theProfile)
 
 						diaryptr->raidgrouptable[raidgroupno].misstype = misstype;
 					}
-					
+
 					AllocateGruppen(squaddy->squadnum,raidgroupno,gruppenindex);	//RJS 16Nov00
 //DeadCode RJS 16Nov00 					if (AllocateGruppen(squaddy->squadnum,raidgroupno,gruppenindex))	//RJS 16Nov00
 //DeadCode RJS 16Nov00 					{
 //DeadCode RJS 16Nov00 						// New one...
 //DeadCode RJS 16Nov00 						MissType	misstype = MT_RECON;				//RJS 20Oct00
-//DeadCode RJS 16Nov00 
+//DeadCode RJS 16Nov00
 //DeadCode RJS 16Nov00 						switch (squaddy->method)
 //DeadCode RJS 16Nov00 						{
 //DeadCode RJS 16Nov00 						case Profile::AM_PATROL:	//raf only
@@ -893,7 +893,7 @@ void	Diary::CreateLWEntry(Profile*	theProfile)
 //DeadCode RJS 16Nov00 						}
 //DeadCode RJS 16Nov00 						break;
 //DeadCode RJS 16Nov00 						}
-//DeadCode RJS 16Nov00 
+//DeadCode RJS 16Nov00
 //DeadCode RJS 16Nov00 						diaryptr->raidgrouptable[raidgroupno].misstype = misstype;
 //DeadCode RJS 16Nov00 					}
 
@@ -914,11 +914,11 @@ void	Diary::CreateLWEntry(Profile*	theProfile)
 //Author		Robert Slater
 //Date			Wed 26 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::CreateRAFEntry(Profile*	startProfile, SLong packno)
@@ -948,11 +948,11 @@ void	Diary::CreateRAFEntry(Profile*	startProfile, SLong packno)
 				int	lwpack,sqnum;
 				UniqueID	trguid = target;
 
-				int uidband=Persons2::getbandfromUID(trguid);	
+				int uidband=Persons2::getbandfromUID(trguid);
 				if (uidband != SagBAND)
 				{
 					trguid = thisProfile->packagetarget[0];
-					uidband=Persons2::getbandfromUID(trguid);	
+					uidband=Persons2::getbandfromUID(trguid);
 				}
 
 				if (uidband == SagBAND)
@@ -960,11 +960,11 @@ void	Diary::CreateRAFEntry(Profile*	startProfile, SLong packno)
 					if (Todays_Packages.GetACSquadEntry(trguid,lwpack,sqnum))
 					{
 						Profile& lwpk = Todays_Packages.pack[lwpack];
-					
+
 						tmpSquad = &lwpk.squadlist[sqnum];
 //DeadCode RJS 5Oct00 					}
 //DeadCode RJS 5Oct00 				}
-//DeadCode RJS 5Oct00 
+//DeadCode RJS 5Oct00
 //DeadCode RJS 5Oct00 				tmpProfile = startProfile;
 //DeadCode RJS 5Oct00 				for (int profcnt=0;profcnt<Profile::MAX_PACKS;profcnt++)
 //DeadCode RJS 5Oct00 				{
@@ -988,10 +988,10 @@ void	Diary::CreateRAFEntry(Profile*	startProfile, SLong packno)
 								}
 //DeadCode RJS 5Oct00 								break;
 //DeadCode RJS 5Oct00 							}
-//DeadCode RJS 5Oct00 
+//DeadCode RJS 5Oct00
 //DeadCode RJS 5Oct00 							tmpSquad++;
 //DeadCode RJS 5Oct00 						}
-//DeadCode RJS 5Oct00 
+//DeadCode RJS 5Oct00
 //DeadCode RJS 5Oct00 						if (tmpsno < tmpnosquads)
 //DeadCode RJS 5Oct00 							break;
 					}
@@ -1029,11 +1029,11 @@ void	Diary::CreateRAFEntry(Profile*	startProfile, SLong packno)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SquadronBase*	Diary::GruppenSearch(SquadronBase*	ptr, UWord squadno,DSearchDir sdir)
@@ -1074,11 +1074,11 @@ SquadronBase*	Diary::GruppenSearch(SquadronBase*	ptr, UWord squadno,DSearchDir s
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SquadronBase*	Diary::SquadronSearch(SquadronBase*	ptr, UWord squadno,DSearchDir sdir)
@@ -1121,11 +1121,11 @@ SquadronBase*	Diary::SquadronSearch(SquadronBase*	ptr, UWord squadno,DSearchDir 
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SquadronBase*		Diary::FindLast(SquadNum	squadno)
@@ -1156,9 +1156,9 @@ SquadronBase*		Diary::FindLast(SquadNum	squadno)
 //
 //Description	previous for same squadno
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SquadronBase*		Diary::FindPrev(SquadronBase*	ptr)
@@ -1181,11 +1181,11 @@ SquadronBase*		Diary::FindPrev(SquadronBase*	ptr)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SquadronBase*		Diary::FindFirst(SquadNum	squadno)
@@ -1214,11 +1214,11 @@ SquadronBase*		Diary::FindFirst(SquadNum	squadno)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SquadronBase*		Diary::FindNext(SquadronBase*	ptr)
@@ -1241,11 +1241,11 @@ SquadronBase*		Diary::FindNext(SquadronBase*	ptr)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Diary::RaidGroup*	Diary::GetRaidGroup(SquadronBase*	ptr)
@@ -1262,7 +1262,7 @@ Diary::RaidGroup*	Diary::GetRaidGroup(SquadronBase*	ptr)
 			grpptr = &diaryptr->raidgrouptable[intptr->diaryraidindex];
 		}
 	}
-		
+
 	return grpptr;
 }
 
@@ -1271,11 +1271,11 @@ Diary::RaidGroup*	Diary::GetRaidGroup(SquadronBase*	ptr)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Diary::RaidPack*	Diary::GetRaidPack(Diary::RaidGroup*	ptr)
@@ -1291,11 +1291,11 @@ Diary::RaidPack*	Diary::GetRaidPack(Diary::RaidGroup*	ptr)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Diary::RaidGroup*	Diary::GetFirstRaidGroup(Diary::RaidPack*	ptr)
@@ -1311,11 +1311,11 @@ Diary::RaidGroup*	Diary::GetFirstRaidGroup(Diary::RaidPack*	ptr)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Diary::RaidGroup*	Diary::GetNextRaidGroup(Diary::RaidGroup*	ptr)
@@ -1328,7 +1328,7 @@ Diary::RaidGroup*	Diary::GetNextRaidGroup(Diary::RaidGroup*	ptr)
 		if (	(ptr->diaryraidpackindex != DIARY_EMPTYINDEX)
 			&&	(ptr->diaryraidpackindex == raidpack)			)
 			return ptr;
-	}	
+	}
 
 	return NULL;
 }
@@ -1338,11 +1338,11 @@ Diary::RaidGroup*	Diary::GetNextRaidGroup(Diary::RaidGroup*	ptr)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Diary::Intercept*	Diary::GetFirstIntercept(Diary::RaidGroup*	ptr)
@@ -1370,11 +1370,11 @@ Diary::Intercept*	Diary::GetFirstIntercept(Diary::RaidGroup*	ptr)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Diary::Intercept*	Diary::GetIntercept(SquadronBase*	ptr)
@@ -1396,11 +1396,11 @@ Diary::Intercept*	Diary::GetIntercept(SquadronBase*	ptr)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Diary::Intercept*	Diary::GetNextIntercept(Diary::Intercept*	ptr)
@@ -1423,11 +1423,11 @@ Diary::Intercept*	Diary::GetNextIntercept(Diary::Intercept*	ptr)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Diary::Gruppen*		Diary::GetFirstSquadron(Diary::RaidGroup*	ptr)
@@ -1449,11 +1449,11 @@ Diary::Gruppen*		Diary::GetFirstSquadron(Diary::RaidGroup*	ptr)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Diary::Squadron*	Diary::GetFirstSquadron(Diary::Intercept*	ptr)
@@ -1475,11 +1475,11 @@ Diary::Squadron*	Diary::GetFirstSquadron(Diary::Intercept*	ptr)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Diary::Gruppen*		Diary::GetNextSquadron(Diary::Gruppen*	ptr)
@@ -1502,11 +1502,11 @@ Diary::Gruppen*		Diary::GetNextSquadron(Diary::Gruppen*	ptr)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Diary::Squadron*	Diary::GetNextSquadron(Diary::Squadron*	ptr)
@@ -1529,11 +1529,11 @@ Diary::Squadron*	Diary::GetNextSquadron(Diary::Squadron*	ptr)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Diary::Player*	Diary::CreatePlayer(SquadronBase*	sptr)
@@ -1541,19 +1541,19 @@ Diary::Player*	Diary::CreatePlayer(SquadronBase*	sptr)
 //DEADCODE RDH 17/05/00 	char			index =	tp.hipack;
 //DEADCODE RDH 17/05/00 	Player*			playerptr = NULL;
 //DEADCODE RDH 17/05/00 	Profile*		packptr = &tp[index];
-//DEADCODE RDH 17/05/00 
+//DEADCODE RDH 17/05/00
 //DEADCODE RDH 17/05/00 	if (packptr->packagestatus != Profile::PS_SPARE)
 //DEADCODE RDH 17/05/00 	{
 //DEADCODE RDH 17/05/00 		int				sqindex = tp.hisquad;
 //DEADCODE RDH 17/05/00 		SLong			newplayer = -1;
 //DEADCODE RDH 17/05/00 		Profile::Squad*	squaddy = &packptr->squadlist[sqindex];
-//DEADCODE RDH 17/05/00 
+//DEADCODE RDH 17/05/00
 //DEADCODE RDH 17/05/00 		if (squaddy->diaryentry != 0xFFFFFFFF)
 //DEADCODE RDH 17/05/00 			newplayer = AllocatePlayer(SLong(squaddy->diaryentry),(squaddy->squadnum>=SQ_LW_START));
-//DEADCODE RDH 17/05/00 
+//DEADCODE RDH 17/05/00
 //DEADCODE RDH 17/05/00 		if (newplayer != -1)
 //DEADCODE RDH 17/05/00 			playerptr = &diaryptr->playertable[diaryptr->playertablenext];
-//DEADCODE RDH 17/05/00 
+//DEADCODE RDH 17/05/00
 //DEADCODE RDH 17/05/00 		lastplayerstatus = EFS_NULL;
 //DEADCODE RDH 17/05/00 	}
 
@@ -1592,11 +1592,11 @@ Diary::Player*	Diary::CreatePlayer(SquadronBase*	sptr)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Diary::Player*		Diary::GetFirstPlayer(SquadronBase*	ptr)
@@ -1632,11 +1632,11 @@ Diary::Player*		Diary::GetFirstPlayer(SquadronBase*	ptr)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Diary::Player*		Diary::GetNextPlayerInSq(Diary::Player*	ptr)
@@ -1673,11 +1673,11 @@ Diary::Player*		Diary::GetNextPlayerInSq(Diary::Player*	ptr)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Diary::Player*		Diary::GetFirstPlayer()
@@ -1694,11 +1694,11 @@ Diary::Player*		Diary::GetFirstPlayer()
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Diary::Player*		Diary::GetFirstPlayerInDay(int day)
@@ -1739,11 +1739,11 @@ Diary::Player*		Diary::GetFirstPlayerInDay(int day)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Diary::Player*		Diary::GetNextPlayerInDay(Diary::Player*	ptr)
@@ -1778,11 +1778,11 @@ Diary::Player*		Diary::GetNextPlayerInDay(Diary::Player*	ptr)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Diary::Player*		Diary::GetNextPlayerAll(Diary::Player*	ptr)
@@ -1801,11 +1801,11 @@ Diary::Player*		Diary::GetNextPlayerAll(Diary::Player*	ptr)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SquadronBase*		Diary::GetSquadron(Diary::Player*	ptr)
@@ -1829,11 +1829,11 @@ SquadronBase*		Diary::GetSquadron(Diary::Player*	ptr)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 char*		Diary::GetDiaryText(Diary::Player*	ptr)
@@ -1852,9 +1852,9 @@ char*		Diary::GetDiaryText(Diary::Player*	ptr)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
 //Returns		virtual editable buffer size (up to 64k if we are last entry)
 //
@@ -1862,7 +1862,7 @@ char*		Diary::GetDiaryText(Diary::Player*	ptr)
 int	Diary::TextBufferSize(Player*	ptr, int& editablechars)
 {
 	int		nochars = 0;
-	
+
 	editablechars = 0;
 	char*	textptr = GetDiaryText(ptr);
 	if (textptr)
@@ -1890,9 +1890,9 @@ int	Diary::TextBufferSize(Player*	ptr, int& editablechars)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
 //Returns	no chars remaining in editable buffer
 //
@@ -1923,11 +1923,11 @@ int			Diary::DiaryEditable(Diary::Player*	ptr)
 //Author		Robert Slater
 //Date			Thu 27 Jan 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void		Diary::SetDiaryText(Player* ptr,const char* externalcopy)	//RDH 24/02/00
@@ -1980,9 +1980,9 @@ void		Diary::SetDiaryText(Player* ptr,const char* externalcopy)	//RDH 24/02/00
 //
 //Description	Alternative to getting a raid pack, but with a date as index
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Diary::RaidPack*	Diary::GetFirstRaidPack(int	date)
@@ -2010,9 +2010,9 @@ Diary::RaidPack*	Diary::GetFirstRaidPack(int	date)
 //
 //Description	Creates dummy raid entry for a patrol...
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::CreateDailyRaidGroup(int date)
@@ -2027,8 +2027,8 @@ void	Diary::CreateDailyRaidGroup(int date)
 		diaryptr->raidpacktable[raidpack].takeofftime = 0;
 
 		raidgroup = AllocateRaidGroup(raidpack);
-		
-		diaryptr->raidgrouptable[raidgroup].target = (UniqueID)0; 
+
+		diaryptr->raidgrouptable[raidgroup].target = (UniqueID)0;
 		diaryptr->raidgrouptable[raidgroup].targettime = 0;
 		diaryptr->raidgrouptable[raidgroup].misstype = MT_PATROL;
 	}
@@ -2036,14 +2036,14 @@ void	Diary::CreateDailyRaidGroup(int date)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetRaidGroup
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 21 Feb 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Diary::RaidGroup*	Diary::GetRaidGroup(Intercept*	ip)
@@ -2061,11 +2061,11 @@ Diary::RaidGroup*	Diary::GetRaidGroup(Intercept*	ip)
 //Author		Robert Slater
 //Date			Fri 18 Feb 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SquadronBase*		Diary::GetDiaryPtr(ULong	diaryindex)
@@ -2088,11 +2088,11 @@ SquadronBase*		Diary::GetDiaryPtr(ULong	diaryindex)
 //Author		Robert Slater
 //Date			Mon 21 Feb 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void		Diary::UpdatePlayerLog(EndFlightStatus	result)
@@ -2107,11 +2107,11 @@ void		Diary::UpdatePlayerLog(EndFlightStatus	result)
 //Author		Robert Slater
 //Date			Mon 21 Feb 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void		Diary::UpdatePlayerLog(AirStruc*	ac)
@@ -2156,9 +2156,9 @@ void		Diary::UpdatePlayerLog(AirStruc*	ac)
 //Description	Cannot be invoked from within a SetKilledAC() death
 //
 //				Should not reset "current_itemstate" from within nested damage
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::SetAC(void*	itm, animptr&	adptr)
@@ -2196,11 +2196,11 @@ void	Diary::SetAC(void*	itm, animptr&	adptr)
 //Author		Robert Slater
 //Date			Mon 4 Sep 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::SetACState(int	newState)
@@ -2220,9 +2220,9 @@ void	Diary::SetACState(int	newState)
 //
 //Description	Cannot be invoked within a normal/collision damage SetAC() death
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::SetKilledAC(void*	itm, animptr&	adptr)
@@ -2242,9 +2242,9 @@ void	Diary::SetKilledAC(void*	itm, animptr&	adptr)
 //
 //Description	Must be paired with a SetKilledAC()
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::UpdateKilledAC()
@@ -2262,11 +2262,11 @@ void	Diary::UpdateKilledAC()
 //Author		Robert Slater
 //Date			Mon 21 Feb 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::UpdateACDamage()
@@ -2323,11 +2323,11 @@ void	Diary::UpdateACDamage()
 //Author		Robert Slater
 //Date			Mon 21 Feb 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::AddKill(void*	achitter, AirStruc* acHit)
@@ -2374,11 +2374,11 @@ void	Diary::AddKill(void*	achitter, AirStruc* acHit)
 //Author		Robert Slater
 //Date			Mon 21 Feb 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	SquadronBase::AddKilled(AirStruc*	ac, const int&	current_pilotcount)
@@ -2418,7 +2418,7 @@ void	SquadronBase::AddKilled(AirStruc*	ac, const int&	current_pilotcount)
 // Date:		16/05/00
 // Author:		RDH
 //
-//Description: 
+//Description:
 //
 //////////////////////////////////////////////////////////////////////
 void	SquadronBase::CreditClaim(PlaneTypeSelect pt,int number)
@@ -2442,11 +2442,11 @@ void	SquadronBase::CreditClaim(PlaneTypeSelect pt,int number)
 //Author		Robert Slater
 //Date			Mon 21 Feb 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	SquadronBase::AddDamage()
@@ -2460,11 +2460,11 @@ void	SquadronBase::AddDamage()
 //Author		Robert Slater
 //Date			Mon 21 Feb 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	SquadronBase::AddEjected(AirStrucPtr ac, int numpilots)
@@ -2484,9 +2484,9 @@ void	SquadronBase::AddEjected(AirStrucPtr ac, int numpilots)
 //
 //Description	We need one for diaryentry aswell....
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::ArrivedAtTarget(AirStruc*	ac, void*	target)
@@ -2541,11 +2541,11 @@ void	Diary::ArrivedAtTarget(AirStruc*	ac, void*	target)
 //Author		Robert Slater
 //Date			Thu 18 May 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::UpdateIntercept(Intercept*	iptr, ItemPtr	theTarget, const int& interceptTime)
@@ -2554,7 +2554,7 @@ void	Diary::UpdateIntercept(Intercept*	iptr, ItemPtr	theTarget, const int& inter
 	{
 		SLong	uid, direction, range;
 
-		iptr->interceptheight = theTarget->World.Y; 
+		iptr->interceptheight = theTarget->World.Y;
 		iptr->intercepttime = interceptTime;
 
 		_Radio.GetPlaceDesc(theTarget->World,uid,direction,range);
@@ -2573,11 +2573,11 @@ void	Diary::UpdateIntercept(Intercept*	iptr, ItemPtr	theTarget, const int& inter
 //Author		Robert Slater
 //Date			Wed 23 Feb 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::RaidResult(AirStruc* ac, MissResult	theResult)
@@ -2599,16 +2599,16 @@ void	Diary::RaidResult(AirStruc* ac, MissResult	theResult)
 //Author		Robert Slater
 //Date			Wed 23 Feb 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::HitTarget(void* hitter, void* target, void* groupptr)
 {
-	ItemPtr	theHitter = (ItemPtr)hitter;	
+	ItemPtr	theHitter = (ItemPtr)hitter;
 	if (theHitter && (theHitter->Status.size == AIRSTRUCSIZE) && !_Replay.Playback)	//RJS 21Jun00
 	{
 		SquadronBase*	sptr = ((AirStrucPtr)theHitter)->ai.diaryptr;
@@ -2647,11 +2647,11 @@ void	Diary::EmptyDiary()
 //Author		Robert Slater
 //Date			Tue 29 Feb 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::CreateQuickEntry(ULong*, ULong*, ULong*, int, UWord	target)
@@ -2672,8 +2672,8 @@ void	Diary::CreateQuickEntry(ULong*, ULong*, ULong*, int, UWord	target)
 
 	//Set up LW first, with raidgroups...
 		raidgroup = AllocateRaidGroup(raidpack);
-		
-		diaryptr->raidgrouptable[raidgroup].target = (UniqueID)target; 
+
+		diaryptr->raidgrouptable[raidgroup].target = (UniqueID)target;
 		diaryptr->raidgrouptable[raidgroup].targettime = 0;
 		diaryptr->raidgrouptable[raidgroup].misstype = MT_ESCORT;		//RJS 4Sep00
 		diaryptr->raidgrouptable[raidgroup].firstgruppenrec = diaryptr->gruppentablenext + 1;//RJS 14Sep00
@@ -2688,8 +2688,8 @@ void	Diary::CreateQuickEntry(ULong*, ULong*, ULong*, int, UWord	target)
 			AllocateSquadron(interceptno,Node_Data[SquadNum(squadno)].squadron);
 
 //DeadCode JIM 6Nov00 		raidgroup = AllocateRaidGroup(raidpack);
-//DeadCode JIM 6Nov00 		
-//DeadCode JIM 6Nov00 		diaryptr->raidgrouptable[raidgroup].target = (UniqueID)target; 
+//DeadCode JIM 6Nov00
+//DeadCode JIM 6Nov00 		diaryptr->raidgrouptable[raidgroup].target = (UniqueID)target;
 //DeadCode JIM 6Nov00 		diaryptr->raidgrouptable[raidgroup].targettime = 0;
 //DeadCode JIM 6Nov00 		diaryptr->raidgrouptable[raidgroup].misstype = MT_RAID;			//RJS 4Sep00
 //DeadCode JIM 6Nov00 		diaryptr->raidgrouptable[raidgroup].firstgruppenrec = diaryptr->gruppentablenext + 1;//RJS 14Sep00
@@ -2706,11 +2706,11 @@ void	Diary::CreateQuickEntry(ULong*, ULong*, ULong*, int, UWord	target)
 //Author		Robert Slater
 //Date			Tue 29 Feb 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::CreateTransfer(void*	bsquad)
@@ -2741,9 +2741,9 @@ void	Diary::CreateTransfer(void*	bsquad)
 //
 //Description	This one is called from the 3D
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::SetLandingTime(SquadronBase*	ptr)
@@ -2759,9 +2759,9 @@ void	Diary::SetLandingTime(SquadronBase*	ptr)
 //
 //Description	2D & 3D eventually get here
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::SetLandingTime(SquadronBase*	ptr, int landingTime)
@@ -2781,9 +2781,9 @@ void	Diary::SetLandingTime(SquadronBase*	ptr, int landingTime)
 //
 //Description	This one is called from the campaign 2D
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::SetLandingTime(ULong entry)
@@ -2805,9 +2805,9 @@ void	Diary::SetLandingTime(ULong entry)
 //
 //Description	2D & 3D eventually get here
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::SetDisperseTime(SquadronBase*	ptr, int timeOfDay)
@@ -2815,7 +2815,7 @@ void	Diary::SetDisperseTime(SquadronBase*	ptr, int timeOfDay)
 	if (ptr->squadnum >= SQ_LW_START)
 	{
 		RaidPack* rptr = GetRaidPack(GetRaidGroup(ptr));
-	
+
 		rptr->dispersetime= timeOfDay;
 	}
 }
@@ -2827,9 +2827,9 @@ void	Diary::SetDisperseTime(SquadronBase*	ptr, int timeOfDay)
 //
 //Description	This one is called from the 3D
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::SetDisperseTime(SquadronBase*	ptr)
@@ -2845,9 +2845,9 @@ void	Diary::SetDisperseTime(SquadronBase*	ptr)
 //
 //Description	This one is called from the campaign 2D
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::SetDisperseTime(ULong	entry)
@@ -2935,7 +2935,7 @@ void	Diary::ArrivedAtTarget(ULong	diaryIndex, void*	target)
 //
 //Description	Only set the text if the report is empty...
 //
-//Inputs		
+//Inputs
 //
 //Returns
 //
@@ -2952,21 +2952,21 @@ void	Diary::FillEndOfDayReport(Player* ptr)
 //DeadCode RJS 16Nov00 			{
 //DeadCode RJS 16Nov00 				CString	endOfDay = "";
 //DeadCode RJS 16Nov00 				CString	concatString;
-//DeadCode RJS 16Nov00 
+//DeadCode RJS 16Nov00
 //DeadCode RJS 16Nov00 				if (ptr->howendedmission != EFS_NULL)					//RJS 10Nov00
 //DeadCode RJS 16Nov00 					concatString.LoadString(endStatusLookUp[ptr->howendedmission]);
 //DeadCode RJS 16Nov00 				else
 //DeadCode RJS 16Nov00 					concatString = "";
-//DeadCode RJS 16Nov00 
+//DeadCode RJS 16Nov00
 //DeadCode RJS 16Nov00 				if (trainingReport != SCRIPT_NULL)
 //DeadCode RJS 16Nov00 				{
 //DeadCode RJS 16Nov00 					PhraseBuffer	phrasebuff;
 //DeadCode RJS 16Nov00 					UWord			randval = Math_Lib.rnd();
-//DeadCode RJS 16Nov00 
+//DeadCode RJS 16Nov00
 //DeadCode RJS 16Nov00 					_Radio.ExpandMessage(phrasebuff,trainingReport,randval,TargetIndexes(),NULL,NULL,NULL);
-//DeadCode RJS 16Nov00 
+//DeadCode RJS 16Nov00
 //DeadCode RJS 16Nov00 					_MsgBuffer.PhraseToString(endOfDay,phrasebuff);
-//DeadCode RJS 16Nov00 
+//DeadCode RJS 16Nov00
 //DeadCode RJS 16Nov00 					if (ptr->howendedmission != EFS_NULL)
 //DeadCode RJS 16Nov00 					{
 //DeadCode RJS 16Nov00 						endOfDay += "\n";
@@ -2975,11 +2975,11 @@ void	Diary::FillEndOfDayReport(Player* ptr)
 //DeadCode RJS 16Nov00 				}
 //DeadCode RJS 16Nov00 				else
 //DeadCode RJS 16Nov00 					endOfDay = concatString;
-//DeadCode RJS 16Nov00 
+//DeadCode RJS 16Nov00
 //DeadCode RJS 16Nov00 				SetDiaryText(ptr,(const char*)endOfDay);
 //DeadCode RJS 16Nov00 			}
 //DeadCode RJS 16Nov00 		}
-//DeadCode RJS 16Nov00 	}	
+//DeadCode RJS 16Nov00 	}
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -2987,11 +2987,11 @@ void	Diary::FillEndOfDayReport(Player* ptr)
 //Author		Robert Slater
 //Date			Mon 30 Oct 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::AddTrainingReport(const int&	theScript)
@@ -3006,9 +3006,9 @@ void	Diary::AddTrainingReport(const int&	theScript)
 //
 //Description	This is invoked from the Inst3D constructor
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::New3DSession()
@@ -3023,9 +3023,9 @@ void	Diary::New3DSession()
 //
 //Description	This is called when we create a new view
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::Enter3D(ViewPoint* thevp)
@@ -3040,9 +3040,9 @@ void	Diary::Enter3D(ViewPoint* thevp)
 //
 //Description	Clears variables used during the 3D
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::NewSession()
@@ -3066,9 +3066,9 @@ void	Diary::NewSession()
 //
 //Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::Player::DamageReport(CString&	theString)
@@ -3110,9 +3110,9 @@ void	Diary::Player::DamageReport(CString&	theString)
 //
 //Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Diary::Player*	Diary::GetFirstPlayerInRaid(SquadronBase*	sptr,RaidGroup*	rgrp)
@@ -3150,9 +3150,9 @@ Diary::Player*	Diary::GetFirstPlayerInRaid(SquadronBase*	sptr,RaidGroup*	rgrp)
 //
 //Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	Diary::GetMissResult(SquadronBase*	sptr,RaidGroup*	raidgroup, CString& missString)

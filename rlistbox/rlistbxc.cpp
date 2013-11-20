@@ -346,6 +346,8 @@ CRListBoxCtrl::CRListBoxCtrl():
 	m_lVertScrollPos=0;
 	m_iColSel=-1;
 	m_iRowSel=-1;
+	m_iOldRowSel=0;
+	m_iOldColSel=0;
 	m_lines=FALSE;
 	m_LButtonDown=FALSE;
 //	m_bBothScrollBars=FALSE;
@@ -1511,7 +1513,8 @@ void CRListBoxCtrl::OnLButtonDown(UINT nFlags, CPoint point)
 		POSITION position;
 		position=m_sizeList.GetHeadPosition();
 		m_iSeperator = -1;
-		for (int x=0;x<m_sizeList.GetCount();x++)
+        int x=0;
+		for ( x=0;x<m_sizeList.GetCount();x++)
 		{
 			m_iOldSize=m_sizeList.GetNext(position);//*tm.tmHeight/16;
 			offset+=m_iOldSize;
@@ -1554,7 +1557,8 @@ void CRListBoxCtrl::OnLButtonUp(UINT nFlags, CPoint point)
 			int offset=0;
 			POSITION position;
 			position=m_sizeList.GetHeadPosition();
-			for (int x=0;x<m_sizeList.GetCount();x++)
+			int x=0;
+			for (x=0;x<m_sizeList.GetCount();x++)
 			{
 				offset+=m_sizeList.GetNext(position);//*tm.tmHeight/16;
 				if (point.x+m_lHorzScrollPos<offset) 
@@ -1775,7 +1779,8 @@ void CRListBoxCtrl::OnMouseMove(UINT nFlags, CPoint point)
 			int offset=0;
 			POSITION position;
 			position=m_sizeList.GetHeadPosition();
-			for (int x=0;x<m_sizeList.GetCount();x++)
+			int x=0;
+			for (x=0;x<m_sizeList.GetCount();x++)
 			{
 				offset+=m_sizeList.GetNext(position);//*tm.tmHeight/16;
 				if (point.x+m_lHorzScrollPos<offset) break;

@@ -71,6 +71,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 // Description: 
 //
 //////////////////////////////////////////////////////////////////////
+
 #include "stdafx.h"
 #include "_mfc.h"
 

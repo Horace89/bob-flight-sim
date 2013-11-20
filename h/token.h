@@ -53,7 +53,7 @@ struct	TokenName:public	TokenInit
 void	sayout(ufile	ofile,int	depth,char* rtype,TokenCode tokencode,char* anytext,Defined defined);
 void	sayout(ufile	ofile,int	depth,char* rtype,TokenCode tokencode,int anytext,Defined defined);
 
-
+/* x0r
 void	EmitSysErr(int line,char* mark,char* filename,char* &maintext);
 void	EmitWarning(int line,char* mark,char* filename,char* &maintext);
 inline	void	EmitSysErr(char *fmt, ...)
@@ -63,11 +63,14 @@ inline	void	EmitSysErr(char *fmt, ...)
 	EmitSysErr(__LINE__ , marker[0], __FILE__ ,  fmt);
 
 }
-void	EmitWarning(char *fmt, ...);
 
-#define	Assert(expr)	((expr)?((void)0):(EmitSysErr("Assert failed: " #expr),((void)0)))
+void	EmitWarning(char *fmt, ...);
+*/
+//x0r #define	Assert(expr)	      ((expr)?((void)0):(Error::Say("Assert failed: " #expr " " __FILE__ " %i",__LINE__),((void)0)))
+
+                                                                                                                            
 //#define	Assert(expr)	((void)0)
-#define	NAssert(expr)	((expr)?(EmitSysErr("Assert succeeded: " #expr),((void)0)):((void)0))
+//x0r #define	NAssert(expr)	( (expr) ? (Error::Say("Assert succeeded: " #expr " " __FILE__ " %i",__LINE__),((void)0) ) : ((void)0) )
 //#define	NAssert(expr)	((void)0)
 
 //------------------------------------------------------------------------------

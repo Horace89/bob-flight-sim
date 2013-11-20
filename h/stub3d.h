@@ -12,32 +12,27 @@
 //	TogglePaused(bool)
 //	ToggleAccel(bool)
 //	DeleteWorld()
-//	
-//	WinMode:	
-//		FullScreen/Windowed/DualScreen 
+//
+//	WinMode:
+//		FullScreen/Windowed/DualScreen
 //							0x0000,0x1000,0x2000
 //		Accelerated			0x000=no,0x100=yes,
-//							0x10n=specific card									
+//							0x10n=specific card
 //							0x1m0=specific mode
 
 #ifndef	STUB3d_defined
+//#include	"stdafx.h"
+//#include	<afxmt.h>
+
 inline	int	LockExchange(int* loc,int newval=0)
 {
 	int rv;
-static int * _eip;
     #ifndef    __BCPLUSPLUS__
 	_asm	{	mov		eax,newval
 				mov		ebx,loc
 				xchg	ds:[ebx],eax
 				mov		rv,eax
 			}
-       if (rv==0 && newval==1) // x0r remove this!
-              _asm   {
-		   call foo
-foo:
-    pop _eip
-              
-                 }
     #else
     rv=0; 
     #endif
@@ -51,7 +46,7 @@ class	WorldRef
 	WorldStuff* w;
 public:
 	WorldStuff*  operator=(WorldStuff* W)	{return w=W;}
-	operator	WorldStuff&	()				{return *w;}	
+	operator	WorldStuff&	()				{return *w;}
 	WorldStuff*	operator	&	()			{return w;}
 	operator	WorldStuff*	()				{return w;}
 };
@@ -102,19 +97,19 @@ class	Inst3d;
 class	CLib3D;
 
 class	Mast3d
-#ifdef	DECLARE_HANDLE
+//#ifdef	DECLARE_HANDLE
 
 {
-#ifndef	_WINDEF_
-#define	HINSTANCE	HWND
-#endif
+//x0r #ifndef	_WINDEF_
+//#define	HINSTANCE	HWND
+//#endif
 
-#ifdef	__AFXMT_H__
+//x0r #ifdef	__AFXMT_H__
 
-static void CALLBACK StaticTimeProc(UINT uID, UINT uMsg, DWORD dwUser, DWORD dw1, DWORD dw2 ); 
+static void CALLBACK StaticTimeProc(UINT uID, UINT uMsg, DWORD dwUser, DWORD dw1, DWORD dw2 );
 
-void TimeProc(UINT uID, UINT uMsg, DWORD dw1, DWORD dw2 ); 
-#endif
+void TimeProc(UINT uID, UINT uMsg, DWORD dw1, DWORD dw2 );
+//#endif
 	friend	class	fileman;
 	friend	class	CMIGApp;
 	friend	class	View3d;
@@ -130,7 +125,7 @@ void TimeProc(UINT uID, UINT uMsg, DWORD dw1, DWORD dw2 );
 	int				loopticks;
 public:
 	HWND				winst;
-	LPDIRECTINPUT		g_lpDI; 
+	LPDIRECTINPUT		g_lpDI;
 	LPDIRECTINPUTDEVICE	g_lpDIDevice;
 	CLib3D				*g_lpLib3d;
 	Inst3d*	currinst;
@@ -142,9 +137,9 @@ public:
 	void	Stop();
 	void	SmallWin();
 	void	BigWin();
-	
+
 }
-#endif
+//#endif
 ;
 extern	Mast3d	Master_3d;
 
@@ -176,7 +171,7 @@ class	Inst3d
 	WorldRef	world;
 	LiveList*	livelist;
 	int		blocktick,blockticks;
-	void	Inst3d::BlockTick(Bool setit);
+	void	BlockTick(Bool setit);
 	bool	mapview;
 	int		timeofday;
 
@@ -187,10 +182,10 @@ public:
 	View3d* Interactive(View3d* newwin);
 	bool Paused(bool newmode);
 	bool Accel(bool newmode);
-	View3d* Drawing(View3d* newwin);	
+	View3d* Drawing(View3d* newwin);
 	View3d* Interactive();
-	bool Paused();					
-	bool Accel();					
+	bool Paused();
+	bool Accel();
 	View3d* Drawing();
 	static	bool	InThe3D();//	{return !currinst->Paused();}
 	static	void	ReleaseDirectX();
@@ -247,19 +242,19 @@ public:
 	int	MakeInteractive	(WinMode	v=WinMode::FULL,const CRect& pos=*(CRect*)NULL,bool flag=false,bool flag2=false);
 	int	MakePassive		(WinMode	v=WinMode::FULL,const CRect& pos=*(CRect*)NULL,bool flag=false,bool flag2=false);
 	int	MakeResize		(WinMode	v=WinMode::FULL,const CRect& pos=*(CRect*)NULL);
-	bool Interactive(bool newmode)	
+	bool Interactive(bool newmode)
 	{	return (this==inst->Interactive(
 						newmode	?this
-								:(inst->viewedwin==this)	
+								:(inst->viewedwin==this)
 									?NULL
 									:inst->viewedwin));
 	}
 	bool Paused(bool newmode)		{return inst->Paused(newmode);}
 	bool Accel(bool newmode)		{return inst->Accel(newmode);}
-	bool Drawing(bool newmode);	
+	bool Drawing(bool newmode);
 	bool Interactive()				{return (this==inst->Interactive());}
-	bool Paused()					{return inst->Paused();}     
-	bool Accel()					{return inst->Accel();}      
+	bool Paused()					{return inst->Paused();}
+	bool Accel()					{return inst->Accel();}
 	bool Drawing()					{return drawing==D_YES;}
 
 
@@ -269,7 +264,7 @@ public:
 
 //DeadCode AMM 06Oct98 	void	SkipCycles(ULong num);								//AMM 16Sep98
 
-	View3d(Inst3d* i,HWND,CWnd*); 	
+	View3d(Inst3d* i,HWND,CWnd*);
 	~View3d();
 };
 #endif

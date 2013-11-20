@@ -17,7 +17,7 @@ struct	AaaMainList
 	AaaSubList	*aaalist;
 
 	CON		AaaMainList()	{aaaind=0;aaalist=new AaaSubList;}
-	DES		AaaMainList::~AaaMainList();
+	DES		~AaaMainList();
 
 	bool operator +=(ItemPtr i);
 	bool operator -=(ItemPtr i);
@@ -42,11 +42,11 @@ struct	LiveList:AaaMainList
   	SleepList	sleeplistbackup;
 	CON		LiveList(WorldStuff* world);
 	void	Event();
-//DEADCODE CSB 06/01/00 	void	operator +=(ItemPtr i)	{sleeplist+=i;}	  
+//DEADCODE CSB 06/01/00 	void	operator +=(ItemPtr i)	{sleeplist+=i;}
 	void	BackupSleepList();
 	int		ArchiveLiveList(UWord* archive,int archivesize,int skipsize=0);
 	void	RestoreSleepList();
 	void	ApplyLiveList(UWord* archive,int archivesize);
 
-};	
+};
 #endif

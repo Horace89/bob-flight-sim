@@ -58,4 +58,4 @@ protected:
 
 #endif // !defined(AFX_Credits_H__C6FA28C2_3E98_11D2_A5A3_0040052179B6__INCLUDED_)
 
-
+

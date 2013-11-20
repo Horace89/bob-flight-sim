@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 //Filename       matrix.h
-//System         
-//Author         Paul.   
+//System
+//Author         Paul.
 //Date           Wed 23 Aug 1995
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	matrix_Included
 #define	matrix_Included
@@ -69,10 +69,10 @@ class	matrix
 												DoPointStruc &,
 												DoPointStruc &);//PD 27Nov96
 
-				inline	SLong matrix::realZ(UWord scalefactor)	//PD 01Nov95
+				inline	SLong realZ(UWord scalefactor)	//PD 01Nov95
 						{return(ZPlane>>scalefactor);};			//PD 01Nov95
 
-				inline	ULong matrix::realZmsk(UWord scalefactor)
+				inline	ULong realZmsk(UWord scalefactor)
 						{
 							return((ULong )(((SLong )ZMask)>>scalefactor));
 						};
@@ -107,10 +107,10 @@ class	matrix
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 // Procedure	transformNC
 //------------------------------------------------------------------------------
-//Author	Paul.   
+//Author	Paul.
 //Date		Mon 12 Oct 1998
 //------------------------------------------------------------------------------
-inline void matrix::transformNC(FPMATRIX_PTR T, DoPointStruc* dp)
+inline void transformNC(FPMATRIX_PTR T, DoPointStruc* dp)
 {
 //DEADCODE RDH 5/19/00 	double f[3];
 //DEADCODE RDH 5/19/00 	double* mp=(double*)T;

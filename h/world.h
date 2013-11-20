@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 //Filename       world.h
-//System         
-//Author         Paul.   
+//System
+//Author         Paul.
 //Date           Tue 19 Sep 1995
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	WORLD_Included
 #define	WORLD_Included
@@ -63,22 +63,22 @@ ItemBasePtr		ConvertPtrUID(UniqueID tmpUID);
 
 			~WorldStuff();
 
-			void WorldStuff::AddToWorld(itemptr );
+			void AddToWorld(itemptr );
 
-			void WorldStuff::RemoveFromWorld(itemptr );
+			void RemoveFromWorld(itemptr );
 			void RemoveFromSector(itemptr,UWord	sector_number);
 
-			void WorldStuff::getsectornos(itemptr, UWord &x, UWord &y);
+			void getsectornos(itemptr, UWord &x, UWord &y);
 
-			UWord WorldStuff::makeindex(UWord x, UWord y);
+			UWord makeindex(UWord x, UWord y);
 
-			itemptr WorldStuff::getfirstitem(UWord );
-			
+			itemptr getfirstitem(UWord );
+
 //DeadCode PD 25Jun96 			UWord WorldStuff::getsector(itemptr );
-			UWord WorldStuff::GetSector(itemptr );				//PD 25Jun96
+			UWord GetSector(itemptr );				//PD 25Jun96
 
 			void	ClearWorld();
-			
+
 			Bool	SameSector(itemptr,itemptr);
 
 			void	SetLaunchers();
@@ -107,7 +107,7 @@ struct	WorldSearch
 	WorldStuff*	world;
 	CON	WorldSearch(WorldStuff*	w)
 		{world=w;sectornum=-1;currelt=NULL;}
-	
+
 	ItemPtr	Next()
 		{
 			if (currelt)
@@ -121,7 +121,7 @@ struct	WorldSearch
 					if (currelt)
 						return(currelt);
 				}
-		 		
+
 			}
 			return(currelt);
 		}

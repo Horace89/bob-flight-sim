@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 //Filename       transite.h
-//System         
+//System
 //Author         Martin Alderton
 //Date           Mon 4 Mar 1996
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	TRANSITE_Included
 #define	TRANSITE_Included
@@ -12,7 +12,7 @@
 #include	"AnimData.h"									//RJS 10Feb97
 
 //DEADCODE DAW 29/01/00 #include "display.h"						//PD 19Apr96
-#include "myvector.h"					
+#include "myvector.h"
 #include "3dinstr.h"												//RJS 06Aug96
 
 #define	DEFAULT_TRANSITE 0
@@ -100,7 +100,7 @@ const	Angles		DeathAngleStep		=	ANGLES_2Deg;		//PD 02May96
 //DeadCode AMM 24Jul98 typedef struct _bul_packet BULPACKET;							//ARM 12Sep96
 //DeadCode AMM 24Jul98 typedef struct _bul_packet* LPBULPACKET;						//ARM 12Sep96
 //DeadCode AMM 24Jul98 struct _bul_packet {											//ARM 12Sep96
-//DeadCode AMM 24Jul98 					
+//DeadCode AMM 24Jul98
 //DeadCode AMM 24Jul98 //DeadCode AMM 08Jun98 	Bool		got1sthalf;
 //DeadCode AMM 24Jul98 //DeadCode AMM 08Jun98 	UWord		PosX,PosY,PosZ;									//ARM 12Sep96
 //DeadCode AMM 24Jul98 //DeadCode AMM 08Jun98 	SWord		HorzVel;										//ARM 12Sep96
@@ -109,13 +109,13 @@ const	Angles		DeathAngleStep		=	ANGLES_2Deg;		//PD 02May96
 //DeadCode AMM 24Jul98 //DeadCode AMM 08Jun98 	SLong		LaunchTime;										//ARM 12Sep96
 //DeadCode AMM 24Jul98 //DeadCode AMM 08Jun98 	ShapeNum	Shape;											//ARM 12Sep96
 //DeadCode AMM 24Jul98 	Bool		got1sthalf;
-//DeadCode AMM 24Jul98 	SLong		PosX,PosY,PosZ;									
-//DeadCode AMM 24Jul98 	SWord		HorzVel;										
-//DeadCode AMM 24Jul98 	SWord		VertVel;										
-//DeadCode AMM 24Jul98 	ANGLES		Head;											
-//DeadCode AMM 24Jul98 	SLong		LaunchTime;										
-//DeadCode AMM 24Jul98 	ShapeNum	Shape;											
-//DeadCode AMM 24Jul98 };																
+//DeadCode AMM 24Jul98 	SLong		PosX,PosY,PosZ;
+//DeadCode AMM 24Jul98 	SWord		HorzVel;
+//DeadCode AMM 24Jul98 	SWord		VertVel;
+//DeadCode AMM 24Jul98 	ANGLES		Head;
+//DeadCode AMM 24Jul98 	SLong		LaunchTime;
+//DeadCode AMM 24Jul98 	ShapeNum	Shape;
+//DeadCode AMM 24Jul98 };
 
 struct	HitEffectRecord;	//RJS 18Jan99
 
@@ -135,7 +135,7 @@ class	ViewPoint;
 class TransObj
 {
 	struct	RaidElement
-	{	
+	{
 		UWord	uid;
 		SLong	timeout;
 	};
@@ -168,14 +168,14 @@ enum	WeapSearchType											//RJS 10Jun97
 private:
 void KillOldest();												//PD 24Jul96
 
-TransientItemPtr TransObj::DeleteTransientItem(TransientItemPtr );		//MGA 22Feb96
-TransientItemPtr TransObj::DeleteTempTransientItem(TransientItemPtr );//MGA 25Mar96
-int  TransObj::FindInTransientList(TransientItemPtr);						//MGA 29Feb96
-int  TransObj::CountTheTransients(TransientItemPtr );									//MGA 27Feb96
-int  TransObj::CountTheDeadTransients(TransientItemPtr );									//MGA 27Feb96
-int  TransObj::GetRand(void);
+TransientItemPtr DeleteTransientItem(TransientItemPtr );		//MGA 22Feb96
+TransientItemPtr DeleteTempTransientItem(TransientItemPtr );//MGA 25Mar96
+int  FindInTransientList(TransientItemPtr);						//MGA 29Feb96
+int  CountTheTransients(TransientItemPtr );									//MGA 27Feb96
+int  CountTheDeadTransients(TransientItemPtr );									//MGA 27Feb96
+int  GetRand(void);
 
-TransientItemPtr TransObj::InitTransientItem(MobileItemPtr,itemptr,itemptr,UNIQUE_ID,int );//MGA 22Feb96
+TransientItemPtr InitTransientItem(MobileItemPtr,itemptr,itemptr,UNIQUE_ID,int );//MGA 22Feb96
 // I don't now see where this procedure will be used			//MGA 29Feb96
 
 	bool	HitTheDeck;											//RDH 09May99
@@ -185,7 +185,7 @@ TransientItemPtr TransObj::InitTransientItem(MobileItemPtr,itemptr,itemptr,UNIQU
 
 	SWord	recycleTimer;												//RJS 13Aug00
 
-public:	
+public:
 	MobileItem* View_Point;
 	ViewPoint* View_Object;
 
@@ -220,10 +220,10 @@ TransObj(void );
 	void	NoGravityAndFriction(mobileitem*,SWord dragfactor=0);//RJS 18Jun98
 
 	void	LaunchExplosion(mobileitem*, WorldStuff&, int strength = 0);//RJS 22Jan98
-void TransObj::LaunchDummyExplosion(mobileitem);									//MGA 29Feb96
-void TransObj::LaunchDitchEffect(mobileitem, WorldStuff& );								//MGA 01Mar96
+void LaunchDummyExplosion(mobileitem);									//MGA 29Feb96
+void LaunchDitchEffect(mobileitem, WorldStuff& );								//MGA 01Mar96
 //DeadCode AMM 01Jun98 void TransObj::LaunchCrater(mobileitem*, WorldStuff& );			//RJS 25Jun96
-void TransObj::LaunchCrater(mobileitem*, WorldStuff&);									//RJS 19Nov98
+void LaunchCrater(mobileitem*, WorldStuff&);									//RJS 19Nov98
 //DeadCode PD 26Apr96 void TransObj::LaunchBullet(mobileitem&, WorldStuff& );				//MGA 21Mar96
 //Old_Code PD 29Apr96 void TransObj::LaunchDeadACPart(AirStruc&,BitFlags,WorldStuff& );//PD 19Apr96
  	void	LaunchDeadACPart(AirStruc*,BitFlags,WorldStuff&,Bool blowup=FALSE );//RJS 20Feb97
@@ -290,12 +290,12 @@ void MobileBomb1stFrame(TransientItemPtr,WorldStuff&);					//RJS 3Oct00
 
 
 
-void TransObj::RemoveDeadListFromWorld();								//MGA 27Feb96
-void TransObj::RemoveDeadListFromWorld(WorldStuff& )			//JIM 11Nov96
+void RemoveDeadListFromWorld();								//MGA 27Feb96
+void RemoveDeadListFromWorld(WorldStuff& )			//JIM 11Nov96
 		{RemoveDeadListFromWorld();}							//JIM 11Nov96
-void TransObj::DeleteAll();										//PD 11May96
-void TransObj::AddTransientItemToWorld(TransientItemPtr, WorldStuff& );				//MGA 27Feb96
-void TransObj::AddTransientItemToDeadList(TransientItemPtr, bool novapour=false);//DAW 19May99
+void DeleteAll();										//PD 11May96
+void AddTransientItemToWorld(TransientItemPtr, WorldStuff& );				//MGA 27Feb96
+void AddTransientItemToDeadList(TransientItemPtr, bool novapour=false);//DAW 19May99
 
 	void	GeneralAircraftDammage(AirStruc*,WorldStuff&,Bool	blowup=FALSE,itemptr hitter= NULL);//ARM 02Dec96
 //TempCode RJS 18Feb97 	void	SetAircraftDammage(AirStruc*,WorldStuff&,UByteP,BitStates,Bool,Bool nomovecode=FALSE,Bool	blowup=FALSE,Bool sendpacket = FALSE);//RJS 13Feb97

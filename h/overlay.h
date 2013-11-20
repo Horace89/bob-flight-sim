@@ -1,14 +1,15 @@
 //------------------------------------------------------------------------------
 //Filename       overlay.h
-//System         
-//Author         Paul    
+//System
+//Author         Paul
 //Date           Thu 4 Jun 1998
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	OVERLAY_Included
 #define	OVERLAY_Included
 
 #include "landscap.h"
+#include "cstring.h"
 
 #define	DEFAULT_OVERLAY 0
 
@@ -40,11 +41,11 @@ struct GameSettings;
 
 struct MapScr;
 
-enum Key {	SEL_1,		SEL_2,	SEL_3,	SEL_4,		
-			SEL_5,		SEL_6,	SEL_7,	SEL_8,		
+enum Key {	SEL_1,		SEL_2,	SEL_3,	SEL_4,
+			SEL_5,		SEL_6,	SEL_7,	SEL_8,
 			SEL_9,		SEL_0,	SEL_PLUS,
 			SEL_MINUS,	SEL_ENTER,	SEL_ESC,
-			SEL_UP,		SEL_DN,		SEL_LFT,	
+			SEL_UP,		SEL_DN,		SEL_LFT,
 			SEL_RGT,	SEL_PAUSE,	SEL_QUIT,
 			SEL_BLANK,	SEL_EOL,
 			SEL_NONE};
@@ -103,9 +104,10 @@ struct MapScr
 			FLAG_MOUSEOVERHI=256
 		};
 
-	typedef Key (__cdecl MapScr::*InitRtnPtr) (void);
-	typedef MapScr* (__cdecl MapScr::*SelRtnPtr) (UByte&,Key);
-	typedef void (__cdecl MapScr::*ExtraRtnPtr) (void);
+	typedef Key (MYCALL MapScr::*InitRtnPtr) (void);
+//	typedef Key (MYCALL MapScr::*InitRtnPtr) ();
+	typedef MapScr* (MYCALL MapScr::*SelRtnPtr) (UByte&,Key);
+	typedef void (MYCALL MapScr::*ExtraRtnPtr) (void);
 	typedef Key InitRtn (void);
 	typedef MapScr* SelRtn (UByte&,Key);
 	typedef void ExtraRtn (void);
@@ -115,7 +117,7 @@ struct MapScr
 	UWord 	windowLeft,		//screen(X,Y) coordinates of the top left corner of the
 			windowTop;		//screen defined in PIXELS640
 
-	UWord 	windowWidth,	//screen(W,H) values for the screen area 
+	UWord 	windowWidth,	//screen(W,H) values for the screen area
 			windowHeight;	//to be wiped defined in PIXELS640
 
 	UWord 	gridXOffset,	//(X,Y) offset from the screen(X,Y) coordinates to
@@ -175,7 +177,7 @@ struct MapScr
 			SelectFromCommsRecipientOrders,
 			SelectFromReplayScreen,
 			SelectFromCommsDialog,
-			
+
 			SelectCommsChat,
 			SelectFrom3DOrders,
 			SelectFromUserMsg,
@@ -186,7 +188,7 @@ struct MapScr
 
 	ExtraRtn	UpdateMessageDisplay,
 				UpdateWaypointDisplay,
-				HandleUpDnLftRgtToggleKeys,
+	  		HandleUpDnLftRgtToggleKeys,
 				ShowPositionIndicators,
 				CommsTextUpdateDisplay,
 				TimeLimitedDisplay,
@@ -219,7 +221,7 @@ typedef struct 	ImageMap_Desc									//PD 01Aug96
 				*ImageMapDescPtr;								//PD 01Aug96
 //struct	DoPointStruc;
 class	ViewPoint;
-class CString;
+//it is a template class CString;
 //DEADCODE JON 5/22/00 struct R3DVERTEX;
 //DEADCODE RDH 5/19/00 typedef R3DVERTEX DoPointStruc;
 enum	Colour;
@@ -289,14 +291,14 @@ public:
 
 	struct ScrollyText
 	{
-		enum State 
+		enum State
 		{
 			WaitingToScroll=0,
 			ScrollingToEnd,
 			WaitingToScrollBack,
 			ScrollingToFront
 		};
-		enum TimerValues 
+		enum TimerValues
 		{
 			WaitToScrollTime=2*100, // time in milliseconds
 			ScrollToEndTime=10*100,
@@ -314,7 +316,7 @@ public:
 		State state;
 
 		ScrollyText(SWord ti=0):timer(WaitToScrollTime),index(0),state(WaitingToScroll),targetIndex(ti) {}
-		SWord CharsToShuffle(SWord ft) 
+		SWord CharsToShuffle(SWord ft)
 		{
 			if (!targetIndex) return 0;
 			SLong toGo;
@@ -503,7 +505,7 @@ public:
 
 
 public:
-	COverlay() 
+	COverlay()
 	{	msgText=NULL;
 		otherText=NULL;
 //DeadCode RJS 11Oct00 		quit3d=0;
@@ -527,7 +529,7 @@ public:
 		diagnosticstring[0]=0;
 #endif
 	};
-	~COverlay() 
+	~COverlay()
 	{
 //#define TESTANDDEL( arg ) if ( arg != NULL ) { delete arg; arg = NULL; }
 //		TESTANDDEL( msgText )

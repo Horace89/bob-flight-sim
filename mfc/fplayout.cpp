@@ -108,8 +108,8 @@ FullScreen RFullPanelDial::introsmack=
 		},
 	},
 	FullScreen::Align::CENTRE,
-			{{0,&title,CheckLobby}},
-	IntroSmackInit
+			{{0,&title,&RFullPanelDial::CheckLobby}},
+	&RFullPanelDial::IntroSmackInit
 };
 FullScreen RFullPanelDial::endwarreview=
 {
@@ -175,8 +175,8 @@ FullScreen RFullPanelDial::credits=
 	},
 // for lobbied games need to goto locker room instead of main menu
 	FullScreen::Align::CENTRE,
-	{{0,&title,CheckForDemo}},
-	IntroSmackInitForCredits
+	{{0,&title,&RFullPanelDial::CheckForDemo}},
+	&RFullPanelDial::IntroSmackInitForCredits
 };
 
 
@@ -223,7 +223,7 @@ FullScreen RFullPanelDial::title=
 		{IDS_WEBSITE,NULL,JumpToWebSite}
 #endif
 #else
-		{IDS_QUICKSHOTS,&quickmission,SetQuickState},
+		{IDS_QUICKSHOTS,&quickmission,&RFullPanelDial::SetQuickState},
 		//{IDS_NOT_CAMPAIGN},
 		//{IDS_NOT_MULTIPLAYER},
 		//{IDS_NOT_LOADGAME},
@@ -231,7 +231,7 @@ FullScreen RFullPanelDial::title=
 		{IDS_MACHINECONFIG,&options3d},
 		{IDS_CONFIGGAME,&flightoptions},
 		{IDS_CREDITSTITLE,&credits},
-		{IDS_TITLE7,NULL,ConfirmExit},
+		{IDS_TITLE7,NULL,&RFullPanelDial::ConfirmExit},
 		{IDS_NONE},
 		{IDS_NONE},
 		{IDS_NONE},
@@ -239,7 +239,7 @@ FullScreen RFullPanelDial::title=
 		{IDS_NONE}	//DISABLEDEMO}
 #endif
 	},
-	TitleInit
+	&RFullPanelDial::TitleInit
 };
 
 #ifdef	 BOB_DEMO_VER
@@ -341,14 +341,14 @@ FullScreen RFullPanelDial::replayload=
 	},
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_QUICKMISSION1,&title,ReplayLoadBack},
+		{IDS_QUICKMISSION1,&title,&RFullPanelDial::ReplayLoadBack},
 //DeadCode AMM 17Feb99 		{IDS_LOAD,NULL,ReplayLoad},
-		{IDS_LOAD,&quickmissionflight,ReplayLoad},			//AMM 17Feb99
+		{IDS_LOAD,&quickmissionflight,&RFullPanelDial::ReplayLoad},			//AMM 17Feb99
 //		{IDS_SAVE,NULL,ReplaySave},
 //		{IDS_VIEW,NULL,ReplayView},
 //DeadCode AMM 17Feb99 		{IDS_VIEW,&quickmissionflight,ReplayView},
 	},
-	ReplayLoadInit
+	&RFullPanelDial::ReplayLoadInit
 };
 
 #ifndef	 BOB_DEMO_VER
@@ -1402,12 +1402,12 @@ FullScreen RFullPanelDial::quickmission=
 	},
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_BACK,&title,CheckForDemo},
+		{IDS_BACK,&title,&RFullPanelDial::CheckForDemo},
 //DEADCODE RDH 28/10/99 		{IDS_VARIANTS,&variants},
 //DeadCode RDH 9Aug00  		{IDS_QUICKMISSION2,&quickmissiondebrief},						//RDH 28/02/00
-		{IDS_FLY,&bobfrag,CheckForMissingMission}						//RJS 30Jul00
+		{IDS_FLY,&bobfrag,&RFullPanelDial::CheckForMissingMission}						//RJS 30Jul00
 	},
-	QuickMissionInit
+	&RFullPanelDial::QuickMissionInit
 };
 FullScreen RFullPanelDial::bobfrag=
 {
@@ -1436,15 +1436,15 @@ FullScreen RFullPanelDial::bobfrag=
 	FullScreen::Align::HORIZ,
 	{
 //DEADCODE RDH 28/02/00 		{IDS_BACK,&title,CheckForDemo},
-		{IDS_BACK,&quickmission,ReturnToMap},
-		{IDS_CONFIGGAME,&flightoptions,FragBackupOptions},
+		{IDS_BACK,&quickmission,&RFullPanelDial::ReturnToMap},
+		{IDS_CONFIGGAME,&flightoptions,&RFullPanelDial::FragBackupOptions},
 //DEADCODE RDH 28/10/99 		{IDS_VARIANTS,&variants},
 //DeadCode DAW 09Jul99 		{IDS_QUICKMISSION2,&quickmissiondebrief},
 //DeadCode AMM 10Jul00 		{IDS_FLY,&quickmissionflight}
 // need to backup savegame for replay
-		{IDS_FLY,&quickmissionflight,FragFly2}							//AMM 10Jul00
+		{IDS_FLY,&quickmissionflight,&RFullPanelDial::FragFly2}							//AMM 10Jul00
 	},
-	BoBFragInit
+	&RFullPanelDial::BoBFragInit
 };
 FullScreen RFullPanelDial::quickmissionflight=
 {
@@ -1456,9 +1456,9 @@ FullScreen RFullPanelDial::quickmissionflight=
 	},
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_QUICKMISSION2,NULL,QuitFlying}
+		{IDS_QUICKMISSION2,NULL,&RFullPanelDial::QuitFlying}
 	},
-	StartFlying
+	&RFullPanelDial::StartFlying
 };
 
 FullScreen RFullPanelDial::quickmissiondebrief=
@@ -1499,14 +1499,14 @@ FullScreen RFullPanelDial::quickmissiondebrief=
 	},
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_QUICKMISSION1,&quickmission,IfCommsToReadyRoom},
+		{IDS_QUICKMISSION1,&quickmission,&RFullPanelDial::IfCommsToReadyRoom},
 		{IDS_REPORT,NULL},
 		{IDS_DIARY,&quickmissiondebriefgrnd},
 #ifndef	 BOB_DEMO_VER
-		{IDS_REPLAYTITLE,&replaysave,DebriefReplayCheck}								//AMM 10Feb99
+		{IDS_REPLAYTITLE,&replaysave,&RFullPanelDial::DebriefReplayCheck}								//AMM 10Feb99
 #endif
 	},
-	QuickMissionDebriefInit
+	&RFullPanelDial::QuickMissionDebriefInit
 };
 	
 FullScreen RFullPanelDial::quickmissiondebriefgrnd=
@@ -1547,14 +1547,14 @@ FullScreen RFullPanelDial::quickmissiondebriefgrnd=
 	},
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_QUICKMISSION1,&quickmission,IfCommsToReadyRoom},
+		{IDS_QUICKMISSION1,&quickmission,&RFullPanelDial::IfCommsToReadyRoom},
 		{IDS_REPORT,&quickmissiondebrief},
 		{IDS_DIARY,NULL},
 #ifndef	 BOB_DEMO_VER
-		{IDS_REPLAYTITLE,&replaysave,DebriefReplayCheck}								//AMM 10Feb 99
+		{IDS_REPLAYTITLE,&replaysave,&RFullPanelDial::DebriefReplayCheck}								//AMM 10Feb 99
 #endif
 	},
-	QuickMissionDebriefGrndInit
+	&RFullPanelDial::QuickMissionDebriefGrndInit
 };
 
 

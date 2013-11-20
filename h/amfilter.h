@@ -11,6 +11,7 @@
 #ifndef __FILTER__
 #define __FILTER__
 
+#include "strmif.h"
 /* The following classes are declared in this header: */
 
 class CBaseMediaFilter;     // IMediaFilter support

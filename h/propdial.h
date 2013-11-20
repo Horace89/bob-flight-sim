@@ -19,7 +19,7 @@ class	ComboTexts
 public:
   ComboTexts(char* filename,int reqmaxlistlen);
   ~ComboTexts();
-  SetComboList(CComboBox*);
+  void SetComboList(CComboBox*);
 };
 inline ComboTexts::ComboTexts(char* filename,int reqmaxlistlen)
 {
@@ -35,7 +35,7 @@ inline ComboTexts::~ComboTexts()
 		delete[]linebuffer;
 	}
 }
-inline ComboTexts::SetComboList(CComboBox* combo)
+inline void ComboTexts::SetComboList(CComboBox* combo)
 {
 	if (!linebuffer)
 	{

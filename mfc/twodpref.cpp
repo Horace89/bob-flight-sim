@@ -222,7 +222,8 @@ BOOL TwoDPref::OnInitDialog()
 			if (ChangeDisplaySettings(&devmode,CDS_TEST)==DISP_CHANGE_SUCCESSFUL)
 				if (devmode.dmBitsPerPel>=15  && devmode.dmPelsWidth>=512 && devmode.dmPelsHeight>=384)
 				{
-					for (int m=1;m<maxpossmodes;m++)
+					int m;
+					for ( m=1;m<maxpossmodes;m++)
 						breakif(possiblemapreses[m].horres==devmode.dmPelsWidth);
 					if (m==maxpossmodes && maxpossmodes<PossReses::MAX_RES_MODES)
 					{
@@ -389,7 +390,7 @@ static	int abe[]=
 		};
 void	SaveDataLoad::ChangeMode(ResUI modepoint)
 {
-    static currmode=UIR_MAX;
+    static long currmode=UIR_MAX;
 	if (ui_horizontalres[UIR_FIRST]==0)
 	{
 //DeadCode JIM 18Oct00 		if (modepoint==UIR_FIRST)
@@ -423,7 +424,9 @@ void	SaveDataLoad::ChangeMode(ResUI modepoint)
 				0;
 		for (int i=0,r=1;i<4;i++,r+=r)
 		{
-			APPBARDATA pabd={sizeof(APPBARDATA)};
+			APPBARDATA pabd;
+			memset(&pabd, 0, sizeof(APPBARDATA));
+            pabd.cbSize=sizeof(APPBARDATA);
 			pabd.uEdge=abe[i];
 			HWND w=(HWND)SHAppBarMessage(ABM_GETAUTOHIDEBAR, &pabd);
 			if (w)
@@ -468,7 +471,7 @@ void	SaveDataLoad::ChangeMode(ResUI modepoint)
 				if ((ui_colourdepth!=-1 && ui_horizontalres[modepoint]==0) || modepoint==UIR_FIRST)
 				{	//DM_BITSPERPEL
 
-					DEVMODE	devmode;
+					DEVMODE	devmode;memset(&devmode,0,sizeof(DEVMODE));
 					devmode.dmSize=sizeof(DEVMODE);
 					devmode.dmDriverExtra=0;
 					devmode.dmPelsWidth=ui_horizontalres[UIR_FIRST];
@@ -508,8 +511,8 @@ void	SaveDataLoad::ChangeMode(ResUI modepoint)
 				{
 					if (!ui_horizontalres[modepoint])
 						modepoint=UIR_FIRST;	//cludge if desktop is 8 bit come through here
-					DEVMODE	devmode,bestdevmode={0};
-					devmode.dmSize=sizeof(DEVMODE);
+					DEVMODE	devmode,bestdevmode;
+	memset(&devmode,0,sizeof(DEVMODE));memset(&bestdevmode,0,sizeof(DEVMODE));devmode.dmSize=sizeof(DEVMODE);bestdevmode.dmSize=sizeof(DEVMODE);
 					devmode.dmDriverExtra=0;
 					float oldratio=1000.0;
 					for (int count=0;EnumDisplaySettings(NULL,count,&devmode);count++)

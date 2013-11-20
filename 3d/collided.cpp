@@ -96,6 +96,7 @@ const	UWord ACUPSIDEDOWNMAX= UWord(ANGLES_180Deg) + UWord(ANGLES_80Deg);	//CSB 2
 #include	"winmove.h"											//ARM 08Nov96
 #include	"modinst.h"
 #include	"model.h"
+#include	"persons2.h"
 
 Collide	_Collide;
 

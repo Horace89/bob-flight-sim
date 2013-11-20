@@ -1,7 +1,7 @@
 #ifndef	READENUM_Included
 #define	READENUM_Included
-
-class ifstream;
+#include <fstream>
+using std::ifstream;
 
 class	EnumCtrl
 {
@@ -37,8 +37,8 @@ public:
 	char*	Translate(int i);
 	int		Translate(char* s);
 	Bool	Optimise(int breakevenpercentutilised=50);
-	void	readenumfromfile(ifstream& f);
-	void	readconstfromfile(ifstream& f);
+	void	readenumfromfile(std::ifstream& f);
+	void	readconstfromfile(std::ifstream& f);
 	int	Min()	{return min;}
 	int	Max()	{return max;}
 
@@ -52,11 +52,9 @@ static    void	Strcpy(char*,char*);
 	static		char	*listcmpnames[30];
 	static 		int		listcmp2listname[30];
 	int			enumname2listname[30];
-	void	readfilelist(char*);
+	void	readfilelist(const char*);
 	void	readfilesfromlist();
-	void	EnumStuff::readenumlist(char* name);
-
-public:
+	void	readenumlist(char* name);
 
 public:
 	char		listnames[30][40];
@@ -76,7 +74,7 @@ inline	EnumCtrl& GetList(EnumListNames i)
 	return  EnumStuff::listentries[EnumStuff::listcmp2listname[i]];
 }
 	#endif
-                                       
+
 extern	EnumStuff	IEnumStuff;
 
 #endif

@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //Filename       winmove.h
-//System         
+//System
 //Date           Fri 9 Aug 1996
 //------------------------------------------------------------------------------
 #ifndef	WINMOVE_Included
@@ -8,11 +8,12 @@
 
 #define	DEFAULT_WINMOVE 0
 
-#include	"DOSDefs.h"	
+#include	"DOSDefs.h"
 #include	"UniqueID.h"
 #include	"savegame.h"
 #include	"misssub.h"
 #include	"cbuffer.h"		//Winmove is included in everything else, so now
+#include	"shapenum.g"
 
 // directX stuff
 
@@ -44,7 +45,7 @@ struct _acstatepacket {
 	ANGLES		Heading;
 	ANGLES		Roll;
 
-	SLong		Velocity; 
+	SLong		Velocity;
 
 	UByte		MyKills;
 	UByte		MyAssists;
@@ -97,8 +98,8 @@ struct _ac_packet : public _basic_packet
 {
 
 	UByte	Count;		// increments every frame
-	UByte	Ack1;		
-	UByte	Ack2;		
+	UByte	Ack1;
+	UByte	Ack2;
 
 };
 
@@ -127,7 +128,7 @@ struct send_packet_buff {
 	UByte		ResendStatus;
 };
 
-// aggregated packet sent by aggregator with list of 
+// aggregated packet sent by aggregator with list of
 // who has acked the packet
 
 typedef struct aggsendpackbuff AGGBUFF;
@@ -206,7 +207,7 @@ typedef struct _comms_collision* LPCOMMSCOLLISION;
 struct _comms_collision : idcode
 {
 	UWord		id;			// 14-bits
-	UWord		offset;		// 9-bits											
+	UWord		offset;		// 9-bits
 	UByte		type;		// 3-bits
 	UByte		str;		// 6-bits
 	UWord		hitterscorer; // 14bits
@@ -263,7 +264,7 @@ struct _buffer_pack
 typedef struct _hist_buff	HISTBUFF;
 typedef struct _hist_buff*	LPHISTBUFF;
 
-struct _hist_buff 
+struct _hist_buff
 {
 // this position has been received ok
 
@@ -275,7 +276,7 @@ struct _hist_buff
 	ANGLES		Pitch;
 	ANGLES		Heading;
 	ANGLES		Roll;
-	SLong		Velocity; 
+	SLong		Velocity;
 	UByte		Frame;
 
 // deltas for recalculating position
@@ -467,7 +468,7 @@ public:
 			PIDC_SCORECLAIM=64,		// 01000000
 			PIDC_WINGMANCOMMAND=80, // 01010000
 			PIDC_NEXT=96,			// 01100000
-			PIDC_LASTONE=112,		// 01110000				
+			PIDC_LASTONE=112,		// 01110000
 
 	// 10 top 2 bits indicate collision packet
 
@@ -506,13 +507,13 @@ public:
 
 		PT_BULLET=0,
 		PT_UIDS=1,
-		PT_COLLISION=2,			
-		PT_SPECIAL=3,			
+		PT_COLLISION=2,
+		PT_SPECIAL=3,
 	};
 
 	enum GameTypes {
 		DEATHMATCH=0,
-		TEAMPLAY, 
+		TEAMPLAY,
 		COMMSQUICKMISSION
 	};
 
@@ -566,8 +567,8 @@ public:
 
 	};
 
-	DPlay::DPlay ();
-	DPlay::~DPlay ();
+	DPlay ();
+	~DPlay ();
 
 // direct play specific vars
 
@@ -599,9 +600,9 @@ public:
 	Bool	Implemented;		// DirectPlay/Session/Player Flag
 	Bool	Host;				// True if this machine is host, else guest
 	ULong	UIPlayerType;		// Host or Guest, for UI Only
-	ULong	MyTeamKills;		
+	ULong	MyTeamKills;
 	ULong	MyTeamDeaths;
-	ULong	EnemyTeamKills;		
+	ULong	EnemyTeamKills;
 	ULong	EnemyTeamDeaths;
 	myDPID	aggID;					// aggregator ID
 	myDPID	myDPlayID;				//dplay id/wplay id
@@ -616,7 +617,7 @@ public:
 
 // game data
 
-// circular buffer to store ac packets. 
+// circular buffer to store ac packets.
 
 	CBuffer<BUFFPACK,BUFFERLENGTH> PacketBuffer;
 
@@ -633,27 +634,27 @@ public:
 
 // collision stuff
 
-	CBuffer<COMMSCOLLISION,BUFFERLENGTH> CollBuffer;			
+	CBuffer<COMMSCOLLISION,BUFFERLENGTH> CollBuffer;
 
 	void	NewCollision2 (UWord id, UWord offset, UByte hitbox, UByte typeandstr, UniqueID hitterscorer);	//RJS 19Jun00
 
 // special packet
 
-	CBuffer<SPECPACKET,BUFFERLENGTH> SpecBuffer;				
+	CBuffer<SPECPACKET,BUFFERLENGTH> SpecBuffer;
 
 	void NewSpecial(ULong id,UByte byte1=0, UByte byte2=0, UByte byte3=0, UByte byte4=0, UByte byte5=0);
 
 // bullet stuff
 
 	void	NewBullet (ULong num, ULong index);
-	CBuffer<BULENTRY,BUFFERLENGTH> BulletBuffer;	
+	CBuffer<BULENTRY,BUFFERLENGTH> BulletBuffer;
 
 // for collision effects (killlauncher calls)
 
 	void	NewKillLauncher(UniqueID id);
 	void	ProcessKillLauncherPacket(UByteP);
 
-	CBuffer<UIDPACKET,BUFFERLENGTH> UIDSBuffer;		
+	CBuffer<UIDPACKET,BUFFERLENGTH> UIDSBuffer;
 
 // UI vars
 
@@ -672,7 +673,7 @@ public:
 		void UISendDialogue (char*);
 		#ifdef	SAVEGAME_Included
 		void UIUpdateMainSheet ();
-		Bool UISendPrefs (ULong); 
+		Bool UISendPrefs (ULong);
 		#endif
 		#endif
 	SLong GetNextAvailableSlot();
@@ -691,7 +692,7 @@ public:
 	char	PlayerName[PLAYERNAMELEN];	//players name
 	char	Password[PASSWORDNAMELEN];		//password for session
 	char	GameName[256];		//name of battlefield
-	char	Messages[MAXPLAYERS][NUMRADIOMESSAGES+1][RADIOMESSAGELEN];		
+	char	Messages[MAXPLAYERS][NUMRADIOMESSAGES+1][RADIOMESSAGELEN];
 	UByte	RateDivider;		// data rate divider
 	UByte	FrameInc;			// same as data rate divider - number of frames in each send/receive cycle
 	Bool	firsttimein;		// used to initialise stuff on entry to 3d
@@ -709,19 +710,19 @@ public:
 	UByte	FrameCount;		// Frame count (3 csecs)
 	ULong ActivePlayers;
 
-	UWord	damageRandom;												
-	UWord	effectRandom;												
+	UWord	damageRandom;
+	UWord	effectRandom;
 
 	Bool SendPacketToAggregator(LPACPACKET lpAcPacket);
 	void SendGonePacket();
 	void CommitSuicide();
 	void InitRecBits ();
 	void ResurrectMe (AirStrucPtr ac, bool suicide);
-	void SetScore (AirStrucPtr victim, ItemPtr killer);		
+	void SetScore (AirStrucPtr victim, ItemPtr killer);
 	void ResurrectAircraft (AirStrucPtr, Bool);
 	void RepairAircraft (AirStrucPtr);
 	void InitResurrect (AirStrucPtr);
- 	void ProcessPlayerGone(ULong player,Bool in3d); 
+ 	void ProcessPlayerGone(ULong player,Bool in3d);
 	void PredictMove(AirStruc* ac);
 	void AddDeltas(AirStruc* AC, Bool sign,UByte);
 	UByte 	MakeShiftValue();
@@ -739,10 +740,10 @@ public:
 	void	InitGameVars();
 	void	MakeAndSendPacket();
 	void	SetRandomList();
-	
+
 	Bool	ProcessPlayerMessage(char* message,ULong size,ULong from);
 	Bool	ProcessSystemMessage(char* message);
-	
+
 	void ProcessDeltaPacket (LPACPACKET Packet,ULong playerID);
 	void ProcessExtraPacket (LPACPACKET Packet,ULong playerID);
 	void ProcessExtraPacket (LPACPACKET, AirStrucPtr, ULong);
@@ -776,7 +777,7 @@ public:
 
 // DPID of player to chat to OR, 0=chat to all, 1=chat to myteam
 
-	ULong	sendtowho; 
+	ULong	sendtowho;
 
 	void	InitBuffers();
 	void	ResetDeltas();
@@ -879,7 +880,7 @@ public:
 	void	DeleteMyAIACPositionToSendList();
 	void	UpdateACFromPositionList(LPACPOSENTRY p);
 
-// used when AI AC has finished combat and a position update is being sent to other players. 
+// used when AI AC has finished combat and a position update is being sent to other players.
 // Possibly more than one AC per player - but only one will be sent at a time (but there could
 // be bloody packet loss!!)
 	LPACPOSENTRY	AIACPositions[MAXPLAYERS];
@@ -918,7 +919,7 @@ public:
 	void	ReceiveMessages(char*,ULong);
 	void	SendGotWorldMessage();
 	void	SaveRadioMessages();
-	Bool	LoadRadioMessages();	
+	Bool	LoadRadioMessages();
 	void	InitMessages();
 	bool	UpdateMessages();
 
@@ -960,8 +961,8 @@ public:
 	Bool	FindGoodSession();
 
 	char*	GetPlayerMessage(ULong index);
-	char*	GetPlayerName(ULong);		
-	ULong	GetPlayerNumber(ULong);		
+	char*	GetPlayerName(ULong);
+	ULong	GetPlayerNumber(ULong);
 
 	inline ULong DPID2Slot(ULong id);
 	inline ULong UID2Slot(UWord id);
@@ -1025,7 +1026,7 @@ public:
 	void	ProcessEjectPacket(AirStrucPtr ac);
 	void	ProcessGuestLeavingMessage(ULong from);
 
-	void	NewShapePacket(UWord,UWord);						
+	void	NewShapePacket(UWord,UWord);
 	void	ProcessNewShapePacket(UByteP);
 	UByte	CommsKiller[MAXPLAYERS];
 	void	ProcessResyncPacket(LPACSTATEPACKET,ULong);
@@ -1088,7 +1089,7 @@ public:
 	bool	resurrectend;
 
 	SByte	joiningplayerslot;
-	void	ResetCommsSurfaces();						
+	void	ResetCommsSurfaces();
 
 	bool	resyncbar;
 
@@ -1159,8 +1160,8 @@ public:
 	void	CheckGhost();
 	void	CheckSeen();
 
-	void	UpdateBomberGhost();	
-	void	UpdateBomberSeen();		
+	void	UpdateBomberGhost();
+	void	UpdateBomberSeen();
 
 
 	DELTARECORD	DeltasToApply[MAXPLAYERS][3];// 3 is max data rate for BoB
@@ -1173,7 +1174,7 @@ public:
 	void	CheckSendQueue();
 	void	ResetAllAIFields(AirStrucPtr);
 
-	void	NewEngineRPMPacket(UWord);					
+	void	NewEngineRPMPacket(UWord);
 	void	ProcessEngineRPMPacket(UByteP);
 
 	void	NewEngineAnimPacket();
@@ -1188,7 +1189,7 @@ public:
 
 	UByteP	listptr;
 
-// stage with flags representing 
+// stage with flags representing
 // [x][0] - I done this stage and have info to send
 // [x][1] - I have received a request for this info, send as soon as stage done
 
@@ -1222,7 +1223,7 @@ public:
 	bool	IsPilotDead(int squad, UByte pos);
 	void	UpdateDeadPilots(AirStrucPtr);
 	void	CheckAnimPack(UByteP);
-	
+
 	struct	NiceColours
 	{
 		bool GEffects;

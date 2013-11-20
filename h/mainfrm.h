@@ -121,7 +121,8 @@ public:
 	afx_msg void OnClose();
 	afx_msg void OnGetMinMaxInfo(MINMAXINFO FAR* lpMMI);
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
-	afx_msg void OnActivateApp(BOOL bActive, HTASK hTask);
+//x0r	afx_msg void OnActivateApp(BOOL bActive, HTASK hTask);
+	afx_msg void OnActivateApp(BOOL bActive, DWORD hTask);
 	afx_msg void OnDevModeChange(LPTSTR lpDeviceName);
 	//}}AFX_MSG
 	afx_msg void OnGoBig();

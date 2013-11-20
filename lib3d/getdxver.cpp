@@ -71,7 +71,8 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //    (C) Copyright 1995-1997 Microsoft Corp.  All rights reserved.
 //-----------------------------------------------------------------------------
 #include <windows.h>
-#include <windowsx.h>
+//#include <windowsx.h>
+//#include <afxwin.h>
 #include <ddraw.h>
 // #include <dinput.h>
 // #include <dmusici.h>

@@ -71,7 +71,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //------------------------------------------------------------------------------
 
 #include	<stdio.h>
-#include	<windows.h>
+//#include	<windows.h>
 #include	<math.h>
 #define		F_GRAFIX
 #define		F_SOUNDS
@@ -84,12 +84,16 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include	"display.h"
 #include	"AreaType.h"
 #include	"landscap.h"
-
-#include "prof.h"
-
+#include	"savegame.h"
+#include "3dcode.h"
 #ifndef 	IN_MIGLAND_CPP
 	#define		IN_MIGLAND_CPP	0
 #endif
+
+#include	"MigLand.h"
+
+#include "prof.h"
+
 
 #ifndef	NDEBUG
 //#define	_DUFFDEBUG_
@@ -171,7 +175,8 @@ struct raiseLnSorter
 		// get the correct side type.
 //		if ( side.higherAT == 15 && side.lowerAT == 11 )
 //			INT3;
-		for ( UByte sideType = 0; sideType < NUM_SIDE_TYPES; sideType++ )
+		UByte sideType;
+		for ( sideType = 0; sideType < NUM_SIDE_TYPES; sideType++ )
 		{
 			if ( Land_Scape.SideLookUp[sideType] == side )
 				break; // sideType is now correct
@@ -315,7 +320,6 @@ typedef class LSFileBlock
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 
-#include	"MigLand.h"
 
 //************ DEBUG CODE HERE !!!!!!!!!!!!
 
@@ -799,8 +803,8 @@ void CDecompressData::DebugDumpIData(void* pVData)
 // -------- followed by the point definitions ---------
 
 	PointDef* ppd=(PointDef*)(pData+sizeof(AltPointsHdr));
-
-	for (int i=0;i<aph.vertexCount;i++){
+int i;
+	for ( i=0;i<aph.vertexCount;i++){
 		PointDef& pd=ppd[i];
 
 		fprintf(debFile,"struct PointDef\n");
@@ -861,7 +865,7 @@ void CDecompressData::DebugDumpIData(void* pVData)
 		 	fprintf(debFile,"%d ",*pDrw++);
 		}
 		fprintf(debFile,"DirList: ");
-		for (j=0;j<edges;j++){
+		for (int j=0;j<edges;j++){
 			if (BITTEST(pDrw,j))	fprintf(debFile,"b");
 			else					fprintf(debFile,"f");
 		}
@@ -923,8 +927,8 @@ void CDecompressData::FindAltNType(SLong x,SLong z,DataRecord& dr,
 	alt-=FT_500;
 	if (alt<0)	alt=0;
 	else		alt/=_altitudeScale;
-
-	for (SLong i=0;i<aph.vertexCount;i++)
+SLong i;
+	for ( i=0;i<aph.vertexCount;i++)
 		if (pntArray[i].alt>=UWord(alt))
 			break;
 
@@ -1124,7 +1128,7 @@ void CDecompressData::FindAltNType(SLong x,SLong z,DataRecord& dr,
 //------------------------------------------------------------------------------
 void CDecompressData::FindRoughAlt(SLong x,SLong y,SLong z,DataRecord& dr,SLong& alt)
 {
-	const SCALED_FT_2000=FT_2000/_altitudeScale;
+	const double SCALED_FT_2000=FT_2000/_altitudeScale;
 	UByte* pDataStream=UByteP(dr.pData);
 	AltPointsHdr& aph=*(AltPointsHdr*)pDataStream;
 	pDataStream+=sizeof(AltPointsHdr);
@@ -1722,7 +1726,8 @@ void CDecompressData::SkipPointsLinesPolys(UByte*& ip)
 	UByte* inptr=ip;
 	int	coordslastpoint=0;
 	UByte endcode=*inptr++;
-	for (int point=0;point<Max_Points;point++)
+	int point;
+	for (point=0;point<Max_Points;point++)
 		while (pointdec[point].lastto==NULLCON || pointdec[point].unpairedfrom[0]!=NULLCON)
 			if (endcode==JOIN_POLY_NEXT)
 			{
@@ -1756,10 +1761,11 @@ void CDecompressData::SkipPointsLinesPolys(UByte*& ip)
 					if (last!=NULLCON)
 						pointdec[curr].lastfrom=last;
 					pointdec[curr].lastto=endcode;
-					for (int i=0;i<4;i++)
+					int i;
+					for ( i=0;i<4;i++)
 						if (pointdec[curr].unpairedfrom[i]==endcode)
-						{
-							for (int j=i+1;j<4;j++)
+						{   int j;
+							for ( j=i+1;j<4;j++)
 								breakif (pointdec[curr].unpairedfrom[j]==NULLCON);
 							pointdec[curr].unpairedfrom[i]=pointdec[curr].unpairedfrom[j-1];
 							pointdec[curr].unpairedfrom[j-1]=NULLCON;
@@ -1767,7 +1773,7 @@ void CDecompressData::SkipPointsLinesPolys(UByte*& ip)
 						}
 					if (i==4)
 					{
-						for (int i=0;i<4;i++)
+						for ( i=0;i<4;i++)
 							breakif (pointdec[endcode].unpairedfrom[i]==NULLCON);
 						//assert i!=4;
 						pointdec[endcode].unpairedfrom[i]=(UByte)curr;
@@ -1780,10 +1786,11 @@ void CDecompressData::SkipPointsLinesPolys(UByte*& ip)
 				pointdec[curr].lastfrom=last;
 				pointdec[curr].lastto=point;
 				pointdec[point].lastfrom=curr;
-				for (int i=0;i<4;i++)
+				int i;
+				for ( i=0;i<4;i++)
 					if (pointdec[curr].unpairedfrom[i]==point)
-					{
-						for (int j=i+1;j<4;j++)
+					{   int j;
+						for ( j=i+1;j<4;j++)
 							breakif (pointdec[curr].unpairedfrom[j]==NULLCON);
 						pointdec[curr].unpairedfrom[i]=pointdec[curr].unpairedfrom[j-1];
 						pointdec[curr].unpairedfrom[j-1]=NULLCON;
@@ -1791,7 +1798,8 @@ void CDecompressData::SkipPointsLinesPolys(UByte*& ip)
 					}
 				if (i==4)
 				{
-					for (int i=0;i<4;i++)
+					int i;
+					for ( i=0;i<4;i++)
 						breakif (pointdec[point].unpairedfrom[i]==NULLCON);
 					//assert i!=4;
 					pointdec[point].unpairedfrom[i]=(UByte)curr;
@@ -1897,7 +1905,8 @@ void CDecompressData::copyBody(UByte*& ip,UByte* pdst)
 	UByte* inptr=ip;
 	int	coordslastpoint=0;
 	UByte endcode=*pdst++=*inptr++;
-	for (int point=0;point<Max_Points;point++)
+	int point;
+	for ( point=0;point<Max_Points;point++)
 		while (pointdec[point].lastto==NULLCON || pointdec[point].unpairedfrom[0]!=NULLCON)
 			if (endcode==JOIN_POLY_NEXT)
 			{
@@ -1947,18 +1956,19 @@ void CDecompressData::copyBody(UByte*& ip,UByte* pdst)
 					if (last!=NULLCON)
 						pointdec[curr].lastfrom=last;
 					pointdec[curr].lastto=endcode;
-					for (int i=0;i<4;i++)
+					int i;
+					for ( i=0;i<4;i++)
 						if (pointdec[curr].unpairedfrom[i]==endcode)
-						{
-							for (int j=i+1;j<4;j++)
+						{   int j;
+							for ( j=i+1;j<4;j++)
 								breakif (pointdec[curr].unpairedfrom[j]==NULLCON);
 							pointdec[curr].unpairedfrom[i]=pointdec[curr].unpairedfrom[j-1];
 							pointdec[curr].unpairedfrom[j-1]=NULLCON;
 							break;
 						}
 					if (i==4)
-					{
-						for (int i=0;i<4;i++)
+					{   
+						for ( i=0;i<4;i++)
 							breakif (pointdec[endcode].unpairedfrom[i]==NULLCON);
 						//assert i!=4;
 						pointdec[endcode].unpairedfrom[i]=(UByte)curr;
@@ -1971,10 +1981,11 @@ void CDecompressData::copyBody(UByte*& ip,UByte* pdst)
 				pointdec[curr].lastfrom=last;
 				pointdec[curr].lastto=point;
 				pointdec[point].lastfrom=curr;
-				for (int i=0;i<4;i++)
+				int i;
+				for ( i=0;i<4;i++)
 					if (pointdec[curr].unpairedfrom[i]==point)
-					{
-						for (int j=i+1;j<4;j++)
+					{   int j;
+						for ( j=i+1;j<4;j++)
 							breakif (pointdec[curr].unpairedfrom[j]==NULLCON);
 						pointdec[curr].unpairedfrom[i]=pointdec[curr].unpairedfrom[j-1];
 						pointdec[curr].unpairedfrom[j-1]=NULLCON;
@@ -1982,7 +1993,7 @@ void CDecompressData::copyBody(UByte*& ip,UByte* pdst)
 					}
 				if (i==4)
 				{
-					for (int i=0;i<4;i++)
+					for ( i=0;i<4;i++)
 						breakif (pointdec[point].unpairedfrom[i]==NULLCON);
 					//assert i!=4;
 					pointdec[point].unpairedfrom[i]=(UByte)curr;
@@ -2683,7 +2694,7 @@ inline void CDecompressData::_UnpackIntData(UByte* pSrc,const ULong rez, const U
 	ddhDst.totalTris=globalTriCount;	//for HW execute buffer fill test
 	ddhDst.lineOffset=ULong(pDst)-ULong(pDataStart);
 	UByte *lineDB = pDst; // needed later for cliff and tree work.
-	for (i=0;i<ddhSrc.noOfLines;i++)
+	for (int i=0;i<ddhSrc.noOfLines;i++)
 	{
 		UByte* abortLinePtr=pDst;
 
@@ -2732,7 +2743,7 @@ inline void CDecompressData::_UnpackIntData(UByte* pSrc,const ULong rez, const U
 		} else
 		{
 		 	*insLinCntHere=localLineLen;
-			for (j=0;j<localLineLen;*pDst++=localLine[j],j++) 
+			for (int j=0;j<localLineLen;*pDst++=localLine[j],j++) 
 			{ /* copy */ }
 		}
 		//move the src pointer on to the next line definition
@@ -2973,7 +2984,7 @@ inline void CDecompressData::_UnpackIntData(UByte* pSrc,const ULong rez, const U
 #else
 	raiseLnSorter sorter;
 #endif
-	for ( i = 0; i < destPntCnt; i++ )
+	for (int i = 0; i < destPntCnt; i++ )
 	{
 		for ( int k = 0; k < MAX_LAND_POINT_CONNECTIONS; k++ )
 		{
@@ -3142,7 +3153,7 @@ inline void CDecompressData::DeRezEdges(	ULong edgeCnt,EdgeDef* ped,
 		// now we know which points are mandatory, we can keep every n'th point.
 		int dropcounter = 0;
 		UByte* tabPos = usageTbl;
-		for ( i=0; i<256; i++, tabPos++ )
+		for (int i=0; i<256; i++, tabPos++ )
 		{
 			if ( (!tabPos) && (dropcounter++ == rez) )
 			{ // add point
@@ -3152,7 +3163,7 @@ inline void CDecompressData::DeRezEdges(	ULong edgeCnt,EdgeDef* ped,
 		}
 
 		// now we know which ones we are keeping we can go through and build up the list
-		for ( i=0;i<edgeCnt;i++)
+		for (int i=0;i<edgeCnt;i++)
 		{
 			UByte edgeLength=0;
 			EdgeDef& ed=ped[i];
@@ -3298,7 +3309,7 @@ void CDecompressData::MakeIntermediateData()
 	aph.edgePointsStart=ULong(pDst)-ULong(&aph);
 
 	//Copy back the edge point data
-	for (i=0;i<edgePointLen;i++) *pDst++=edgePoints[i];
+	for (int i=0;i<edgePointLen;i++) *pDst++=edgePoints[i];
 
 	aph.polyDataStart=ULong(pDst)-ULong(&aph);
 
@@ -3308,8 +3319,8 @@ void CDecompressData::MakeIntermediateData()
 	ddh.noOfLines=globalLineCount;
 
 	//Copy back the new draw data
-	for (i=0;i<polyStreamLen;i++) *pDst++=newPolyStream[i];
-	for (i=0;i<lineStreamLen;i++) *pDst++=newLineStream[i];
+	for (int i=0;i<polyStreamLen;i++) *pDst++=newPolyStream[i];
+	for (int i=0;i<lineStreamLen;i++) *pDst++=newLineStream[i];
 
 	aph.MakeChecksum();		//CHECKSUM!!!
 
@@ -3463,6 +3474,7 @@ void CDecompressData::InsertEdgeDefs(	UByte pntCnt,UByte* poly,
 	for (UWord i=0;i<MAX_NUM_EDGES/32;i++) *(ULong*)(dirFlags+(i<<2))=0L;
 
 	//find the first junction point in this poly def
+	UWord i;
 	for (i=0;i<pntCnt;i++){
 		UByte point=poly[i];
 		if (pointFlags[point]==PT_JUNCTION) break;
@@ -3510,7 +3522,7 @@ void CDecompressData::InsertEdgeDefs(	UByte pntCnt,UByte* poly,
 	//fill in the edge count for this polygon
 	*insertEdgeCountHere=edgeCounter;
 	//copy over the direction flags
-	j=(edgeCounter+7)>>3;
+	UByte j=(edgeCounter+7)>>3;
 	for (i=0;i<j;i++) *ppd++=dirFlags[i];
 
 	xpep=pep;
@@ -3570,8 +3582,8 @@ void CDecompressData::InsertEdgeDefs2(	UByte pntCnt,UByte* line,
 	//fill in the edge count for this line
 	*insertEdgeCountHere=edgeCounter;
 	//copy over the direction flags
-	j=(edgeCounter+7)>>3;
-	for (i=0;i<j;i++) *pld++=dirFlags[i];
+	UByte j=(edgeCounter+7)>>3;
+	for (UWord i=0;i<j;i++) *pld++=dirFlags[i];
 
 	xpep=pep;
 	xpld=pld;
@@ -3591,8 +3603,8 @@ UWord CDecompressData::AddEdge(	UByte jStart,UByte jEnd,
 	//Check to see if this edge has already been inserted
 	dirFlipped=false;
 	bool foundMatch=false;
-
-	for (int i=0;i<edgeCount&&!foundMatch;i++)
+int i;
+	for ( i=0;i<edgeCount&&!foundMatch;i++)
 	{
 		EdgeDef& ed=edgeDefs[i];
 
@@ -3603,7 +3615,8 @@ UWord CDecompressData::AddEdge(	UByte jStart,UByte jEnd,
 		{
 			//it's a potential match but just make sure...
 			UByte* testEdge=edgePoints+ed.edgeOffset;
-			for (int j=0;j<pntCnt&&testEdge[j]==pntLst[j];j++) {}
+			int j;
+			for ( j=0;j<pntCnt&&testEdge[j]==pntLst[j];j++) {}
 			if (j==pntCnt) foundMatch=true;
 		}
 
@@ -3614,7 +3627,8 @@ UWord CDecompressData::AddEdge(	UByte jStart,UByte jEnd,
 		{
 			//it's a potential match but just make sure...
 			UByte* testEdge=edgePoints+ed.edgeOffset;
-			for (int j=0;j<pntCnt&&testEdge[j]==pntLst[pntCnt-1-j];j++) {}
+			int j;
+			for ( j=0;j<pntCnt&&testEdge[j]==pntLst[pntCnt-1-j];j++) {}
 			if (j==pntCnt)
 			{
 				dirFlipped=true;
@@ -3720,7 +3734,8 @@ void CDecompressData::GeneratePointFlags(UWord edgePointCount)
 	}
 
 	//convert point usage count to flags
-	for (int i=0;i<edgePointCount;pointFlags[i++]=UByte(PT_JUNCTION)){}
+	int i;
+	for ( i=0;i<edgePointCount;pointFlags[i++]=UByte(PT_JUNCTION)){}
 	for (;i<Max_Points;i++){
 		if (pointFlags[i]>2)	pointFlags[i]=UByte(PT_JUNCTION);
 		else					pointFlags[i]=UByte(PT_EDGE);
@@ -4595,8 +4610,8 @@ void LandMapNumRecord::Reset(FileNum dir)
 	
 			Land_Scape.g_lpLib3d->UnloadTexture( lm + i );				//JON 7Aug00
 
-			delete lm[i].body;						//RJS 09Feb98
-			delete lm[i].palette;					//RJS 09Feb98
+			delete [] lm[i].body;						//RJS 09Feb98
+			delete [] lm[i].palette;					//RJS 09Feb98
 			delete lm[i].alpha;						//RJS 09Feb98
 			lm[i].body=NULL;						//RJS 09Feb98
 			lm[i].palette=NULL;						//RJS 09Feb98
@@ -4791,7 +4806,7 @@ SLong CMigLand::GetRoughAltitude(SLong x,SLong y,SLong z)
 //Author		Paul.   
 //Date			Fri 12 Jun 1998
 //------------------------------------------------------------------------------
-inline UByte CMigLand::GetAreaType() { return lastGroundHit&AT_MASK; }
+UByte CMigLand::GetAreaType() { return lastGroundHit&AT_MASK; }
 
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -5256,7 +5271,7 @@ void CRectangularCache::BuildNorthRequests()
 			newSeek.firstSkipIndex=0;
 			newSeek.numBlocks=numBlocks;
 			pbptrs=newSeek.blockPtrs;
-			for (j=0;j<numBlocks;j++) *pbptrs++=*pLocalDest++;
+			for (int j=0;j<numBlocks;j++) *pbptrs++=*pLocalDest++;
 
 			AddSeekRequest(&newSeek);
 		}
@@ -5339,7 +5354,7 @@ void CRectangularCache::BuildEastRequests()
 			newSeek2.firstSkipIndex=0;
 			newSeek2.numBlocks=numBlocks;
 			pbptrs=newSeek2.blockPtrs;
-			for (j=0;j<numBlocks;j++)
+			for (int j=0;j<numBlocks;j++)
 			{
 				*pbptrs++=*pLocalDest;
 				pLocalDest+=CENTER_WH;
@@ -5485,7 +5500,7 @@ void CRectangularCache::StillGoingNorth()
 		newSeek.firstSkipIndex=0;
 		newSeek.numBlocks=numBlocks;
 		pbptrs=newSeek.blockPtrs;
-		for (j=0;j<numBlocks;j++) *pbptrs++=*pDest++;
+		for (int j=0;j<numBlocks;j++) *pbptrs++=*pDest++;
 
 		AddSeekRequest(&newSeek);
 	}
@@ -5568,7 +5583,7 @@ void CRectangularCache::StillGoingEast()
 		newSeek.firstSkipIndex=0;
 		newSeek.numBlocks=numBlocks;
 		pbptrs=newSeek.blockPtrs;
-		for (j=0;j<numBlocks;j++)
+		for (int j=0;j<numBlocks;j++)
 		{
 			*pbptrs++=*pDest;
 			pDest+=CENTER_WH;
@@ -5644,7 +5659,7 @@ void CRectangularCache::StillGoingSouth()
 		newSeek.firstSkipIndex=0;
 		newSeek.numBlocks=numBlocks;
 		pbptrs=newSeek.blockPtrs;
-		for (j=0;j<numBlocks;j++) *pbptrs++=*pDest++;
+		for (int j=0;j<numBlocks;j++) *pbptrs++=*pDest++;
 
 		AddSeekRequest(&newSeek);
 	}
@@ -5726,7 +5741,7 @@ void CRectangularCache::StillGoingWest()
 		newSeek.firstSkipIndex=0;
 		newSeek.numBlocks=numBlocks;
 		pbptrs=newSeek.blockPtrs;
-		for (j=0;j<numBlocks;j++)
+		for (int j=0;j<numBlocks;j++)
 		{
 			*pbptrs++=*pDest;
 			pDest+=CENTER_WH;

@@ -86,7 +86,7 @@ static char THIS_FILE[] = __FILE__;
 
 
 CListBx::CListBx(CWnd* pParent /*=NULL*/)
-	: CDialog(CListBx::IDD, pParent)
+	: CDialog(CListBx::IDD, pParent),m_pCombo(NULL)
 {
 
 

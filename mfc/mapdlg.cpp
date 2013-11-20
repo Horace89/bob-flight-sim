@@ -1356,7 +1356,7 @@ void CMapDlg::InvalidateLine(CPoint point1,CPoint point2)
 //	CRect rect(point1.x-1,point1.y-1,point2.x+1,point2.y+1);
 //	rect.NormalizeRect();
 //	InvalidateRect(rect);
-	const RECTSIZE=50;
+	const int RECTSIZE=50;
 	CRect clientrect;
 	CRect rect;
 	CRect intersectrect;

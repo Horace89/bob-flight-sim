@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="Projects"
+	ProjectGUID="{A92CAE51-7B90-4E2C-BEFB-0903535706C3}"
+	Keyword="MakeFileProj"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="DemoDebug|Win32"
+			OutputDirectory=".\Projects___Win32_DemoDebug"
+			IntermediateDirectory=".\Projects___Win32_DemoDebug"
+			ConfigurationType="0"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="copy /u \bob\debug\exe\*.ocx;*.dll \bob\demodeb\exe|tee \bob\demorel\obj\projects.dep"
+				ReBuildCommandLine="copy /u \bob\debug\exe\*.ocx;*.dll \bob\demodeb\exe|tee \bob\demorel\obj\projects.dep "
+				CleanCommandLine=""
+				Output="\bob\demodeb\obj\projects.dep"
+				PreprocessorDefinitions=""
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory=".\Debug"
+			IntermediateDirectory=".\Debug"
+			ConfigurationType="0"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="fixhdrs|tee \bob\debug\obj\projects.dep"
+				ReBuildCommandLine="fixhdrs|tee \bob\debug\obj\projects.dep "
+				CleanCommandLine=""
+				Output="\bob\debug\obj\projects.dep"
+				PreprocessorDefinitions=""
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="DemoRelease|Win32"
+			OutputDirectory=".\Projects___Win32_DemoRelease"
+			IntermediateDirectory=".\Projects___Win32_DemoRelease"
+			ConfigurationType="0"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="copy /u \bob\release\exe\*.ocx;*.dll \bob\demorel\exe|tee \bob\demorel\obj\projects.dep"
+				ReBuildCommandLine="copy /u \bob\release\exe\*.ocx;*.dll \bob\demorel\exe|tee \bob\demorel\obj\projects.dep "
+				CleanCommandLine=""
+				Output="\bob\demorel\obj\projects.dep"
+				PreprocessorDefinitions=""
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory=".\Release"
+			IntermediateDirectory=".\Release"
+			ConfigurationType="0"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="fixhdrs|tee \bob\release\obj\projects.dep"
+				ReBuildCommandLine="fixhdrs|tee \bob\release\obj\projects.dep "
+				CleanCommandLine=""
+				Output="\bob\release\obj\projects.dep"
+				PreprocessorDefinitions=""
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<File
+			RelativePath="Fixhdrs.bat"
+			>
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

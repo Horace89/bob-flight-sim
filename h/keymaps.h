@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //Filename       keymaps.h
-//System         
+//System
 //Author         Jim Taylor
 //Date           Fri 3 Nov 1995
 //Description    Keyboard mappings definition include file
@@ -25,6 +25,8 @@ struct	KeyMapping
 			shiftstate:6;
 	UWord	bitflag;
 };
+const	size_t MAXqueuesize=32;	//Pointer to end of queue
+const	size_t TOTALKEYBITFLAGS=768;
 #ifndef __BCPLUSPLUS__
 enum	KeyVal3D	{keyVal3D_MAX=TOTALKEYBITFLAGS};
 enum	KeyShift_BN	{	KEYSH_BN_norm=0,
@@ -44,7 +46,7 @@ KeyVal3D	const	keyname=(KeyVal3D)(keynum*2);
 // Place new 3d key press equate definitions in the list below
 // The first number must be sequential, but we can leave gaps
 // The second field is the name used in the 3d
-//The mapping to the keyboard keys goes in the next table 
+//The mapping to the keyboard keys goes in the next table
 //------------------------------------------------------------------------------
 
 KeyName(00,ReservedKeyMapping)
@@ -76,13 +78,13 @@ KeyName(07,KeySrc_BN_Overlay)
 //DeadCode AMM 07Dec99 KeyName(14,SENS_UP)				/*Increase Keyboard Sensitivity*/
 //DeadCode AMM 07Dec99 KeyName(15,SENS_DOWN)			/*Decrease Keyboard Sensitivity*/
 
-KeyName(8,KeySrc_BN_NormLock)		
+KeyName(8,KeySrc_BN_NormLock)
 KeyName(9,KeySrc_BN_SpareLock)
-KeyName(10,KeySrc_BN_AltLock)		
-KeyName(11,KeySrc_BN_CtrlLock)		
-KeyName(12,KeySrc_BN_ShiftLock)		
-KeyName(13,KeySrc_BN_MsgLock)		
-KeyName(14,KeySrc_BN_ShMsgLock)		
+KeyName(10,KeySrc_BN_AltLock)
+KeyName(11,KeySrc_BN_CtrlLock)
+KeyName(12,KeySrc_BN_ShiftLock)
+KeyName(13,KeySrc_BN_MsgLock)
+KeyName(14,KeySrc_BN_ShMsgLock)
 KeyName(15,KeySrc_BN_OverlayLock)
 
 
@@ -98,7 +100,7 @@ KeyName(24,RPM_90)				/*90% Throttle*/
 KeyName(25,RPM_00)				/*100% Throttle*/
 
 KeyName(26,RPM_UP)				/*Throttle Up 1%*/
-KeyName(27,RPM_DOWN)			/*Throttle Down 1%*/	
+KeyName(27,RPM_DOWN)			/*Throttle Down 1%*/
 KeyName(28,RPM_BIG_UP)			/*Throttle Up 10%*/
 KeyName(29,RPM_BIG_DOWN)		/*Throttle Down 10%*/
 
@@ -109,7 +111,7 @@ KeyName(33,PROPPITCHDOWN)		//Decrease Prop Pitch / Increase RPM
 
 //PD 19Feb96 - view zoom / rotation keys
 KeyName(34,BIGROTDOWN)		/*Down Fast*/
-KeyName(35,BIGROTUP)		/*Up Fast*/	
+KeyName(35,BIGROTUP)		/*Up Fast*/
 KeyName(36,BIGROTRIGHT)		/*Right Fast*/
 KeyName(37,BIGROTLEFT)		/*Left Fast*/
 
@@ -121,24 +123,24 @@ KeyName(41,BIGROTUPRIGHT)	/*Up Right Fast*/
 KeyName(42,BIGZOOMIN)		/*Zoom In Fast*/
 KeyName(43,BIGZOOMOUT)		/*Zoom Out Fast*/
 
-KeyName(44,ROTDOWN)			/*Down/Back*/	
-KeyName(45,ROTUP)			/*Up/Forward*/	
-KeyName(46,ROTRIGHT)		/*Right*/		
-KeyName(47,ROTLEFT)			/*Left*/		
+KeyName(44,ROTDOWN)			/*Down/Back*/
+KeyName(45,ROTUP)			/*Up/Forward*/
+KeyName(46,ROTRIGHT)		/*Right*/
+KeyName(47,ROTLEFT)			/*Left*/
 
-KeyName(48,ROTDNLEFT)		/*Down/Back and Left*/	
-KeyName(49,ROTDNRIGHT)		/*Down/Back and Right*/	
-KeyName(50,ROTUPLEFT)		/*Up/Forward and Left*/	
+KeyName(48,ROTDNLEFT)		/*Down/Back and Left*/
+KeyName(49,ROTDNRIGHT)		/*Down/Back and Right*/
+KeyName(50,ROTUPLEFT)		/*Up/Forward and Left*/
 KeyName(51,ROTUPRIGHT)		/*Up/Forward and Right*/
 
-KeyName(52,ZOOMIN)			/*Zoom In*/				
-KeyName(53,ZOOMOUT)			/*Zoom Out*/			
+KeyName(52,ZOOMIN)			/*Zoom In*/
+KeyName(53,ZOOMOUT)			/*Zoom Out*/
 
-KeyName(54,ROTRESET)		/*View Reset*/					
-KeyName(55,SCREENSHOT)		/*Screenshot*/	
+KeyName(54,ROTRESET)		/*View Reset*/
+KeyName(55,SCREENSHOT)		/*Screenshot*/
 
-KeyName(56,SHOOT)			/*Fire*/			
-KeyName(57,PAUSEKEY)		/*Pause*/			
+KeyName(56,SHOOT)			/*Fire*/
+KeyName(57,PAUSEKEY)		/*Pause*/
 KeyName(58,INFOPANEL)		/*Info Panel Toggle*/
 KeyName(59,DETAILUP)		/*Increase 3d detail*/
 
@@ -158,14 +160,14 @@ KeyName(59,DETAILUP)		/*Increase 3d detail*/
 //
 // Row 0,(65,66,67,68,69,70,71 and Col 0 (72,80,88,96,104,112,120) only effect 1 axis
 //
-// Values inside grid effect both axes. 
+// Values inside grid effect both axes.
 //
 //
-KeyName(65,RESETVIEW)	/*Reset View*/	
-KeyName(66,ENEMYVIEW)	/*Next Enemy View*/	
+KeyName(65,RESETVIEW)	/*Reset View*/
+KeyName(66,ENEMYVIEW)	/*Next Enemy View*/
 KeyName(67,FRNDVIEW)	/*Next Friend View*/
-KeyName(68,GRNDTVIEW)	/*Next Ground Target View*/	
-KeyName(69,WAYPTVIEW)	/*Next Waypoint View*/	
+KeyName(68,GRNDTVIEW)	/*Next Ground Target View*/
+KeyName(69,WAYPTVIEW)	/*Next Waypoint View*/
 
 
 //PD 19Feb96 - view type select keys
@@ -210,13 +212,13 @@ KeyName(145,NEXTSHAPEDN)/*Field of View: Zoom Out*/										//RJS 11Nov96
 
 KeyName(146,ELEVTRIMUP)/*Forward Elevator Trim*/									//ARM 31Jul97
 KeyName(147,ELEVTRIMDOWN)/*Aft Elevator Trim*/									//ARM 31Jul97
-KeyName(148,AILTRIMUP)/*Right Aileron Trim*/								
-KeyName(149,AILTRIMDOWN)/*Left Aileron Trim*/								
-KeyName(150,RUDTRIMUP)/*Right Rudder Trim*/								
-KeyName(151,RUDTRIMDOWN)/*Left Rudder Trim*/								
+KeyName(148,AILTRIMUP)/*Right Aileron Trim*/
+KeyName(149,AILTRIMDOWN)/*Left Aileron Trim*/
+KeyName(150,RUDTRIMUP)/*Right Rudder Trim*/
+KeyName(151,RUDTRIMDOWN)/*Left Rudder Trim*/
 
-KeyName(152,FLAPSUP)	//Decrease Flap Deflection	//CSB 06/10/99	
-KeyName(153,FLAPSDOWN)	//Increase Flap Deflection	//CSB 06/10/99	
+KeyName(152,FLAPSUP)	//Decrease Flap Deflection	//CSB 06/10/99
+KeyName(153,FLAPSDOWN)	//Increase Flap Deflection	//CSB 06/10/99
 KeyName(154,GEARUPDOWN)			/*Gear Toggle*/										//ARM 07Apr97
 KeyName(155,CANOPYEJECT)
 KeyName(156,SPEEDBRAKE)			/*Air Brake*/										//ARM 13Mar97
@@ -321,8 +323,8 @@ KeyName(243,POSTCOMBATMSG)/*PostCombat Messages*/
 KeyName(244,TOWERMSG)/*Tower Messages*/
 KeyName(245,FACMSG)/*FAC  Messages*/													  //RDH 10/05/99
 KeyName(246,CYCLETHROUGHWEAPONS)/*Cycle Through Weapons*/													  //RDH 10/05/99
-KeyName(247,ESCORTEEVIEW)/*Escortee*/	
-KeyName(248,AIUNFRIENDLYVIEW)/*A.I.Enemy View*/	
+KeyName(247,ESCORTEEVIEW)/*Escortee*/
+KeyName(248,AIUNFRIENDLYVIEW)/*A.I.Enemy View*/
 KeyName(249,SEEMIGS)/*See MiGs on 3d map*/
 KeyName(250,TOGGLEMESSAGES)/*toggle displaying of radio message text in the 3d*/
 KeyName(251,AROTRESET)/*View Reset*/
@@ -538,11 +540,11 @@ KeyName(768,TOTALKEYBITFLAGS2)
 // Place new 3d key press equate definitions in the list ABOVE
 // The first number must be sequential
 // The second field is the name used in the 3d
-//The mapping to the keyboard keys goes in the next table 
+//The mapping to the keyboard keys goes in the next table
 //------------------------------------------------------------------------------
-#endif		//file single pass
+//#endif		//file single pass
 
-#ifdef	SPECIAL_KEYMAPS
+//#ifdef	SPECIAL_KEYMAPS
 #include	<dinput.h>
 /**/enum	{KEYS_PER_STICK=40};
 
@@ -812,8 +814,8 @@ enum Raw_Keys	{
 		Raw_H6_SW		=469,	//469,		//3 hats allows 28 buttons
 		Raw_H6_W		=470,	//470,		//2 hats allows 36 buttons
 		Raw_H6_NW		=471,	//471,		//1 hat allows full use of joystick 6
-								  		
-		Raw_H5_N		=472,	//472,	
+
+		Raw_H5_N		=472,	//472,
 		Raw_H5_NE		=473,	//473,
 		Raw_H5_E		=474,	//474,
 		Raw_H5_SE		=475,	//475,
@@ -861,7 +863,7 @@ enum Raw_Keys	{
 		Raw_NOMORE	=0,	//0,
 		};
 
-#if	SPECIAL_KEYMAPS
+//#ifdef	SPECIAL_KEYMAPS
 
 #define	KeyMap(keyname,rawname,rawshift)	\
 		{Raw_##rawname,KEYSH_BN_##rawshift,keyname},
@@ -891,7 +893,7 @@ enum Raw_Keys	{
 
 //Line 900 of keymaps.h
 //------------------------------------------------------------------------------
-//	Define the physical mapping of the keys in the table below. 
+//	Define the physical mapping of the keys in the table below.
 //	Order is unimportant for code but important for us to keep tabs on key usage//RDH 07Aug98
 //  3 fields:
 //		1)	name of key used in game, as defined in above table
@@ -907,7 +909,7 @@ enum Raw_Keys	{
 //				Overlay	-	when text menus are active
 //				8th state - spare!
 //
-//	"J_" keys 	are the "gray" home and arrow keys 
+//	"J_" keys 	are the "gray" home and arrow keys
 //				plus some extra keys defined for the Japanese NEC PC machine.
 //
 //		If you want a key to work with a number of different shifts,
@@ -942,56 +944,56 @@ static	KeyMapping	ThisKeyMapping[]	=	{
 
 //------------------------------------------------------------------------------
 //Top Line
-		KeyMap(RESETVIEW,		esc,	norm)						
+		KeyMap(RESETVIEW,		esc,	norm)
 
-		KeyMap(ENEMYVIEW,		f1,		norm)						
-		KeyMap(RESETENEMYVIEW,	f1,		CtrlL)						
-//DeadCode AMM 07Dec99 		KeyMap(RESETENEMYVIEW,	f1,		CtrlR)						
-		KeyMap(PREVENEMYVIEW,	f1,		ShiftL)						
-//DeadCode AMM 07Dec99 		KeyMap(PREVENEMYVIEW,	f1,		ShiftR)						
-		KeyMap(AIUNFRIENDLYVIEW,	f1,		AltL)						
-//DeadCode AMM 07Dec99 		KeyMap(AIUNFRIENDLYVIEW,	f1,		AltGR)						
+		KeyMap(ENEMYVIEW,		f1,		norm)
+		KeyMap(RESETENEMYVIEW,	f1,		CtrlL)
+//DeadCode AMM 07Dec99 		KeyMap(RESETENEMYVIEW,	f1,		CtrlR)
+		KeyMap(PREVENEMYVIEW,	f1,		ShiftL)
+//DeadCode AMM 07Dec99 		KeyMap(PREVENEMYVIEW,	f1,		ShiftR)
+		KeyMap(AIUNFRIENDLYVIEW,	f1,		AltL)
+//DeadCode AMM 07Dec99 		KeyMap(AIUNFRIENDLYVIEW,	f1,		AltGR)
 
-		KeyMap(FRNDVIEW,		f2,		norm)						
-		KeyMap(RESETFRNDVIEW,	f2,		CtrlL)						
-//DeadCode AMM 07Dec99 		KeyMap(RESETFRNDVIEW,	f2,		CtrlR)						
-		KeyMap(PREVFRNDVIEW,	f2,		ShiftL)						
-//DeadCode AMM 07Dec99 		KeyMap(PREVFRNDVIEW,	f2,		ShiftR)						
-		KeyMap(ESCORTEEVIEW,	f2,		AltL)						
-//DeadCode AMM 07Dec99 		KeyMap(ESCORTEEVIEW,	f2,		AltGR)						
+		KeyMap(FRNDVIEW,		f2,		norm)
+		KeyMap(RESETFRNDVIEW,	f2,		CtrlL)
+//DeadCode AMM 07Dec99 		KeyMap(RESETFRNDVIEW,	f2,		CtrlR)
+		KeyMap(PREVFRNDVIEW,	f2,		ShiftL)
+//DeadCode AMM 07Dec99 		KeyMap(PREVFRNDVIEW,	f2,		ShiftR)
+		KeyMap(ESCORTEEVIEW,	f2,		AltL)
+//DeadCode AMM 07Dec99 		KeyMap(ESCORTEEVIEW,	f2,		AltGR)
 
 
-		KeyMap(GRNDTVIEW,		f3,		norm)						
-		KeyMap(RESETGRNDTVIEW,	f3,		CtrlL)						
-//DeadCode AMM 07Dec99 		KeyMap(RESETGRNDTVIEW,	f3,		CtrlR)						
-		KeyMap(PREVGRNDTVIEW,	f3,		ShiftL)						
-//DeadCode AMM 07Dec99 		KeyMap(PREVGRNDTVIEW,	f3,		ShiftR)						
+		KeyMap(GRNDTVIEW,		f3,		norm)
+		KeyMap(RESETGRNDTVIEW,	f3,		CtrlL)
+//DeadCode AMM 07Dec99 		KeyMap(RESETGRNDTVIEW,	f3,		CtrlR)
+		KeyMap(PREVGRNDTVIEW,	f3,		ShiftL)
+//DeadCode AMM 07Dec99 		KeyMap(PREVGRNDTVIEW,	f3,		ShiftR)
 
-		KeyMap(WAYPTVIEW,		f4,		norm)						
-		KeyMap(RESETWAYPTVIEW,	f4,		CtrlL)						
-//DeadCode AMM 07Dec99 		KeyMap(RESETWAYPTVIEW,	f4,		CtrlR)						
-		KeyMap(PREVWAYPTVIEW,	f4,		ShiftL)						
-//DeadCode AMM 07Dec99 		KeyMap(PREVWAYPTVIEW,	f4,		ShiftR)						
+		KeyMap(WAYPTVIEW,		f4,		norm)
+		KeyMap(RESETWAYPTVIEW,	f4,		CtrlL)
+//DeadCode AMM 07Dec99 		KeyMap(RESETWAYPTVIEW,	f4,		CtrlR)
+		KeyMap(PREVWAYPTVIEW,	f4,		ShiftL)
+//DeadCode AMM 07Dec99 		KeyMap(PREVWAYPTVIEW,	f4,		ShiftR)
 
-		KeyMap(MSGVIEW,			f5,		norm)						
+		KeyMap(MSGVIEW,			f5,		norm)
 
-		KeyMap(OUTREVLOCKTOG,	f6,		AltL)						
-		KeyMap(OUTSIDETOG,		f6,		norm)						
+		KeyMap(OUTREVLOCKTOG,	f6,		AltL)
+		KeyMap(OUTSIDETOG,		f6,		norm)
 		KeyMap(TOGGLEWOBBLEVIEW,	f6,			ShiftL)				  //RDH 02/06/99
 //DeadCode AMM 07Dec99 		KeyMap(TOGGLEWOBBLEVIEW,	f6,			ShiftR)				  //RDH 02/06/99
 
-		KeyMap(INSIDETOG,		f7,		norm)						
-		KeyMap(CHEATTOG,		f8,		norm)						
-		KeyMap(CHASETOG,		f9,		norm)						
-		KeyMap(SATELLITOG,		f10,	norm)						
-		KeyMap(IMPACTTOG,		F11,	norm)						
-		KeyMap(KEY_CONFIGMENU,	F12,	norm)						
+		KeyMap(INSIDETOG,		f7,		norm)
+		KeyMap(CHEATTOG,		f8,		norm)
+		KeyMap(CHASETOG,		f9,		norm)
+		KeyMap(SATELLITOG,		f10,	norm)
+		KeyMap(IMPACTTOG,		F11,	norm)
+		KeyMap(KEY_CONFIGMENU,	F12,	norm)
 
-		KeyAll(SCREENSHOT,		J_sysreq)							
-		KeyAll(LOOKUPTOG,		lockscr)							
-		KeyAll(VIEWMODETOG,		locknum)							
-		KeyMap(PANLEFT,			J_lockscr,	norm)			//slash key on number pad				
-		KeyMap(PANRIGHT,		print,		norm)						//multiple in number pad		
+		KeyAll(SCREENSHOT,		J_sysreq)
+		KeyAll(LOOKUPTOG,		lockscr)
+		KeyAll(VIEWMODETOG,		locknum)
+		KeyMap(PANLEFT,			J_lockscr,	norm)			//slash key on number pad
+		KeyMap(PANRIGHT,		print,		norm)						//multiple in number pad
 
 //------------------------------------------------------------------------------
 //numbers
@@ -1091,7 +1093,7 @@ static	KeyMapping	ThisKeyMapping[]	=	{
 		KeyMap(EJECTPILOT,			e,			CtrlL)
 //DeadCode AMM 07Dec99 		KeyMap(EJECTPILOT,			e,			CtrlR)
 
-		KeyMap(FLAPSUP,				f,			norm)				//RJS 23May00	
+		KeyMap(FLAPSUP,				f,			norm)				//RJS 23May00
 		KeyMap(FUELGUAGESELECTOR,	f,			CtrlL)
 //DeadCode AMM 07Dec99 		KeyMap(FUELGUAGESELECTOR,	f,			CtrlR)
 
@@ -1139,7 +1141,7 @@ static	KeyMapping	ThisKeyMapping[]	=	{
 
 		KeyAll(CHEATLIFTKEY,		u)
 
-		KeyMap(FLAPSDOWN,			v,			norm)				//RJS 23May00	
+		KeyMap(FLAPSDOWN,			v,			norm)				//RJS 23May00
 		KeyMap(VOICETOGGLE,			v,			CtrlL)
 //DeadCode AMM 07Dec99 		KeyMap(VOICETOGGLE,			v,			CtrlR)
 
@@ -1163,14 +1165,14 @@ static	KeyMapping	ThisKeyMapping[]	=	{
 //DeadCode AMM 07Dec99 		KeyMap(ACCELKEY2,			tab,		ShiftR)
 
 		KeyMap(RPM_DOWN,			minus,		norm)
-		KeyMap(PROPPITCHUP,			minus,		ShiftL)	//CSB 05/10/99	
-//DeadCode AMM 07Dec99 		KeyMap(PROPPITCHUP,			minus,		ShiftR)	//CSB 05/10/99	
+		KeyMap(PROPPITCHUP,			minus,		ShiftL)	//CSB 05/10/99
+//DeadCode AMM 07Dec99 		KeyMap(PROPPITCHUP,			minus,		ShiftR)	//CSB 05/10/99
 		KeyMap(APANLEFT,			minus,		AltL)
 //DeadCode AMM 07Dec99 		KeyMap(APANLEFT,			minus,		AltGR)
 
 		KeyMap(RPM_UP,				equal,		norm)
-		KeyMap(PROPPITCHDOWN,		equal,		ShiftL)	//CSB 05/10/99	
-//DeadCode AMM 07Dec99 		KeyMap(PROPPITCHDOWN,		equal,		ShiftR)	//CSB 05/10/99	
+		KeyMap(PROPPITCHDOWN,		equal,		ShiftL)	//CSB 05/10/99
+//DeadCode AMM 07Dec99 		KeyMap(PROPPITCHDOWN,		equal,		ShiftR)	//CSB 05/10/99
 		KeyMap(APANRIGHT,			equal,		AltL)
 //DeadCode AMM 07Dec99 		KeyMap(APANRIGHT,			equal,		AltGR)
 
@@ -1521,7 +1523,7 @@ static	KeyMapping	ThisKeyMapping[]	=	{
 //------------------------------------------------------------------------------
 				{0,0,0}			};
 //------------------------------------------------------------------------------
-//	Define the physical mapping of the keys in the table below. 
+//	Define the physical mapping of the keys in the table below.
 //	Order is unimportant for code but important for us to keep tabs on key usage//RDH 07Aug98
 //  3 fields:
 //		1)	name of key used in game, as defined in above table
@@ -1543,7 +1545,7 @@ static	KeyMapping	ThisKeyMapping[]	=	{
 //------------------------------------------------------------------------------
 #undef	KeyMap
 #undef	KeyAll
-#endif
-#undef	SPECIAL_KEYMAPS
+//#endif
+//#undef	SPECIAL_KEYMAPS
 #endif
 

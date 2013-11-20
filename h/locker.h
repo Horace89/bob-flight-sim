@@ -56,7 +56,7 @@ public:
 // Implementation
 protected:
 	void UpDateDPlay();
-	
+
 	void RedrawSide();
 	void RedrawCombo();
 
@@ -80,4 +80,3 @@ protected:
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_LOCKER_H__B058C5C2_0CFE_11D2_A5A3_0040052179B6__INCLUDED_)
-

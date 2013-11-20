@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -126,12 +126,12 @@ inline void minMax(UWord in1,UWord in2,UWord in3,ULong& minVal,ULong& maxVal)
 #define min(a,b) (((a) < (b)) ? (a) : (b))
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DoLinesIntersect
-//Author		Dallas  
+//Author		Dallas
 //Date			Thu 23 Jul 1998
 //
 //Description	Checks if 2 lines intersect
 //
-//Inputs	 	start and end coords of the 2 lines 
+//Inputs	 	start and end coords of the 2 lines
 //				(line1 = coords 1 and 3, line2=coords 2 and 4)
 //
 //Returns		true or false
@@ -188,7 +188,7 @@ Bool DoLinesIntersect(int x1,int y1,int x3,int y3,int x2,int y2,int x4,int y4)
 
 inline Bool	DotFront(int dx0,int dy0,int dx2,int dy2)
 {
-// Imagine rotating x2 through 90 degrees. 
+// Imagine rotating x2 through 90 degrees.
 // Then the cross product test becomes:
 //
 	return (Bool)(dx0*dx2>-dy2*dy0);
@@ -247,11 +247,11 @@ char**	check3d[256]={NULL};
 //Author		Jim Taylor
 //Date			Tue 6 Oct 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ClearChecks()
@@ -284,7 +284,7 @@ char*	getbyteloc(int x,int y,int z)
 }
 
 //OPTIMISED OPERATION CACHES RESULT
-#define CHECK(flag,p0,p1,p2,boolroutine)												\	
+#define CHECK(flag,p0,p1,p2,boolroutine)												\
 				(	(tmpindex=getbyteloc(p0,p1,p2)),										 \
 					((*tmpindex&flag)													  \
 					?	Bool(*tmpindex&flag&CHECK_WASSET)								   \
@@ -303,15 +303,15 @@ char*	getbyteloc(int x,int y,int z)
 //
 //Description	Generate a non-occluding triangle sequence
 //				from a non-intersecting polygon
-//				I am relying on the non-intersection to allow the 
+//				I am relying on the non-intersection to allow the
 //				triangling to be done efficiently
 //
 //
 //
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 int TriSeq(PntDef* pntArray,UByte* startpoint,int pntCnt)
@@ -370,8 +370,8 @@ int TriSeq(PntDef* pntArray,UByte* startpoint,int pntCnt)
 	//before it can cut through again!
 	//
 	forever
-	{	
-		
+	{
+
 		if (state==ANTICLOCK)
 		{	//Point is anticlockwise and not occluding
 			//use up points until clockwise again.
@@ -391,7 +391,7 @@ int TriSeq(PntDef* pntArray,UByte* startpoint,int pntCnt)
 		if (state==CLOCK)
 		{	//Point is clockwise.
 			//keep going until next point is anticlockwise
-			//that line may OCCLUDE our poly by cutting through the front, 
+			//that line may OCCLUDE our poly by cutting through the front,
 			//or may just generate ANTICLOCK if it doesn't cut through.
 
 			int o2x,o2y;
@@ -433,7 +433,7 @@ int TriSeq(PntDef* pntArray,UByte* startpoint,int pntCnt)
 					state=CLOCK;
 				else
 				{
-					
+
 					int	s2x=	pntArray[startpoint[tricount-2]].x;
 					int	s2y=	pntArray[startpoint[tricount-2]].z;
 					if (CHECK(DOTFRONT,startpoint[tricount-2],p1,p2,
@@ -464,7 +464,7 @@ int TriSeq(PntDef* pntArray,UByte* startpoint,int pntCnt)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		genTri2
-//Author		Paul.   
+//Author		Paul.
 //Date			Mon 1 Jun 1998
 
 //inputs:	pntCnt - number of points in the polygon
@@ -492,10 +492,10 @@ int genTri2(UByte pntCnt,PntDef* pntArray,UByte* orgPolyDesc,UByte*& tL)
 	for (int i=pntCnt;--i>=0;)
 		*trg++=*src++;
 	src=orgPolyDesc;
-	for (i=pntCnt;--i>=0;)
+	for (int i=pntCnt;--i>=0;)
 		*trg++=*src++;
 	}
-	//ok... got a doubled poly list. 
+	//ok... got a doubled poly list.
 	//It doesn't matter where I start, I can always see the end of the poly!
 
 	int startpoint=0;
@@ -529,7 +529,7 @@ int genTri2(UByte pntCnt,PntDef* pntArray,UByte* orgPolyDesc,UByte*& tL)
 		else
 		{
 			startpoint++;
-			if (startpoint==pntCnt)	//dirty thought occurs to me... 
+			if (startpoint==pntCnt)	//dirty thought occurs to me...
 				if (minfan)			//I could let startpoint continue
 					minfan=			//up to pntCnt*2 as I make only 1 triangle.
 						startpoint=
@@ -555,7 +555,7 @@ int genTri2(UByte pntCnt,PntDef* pntArray,UByte* orgPolyDesc,UByte*& tL)
 	else
 		if (pntCnt>3)
 		{
-			_asm {int 3}
+//			_asm {int 3}
 			totalFans=0;
 		}
 

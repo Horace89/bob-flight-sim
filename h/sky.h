@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 //Filename       sky.h
-//System         
+//System
 //Author         Andrew McRae
 //Date           Mon 10 Mar 1997
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	SKY_Included
 #define	SKY_Included
@@ -80,7 +80,7 @@ public:
 class	Curve;
 typedef	 Curve CURVE, *PCURVE, **PPCURVE;
 
-class Atmosphere:	public	AtmosphereData 
+class Atmosphere:	public	AtmosphereData
 {
 public:
 
@@ -92,7 +92,7 @@ public:
 //DeadCode CSB 27/10/98		PCURVE pMaxTemp;
 //DeadCode CSB 27/10/98		PCURVE pMinPressure;
 //DeadCode CSB 27/10/98		PCURVE pMaxPressure;
-//DeadCode CSB 27/10/98	
+//DeadCode CSB 27/10/98
 //DeadCode CSB 27/10/98		FP TempFrac;
 //DeadCode CSB 27/10/98		FP PressureFrac;
 
@@ -117,29 +117,29 @@ public:
 
 
 //	Atmosphere ();
-	
+
 //DeadCode CSB 27/10/98		void SetConditions (FP, FP, FP);
 //DeadCode CSB 27/10/98		void SetConditions (FP, FP);
 //	void Atmosphere::SetContrails (FP contraillevel);
-	void Atmosphere::SetMissionConditions ();
-	void Atmosphere::SetMissionTemp (SWord month);
-	void Atmosphere::SetMissionPress (SWord month);
-	void Atmosphere::SetMissionDensity();
-	void Atmosphere::SetMissionClouds(	SLong base0 = -1, SLong top0 = -1, UByte cover0 = 0, 
+	void SetMissionConditions ();
+	void SetMissionTemp (SWord month);
+	void SetMissionPress (SWord month);
+	void SetMissionDensity();
+	void SetMissionClouds(	SLong base0 = -1, SLong top0 = -1, UByte cover0 = 0,
 										SLong base1 = -1, SLong top1 = -1, UByte cover1 = 0,
 										SLong base2 = -1, SLong top2 = -1, UByte cover2 = 0,
 										SLong baseF = -1, SLong topF = -1, UByte coverF = 0);
 
-	void Atmosphere::SetMissionWind (SWord month);
-	void Atmosphere::SetMissionDawnDusk (SWord Latitude, ULong Date, SLong& Dawn, SLong& Dusk);
+	void SetMissionWind (SWord month);
+	void SetMissionDawnDusk (SWord Latitude, ULong Date, SLong& Dawn, SLong& Dusk);
 
-	UByte Atmosphere::CloudLayerCover(Coords3D* pos);
+	UByte CloudLayerCover(Coords3D* pos);
 
 	Bool Ambient (FP, FP&, FP&, FP&);
-	Bool GetWindDirVel (SLong, SWord&, SLong&);							//CSB 10/06/99	
+	Bool GetWindDirVel (SLong, SWord&, SLong&);							//CSB 10/06/99
 	Bool GetWind (AirStrucPtr const ControlledAC,FCRD&, FP);		// wind and gusts
 	FP	 GetWind (SLong, SLong&, SLong&, SLong&); // wind only			//RJS 16Dec99
-	void GetWindDirVel (SLong, SWord&, FP&);							//RJS 16/12/99	
+	void GetWindDirVel (SLong, SWord&, FP&);							//RJS 16/12/99
 
 //	void SetWind (FP, FP, FP);
 	void SetWind (FCRD&, FCRD&, FP);

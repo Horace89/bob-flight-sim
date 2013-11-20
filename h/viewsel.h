@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 //Filename       viewsel.h
-//System         
-//Author         Paul.   
+//System
+//Author         Paul.
 //Date           Mon 19 Feb 1996
-//Description    
+//Description
 //------------------------------------------------------------------------------
 #ifndef	VIEWSEL_Included
 #define	VIEWSEL_Included
@@ -170,9 +170,7 @@ class CLib3D;
 class	View3d;
 class	Window;
 class	ViewPoint : public mobileitem							//PD 08Mar96
-{ 
-	
-
+{
 
 
 	bool multiplayerViewsRestricted;							//PD 03Mar99
@@ -180,6 +178,9 @@ class	ViewPoint : public mobileitem							//PD 08Mar96
 	Window* currwin;
 	friend class	InfoPanelSheet;								//JIM 11Oct96
 	friend class	DPlay;										//AMM 16Mar99
+	typedef void(MYCALL ViewPoint::*InitRtnP) (void);
+	typedef void(ViewPoint::InitRtn) (void );
+/*#ifdef __MSVC__
 	typedef void(__cdecl ViewPoint::*InitRtnP) (void );
 	typedef void(ViewPoint::InitRtn) (void );
 
@@ -191,7 +192,20 @@ class	ViewPoint : public mobileitem							//PD 08Mar96
 
 	typedef void(__cdecl ViewPoint::*QVRtnP) (QuickView );		//PD 18Nov97
 	typedef void(ViewPoint::QVRtn) (QuickView );				//PD 28Jan97
+#else*/
+	//	typedef void(MYCALL ViewPoint::*InitRtnP) ();
 
+//	typedef void(InitRtn) (void );
+
+	typedef void(MYCALL ViewPoint::*ZmRtRtnP) (ZmRtFlags );
+	typedef void(ZmRtRtn) (ZmRtFlags );
+
+	typedef void(MYCALL ViewPoint::*DrawRtnP) (void );
+	typedef void(DrawRtn) (void );
+
+	typedef void(MYCALL ViewPoint::*QVRtnP) (QuickView );		//PD 18Nov97
+	typedef void(QVRtn) (QuickView );				//PD 28Jan97
+//#endif
 	typedef struct	ViewRec
 	{
 		ViewRec() {};
@@ -305,7 +319,7 @@ private:
 				paintshopviewrec,
 				inpadlockviewrec,
 				insidefwdviewrec,	insideviewrec, 		insidednviewrec,//PD 20Jun96
-				outpadlockviewrec,	trackviewrec,  		
+				outpadlockviewrec,	trackviewrec,
 #ifndef NDEBUG
 				outrevpadlockviewrec,
 #endif
@@ -417,11 +431,11 @@ private:
 
 		SLong	bfviewtarg,
 				bfviewmode,
-				bfcuttype,	
-				bfpanrate,	
-				bfzoom,		
-				bfheading,	
-				bfpitch,		
+				bfcuttype,
+				bfpanrate,
+				bfzoom,
+				bfheading,
+				bfpitch,
 				bfrollrate,
 				bfrotaterate,
 				bfcamitem,
@@ -457,7 +471,7 @@ private:
 
 		int	FrameTime();
 		int TimeSinceLastMove();
-		int	RealFrameTime(); 
+		int	RealFrameTime();
 		int	TimeOfDay();
 		void	BlockTick(Bool q);
 		void ViewFudge();										//PD 18Sep97
@@ -554,13 +568,13 @@ private:
 		itemptr GetFirstItem(	MobileItemPtr	list,		//List ptr
 								MobileItemPtr	saglist,
 								Nationality		side,		//Side
-								SLong&			currrange	//Current range	
+								SLong&			currrange	//Current range
 							);
 
 		itemptr GetLastItem(	MobileItemPtr	list,		//List ptr
 								MobileItemPtr	saglist,
 								Nationality		side,		//Side
-								SLong&			currrange	//Current range	
+								SLong&			currrange	//Current range
 							);
 
 		itemptr	GetFirstMessage();								//PD 02Sep96
@@ -631,7 +645,7 @@ protected:
 
 		InitRtn	InitInPadlock,
 				InitInside,										//PD 03Sep96
-				InitOutPadlock,	InitTrack,	
+				InitOutPadlock,	InitTrack,
 #ifndef NDEBUG
 				InitOutRevPadlock,
 #endif

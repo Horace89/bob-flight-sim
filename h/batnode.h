@@ -56,12 +56,12 @@ struct	SuperBattleNode
 	FlankLink	flanks;
 	IntraLink	in,out;
 	InterLink	innerlink;
-	TeamDef*	occupier;					//filled at runtime	
+	TeamDef*	occupier;					//filled at runtime
 	SuperBattleNode	*innode,*firstoutnode;//filled at loadtime
 };
 
-BITABLE(SuperBattleNode::FlankLink::NonLinks);
-BITABLE(SuperBattleNode::IntraLink::TerrainType);
+//x0r ??? BITABLE(SuperBattleNode::FlankLink::NonLinks);
+//x0r BITABLE(SuperBattleNode::IntraLink::TerrainType);
 
 
 struct	TeamDef
@@ -130,7 +130,7 @@ struct	BattleStruct
 	int faccallsign;
 };
 
-	
+
 struct	SuperBattleDesc
 {
 

@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1 	
- 	Subject to the provisions of this Agreement we now grant to you the 
+ 2.1
+ 	Subject to the provisions of this Agreement we now grant to you the
  	following rights in respect of the Source Code:
-  2.1.1 
-  	the non-exclusive right to Exploit  the Source Code and Executable 
-  	Code on any medium; and 
-  2.1.2 
+  2.1.1
+  	the non-exclusive right to Exploit  the Source Code and Executable
+  	Code on any medium; and
+  2.1.2
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2 	
+ 2.2
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1 
+  2.2.1
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1 
+ 3.1
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1 
+  3.1.1
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2 
+  3.1.2
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3 
+  3.1.3
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4 
+  3.1.4
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5 
-	not to place any restrictions on the operability of the Source 
+  3.1.5
+	not to place any restrictions on the operability of the Source
 	Code;
-  3.1.6 
+  3.1.6
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7 
+  3.1.7
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -64,7 +64,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 //------------------------------------------------------------------------------
 //Filename       acmai.cpp
-//System         
+//System
 //Author         Andrew McRae
 //Date           Mon 17 Mar 1997
 //Description    Flight Model ACM
@@ -81,7 +81,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 
 #include "collided.h"										//PD 06Sep96
-#include "Dosdefs.h"		
+#include "dosdefs.h"
 #include "Worldinc.h"
 
 #include "ranges.h"
@@ -91,7 +91,6 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 
 #include "FlyModel.h"
-#include "mymath.h"
 #include "enumbits.m"
 #include "mytime.h"											//RDH 25Apr96
 #include "ranges.h"
@@ -113,8 +112,9 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 #include "matrix.h"
 #include "winmove.h"
-#include "airstruc.h"  
+#include "airstruc.h"
 #include "rchatter.h"
+#include "mymath.h"
 
 //#define PRINT_AI_DATA	//CSB 16/03/99
 //MATHABLE	(ANGLES)
@@ -141,7 +141,7 @@ ANGLES const	STALL_ANGLE_MINUSTHREE = STALL_ANGLE - ANGLES_3Deg;
 SLong	const	ELEVATOR_DELTA = 40;
 SLong	const	ELEVATOR_DELTA_DOWN = ELEVATOR_DELTA * 2;
 SLong	const	RUDDER_DELTA = 1000;
-//SLong	const	MAXAUTOTHRUST = 80;	
+//SLong	const	MAXAUTOTHRUST = 80;
 
 ANGLES const	DSLIPFORMAXRUDDER = ANGLES_10Deg;
 ANGLES const	DPITCHFORMAXELEVATOR = ANGLES_60Deg;
@@ -165,15 +165,15 @@ void	ACMAirStruc::MoveToThrust (SWord thrust)
 
   //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
   //Procedure		MoveToHdg
-  //Author		R. Hyde 
+  //Author		R. Hyde
   //Date			Wed 13 Dec 1995
   //
   //Description	based on difference between desired and actual hdg, fix aileron
-  //				to give a roll, morale and skill will fix maxroll				
+  //				to give a roll, morale and skill will fix maxroll
   //
-  //Inputs		
+  //Inputs
   //
-  //Returns	
+  //Returns
   //
   //------------------------------------------------------------------------------
  void	ACMAirStruc::MoveToHdg (ANGLES desiredhdg, ANGLES desiredpitch)
@@ -197,7 +197,7 @@ void	ACMAirStruc::MoveToThrust (SWord thrust)
 	{
 		if( ((SWord)roll > ANGLES_45Deg) || ((SWord)roll < -ANGLES_45Deg) )
 			;
-//DeadCode CSB 19/03/99				ACM.Pitch(0);	
+//DeadCode CSB 19/03/99				ACM.Pitch(0);
 		else
 			ACM.VelPitch(desiredpitch);
 		SWord reqroll = FindRequiredRoll (reqdeltahdg,CombatReqBankData);
@@ -206,18 +206,18 @@ void	ACMAirStruc::MoveToThrust (SWord thrust)
 
 	ACM.SetRudder(0);
   }
- 
+
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		MoveToDesiredHdg
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 18 Dec 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	ACMAirStruc::MoveToDesiredHdg (ANGLES desiredhdg,ANGLES desiredpitch,ANGLES target)
@@ -233,14 +233,14 @@ Bool	ACMAirStruc::MoveToDesiredHdg (ANGLES desiredhdg,ANGLES desiredpitch,ANGLES
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GetRequiredRoll
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Fri 13 Mar 1998
 //
 //Description	Find the roll to put trgitem on lift vector of srcitem
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 ANGLES GetRequiredRoll(rotitem& srcItem,COORDS3D trg, Float& pitch, Float& hdg)
@@ -273,14 +273,14 @@ ANGLES GetRequiredRoll(rotitem& srcItem,COORDS3D trg, Float& pitch, Float& hdg)
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		FlyWing
-//Author		Craig Beeston 
+//Author		Craig Beeston
 //Date			Thu 16 Mar 2000
 //
 //Description	Like AutoFollowWpWing but in combat
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ACMAirStruc::FlyWing(AirStrucPtr lead, ANGLES relhdg = ANGLES_0Deg, int dist = 2500)
@@ -300,7 +300,7 @@ void ACMAirStruc::FlyWing(AirStrucPtr lead, ANGLES relhdg = ANGLES_0Deg, int dis
 		aimworld.Y = lead->World.Y;
 		aimworld.Z = lead->World.Z + cos * Float(dist);
 	}
-	if(lead->vel_ < classtype->minvel) 
+	if(lead->vel_ < classtype->minvel)
 		aimworld.Y += 15000;
 
 	aimworld.X += (lead->vel_x * aimtime) / 10000;
@@ -320,17 +320,17 @@ void ACMAirStruc::FlyWing(AirStrucPtr lead, ANGLES relhdg = ANGLES_0Deg, int dis
 		ACM.Thrust(0);
 }
 
-	
+
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		LookAround
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 19 Aug 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ACMAirStruc::LookAround ()
@@ -347,7 +347,7 @@ void ACMAirStruc::LookAround ()
 				SetManoeuvreTime(3000);
 			else
 				SetManoeuvreTime(1500);
-			ai.desiredroll = - (ANGLES)ANGLES_45Deg + (Angles)(ANGLES_90Deg * Math_Lib.rnd(2)); 
+			ai.desiredroll = - (ANGLES)ANGLES_45Deg + (Angles)(ANGLES_90Deg * Math_Lib.rnd(2));
 			ai.ManStep = PHASE1;
 		}
 
@@ -397,7 +397,7 @@ void ACMAirStruc::LookAround ()
 					if(FindFormpos0()->ai.manoeuvre == MANOEUVRE_TOPCOVER)
 						ai.manoeuvre = MANOEUVRE_TOPCOVER;
 					else
-						Art_Int.AttackSpareInLeadersGroup(*this);	
+						Art_Int.AttackSpareInLeadersGroup(*this);
  			}
 
 			break;
@@ -409,15 +409,15 @@ void ACMAirStruc::LookAround ()
 //DEADCODE CSB 15/03/00 		case PHASE0:
 //DEADCODE CSB 15/03/00 		{
 //DEADCODE CSB 15/03/00 			MOD.Rudder = 0;
-//DEADCODE CSB 15/03/00 
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00 			ACM.Thrust (ThrustfromFF());
 //DEADCODE CSB 15/03/00 			SetManoeuvreTime (2000);
 //DEADCODE CSB 15/03/00 //DeadCode CSB 18/03/99	 			ai.desiredroll = -(ANGLES)ANGLES_30Deg +
-//DEADCODE CSB 15/03/00 //DeadCode CSB 18/03/99						(Angles)(ANGLES_60Deg * Math_Lib.rnd(2)); 
-//DEADCODE CSB 15/03/00  			ai.desiredroll = -(ANGLES)ANGLES_60Deg +	//CSB 18/03/99	
-//DEADCODE CSB 15/03/00 					(Angles)(ANGLES_120Deg * Math_Lib.rnd(2));	//CSB 18/03/99	
-//DEADCODE CSB 15/03/00 
-//DEADCODE CSB 15/03/00 
+//DEADCODE CSB 15/03/00 //DeadCode CSB 18/03/99						(Angles)(ANGLES_60Deg * Math_Lib.rnd(2));
+//DEADCODE CSB 15/03/00  			ai.desiredroll = -(ANGLES)ANGLES_60Deg +	//CSB 18/03/99
+//DEADCODE CSB 15/03/00 					(Angles)(ANGLES_120Deg * Math_Lib.rnd(2));	//CSB 18/03/99
+//DEADCODE CSB 15/03/00
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00 			ai.ManStep = PHASE1;
 //DEADCODE CSB 15/03/00 		}
 //DEADCODE CSB 15/03/00 		case PHASE1:
@@ -436,7 +436,7 @@ void ACMAirStruc::LookAround ()
 //DEADCODE CSB 15/03/00 				ACM.Roll(reqroll);
 //DEADCODE CSB 15/03/00 				ACM.VelPitch(PitchIntercept);
 //DEADCODE CSB 15/03/00 			}
-//DEADCODE CSB 15/03/00 
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00 			if  (!ManoeuvreTimeLeft())
 //DEADCODE CSB 15/03/00 			{
 //DEADCODE CSB 15/03/00  		    	ai.ManStep = PHASE0;
@@ -449,14 +449,14 @@ void ACMAirStruc::LookAround ()
 //DEADCODE CSB 15/03/00  					{
 //DEADCODE CSB 15/03/00  						ai.manoeuvre=MANOEUVRE_LOOKROUND;
 //DEADCODE CSB 15/03/00  					}
-//DEADCODE CSB 15/03/00  
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00  				}else
 //DEADCODE CSB 15/03/00  				{
 //DEADCODE CSB 15/03/00  					ai.manoeuvre=MANOEUVRE_TOPCOVER;
 //DEADCODE CSB 15/03/00  				}
-//DEADCODE CSB 15/03/00 
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00 			}
-//DEADCODE CSB 15/03/00 
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00 		}
 //DEADCODE CSB 15/03/00 	}
 }
@@ -464,19 +464,19 @@ void ACMAirStruc::LookAround ()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		WeldedWingMan
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 2 Mar 1998
 //
 //Description	Formation flag not set so a/c can spot
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::WeldedWingMan()
 {
-	
+
 //	stick to the leaders tail, range about 1000ft and weave
 //	However for low morale bring wingman closer
 //	For very low morale it should appear as if he is trying to stay in formation
@@ -499,11 +499,11 @@ void	ACMAirStruc::WeldedWingMan()
 		{
 			if (WeldedWingSixOK())
 			{
-				if (		(fly.leadflight)					
+				if (		(fly.leadflight)
 						&&	 (fly.leadflight->ai.manoeuvre == MANOEUVRE_TOPCOVER)
 					)//force manoeuvre to allow disengage
 						ai.manoeuvre = MANOEUVRE_SELECT;
-				
+
 				if (!leader)
 					ai.manoeuvre = MANOEUVRE_SELECT;
 				else
@@ -526,19 +526,19 @@ void	ACMAirStruc::WeldedWingMan()
 					reqdeltapitch = (SWord)PitchIntercept - (SWord)fly.cpitch;
 					Math_Lib.Pos (reqdeltapitch,reqdeltapitch_pos,reqdeltapitch_sign);
 
-									
+
 					if  (		(		(reqdeltahdg_pos < ANGLES_40Deg)
 						&&	(ACM.maxdeltaforclosework == 0.0)
 						)
 						||
 							(		(reqdeltahdg_pos < ANGLES_45Deg)
 								&&	(ACM.maxdeltaforclosework != 0.0)
-							)		
+							)
 						)
 					{
 				 		SWord reqroll = RollforTurn(reqdeltapitch, reqdeltahdg, desiredturn, target);
 						ACM.Roll ((Angles)reqroll);
-		
+
 					}else
 					{
 						ACM.maxdeltaforclosework = 0.0;
@@ -553,7 +553,7 @@ void	ACMAirStruc::WeldedWingMan()
 						ACM.Thrust (0);
 					else
 						ACM.Thrust (ThrustfromFF());
-				
+
 				}
 			}
 		}
@@ -564,14 +564,14 @@ void	ACMAirStruc::WeldedWingMan()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		BailOut
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 3 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::BailOut()
@@ -583,7 +583,7 @@ void	ACMAirStruc::BailOut()
 	{
 		case PHASE0:
 		{
-			ACM.Thrust(0);	 
+			ACM.Thrust(0);
 //DEADCODE CB 18/11/99 			Trans_Obj.LaunchCanopyEject(this,*mobileitem::currworld);
 			ACM.CanopyOpen();
 			AirStrucPtr	unfriendly = *ai.unfriendly;
@@ -611,7 +611,7 @@ void	ACMAirStruc::BailOut()
 			{
 				Trans_Obj.LaunchParachute(this,this->World,0,*mobileitem::currworld);//RJS 06Dec99
 //DeadCode CSB 14Nov00 				Manual_Pilot.DeathSequenceOverrideDiary(this, AUTO_DEATHSEQUENCE);	//RJS 31Oct00
-				
+
 				if((nationality == NAT_RAF) && (!PlayerInGroup()) && (!Math_Lib.rnd(20)))
 				{
 					AirStrucPtr caller = FindBuddy();
@@ -630,14 +630,14 @@ void	ACMAirStruc::BailOut()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		TopCover
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 19 Aug 1996
 //
 //Description	The followers are supposed to go near to home line or
 //				not depending on skill
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ACMAirStruc::TopCover ()
@@ -656,17 +656,17 @@ void ACMAirStruc::TopCover ()
 				SetManoeuvreTime(3000);
 				ai.ManStep = PHASE1;
 			}
-			
+
 			case PHASE1:
 			{
 				ACM.FastRoll(ai.desiredroll);
 				ACM.VelPitch(BestClimbAngle());
-				
+
 				if(!TimeLeft())
 				{
-					if(AllOnTopCover())			
+					if(AllOnTopCover())
 						Art_Int.AllBreakOff(this);
-					else						
+					else
 						SetManoeuvreTime(1500);
 				}
 			}
@@ -695,7 +695,7 @@ void ACMAirStruc::TopCover ()
 //DEADCODE CSB 15/03/00 	ACMMODEL& ACM = *fly.pAcmModel;
 //DEADCODE CSB 15/03/00 	MODEL& MOD = *fly.pModel;
 //DEADCODE CSB 15/03/00 	UByte	FF = FlyingFactor();
-//DEADCODE CSB 15/03/00 
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00    if (formpos == 0)
 //DEADCODE CSB 15/03/00    {//leader
 //DEADCODE CSB 15/03/00  	switch (ai.ManStep)
@@ -703,50 +703,50 @@ void ACMAirStruc::TopCover ()
 //DEADCODE CSB 15/03/00  		case PHASE0:
 //DEADCODE CSB 15/03/00  		{
 //DEADCODE CSB 15/03/00 			MOD.Rudder = 0;
-//DEADCODE CSB 15/03/00 
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00 			ACM.Thrust (ThrustfromFF());
-//DEADCODE CSB 15/03/00 
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00  			SetManoeuvreTime (500);			//rdh 25/6/99
 //DEADCODE CSB 15/03/00  			ai.desiredroll = -(ANGLES)ANGLES_60Deg +
-//DEADCODE CSB 15/03/00   						(Angles)(ANGLES_120Deg * Math_Lib.rnd(2)); 
+//DEADCODE CSB 15/03/00   						(Angles)(ANGLES_120Deg * Math_Lib.rnd(2));
 //DEADCODE CSB 15/03/00  			ai.ManStep = PHASE1;
 //DEADCODE CSB 15/03/00  		}
-//DEADCODE CSB 15/03/00  
-//DEADCODE CSB 15/03/00  
+//DEADCODE CSB 15/03/00
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00  		case PHASE1:
 //DEADCODE CSB 15/03/00  		{
 //DEADCODE CSB 15/03/00 			ACM.Roll (ai.desiredroll);
 //DEADCODE CSB 15/03/00 			ACM.VelPitch (BestClimbAngle());
-//DEADCODE CSB 15/03/00 
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00  			if (!ManoeuvreTimeLeft())
 //DEADCODE CSB 15/03/00  			{
 //DEADCODE CSB 15/03/00  				SetManoeuvreTime (1000);
 //DEADCODE CSB 15/03/00  				ai.ManStep = PHASE2;
 //DEADCODE CSB 15/03/00   			}
-//DEADCODE CSB 15/03/00  
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00  			break;
 //DEADCODE CSB 15/03/00  		}
 //DEADCODE CSB 15/03/00  		case PHASE2:
 //DEADCODE CSB 15/03/00  		{
 //DEADCODE CSB 15/03/00 			ACM.Roll (ai.desiredroll);
 //DEADCODE CSB 15/03/00 			ACM.VelPitch (ANGLES_0Deg);
-//DEADCODE CSB 15/03/00  
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00  			if (!ManoeuvreTimeLeft())
 //DEADCODE CSB 15/03/00  			{
 //DEADCODE CSB 15/03/00  				ai.ManStep = PHASE3;
 //DEADCODE CSB 15/03/00   			}
-//DEADCODE CSB 15/03/00  
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00  			break;
 //DEADCODE CSB 15/03/00  		}
 //DEADCODE CSB 15/03/00  		case PHASE3:
 //DEADCODE CSB 15/03/00  		{
 //DEADCODE CSB 15/03/00 			ACM.Roll (ai.desiredroll);
 //DEADCODE CSB 15/03/00 			ACM.VelPitch (ANGLES_0Deg);
-//DEADCODE CSB 15/03/00  
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00  			if (AllOnTopCover ())
 //DEADCODE CSB 15/03/00  			{
 //DEADCODE CSB 15/03/00  				Art_Int.AllBreakOff(this);						//JIM 11Oct96
-//DEADCODE CSB 15/03/00  
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00 //##				if (ai.eventlog->stage==EventLog::TAKEOFF)		//JIM 06Dec96
 //DEADCODE CSB 15/03/00 //##					if (formpos!=0 || follower || fly.nextflight)
 //DEADCODE CSB 15/03/00 //##					 	Persons_2.AddMessage(UserMsg::GOHOME,TEXT_SQUADRONREGROUPED,NULL);
@@ -756,14 +756,14 @@ void ACMAirStruc::TopCover ()
 //DEADCODE CSB 15/03/00  		    	ai.ManStep = PHASE1;
 //DEADCODE CSB 15/03/00  				SetManoeuvreTime (1000);
 //DEADCODE CSB 15/03/00  			}
-//DEADCODE CSB 15/03/00  
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00  			break;
 //DEADCODE CSB 15/03/00  		}
 //DEADCODE CSB 15/03/00    	}
 //DEADCODE CSB 15/03/00    }else
 //DEADCODE CSB 15/03/00    {
 //DEADCODE CSB 15/03/00 	   	AirStruc* leader = FindGroupLeader();
-//DEADCODE CSB 15/03/00 
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00 	   if (leader == Persons2::PlayerGhostAC)
 //DEADCODE CSB 15/03/00 	   {
 //DEADCODE CSB 15/03/00 			Art_Int.BreakOff(this);
@@ -774,15 +774,15 @@ void ACMAirStruc::TopCover ()
 //DEADCODE CSB 15/03/00  				case PHASE0:
 //DEADCODE CSB 15/03/00  				{
 //DEADCODE CSB 15/03/00 					MOD.Rudder = 0;
-//DEADCODE CSB 15/03/00 
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00 					ACM.Thrust (ThrustfromFF());
 //DEADCODE CSB 15/03/00  					SetManoeuvreTime (500);
 //DEADCODE CSB 15/03/00  					ai.desiredroll = -(ANGLES)ANGLES_60Deg +
-//DEADCODE CSB 15/03/00   								(Angles)(ANGLES_120Deg * Math_Lib.rnd(2)); 
+//DEADCODE CSB 15/03/00   								(Angles)(ANGLES_120Deg * Math_Lib.rnd(2));
 //DEADCODE CSB 15/03/00  					ai.ManStep = PHASE1;
 //DEADCODE CSB 15/03/00  				}
-//DEADCODE CSB 15/03/00  
-//DEADCODE CSB 15/03/00  
+//DEADCODE CSB 15/03/00
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00  				case PHASE1:
 //DEADCODE CSB 15/03/00  				{
 //DEADCODE CSB 15/03/00 					ACM.Roll (ai.desiredroll);
@@ -792,7 +792,7 @@ void ACMAirStruc::TopCover ()
 //DEADCODE CSB 15/03/00  						SetManoeuvreTime (1000);
 //DEADCODE CSB 15/03/00  						ai.ManStep = PHASE2;
 //DEADCODE CSB 15/03/00   					}
-//DEADCODE CSB 15/03/00  
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00  					break;
 //DEADCODE CSB 15/03/00  				}
 //DEADCODE CSB 15/03/00  				case PHASE2:
@@ -808,7 +808,7 @@ void ACMAirStruc::TopCover ()
 //DEADCODE CSB 15/03/00  					}
 //DEADCODE CSB 15/03/00  					break;
 //DEADCODE CSB 15/03/00  				}
-//DEADCODE CSB 15/03/00  
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00    			}
 //DEADCODE CSB 15/03/00 	   }
 //DEADCODE CSB 15/03/00    }
@@ -822,9 +822,9 @@ void ACMAirStruc::TopCover ()
 //
 //Description	Circle above the coveree without trying to disengage
 //				Check to see if coveree needs help every X seconds
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ACMAirStruc::ForceTopCover()
@@ -836,14 +836,14 @@ void ACMAirStruc::ForceTopCover()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		LineAbreast
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 17 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::LineAbreast()
@@ -854,11 +854,11 @@ void	ACMAirStruc::LineAbreast()
 	ACMMODEL& ACM = *fly.pAcmModel;
 	MODEL& MOD = *fly.pModel;
 
-	if (!leader) 
+	if (!leader)
 	{//leader, do same as roundabout, get height, dive and then zoom
 	 //at end of zoom, choose manoeuvre based on firsttactic
 			ai.ManStep = PHASE0;
-			ai.manoeuvre = MANOEUVRE_DIVEANDZOOM;			
+			ai.manoeuvre = MANOEUVRE_DIVEANDZOOM;
 	}else
 	{//follower
 		if (Range < DANGERRANGE)
@@ -879,7 +879,7 @@ void	ACMAirStruc::LineAbreast()
 				}
 				case PHASE1:
 				{
-					if(		(!leader) || (leader->movecode != AUTO_COMBAT) 
+					if(		(!leader) || (leader->movecode != AUTO_COMBAT)
 						||	(		(Leader()->ai.manoeuvre != MANOEUVRE_DIVEANDZOOM)
 								&&	(Leader()->ai.manoeuvre != MANOEUVRE_ZOOM)
 								&&	(Leader()->ai.manoeuvre != MANOEUVRE_LINEABREAST)
@@ -891,11 +891,11 @@ void	ACMAirStruc::LineAbreast()
 					else
 						FlyWing(Leader(), ANGLES_90Deg, 128 * (formpos & 0xf0));
 //DeadCode CSB 20Jun00 					{
-//DeadCode CSB 20Jun00 
+//DeadCode CSB 20Jun00
 //DeadCode CSB 20Jun00  						COORDS3D	target;
-//DeadCode CSB 20Jun00  						target = leader->World; 
+//DeadCode CSB 20Jun00  						target = leader->World;
 //DeadCode CSB 20Jun00  						InterceptandRange(&target);
-//DeadCode CSB 20Jun00 
+//DeadCode CSB 20Jun00
 //DeadCode CSB 20Jun00 						SWord c,s;
 //DeadCode CSB 20Jun00 						SWord newhdg;
 //DeadCode CSB 20Jun00 						SLong range;
@@ -905,8 +905,8 @@ void	ACMAirStruc::LineAbreast()
 //DeadCode CSB 20Jun00 						target.X = target.X + MULSHSIN(s, range, ANGLES_SHIFT);
 //DeadCode CSB 20Jun00 						target.Y = target.Y;
 //DeadCode CSB 20Jun00 						target.Z = target.Z + MULSHSIN(c, range, ANGLES_SHIFT);
-//DeadCode CSB 20Jun00 
-//DeadCode CSB 20Jun00 
+//DeadCode CSB 20Jun00
+//DeadCode CSB 20Jun00
 //DeadCode CSB 20Jun00 						Float fpitch, fhdg;
 //DeadCode CSB 20Jun00 						SWord reqroll = GetRequiredRoll(*(rotitem*)this, (COORDS3D)target, fpitch, fhdg );
 //DeadCode CSB 20Jun00 						if  (		(	(fpitch < ACM.maxdeltaforclosework)
@@ -938,11 +938,11 @@ void	ACMAirStruc::LineAbreast()
 //Phase 0: stay out of way until separation say 100-200m
 //
 //phase 1: highest speed dive down to target + offset to avoid collision
-//			AutoShoot() will do firing, all fire with  leader	
+//			AutoShoot() will do firing, all fire with  leader
 //phase 2:	at 200 yards, zoom climb
 //				success depends on flyingskill
 //				will break out of manoeuvre if attacked, damaged, winchester, bingo
-//phase 3: establish circle around target, go to phase 0				
+//phase 3: establish circle around target, go to phase 0
 
 
 
@@ -950,16 +950,16 @@ void	ACMAirStruc::LineAbreast()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Scatter
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 30 Ma 1998
 //
 //Description	this is for a group of aircraft
 //				all aircraft go into break turns
 //				then mush around, easy targets
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::Scatter()
@@ -968,14 +968,14 @@ void	ACMAirStruc::Scatter()
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Pincer
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Thu 5 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::Pincer()
@@ -1004,7 +1004,7 @@ void	ACMAirStruc::Pincer()
 			brg = (Angles)((SWord)ai.desiredhdg + (SWord)unfriendly->hdg);
 			Math_Lib.high_sin_cos(brg,sinbearing,cosbearing);
 
-			despos = unfriendly->World; 			
+			despos = unfriendly->World;
 			despos.X += MULDIVSIN (sinbearing,range,ANGLES_FRACT);
 			despos.Z += MULDIVSIN (cosbearing,range,ANGLES_FRACT);
 			despos.Y += FT_500;
@@ -1037,18 +1037,18 @@ void	ACMAirStruc::Pincer()
 
 //exit when manoeuvretime up (something went wrong)
 //or targeton tail
-//reset unfriedly to one with lowest HdgIntercept 
+//reset unfriedly to one with lowest HdgIntercept
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		MultiWave
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Wed 18 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::MultiWave()
@@ -1086,14 +1086,14 @@ void	ACMAirStruc::MultiWave()
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DiveAndZoom
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 18 Dec 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ACMAirStruc::DiveAndZoom()
@@ -1155,14 +1155,14 @@ void ACMAirStruc::DiveAndZoom()
 //DeadCode CSB 7Sep00 	FP desiredturn;
 //DeadCode CSB 7Sep00 	SWord	reqdeltapitch,reqdeltapitch_sign;
 //DeadCode CSB 7Sep00 	UWord	reqdeltapitch_pos;
-//DeadCode CSB 7Sep00 
-//DeadCode CSB 7Sep00  
+//DeadCode CSB 7Sep00
+//DeadCode CSB 7Sep00
 //DeadCode CSB 7Sep00  	local_PI  = PitchIntercept;
 //DeadCode CSB 7Sep00 	reqdeltahdg = 	hdg - HdgIntercept;
 //DeadCode CSB 7Sep00  	Math_Lib.Pos (reqdeltahdg,reqdeltahdg_pos,reqdeltahdg_sign);
 //DeadCode CSB 7Sep00 	reqdeltapitch = PitchIntercept - fly.cpitch;//	fly.cpitch - PitchIntercept;
-//DeadCode CSB 7Sep00 
-//DeadCode CSB 7Sep00  
+//DeadCode CSB 7Sep00
+//DeadCode CSB 7Sep00
 //DeadCode CSB 7Sep00  	switch (ai.ManStep)
 //DeadCode CSB 7Sep00  	{
 //DeadCode CSB 7Sep00  		case PHASE0:
@@ -1186,13 +1186,13 @@ void ACMAirStruc::DiveAndZoom()
 //DeadCode CSB 7Sep00  				ai.manoeuvre = MANOEUVRE_SELECT;
 //DeadCode CSB 7Sep00  			}
 //DeadCode CSB 7Sep00 			target = ai.unfriendly->World;
-//DeadCode CSB 7Sep00 			
+//DeadCode CSB 7Sep00
 //DeadCode CSB 7Sep00 			target.X = ai.unfriendly->World.X;
 //DeadCode CSB 7Sep00 			target.Y = ai.unfriendly->World.Y + FT_3000;
 //DeadCode CSB 7Sep00 			target.Z = ai.unfriendly->World.Z;
 //DeadCode CSB 7Sep00 			InterceptandRange (&target);
-//DeadCode CSB 7Sep00 
-//DeadCode CSB 7Sep00 
+//DeadCode CSB 7Sep00
+//DeadCode CSB 7Sep00
 //DeadCode CSB 7Sep00 			TurnFightPhase1(HdgIntercept, TRUE, ANGLES_0Deg, target);
 //DeadCode CSB 7Sep00 //DeadCode RDH 16Dec98 			TurnFightSub(HdgIntercept, TRUE, ANGLES_0Deg, target);
 //DeadCode CSB 7Sep00 //			SWord reqroll;
@@ -1203,10 +1203,10 @@ void ACMAirStruc::DiveAndZoom()
 //DeadCode CSB 7Sep00 //			ACM.Roll ((Angles)reqroll);
 //DeadCode CSB 7Sep00 ////DeadCode DAW 25Nov98 			ACM.LiftLimit();
 //DeadCode CSB 7Sep00 //			ACM.ZeroSpecificPower();
-//DeadCode CSB 7Sep00 
+//DeadCode CSB 7Sep00
 //DeadCode CSB 7Sep00  			break;
 //DeadCode CSB 7Sep00  		}
-//DeadCode CSB 7Sep00 
+//DeadCode CSB 7Sep00
 //DeadCode CSB 7Sep00  		case PHASE2:
 //DeadCode CSB 7Sep00  		{
 //DeadCode CSB 7Sep00   			if  (		(ClosureLessThan(MPH50))
@@ -1220,7 +1220,7 @@ void ACMAirStruc::DiveAndZoom()
 //DeadCode CSB 7Sep00   				LeadUnFriendly ();
 //DeadCode CSB 7Sep00   			}
 //DeadCode CSB 7Sep00   			if  ((Range - (World.Y - ai.unfriendly->World.Y)) < ENGAGERANGE)
-//DeadCode CSB 7Sep00  
+//DeadCode CSB 7Sep00
 //DeadCode CSB 7Sep00   			{
 //DeadCode CSB 7Sep00  				SetManoeuvreTime (5000);
 //DeadCode CSB 7Sep00   				ai.ManStep = PHASE3;
@@ -1237,16 +1237,16 @@ void ACMAirStruc::DiveAndZoom()
 //DeadCode CSB 7Sep00  		}
 //DeadCode CSB 7Sep00  		case PHASE3:
 //DeadCode CSB 7Sep00  		{
-//DeadCode CSB 7Sep00  			temp_range = Range; 
+//DeadCode CSB 7Sep00  			temp_range = Range;
 //DeadCode CSB 7Sep00 			SLong vx, vy, vz;
-//DeadCode CSB 7Sep00 
+//DeadCode CSB 7Sep00
 //DeadCode CSB 7Sep00 			CalcLead(*this, *ai.unfriendly,vx,vy,vz, TRUE);
-//DeadCode CSB 7Sep00 
+//DeadCode CSB 7Sep00
 //DeadCode CSB 7Sep00 			target.X = ai.unfriendly->World.X + vx;
 //DeadCode CSB 7Sep00 			target.Y = ai.unfriendly->World.Y + vy;
 //DeadCode CSB 7Sep00 			target.Z = ai.unfriendly->World.Z + vz;
 //DeadCode CSB 7Sep00 			InterceptandRange (&target);
-//DeadCode CSB 7Sep00 
+//DeadCode CSB 7Sep00
 //DeadCode CSB 7Sep00 			Float fpitch, fhdg;
 //DeadCode CSB 7Sep00 			SWord reqroll = GetRequiredRoll(*(rotitem*)this, (COORDS3D)target, fpitch, fhdg );
 //DeadCode CSB 7Sep00 				if  (	(	(fpitch < ACM.maxdeltaforclosework)
@@ -1265,7 +1265,7 @@ void ACMAirStruc::DiveAndZoom()
 //DeadCode CSB 7Sep00 				ACM.ZeroSpecificPower();
 //DeadCode CSB 7Sep00 			}
 //DeadCode CSB 7Sep00 //DeadCode RDH 25Nov98 			ACM.LiftLimit();
-//DeadCode CSB 7Sep00 
+//DeadCode CSB 7Sep00
 //DeadCode CSB 7Sep00 			if  (	(!ManoeuvreTimeLeft())
 //DeadCode CSB 7Sep00 					 ||
 //DeadCode CSB 7Sep00 					(		(TargetOnSubjectTail(ANGLES_90Deg))
@@ -1280,24 +1280,24 @@ void ACMAirStruc::DiveAndZoom()
 //DeadCode CSB 7Sep00  			  	&&	(ChkAtDesiredHdg (HdgIntercept,ANGLES_5Deg))
 //DeadCode CSB 7Sep00  				)
 //DeadCode CSB 7Sep00  				FireABullet(100);
-//DeadCode CSB 7Sep00   			
+//DeadCode CSB 7Sep00
 //DeadCode CSB 7Sep00  			break;
 //DeadCode CSB 7Sep00  		}
-//DeadCode CSB 7Sep00  
+//DeadCode CSB 7Sep00
 //DeadCode CSB 7Sep00  	}
 }
 
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		PanicTurn
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 9 Mar 1998
 //
 //Description	1.63
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::PanicTurn()
@@ -1313,7 +1313,7 @@ void	ACMAirStruc::PanicTurn()
 		{
 			MOD.Rudder = 0;
 			ACM.Thrust (ThrustfromFF());
- 			ai.desiredhdg = hdg + ANGLES_60Deg; 
+ 			ai.desiredhdg = hdg + ANGLES_60Deg;
 
 			SetManoeuvreTime (1500);
 
@@ -1337,7 +1337,7 @@ void	ACMAirStruc::PanicTurn()
 				}else
 				{
  					ai.ManStep = PHASE2;
- 					ai.desiredhdg = hdg - ANGLES_120Deg; 
+ 					ai.desiredhdg = hdg - ANGLES_120Deg;
 				}
  			}
  			break;
@@ -1361,7 +1361,7 @@ void	ACMAirStruc::PanicTurn()
 				}else
 				{
 	 				ai.ManStep = PHASE1;
- 					ai.desiredhdg = hdg + ANGLES_120Deg; 
+ 					ai.desiredhdg = hdg + ANGLES_120Deg;
 				}
  			}
  			break;
@@ -1394,14 +1394,14 @@ void	ACMAirStruc::PanicTurn()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		LeadPursuit
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 9 Mar 1998
 //
 //Description	1.63
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::LeadPursuit()
@@ -1415,18 +1415,18 @@ void	ACMAirStruc::LeadPursuit()
 //
 // end after x secs or within DANGERRANGE
 
-//DONE IN TURNING FIGHT	
+//DONE IN TURNING FIGHT
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		LagPursuit
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 10 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::LagPursuit()
@@ -1493,14 +1493,14 @@ void	ACMAirStruc::LagPursuit()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Circumvent
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 30 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::Circumvent()
@@ -1509,14 +1509,14 @@ void	ACMAirStruc::Circumvent()
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DecoyActive
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 30 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //rdhvoid	ACMAirStruc::DecoyActive()
@@ -1524,14 +1524,14 @@ void	ACMAirStruc::Circumvent()
 //}
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DecoyPassive
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 30 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //rdh void	ACMAirStruc::DecoyPassive()
@@ -1539,14 +1539,14 @@ void	ACMAirStruc::Circumvent()
 //}
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		RoundAbout
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 30 Mar 1998
 //
-//Description	
-//															  
-//Inputs		
+//Description
 //
-//Returns	
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::RoundAbout()
@@ -1564,7 +1564,7 @@ void	ACMAirStruc::RoundAbout()
 			ACM.Thrust (ThrustfromFF());
 			SetManoeuvreTime (1500);
  			ai.desiredroll = -(ANGLES)ANGLES_60Deg +
-					(Angles)(ANGLES_120Deg * Math_Lib.rnd(2)); 
+					(Angles)(ANGLES_120Deg * Math_Lib.rnd(2));
 
 
 			ai.ManStep = PHASE1;
@@ -1601,11 +1601,11 @@ void	ACMAirStruc::RoundAbout()
 //DEADCODE RDH 05/04/99 			ACM.Roll (ai.desiredroll);
 //DEADCODE RDH 05/04/99 			ACM.Pitch (BestClimbAngle());
 //DEADCODE RDH 05/04/99 			ACM.MinHeight (FT_2000);
-//DEADCODE RDH 05/04/99 
+//DEADCODE RDH 05/04/99
 //DEADCODE RDH 05/04/99 			if  (!ManoeuvreTimeLeft())
 //DEADCODE RDH 05/04/99 			{
 //DEADCODE RDH 05/04/99  		    	ai.ManStep = PHASE0;
-//DEADCODE RDH 05/04/99 
+//DEADCODE RDH 05/04/99
 //DEADCODE RDH 05/04/99 				if (ai.firsttactic == TACTIC_LINEABREAST)
 //DEADCODE RDH 05/04/99 					ai.manoeuvre = MANOEUVRE_LINEABREAST;
 //DEADCODE RDH 05/04/99 				else if (ai.firsttactic == TACTIC_LINEASTERN)
@@ -1613,7 +1613,7 @@ void	ACMAirStruc::RoundAbout()
 //DEADCODE RDH 05/04/99 				else
 //DEADCODE RDH 05/04/99 					ai.manoeuvre = MANOEUVRE_SELECT;
 //DEADCODE RDH 05/04/99 			}
-//DEADCODE RDH 05/04/99 
+//DEADCODE RDH 05/04/99
 //DEADCODE RDH 05/04/99 		}
 	}
 //	if leader attain the desiredalt
@@ -1627,13 +1627,13 @@ void	ACMAirStruc::RoundAbout()
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SplitManoeuvre
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 17 Mar 1998
 //
-//Description	
-//Inputs		
+//Description
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::ResetUnfriendly()
@@ -1644,13 +1644,13 @@ void	ACMAirStruc::ResetUnfriendly()
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SplitManoeuvre
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 17 Mar 1998
 //
-//Description	
-//Inputs		
+//Description
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::SplitManoeuvre()
@@ -1696,15 +1696,15 @@ void	ACMAirStruc::SplitManoeuvre()
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		HeadOn
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 3 Mar 1998
 //
-//Description	Theoretically no offset, 
+//Description	Theoretically no offset,
 //				However use a little to avoid collision
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::HeadOn ( )
@@ -1719,7 +1719,7 @@ void	ACMAirStruc::HeadOn ( )
 	AirStrucPtr	unfriendly = *ai.unfriendly;
 
 	SLong temp_range;
-	temp_range = Range; 	
+	temp_range = Range;
 	COORDS3D	target;
 	SWord c,s;
 	SWord newhdg;
@@ -1776,7 +1776,7 @@ void	ACMAirStruc::HeadOn ( )
 					{
 						ai.manoeuvre = MANOEUVRE_PANICTURN;
 						ai.ManStep = PHASE0;
-					}else  
+					}else
 					{
 						ai.manoeuvre = MANOEUVRE_BREAKTURN;
 						ai.ManStep = PHASE0;
@@ -1787,7 +1787,7 @@ void	ACMAirStruc::HeadOn ( )
 				}
 
 			}else if	(		(Range < BREAKTURNRADIUS)
-							
+
 						)
 			{//good pilot might turn early to get advantage
 				if (decisionpoint)
@@ -1853,7 +1853,7 @@ void	ACMAirStruc::HeadOn ( )
 //DeadCode CSB 23Jun00 							ai.manoeuvre = MANOEUVRE_STRAIGHTANDLEVEL;
 //DeadCode CSB 23Jun00 					else
 //DeadCode CSB 23Jun00 							ai.manoeuvre = MANOEUVRE_EXTENSION;
-				}else 
+				}else
 				{
 					if (startpoint)
 							ai.manoeuvre = MANOEUVRE_TURNINGFIGHT;
@@ -1863,20 +1863,20 @@ void	ACMAirStruc::HeadOn ( )
 			}
 		}
 	}
-	
+
 }
 
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		LineAstern
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 17 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::LineAstern()
@@ -1885,11 +1885,11 @@ void	ACMAirStruc::LineAstern()
 	ACMMODEL& ACM = *fly.pAcmModel;
 	MODEL& MOD = *fly.pModel;
 
-	if (!leader) 
+	if (!leader)
 	{//leader, do same as roundabout, get height, dive and then zoom
 	 //at end of zoom, choose manoeuvre based on firsttactic
 			ai.ManStep = PHASE0;
-//DEADCODE CB 18/11/99 			ai.manoeuvre = MANOEUVRE_ROUNDABOUT;			
+//DEADCODE CB 18/11/99 			ai.manoeuvre = MANOEUVRE_ROUNDABOUT;
 			ai.manoeuvre = MANOEUVRE_TURNINGFIGHT;
 	}else
 	{//follower
@@ -1912,7 +1912,7 @@ void	ACMAirStruc::LineAstern()
 				}
 				case PHASE1:
 				{
-					if(		(!leader) || (leader->movecode != AUTO_COMBAT) 
+					if(		(!leader) || (leader->movecode != AUTO_COMBAT)
 						||	(		(Leader()->ai.manoeuvre != MANOEUVRE_DIVEANDZOOM)
 								&&	(Leader()->ai.manoeuvre != MANOEUVRE_LINEABREAST)
 								&&	(Leader()->ai.manoeuvre != MANOEUVRE_COLLISIONAVOIDANCE)	)	)
@@ -1922,14 +1922,14 @@ void	ACMAirStruc::LineAstern()
 					}
 					else
 						FlyWing(Leader(), ANGLES_90Deg, 128 * (formpos & 0xf0));
-						
+
 //DeadCode CSB 20Jun00 					if (!leader)
 //DeadCode CSB 20Jun00 						ai.manoeuvre = MANOEUVRE_SELECT;					//if no leader break manoeuvre
 //DeadCode CSB 20Jun00 					else
 //DeadCode CSB 20Jun00 					{
-//DeadCode CSB 20Jun00 
+//DeadCode CSB 20Jun00
 //DeadCode CSB 20Jun00  						COORDS3D	target;
-//DeadCode CSB 20Jun00  						target = leader->World; 
+//DeadCode CSB 20Jun00  						target = leader->World;
 //DeadCode CSB 20Jun00  						InterceptandRange(&target);
 //DeadCode CSB 20Jun00 						Float fpitch, fhdg;
 //DeadCode CSB 20Jun00 						SWord reqroll = GetRequiredRoll(*(rotitem*)this, (COORDS3D)target, fpitch, fhdg );
@@ -1956,7 +1956,7 @@ void	ACMAirStruc::LineAstern()
 //DeadCode CSB 20Jun00  							ACM.Thrust (0);
 //DeadCode CSB 20Jun00  						else
 //DeadCode CSB 20Jun00  							ACM.Thrust (ThrustfromFF());
-//DeadCode CSB 20Jun00 
+//DeadCode CSB 20Jun00
 //DeadCode CSB 20Jun00 					}
 				}
 			}
@@ -1970,7 +1970,7 @@ void	ACMAirStruc::LineAstern()
 //also use leader's phase
 //Phase 0: stay out of way until separation exceeds say 400m
 //
-//phase 1: if leader 
+//phase 1: if leader
 //				highest speed dive down to target
 //			else
 //				follow using formation data
@@ -1980,7 +1980,7 @@ void	ACMAirStruc::LineAstern()
 //phase 2:	at 200 yards, zoom climb
 //				success depends on flyingskill
 //				will break out of manoeuvre if attacked, damaged, winchester, bingo
-//phase 3: establish circle around target, go to phase 0				
+//phase 3: establish circle around target, go to phase 0
 //
 
 
@@ -1989,11 +1989,11 @@ void	ACMAirStruc::LineAstern()
 //Author		Craig Beeston
 //Date			Wed 15 Mar 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ACMAirStruc::VicAttack()
@@ -2039,7 +2039,7 @@ void ACMAirStruc::VicAttack()
 				if((lead) && (lead->ai.manoeuvre == MANOEUVRE_VICATTACK))
 					FlyWing(lead);
 			}
-			
+
 			if(Distance3DSquared(&ai.unfriendly->World) < FP(50000) * FP(50000))
 			{
 				ACM.Thrust(100);
@@ -2085,9 +2085,9 @@ void ACMAirStruc::VicAttack()
 //
 //Description	1.69
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::BarrelRollAttack ( )
@@ -2106,7 +2106,7 @@ void	ACMAirStruc::BarrelRollAttack ( )
 		{
 			ACM.Thrust (100);
 			SetManoeuvreTime (1500);
- 			ai.desiredroll = ANGLES_0Deg; 
+ 			ai.desiredroll = ANGLES_0Deg;
 			ai.ManStep = PHASE1;
 		}
 		case PHASE1:
@@ -2150,14 +2150,14 @@ void	ACMAirStruc::BarrelRollAttack ( )
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Scissors
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 12 Dec 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::Scissors ( )
@@ -2174,7 +2174,7 @@ void	ACMAirStruc::Scissors ( )
  			ACM.Thrust (70);
 			SetManoeuvreTime (1500);
  			ai.ManStep = PHASE1;
- 			ai.desiredhdg = hdg - ANGLES_60Deg; 
+ 			ai.desiredhdg = hdg - ANGLES_60Deg;
  		}
  		case PHASE1:
  		{
@@ -2186,7 +2186,7 @@ void	ACMAirStruc::Scissors ( )
  			if (MoveToDesiredHdg (ai.desiredhdg,ANGLES_5Deg, ANGLES_5Deg))
  			{
  				ai.ManStep = PHASE2;
- 				ai.desiredhdg = hdg + ANGLES_120Deg; 
+ 				ai.desiredhdg = hdg + ANGLES_120Deg;
  			}
  			break;
  		}
@@ -2203,13 +2203,13 @@ void	ACMAirStruc::Scissors ( )
  			if (MoveToDesiredHdg (ai.desiredhdg,ANGLES_5Deg,ANGLES_5Deg))
  			{
  				ai.ManStep = PHASE1;
- 				ai.desiredhdg = hdg - ANGLES_120Deg; 
+ 				ai.desiredhdg = hdg - ANGLES_120Deg;
  			}
  			break;
  		}
  		case PHASE3:
  		{
- 
+
  			ai.manoeuvre = MANOEUVRE_SELECT;
  			break;
  		}
@@ -2218,20 +2218,20 @@ void	ACMAirStruc::Scissors ( )
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		MildScissors
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Wed 13 Dec 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::MildScissors ( )
 
 {
-	
+
 	ACMMODEL& ACM = *fly.pAcmModel;
 	MODEL& MOD = *fly.pModel;
 
@@ -2243,7 +2243,7 @@ void	ACMAirStruc::MildScissors ( )
  			ACM.Thrust (70);
 			SetManoeuvreTime (1500);
  			ai.ManStep = PHASE1;
- 			ai.desiredhdg = hdg - ANGLES_15Deg; 
+ 			ai.desiredhdg = hdg - ANGLES_15Deg;
  		}
  		case PHASE1:
  		{
@@ -2255,7 +2255,7 @@ void	ACMAirStruc::MildScissors ( )
  			if (MoveToDesiredHdg (ai.desiredhdg,ANGLES_5Deg,ANGLES_5Deg))
  			{
  				ai.ManStep = PHASE2;
- 				ai.desiredhdg = hdg + ANGLES_30Deg; 
+ 				ai.desiredhdg = hdg + ANGLES_30Deg;
  			}
  			break;
  		}
@@ -2272,13 +2272,13 @@ void	ACMAirStruc::MildScissors ( )
  			if (MoveToDesiredHdg (ai.desiredhdg,ANGLES_5Deg,ANGLES_5Deg))
  			{
  				ai.ManStep = PHASE1;
- 				ai.desiredhdg = hdg - ANGLES_30Deg; 
+ 				ai.desiredhdg = hdg - ANGLES_30Deg;
  			}
  			break;
  		}
  		case PHASE3:
  		{
- 
+
  			ai.manoeuvre = MANOEUVRE_SELECT;
  			break;
  		}
@@ -2289,14 +2289,14 @@ void	ACMAirStruc::MildScissors ( )
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SplitS
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 18 Dec 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::SplitS ()
@@ -2370,7 +2370,7 @@ void	ACMAirStruc::SplitS ()
 					||  (		(DesiredPitchChk (ANGLES_315Deg,ANGLES_20Deg))
 							&&	(		(roll << ANGLES_90Deg)
 									||	(roll >> ANGLES_270Deg)
-								)						
+								)
 						)
 				)
 	 			{
@@ -2384,15 +2384,15 @@ void	ACMAirStruc::SplitS ()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ZoomandDrop
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 18 Dec 1995
 //
-//Description	
+//Description
 //Zoom for only a few seconds in hope of gettig other a/c to slip under
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::ZoomandDrop ()
@@ -2403,7 +2403,7 @@ void	ACMAirStruc::ZoomandDrop ()
 
 //	ACM.Step = ai.ManStep;
 
-		
+
 	switch (ai.ManStep)
 	{
 		case PHASE0:
@@ -2464,17 +2464,17 @@ void	ACMAirStruc::ZoomandDrop ()
 //Author		Andrew McRae
 //Date			Wed 14 May 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::StraightandLevel ()
 {
 //DEADCODE DAW 25/11/99 	ACMMODEL& ACM = *fly.pAcmModel;
-//DEADCODE DAW 25/11/99 
+//DEADCODE DAW 25/11/99
 //DEADCODE DAW 25/11/99 	switch (ai.ManStep)
 //DEADCODE DAW 25/11/99 	{
 //DEADCODE DAW 25/11/99 		case PHASE0:
@@ -2547,14 +2547,14 @@ void	ACMAirStruc::StraightandLevel ()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SpinOut
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 12 Dec 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::SpinOut ( )
@@ -2567,7 +2567,7 @@ void	ACMAirStruc::SpinOut ( )
 	ACMMODEL& ACM = *fly.pAcmModel;
 	MODEL& MOD = *fly.pModel;
 
-	
+
 	switch (ai.ManStep)
 	{
 		case PHASE0:
@@ -2611,11 +2611,11 @@ void	ACMAirStruc::SpinOut ( )
 //Author		Andrew McRae
 //Date			Tue 3 Jun 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::DiveforHome ()
@@ -2628,7 +2628,7 @@ void	ACMAirStruc::DiveforHome ()
  			ACM.Thrust(100);
 			ai.ManStep = PHASE1;
 			InterceptandRange (&ai.homebase->World);
-			ai.desiredhdg = HdgIntercept; 
+			ai.desiredhdg = HdgIntercept;
 			SetManoeuvreTime(1500);
 		}
 		case PHASE1:
@@ -2647,28 +2647,28 @@ void	ACMAirStruc::DiveforHome ()
 
 //DeadCode CSB 5Sep00 	ACMMODEL& ACM = *fly.pAcmModel;
 //DeadCode CSB 5Sep00 	MODEL& MOD = *fly.pModel;
-//DeadCode CSB 5Sep00 
+//DeadCode CSB 5Sep00
 //DeadCode CSB 5Sep00  //DeadCode RDH 20Aug96 	WayPointPtr	lastwaypoint;
 //DeadCode CSB 5Sep00  	SLong	temp_range;
-//DeadCode CSB 5Sep00  
-//DeadCode CSB 5Sep00  	temp_range = Range; 	
+//DeadCode CSB 5Sep00
+//DeadCode CSB 5Sep00  	temp_range = Range;
 //DeadCode CSB 5Sep00  	switch (ai.ManStep)
 //DeadCode CSB 5Sep00  	{
 //DeadCode CSB 5Sep00  		case PHASE0:
 //DeadCode CSB 5Sep00  		{
-//DeadCode CSB 5Sep00 
+//DeadCode CSB 5Sep00
 //DeadCode CSB 5Sep00 			MOD.Rudder = 0;
 //DeadCode CSB 5Sep00   			MoveToThrust (100);
 //DeadCode CSB 5Sep00  			SetManoeuvreTime (2000);
 //DeadCode CSB 5Sep00  			ai.ManStep = PHASE1;
-//DeadCode CSB 5Sep00 
+//DeadCode CSB 5Sep00
 //DeadCode CSB 5Sep00 			ACM.Thrust (ThrustfromFF());
-//DeadCode CSB 5Sep00 
+//DeadCode CSB 5Sep00
 //DeadCode CSB 5Sep00 			if (ai.homebase)
 //DeadCode CSB 5Sep00 				InterceptandRange (&ai.homebase->World);
 //DeadCode CSB 5Sep00 			else
 //DeadCode CSB 5Sep00 				ai.manoeuvre = MANOEUVRE_SELECT;
-//DeadCode CSB 5Sep00  			ai.desiredhdg = HdgIntercept; 
+//DeadCode CSB 5Sep00  			ai.desiredhdg = HdgIntercept;
 //DeadCode CSB 5Sep00  		}
 //DeadCode CSB 5Sep00  		case PHASE1:
 //DeadCode CSB 5Sep00  		{
@@ -2676,7 +2676,7 @@ void	ACMAirStruc::DiveforHome ()
 //DeadCode CSB 5Sep00 //			{//within mile of home
 //DeadCode CSB 5Sep00 //				ai.manoeuvre = MANOEUVRE_SELECT;
 //DeadCode CSB 5Sep00 //			}
-//DeadCode CSB 5Sep00 //			Range = temp_range; 	
+//DeadCode CSB 5Sep00 //			Range = temp_range;
 //DeadCode CSB 5Sep00 //			if (Range > BREAKOFFRANGE)
 //DeadCode CSB 5Sep00 //			{//xx from action, reconsider
 //DeadCode CSB 5Sep00 //				ai.manoeuvre = MANOEUVRE_SELECT;
@@ -2687,14 +2687,14 @@ void	ACMAirStruc::DiveforHome ()
 //DeadCode CSB 5Sep00 			}
 //DeadCode CSB 5Sep00 			if  (!ManoeuvreTimeLeft())
 //DeadCode CSB 5Sep00 				ai.manoeuvre = MANOEUVRE_SELECT;
-//DeadCode CSB 5Sep00 
-//DeadCode CSB 5Sep00 
+//DeadCode CSB 5Sep00
+//DeadCode CSB 5Sep00
 //DeadCode CSB 5Sep00 			ANGLES	desiredpitch;
 //DeadCode CSB 5Sep00 			if (MOD.Pos.y < FT_3000)
 //DeadCode CSB 5Sep00 				desiredpitch = ANGLES_0Deg;
 //DeadCode CSB 5Sep00 			else
 //DeadCode CSB 5Sep00 				desiredpitch = ANGLES_340Deg;
-//DeadCode CSB 5Sep00 
+//DeadCode CSB 5Sep00
 //DeadCode CSB 5Sep00 			MoveToHdg (ai.desiredhdg, desiredpitch);
 //DeadCode CSB 5Sep00  		}
 //DeadCode CSB 5Sep00  	}
@@ -2703,14 +2703,14 @@ void	ACMAirStruc::DiveforHome ()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GoHome
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 12 Dec 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::GoHome ( )
@@ -2721,8 +2721,8 @@ void	ACMAirStruc::GoHome ( )
 
  //DeadCode RDH 20Aug96 	WayPointPtr	lastwaypoint;
  	SLong	temp_range;
- 
- 	temp_range = Range; 	
+
+ 	temp_range = Range;
  	switch (ai.ManStep)
  	{
  		case PHASE0:
@@ -2738,13 +2738,13 @@ void	ACMAirStruc::GoHome ( )
 				InterceptandRange (&ai.homebase->World);
 			else
 				ai.manoeuvre = MANOEUVRE_SELECT;
- 			ai.desiredhdg = HdgIntercept; 
+ 			ai.desiredhdg = HdgIntercept;
 			Range = temp_range;
  			if	(		TargetOnSubjectTail(ANGLES_10Deg)
  					&&	(Range < 2 * WEAPONSRANGE)
  					&&	(ai.combatskill >= SKILL_REGULAR)
  				)
- 				ai.desiredhdg = HdgIntercept + ANGLES_20Deg; 
+ 				ai.desiredhdg = HdgIntercept + ANGLES_20Deg;
 
  		}
  		case PHASE1:
@@ -2753,7 +2753,7 @@ void	ACMAirStruc::GoHome ( )
 //			{//within mile of home
 //				ai.manoeuvre = MANOEUVRE_SELECT;
 //			}
-			Range = temp_range; 	
+			Range = temp_range;
 //			if (Range > BREAKOFFRANGE)
 //			{//xx from action, reconsider
 //				ai.manoeuvre = MANOEUVRE_SELECT;
@@ -2787,20 +2787,20 @@ void	ACMAirStruc::GoHome ( )
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		MakeForFriendly
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 12 Dec 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::MakeForFriendly ( )
 
 {
-	
+
 }
 
 
@@ -2810,13 +2810,13 @@ void	ACMAirStruc::MakeForFriendly ( )
 //Author		Andrew McRae
 //Date			Mon 2 Jun 1997
 //
-//Description	
+//Description
 //	Not much different from extension. Ant need for both?
 //
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::MoveAway ()
@@ -2858,26 +2858,26 @@ void	ACMAirStruc::MoveAway ()
 //DEADCODE CSB 15/03/00 //DEADCODE CSB 19/01/00 			ACM.MinHeight (FT_1000);
 //DEADCODE CSB 15/03/00 //			ACM.Pitch (ANGLES_5Deg);
 //DEADCODE CSB 15/03/00 			MoveToHdg (HdgIntercept + ANGLES_180Deg, ANGLES_5Deg);
-//DEADCODE CSB 15/03/00  
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00 			if (!ManoeuvreTimeLeft())
 //DEADCODE CSB 15/03/00 				ai.manoeuvre = MANOEUVRE_SELECT;
 //DEADCODE CSB 15/03/00 			break;
 //DEADCODE CSB 15/03/00 		}
 //DEADCODE CSB 15/03/00 	}
-//DEADCODE CSB 15/03/00 
-}	
+//DEADCODE CSB 15/03/00
+}
 
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		HeadOnOffset
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Wed 13 Dec 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::HeadOnOffset ( )
@@ -2888,11 +2888,11 @@ void	ACMAirStruc::HeadOnOffset ( )
 	AirStrucPtr	unfriendly = *ai.unfriendly;
 
 	SLong temp_range;
-	temp_range = Range; 	
+	temp_range = Range;
 	COORDS3D	target;
 	SWord c,s;
 	SWord newhdg;
-	UByte	FF; 
+	UByte	FF;
 	SWord	reqdeltahdg;
 
 
@@ -2965,7 +2965,7 @@ void	ACMAirStruc::HeadOnOffset ( )
 				reqroll = ANGLES_30Deg;
 			if  (		(reqroll << ANGLES_330Deg)
 					&&	(reqroll >> ANGLES_180Deg)
-				)	
+				)
 				reqroll = ANGLES_330Deg;
 
 			ACM.Roll (reqroll);
@@ -2979,7 +2979,7 @@ void	ACMAirStruc::HeadOnOffset ( )
 				)
 			{
 		  		ai.ManStep = PHASE0;
-				ai.manoeuvre = MANOEUVRE_TURNINGFIGHT;						
+				ai.manoeuvre = MANOEUVRE_TURNINGFIGHT;
 			}else if (Range < (BREAKTURNRADIUS))
 			{
 				FF = Math_Lib.rnd(4);
@@ -3015,7 +3015,7 @@ void	ACMAirStruc::HeadOnOffset ( )
 			if (ChkAtDesiredHdg (ai.desiredhdg,ANGLES_5Deg))
 			{
 		  		ai.ManStep = PHASE0;
-				ai.manoeuvre = MANOEUVRE_TURNINGFIGHT;						
+				ai.manoeuvre = MANOEUVRE_TURNINGFIGHT;
 			}
 			break;
 		}
@@ -3043,7 +3043,7 @@ void	ACMAirStruc::HeadOnOffset ( )
 				reqroll = ANGLES_30Deg;
 			if  (		(reqroll << ANGLES_330Deg)
 					&&	(reqroll >> ANGLES_180Deg)
-				)	
+				)
 				reqroll = ANGLES_330Deg;
 
 			ACM.Roll ((Angles)reqroll);
@@ -3059,9 +3059,9 @@ void	ACMAirStruc::HeadOnOffset ( )
 					)
 				{
 			  		ai.ManStep = PHASE0;
-					ai.manoeuvre = MANOEUVRE_TURNINGFIGHT;						
+					ai.manoeuvre = MANOEUVRE_TURNINGFIGHT;
 
-				}else 
+				}else
 				{
 					if (		(roll >> ANGLES_30Deg)
 							&&	(roll << ANGLES_180Deg)
@@ -3084,7 +3084,7 @@ void	ACMAirStruc::HeadOnOffset ( )
 						ai.desiredhdg = ANGLES_270Deg + hdg;
 						ai.desiredroll = ANGLES_275Deg;
 					}
-					
+
 //					if  (		(Math_Lib.rnd(3) == 0)
 //						||	(Range > BREAKTURNRADIUS/2)
 //					)
@@ -3103,7 +3103,7 @@ void	ACMAirStruc::HeadOnOffset ( )
 //					}else
 //					{
 //						if (	(unfriendly->roll >> ANGLES_180Deg)
-//							||	(roll << ANGLES_340Deg)	
+//							||	(roll << ANGLES_340Deg)
 //							)
 //						{
 //							ai.desiredroll = ANGLES_85Deg;
@@ -3116,7 +3116,7 @@ void	ACMAirStruc::HeadOnOffset ( )
 //					}
 			  		ai.ManStep = PHASE4;
 				}
-			}		
+			}
 			break;
 
 		}
@@ -3128,7 +3128,7 @@ void	ACMAirStruc::HeadOnOffset ( )
 			if (ChkAtDesiredHdg (ai.desiredhdg,ANGLES_5Deg))
 			{
 		  		ai.ManStep = PHASE0;
-				ai.manoeuvre = MANOEUVRE_TURNINGFIGHT;						
+				ai.manoeuvre = MANOEUVRE_TURNINGFIGHT;
 			}
 
 		}
@@ -3138,24 +3138,24 @@ void	ACMAirStruc::HeadOnOffset ( )
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		StayWithPrey
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Wed 13 Dec 1995
 //
 //Description	As target looses alt, stay until explosion or hits ground or alt <???
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::StayWithPrey ( )
 
 {
-	
+
 //DeadCode RDH 26Mar98 	SWord	acroll_sign,reqroll;
 //DeadCode RDH 26Mar98 	SWord	deltapitch;
 //DeadCode RDH 26Mar98 	UWord	acroll_pos;
-//DeadCode RDH 26Mar98 
+//DeadCode RDH 26Mar98
 //DeadCode RDH 26Mar98 	switch (ai.ManStep)
 //DeadCode RDH 26Mar98 	{
 //DeadCode RDH 26Mar98 		case PHASE0:
@@ -3173,23 +3173,23 @@ void	ACMAirStruc::StayWithPrey ( )
 //DeadCode RDH 26Mar98 				ai.manoeuvre = MANOEUVRE_SELECT;
 //DeadCode RDH 26Mar98 			}
 //DeadCode RDH 26Mar98 			TightTurn (FT_500);
-//DeadCode RDH 26Mar98 
+//DeadCode RDH 26Mar98
 //DeadCode RDH 26Mar98 		}
 //DeadCode RDH 26Mar98 	}
-//DeadCode RDH 26Mar98 
+//DeadCode RDH 26Mar98
 
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Immelmann
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Wed 13 Dec 1995
 //
 //Description	not used and so not coded for Flying Corps
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::Immelmann ( )
@@ -3281,7 +3281,7 @@ void	ACMAirStruc::Immelmann ( )
 			if (ele >0)
 				ele = 0;
 			ACM.SetElevator(ele);
-			
+
 			deltaroll = (SWord) (reqroll - roll);
 			Math_Lib.Pos (deltaroll,deltaroll_pos,deltaroll_sign);
 			if (deltaroll_pos <ANGLES_5Deg)
@@ -3315,11 +3315,11 @@ void	ACMAirStruc::Immelmann ( )
 //Author		Craig Beeston
 //Date			Mon 04 Sep 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ACMAirStruc::ImmelmannTurn()
@@ -3345,7 +3345,7 @@ void ACMAirStruc::ImmelmannTurn()
 		case PHASE2:
 		{
 			ACM.Pitch(ANGLES_90Deg);
-			
+
 			SWord desroll = ANGLES_180Deg + SWord(hdg) - SWord(HdgIntercept);
 			SWord deltaroll = desroll - roll;
 
@@ -3383,7 +3383,7 @@ void ACMAirStruc::ImmelmannTurn()
 //DeadCode CSB 7Sep00 				ACM.FastRoll(ANGLES_90Deg);
 //DeadCode CSB 7Sep00 			else
 //DeadCode CSB 7Sep00 				ACM.FastRoll(-ANGLES_90Deg);
-//DeadCode CSB 7Sep00 			
+//DeadCode CSB 7Sep00
 //DeadCode CSB 7Sep00 			ACM.Pitch(PitchIntercept);
 //DeadCode CSB 7Sep00 			SWord deltapitch = PitchIntercept - pitch;
 //DeadCode CSB 7Sep00 			if((-deltapitch < ANGLES_5Deg) && (deltapitch < ANGLES_5Deg))
@@ -3396,14 +3396,14 @@ void ACMAirStruc::ImmelmannTurn()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ClimbforHome
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 12 Dec 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::ClimbforHome ( )
@@ -3416,7 +3416,7 @@ void	ACMAirStruc::ClimbforHome ( )
  			ACM.Thrust(100);
 			ai.ManStep = PHASE1;
 			InterceptandRange (&ai.homebase->World);
-			ai.desiredhdg = HdgIntercept; 
+			ai.desiredhdg = HdgIntercept;
 			SetManoeuvreTime(1500);
 		}
 		case PHASE1:
@@ -3435,11 +3435,11 @@ void	ACMAirStruc::ClimbforHome ( )
 
 //DeadCode CSB 5Sep00 	ACMMODEL& ACM = *fly.pAcmModel;
 //DeadCode CSB 5Sep00 	MODEL& MOD = *fly.pModel;
-//DeadCode CSB 5Sep00 
+//DeadCode CSB 5Sep00
 //DeadCode CSB 5Sep00  //DeadCode RDH 20Aug96 	WayPointPtr	lastwaypoint;
 //DeadCode CSB 5Sep00  	SLong	temp_range;
-//DeadCode CSB 5Sep00  
-//DeadCode CSB 5Sep00  	temp_range = Range; 	
+//DeadCode CSB 5Sep00
+//DeadCode CSB 5Sep00  	temp_range = Range;
 //DeadCode CSB 5Sep00  	switch (ai.ManStep)
 //DeadCode CSB 5Sep00  	{
 //DeadCode CSB 5Sep00  		case PHASE0:
@@ -3448,11 +3448,11 @@ void	ACMAirStruc::ClimbforHome ( )
 //DeadCode CSB 5Sep00   			MoveToThrust (100);
 //DeadCode CSB 5Sep00  			SetManoeuvreTime (2000);
 //DeadCode CSB 5Sep00  			ai.ManStep = PHASE1;
-//DeadCode CSB 5Sep00 
+//DeadCode CSB 5Sep00
 //DeadCode CSB 5Sep00 			ACM.Thrust (ThrustfromFF());
-//DeadCode CSB 5Sep00 
+//DeadCode CSB 5Sep00
 //DeadCode CSB 5Sep00  			InterceptandRange (&ai.homebase->World);
-//DeadCode CSB 5Sep00  			ai.desiredhdg = HdgIntercept; 
+//DeadCode CSB 5Sep00  			ai.desiredhdg = HdgIntercept;
 //DeadCode CSB 5Sep00  		}
 //DeadCode CSB 5Sep00  		case PHASE1:
 //DeadCode CSB 5Sep00  		{
@@ -3460,7 +3460,7 @@ void	ACMAirStruc::ClimbforHome ( )
 //DeadCode CSB 5Sep00 //			{//within mile of home
 //DeadCode CSB 5Sep00 //				ai.manoeuvre = MANOEUVRE_SELECT;
 //DeadCode CSB 5Sep00 //			}
-//DeadCode CSB 5Sep00 			Range = temp_range; 	
+//DeadCode CSB 5Sep00 			Range = temp_range;
 //DeadCode CSB 5Sep00 //			if (Range > BREAKOFFRANGE)
 //DeadCode CSB 5Sep00 //			{//xx from action, reconsider
 //DeadCode CSB 5Sep00 //				ai.manoeuvre = MANOEUVRE_SELECT;
@@ -3471,7 +3471,7 @@ void	ACMAirStruc::ClimbforHome ( )
 //DeadCode CSB 5Sep00 			}
 //DeadCode CSB 5Sep00 			if  (!ManoeuvreTimeLeft())
 //DeadCode CSB 5Sep00 				ai.manoeuvre = MANOEUVRE_SELECT;
-//DeadCode CSB 5Sep00 
+//DeadCode CSB 5Sep00
 //DeadCode CSB 5Sep00 //			ACM.Pitch (BestClimbAngle());
 //DeadCode CSB 5Sep00  			MoveToHdg (ai.desiredhdg, BestClimbAngle());
 //DeadCode CSB 5Sep00  		}
@@ -3484,11 +3484,11 @@ void	ACMAirStruc::ClimbforHome ( )
 //Author		Andrew McRae
 //Date			Tue 3 Jun 1997
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::StraightDive ()
@@ -3524,15 +3524,15 @@ void	ACMAirStruc::StraightDive ()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		StandOnTail
-//Author		
+//Author
 //Date			Mon 8 Sep 1997
 //
-//Description	
+//Description
 //Zoom until low speed, then roll 180 and pull level
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::StandOnTail ()
@@ -3583,14 +3583,14 @@ void	ACMAirStruc::StandOnTail ()
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ShootToFrighten
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 12 Dec 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::ShootToFrighten ( )
@@ -3614,7 +3614,7 @@ void	ACMAirStruc::ShootToFrighten ( )
 			SLong		time;
 			MODEL& MOD = *fly.pModel;
 			AirStrucPtr	unfriendly = *ai.unfriendly;
-		//DeadCode AMM 01Jul98 	MODEL& UNFMOD = *(unfriendly->fly).pModel;	
+		//DeadCode AMM 01Jul98 	MODEL& UNFMOD = *(unfriendly->fly).pModel;
 
 
 			reqdeltahdg = 	Rads2Rowan(MOD.fHdg) - HdgIntercept;
@@ -3622,7 +3622,7 @@ void	ACMAirStruc::ShootToFrighten ( )
 
 			if (		(Range < METRES400)
 					&&	(reqdeltahdg_pos < (SWord)ANGLES_30Deg)
-				)		
+				)
 			{
 				//this method just extrapolates position
 				//to get turn:
@@ -3643,7 +3643,7 @@ void	ACMAirStruc::ShootToFrighten ( )
 					&&	(		(unfriendly->roll << ANGLES_10Deg)
 							||	(unfriendly->roll >> ANGLES_350Deg)
 						)
-				)	
+				)
 			{
 						FireABullet(100);
 						if	(	(		(unfriendly->ai.morale < MORALE_GOOD)
@@ -3667,14 +3667,14 @@ void	ACMAirStruc::ShootToFrighten ( )
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ShootTooEarly
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 30 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::ShootTooEarly()
@@ -3697,14 +3697,14 @@ void	ACMAirStruc::ShootTooEarly()
 			SLong		time;
 			MODEL& MOD = *fly.pModel;
 			AirStrucPtr	unfriendly = *ai.unfriendly;
-		//DeadCode AMM 01Jul98 	MODEL& UNFMOD = *(unfriendly->fly).pModel;	
+		//DeadCode AMM 01Jul98 	MODEL& UNFMOD = *(unfriendly->fly).pModel;
 
 			target = ai.unfriendly->World;
 
 			reqdeltahdg = 	Rads2Rowan(MOD.fHdg) - HdgIntercept;
 			Math_Lib.Pos (reqdeltahdg,reqdeltahdg_pos,reqdeltahdg_sign);
 
-			if((Range < METRES400) && (reqdeltahdg_pos < (SWord)ANGLES_30Deg))		
+			if((Range < METRES400) && (reqdeltahdg_pos < (SWord)ANGLES_30Deg))
 			{
 				//this method just extrapolates position
 				//to get turn:
@@ -3718,7 +3718,7 @@ void	ACMAirStruc::ShootTooEarly()
 			}else
 				target = ai.unfriendly->World;
 
-			if((Range < ENGAGERANGE) && (vel_ > unfriendly->vel_))	
+			if((Range < ENGAGERANGE) && (vel_ > unfriendly->vel_))
 				FireABullet(100);
 
 			TurnFightPhase1(HdgIntercept, TRUE, ANGLES_0Deg, target);
@@ -3737,24 +3737,24 @@ ANGLES	AirStruc::BestClimbAngle()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GainHeight
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 12 Dec 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::GainHeight ( )
 
 {
-	
+
 	// ##Select Max power
 	// and maintain best climb speed
 	// fly flat if < bestclimb speed
-	
+
 
 	ACMMODEL& ACM = *fly.pAcmModel;
 	MODEL& MOD = *fly.pModel;
@@ -3796,23 +3796,23 @@ void	ACMAirStruc::GainHeight ( )
 			if  (		(!ManoeuvreTimeLeft())
 //DeadCode CSB 9Nov00 					||	(		(Range < ENGAGERANGE)
 //DeadCode CSB 9Nov00 							&&	SubjectFacingTarget(ANGLES_45Deg)
-//DeadCode CSB 9Nov00 						)	
+//DeadCode CSB 9Nov00 						)
 				)
 				ai.manoeuvre = MANOEUVRE_SELECT;
-			
-			
-			
-			break;	
-			
-			
-			
-			
-			
+
+
+
+			break;
+
+
+
+
+
 //			MOD.Rudder = 0;
 //			SetManoeuvreTime (2000);
 //			ACM.GearUp ();
 //			UByte	FF = FlyingFactor();
-//			SWord thrust = 85 + (FF * 15)/256;	
+//			SWord thrust = 85 + (FF * 15)/256;
 //			if (thrust > 95)
 //				thrust = 100;
 //			ACM.Thrust (thrust);
@@ -3849,11 +3849,11 @@ void	ACMAirStruc::GainHeight ( )
 //		}
 	}
 
-//DeadCode RDH 26Mar98 	AirStrucPtr		unfriendly;	
+//DeadCode RDH 26Mar98 	AirStrucPtr		unfriendly;
 //DeadCode RDH 26Mar98 	SWord 	deltaroll;
 //DeadCode RDH 26Mar98 	UWord	deltaroll_pos;
 //DeadCode RDH 26Mar98 	SWord	deltaroll_sign,desiredaoa;
-//DeadCode RDH 26Mar98 	
+//DeadCode RDH 26Mar98
 //DeadCode RDH 26Mar98 	switch (ai.ManStep)
 //DeadCode RDH 26Mar98 	{
 //DeadCode RDH 26Mar98 		case PHASE0:
@@ -3891,23 +3891,23 @@ void	ACMAirStruc::GainHeight ( )
 //DeadCode RDH 26Mar98 				ai.manoeuvre = MANOEUVRE_SELECT;
 //DeadCode RDH 26Mar98 			}
 //DeadCode RDH 26Mar98 			break;
-//DeadCode RDH 26Mar98 
+//DeadCode RDH 26Mar98
 //DeadCode RDH 26Mar98 		}
-//DeadCode RDH 26Mar98 
+//DeadCode RDH 26Mar98
 //DeadCode RDH 26Mar98 	}
 
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		LagRoll
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 3 Mar 1998
 //
-//Description	Ref1.67..	
+//Description	Ref1.67..
 //				manoeuvre incorporates barrel roll attack(1.69..)
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::LagRoll()
@@ -3923,14 +3923,14 @@ void	ACMAirStruc::LagRoll()
 
 //DEADCODE DAW 31/03/99 	ACMMODEL& ACM = *fly.pAcmModel;
 //DEADCODE DAW 31/03/99 	MODEL& MOD = *fly.pModel;
-//DEADCODE DAW 31/03/99 
+//DEADCODE DAW 31/03/99
 //DEADCODE DAW 31/03/99 	switch (ai.ManStep)
 //DEADCODE DAW 31/03/99 	{
 //DEADCODE DAW 31/03/99 		case PHASE0:
 //DEADCODE DAW 31/03/99 		{
 //DEADCODE DAW 31/03/99 			ACM.Thrust (100);
 //DEADCODE DAW 31/03/99 			SetManoeuvreTime (1500);
-//DEADCODE DAW 31/03/99  			ai.desiredroll = ANGLES_0Deg; 
+//DEADCODE DAW 31/03/99  			ai.desiredroll = ANGLES_0Deg;
 //DEADCODE DAW 31/03/99 			ai.ManStep = PHASE1;
 //DEADCODE DAW 31/03/99 		}
 //DEADCODE DAW 31/03/99 		case PHASE1:
@@ -3943,13 +3943,13 @@ void	ACMAirStruc::LagRoll()
 //DEADCODE DAW 31/03/99 				ai.ManStep = PHASE0;
 //DEADCODE DAW 31/03/99 				ai.manoeuvre = MANOEUVRE_LOWALT;
 //DEADCODE DAW 31/03/99 			}
-//DEADCODE DAW 31/03/99 
+//DEADCODE DAW 31/03/99
 //DEADCODE DAW 31/03/99 			if  (!ManoeuvreTimeLeft())
 //DEADCODE DAW 31/03/99   				ai.manoeuvre = MANOEUVRE_SELECT;
 //DEADCODE DAW 31/03/99 			if (TargetOnSubjectTail(ANGLES_90Deg))
 //DEADCODE DAW 31/03/99 				ai.ManStep = PHASE2;
 //DEADCODE DAW 31/03/99 			break;
-//DEADCODE DAW 31/03/99 
+//DEADCODE DAW 31/03/99
 //DEADCODE DAW 31/03/99 		}
 //DEADCODE DAW 31/03/99 		case PHASE2:
 //DEADCODE DAW 31/03/99 		{
@@ -3957,12 +3957,12 @@ void	ACMAirStruc::LagRoll()
 //DEADCODE DAW 31/03/99 			Float fpitch,fhdg;
 //DEADCODE DAW 31/03/99 			AirStrucPtr	unfriendly = *ai.unfriendly;
 //DEADCODE DAW 31/03/99 			target = ai.unfriendly->World;
-//DEADCODE DAW 31/03/99 
+//DEADCODE DAW 31/03/99
 //DEADCODE DAW 31/03/99 			SWord	reqdeltahdg,reqdeltahdg_sign;
 //DEADCODE DAW 31/03/99 			UWord	reqdeltahdg_pos;
 //DEADCODE DAW 31/03/99 			reqdeltahdg = 	hdg - HdgIntercept;
 //DEADCODE DAW 31/03/99  			Math_Lib.Pos (reqdeltahdg,reqdeltahdg_pos,reqdeltahdg_sign);
-//DEADCODE DAW 31/03/99 
+//DEADCODE DAW 31/03/99
 //DEADCODE DAW 31/03/99 			ANGLES reqroll = roll + GetRequiredRoll(*(rotitem*)this, (COORDS3D)target, fpitch, fhdg );
 //DEADCODE DAW 31/03/99 			ACM.Roll (reqroll);
 //DEADCODE DAW 31/03/99 			ACM.TurnRate(fpitch);
@@ -3971,7 +3971,7 @@ void	ACMAirStruc::LagRoll()
 //DEADCODE DAW 31/03/99 				ai.ManStep = PHASE0;
 //DEADCODE DAW 31/03/99 				ai.manoeuvre = MANOEUVRE_LOWALT;
 //DEADCODE DAW 31/03/99 			}
-//DEADCODE DAW 31/03/99 
+//DEADCODE DAW 31/03/99
 //DEADCODE DAW 31/03/99 			if  (		(reqdeltahdg_pos < ANGLES_50Deg)
 //DEADCODE DAW 31/03/99 					||	(World.Y < unfriendly->World.Y)
 //DEADCODE DAW 31/03/99 				)
@@ -3980,23 +3980,23 @@ void	ACMAirStruc::LagRoll()
 //DEADCODE DAW 31/03/99 				ai.ManStep = PHASE0;
 //DEADCODE DAW 31/03/99 			}
 //DEADCODE DAW 31/03/99 //			ACM.MinHeight (FT_2000);
-//DEADCODE DAW 31/03/99 
+//DEADCODE DAW 31/03/99
 //DEADCODE DAW 31/03/99 		}
 //DEADCODE DAW 31/03/99 	}
-//DEADCODE DAW 31/03/99 
+//DEADCODE DAW 31/03/99
 
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ExtensionManoeuvre
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Thu 5 Mar 1998
 //
 //Description	1.23
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::ExtensionManoeuvre()
@@ -4033,19 +4033,19 @@ void	ACMAirStruc::ExtensionManoeuvre()
 //DEADCODE CSB 15/03/00 //	good mig pilots should go up
 //DEADCODE CSB 15/03/00 //	good us pilots should go down
 //DEADCODE CSB 15/03/00 //if higher than bogey
-//DEADCODE CSB 15/03/00 //	
+//DEADCODE CSB 15/03/00 //
 //DEADCODE CSB 15/03/00 //
 //DEADCODE CSB 15/03/00 //ref1.70
 //DEADCODE CSB 15/03/00 //## if turning good pilots will initially unload and
-//DEADCODE CSB 15/03/00 //retain roll to disguise manoeuvre 
+//DEADCODE CSB 15/03/00 //retain roll to disguise manoeuvre
 //DEADCODE CSB 15/03/00 //
 //DEADCODE CSB 15/03/00 //initially aircraft could be closing
-//DEADCODE CSB 15/03/00 
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00 	ACMMODEL& ACM = *fly.pAcmModel;
 //DEADCODE CSB 15/03/00 	MODEL& MOD = *fly.pModel;
 //DEADCODE CSB 15/03/00 	AirStrucPtr	unfriendly = *ai.unfriendly;
-//DEADCODE CSB 15/03/00 
-//DEADCODE CSB 15/03/00 
+//DEADCODE CSB 15/03/00
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00 	switch (ai.ManStep)
 //DEADCODE CSB 15/03/00 	{
 //DEADCODE CSB 15/03/00 		case PHASE0:
@@ -4070,7 +4070,7 @@ void	ACMAirStruc::ExtensionManoeuvre()
 //DEADCODE CSB 15/03/00 				else
 //DEADCODE CSB 15/03/00 					ai.desiredpitch = ANGLES_350Deg;
 //DEADCODE CSB 15/03/00 			}
-//DEADCODE CSB 15/03/00 
+//DEADCODE CSB 15/03/00
 //DEADCODE CSB 15/03/00 			SetManoeuvreTime (2000);
 //DEADCODE CSB 15/03/00 			ai.ManStep = PHASE1;
 //DEADCODE CSB 15/03/00 			break;
@@ -4086,8 +4086,8 @@ void	ACMAirStruc::ExtensionManoeuvre()
 //DEADCODE CSB 15/03/00 			break;
 //DEADCODE CSB 15/03/00 		}
 //DEADCODE CSB 15/03/00 	}
-//DEADCODE CSB 15/03/00 
-//DEADCODE CSB 15/03/00 
+//DEADCODE CSB 15/03/00
+//DEADCODE CSB 15/03/00
 }
 
 
@@ -4116,7 +4116,7 @@ void	ACMAirStruc::DivingSpin()
 				ai.manoeuvre = MANOEUVRE_SELECT;
 		}
 	}
-	
+
 //DeadCode CSB 4Sep00 		ACMMODEL& ACM = *fly.pAcmModel;
 //DeadCode CSB 4Sep00 	MODEL& MOD = *fly.pModel;
 //DeadCode CSB 4Sep00  	SWord 	deltaroll;
@@ -4125,14 +4125,14 @@ void	ACMAirStruc::DivingSpin()
 //DeadCode CSB 4Sep00 	AirStrucPtr	unfriendly = *ai.unfriendly;
 //DeadCode CSB 4Sep00 	Float fpitch, fhdg;
 //DeadCode CSB 4Sep00 	UByte	FF = FlyingFactor();
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 	switch (ai.ManStep)
 //DeadCode CSB 4Sep00 	{
 //DeadCode CSB 4Sep00 		case PHASE0:
 //DeadCode CSB 4Sep00 		{
 //DeadCode CSB 4Sep00 			MOD.Rudder = 0;
-//DeadCode CSB 4Sep00 
-//DeadCode CSB 4Sep00 			
+//DeadCode CSB 4Sep00
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 			ACM.Thrust (ThrustfromFF());
 //DeadCode CSB 4Sep00 			COORDS3D	target;
 //DeadCode CSB 4Sep00 			target = unfriendly->World;
@@ -4144,12 +4144,12 @@ void	ACMAirStruc::DivingSpin()
 //DeadCode CSB 4Sep00 			else
 //DeadCode CSB 4Sep00 				ai.desiredroll = ANGLES_180Deg;
 //DeadCode CSB 4Sep00 			SetManoeuvreTime (1000);
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 			ai.ManStep = PHASE1;
 //DeadCode CSB 4Sep00 		}
 //DeadCode CSB 4Sep00 		case PHASE1:
 //DeadCode CSB 4Sep00 		{ //get upside down or therabouts
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 			ACM.FastRoll (ai.desiredroll);
 //DeadCode CSB 4Sep00 			deltaroll = (SWord) (ai.desiredroll - roll);
 //DeadCode CSB 4Sep00 			Math_Lib.Pos (deltaroll,deltaroll_pos,deltaroll_sign);
@@ -4160,14 +4160,14 @@ void	ACMAirStruc::DivingSpin()
 //DeadCode CSB 4Sep00 				ACM.LiftLimit();
 //DeadCode CSB 4Sep00 			else
 //DeadCode CSB 4Sep00 				ACM.Pitch (ANGLES_0Deg);
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 			if (deltaroll_pos <ANGLES_20Deg)
 //DeadCode CSB 4Sep00 			{
 //DeadCode CSB 4Sep00 				if (deltaroll >= 0 )
 //DeadCode CSB 4Sep00 					ai.desiredroll = (Angles)1;
 //DeadCode CSB 4Sep00 				else
 //DeadCode CSB 4Sep00 					ai.desiredroll = (Angles)-1;
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 				ai.ManStep = PHASE2;
 //DeadCode CSB 4Sep00 				SetManoeuvreTime (1000);
 //DeadCode CSB 4Sep00 			}
@@ -4176,15 +4176,15 @@ void	ACMAirStruc::DivingSpin()
 //DeadCode CSB 4Sep00  		case PHASE2:
 //DeadCode CSB 4Sep00 		{// pull and roll until pointing down
 //DeadCode CSB 4Sep00 			ACM.LiftLimit();
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 			if ((SWord)ai.desiredroll >= 0)
 //DeadCode CSB 4Sep00 				ACM.SetAileron(ACM.MaxAileron * FP(FF) / 256.0);		//deg/cs gets converted to rad/cs
 //DeadCode CSB 4Sep00 //DEADCODE CSB 26/01/00 				ACM.RollRate (400 * FF/256);		//deg/cs gets converted to rad/cs
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 			else
 //DeadCode CSB 4Sep00 				ACM.SetAileron(-ACM.MaxAileron * FP(FF) / 256.0);		//deg/cs gets converted to rad/cs
 //DeadCode CSB 4Sep00 //DEADCODE CSB 26/01/00 				ACM.RollRate (-400 * FF/256);
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 			if( (!ManoeuvreTimeLeft()) || (DesiredPitchChk (ANGLES_270Deg,ANGLES_45Deg)) )
 //DeadCode CSB 4Sep00 	 			{
 //DeadCode CSB 4Sep00 					SetManoeuvreTime (1000);
@@ -4195,34 +4195,34 @@ void	ACMAirStruc::DivingSpin()
 //DeadCode CSB 4Sep00  		case PHASE3:
 //DeadCode CSB 4Sep00 		{//pull and roll until clear or time up
 //DeadCode CSB 4Sep00 			ACM.LiftLimit();
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 			if ((SWord)ai.desiredroll >= 0)
 //DeadCode CSB 4Sep00 				ACM.SetAileron(ACM.MaxAileron * FP(FF) / 256.0);		//deg/cs gets converted to rad/cs
 //DeadCode CSB 4Sep00 //DEADCODE CSB 26/01/00 				ACM.RollRate (400 * FF/256);		//rad/cs
 //DeadCode CSB 4Sep00 			else
 //DeadCode CSB 4Sep00 				ACM.SetAileron(-ACM.MaxAileron * FP(FF) / 256.0);		//deg/cs gets converted to rad/cs
 //DeadCode CSB 4Sep00 //DEADCODE CSB 26/01/00 				ACM.RollRate (-400 * FF/256);
-//DeadCode CSB 4Sep00 			
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 			if((!ManoeuvreTimeLeft()) || (Range > ENGAGERANGE))
 //DeadCode CSB 4Sep00 				ai.manoeuvre = MANOEUVRE_SELECT;
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00  			break;
 //DeadCode CSB 4Sep00 		}
 //DeadCode CSB 4Sep00 	}
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
 }
 
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ReverseTurn
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Thu 5 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::ReverseTurn()
@@ -4245,7 +4245,7 @@ void	ACMAirStruc::ReverseTurn()
 
 			ai.desiredroll = ANGLES_85Deg;
 			if(roll > 0)
-				ai.desiredroll = -ai.desiredroll; 
+				ai.desiredroll = -ai.desiredroll;
 
 			ai.ManStep = PHASE1;
 			SetManoeuvreTime(500);
@@ -4266,20 +4266,20 @@ void	ACMAirStruc::ReverseTurn()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SelfAsBait
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 9 Mar 1998
 //
 //Description	Ref19
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::SelfAsBait()
 {
 //
-//this could be where bandit is on your tail, wait for him to get close 
+//this could be where bandit is on your tail, wait for him to get close
 //before turning
 //keep buddy in combat spread so that you can sandwich him
 
@@ -4325,14 +4325,14 @@ void	ACMAirStruc::SelfAsBait()
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Jink
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 9 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::Jink()
@@ -4376,7 +4376,7 @@ void	ACMAirStruc::Jink()
 			if (deltaroll_pos <ANGLES_10Deg)
 				ACM.LiftLimit();
 //DeadCode CSB 21/03/99				ACM.Roll(ai.desiredroll);
-			ACM.FastRoll(ai.desiredroll);	//CSB 21/03/99	
+			ACM.FastRoll(ai.desiredroll);	//CSB 21/03/99
  			if (!ManoeuvreTimeLeft())
  			{
 				ai.desiredhdg--;
@@ -4386,7 +4386,7 @@ void	ACMAirStruc::Jink()
 				{
 					if (Math_Lib.rnd(2) == 0)
 						ai.desiredroll = (Angles)(ANGLES_50Deg + Math_Lib.rnd((SWord)(ANGLES_45Deg)));
-					else	
+					else
 						ai.desiredroll = (Angles)(ANGLES_260Deg+ Math_Lib.rnd((SWord)(ANGLES_45Deg)));
 		 			SetManoeuvreTime (200 + Math_Lib.rnd(300));
 				}
@@ -4399,19 +4399,19 @@ void	ACMAirStruc::Jink()
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		BreakTurn
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 9 Mar 1998
 //
-//Description	
+//Description
 //				Maximum performance turn towards unfriendly
 //				Aim for corner speed (see summary at top of acmman.cpp)
 //				When quoted as IAS, corner speed is practically a constant
 //				cornerspeed should be part of the planetype
 //				corner speed occurs at max g allowed for ac
-//				max g should be part of the planetype 
-//Inputs		
+//				max g should be part of the planetype
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::BreakTurn()
@@ -4493,14 +4493,14 @@ void	ACMAirStruc::BreakTurn()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		LazyTurn
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 9 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::LazyTurn()
@@ -4550,14 +4550,14 @@ void	ACMAirStruc::LazyTurn()
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Break180
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 9 Mar 1998
 //
 //Description	1.26
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::Break180()
@@ -4618,14 +4618,14 @@ void	ACMAirStruc::Break180()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		BreakLow
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 9 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::BreakLow()
@@ -4644,10 +4644,10 @@ void	ACMAirStruc::BreakLow()
 				ai.desiredroll = ANGLES_225Deg;
 			ai.ManStep = PHASE1;
 			SetManoeuvreTime(500);
- 			break;	
+ 			break;
  		}
  		case PHASE1:
- 		{	
+ 		{
 			ACM.FastRoll(ai.desiredroll);
  			ACM.LiftLimit();
 			if(!TimeLeft())
@@ -4663,8 +4663,8 @@ void	ACMAirStruc::BreakLow()
 //DeadCode CSB 4Sep00  	MODEL& MOD = *fly.pModel;
 //DeadCode CSB 4Sep00 	ACMMODEL& ACM = *fly.pAcmModel;
 //DeadCode CSB 4Sep00 	AirStrucPtr	unfriendly = *ai.unfriendly;
-//DeadCode CSB 4Sep00 
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00  	switch (ai.ManStep)
 //DeadCode CSB 4Sep00  	{
 //DeadCode CSB 4Sep00  		case PHASE0:
@@ -4676,10 +4676,10 @@ void	ACMAirStruc::BreakLow()
 //DeadCode CSB 4Sep00 				else
 //DeadCode CSB 4Sep00 					ai.desiredroll = ANGLES_135Deg;
 //DeadCode CSB 4Sep00 			ai.ManStep = PHASE1;
-//DeadCode CSB 4Sep00  			break;	
+//DeadCode CSB 4Sep00  			break;
 //DeadCode CSB 4Sep00  		}
 //DeadCode CSB 4Sep00  		case PHASE1:
-//DeadCode CSB 4Sep00  		{	
+//DeadCode CSB 4Sep00  		{
 //DeadCode CSB 4Sep00 			ACM.FastRoll (ai.desiredroll);
 //DeadCode CSB 4Sep00  			ACM.LiftLimit();
 //DeadCode CSB 4Sep00 			UByte	FF = FlyingFactor();
@@ -4715,7 +4715,7 @@ void	ACMAirStruc::BreakLow()
 //DeadCode CSB 4Sep00 			}
 //DeadCode CSB 4Sep00 			if (!ManoeuvreTimeLeft ())
 //DeadCode CSB 4Sep00 				ai.manoeuvre = MANOEUVRE_SELECT;
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 			break;
 //DeadCode CSB 4Sep00 		}
 //DeadCode CSB 4Sep00  	}
@@ -4724,14 +4724,14 @@ void	ACMAirStruc::BreakLow()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		BreakHigh
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 9 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::BreakHigh()
@@ -4750,17 +4750,17 @@ void	ACMAirStruc::BreakHigh()
 				ai.desiredroll = ANGLES_315Deg;
 			ai.ManStep = PHASE1;
 			SetManoeuvreTime(500);
- 			break;	
+ 			break;
  		}
  		case PHASE1:
- 		{	
+ 		{
 			ACM.FastRoll(ai.desiredroll);
  			ACM.LiftLimit();
 			if(!TimeLeft())
 				ai.manoeuvre = MANOEUVRE_SELECT;
 		}
 	}
-	 
+
 //DeadCode CSB 4Sep00 //decide which way to roll to go up
 //DeadCode CSB 4Sep00 //roll 90
 //DeadCode CSB 4Sep00 //pull hard until pitch 45 deg up
@@ -4770,8 +4770,8 @@ void	ACMAirStruc::BreakHigh()
 //DeadCode CSB 4Sep00  	MODEL& MOD = *fly.pModel;
 //DeadCode CSB 4Sep00 	ACMMODEL& ACM = *fly.pAcmModel;
 //DeadCode CSB 4Sep00 	AirStrucPtr	unfriendly = *ai.unfriendly;
-//DeadCode CSB 4Sep00 
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00  	switch (ai.ManStep)
 //DeadCode CSB 4Sep00  	{
 //DeadCode CSB 4Sep00  		case PHASE0:
@@ -4783,10 +4783,10 @@ void	ACMAirStruc::BreakHigh()
 //DeadCode CSB 4Sep00 				else
 //DeadCode CSB 4Sep00 					ai.desiredroll = ANGLES_45Deg;
 //DeadCode CSB 4Sep00 			ai.ManStep = PHASE1;
-//DeadCode CSB 4Sep00  			break;	
+//DeadCode CSB 4Sep00  			break;
 //DeadCode CSB 4Sep00  		}
 //DeadCode CSB 4Sep00  		case PHASE1:
-//DeadCode CSB 4Sep00  		{	
+//DeadCode CSB 4Sep00  		{
 //DeadCode CSB 4Sep00 			ACM.FastRoll (ai.desiredroll);
 //DeadCode CSB 4Sep00  			ACM.LiftLimit();
 //DeadCode CSB 4Sep00 			UByte	FF = FlyingFactor();
@@ -4822,23 +4822,23 @@ void	ACMAirStruc::BreakHigh()
 //DeadCode CSB 4Sep00 			}
 //DeadCode CSB 4Sep00 			if (!ManoeuvreTimeLeft ())
 //DeadCode CSB 4Sep00 				ai.manoeuvre = MANOEUVRE_SELECT;
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 			break;
 //DeadCode CSB 4Sep00 		}
 //DeadCode CSB 4Sep00  	}
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Break90
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 9 Mar 1998
 //
 //Description	1.27
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::Break90()
@@ -4857,23 +4857,23 @@ void	ACMAirStruc::Break90()
 				ai.desiredroll = ANGLES_270Deg;
 			ai.ManStep = PHASE1;
 			SetManoeuvreTime(500);
- 			break;	
+ 			break;
  		}
  		case PHASE1:
- 		{	
+ 		{
 			ACM.FastRoll(ai.desiredroll);
  			ACM.LiftLimit();
 			if(!TimeLeft())
 				ai.manoeuvre = MANOEUVRE_SELECT;
 		}
 	}
-	 
-//DeadCode CSB 4Sep00 
-//DeadCode CSB 4Sep00 
+
+//DeadCode CSB 4Sep00
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 //DEADCODE CSB 04/05/00 	if (classtype->phrasename == OLDPHRASE_MIGS)
 //DeadCode CSB 4Sep00 //DEADCODE CSB 04/05/00 //DEADCODE RDH 10/05/99 	if (classtype->visible == MIG15)
 //DeadCode CSB 4Sep00 //DEADCODE CSB 04/05/00 		BreakHigh();
-//DeadCode CSB 4Sep00 //DEADCODE CSB 04/05/00 	else 
+//DeadCode CSB 4Sep00 //DEADCODE CSB 04/05/00 	else
 //DeadCode CSB 4Sep00 		if (	(ai.morale > MORALE_MEDIUM)
 //DeadCode CSB 4Sep00 			&&	(ClosureLessThan(MPH50))
 //DeadCode CSB 4Sep00 			)
@@ -4890,17 +4890,17 @@ void	ACMAirStruc::Break90()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		HiGBarrelRoll
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 9 Mar 1998
 //
-//Description	1.30	
+//Description	1.30
 //				Defensive manoeuvre, used when attacker has high overtake and
 //				is close range
 //				Method is to pull max g and roll rapidly
 //				Supposed to inscribe circle around attacker's flight path
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::HiGBarrelRoll()
@@ -4934,7 +4934,7 @@ void	ACMAirStruc::HiGBarrelRoll()
 			SWord swroll = roll;
 			if(swroll < 0)
 				desroll *= -1;
-			
+
 			ACM.Pitch(0);
 			ACM.FastRoll(desroll);
 			if((swroll - desroll < ANGLES_5Deg) && (desroll - swroll < ANGLES_5Deg))
@@ -4952,7 +4952,7 @@ void	ACMAirStruc::HiGBarrelRoll()
 		case PHASE2:
 		{
 			ACM.LiftLimit();
-			if(MOD.Aileron > 0) 
+			if(MOD.Aileron > 0)
 				ACM.SetAileron(16384);
 			else
 				ACM.SetAileron(-16384);
@@ -4967,13 +4967,13 @@ void	ACMAirStruc::HiGBarrelRoll()
 		case PHASE3:
 		{
 			ACM.LiftLimit();
-			if(MOD.Aileron > 0) 
+			if(MOD.Aileron > 0)
 				ACM.SetAileron(16384);
 			else
 				ACM.SetAileron(-16384);
 
 			SWord desroll = ANGLES_60Deg;
-			if(MOD.Aileron > 0) 
+			if(MOD.Aileron > 0)
 				desroll *= -1;
 
 			SWord swroll = roll;
@@ -4988,7 +4988,7 @@ void	ACMAirStruc::HiGBarrelRoll()
 
 //DEADCODE DAW 31/03/99 	ACMMODEL& ACM = *fly.pAcmModel;
 //DEADCODE DAW 31/03/99 	MODEL& MOD = *fly.pModel;
-//DEADCODE DAW 31/03/99 
+//DEADCODE DAW 31/03/99
 //DEADCODE DAW 31/03/99 	static FP dRoll = 0;
 //DEADCODE DAW 31/03/99 	UByte	FF = FlyingFactor();
 //DEADCODE DAW 31/03/99 	switch (ai.ManStep)
@@ -4996,8 +4996,8 @@ void	ACMAirStruc::HiGBarrelRoll()
 //DEADCODE DAW 31/03/99 		case PHASE0:
 //DEADCODE DAW 31/03/99 		{
 //DEADCODE DAW 31/03/99 			MOD.Rudder = 0;
-//DEADCODE DAW 31/03/99 	
-//DEADCODE DAW 31/03/99 			SWord thrust = 100 - (FF * 50)/256;	
+//DEADCODE DAW 31/03/99
+//DEADCODE DAW 31/03/99 			SWord thrust = 100 - (FF * 50)/256;
 //DEADCODE DAW 31/03/99 			if (thrust > 95)
 //DEADCODE DAW 31/03/99 				thrust = 100;
 //DEADCODE DAW 31/03/99 			ACM.Thrust (thrust);
@@ -5025,14 +5025,14 @@ void	ACMAirStruc::HiGBarrelRoll()
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		UnBalancedFlight
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 9 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::UnBalancedFlight()
@@ -5073,7 +5073,7 @@ void	ACMAirStruc::UnBalancedFlight()
 				ai.desiredpitch = ANGLES_5Deg;
 			else
 				ai.desiredpitch = ANGLES_355Deg;
- 			
+
  		}
  		case PHASE1:
  		{
@@ -5089,7 +5089,7 @@ void	ACMAirStruc::UnBalancedFlight()
 	 				MOD.Rudder = 0;
 					ACM.CtrlRudder = 0;
 					ai.manoeuvre = MANOEUVRE_SELECT;
- 
+
 				}else
 				{
 					if (MOD.Rudder > 0)
@@ -5111,14 +5111,14 @@ void	ACMAirStruc::UnBalancedFlight()
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		TrackingShot
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 10 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::LowAlt()
@@ -5154,14 +5154,14 @@ void	ACMAirStruc::LowAlt()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SnapShot
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 10 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::SnapShot()
@@ -5182,7 +5182,7 @@ void	ACMAirStruc::SnapShot()
 
 	if (		(Range < DANGERRANGE)
 			&&	(reqdeltahdg_pos < (SWord)ANGLES_30Deg)
-		)		
+		)
 	{
 		//this method just extrapolates position
 		//to get turn:
@@ -5208,14 +5208,14 @@ void	ACMAirStruc::SnapShot()
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		StayOnTail
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Fri 20 Mar 1998
 //
 //Description	This is not a good idea, very aggressive
 //				Stay at corner speed or less
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::StayOnTail()
@@ -5239,7 +5239,7 @@ void	ACMAirStruc::StayOnTail()
 	Math_Lib.Pos (reqdeltahdg,reqdeltahdg_pos,reqdeltahdg_sign);
 
 	if (	(reqdeltahdg_pos < (SWord)ANGLES_90Deg)
-		)		
+		)
 	{
 		CalcLead(*this, *ai.unfriendly,vx,vy,vz, TRUE);
 
@@ -5258,13 +5258,13 @@ void	ACMAirStruc::StayOnTail()
 //DEADCODE RDH 28/03/99 	SLong		time;
 //DEADCODE RDH 28/03/99 	MODEL& MOD = *fly.pModel;
 //DEADCODE RDH 28/03/99 	AirStrucPtr	unfriendly = *ai.unfriendly;
-//DEADCODE RDH 28/03/99 
+//DEADCODE RDH 28/03/99
 //DEADCODE RDH 28/03/99 	reqdeltahdg = 	Rads2Rowan(MOD.fHdg) - HdgIntercept;
 //DEADCODE RDH 28/03/99 	Math_Lib.Pos (reqdeltahdg,reqdeltahdg_pos,reqdeltahdg_sign);
-//DEADCODE RDH 28/03/99 
+//DEADCODE RDH 28/03/99
 //DEADCODE RDH 28/03/99 	if (		(Range < DANGERRANGE)
 //DEADCODE RDH 28/03/99 			&&	(reqdeltahdg_pos < (SWord)ANGLES_30Deg)
-//DEADCODE RDH 28/03/99 		)		
+//DEADCODE RDH 28/03/99 		)
 //DEADCODE RDH 28/03/99 	{
 //DEADCODE RDH 28/03/99 		//this method just extrapolates position
 //DEADCODE RDH 28/03/99 		//to get turn:
@@ -5277,7 +5277,7 @@ void	ACMAirStruc::StayOnTail()
 //DEADCODE RDH 28/03/99 		InterceptandRange (&target);
 //DEADCODE RDH 28/03/99 	}else
 //DEADCODE RDH 28/03/99 		target = ai.unfriendly->World;
-//DEADCODE RDH 28/03/99 
+//DEADCODE RDH 28/03/99
 //DEADCODE RDH 28/03/99 	TurnFightPhase1(HdgIntercept, TRUE, ANGLES_0Deg, target);
 //DEADCODE RDH 28/03/99 //DeadCode RDH 16Dec98 	TurnFightSub(HdgIntercept, TRUE, ANGLES_5Deg, target);
 
@@ -5291,10 +5291,10 @@ void	ACMAirStruc::StayOnTail()
 //
 //Description	Leader flies ahead of bombers, followers in line astern
 //				Leader dives and attacks lead bomber head on, followers attack bomber followers
-//				
-//Inputs		
 //
-//Returns	
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 void ACMAirStruc::HeadOnAttack()
@@ -5324,7 +5324,7 @@ void ACMAirStruc::HeadOnAttack()
 					SetUnfriendly(target);
 //DeadCode CSB 1Aug00 					if(unf->ai.attacker == this)
 //DeadCode CSB 1Aug00 						unf->ai.attacker = NULL;
-//DeadCode CSB 1Aug00 
+//DeadCode CSB 1Aug00
 //DeadCode CSB 1Aug00 					ai.unfriendly = target;
 //DeadCode CSB 1Aug00 					if(target->ai.attacker == NULL)
 //DeadCode CSB 1Aug00 						target->ai.attacker = this;
@@ -5358,7 +5358,7 @@ void ACMAirStruc::HeadOnAttack()
 				despos.Z += unf->vel_z * (deltaTX + deltaTZ) * 0.5 * 0.0001;
 
 				InterceptandRange(&despos);
-				
+
 				ACM.VelPitch(PitchIntercept);
 				SWord desroll = FindRequiredRoll (hdg - HdgIntercept, GentleBankData);
 				ACM.FastRoll(desroll);
@@ -5410,7 +5410,7 @@ void ACMAirStruc::HeadOnAttack()
 //DeadCode CSB 1Aug00 					AirStrucPtr unf = AirStrucPtr(ai.unfriendly);
 //DeadCode CSB 1Aug00 					if(unf->ai.attacker == this)
 //DeadCode CSB 1Aug00 						unf->ai.attacker = NULL;
-//DeadCode CSB 1Aug00 
+//DeadCode CSB 1Aug00
 //DeadCode CSB 1Aug00 					ai.unfriendly = target;
 //DeadCode CSB 1Aug00 					if((AirStrucPtr(ai.unfriendly))->ai.attacker == NULL)
 //DeadCode CSB 1Aug00 						(AirStrucPtr(ai.unfriendly))->ai.attacker = this;
@@ -5483,10 +5483,10 @@ void ACMAirStruc::HeadOnAttack()
 			}
 
 			if(!TimeLeft())
-				ai.manoeuvre = MANOEUVRE_SELECT;			
+				ai.manoeuvre = MANOEUVRE_SELECT;
 
 			if(Range < 35000)
-			{	
+			{
 				ai.ManStep = PHASE5;
 				SetManoeuvreTime(200);
 			}
@@ -5503,9 +5503,9 @@ void ACMAirStruc::HeadOnAttack()
 	}
 //DEADCODE DAW 29/11/99 	}
 //DEADCODE DAW 29/11/99 	else	//a follower
-//DEADCODE DAW 29/11/99 	{		
+//DEADCODE DAW 29/11/99 	{
 //DEADCODE DAW 29/11/99 		AirStrucPtr unf = AirStrucPtr(ai.unfriendly);
-//DEADCODE DAW 29/11/99 	
+//DEADCODE DAW 29/11/99
 //DEADCODE DAW 29/11/99 		switch(ai.ManStep)
 //DEADCODE DAW 29/11/99 		{
 //DEADCODE DAW 29/11/99 			case PHASE0:
@@ -5513,7 +5513,7 @@ void ACMAirStruc::HeadOnAttack()
 //DEADCODE DAW 29/11/99 				AirStrucPtr unf = AirStrucPtr(ai.unfriendly);
 //DEADCODE DAW 29/11/99 				AirStrucPtr leadac = FindGroupLeader();
 //DEADCODE DAW 29/11/99 				AirStrucPtr target = leadac;
-//DEADCODE DAW 29/11/99 
+//DEADCODE DAW 29/11/99
 //DEADCODE DAW 29/11/99 				for(AirStrucPtr nf = leadac; nf; nf = nf->fly.nextflight)
 //DEADCODE DAW 29/11/99 					if(nf->fly.nextflight == this)
 //DEADCODE DAW 29/11/99 						for(AirStrucPtr f = nf; f; f = f->Follower())
@@ -5522,17 +5522,17 @@ void ACMAirStruc::HeadOnAttack()
 //DEADCODE DAW 29/11/99 						for(AirStrucPtr f = nf; f; f = f->Follower())
 //DEADCODE DAW 29/11/99 							if(f->follower == this)
 //DEADCODE DAW 29/11/99 								target = f;
-//DEADCODE DAW 29/11/99 
+//DEADCODE DAW 29/11/99
 //DEADCODE DAW 29/11/99 				if((unf != target) && (unf != NULL) && (unf->ai.attacker == this))
 //DEADCODE DAW 29/11/99 					unf->ai.attacker = NULL;
-//DEADCODE DAW 29/11/99 
+//DEADCODE DAW 29/11/99
 //DEADCODE DAW 29/11/99 				ai.unfriendly = target;
-//DEADCODE DAW 29/11/99 							
+//DEADCODE DAW 29/11/99
 //DEADCODE DAW 29/11/99 				ACM.SetRudder(0);
 //DEADCODE DAW 29/11/99 				ACM.Thrust(100);
 //DEADCODE DAW 29/11/99 				ai.ManStep = PHASE1;
 //DEADCODE DAW 29/11/99 			}
-//DEADCODE DAW 29/11/99 			
+//DEADCODE DAW 29/11/99
 //DEADCODE DAW 29/11/99 			case PHASE1:
 //DEADCODE DAW 29/11/99 			{
 //DEADCODE DAW 29/11/99 				AirStrucPtr unf = AirStrucPtr(ai.unfriendly);
@@ -5541,7 +5541,7 @@ void ACMAirStruc::HeadOnAttack()
 //DEADCODE DAW 29/11/99 					ai.manoeuvre = MANOEUVRE_SELECT;
 //DEADCODE DAW 29/11/99 					return;
 //DEADCODE DAW 29/11/99 				}
-//DEADCODE DAW 29/11/99 				
+//DEADCODE DAW 29/11/99
 //DEADCODE DAW 29/11/99 				InterceptandRange(unf);
 //DEADCODE DAW 29/11/99 //DEADCODE CSB 26/11/99 				FP despitch  = FP(SWord(unf->pitch)) + FP(SWord(PitchIntercept)) * 0.5;
 //DEADCODE DAW 29/11/99 				SWord deshdg = SWord(HdgIntercept) - SWord(unf->hdg);
@@ -5552,7 +5552,7 @@ void ACMAirStruc::HeadOnAttack()
 //DEADCODE DAW 29/11/99 				FP range	 = FP(unf->World.X - World.X) * FP(unf->vel_x) + FP((unf->World.Z - World.Z)) * FP(unf->vel_z);
 //DEADCODE DAW 29/11/99 				range       /= FP(unf->vel_);
 //DEADCODE DAW 29/11/99 				FP desvel	 = unf->vel_ + 10 * (range - 5000);
-//DEADCODE DAW 29/11/99 
+//DEADCODE DAW 29/11/99
 //DEADCODE DAW 29/11/99 				SWord despitch = SWord(PitchIntercept) - SWord(unf->pitch);
 //DEADCODE DAW 29/11/99 				despitch = unf->pitch + despitch / 8;
 //DEADCODE DAW 29/11/99 				ACM.Pitch(despitch);
@@ -5561,18 +5561,18 @@ void ACMAirStruc::HeadOnAttack()
 //DEADCODE DAW 29/11/99 					ACM.Thrust(100);
 //DEADCODE DAW 29/11/99 				else
 //DEADCODE DAW 29/11/99 					ACM.Thrust(50);
-//DEADCODE DAW 29/11/99 
+//DEADCODE DAW 29/11/99
 //DEADCODE DAW 29/11/99 				if(unf->ai.ManStep == PHASE3)
 //DEADCODE DAW 29/11/99 				{
 //DEADCODE DAW 29/11/99 					ai.ManStep = PHASE2;
 //DEADCODE DAW 29/11/99 					SetManoeuvreTime(50);
-//DEADCODE DAW 29/11/99 
+//DEADCODE DAW 29/11/99
 //DEADCODE DAW 29/11/99 					//Choose a target bomber
 //DEADCODE DAW 29/11/99 					AirStrucPtr ac       = FindGroupLeader();
 //DEADCODE DAW 29/11/99 					AirStrucPtr leadtarg = AirStrucPtr(ac->ai.unfriendly);
-//DEADCODE DAW 29/11/99 
+//DEADCODE DAW 29/11/99
 //DEADCODE DAW 29/11/99 					AirStrucPtr targ = leadtarg;
-//DEADCODE DAW 29/11/99 
+//DEADCODE DAW 29/11/99
 //DEADCODE DAW 29/11/99 					for(;;)
 //DEADCODE DAW 29/11/99 					{
 //DEADCODE DAW 29/11/99 						if(ac == this)
@@ -5586,7 +5586,7 @@ void ACMAirStruc::HeadOnAttack()
 //DEADCODE DAW 29/11/99 							ac = ac->Follower();
 //DEADCODE DAW 29/11/99 						else if(ac->fly.nextflight)
 //DEADCODE DAW 29/11/99 							ac = ac->fly.nextflight;
-//DEADCODE DAW 29/11/99 
+//DEADCODE DAW 29/11/99
 //DEADCODE DAW 29/11/99 						if(targ->follower)
 //DEADCODE DAW 29/11/99 							targ = targ->Follower();
 //DEADCODE DAW 29/11/99 						else
@@ -5600,7 +5600,7 @@ void ACMAirStruc::HeadOnAttack()
 //DEADCODE DAW 29/11/99 				}
 //DEADCODE DAW 29/11/99 				break;
 //DEADCODE DAW 29/11/99 			}
-//DEADCODE DAW 29/11/99 
+//DEADCODE DAW 29/11/99
 //DEADCODE DAW 29/11/99 			case PHASE2:
 //DEADCODE DAW 29/11/99 			{
 //DEADCODE DAW 29/11/99 				ACM.SetElevator(0);
@@ -5622,10 +5622,10 @@ void ACMAirStruc::HeadOnAttack()
 //Date			Thu 18 Nov 1999
 //
 //Description	Aircraft for a defensive circle (Used by Bf 110)
-//				
-//Inputs		
 //
-//Returns	
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::Lufberry()
@@ -5692,7 +5692,7 @@ void	ACMAirStruc::Lufberry()
 								target = f;
 				}
 			}
-			
+
 
 			InterceptandRange(&targ);
 			FP desrange = 4400 * no_ac;
@@ -5717,7 +5717,7 @@ void	ACMAirStruc::Lufberry()
 			ACM.FastRoll(desroll);
 			SWord despitch = SWord(PitchIntercept) / 2;
 			ACM.VelPitch(despitch);
-			
+
 			if(!TimeLeft())
 				ai.manoeuvre = MANOEUVRE_SELECT;
 			break;
@@ -5733,7 +5733,7 @@ void	ACMAirStruc::Lufberry()
 //DEADCODE DAW 29/11/99 				desroll += target->roll;
 //DEADCODE DAW 29/11/99 			MODLIMIT(desroll, ANGLES_90Deg);
 //DEADCODE DAW 29/11/99 			ACM.FastRoll(desroll);
-//DEADCODE DAW 29/11/99 			
+//DEADCODE DAW 29/11/99
 //DEADCODE DAW 29/11/99 			FP throttle = 75 + 25 * (Range - 50000) / 10000;
 //DEADCODE DAW 29/11/99 			MODMAXMIN(throttle, 50, 100);
 //DEADCODE DAW 29/11/99 			ACM.Thrust(throttle);
@@ -5751,10 +5751,10 @@ void	ACMAirStruc::Lufberry()
 //Date			Thu 18 Nov 1999
 //
 //Description	Used by Bf 109 to escape RAF fighter (Negative G)
-//				
-//Inputs		
 //
-//Returns	
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::SteepDive()
@@ -5791,10 +5791,10 @@ void	ACMAirStruc::SteepDive()
 //Date			Thu 18 Nov 1999
 //
 //Description	Dive below target from astern and attack from blind spot
-//				
-//Inputs		
 //
-//Returns	
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::UpAndUnder()
@@ -5830,7 +5830,7 @@ void	ACMAirStruc::UpAndUnder()
 			target.Z -= desrange * cos;
 			InterceptandRange(&target);
 			ACM.VelPitch(PitchIntercept);
-		
+
 			SWord reqroll = FindRequiredRoll(hdg - HdgIntercept, CombatReqBankData);
 			ACM.FastRoll(reqroll);
 
@@ -5880,10 +5880,10 @@ void	ACMAirStruc::UpAndUnder()
 //Date			Thu 18 Nov 1999
 //
 //Description	(Used by Bf 110)
-//				
-//Inputs		
 //
-//Returns	
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::StallTurn()
@@ -5945,10 +5945,10 @@ void	ACMAirStruc::StallTurn()
 //Date			Thu 18 Nov 1999
 //
 //Description	Like a poor mans dive and zoom.
-//				
-//Inputs		
 //
-//Returns	
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::SlashingAttack()
@@ -6009,10 +6009,10 @@ void	ACMAirStruc::SlashingAttack()
 			if(SWord(roll) < 0)
 				deshdg *= -1;
 			deshdg += HdgIntercept;
-			
+
 			SWord deltahdg = deshdg - SWord(hdg);
 			SWord desroll = ANGLES_60Deg;
-			
+
 			if(deltahdg < 0)
 			{
 				desroll  *= -1;
@@ -6047,10 +6047,10 @@ void	ACMAirStruc::SlashingAttack()
 //Date			Thu 18 Nov 1999
 //
 //Description	Used by Spitfires in defence
-//				
-//Inputs		
 //
-//Returns	
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::ClimbTurn()
@@ -6086,10 +6086,10 @@ void	ACMAirStruc::ClimbTurn()
 //Date			Thu 18 Nov 1999
 //
 //Description	For looking around
-//				
-//Inputs		
 //
-//Returns	
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::Roll360()
@@ -6110,7 +6110,7 @@ void	ACMAirStruc::Roll360()
 			SWord swroll  = roll;
 			SWord swpitch = pitch;
 			if((swroll < ANGLES_5Deg) && (-swroll < ANGLES_5Deg) && (swpitch > ANGLES_25Deg) && (swpitch < ANGLES_35Deg))
-			{				
+			{
 				ai.ManStep = PHASE2;
 				SetManoeuvreTime(1000);
 			}
@@ -6136,17 +6136,17 @@ void	ACMAirStruc::Roll360()
 //Date			Thu 18 Nov 1999
 //
 //Description	Shooting at aircraft on the ground
-//				
-//Inputs		
 //
-//Returns	
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::Straffe()
 {
 	if((ai.unfriendly != NULL) && (ai.unfriendly->Status.size == AIRSTRUCSIZE) && ((AirStrucPtr(ai.unfriendly))->vel_ < 100000))	//10 m/s
 	{
-		//Do Nothing 
+		//Do Nothing
 	}
 	else
 	{
@@ -6238,11 +6238,11 @@ void	ACMAirStruc::Straffe()
 //Author		Craig Beeston
 //Date			Mon 18 Sep 2000
 //
-//Description	
-//				
-//Inputs		
+//Description
 //
-//Returns	
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 void ACMAirStruc::PeelOff()
@@ -6307,10 +6307,10 @@ void ACMAirStruc::PeelOff()
 //Date			Mon 10 Jan 2000
 //
 //Description	Follows enemy into cloud and then guesses where enemy will reappear
-//				
-//Inputs		
 //
-//Returns	
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::FlyThroughCloud()
@@ -6367,10 +6367,10 @@ void	ACMAirStruc::FlyThroughCloud()
 //Date			Tue 20 Jun 2000
 //
 //Description	Fly towards squadron leader for a bit
-//				
-//Inputs		
 //
-//Returns	
+//Inputs
+//
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::Regroup()
@@ -6416,18 +6416,18 @@ void	ACMAirStruc::Regroup()
 	}
 }
 
-			
+
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		TurnToHdgAndPitch
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 17 Mar 1998
 //
-//Description	move to within 5 deg of desiredpitch and desiredhdg 
+//Description	move to within 5 deg of desiredpitch and desiredhdg
 //				break or sustained turn depending on circumstances
 //				if break then nose down if <corner vel
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DeadCode AMM 21Sep00 Bool	ACMAirStruc::TurnToHdgAndPitch()
@@ -6441,12 +6441,12 @@ void	ACMAirStruc::Regroup()
 //DeadCode AMM 21Sep00 {
 //DeadCode AMM 21Sep00 	MODEL& MOD = *fly.pModel;
 //DeadCode AMM 21Sep00 	SWord dpitch;
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 	ai.desiredpitchrate = AngleSign (Rowan2Rads(PitchIntercept - (SWord)ai.oldoldoldpitchI));
 //DeadCode AMM 21Sep00 //DeadCode AMM 24Nov99 	ai.desiredpitchrate = ai.desiredpitchrate /(3 * MOD.MODEL_DT);
 //DeadCode AMM 21Sep00 	ai.desiredpitchrate = ai.desiredpitchrate /(3 * MODEL_DT);	//AMM 24Nov99
-//DeadCode AMM 21Sep00 
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 	FP pitchleadmodifier = 0.0025;
 //DeadCode AMM 21Sep00 	if (reqdeltapitch_sign >= 0 )
 //DeadCode AMM 21Sep00 		pitchleadmodifier = 0.1;
@@ -6462,9 +6462,9 @@ void	ACMAirStruc::Regroup()
 //DeadCode AMM 21Sep00 		ai.deltapitchsum = IntPitchForMaxDP;
 //DeadCode AMM 21Sep00 	else if (ai.deltapitchsum < -IntPitchForMaxDP)
 //DeadCode AMM 21Sep00 		ai.deltapitchsum = - IntPitchForMaxDP;
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 	ai.desiredpitchrate = ai.desiredpitchrate + (pitchleadmodifier * dpitch/ANGLES_70Deg);
-//DeadCode AMM 21Sep00  	ai.desiredpitchrate = ai.desiredpitchrate + pitchleadmodifier * ai.deltapitchsum / (4*IntPitchForMaxDP); 
+//DeadCode AMM 21Sep00  	ai.desiredpitchrate = ai.desiredpitchrate + pitchleadmodifier * ai.deltapitchsum / (4*IntPitchForMaxDP);
 //DeadCode AMM 21Sep00 }
 
 
@@ -6481,7 +6481,7 @@ FP	ACMAirStruc::FineRollAdjust(SWord reqdeltapitch,SWord deltahdg,FP rroll, FP f
 	SWord	deltahdg_sign, dhdg, dpitch;
 	UWord	deltahdg_pos;
 	FP	desiredturn;
-	
+
 	ACM.maxdeltaforclosework = 0.2;
 
 
@@ -6490,10 +6490,10 @@ FP	ACMAirStruc::FineRollAdjust(SWord reqdeltapitch,SWord deltahdg,FP rroll, FP f
 //DeadCode CSB 08/03/99	//find desired turn based on hdg change of target
 //DeadCode CSB 08/03/99		desiredturn = AngleSign (Rowan2Rads(HdgIntercept - (SWord)ai.oldoldoldhdgI));
 //DeadCode CSB 08/03/99		desiredturn = desiredturn /(3 * MOD.MODEL_DT);
-//DeadCode CSB 08/03/99	
+//DeadCode CSB 08/03/99
 //DeadCode CSB 08/03/99		desiredturn = (ai.desiredturn + desiredturn)/2;
 //DeadCode CSB 08/03/99		ai.desiredturn = desiredturn;
-//DeadCode CSB 08/03/99	
+//DeadCode CSB 08/03/99
 //DeadCode CSB 08/03/99	//modify desired turn to "point" at target. Lead account for by input dhdg
 //DeadCode CSB 08/03/99		FP leadmodifier = 0.005;
 //DeadCode CSB 08/03/99		if (deltahdg_pos > ANGLES_70Deg)
@@ -6506,12 +6506,12 @@ FP	ACMAirStruc::FineRollAdjust(SWord reqdeltapitch,SWord deltahdg,FP rroll, FP f
 //DeadCode CSB 08/03/99				||
 //DeadCode CSB 08/03/99					((desiredturn < 0) && (dhdg >= 0))
 //DeadCode CSB 08/03/99				||
-//DeadCode CSB 08/03/99					(	(desiredturn < 0.0001)			//if desired turn < 0.5 deg/s 
+//DeadCode CSB 08/03/99					(	(desiredturn < 0.0001)			//if desired turn < 0.5 deg/s
 //DeadCode CSB 08/03/99						&&
 //DeadCode CSB 08/03/99						(desiredturn > -0.0001)
 //DeadCode CSB 08/03/99					)
 //DeadCode CSB 08/03/99			)
-//DeadCode CSB 08/03/99		desiredturn = desiredturn - (leadmodifier * dhdg/ANGLES_70Deg); 
+//DeadCode CSB 08/03/99		desiredturn = desiredturn - (leadmodifier * dhdg/ANGLES_70Deg);
 
 //DeadCode CSB 08/03/99		desiredturn = 0;
 //DeadCode CSB 09/03/99		CalcDesiredPitchRate(reqdeltapitch, reqdeltapitch_sign, reqdeltapitch_pos);	//needed for pushing stick forwards
@@ -6520,7 +6520,7 @@ FP	ACMAirStruc::FineRollAdjust(SWord reqdeltapitch,SWord deltahdg,FP rroll, FP f
 	{
 //DeadCode CSB 10/03/99			SWord sinpitch, cospitch;
 //DeadCode CSB 10/03/99			Math_Lib.high_sin_cos(pitch, sinpitch, cospitch);
-		
+
 //DeadCode AMM 24Nov99 		FP AveHeadgRate = AngleSign (Rowan2Rads(HdgIntercept   - (SWord)ai.oldoldoldhdgI  )) / (3 * MOD.MODEL_DT);
 //DeadCode AMM 24Nov99 		FP AvePitchRate = AngleSign (Rowan2Rads(PitchIntercept - (SWord)ai.oldoldoldpitchI)) / (3 * MOD.MODEL_DT);
 		FP AveHeadgRate = AngleSign (Rowan2Rads(HdgIntercept   - (SWord)ai.oldoldoldhdgI  )) / (3 * MODEL_DT);//AMM 24Nov99
@@ -6528,27 +6528,27 @@ FP	ACMAirStruc::FineRollAdjust(SWord reqdeltapitch,SWord deltahdg,FP rroll, FP f
 		rroll			= FPATan(MOD.Speed * AveHeadgRate, (MOD.Speed * AvePitchRate + GRAVITY));// * cospitch / 32768);
 		FP DeltaRroll = 0;
 		if(MOD.RotVel.x > 0)
-			DeltaRroll = 0.01 * fhdg / MOD.RotVel.x;			
+			DeltaRroll = 0.01 * fhdg / MOD.RotVel.x;
 		MODLIMIT(DeltaRroll, 0.25);
 			rroll += DeltaRroll;
 	}
 	rroll = AngleSign(rroll);
 #ifdef PRINT_AI_DATA
-	PrintVar(50, 18, "Rroll     %.1f ", (FP)(57.3 * rroll));	
-	PrintVar(50, 19, "RPitch    %.1f ", (FP)(57.3 * fpitch));	
+	PrintVar(50, 18, "Rroll     %.1f ", (FP)(57.3 * rroll));
+	PrintVar(50, 19, "RPitch    %.1f ", (FP)(57.3 * fpitch));
 #endif
-//DeadCode CSB 09/03/99	
-//DeadCode CSB 09/03/99	PrintVar(50, 17, "Rroll     %.1f ", (FP)(57.3 * rroll));	
+//DeadCode CSB 09/03/99
+//DeadCode CSB 09/03/99	PrintVar(50, 17, "Rroll     %.1f ", (FP)(57.3 * rroll));
 //DeadCode CSB 09/03/99		if(rollfactor < 1)
 //DeadCode CSB 09/03/99		{
 //DeadCode CSB 09/03/99			if(fpitch < 0) rroll = AngleSign(FPIE - rroll);
 //DeadCode CSB 09/03/99			rroll *= rollfactor;
 //DeadCode CSB 09/03/99		}
 //DeadCode CSB 09/03/99		if((fpitch > - 0.025) && (fpitch < 0.025) && (fhdg > -0.025) && (fhdg < 0.025)) rroll = deltahdg;	//CSB 08/03/99
-//DeadCode CSB 09/03/99	
+//DeadCode CSB 09/03/99
 //DeadCode CSB 09/03/99							PrintString(50, 18, "              ");
 //DeadCode CSB 09/03/99	if(rroll == deltahdg)	PrintString(50, 18, "ROLL = HEADING");
-//DeadCode CSB 09/03/99	
+//DeadCode CSB 09/03/99
 //DeadCode CSB 09/03/99		if(fpitch < 0)
 //DeadCode CSB 09/03/99			rroll = 0;	//when pushing stick, keep roll as is
 //DeadCode CSB 09/03/99		rroll = MOD.fRoll + rroll;
@@ -6561,7 +6561,7 @@ FP	ACMAirStruc::FineRollAdjust(SWord reqdeltapitch,SWord deltahdg,FP rroll, FP f
 //DeadCode CSB 09/03/99			FP pitchaccel = 0;
 //DeadCode CSB 09/03/99			if  (		(roll >> ANGLES_20Deg)
 //DeadCode CSB 09/03/99	   				&&	(roll << ANGLES_340Deg)
-//DeadCode CSB 09/03/99				)	
+//DeadCode CSB 09/03/99				)
 //DeadCode CSB 09/03/99				pitchaccel = ai.desiredpitchrate * MOD.Speed;
 //DeadCode CSB 09/03/99			if (	(-pitchaccel) < GRAVITY)
 //DeadCode CSB 09/03/99			{
@@ -6579,7 +6579,7 @@ FP	ACMAirStruc::FineRollAdjust(SWord reqdeltapitch,SWord deltahdg,FP rroll, FP f
 
 
 //DeadCode CSB 08/03/99		FP DeltaRoll = Rowan2Rads(unfriendly->roll - roll);
-//DeadCode CSB 08/03/99		DeltaRoll =  AngleSign(DeltaRoll);		
+//DeadCode CSB 08/03/99		DeltaRoll =  AngleSign(DeltaRoll);
 //DeadCode CSB 08/03/99		FP DeltaRollPos;
 //DeadCode CSB 08/03/99		if(DeltaRoll >= 0) DeltaRollPos =  DeltaRoll;
 //DeadCode CSB 08/03/99		else			   DeltaRollPos = -DeltaRoll;
@@ -6615,17 +6615,17 @@ FP	ACMAirStruc::FineRollAdjust(SWord reqdeltapitch,SWord deltahdg,FP rroll, FP f
 
 //DeadCode RDH 11Dec98 	MODEL& MOD = *fly.pModel;
 //DeadCode RDH 11Dec98 	ACMMODEL& ACM = *fly.pAcmModel;
-//DeadCode RDH 11Dec98 
+//DeadCode RDH 11Dec98
 //DeadCode RDH 11Dec98 	ACM.maxdeltaforclosework = 0.4;
-//DeadCode RDH 11Dec98 
+//DeadCode RDH 11Dec98
 //DeadCode RDH 11Dec98 	FP	absfpitch = fpitch;
 //DeadCode RDH 11Dec98 	if (absfpitch < 0)
 //DeadCode RDH 11Dec98 		absfpitch = fpitch;
 //DeadCode RDH 11Dec98 	FP	aroll = AngleSign(MOD.fRoll);
 //DeadCode RDH 11Dec98 	if (aroll < 0)
 //DeadCode RDH 11Dec98 		aroll = -aroll;
-//DeadCode RDH 11Dec98 
-//DeadCode RDH 11Dec98 
+//DeadCode RDH 11Dec98
+//DeadCode RDH 11Dec98
 //DeadCode RDH 11Dec98 	//if pointing at target and right way up
 //DeadCode RDH 11Dec98 	//then invert excessive roll requests
 //DeadCode RDH 11Dec98 //	if  (		(absfpitch < 0.2)
@@ -6638,8 +6638,8 @@ FP	ACMAirStruc::FineRollAdjust(SWord reqdeltapitch,SWord deltahdg,FP rroll, FP f
 //DeadCode RDH 11Dec98 //		if (rroll < -F1PIE2)
 //DeadCode RDH 11Dec98 //			rroll = rroll + FPIE;
 //DeadCode RDH 11Dec98 //	}
-//DeadCode RDH 11Dec98 
-//DeadCode RDH 11Dec98 
+//DeadCode RDH 11Dec98
+//DeadCode RDH 11Dec98
 //DeadCode RDH 11Dec98 //	if (		(absfpitch < 0.2)
 //DeadCode RDH 11Dec98 //			&&	(absfpitch > -0.2)
 //DeadCode RDH 11Dec98 //		)
@@ -6649,7 +6649,7 @@ FP	ACMAirStruc::FineRollAdjust(SWord reqdeltapitch,SWord deltahdg,FP rroll, FP f
 //DeadCode RDH 11Dec98 //				if (		(rroll < 0.2)
 //DeadCode RDH 11Dec98 //						&&	(rroll > -0.2)
 //DeadCode RDH 11Dec98 //					)
-//DeadCode RDH 11Dec98 
+//DeadCode RDH 11Dec98
 //DeadCode RDH 11Dec98 		rroll =  MOD.fRoll + rroll;
 //DeadCode RDH 11Dec98 		ACM.YawRate(fhdg);
 //DeadCode RDH 11Dec98 		return(rroll);
@@ -6692,21 +6692,21 @@ FP	ACMAirStruc::CoarseRollAdjust(FP rroll, FP fpitch)
 //DeadCode AMM 21Sep00 Bool	ACMAirStruc::UnfriendlyOnSameRoll()
 //DeadCode AMM 21Sep00 {
 //DeadCode AMM 21Sep00 	MODEL& MOD = *fly.pModel;
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 	AirStrucPtr	unfriendly = *ai.unfriendly;
 //DeadCode AMM 21Sep00 	if (	(		(roll << ANGLES_180Deg)
-//DeadCode AMM 21Sep00 				&&	(unfriendly->roll << ANGLES_180Deg)			
+//DeadCode AMM 21Sep00 				&&	(unfriendly->roll << ANGLES_180Deg)
 //DeadCode AMM 21Sep00 			)
 //DeadCode AMM 21Sep00 			||
 //DeadCode AMM 21Sep00 			(		(roll >> ANGLES_180Deg)
-//DeadCode AMM 21Sep00 				&&	(unfriendly->roll >> ANGLES_180Deg)			
+//DeadCode AMM 21Sep00 				&&	(unfriendly->roll >> ANGLES_180Deg)
 //DeadCode AMM 21Sep00 			)
 //DeadCode AMM 21Sep00 		)
 //DeadCode AMM 21Sep00 		return (TRUE);
 //DeadCode AMM 21Sep00 	else
 //DeadCode AMM 21Sep00 		return(FALSE);
-//DeadCode AMM 21Sep00 
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 }
 
 
@@ -6714,7 +6714,7 @@ SWord	ACMAirStruc::RollforTurn(SWord reqdeltapitch,SWord deltahdg, Float& desire
 {
 	ACMMODEL& ACM = *fly.pAcmModel;
 	MODEL& MOD = *fly.pModel;
-		
+
 		if(ACM.maxdeltaforclosework < 0.1)
 		ACM.maxdeltaforclosework = 0.1;
 #ifdef PRINT_AI_DATA
@@ -6735,7 +6735,7 @@ SWord	ACMAirStruc::RollforTurn(SWord reqdeltapitch,SWord deltahdg, Float& desire
 	fpitch = AngleSign(fpitch);
 	fhdg   = AngleSign(fhdg);
 	ANGLES reqroll = Angles(Rads2Rowan(FPATan(fhdg, fpitch) ) );
-	
+
 #ifdef PRINT_AI_DATA
 	PrintVar(35, 10, "ReqDPitch %.2f ", (FP)(fpitch * 57.3) );
 	PrintVar(35, 11, "ReqDRoll  %.2f ", (FP)(reqroll / 182.04) );
@@ -6747,7 +6747,7 @@ SWord	ACMAirStruc::RollforTurn(SWord reqdeltapitch,SWord deltahdg, Float& desire
 		rroll =  AngleSign(rr);
 
 	if(//(UnfriendlyOnSameRoll())
-		//&&	
+		//&&
 			(fpitch < ACM.maxdeltaforclosework)
 		&&	(fpitch > -ACM.maxdeltaforclosework)
 		&&	(fhdg < ACM.maxdeltaforclosework)
@@ -6786,7 +6786,7 @@ SWord	ACMAirStruc::ThrustfromFF()
 //DeadCode AMM 21Sep00    	SWord maxthrust = ThrustfromFF();
 //DeadCode AMM 21Sep00 	thrust = maxthrust;
 //DeadCode AMM 21Sep00 		ACMMODEL& ACM = *fly.pAcmModel;
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 	velc = -velc;
 //DeadCode AMM 21Sep00 	time = (Range - IDEALCOMBATRANGE)/velc;				//cs
 //DeadCode AMM 21Sep00 	if (time > 0)
@@ -6796,18 +6796,18 @@ SWord	ACMAirStruc::ThrustfromFF()
 //DeadCode AMM 21Sep00 		//Tnew -Dnew = m * accelnew + m* accelold
 //DeadCode AMM 21Sep00 		//assume Dold and Dnew are same
 //DeadCode AMM 21Sep00 		//Tn = To + m(an)
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 //DEADCODE CSB 05/11/99 		FP fMass = weap.left.int_fuel + weap.centre.int_fuel + weap.right.int_fuel;
 //DeadCode AMM 21Sep00 		FP fMass = 0;
 //DeadCode AMM 21Sep00 		for(SWord i = 0; i < 4; i++)
 //DeadCode AMM 21Sep00 //DEADCODE CSB 06/03/00 			if((classtype->fueltanktype[i] = FT_FIXED) || (Save_Data.flightdifficulty [FD_STORESWEIGHTDRAG]))
 //DeadCode AMM 21Sep00 				fMass += fly.fuel_content[i];
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 //DEADCODE CSB 06/03/00 		if(Save_Data.flightdifficulty [FD_STORESWEIGHTDRAG])
 //DeadCode AMM 21Sep00 			fMass += weap.left.mass     + weap.centre.mass     + weap.right.mass;
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 		fMass = fMass * 0.001 + classtype->weightempty;
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 //DeadCode AMM 29Jun99 		FP deltaforce = (accell) * MOD.Mass;//N
 //DeadCode AMM 21Sep00 		FP deltaforce = (accell) * fMass;//N	//CSB 29Jun99
 //DeadCode AMM 21Sep00 		FP Tn = MOD.EngineList->Thrust + deltaforce;
@@ -6826,7 +6826,7 @@ SWord	ACMAirStruc::ThrustfromFF()
 //DeadCode AMM 21Sep00 					else
 //DeadCode AMM 21Sep00 						ai.manoeuvre=ManoeuvreBasedOnSkill(SKILL_REGULAR, MANOEUVRE_LAGPURSUIT, MANOEUVRE_TURNINGFIGHT);
 //DeadCode AMM 21Sep00 				}
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 			}else
 //DeadCode AMM 21Sep00 			{
 //DeadCode AMM 21Sep00 				thrust = 0;
@@ -6988,16 +6988,16 @@ PrintVar(40, 4, "Act Vel %.1f ", (FP)(vel_ * 0.0001));
 PrintVar(40, 5, "Throttl %.0f ", (FP)(fly.thrustpercent));
 #endif
 
-			if(ReqVel > vel_)						//CSB 27/05/99	
+			if(ReqVel > vel_)						//CSB 27/05/99
 			{
-				thrust = ThrustfromFF();	//CSB 27/05/99	
-				if(TooClose) 
+				thrust = ThrustfromFF();	//CSB 27/05/99
+				if(TooClose)
 		 		   ACM.SpeedBrakesIn();
 			}
-			else									//CSB 27/05/99	
+			else									//CSB 27/05/99
 			{
-				thrust = 0;				//CSB 27/05/99	
-				if(Range < IDEALCOMBATRANGE / 2) 
+				thrust = 0;				//CSB 27/05/99
+				if(Range < IDEALCOMBATRANGE / 2)
 		 		   ACM.SpeedBrakesOut();
 			}
 		}
@@ -7013,7 +7013,7 @@ PrintVar(40, 5, "Throttl %.0f ", (FP)(fly.thrustpercent));
 //DeadCode CSB 27/05/99				SpeedUp(velc/2);
 }
 
-		
+
 void	ACMAirStruc::TurnFightTargetNotOnNose(SWord	reqdeltahdg, SWord	reqdeltapitch, SWord	reqdeltapitch_sign, UWord	reqdeltapitch_pos, ANGLES	deltapitch)
 {
 
@@ -7042,9 +7042,9 @@ void	ACMAirStruc::TurnFightTargetNotOnNose(SWord	reqdeltahdg, SWord	reqdeltapitc
 //DeadCode RDH 03Dec98 			&&	(deltapitch << ANGLES_180Deg)				//if he really wants to go down then let him
 //DeadCode RDH 03Dec98 			&&	(		(Range > WEAPONSRANGE)
 //DeadCode RDH 03Dec98 					||	(classtype->visible == MIG15)
-//DeadCode RDH 03Dec98 						
+//DeadCode RDH 03Dec98
 //DeadCode RDH 03Dec98 				)
-//DeadCode RDH 03Dec98 		)	
+//DeadCode RDH 03Dec98 		)
 //DeadCode RDH 03Dec98 		delta = ANGLES_0Deg;
 //DEADCODE RDH 23/02/99 	reqdeltapitch = 	delta - fly.cpitch;
 //DEADCODE RDH 23/02/99 	Math_Lib.Pos (reqdeltapitch,reqdeltapitch_pos,reqdeltapitch_sign);
@@ -7062,7 +7062,7 @@ void	ACMAirStruc::RollAndPull(SWord	reqdeltahdg, SWord dpitch)
 {
 	MODEL& MOD = *fly.pModel;
 	ACMMODEL& ACM = *fly.pAcmModel;
-	
+
 	SWord reqroll;
 
 	if (reqdeltahdg > 0)
@@ -7109,14 +7109,14 @@ void	ACMAirStruc::RollAndPull(SWord	reqdeltahdg, SWord dpitch)
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		TurnFightSub
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Fri 13 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::TurnFightSub(ANGLES	HdgIntercept, Bool sitbehindtarget, ANGLES	deltapitch,COORDS3D	target)
@@ -7147,7 +7147,7 @@ void	ACMAirStruc::TurnFightPhase1(ANGLES	HdgIntercept, Bool sitbehindtarget, ANG
 	AirStrucPtr	unfriendly = *ai.unfriendly;
 
 	SLong temp_range;
-	temp_range = Range; 	
+	temp_range = Range;
 
 	SWord	reqdeltahdg,reqdeltahdg_sign;
 	UWord	reqdeltahdg_pos;
@@ -7219,7 +7219,7 @@ PrintString(0, 21, "                    ");	//CSB 05/03/99
 					SlowDownCheck(reqdeltahdg_pos);
 				else
 					ACM.Thrust(100);
-	
+
 				if(unfriendly->classtype->aerobaticfactor > AEROBATIC_LOW)
 				{
 					if(		((reqdeltahdg_pos < ANGLES_40Deg) && (ACM.maxdeltaforclosework == 0.0))
@@ -7240,10 +7240,10 @@ PrintString(0, 21, "                    ");	//CSB 05/03/99
 							rollpos = -rollpos;
 
 						TurnFightTargetNotOnNose(reqdeltahdg, reqdeltapitch, reqdeltapitch_sign, reqdeltapitch_pos, deltapitch);
-						
+
 //					FP	factor = 0.2 + 0.0000916 * (ANGLES_60Deg - rollpos);	//0.75 / ANGLES_60Deg
 //DEADCODE CSB 07/03/00 					{
-//DEADCODE CSB 07/03/00 						if (!ai.flatturn) 
+//DEADCODE CSB 07/03/00 						if (!ai.flatturn)
 //DEADCODE CSB 07/03/00 							fly.pAcmModel->ZeroIntControl();
 //DEADCODE CSB 07/03/00 						ai.flatturn = TRUE;
 //DEADCODE CSB 07/03/00 						TurnFightTargetNotOnNose(reqdeltahdg, reqdeltapitch, reqdeltapitch_sign, reqdeltapitch_pos, deltapitch);
@@ -7284,7 +7284,7 @@ PrintString(0, 21, "                    ");	//CSB 05/03/99
 										&&	(Range < ENGAGERANGE)
 									)
 								{
-								 	RndVal	rndpc = (RndVal)Math_Lib.rnd(RndValMAX);	
+								 	RndVal	rndpc = (RndVal)Math_Lib.rnd(RndValMAX);
 									if	((rndpc > RND50PC)	&&	(Range < VISIBLERANGE))
 										_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_BANDIT_RELPOS, MSG_MIGSCOMING_RPT, unfbuddy, *this, unf));
 								}
@@ -7294,7 +7294,7 @@ PrintString(0, 21, "                    ");	//CSB 05/03/99
 								SetManoeuvreTime (1000);
 							}
 						}
-						else 
+						else
 							ai.manoeuvre = MANOEUVRE_SELECT;
 					}
 				}
@@ -7310,11 +7310,11 @@ Float	AirStruc::Model_InstTurnRate(AirStrucPtr subject)
 	if (!subject)
 		return 0.0;
 
-	tr = subject->fly.dhdg * 0.00009587	/ Timer_Code.FRAMETIME;					
+	tr = subject->fly.dhdg * 0.00009587	/ Timer_Code.FRAMETIME;
 
 //	if (subject == Persons2::PlayerGhostAC)
 //		subject = Manual_Pilot.ControlledAC2;
- //	tr = ((((SWord)subject->hdg)* 0.00009587) - 
+ //	tr = ((((SWord)subject->hdg)* 0.00009587) -
  //				AngleSign (subject->fly.LastfHdg)) / Timer_Code.FRAMETIME;
 //	FP test;
 //	test = tr - tr2;
@@ -7343,7 +7343,7 @@ void	ACMAirStruc::CalcLead(AirStrucPtr  subject, AirStrucPtr target, SLong& delt
 	range -= 0.0001 * subject->vel_ * Timer_Code.FRAMETIME;
 	if(!target->ai.moved)
 		range += 0.0001 * target->vel_ * Timer_Code.FRAMETIME;
-		
+
 	FP shoottime = FP(range) / ((FP)subject->vel_ - VelComp + (FP)subject->classtype->muzzlevel);	//CSB 05/03/99 //centi-seconds
 //DeadCode CSB 25Aug00 	shoottime *= 1.25;
 
@@ -7357,14 +7357,14 @@ void	ACMAirStruc::CalcLead(AirStrucPtr  subject, AirStrucPtr target, SLong& delt
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		TurnFight
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Fri 13 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::TurningFight()
@@ -7407,7 +7407,7 @@ void	ACMAirStruc::TurningFight()
 			PrintString(0, 16, "               ");
 		#endif
 
-			if(reqdeltahdg_pos < SWord(ANGLES_90Deg))		
+			if(reqdeltahdg_pos < SWord(ANGLES_90Deg))
 			{
 		#ifdef PRINT_AI_DATA
 			PrintString(0, 15, "               ");
@@ -7445,11 +7445,11 @@ void	ACMAirStruc::TurningFight()
 //Author		Craig Beeston
 //Date			Tue 10 Oct 2000
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ACMAirStruc::TurningFightBomber()
@@ -7491,13 +7491,13 @@ void ACMAirStruc::TurningFightBomber()
 				if(deltav < 0)
 					time = 0;
 				else
-					MODMAXMIN(time, 0, 100); 
+					MODMAXMIN(time, 0, 100);
 				despos = unf->World;
 				despos.X = FP(despos.X) + time * FP(unf->vel_x);
 				despos.Y = FP(despos.Y) + time * FP(unf->vel_y);
 				despos.Z = FP(despos.Z) + time * FP(unf->vel_z);
 			}
-			
+
 			InterceptandRange(&despos);
 
 //DeadCode CSB 12Oct00 			if(Range < INSIDEWEAPONSRANGE)
@@ -7516,8 +7516,8 @@ void ACMAirStruc::TurningFightBomber()
 		}
 	}
 }
-	
-	
+
+
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 void	ACMAirStruc::TurnWithPitchChange(ANGLES	HdgIntercept, Bool sitbehindtarget,COORDS3D	target)
 {
@@ -7525,14 +7525,14 @@ void	ACMAirStruc::TurnWithPitchChange(ANGLES	HdgIntercept, Bool sitbehindtarget,
 //DEADCODE CSB 25/01/00 	{
 //DEADCODE CSB 25/01/00 		if (classtype->phrasename == PHRASE_MIGS)
 //DEADCODE CSB 25/01/00 //DEADCODE RDH 10/05/99 		if (classtype->visible == MIG15)
-//DEADCODE CSB 25/01/00 //			TurnFightSub(HdgIntercept, sitbehindtarget, ANGLES_5Deg, target);	
-//DEADCODE CSB 25/01/00 			TurnFightSub(HdgIntercept, sitbehindtarget, ANGLES_0Deg, target);	
-//DEADCODE CSB 25/01/00 		else 
-//DEADCODE CSB 25/01/00 		if (World.Y > FT_10000)
-//DEADCODE CSB 25/01/00 			TurnFightSub(HdgIntercept, sitbehindtarget, ANGLES_0Deg, target);	
+//DEADCODE CSB 25/01/00 //			TurnFightSub(HdgIntercept, sitbehindtarget, ANGLES_5Deg, target);
+//DEADCODE CSB 25/01/00 			TurnFightSub(HdgIntercept, sitbehindtarget, ANGLES_0Deg, target);
 //DEADCODE CSB 25/01/00 		else
-//DEADCODE CSB 25/01/00 			TurnFightSub(HdgIntercept, sitbehindtarget, ANGLES_0Deg, target);	
-//DEADCODE CSB 25/01/00 
+//DEADCODE CSB 25/01/00 		if (World.Y > FT_10000)
+//DEADCODE CSB 25/01/00 			TurnFightSub(HdgIntercept, sitbehindtarget, ANGLES_0Deg, target);
+//DEADCODE CSB 25/01/00 		else
+//DEADCODE CSB 25/01/00 			TurnFightSub(HdgIntercept, sitbehindtarget, ANGLES_0Deg, target);
+//DEADCODE CSB 25/01/00
 //DEADCODE CSB 25/01/00 	}else
 		TurnFightSub(HdgIntercept, sitbehindtarget, ANGLES_0Deg, target);
 }
@@ -7544,7 +7544,7 @@ Bool	ACMAirStruc::BanditOnColdSide()
 
 	if	(		(reqdeltahdg < ANGLES_90Deg)
 			||	(reqdeltahdg > ANGLES_270Deg)
-		)	
+		)
 	{
 		return (FALSE);
 	}
@@ -7571,14 +7571,14 @@ Bool	ACMAirStruc::BanditOnColdSide()
 //
 //DeadCode RDH 07Jan99 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //DeadCode RDH 07Jan99 //Procedure		SustainedTurn
-//DeadCode RDH 07Jan99 //Author		R. Hyde 
+//DeadCode RDH 07Jan99 //Author		R. Hyde
 //DeadCode RDH 07Jan99 //Date			Fri 13 Mar 1998
 //DeadCode RDH 07Jan99 //
-//DeadCode RDH 07Jan99 //Description	
+//DeadCode RDH 07Jan99 //Description
 //DeadCode RDH 07Jan99 //
-//DeadCode RDH 07Jan99 //Inputs		
+//DeadCode RDH 07Jan99 //Inputs
 //DeadCode RDH 07Jan99 //
-//DeadCode RDH 07Jan99 //Returns	
+//DeadCode RDH 07Jan99 //Returns
 //DeadCode RDH 07Jan99 //
 //DeadCode RDH 07Jan99 //------------------------------------------------------------------------------
 //DeadCode RDH 07Jan99 void	ACMAirStruc::SustainedTurn()
@@ -7587,14 +7587,14 @@ Bool	ACMAirStruc::BanditOnColdSide()
 //DeadCode RDH 07Jan99 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		HighYoYo
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Wed 11 Mar 1998
 //
 //Description	Ref1.70
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::HighYoYo()
@@ -7619,7 +7619,7 @@ void	ACMAirStruc::HighYoYo()
 		{
 			ACM.Thrust (100);
 			SetManoeuvreTime (1500);
- 			ai.desiredroll = ANGLES_0Deg; 
+ 			ai.desiredroll = ANGLES_0Deg;
 			ai.ManStep = PHASE1;
 		}
 		case PHASE1:
@@ -7668,14 +7668,14 @@ void	ACMAirStruc::HighYoYo()
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		Zoom
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Wed 11 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ACMAirStruc::Zoom()
@@ -7729,20 +7729,20 @@ void ACMAirStruc::Zoom()
 //DeadCode CSB 7Sep00 //
 //DeadCode CSB 7Sep00 		ACMMODEL& ACM = *fly.pAcmModel;
 //DeadCode CSB 7Sep00 	MODEL& MOD = *fly.pModel;
-//DeadCode CSB 7Sep00 
+//DeadCode CSB 7Sep00
 //DeadCode CSB 7Sep00 //	ACM.Step = ai.ManStep;
-//DeadCode CSB 7Sep00 
+//DeadCode CSB 7Sep00
 //DeadCode CSB 7Sep00 	switch (ai.ManStep)
 //DeadCode CSB 7Sep00 	{
 //DeadCode CSB 7Sep00 		case PHASE0:
 //DeadCode CSB 7Sep00 		{
 //DeadCode CSB 7Sep00 			SetManoeuvreTime (2000);
 //DeadCode CSB 7Sep00 			MOD.Rudder = 0;
-//DeadCode CSB 7Sep00 
+//DeadCode CSB 7Sep00
 //DeadCode CSB 7Sep00 			ACM.Thrust (100);			//rdh
 //DeadCode CSB 7Sep00 //			ACM.ClimbRate (0);
 //DeadCode CSB 7Sep00 //			ACM.KeepWingsLevel ();
-//DeadCode CSB 7Sep00 
+//DeadCode CSB 7Sep00
 //DeadCode CSB 7Sep00 			ai.ManStep = PHASE1;
 //DeadCode CSB 7Sep00 			break;
 //DeadCode CSB 7Sep00 		}
@@ -7750,8 +7750,8 @@ void ACMAirStruc::Zoom()
 //DeadCode CSB 7Sep00 		{
 //DeadCode CSB 7Sep00 				ACM.FastRoll (ANGLES_0Deg);
 //DeadCode CSB 7Sep00 				ACM.Pitch (ANGLES_40Deg);
-//DeadCode CSB 7Sep00 			
-//DeadCode CSB 7Sep00 
+//DeadCode CSB 7Sep00
+//DeadCode CSB 7Sep00
 //DeadCode CSB 7Sep00 			if  (		(!ManoeuvreTimeLeft ())
 //DeadCode CSB 7Sep00 					||
 //DeadCode CSB 7Sep00 						(vel_ <= CornerSpeed())
@@ -7759,16 +7759,16 @@ void ACMAirStruc::Zoom()
 //DeadCode CSB 7Sep00 			{
 //DeadCode CSB 7Sep00 //DEADCODE CB 18/11/99  				if (ai.firsttactic == TACTIC_ROUNDABOUT)
 //DeadCode CSB 7Sep00 //DEADCODE CB 18/11/99  					ai.manoeuvre = MANOEUVRE_ROUNDABOUT;
-//DeadCode CSB 7Sep00 //DEADCODE CB 18/11/99  				else 
+//DeadCode CSB 7Sep00 //DEADCODE CB 18/11/99  				else
 //DeadCode CSB 7Sep00 				if (ai.firsttactic == TACTIC_LINEABREAST)
 //DeadCode CSB 7Sep00  					ai.manoeuvre = MANOEUVRE_LINEABREAST;
 //DeadCode CSB 7Sep00  				else if (ai.firsttactic == TACTIC_LINEASTERN)
 //DeadCode CSB 7Sep00  					ai.manoeuvre = MANOEUVRE_LINEASTERN;
 //DeadCode CSB 7Sep00  				else if (ai.firsttactic == TACTIC_DIVEANDZOOM)
-//DeadCode CSB 7Sep00 					ai.manoeuvre = MANOEUVRE_DIVEANDZOOM;					
+//DeadCode CSB 7Sep00 					ai.manoeuvre = MANOEUVRE_DIVEANDZOOM;
 //DeadCode CSB 7Sep00 				else
 //DeadCode CSB 7Sep00 					ai.manoeuvre = MANOEUVRE_SELECT;
-//DeadCode CSB 7Sep00 
+//DeadCode CSB 7Sep00
 //DeadCode CSB 7Sep00 				ai.manoeuvre = MANOEUVRE_SELECT;
 //DeadCode CSB 7Sep00 			}
 //DeadCode CSB 7Sep00 			break;
@@ -7779,14 +7779,14 @@ void ACMAirStruc::Zoom()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		LowYoYo
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 3 Mar 1998
 //
-//Description	Ref1.73	
+//Description	Ref1.73
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DeadCode AMM 21Sep00 void	ACMAirStruc::LowYoYo ( )
@@ -7797,7 +7797,7 @@ void ACMAirStruc::Zoom()
 //DeadCode AMM 21Sep00 //lead target
 //DeadCode AMM 21Sep00 //level wings and pull up
 //DeadCode AMM 21Sep00 //
-//DeadCode AMM 21Sep00 //Note may have to write so that the ac doesn't try to get advantage in one 
+//DeadCode AMM 21Sep00 //Note may have to write so that the ac doesn't try to get advantage in one
 //DeadCode AMM 21Sep00 //manoeuvre (see btm 1.73)
 //DeadCode AMM 21Sep00 //
 //DeadCode AMM 21Sep00 //
@@ -7807,7 +7807,7 @@ void ACMAirStruc::Zoom()
 //DeadCode AMM 21Sep00 //
 //DeadCode AMM 21Sep00 	TurningFight();													  //CB 12/11/99
 //DeadCode AMM 21Sep00 	return;															  //CB 12/11/99
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 /*
 //DeadCode AMM 21Sep00 	ACMMODEL& ACM = *fly.pAcmModel;
 //DeadCode AMM 21Sep00 	MODEL& MOD = *fly.pModel;
@@ -7821,16 +7821,16 @@ void ACMAirStruc::Zoom()
 //DeadCode AMM 21Sep00 	SLong dx;
 //DeadCode AMM 21Sep00 	SLong dy;
 //DeadCode AMM 21Sep00 	SLong dz;
-//DeadCode AMM 21Sep00 
-//DeadCode AMM 21Sep00 
-//DeadCode AMM 21Sep00 
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
+//DeadCode AMM 21Sep00
+//DeadCode AMM 21Sep00
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 	switch (ai.ManStep)
 //DeadCode AMM 21Sep00 	{
 //DeadCode AMM 21Sep00 		case PHASE0:
 //DeadCode AMM 21Sep00 		{
 //DeadCode AMM 21Sep00 			MOD.Rudder = 0;
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 			ACM.Thrust (ThrustfromFF());
 //DeadCode AMM 21Sep00 			SetManoeuvreTime (1500);
 //DeadCode AMM 21Sep00 			ai.ManStep = PHASE1;
@@ -7838,11 +7838,11 @@ void ACMAirStruc::Zoom()
 //DeadCode AMM 21Sep00 		case PHASE1:
 //DeadCode AMM 21Sep00 		{
 //DeadCode AMM 21Sep00 			CalcLead(*this, *ai.unfriendly,dx,dy,dz, TRUE);
-//DeadCode AMM 21Sep00 		
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 			target.X = ai.unfriendly->World.X + dx;
 //DeadCode AMM 21Sep00 			target.Y = ai.unfriendly->World.Y + dy;
 //DeadCode AMM 21Sep00 			target.Z = ai.unfriendly->World.Z + dz;
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 			SWord c,s;
 //DeadCode AMM 21Sep00 			ANGLES	depression = ANGLES_340Deg;
 //DeadCode AMM 21Sep00 			Math_Lib.high_sin_cos(depression,s,c);
@@ -7855,19 +7855,19 @@ void ACMAirStruc::Zoom()
 //DeadCode AMM 21Sep00 			deltay = deltay * range /ENGAGERANGE;
 //DeadCode AMM 21Sep00 			target.Y += deltay;
 //DeadCode AMM 21Sep00 //			depression = ANGLES_0Deg;
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 			InterceptandRange (&target);
-//DeadCode AMM 21Sep00 
-//DeadCode AMM 21Sep00 //DeadCode RDH 16Dec98 			TurnFightSub(HdgIntercept, TRUE, ANGLES_0Deg, target);	
+//DeadCode AMM 21Sep00
+//DeadCode AMM 21Sep00 //DeadCode RDH 16Dec98 			TurnFightSub(HdgIntercept, TRUE, ANGLES_0Deg, target);
 //DeadCode AMM 21Sep00 			TurnFightPhase1(HdgIntercept, TRUE, ANGLES_0Deg, target);
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 //			ACM.MinHeight (FT_2000);
 //DeadCode AMM 21Sep00 //DEADCODE RDH 27/05/99 			if (TooLow())
 //DeadCode AMM 21Sep00 //DEADCODE RDH 27/05/99 				{
 //DeadCode AMM 21Sep00 //DEADCODE RDH 27/05/99 					ai.ManStep = PHASE0;
 //DeadCode AMM 21Sep00 //DEADCODE RDH 27/05/99 					ai.manoeuvre = MANOEUVRE_LOWALT;
 //DeadCode AMM 21Sep00 //DEADCODE RDH 27/05/99 				}
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 			if  (!ManoeuvreTimeLeft())
 //DeadCode AMM 21Sep00 			{
 //DeadCode AMM 21Sep00 				if (Range > INSIDEWEAPONSRANGE)
@@ -7882,7 +7882,7 @@ void ACMAirStruc::Zoom()
 //DeadCode AMM 21Sep00 				{
 //DeadCode AMM 21Sep00 					 ai.manoeuvre = MANOEUVRE_SELECT;
 //DeadCode AMM 21Sep00 				}
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 			}
 //DeadCode AMM 21Sep00 		}
 //DeadCode AMM 21Sep00 	}
@@ -7890,14 +7890,14 @@ void ACMAirStruc::Zoom()
 //DeadCode AMM 21Sep00 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InterceptHigh
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Wed 11 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ACMAirStruc::InterceptHigh()
@@ -7919,7 +7919,7 @@ void ACMAirStruc::InterceptHigh()
 			SWord dhdg = HdgIntercept - hdg;
 			if(dhdg < 0)	dhdg = -dhdg;
 			PitchIntercept += Angles(dhdg / 4);
-			
+
 			ACM.Pitch(PitchIntercept);
 
 			FP desroll = FindRequiredRoll (hdg - HdgIntercept, CombatReqBankData);
@@ -7945,13 +7945,13 @@ void ACMAirStruc::InterceptHigh()
 //DeadCode CSB 4Sep00 	SLong dx;
 //DeadCode CSB 4Sep00 	SLong dy;
 //DeadCode CSB 4Sep00 	SLong dz;
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 	switch (ai.ManStep)
 //DeadCode CSB 4Sep00 	{
 //DeadCode CSB 4Sep00 		case PHASE0:
 //DeadCode CSB 4Sep00 		{
 //DeadCode CSB 4Sep00 			MOD.Rudder = 0;
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 			ACM.Thrust (ThrustfromFF());
 //DeadCode CSB 4Sep00 			SetManoeuvreTime (15000);
 //DeadCode CSB 4Sep00 			ai.ManStep = PHASE1;
@@ -7959,22 +7959,22 @@ void ACMAirStruc::InterceptHigh()
 //DeadCode CSB 4Sep00 		case PHASE1:
 //DeadCode CSB 4Sep00 		{
 //DeadCode CSB 4Sep00 			CalcLead(*this, *ai.unfriendly,dx,dy,dz, TRUE);
-//DeadCode CSB 4Sep00 		
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 			target.X = ai.unfriendly->World.X + dx;
 //DeadCode CSB 4Sep00 			target.Y = World.Y;
 //DeadCode CSB 4Sep00 			target.Z = ai.unfriendly->World.Z + dz;
-//DeadCode CSB 4Sep00 
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 			InterceptandRange (&target);
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 			SLong deltaalt = World.Y - ai.unfriendly->World.Y;
 //DeadCode CSB 4Sep00 			if (deltaalt < 0)
 //DeadCode CSB 4Sep00 				ai.manoeuvre = MANOEUVRE_SELECT;
 //DeadCode CSB 4Sep00 			if  (!ManoeuvreTimeLeft())
 //DeadCode CSB 4Sep00 				ai.manoeuvre = MANOEUVRE_SELECT;
-//DeadCode CSB 4Sep00 	
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 			TurnFightPhase1(HdgIntercept, TRUE, ANGLES_0Deg, target);
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 			if  (		((Range - deltaalt ) < DANGERRANGE)
 //DeadCode CSB 4Sep00 					&&	 (SubjectOnTargetTail(ANGLES_45Deg))
 //DeadCode CSB 4Sep00 					&&	(SubjectFacingTarget(ANGLES_45Deg))
@@ -7982,7 +7982,7 @@ void ACMAirStruc::InterceptHigh()
 //DeadCode CSB 4Sep00 			{
 //DeadCode CSB 4Sep00 				 ai.manoeuvre = MANOEUVRE_DIVEANDZOOM;
 //DeadCode CSB 4Sep00 			}
-//DeadCode CSB 4Sep00 
+//DeadCode CSB 4Sep00
 //DeadCode CSB 4Sep00 		}
 //DeadCode CSB 4Sep00 	}
 }
@@ -7990,14 +7990,14 @@ void ACMAirStruc::InterceptHigh()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		InterceptLow
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Wed 11 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void ACMAirStruc::InterceptLow()
@@ -8035,27 +8035,27 @@ void ACMAirStruc::InterceptLow()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ClimbAtSustainedTurnSpeed
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Fri 20 Mar 1998
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DeadCode AMM 21Sep00 void	ACMAirStruc::ClimbAtSustainedTurnSpeed()
 //DeadCode AMM 21Sep00 {
 //DeadCode AMM 21Sep00 //climb but don't go below sustained turn speed
 //DeadCode AMM 21Sep00 //aim towards unfriendly plus offset = f(desiredrange,desiredhdg)
-//DeadCode AMM 21Sep00 
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 //very similar to gainheight at present
 //DeadCode AMM 21Sep00 	ACMMODEL& ACM = *fly.pAcmModel;
 //DeadCode AMM 21Sep00 	MODEL& MOD = *fly.pModel;
-//DeadCode AMM 21Sep00 
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 	switch (ai.ManStep)
 //DeadCode AMM 21Sep00 	{
 //DeadCode AMM 21Sep00 		case PHASE0:
@@ -8072,23 +8072,23 @@ void ACMAirStruc::InterceptLow()
 //DeadCode AMM 21Sep00 					ai.desiredhdg = HdgIntercept + ANGLES_20Deg;
 //DeadCode AMM 21Sep00 				else
 //DeadCode AMM 21Sep00 					ai.desiredhdg = HdgIntercept - ANGLES_20Deg;
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 			}
 //DeadCode AMM 21Sep00 			else
 //DeadCode AMM 21Sep00 				ai.desiredhdg = HdgIntercept;
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 //			ACM.ClimbRate (-1500);
 //DeadCode AMM 21Sep00 			ai.ManStep = PHASE1;
 //DeadCode AMM 21Sep00 		}
 //DeadCode AMM 21Sep00 		case PHASE1:
 //DeadCode AMM 21Sep00 		{
 //DeadCode AMM 21Sep00 //			ACM.SpeedWithElevators(0.61);
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 			ACM.Roll (ANGLES_0Deg);
-//DeadCode AMM 21Sep00 	
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 //			MoveToHdg (ai.desiredhdg);
-//DeadCode AMM 21Sep00 
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 			if (MOD.Inst.I_MachNo > 0.55)
 //DeadCode AMM 21Sep00 				ACM.VelPitch (BestClimbAngle());
 //DeadCode AMM 21Sep00 			else
@@ -8098,27 +8098,27 @@ void ACMAirStruc::InterceptLow()
 //DeadCode AMM 21Sep00 //				ACM.Pitch (ANGLES_355Deg);
 //DeadCode AMM 21Sep00 //			else
 //DeadCode AMM 21Sep00 //				ACM.Pitch (ANGLES_5Deg);
-//DeadCode AMM 21Sep00 
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 			if (!ManoeuvreTimeLeft())
 //DeadCode AMM 21Sep00 				ai.manoeuvre = MANOEUVRE_SELECT;
 //DeadCode AMM 21Sep00 			break;
 //DeadCode AMM 21Sep00 		}
 //DeadCode AMM 21Sep00 	}
-//DeadCode AMM 21Sep00 
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SpinRecovery
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Wed 21 Aug 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::SpinRecovery ()
@@ -8157,7 +8157,7 @@ void	ACMAirStruc::SpinRecovery ()
 			if  (rotvelymod < 0.0005)
 				ai.ManStep = PHASE2;
 			break;
-				
+
 		}
 		case PHASE2:
 		{
@@ -8181,20 +8181,20 @@ void	ACMAirStruc::SpinRecovery ()
 
 //DeadCode RDH 05Jan99 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //DeadCode RDH 05Jan99 //Procedure		BounceFollower
-//DeadCode RDH 05Jan99 //Author		R. Hyde 
+//DeadCode RDH 05Jan99 //Author		R. Hyde
 //DeadCode RDH 05Jan99 //Date			Tue 10 Sep 1996
 //DeadCode RDH 05Jan99 //
-//DeadCode RDH 05Jan99 //Description	
+//DeadCode RDH 05Jan99 //Description
 //DeadCode RDH 05Jan99 //
-//DeadCode RDH 05Jan99 //Inputs		
+//DeadCode RDH 05Jan99 //Inputs
 //DeadCode RDH 05Jan99 //
-//DeadCode RDH 05Jan99 //Returns	
+//DeadCode RDH 05Jan99 //Returns
 //DeadCode RDH 05Jan99 //
 //DeadCode RDH 05Jan99 //------------------------------------------------------------------------------
 //DeadCode RDH 05Jan99 void	ACMAirStruc::BounceFollower()
 //DeadCode RDH 05Jan99 {
 //DeadCode RDH 05Jan99 //DeadCode RDH 26Mar98 	COORDS3D	target;
-//DeadCode RDH 05Jan99 //DeadCode RDH 26Mar98 
+//DeadCode RDH 05Jan99 //DeadCode RDH 26Mar98
 //DeadCode RDH 05Jan99 //DeadCode RDH 26Mar98 	switch (ai.ManStep)
 //DeadCode RDH 05Jan99 //DeadCode RDH 26Mar98 	{
 //DeadCode RDH 05Jan99 //DeadCode RDH 26Mar98 		case PHASE0:
@@ -8215,24 +8215,24 @@ void	ACMAirStruc::SpinRecovery ()
 //DeadCode RDH 05Jan99 //DeadCode RDH 26Mar98 			target.Z = follower->World.Z;
 //DeadCode RDH 05Jan99 //DeadCode RDH 26Mar98 			TightTurnSub (FT_1000,target);
 //DeadCode RDH 05Jan99 //DeadCode RDH 26Mar98 			break;
-//DeadCode RDH 05Jan99 //DeadCode RDH 26Mar98 
+//DeadCode RDH 05Jan99 //DeadCode RDH 26Mar98
 //DeadCode RDH 05Jan99 //DeadCode RDH 26Mar98 		}
 //DeadCode RDH 05Jan99 //DeadCode RDH 26Mar98 	}
-//DeadCode RDH 05Jan99 
-//DeadCode RDH 05Jan99 
-//DeadCode RDH 05Jan99 
+//DeadCode RDH 05Jan99
+//DeadCode RDH 05Jan99
+//DeadCode RDH 05Jan99
 //DeadCode RDH 05Jan99 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		GainSpeed()
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 10 Sep 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::GainSpeed()
@@ -8278,30 +8278,30 @@ void	ACMAirStruc::GainSpeed()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		LeadUnFriendly
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Fri 15 Mar 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 //DeadCode AMM 21Sep00 void	ACMAirStruc::LeadUnFriendly ()
 //DeadCode AMM 21Sep00 {
 //DeadCode AMM 21Sep00 	ACMMODEL& ACM = *fly.pAcmModel;
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00  	COORDS3D	target;
 //DeadCode AMM 21Sep00  	SLong		t,actualrange;
 //DeadCode AMM 21Sep00  	AirStrucPtr	unfriendly = *ai.unfriendly;
-//DeadCode AMM 21Sep00  
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00  //			target.X = ai.unfriendly->World.X;
 //DeadCode AMM 21Sep00  //			target.Y = ai.unfriendly->World.Y;
 //DeadCode AMM 21Sep00  //			target.Z = ai.unfriendly->World.Z;
 //DeadCode AMM 21Sep00  //			InterceptandRange (&target);
 //DeadCode AMM 21Sep00  			actualrange = Range;
-//DeadCode AMM 21Sep00  
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00  			//clofg velocity
 //DeadCode AMM 21Sep00  			SLong deltax = vel_x - unfriendly->vel_x;
 //DeadCode AMM 21Sep00  			SLong deltay = vel_y - unfriendly->vel_y;
@@ -8318,14 +8318,14 @@ void	ACMAirStruc::GainSpeed()
 //DeadCode AMM 21Sep00  			//when a long way off don't attempt to lead
 //DeadCode AMM 21Sep00  			if (t >20000)
 //DeadCode AMM 21Sep00  			t = 0;
-//DeadCode AMM 21Sep00  
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00  			target.X = ai.unfriendly->World.X + (unfriendly->vel_x * t / 10000);
 //DeadCode AMM 21Sep00  			target.Y = ai.unfriendly->World.Y + (unfriendly->vel_y * t / 10000);
 //DeadCode AMM 21Sep00  			target.Z = ai.unfriendly->World.Z + (unfriendly->vel_z * t / 10000);
 //DeadCode AMM 21Sep00  			InterceptandRange (&target);
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 			TurnFightPhase1(HdgIntercept, TRUE, ANGLES_0Deg, target);
-//DeadCode AMM 21Sep00 
+//DeadCode AMM 21Sep00
 //DeadCode AMM 21Sep00 			Range = actualrange;
 //DeadCode AMM 21Sep00 }
 
@@ -8337,9 +8337,9 @@ void	ACMAirStruc::GainSpeed()
 //
 //Description	Moves to desired heading and pitch for 1 sec to avoid a collision
 //				Then returns to previous unfriendly
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::CollisionAvoidance()
@@ -8390,23 +8390,23 @@ void	ACMAirStruc::CollisionAvoidance()
 
 //DeadCode RDH 05Jan99 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //DeadCode RDH 05Jan99 //Procedure		GatherSpeed
-//DeadCode RDH 05Jan99 //Author		R. Hyde 
+//DeadCode RDH 05Jan99 //Author		R. Hyde
 //DeadCode RDH 05Jan99 //Date			Fri 15 Mar 1996
 //DeadCode RDH 05Jan99 //
-//DeadCode RDH 05Jan99 //Description	
+//DeadCode RDH 05Jan99 //Description
 //DeadCode RDH 05Jan99 //
-//DeadCode RDH 05Jan99 //Inputs		
+//DeadCode RDH 05Jan99 //Inputs
 //DeadCode RDH 05Jan99 //
-//DeadCode RDH 05Jan99 //Returns	
+//DeadCode RDH 05Jan99 //Returns
 //DeadCode RDH 05Jan99 //
 //DeadCode RDH 05Jan99 //------------------------------------------------------------------------------
 //DeadCode RDH 05Jan99 void	ACMAirStruc::GatherSpeed ()
-//DeadCode RDH 05Jan99 
+//DeadCode RDH 05Jan99
 //DeadCode RDH 05Jan99 {
 //DeadCode RDH 05Jan99 	ACMMODEL& ACM = *fly.pAcmModel;
-//DeadCode RDH 05Jan99 
+//DeadCode RDH 05Jan99
 //DeadCode RDH 05Jan99  	COORDS3D	target;
-//DeadCode RDH 05Jan99  
+//DeadCode RDH 05Jan99
 //DeadCode RDH 05Jan99 // 		target.X = ai.unfriendly->World.X;
 //DeadCode RDH 05Jan99  //		target.Y = ai.unfriendly->World.Y;
 //DeadCode RDH 05Jan99  //		target.Z = ai.unfriendly->World.Z;
@@ -8414,26 +8414,26 @@ void	ACMAirStruc::CollisionAvoidance()
 //DeadCode RDH 05Jan99  		ACM.Pitch (ANGLES_340Deg);
 //DeadCode RDH 05Jan99   		MoveToHdg (HdgIntercept);
 //DeadCode RDH 05Jan99 }
-//DeadCode RDH 05Jan99 
+//DeadCode RDH 05Jan99
 
 
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		AllButLdrNotOnCombat
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 11 Nov 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	ACMAirStruc::AllButLdrNotOnCombat ()
 
 {
-	AirStrucPtr		ac,leadac;	
+	AirStrucPtr		ac,leadac;
 	if (formpos == 0)
 	{//leader
 		ac = *this;
@@ -8449,10 +8449,10 @@ Bool	ACMAirStruc::AllButLdrNotOnCombat ()
 			if  (	(ac->movecode==AUTO_COMBAT)
 				&&  (	(ac->ai.manoeuvre != MANOEUVRE_TOPCOVER)
 					&&	(ac->ai.manoeuvre != MANOEUVRE_LOOKROUND)
-					&&	(ac->ai.manoeuvre != MANOEUVRE_DIVEFORHOME)	
+					&&	(ac->ai.manoeuvre != MANOEUVRE_DIVEFORHOME)
 					&&	(ac->ai.manoeuvre != MANOEUVRE_CLIMBFORHOME)
 					&&	(ac->ai.manoeuvre != MANOEUVRE_STRAIGHTDIVE)
-					&&	(ac->ai.manoeuvre != MANOEUVRE_GOHOME )		
+					&&	(ac->ai.manoeuvre != MANOEUVRE_GOHOME )
 					&&	(ac->ai.manoeuvre != MANOEUVRE_WELDEDWINGMAN )		//rdh 25/6/99
 					)
 				&&
@@ -8471,20 +8471,20 @@ Bool	ACMAirStruc::AllButLdrNotOnCombat ()
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		AllOnTopCover
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 19 Aug 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 Bool	ACMAirStruc::AllOnTopCover ()
 
 {
-	AirStrucPtr		ac,leadac;	
+	AirStrucPtr		ac,leadac;
 	if (formpos == 0)
 	{//leader
 		ac = *this;
@@ -8518,14 +8518,14 @@ Bool	ACMAirStruc::AllOnTopCover ()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ClimbAtBestSpeed
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Mon 18 Mar 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::ClimbAtBestSpeed ()
@@ -8536,39 +8536,39 @@ void	ACMAirStruc::ClimbAtBestSpeed ()
 
 //DeadCode RDH 05Jan99 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //DeadCode RDH 05Jan99 //Procedure		TightClimbingTurn
-//DeadCode RDH 05Jan99 //Author		R. Hyde 
+//DeadCode RDH 05Jan99 //Author		R. Hyde
 //DeadCode RDH 05Jan99 //Date			Sat 30 Mar 1996
 //DeadCode RDH 05Jan99 //
-//DeadCode RDH 05Jan99 //Description	
+//DeadCode RDH 05Jan99 //Description
 //DeadCode RDH 05Jan99 //
-//DeadCode RDH 05Jan99 //Inputs		
+//DeadCode RDH 05Jan99 //Inputs
 //DeadCode RDH 05Jan99 //
-//DeadCode RDH 05Jan99 //Returns	
+//DeadCode RDH 05Jan99 //Returns
 //DeadCode RDH 05Jan99 //
 //DeadCode RDH 05Jan99 //------------------------------------------------------------------------------
 //DeadCode RDH 05Jan99 void	ACMAirStruc::TightClimbingTurn (ANGLES desiredpitch)
 //DeadCode RDH 05Jan99 {
-//DeadCode RDH 05Jan99 
+//DeadCode RDH 05Jan99
 //DeadCode RDH 05Jan99 //DeadCode RDH 26Mar98 	SWord	deltapitch;
-//DeadCode RDH 05Jan99 //DeadCode RDH 26Mar98 
+//DeadCode RDH 05Jan99 //DeadCode RDH 26Mar98
 //DeadCode RDH 05Jan99 //DeadCode RDH 26Mar98 		deltapitch = desiredpitch - fly.cpitch;
-//DeadCode RDH 05Jan99 //DeadCode RDH 26Mar98 		PitchIntercept = desiredpitch; 
+//DeadCode RDH 05Jan99 //DeadCode RDH 26Mar98 		PitchIntercept = desiredpitch;
 //DeadCode RDH 05Jan99 //DeadCode RDH 26Mar98 		TightTurnSubSub (deltapitch);
-//DeadCode RDH 05Jan99 
+//DeadCode RDH 05Jan99
 //DeadCode RDH 05Jan99 }
-//DeadCode RDH 05Jan99 
+//DeadCode RDH 05Jan99
 
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		AutoShoot
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Fri 12 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	ACMAirStruc::AutoShoot (Bool manual)
@@ -8589,7 +8589,7 @@ void	ACMAirStruc::AutoShoot (Bool manual)
 	FP range = Distance3D(&World, &trg);
 	int maxrange = WEAPONSRANGE;
 //DeadCode CSB 17Aug00 	if(unf->movecode == AUTO_COMBAT)
-//DeadCode CSB 17Aug00 		maxrange = INSIDEWEAPONSRANGE;	
+//DeadCode CSB 17Aug00 		maxrange = INSIDEWEAPONSRANGE;
 	if(range > maxrange)
 		return;
 
@@ -8626,7 +8626,7 @@ void	ACMAirStruc::AutoShoot (Bool manual)
 	perror = perror * Range / 10431.0;
 
 	if(perror < targsize)
-		FireABullet(128);			
+		FireABullet(128);
 	else
 		if((follower) && (!Math_Lib.rnd(100)))
 			_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_SHOOTHIM, MSG_SHOOTHIM, Follower(), NULL, this));
@@ -8643,25 +8643,25 @@ void	ACMAirStruc::AutoShoot (Bool manual)
 	}
 
 //DeadCode CSB 14Aug00 	COORDS3D bullet = World;
-//DeadCode CSB 14Aug00 	
+//DeadCode CSB 14Aug00
 //DeadCode CSB 14Aug00 	Float sinh, cosh, sinp, cosp;
 //DeadCode CSB 14Aug00 	Math_Lib.high_sin_cos(hdg, sinh, cosh);
 //DeadCode CSB 14Aug00 	Math_Lib.high_sin_cos(pitch, sinp, cosp);
-//DeadCode CSB 14Aug00 
+//DeadCode CSB 14Aug00
 //DeadCode CSB 14Aug00 	bullet.X += (velx + muzvel * cosp * sinh) * dt;
 //DeadCode CSB 14Aug00 	bullet.Y += (vely + muzvel * sinp		) * dt;
 //DeadCode CSB 14Aug00 	bullet.Z += (velz + muzvel * cosp * cosh) * dt;
-//DeadCode CSB 14Aug00 
+//DeadCode CSB 14Aug00
 //DeadCode CSB 14Aug00 	FP range2 =		FP(bullet.X - trg.X) * FP(bullet.X - trg.X)
 //DeadCode CSB 14Aug00 				+	FP(bullet.Y - trg.Y) * FP(bullet.Y - trg.Y)
 //DeadCode CSB 14Aug00 				+	FP(bullet.Z - trg.Z) * FP(bullet.Z - trg.Z);
-//DeadCode CSB 14Aug00 
+//DeadCode CSB 14Aug00
 //DeadCode CSB 14Aug00 	if(range2 < targsize * targsize)
-//DeadCode CSB 14Aug00 		FireABullet(128);			
+//DeadCode CSB 14Aug00 		FireABullet(128);
 //DeadCode CSB 14Aug00 	else
 //DeadCode CSB 14Aug00 		if(follower)
 //DeadCode CSB 14Aug00 			_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_SHOOTHIM, MSG_SHOOTHIM, Follower(), NULL, this));
-//DeadCode CSB 14Aug00 
+//DeadCode CSB 14Aug00
 //DeadCode CSB 14Aug00 PrintVar(40, 10, "Delta %.0f ", FP(FSqrt(range2)));
 //DeadCode CSB 14Aug00 	InterceptandRange(&trg);
 //DeadCode CSB 14Aug00 	FP perror = (SWord(PitchIntercept) - SWord(pitch));
@@ -8677,8 +8677,8 @@ void	ACMAirStruc::AutoShoot (Bool manual)
 //DeadCode CSB 11Aug00 	int TARGETSIZE = FighterRadius;
 //DeadCode CSB 11Aug00 	if(AirStrucPtr(ai.unfriendly)->classtype->aerobaticfactor == AEROBATIC_LOW)
 //DeadCode CSB 11Aug00 		TARGETSIZE = BomberRadius;
-//DeadCode CSB 11Aug00 
-//DeadCode CSB 11Aug00 
+//DeadCode CSB 11Aug00
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 	COORDS3D	target;
 //DeadCode CSB 11Aug00 	Float		time;
 //DeadCode CSB 11Aug00 	SWord	reqdeltahdg,reqdeltahdg_sign;
@@ -8687,86 +8687,86 @@ void	ACMAirStruc::AutoShoot (Bool manual)
 //DeadCode CSB 11Aug00 	UWord	reqdeltapitch_pos;
 //DeadCode CSB 11Aug00 	SWord	reqdeltapitch_sign;
 //DeadCode CSB 11Aug00 	AirStrucPtr	unfriendly = *ai.unfriendly;
-//DeadCode CSB 11Aug00 
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 #ifdef PRINT_AI_DATA
 //DeadCode CSB 11Aug00 PrintString(60, 0, "   +   ");
 //DeadCode CSB 11Aug00 PrintString(60, 1, "-+ o +-");
 //DeadCode CSB 11Aug00 PrintString(60, 2, "   +   ");
 //DeadCode CSB 11Aug00 #endif
-//DeadCode CSB 11Aug00 
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 	target.X = ai.unfriendly->World.X;
 //DeadCode CSB 11Aug00 	target.Y = ai.unfriendly->World.Y;
 //DeadCode CSB 11Aug00 	target.Z = ai.unfriendly->World.Z;
 //DeadCode CSB 11Aug00 	InterceptandRange (&target);
-//DeadCode CSB 11Aug00 
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 	int maxrange = WEAPONSRANGE;
 //DeadCode CSB 11Aug00 	if(unfriendly->movecode == AUTO_COMBAT)
-//DeadCode CSB 11Aug00 		maxrange = INSIDEWEAPONSRANGE;	
+//DeadCode CSB 11Aug00 		maxrange = INSIDEWEAPONSRANGE;
 //DeadCode CSB 11Aug00 	if(Range > maxrange)
 //DeadCode CSB 11Aug00 		return;
-//DeadCode CSB 11Aug00 //DeadCode CSB 11Aug00 	else 
-//DeadCode CSB 11Aug00 //DeadCode CSB 11Aug00 
+//DeadCode CSB 11Aug00 //DeadCode CSB 11Aug00 	else
+//DeadCode CSB 11Aug00 //DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 //DeadCode CSB 11Aug00 		if (ai.unfriendly == Persons2::PlayerGhostAC)
 //DeadCode CSB 11Aug00 //DeadCode CSB 11Aug00 			_Miles.SequenceAudible(MOOD_TENSE);
-//DeadCode CSB 11Aug00 
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 	SWord MAX_FIRING_CONE = (TARGETSIZE * 10430) / Range;
-//DeadCode CSB 11Aug00 		
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 	reqdeltahdg = hdg - HdgIntercept;
 //DeadCode CSB 11Aug00 	Math_Lib.Pos(reqdeltahdg, reqdeltahdg_pos, reqdeltahdg_sign);
 //DeadCode CSB 11Aug00 	if(reqdeltahdg_pos > 2 * MAX_FIRING_CONE)
 //DeadCode CSB 11Aug00 		return;
-//DeadCode CSB 11Aug00 
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 	reqdeltapitch = pitch - PitchIntercept;
 //DeadCode CSB 11Aug00 	Math_Lib.Pos(reqdeltapitch, reqdeltapitch_pos, reqdeltapitch_sign);
 //DeadCode CSB 11Aug00 	if(reqdeltapitch_pos > 2 * MAX_FIRING_CONE)
 //DeadCode CSB 11Aug00 		return;
-//DeadCode CSB 11Aug00 
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 //#ifndef PRINT_AI_DATA
 //DeadCode CSB 11Aug00 //#define PRINT_AI_DATA
 //DeadCode CSB 11Aug00 //#endif
-//DeadCode CSB 11Aug00 
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 #ifdef PRINT_AI_DATA
 //DeadCode CSB 11Aug00 PrintString(60, 0, "*Might*");
 //DeadCode CSB 11Aug00 PrintString(60, 2, "*Fire!*");
 //DeadCode CSB 11Aug00 #endif
-//DeadCode CSB 11Aug00 
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 	SLong vx;
 //DeadCode CSB 11Aug00 	SLong vy;
 //DeadCode CSB 11Aug00 	SLong vz;
-//DeadCode CSB 11Aug00 
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 	CalcLead(*this, *ai.unfriendly,vx,vy,vz, FALSE);
-//DeadCode CSB 11Aug00 
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 	target.X = ai.unfriendly->World.X + vx;
 //DeadCode CSB 11Aug00 	target.Y = ai.unfriendly->World.Y + vy;
 //DeadCode CSB 11Aug00 	target.Z = ai.unfriendly->World.Z + vz;
 //DeadCode CSB 11Aug00 	InterceptandRange (&target);
-//DeadCode CSB 11Aug00 
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 #ifdef PRINT_AI_DATA
 //DeadCode CSB 11Aug00 	PrintVar(0,  3, "T Pitch %.1f ", (FP)(AngleSign(PitchIntercept - pitch) / 182.04) );
 //DeadCode CSB 11Aug00 	PrintVar(0,  4, "T Headg %.1f ", (FP)(AngleSign(HdgIntercept - hdg)  / 182.04) );
 //DeadCode CSB 11Aug00 	PrintVar(0,  5, "T Range %.1f ", (FP)(Range * 0.01) );
 //DeadCode CSB 11Aug00 #endif
-//DeadCode CSB 11Aug00 
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 	reqdeltahdg = hdg - HdgIntercept;
 //DeadCode CSB 11Aug00 	Math_Lib.Pos(reqdeltahdg, reqdeltahdg_pos, reqdeltahdg_sign);
-//DeadCode CSB 11Aug00 
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 	reqdeltapitch = pitch - PitchIntercept;
 //DeadCode CSB 11Aug00 	Math_Lib.Pos(reqdeltapitch, reqdeltapitch_pos, reqdeltapitch_sign);
-//DeadCode CSB 11Aug00 
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 	SWord AngError = reqdeltahdg_pos;
 //DeadCode CSB 11Aug00 	if (reqdeltahdg_pos  < reqdeltapitch_pos)
 //DeadCode CSB 11Aug00 	AngError = reqdeltapitch_pos;
-//DeadCode CSB 11Aug00 	
-//DeadCode CSB 11Aug00 	Float delta = (Range * AngError) / 10431;	//CSB 04/06/99	
+//DeadCode CSB 11Aug00
+//DeadCode CSB 11Aug00 	Float delta = (Range * AngError) / 10431;	//CSB 04/06/99
 //DeadCode CSB 11Aug00 #ifdef PRINT_AI_DATA
 //DeadCode CSB 11Aug00 	PrintVar(0, 7, "T Delta %.2f ", (FP)(delta / 100));
 //DeadCode CSB 11Aug00 #endif
-//DeadCode CSB 11Aug00 
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 	if(delta < TARGETSIZE)
 //DeadCode CSB 11Aug00 	{
 //DeadCode CSB 11Aug00 //#pragma warnmsg("*** AUTOSHOOT DISABLED *** //CSB")
-//DeadCode CSB 11Aug00 		FireABullet(128);			
-//DeadCode CSB 11Aug00 
+//DeadCode CSB 11Aug00 		FireABullet(128);
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 		if (ai.unfriendly == Persons2::PlayerGhostAC)
 //DeadCode CSB 11Aug00 			 _Miles.SequenceAudible(MOOD_DOOMED);
 //DeadCode CSB 11Aug00 #ifdef PRINT_AI_DATA
@@ -8779,24 +8779,24 @@ void	ACMAirStruc::AutoShoot (Bool manual)
 //DeadCode CSB 11Aug00 	{
 //DeadCode CSB 11Aug00 		if (follower)
 //DeadCode CSB 11Aug00 			_Radio.TriggerMsg(MESSAGE_STRUC(SCRIPT_SHOOTHIM, MSG_SHOOTHIM, Follower(), NULL, this));
-//DeadCode CSB 11Aug00 
+//DeadCode CSB 11Aug00
 //DeadCode CSB 11Aug00 		if (ai.unfriendly == Persons2::PlayerGhostAC)
 //DeadCode CSB 11Aug00 			 _Miles.SequenceAudible(MOOD_DESPERATE);
 //DeadCode CSB 11Aug00 	}
-//DeadCode CSB 11Aug00 	
+//DeadCode CSB 11Aug00
 }
 
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		PublicFireABullet
-//Author		Craig Beeston 
+//Author		Craig Beeston
 //Date			Sat 3 Apr 1999
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	AirStruc::PublicFireABullet(SWord delaybetweenbursts, Bool isArmed)
@@ -8805,14 +8805,14 @@ void	AirStruc::PublicFireABullet(SWord delaybetweenbursts, Bool isArmed)
 }
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		FireABullet
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Sat 13 Jul 1996
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	AirStruc::FireABullet(SWord delaybetweenbursts, Bool isArmed)
@@ -8958,7 +8958,7 @@ void	AirStruc::FireABullet(SWord delaybetweenbursts, Bool isArmed)
 		 									ANGLES_0Deg,
 											bullettype,
 											isArmed);	//RJS 27May99
-		 
+
 			//Real number of bullets launched = burst count * faked bullets
 			useweapon->LoadedStores -= classtype->noGuns;	//CSB 20Jun00
 
@@ -8981,9 +8981,9 @@ void	AirStruc::FireABullet(SWord delaybetweenbursts, Bool isArmed)
 //
 //Description	Just Like Fire a Bullet but for rockets
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void	AirStruc::FireARocket(SWord delaybetweenbursts,Bool isArmed)	//RJS 27May99
@@ -9018,7 +9018,7 @@ void	AirStruc::FireARocket(SWord delaybetweenbursts,Bool isArmed)	//RJS 27May99
 		// digadigadiga (alternate fire)
 		for (index = 0; index < 6; index++)						//RJS 16Jun98
 		{
-			weapon = SHAPE.GetWeaponLauncher(this,index,xpos,ypos,zpos,mvel,mdelay,mburst,LT_ROCKET,&theShape);//RDH 31Jul98	//CSB 25/03/99	
+			weapon = SHAPE.GetWeaponLauncher(this,index,xpos,ypos,zpos,mvel,mdelay,mburst,LT_ROCKET,&theShape);//RDH 31Jul98	//CSB 25/03/99
 			if (weapon)
 			{
 				indexlist[indexcnt++] = index;
@@ -9064,11 +9064,11 @@ void	AirStruc::FireARocket(SWord delaybetweenbursts,Bool isArmed)	//RJS 27May99
 			WorldStuff*	worldptr = mobileitem::currworld;
 			Trans_Obj.LaunchRocket( (mobileitem*)this,
 									(ShapeNum)useShape,
-									usexpos, 
+									usexpos,
 									useypos,
-									usezpos,			  
+									usezpos,
 									*worldptr);
-		 	
+
 //DeadCode CSB 25/03/99				Trans_Obj.LaunchManyGunBullets(	(mobileitem* )this,
 //DeadCode CSB 25/03/99			 									usemvel,
 //DeadCode CSB 25/03/99			 									usemburst,				// no bullets//RDH 31Jul98
@@ -9081,10 +9081,10 @@ void	AirStruc::FireARocket(SWord delaybetweenbursts,Bool isArmed)	//RJS 27May99
 //DeadCode CSB 25/03/99			 									usezpos,
 //DeadCode CSB 25/03/99			 									*worldptr,
 //DeadCode CSB 25/03/99			 									ANGLES_0Deg);	//RJS 16Jun98
-		 
+
 			useweapon->LoadedStores--;
 			weap.ShootDelay = usemdelay;
-			
+
 
 			if (this==Persons2::PlayerSeenAC)					//AMM 17Nov98
 			{
@@ -9095,17 +9095,17 @@ void	AirStruc::FireARocket(SWord delaybetweenbursts,Bool isArmed)	//RJS 27May99
 //	weap.ShootDelay = timeleft;
 
 }
-	
+
 //DeadCode RDH 05Jan99 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //DeadCode RDH 05Jan99 //Procedure		TightTurn
-//DeadCode RDH 05Jan99 //Author		R. Hyde 
+//DeadCode RDH 05Jan99 //Author		R. Hyde
 //DeadCode RDH 05Jan99 //Date			Fri 12 Jul 1996
 //DeadCode RDH 05Jan99 //
-//DeadCode RDH 05Jan99 //Description	
+//DeadCode RDH 05Jan99 //Description
 //DeadCode RDH 05Jan99 //
-//DeadCode RDH 05Jan99 //Inputs		
+//DeadCode RDH 05Jan99 //Inputs
 //DeadCode RDH 05Jan99 //
-//DeadCode RDH 05Jan99 //Returns	
+//DeadCode RDH 05Jan99 //Returns
 //DeadCode RDH 05Jan99 //
 //DeadCode RDH 05Jan99 //------------------------------------------------------------------------------
 //DeadCode RDH 05Jan99 void	ACMAirStruc::TightTurn (SLong recovery_alt)
@@ -9117,14 +9117,14 @@ void	AirStruc::FireARocket(SWord delaybetweenbursts,Bool isArmed)	//RJS 27May99
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		ManoeuvreTimeLeft
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 19 Dec 1995
 //
-//Description	
+//Description
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 SWord	ACMAirStruc::ManoeuvreTimeLeft ()
@@ -9137,14 +9137,14 @@ SWord	ACMAirStruc::ManoeuvreTimeLeft ()
 //------------------------------------------------------------------------------
  //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		BreakCallNecessary
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 19 Dec 1995
 //
-//Description	
+//Description
 //					Horrible code to retain the globals
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 bool	ACMAirStruc::WeldedWingSixOK()
@@ -9198,14 +9198,14 @@ bool	ACMAirStruc::WeldedWingSixOK()
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		BreakCallNecessary
-//Author		R. Hyde 
+//Author		R. Hyde
 //Date			Tue 19 Dec 1995
 //
-//Description	
+//Description
 //					Horrible code to retain the globals
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 bool	ACMAirStruc::BreakCallNecessary(AirStrucPtr currac,AirStrucPtr unf, int range)
@@ -9224,7 +9224,7 @@ bool	ACMAirStruc::BreakCallNecessary(AirStrucPtr currac,AirStrucPtr unf, int ran
 
 		Art_Int.InterceptRangeFromTo(currac, unf);
 		range = Range;
-		if (Range < ENGAGERANGE)		//rdh 13/7(DANGERRANGE+ METRES200)) 
+		if (Range < ENGAGERANGE)		//rdh 13/7(DANGERRANGE+ METRES200))
 		{
 			ANGLES delta = HdgIntercept + ANGLES_180Deg + ANGLES_45Deg - currac->hdg;
 			if ((delta) << (ANGLES_90Deg))
@@ -9240,14 +9240,14 @@ bool	ACMAirStruc::BreakCallNecessary(AirStrucPtr currac,AirStrucPtr unf, int ran
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SetFollowerTactic
-//Author		Craig Beeston 
+//Author		Craig Beeston
 //Date			Mon 5 Jul 1999
 //
 //Description	Sets the ai.FirstTactic for the whole group
 //
-//Inputs		
+//Inputs
 //
-//Returns	
+//Returns
 //
 //------------------------------------------------------------------------------
 void AirStruc::SetFollowersTactic(tFirstEncounterTactics TACTIC)

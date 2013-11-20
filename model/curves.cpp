@@ -272,7 +272,7 @@ Curve::Curve (char* aircraftname,
 Curve::~Curve ()
 {
 	if (CurveData != NULL)
-		delete CurveData;
+		delete [] CurveData;
 
 	List.Detach (this);
 

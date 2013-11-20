@@ -270,5 +270,5 @@ typedef struct SFMANL101TAG {
 } SFMANL101API , *PSFMANL101API ;
 
 
-#endif   / * __SFMAN_H */
+#endif   /* __SFMAN_H */
 

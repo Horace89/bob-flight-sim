@@ -1429,7 +1429,7 @@ int		Post3DInfo::Get(info_airgrp* a,Profile& pack,int sqnum,UniqueID route)
 			MMC.thisweekreview.Note(sq->Squadron().AcType(),PeriodReview::DESTROY,numacleft);
 
 			sq->numpilotslost+=numacleft;								//RJS 12Nov00
-			rv=- (int)sq->numacleft;
+			rv=- (int)sq->numacleft; //x0r realy =- here? not the -= ?
 			sq->numacleft=0;
 		}
 	}

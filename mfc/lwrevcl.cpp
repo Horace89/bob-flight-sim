@@ -170,7 +170,7 @@ BOOL LWReviewClaims::OnInitDialog()
 	rlistbox->AddString(CSprintf("%i",totalsorties),4);
 
 
-	for (i = 0; i< 2; i++)
+	for (int i = 0; i< 2; i++)
 	{
 		rlistbox->AddString("",1);
 		rlistbox->AddString("",2);
@@ -183,7 +183,7 @@ BOOL LWReviewClaims::OnInitDialog()
  	int bmbkills = 0;
 
 
-	for (i= 0; i < 2; i++)
+	for (int i= 0; i < 2; i++)
 	{
 		bmbkills = 0;
 		for (int j = 2; j< 6; j++)

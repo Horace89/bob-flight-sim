@@ -185,7 +185,7 @@ private:
 //4725 inaccurate pentium;
 //4201 nameless struct
 //4200 zero-sized array
-#pragma warning( disable : 4097 4510 4610 4725 4201 4200)
+#pragma warning( disable : 4097 4510 4610 4725 4201 4200 4482)
 //4244 math truncation
 //4103 alignment changed!
 //4305 math truncation

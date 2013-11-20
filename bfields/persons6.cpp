@@ -516,7 +516,7 @@ void	EnumCtrl::readenumfromfile(ifstream& f)
 			while (ch!='>' && ch!='"')
 				wordbuff[++i]=ch=f.get();
 			wordbuff[i]=0;
-			ifstream f(wordbuff);
+			ifstream f(wordbuff); //x0r why f again??
 			readenumfromfile(f);
 			continue;
 		}

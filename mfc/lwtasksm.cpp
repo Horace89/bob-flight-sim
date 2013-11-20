@@ -102,7 +102,7 @@ static	struct	Fractional
 {
 	short	toppc;
 	char ratio[6];
-	char*	GetFract(int pc)	{for (int i=0;this[i].toppc<pc;i++);return this[i].ratio;} 
+	char*	GetFract(int pc)	{int i;for ( i=0;this[i].toppc<pc;i++);return this[i].ratio;} 
 }	_Fractionals[]=
 {
 	{5,"  0%"},

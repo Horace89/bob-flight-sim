@@ -160,7 +160,7 @@ BOOL RAFReviewClaims::OnInitDialog()
 	int totalspitkills = 0;
 	int totalhurrkills = 0;
 
-	for (i= 0; i < 3; i++)
+	for (int i= 0; i < 3; i++)
 	{
 		int spitkills = MMC.thisweekreview.raf[0].totalkills[i];
 		int hurrkills = MMC.thisweekreview.raf[1].totalkills[i];

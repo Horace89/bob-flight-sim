@@ -137,8 +137,8 @@ FullScreen RFullPanelDial::endwarreview=
 		},
 	},
 	FullScreen::Align::CENTRE,
-			{{0,&lastdayreview, ExitLastDay}},
-	EndWarInit
+			{{0,&lastdayreview, &RFullPanelDial::ExitLastDay}},
+	&RFullPanelDial::EndWarInit
 #else
 	{	{	FIL_NULL	}	}
 #endif
@@ -208,19 +208,19 @@ FullScreen RFullPanelDial::title=
 	FullScreen::Align(FullScreen::Align::CENTRE+FullScreen::Align::MID),
 	{
 #ifndef	 BOB_DEMO_VER
-		{IDS_QUICKSHOTS,&quickmission,SetQuickState},
+		{IDS_QUICKSHOTS,&quickmission,&RFullPanelDial::SetQuickState},
 		{IDS_CAMPAIGNS,&singleplayer},
-		{IDS_TITLE3,&selectservice,StartComms},
+		{IDS_TITLE3,&selectservice,&RFullPanelDial::StartComms},
 		{IDS_LOADGAME,&loadgame},
-		{IDS_REPLAYTITLE,&replayload,InitReplay},
+		{IDS_REPLAYTITLE,&replayload,&RFullPanelDial::InitReplay},
 		{IDS_MACHINECONFIG,&options3d},
 		{IDS_CONFIGGAME,&flightoptions},
 		{IDS_CREDITSTITLE,&credits},
-		{IDS_TITLE7,NULL,ConfirmExit},
+		{IDS_TITLE7,NULL,&RFullPanelDial::ConfirmExit},
 #ifndef NDEBUG
 		{IDS_HOTSHOT,&quickmissionflight,SetUpHotShot}
 #else
-		{IDS_WEBSITE,NULL,JumpToWebSite}
+		{IDS_WEBSITE,NULL,&RFullPanelDial::JumpToWebSite}
 #endif
 #else
 		{IDS_QUICKSHOTS,&quickmission,&RFullPanelDial::SetQuickState},
@@ -273,9 +273,9 @@ FullScreen RFullPanelDial::loadcommsgame=
 	FullScreen::Align::HORIZ,
 	{
 		{IDS_BACK,&multiplayer},
-		{IDS_LOAD,&readyroomhostcampaign,DoLoadCommsGame}
+		{IDS_LOAD,&readyroomhostcampaign,&RFullPanelDial::DoLoadCommsGame}
 	},
-	SetUpLoadGame
+	&RFullPanelDial::SetUpLoadGame
 };
 
 FullScreen RFullPanelDial::loadgame=
@@ -304,13 +304,13 @@ FullScreen RFullPanelDial::loadgame=
 	},
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_RAF,NULL,SetUpRafLoadGame},
-		{IDS_LUFTWAFFE,NULL,SetUpLWLoadGame},
+		{IDS_RAF,NULL,&RFullPanelDial::SetUpRafLoadGame},
+		{IDS_LUFTWAFFE,NULL,&RFullPanelDial::SetUpLWLoadGame},
 
 		{IDS_BACK,&title},
-		{IDS_LOAD,NULL,DoLoadGame}
+		{IDS_LOAD,NULL,&RFullPanelDial::DoLoadGame}
 	},
-	SetUpLoadGame
+	&RFullPanelDial::SetUpLoadGame
 };
 
 #endif	//#ifndef	 BOB_DEMO_VER
@@ -381,13 +381,13 @@ FullScreen RFullPanelDial::replaysave=
 	{
 //		{IDS_TITLE7,&title},
 //DeadCode  26Sep00 		{IDS_QUICKMISSION1,&quickmissiondebrief,ReplaySaveBack},
-		{IDS_QUICKMISSION1,&quickmission,ReplaySaveBack},
+		{IDS_QUICKMISSION1,&quickmission,&RFullPanelDial::ReplaySaveBack},
 //		{IDS_LOAD,NULL,ReplayLoad},
-		{IDS_SAVE,&replaysave,ReplaySave},
+		{IDS_SAVE,&replaysave,&RFullPanelDial::ReplaySave},
 //		{IDS_VIEW,NULL,ReplayView},
-		{IDS_VIEW,&quickmissionflight,ReplayView},
+		{IDS_VIEW,&quickmissionflight,&RFullPanelDial::ReplayView},
 	},
-	ReplaySaveInit
+	&RFullPanelDial::ReplaySaveInit
 };
 
 FullScreen RFullPanelDial::singleplayer=
@@ -416,11 +416,11 @@ FullScreen RFullPanelDial::singleplayer=
 	},
 	FullScreen::Align::HORIZ,
 	{
-		{0,&campaignselect,SetUpRAF},
-		{0,&campaignselect,SetUpLW},
+		{0,&campaignselect,&RFullPanelDial::SetUpRAF},
+		{0,&campaignselect,&RFullPanelDial::SetUpLW},
 		{0,&title},
 	},
-	SinglePlayerInit
+	&RFullPanelDial::SinglePlayerInit
 };
 
 FullScreen RFullPanelDial::gametype=
@@ -449,11 +449,11 @@ FullScreen RFullPanelDial::gametype=
 	},
 	FullScreen::Align::HORIZ,
 	{
-		{0,&campaignselect,SetUpCommander},
-		{0,&campaignselect,SetUpPilot},
+		{0,&campaignselect,&RFullPanelDial::SetUpCommander},
+		{0,&campaignselect,&RFullPanelDial::SetUpPilot},
 		{0,&title},
 	},
-	GameTypeInit
+	&RFullPanelDial::GameTypeInit
 };
 
 
@@ -491,14 +491,14 @@ FullScreen RFullPanelDial::selectservice=
 	},
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_QUICKMISSION1,&title,CleanUpComms},
+		{IDS_QUICKMISSION1,&title,&RFullPanelDial::CleanUpComms},
 //DeadCode AMM 12Jul98 		{IDS_SELECT,&selectsession},
 //DeadCode AMM 20Jan99 		{IDS_SELECT,&selectsession,GetSessions},
-		{IDS_CREATEGAME,&multiplayer,CreateCommsGame},
-		{IDS_JOINGAME,&selectsession,GetSessions},
+		{IDS_CREATEGAME,&multiplayer,&RFullPanelDial::CreateCommsGame},
+		{IDS_JOINGAME,&selectsession,&RFullPanelDial::GetSessions},
 
 	},
-	SelectServiceInit
+	&RFullPanelDial::SelectServiceInit
 };
 
 FullScreen RFullPanelDial::selectsession=
@@ -535,13 +535,13 @@ FullScreen RFullPanelDial::selectsession=
 	},
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_QUICKMISSION1,&selectservice,ReInitCommsInterface},
+		{IDS_QUICKMISSION1,&selectservice,&RFullPanelDial::ReInitCommsInterface},
 //DeadCode AMM 20Jan99 		{IDS_CREATEGAME,&multiplayer,CreateCommsGame},
 //DeadCode AMM 20Jan99 		{IDS_JOINGAME,&multiplayer,JoinCommsGame},
 //DeadCode AMM 20Jan99 //		{IDS_PREFERENCES9,&selectsession,RefreshSessions},
-		{IDS_SELECT,&multiplayer,JoinCommsGame},
+		{IDS_SELECT,&multiplayer,&RFullPanelDial::JoinCommsGame},
 	},
-	SelectSessionInit
+	&RFullPanelDial::SelectSessionInit
 };
 
 FullScreen RFullPanelDial::multiplayer=
@@ -570,12 +570,12 @@ FullScreen RFullPanelDial::multiplayer=
 	},
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_QUICKMISSION1,&selectsession,LobbyCheck},
-		{IDS_CONTINUE,&readyroomhostmatch,CreatePlayer},
-		{IDS_LOADGAME,&loadcommsgame, LoadCampaign},
+		{IDS_QUICKMISSION1,&selectsession,&RFullPanelDial::LobbyCheck},
+		{IDS_CONTINUE,&readyroomhostmatch,&RFullPanelDial::CreatePlayer},
+		{IDS_LOADGAME,&loadcommsgame, &RFullPanelDial::LoadCampaign},
 //		{IDS_VISITORS,&visitorsbook,VisitorsBook},
 	},
-	LockerRoomInit
+	&RFullPanelDial::LockerRoomInit
 };
 
 FullScreen RFullPanelDial::visitorsbook=
@@ -1366,12 +1366,12 @@ FullScreen RFullPanelDial::commsquick=
 	FullScreen::Align::HORIZ,
 	{
 //DEADCODE AMM 07/03/00 		{IDS_TITLE7,&title,CleanUpComms},
-		{IDS_TITLE7,&title,AllowExitFromComms},
+		{IDS_TITLE7,&title,&RFullPanelDial::AllowExitFromComms},
 //		{IDS_QUICKMISSION1,&multiplayer},
 //DEADCODE RDH 27/01/00 		{IDS_VARIANTS,&variants},
-		{IDS_READYROOM,&readyroomhostmatch, SelectReadyRoom}
+		{IDS_READYROOM,&readyroomhostmatch, &RFullPanelDial::SelectReadyRoom}
 	},
-	QuickMissionInit
+	&RFullPanelDial::QuickMissionInit
 };
 
 #endif	//BOB_DEMO_VER

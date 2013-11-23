@@ -596,7 +596,7 @@ void	COverlay::FindLanguage()
 				strcpy(tmpname,theName);
 
 				tmpname[stringlen-18] = 0;
-
+				{
 				for (int i=stringlen-19; i > 0; i--)
 				{
 					if (	(tmpname[i] == '\\')
@@ -606,7 +606,7 @@ void	COverlay::FindLanguage()
 						break;
 					}
 				}
-
+				}
 				for (int i=0; i < LI_MAX; i++)
 				{
 					if (strcasecmp(lang_name[i],langname)==0)
@@ -8536,10 +8536,12 @@ void COverlay::DoArtHoriz()
 	//apply a/c roll to rotate the ball poly coordinates
 
 	Float ori_x=0,ori_y=0;
+	{
 	for (int i=0;i<4;i++)
 	{
 		ori_x+=dp[i].getPosX();
 		ori_y+=dp[i].getPosY();
+	}
 	}
 	ori_x/=4;
 	ori_y/=4;

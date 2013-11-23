@@ -4,9 +4,7 @@ CFG=RButton - Win32 Debug
 !MESSAGE No configuration specified. Defaulting to RButton - Win32 Debug.
 !ENDIF 
 
-!IF "$(CFG)" != "RButton - Win32 Release" && "$(CFG)" !=\
- "RButton - Win32 Debug" && "$(CFG)" != "RButton - Win32 Unicode Debug" &&\
- "$(CFG)" != "RButton - Win32 Unicode Release"
+!IF "$(CFG)" != "RButton - Win32 Release" && "$(CFG)" != "RButton - Win32 Debug" && "$(CFG)" != "RButton - Win32 Unicode Debug" && "$(CFG)" != "RButton - Win32 Unicode Release"
 !MESSAGE Invalid configuration "$(CFG)" specified.
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
@@ -15,13 +13,10 @@ CFG=RButton - Win32 Debug
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "RButton - Win32 Release" (based on\
- "Win32 (x86) Dynamic-Link Library")
+!MESSAGE "RButton - Win32 Release" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE "RButton - Win32 Debug" (based on "Win32 (x86) Dynamic-Link Library")
-!MESSAGE "RButton - Win32 Unicode Debug" (based on\
- "Win32 (x86) Dynamic-Link Library")
-!MESSAGE "RButton - Win32 Unicode Release" (based on\
- "Win32 (x86) Dynamic-Link Library")
+!MESSAGE "RButton - Win32 Unicode Debug" (based on "Win32 (x86) Dynamic-Link Library")
+!MESSAGE "RButton - Win32 Unicode Release" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE 
 !ERROR An invalid configuration is specified.
 !ENDIF 
@@ -32,39 +27,31 @@ NULL=
 NULL=nul
 !ENDIF 
 
+CPP=cl.exe
+MTL=midl.exe
+RSC=rc.exe
+
 !IF  "$(CFG)" == "RButton - Win32 Release"
 
-OUTDIR=\mig\Release\exe
-INTDIR=\mig\Release\axobj
+OUTDIR=\bob\Release\exe
+INTDIR=\bob\Release\button
 # Begin Custom Macros
-OutDir=\mig\Release\exe
-TargetName=Rbutton
+OutDir=\bob\Release\exe
 # End Custom Macros
 
-!IF "$(RECURSE)" == "0" 
+ALL : "\bob\Release\exe\Rbutton.lic" "$(OUTDIR)\Rbutton.ocx" "\bob\Release\exe\regsvr32.trg"
 
-ALL : "$(OutDir)\$(TargetName).lic" "$(OUTDIR)\Rbutton.ocx"\
- "$(OutDir)\regsvr32.trg"
-
-!ELSE 
-
-ALL : "$(OutDir)\$(TargetName).lic" "$(OUTDIR)\Rbutton.ocx"\
- "$(OutDir)\regsvr32.trg"
-
-!ENDIF 
 
 CLEAN :
-	-@erase "$(INTDIR)\RButton.obj"
+	-@erase "$(INTDIR)\all.obj"
 	-@erase "$(INTDIR)\RButton.res"
-	-@erase "$(INTDIR)\rbuttonc.obj"
-	-@erase "$(INTDIR)\rbuttonp.obj"
-	-@erase "$(INTDIR)\vc50.idb"
+	-@erase "$(INTDIR)\vc60.idb"
 	-@erase "$(OUTDIR)\Rbutton.exp"
 	-@erase "$(OUTDIR)\Rbutton.lib"
 	-@erase "$(OUTDIR)\Rbutton.ocx"
 	-@erase "..\..\Release\exe\RButton.tlb"
-	-@erase "$(OutDir)\$(TargetName).lic"
-	-@erase "$(OutDir)\regsvr32.trg"
+	-@erase "\bob\Release\exe\Rbutton.lic"
+	-@erase "\bob\Release\exe\regsvr32.trg"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
@@ -72,118 +59,63 @@ CLEAN :
 "$(INTDIR)" :
     if not exist "$(INTDIR)/$(NULL)" mkdir "$(INTDIR)"
 
-CPP=cl.exe
-CPP_PROJ=/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D\
- "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /Fp"$(INTDIR)\Rbutton.pch" /Yu"stdafx.h"\
- /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
-CPP_OBJS=\mig\Release\axobj/
-CPP_SBRS=.
-
-.c{$(CPP_OBJS)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(CPP_OBJS)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(CPP_OBJS)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.c{$(CPP_SBRS)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(CPP_SBRS)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(CPP_SBRS)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-MTL=midl.exe
-MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /o NUL /win32 
-RSC=rc.exe
+CPP_PROJ=/nologo /MD /W3 /GX /O2 /I "\bob\src\h" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32 
 RSC_PROJ=/l 0x809 /fo"$(INTDIR)\RButton.res" /d "NDEBUG" /d "_AFXDLL" 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\Rbutton.bsc" 
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=/nologo /subsystem:windows /dll /incremental:no\
- /pdb:"$(OUTDIR)\Rbutton.pdb" /machine:I386 /def:".\RButton.def"\
- /out:"$(OUTDIR)\Rbutton.ocx" /implib:"$(OUTDIR)\Rbutton.lib" 
+LINK32_FLAGS=/nologo /base:"0x10100000" /subsystem:windows /dll /incremental:no /pdb:"$(OUTDIR)\Rbutton.pdb" /machine:I386 /def:".\RButton.def" /out:"$(OUTDIR)\Rbutton.ocx" /implib:"$(OUTDIR)\Rbutton.lib" 
 DEF_FILE= \
 	".\RButton.def"
 LINK32_OBJS= \
-	"$(INTDIR)\RButton.obj" \
-	"$(INTDIR)\RButton.res" \
-	"$(INTDIR)\rbuttonc.obj" \
-	"$(INTDIR)\rbuttonp.obj"
+	"$(INTDIR)\all.obj" \
+	"$(INTDIR)\RButton.res"
 
 "$(OUTDIR)\Rbutton.ocx" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
 
-OutDir=\mig\Release\exe
-TargetPath=\mig\Release\exe\Rbutton.ocx
-InputPath=\mig\Release\exe\Rbutton.ocx
-SOURCE=$(InputPath)
+OutDir=\bob\Release\exe
+TargetPath=\bob\Release\exe\Rbutton.ocx
+InputPath=\bob\Release\exe\Rbutton.ocx
+SOURCE="$(InputPath)"
 
-"$(OutDir)\regsvr32.trg"	 : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+"$(OUTDIR)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	<<tempfile.bat 
+	@echo off 
 	regsvr32 /s /c "$(TargetPath)" 
 	echo regsvr32 exec. time > "$(OutDir)\regsvr32.trg" 
+<< 
 	
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Debug"
 
-OUTDIR=\mig\Debug\exe
-INTDIR=\mig\Debug\axobj
+OUTDIR=\bob\Debug\exe
+INTDIR=\bob\Debug\rbutton
 # Begin Custom Macros
-OutDir=\mig\Debug\exe
-TargetName=Rbutton
+OutDir=\bob\Debug\exe
 # End Custom Macros
 
-!IF "$(RECURSE)" == "0" 
+ALL : "\bob\Debug\exe\Rbutton.lic" "$(OUTDIR)\Rbutton.ocx" "$(OUTDIR)\Rbutton.bsc" "\bob\Debug\exe\regsvr32.trg"
 
-ALL : "$(OutDir)\$(TargetName).lic" "$(OUTDIR)\Rbutton.ocx"\
- "$(OUTDIR)\Rbutton.bsc" "$(OutDir)\regsvr32.trg"
-
-!ELSE 
-
-ALL : "$(OutDir)\$(TargetName).lic" "$(OUTDIR)\Rbutton.ocx"\
- "$(OUTDIR)\Rbutton.bsc" "$(OutDir)\regsvr32.trg"
-
-!ENDIF 
 
 CLEAN :
-	-@erase "$(INTDIR)\RButton.obj"
+	-@erase "$(INTDIR)\all.obj"
+	-@erase "$(INTDIR)\all.sbr"
 	-@erase "$(INTDIR)\RButton.res"
-	-@erase "$(INTDIR)\RButton.sbr"
-	-@erase "$(INTDIR)\rbuttonc.obj"
-	-@erase "$(INTDIR)\rbuttonc.sbr"
-	-@erase "$(INTDIR)\rbuttonp.obj"
-	-@erase "$(INTDIR)\rbuttonp.sbr"
-	-@erase "$(INTDIR)\vc50.idb"
-	-@erase "$(INTDIR)\vc50.pdb"
+	-@erase "$(INTDIR)\vc60.idb"
+	-@erase "$(INTDIR)\vc60.pdb"
 	-@erase "$(OUTDIR)\Rbutton.bsc"
 	-@erase "$(OUTDIR)\Rbutton.exp"
-	-@erase "$(OUTDIR)\Rbutton.ilk"
 	-@erase "$(OUTDIR)\Rbutton.lib"
 	-@erase "$(OUTDIR)\Rbutton.ocx"
-	-@erase "$(OUTDIR)\Rbutton.pdb"
 	-@erase "..\..\Debug\exe\RButton.tlb"
-	-@erase "$(OutDir)\$(TargetName).lic"
-	-@erase "$(OutDir)\regsvr32.trg"
+	-@erase "\bob\Debug\exe\Rbutton.lic"
+	-@erase "\bob\Debug\exe\regsvr32.trg"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
@@ -191,53 +123,13 @@ CLEAN :
 "$(INTDIR)" :
     if not exist "$(INTDIR)/$(NULL)" mkdir "$(INTDIR)"
 
-CPP=cl.exe
-CPP_PROJ=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "\mig\src\h" /D "WIN32" /D\
- "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /FR"$(INTDIR)\\"\
- /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
-CPP_OBJS=\mig\Debug\axobj/
-CPP_SBRS=\mig\Debug\axobj/
-
-.c{$(CPP_OBJS)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(CPP_OBJS)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(CPP_OBJS)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.c{$(CPP_SBRS)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(CPP_SBRS)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(CPP_SBRS)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-MTL=midl.exe
-MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /o NUL /win32 
-RSC=rc.exe
+CPP_PROJ=/nologo /MDd /W3 /GX /ZI /Od /I "\bob\src\h" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32 
 RSC_PROJ=/l 0x809 /fo"$(INTDIR)\RButton.res" /d "_DEBUG" /d "_AFXDLL" 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\Rbutton.bsc" 
 BSC32_SBRS= \
-	"$(INTDIR)\RButton.sbr" \
-	"$(INTDIR)\rbuttonc.sbr" \
-	"$(INTDIR)\rbuttonp.sbr"
+	"$(INTDIR)\all.sbr"
 
 "$(OUTDIR)\Rbutton.bsc" : "$(OUTDIR)" $(BSC32_SBRS)
     $(BSC32) @<<
@@ -245,30 +137,29 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=/nologo /subsystem:windows /dll /incremental:yes\
- /pdb:"$(OUTDIR)\Rbutton.pdb" /debug /machine:I386 /def:".\RButton.def"\
- /out:"$(OUTDIR)\Rbutton.ocx" /implib:"$(OUTDIR)\Rbutton.lib" /pdbtype:sept 
+LINK32_FLAGS=/nologo /base:"0x10100000" /subsystem:windows /dll /pdb:none /debug /machine:I386 /def:".\RButton.def" /out:"$(OUTDIR)\Rbutton.ocx" /implib:"$(OUTDIR)\Rbutton.lib" 
 DEF_FILE= \
 	".\RButton.def"
 LINK32_OBJS= \
-	"$(INTDIR)\RButton.obj" \
-	"$(INTDIR)\RButton.res" \
-	"$(INTDIR)\rbuttonc.obj" \
-	"$(INTDIR)\rbuttonp.obj"
+	"$(INTDIR)\all.obj" \
+	"$(INTDIR)\RButton.res"
 
 "$(OUTDIR)\Rbutton.ocx" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
 
-OutDir=\mig\Debug\exe
-TargetPath=\mig\Debug\exe\Rbutton.ocx
-InputPath=\mig\Debug\exe\Rbutton.ocx
-SOURCE=$(InputPath)
+OutDir=\bob\Debug\exe
+TargetPath=\bob\Debug\exe\Rbutton.ocx
+InputPath=\bob\Debug\exe\Rbutton.ocx
+SOURCE="$(InputPath)"
 
-"$(OutDir)\regsvr32.trg"	 : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+"$(OUTDIR)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	<<tempfile.bat 
+	@echo off 
 	regsvr32 /s /c "$(TargetPath)" 
 	echo regsvr32 exec. time > $(OutDir)\regsvr32.trg 
+<< 
 	
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Debug"
@@ -277,96 +168,54 @@ OUTDIR=.\DebugU
 INTDIR=.\DebugU
 # Begin Custom Macros
 OutDir=.\DebugU
-TargetName=Rbutton
 # End Custom Macros
 
-!IF "$(RECURSE)" == "0" 
+ALL : ".\DebugU\Rbutton.lic" "$(OUTDIR)\Rbutton.ocx" "$(OUTDIR)\RButton.tlb" ".\DebugU\regsvr32.trg"
 
-ALL : "$(OutDir)\$(TargetName).lic" "$(OUTDIR)\Rbutton.ocx"\
- "$(OutDir)\regsvr32.trg"
-
-!ELSE 
-
-ALL : "$(OutDir)\$(TargetName).lic" "$(OUTDIR)\Rbutton.ocx"\
- "$(OutDir)\regsvr32.trg"
-
-!ENDIF 
 
 CLEAN :
+	-@erase "$(INTDIR)\all.obj"
+	-@erase "$(INTDIR)\getfile.obj"
+	-@erase "$(INTDIR)\getresrc.obj"
+	-@erase "$(INTDIR)\Getshadw.obj"
 	-@erase "$(INTDIR)\RButton.obj"
 	-@erase "$(INTDIR)\RButton.res"
 	-@erase "$(INTDIR)\RButton.tlb"
 	-@erase "$(INTDIR)\rbuttonc.obj"
 	-@erase "$(INTDIR)\rbuttonp.obj"
-	-@erase "$(INTDIR)\vc50.idb"
-	-@erase "$(INTDIR)\vc50.pdb"
+	-@erase "$(INTDIR)\vc60.idb"
+	-@erase "$(INTDIR)\vc60.pdb"
 	-@erase "$(OUTDIR)\Rbutton.exp"
 	-@erase "$(OUTDIR)\Rbutton.ilk"
 	-@erase "$(OUTDIR)\Rbutton.lib"
 	-@erase "$(OUTDIR)\Rbutton.ocx"
 	-@erase "$(OUTDIR)\Rbutton.pdb"
-	-@erase "$(OutDir)\$(TargetName).lic"
-	-@erase "$(OutDir)\regsvr32.trg"
+	-@erase ".\DebugU\Rbutton.lic"
+	-@erase ".\DebugU\regsvr32.trg"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP=cl.exe
-CPP_PROJ=/nologo /MDd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS"\
- /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "_UNICODE" /Fp"$(INTDIR)\Rbutton.pch"\
- /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
-CPP_OBJS=.\DebugU/
-CPP_SBRS=.
-
-.c{$(CPP_OBJS)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(CPP_OBJS)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(CPP_OBJS)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.c{$(CPP_SBRS)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(CPP_SBRS)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(CPP_SBRS)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-MTL=midl.exe
-MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /o NUL /win32 
-RSC=rc.exe
+CPP_PROJ=/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "_UNICODE" /Fp"$(INTDIR)\Rbutton.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32 
 RSC_PROJ=/l 0x809 /fo"$(INTDIR)\RButton.res" /d "_DEBUG" /d "_AFXDLL" 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\Rbutton.bsc" 
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=/nologo /subsystem:windows /dll /incremental:yes\
- /pdb:"$(OUTDIR)\Rbutton.pdb" /debug /machine:I386 /def:".\RButton.def"\
- /out:"$(OUTDIR)\Rbutton.ocx" /implib:"$(OUTDIR)\Rbutton.lib" /pdbtype:sept 
+LINK32_FLAGS=/nologo /base:"0x10100000" /subsystem:windows /dll /incremental:yes /pdb:"$(OUTDIR)\Rbutton.pdb" /debug /machine:I386 /def:".\RButton.def" /out:"$(OUTDIR)\Rbutton.ocx" /implib:"$(OUTDIR)\Rbutton.lib" /pdbtype:sept 
 DEF_FILE= \
 	".\RButton.def"
 LINK32_OBJS= \
+	"$(INTDIR)\all.obj" \
+	"$(INTDIR)\getfile.obj" \
+	"$(INTDIR)\getresrc.obj" \
+	"$(INTDIR)\Getshadw.obj" \
 	"$(INTDIR)\RButton.obj" \
-	"$(INTDIR)\RButton.res" \
 	"$(INTDIR)\rbuttonc.obj" \
-	"$(INTDIR)\rbuttonp.obj"
+	"$(INTDIR)\rbuttonp.obj" \
+	"$(INTDIR)\RButton.res"
 
 "$(OUTDIR)\Rbutton.ocx" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -376,11 +225,14 @@ LINK32_OBJS= \
 OutDir=.\DebugU
 TargetPath=.\DebugU\Rbutton.ocx
 InputPath=.\DebugU\Rbutton.ocx
-SOURCE=$(InputPath)
+SOURCE="$(InputPath)"
 
-"$(OutDir)\regsvr32.trg"	 : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+"$(OUTDIR)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	<<tempfile.bat 
+	@echo off 
 	regsvr32 /s /c "$(TargetPath)" 
 	echo regsvr32 exec. time > "$(OutDir)\regsvr32.trg" 
+<< 
 	
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Release"
@@ -389,93 +241,51 @@ OUTDIR=.\ReleaseU
 INTDIR=.\ReleaseU
 # Begin Custom Macros
 OutDir=.\ReleaseU
-TargetName=Rbutton
 # End Custom Macros
 
-!IF "$(RECURSE)" == "0" 
+ALL : ".\ReleaseU\Rbutton.lic" "$(OUTDIR)\Rbutton.ocx" ".\ReleaseU\regsvr32.trg"
 
-ALL : "$(OutDir)\$(TargetName).lic" "$(OUTDIR)\Rbutton.ocx"\
- "$(OutDir)\regsvr32.trg"
-
-!ELSE 
-
-ALL : "$(OutDir)\$(TargetName).lic" "$(OUTDIR)\Rbutton.ocx"\
- "$(OutDir)\regsvr32.trg"
-
-!ENDIF 
 
 CLEAN :
+	-@erase "$(INTDIR)\all.obj"
+	-@erase "$(INTDIR)\getfile.obj"
+	-@erase "$(INTDIR)\getresrc.obj"
+	-@erase "$(INTDIR)\Getshadw.obj"
 	-@erase "$(INTDIR)\RButton.obj"
 	-@erase "$(INTDIR)\RButton.res"
 	-@erase "$(INTDIR)\RButton.tlb"
 	-@erase "$(INTDIR)\rbuttonc.obj"
 	-@erase "$(INTDIR)\rbuttonp.obj"
-	-@erase "$(INTDIR)\vc50.idb"
+	-@erase "$(INTDIR)\vc60.idb"
 	-@erase "$(OUTDIR)\Rbutton.exp"
 	-@erase "$(OUTDIR)\Rbutton.lib"
 	-@erase "$(OUTDIR)\Rbutton.ocx"
-	-@erase "$(OutDir)\$(TargetName).lic"
-	-@erase "$(OutDir)\regsvr32.trg"
+	-@erase ".\ReleaseU\Rbutton.lic"
+	-@erase ".\ReleaseU\regsvr32.trg"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP=cl.exe
-CPP_PROJ=/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D\
- "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "_UNICODE" /Fp"$(INTDIR)\Rbutton.pch"\
- /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
-CPP_OBJS=.\ReleaseU/
-CPP_SBRS=.
-
-.c{$(CPP_OBJS)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(CPP_OBJS)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(CPP_OBJS)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.c{$(CPP_SBRS)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(CPP_SBRS)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(CPP_SBRS)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-MTL=midl.exe
-MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /o NUL /win32 
-RSC=rc.exe
+CPP_PROJ=/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "_UNICODE" /Fp"$(INTDIR)\Rbutton.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32 
 RSC_PROJ=/l 0x809 /fo"$(INTDIR)\RButton.res" /d "NDEBUG" /d "_AFXDLL" 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\Rbutton.bsc" 
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=/nologo /subsystem:windows /dll /incremental:no\
- /pdb:"$(OUTDIR)\Rbutton.pdb" /machine:I386 /def:".\RButton.def"\
- /out:"$(OUTDIR)\Rbutton.ocx" /implib:"$(OUTDIR)\Rbutton.lib" 
+LINK32_FLAGS=/nologo /base:"0x10100000" /subsystem:windows /dll /incremental:no /pdb:"$(OUTDIR)\Rbutton.pdb" /machine:I386 /def:".\RButton.def" /out:"$(OUTDIR)\Rbutton.ocx" /implib:"$(OUTDIR)\Rbutton.lib" 
 DEF_FILE= \
 	".\RButton.def"
 LINK32_OBJS= \
+	"$(INTDIR)\all.obj" \
+	"$(INTDIR)\getfile.obj" \
+	"$(INTDIR)\getresrc.obj" \
+	"$(INTDIR)\Getshadw.obj" \
 	"$(INTDIR)\RButton.obj" \
-	"$(INTDIR)\RButton.res" \
 	"$(INTDIR)\rbuttonc.obj" \
-	"$(INTDIR)\rbuttonp.obj"
+	"$(INTDIR)\rbuttonp.obj" \
+	"$(INTDIR)\RButton.res"
 
 "$(OUTDIR)\Rbutton.ocx" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -485,79 +295,211 @@ LINK32_OBJS= \
 OutDir=.\ReleaseU
 TargetPath=.\ReleaseU\Rbutton.ocx
 InputPath=.\ReleaseU\Rbutton.ocx
-SOURCE=$(InputPath)
+SOURCE="$(InputPath)"
 
-"$(OutDir)\regsvr32.trg"	 : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+"$(OUTDIR)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	<<tempfile.bat 
+	@echo off 
 	regsvr32 /s /c "$(TargetPath)" 
 	echo regsvr32 exec. time > "$(OutDir)\regsvr32.trg" 
+<< 
 	
 
 !ENDIF 
 
+.c{$(INTDIR)}.obj::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
 
-!IF "$(CFG)" == "RButton - Win32 Release" || "$(CFG)" ==\
- "RButton - Win32 Debug" || "$(CFG)" == "RButton - Win32 Unicode Debug" ||\
- "$(CFG)" == "RButton - Win32 Unicode Release"
-SOURCE=.\RButton.cpp
+.cpp{$(INTDIR)}.obj::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cxx{$(INTDIR)}.obj::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.c{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cpp{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cxx{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+
+!IF "$(NO_EXTERNAL_DEPS)" != "1"
+!IF EXISTS("Rbutton.dep")
+!INCLUDE "Rbutton.dep"
+!ELSE 
+!MESSAGE Warning: cannot find "Rbutton.dep"
+!ENDIF 
+!ENDIF 
+
+
+!IF "$(CFG)" == "RButton - Win32 Release" || "$(CFG)" == "RButton - Win32 Debug" || "$(CFG)" == "RButton - Win32 Unicode Debug" || "$(CFG)" == "RButton - Win32 Unicode Release"
+SOURCE=.\all.cpp
 
 !IF  "$(CFG)" == "RButton - Win32 Release"
 
-DEP_CPP_RBUTT=\
-	".\RButton.h"\
-	{$(INCLUDE)}"Dosdefs.h"\
-	{$(INCLUDE)}"Rdialog.h"\
-	{$(INCLUDE)}"Rsheets.h"\
-	{$(INCLUDE)}"Sheetdef.h"\
-	{$(INCLUDE)}"Stdafx.h"\
-	
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "\bob\src\h" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
-"$(INTDIR)\RButton.obj" : $(SOURCE) $(DEP_CPP_RBUTT) "$(INTDIR)"\
- "$(INTDIR)\Rbutton.pch"
+"$(INTDIR)\all.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) @<<
+  $(CPP_SWITCHES) $(SOURCE)
+<<
 
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Debug"
 
-DEP_CPP_RBUTT=\
-	".\RButton.h"\
-	{$(INCLUDE)}"Dosdefs.h"\
-	{$(INCLUDE)}"Rdialog.h"\
-	{$(INCLUDE)}"Rsheets.h"\
-	{$(INCLUDE)}"Sheetdef.h"\
-	{$(INCLUDE)}"Stdafx.h"\
-	
+CPP_SWITCHES=/nologo /MDd /W3 /GX /ZI /Od /I "\bob\src\h" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
-"$(INTDIR)\RButton.obj"	"$(INTDIR)\RButton.sbr" : $(SOURCE) $(DEP_CPP_RBUTT)\
- "$(INTDIR)"
+"$(INTDIR)\all.obj"	"$(INTDIR)\all.sbr" : $(SOURCE) "$(INTDIR)"
+	$(CPP) @<<
+  $(CPP_SWITCHES) $(SOURCE)
+<<
 
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Debug"
 
-DEP_CPP_RBUTT=\
-	".\RButton.h"\
-	{$(INCLUDE)}"Dosdefs.h"\
-	{$(INCLUDE)}"Rdialog.h"\
-	{$(INCLUDE)}"Rsheets.h"\
-	{$(INCLUDE)}"Sheetdef.h"\
-	{$(INCLUDE)}"Stdafx.h"\
-	
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "_UNICODE" /Fp"$(INTDIR)\Rbutton.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
-"$(INTDIR)\RButton.obj" : $(SOURCE) $(DEP_CPP_RBUTT) "$(INTDIR)"\
- "$(INTDIR)\Rbutton.pch"
+"$(INTDIR)\all.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Rbutton.pch"
+	$(CPP) @<<
+  $(CPP_SWITCHES) $(SOURCE)
+<<
 
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Release"
 
-DEP_CPP_RBUTT=\
-	".\RButton.h"\
-	{$(INCLUDE)}"Dosdefs.h"\
-	{$(INCLUDE)}"Rdialog.h"\
-	{$(INCLUDE)}"Rsheets.h"\
-	{$(INCLUDE)}"Sheetdef.h"\
-	{$(INCLUDE)}"Stdafx.h"\
-	
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "_UNICODE" /Fp"$(INTDIR)\Rbutton.pch" /YX"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
-"$(INTDIR)\RButton.obj" : $(SOURCE) $(DEP_CPP_RBUTT) "$(INTDIR)"\
- "$(INTDIR)\Rbutton.pch"
+"$(INTDIR)\all.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) @<<
+  $(CPP_SWITCHES) $(SOURCE)
+<<
+
+
+!ENDIF 
+
+SOURCE=.\getfile.cpp
+
+!IF  "$(CFG)" == "RButton - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "RButton - Win32 Debug"
+
+!ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Debug"
+
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "_UNICODE" /Fp"$(INTDIR)\Rbutton.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+
+"$(INTDIR)\getfile.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Rbutton.pch"
+	$(CPP) @<<
+  $(CPP_SWITCHES) $(SOURCE)
+<<
+
+
+!ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Release"
+
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "_UNICODE" /Fp"$(INTDIR)\Rbutton.pch" /YX"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+
+"$(INTDIR)\getfile.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) @<<
+  $(CPP_SWITCHES) $(SOURCE)
+<<
+
+
+!ENDIF 
+
+SOURCE=..\Mfc\getresrc.cpp
+
+!IF  "$(CFG)" == "RButton - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "RButton - Win32 Debug"
+
+!ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Debug"
+
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "_UNICODE" /Fp"$(INTDIR)\Rbutton.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+
+"$(INTDIR)\getresrc.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Rbutton.pch"
+	$(CPP) @<<
+  $(CPP_SWITCHES) $(SOURCE)
+<<
+
+
+!ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Release"
+
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "_UNICODE" /Fp"$(INTDIR)\Rbutton.pch" /YX"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+
+"$(INTDIR)\getresrc.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) @<<
+  $(CPP_SWITCHES) $(SOURCE)
+<<
+
+
+!ENDIF 
+
+SOURCE=..\Mfc\Getshadw.cpp
+
+!IF  "$(CFG)" == "RButton - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "RButton - Win32 Debug"
+
+!ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Debug"
+
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "_UNICODE" /Fp"$(INTDIR)\Rbutton.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+
+"$(INTDIR)\Getshadw.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Rbutton.pch"
+	$(CPP) @<<
+  $(CPP_SWITCHES) $(SOURCE)
+<<
+
+
+!ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Release"
+
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "_UNICODE" /Fp"$(INTDIR)\Rbutton.pch" /YX"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+
+"$(INTDIR)\Getshadw.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) @<<
+  $(CPP_SWITCHES) $(SOURCE)
+<<
+
+
+!ENDIF 
+
+SOURCE=.\RButton.cpp
+
+!IF  "$(CFG)" == "RButton - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "RButton - Win32 Debug"
+
+!ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Debug"
+
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "_UNICODE" /Fp"$(INTDIR)\Rbutton.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+
+"$(INTDIR)\RButton.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Rbutton.pch"
+	$(CPP) @<<
+  $(CPP_SWITCHES) $(SOURCE)
+<<
+
+
+!ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Release"
+
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "_UNICODE" /Fp"$(INTDIR)\Rbutton.pch" /YX"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+
+"$(INTDIR)\RButton.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) @<<
+  $(CPP_SWITCHES) $(SOURCE)
+<<
 
 
 !ENDIF 
@@ -566,8 +508,7 @@ SOURCE=.\RButton.odl
 
 !IF  "$(CFG)" == "RButton - Win32 Release"
 
-MTL_SWITCHES=/nologo /D "NDEBUG" /tlb "$(OUTDIR)\RButton.tlb" /mktyplib203 /o\
- NUL /win32 
+MTL_SWITCHES=/nologo /D "NDEBUG" /tlb "$(OUTDIR)\RButton.tlb" /mktyplib203 /o "NUL" /win32 
 
 "$(OUTDIR)\RButton.tlb" : $(SOURCE) "$(OUTDIR)"
 	$(MTL) @<<
@@ -577,8 +518,7 @@ MTL_SWITCHES=/nologo /D "NDEBUG" /tlb "$(OUTDIR)\RButton.tlb" /mktyplib203 /o\
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Debug"
 
-MTL_SWITCHES=/nologo /D "_DEBUG" /tlb "$(OUTDIR)\RButton.tlb" /mktyplib203 /o\
- NUL /win32 
+MTL_SWITCHES=/nologo /D "_DEBUG" /tlb "$(OUTDIR)\RButton.tlb" /mktyplib203 /o "NUL" /win32 
 
 "$(OUTDIR)\RButton.tlb" : $(SOURCE) "$(OUTDIR)"
 	$(MTL) @<<
@@ -588,8 +528,7 @@ MTL_SWITCHES=/nologo /D "_DEBUG" /tlb "$(OUTDIR)\RButton.tlb" /mktyplib203 /o\
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Debug"
 
-MTL_SWITCHES=/nologo /D "_DEBUG" /tlb "$(OUTDIR)\RButton.tlb" /mktyplib203 /o\
- NUL /win32 
+MTL_SWITCHES=/nologo /D "_DEBUG" /tlb "$(OUTDIR)\RButton.tlb" /mktyplib203 /o "NUL" /win32 
 
 "$(OUTDIR)\RButton.tlb" : $(SOURCE) "$(OUTDIR)"
 	$(MTL) @<<
@@ -599,8 +538,7 @@ MTL_SWITCHES=/nologo /D "_DEBUG" /tlb "$(OUTDIR)\RButton.tlb" /mktyplib203 /o\
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Release"
 
-MTL_SWITCHES=/nologo /D "NDEBUG" /tlb "$(OUTDIR)\RButton.tlb" /mktyplib203 /o\
- NUL /win32 
+MTL_SWITCHES=/nologo /D "NDEBUG" /tlb "$(OUTDIR)\RButton.tlb" /mktyplib203 /o "NUL" /win32 
 
 "$(OUTDIR)\RButton.tlb" : $(SOURCE) "$(OUTDIR)"
 	$(MTL) @<<
@@ -614,60 +552,30 @@ SOURCE=.\RButton.rc
 
 !IF  "$(CFG)" == "RButton - Win32 Release"
 
-DEP_RSC_RBUTTO=\
-	".\Rbuttonc.bmp"\
-	
-NODEP_RSC_RBUTTO=\
-	"..\..\Release\exe\RButton.tlb"\
-	
 
-"$(INTDIR)\RButton.res" : $(SOURCE) $(DEP_RSC_RBUTTO) "$(INTDIR)"\
- "..\..\Release\exe\RButton.tlb"
-	$(RSC) /l 0x809 /fo"$(INTDIR)\RButton.res" /i "\mig\Release\exe" /d "NDEBUG"\
- /d "_AFXDLL" $(SOURCE)
+"$(INTDIR)\RButton.res" : $(SOURCE) "$(INTDIR)" "..\..\Release\exe\RButton.tlb"
+	$(RSC) /l 0x809 /fo"$(INTDIR)\RButton.res" /i "\bob\Release\exe" /d "NDEBUG" /d "_AFXDLL" $(SOURCE)
 
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Debug"
 
-DEP_RSC_RBUTTO=\
-	"..\..\Debug\exe\RButton.tlb"\
-	".\Rbuttonc.bmp"\
-	
 
-"$(INTDIR)\RButton.res" : $(SOURCE) $(DEP_RSC_RBUTTO) "$(INTDIR)"\
- "..\..\Debug\exe\RButton.tlb"
-	$(RSC) /l 0x809 /fo"$(INTDIR)\RButton.res" /i "\mig\Debug\exe" /d "_DEBUG" /d\
- "_AFXDLL" $(SOURCE)
+"$(INTDIR)\RButton.res" : $(SOURCE) "$(INTDIR)" "..\..\Debug\exe\RButton.tlb"
+	$(RSC) /l 0x809 /fo"$(INTDIR)\RButton.res" /i "\bob\Debug\exe" /d "_DEBUG" /d "_AFXDLL" $(SOURCE)
 
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Debug"
 
-DEP_RSC_RBUTTO=\
-	".\Rbuttonc.bmp"\
-	
-NODEP_RSC_RBUTTO=\
-	".\DebugU\RButton.tlb"\
-	
 
-"$(INTDIR)\RButton.res" : $(SOURCE) $(DEP_RSC_RBUTTO) "$(INTDIR)"\
- "$(INTDIR)\RButton.tlb"
-	$(RSC) /l 0x809 /fo"$(INTDIR)\RButton.res" /i "DebugU" /d "_DEBUG" /d\
- "_AFXDLL" $(SOURCE)
+"$(INTDIR)\RButton.res" : $(SOURCE) "$(INTDIR)"
+	$(RSC) /l 0x809 /fo"$(INTDIR)\RButton.res" /i "DebugU" /d "_DEBUG" /d "_AFXDLL" $(SOURCE)
 
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Release"
 
-DEP_RSC_RBUTTO=\
-	".\Rbuttonc.bmp"\
-	
-NODEP_RSC_RBUTTO=\
-	".\ReleaseU\RButton.tlb"\
-	
 
-"$(INTDIR)\RButton.res" : $(SOURCE) $(DEP_RSC_RBUTTO) "$(INTDIR)"\
- "$(INTDIR)\RButton.tlb"
-	$(RSC) /l 0x809 /fo"$(INTDIR)\RButton.res" /i "ReleaseU" /d "NDEBUG" /d\
- "_AFXDLL" $(SOURCE)
+"$(INTDIR)\RButton.res" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\RButton.tlb"
+	$(RSC) /l 0x809 /fo"$(INTDIR)\RButton.res" /i "ReleaseU" /d "NDEBUG" /d "_AFXDLL" $(SOURCE)
 
 
 !ENDIF 
@@ -676,70 +584,26 @@ SOURCE=.\rbuttonc.cpp
 
 !IF  "$(CFG)" == "RButton - Win32 Release"
 
-DEP_CPP_RBUTTON=\
-	".\RButton.h"\
-	".\rbuttonc.h"\
-	".\rbuttonp.h"\
-	{$(INCLUDE)}"Dosdefs.h"\
-	{$(INCLUDE)}"Rdialog.h"\
-	{$(INCLUDE)}"Rsheets.h"\
-	{$(INCLUDE)}"Sheetdef.h"\
-	{$(INCLUDE)}"Stdafx.h"\
-	
-
-"$(INTDIR)\rbuttonc.obj" : $(SOURCE) $(DEP_CPP_RBUTTON) "$(INTDIR)"\
- "$(INTDIR)\Rbutton.pch"
-
-
 !ELSEIF  "$(CFG)" == "RButton - Win32 Debug"
-
-DEP_CPP_RBUTTON=\
-	".\RButton.h"\
-	".\rbuttonc.h"\
-	".\rbuttonp.h"\
-	{$(INCLUDE)}"Dosdefs.h"\
-	{$(INCLUDE)}"Rdialog.h"\
-	{$(INCLUDE)}"Rsheets.h"\
-	{$(INCLUDE)}"Sheetdef.h"\
-	{$(INCLUDE)}"Stdafx.h"\
-	
-
-"$(INTDIR)\rbuttonc.obj"	"$(INTDIR)\rbuttonc.sbr" : $(SOURCE)\
- $(DEP_CPP_RBUTTON) "$(INTDIR)"
-
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Debug"
 
-DEP_CPP_RBUTTON=\
-	".\RButton.h"\
-	".\rbuttonc.h"\
-	".\rbuttonp.h"\
-	{$(INCLUDE)}"Dosdefs.h"\
-	{$(INCLUDE)}"Rdialog.h"\
-	{$(INCLUDE)}"Rsheets.h"\
-	{$(INCLUDE)}"Sheetdef.h"\
-	{$(INCLUDE)}"Stdafx.h"\
-	
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "_UNICODE" /Fp"$(INTDIR)\Rbutton.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
-"$(INTDIR)\rbuttonc.obj" : $(SOURCE) $(DEP_CPP_RBUTTON) "$(INTDIR)"\
- "$(INTDIR)\Rbutton.pch"
+"$(INTDIR)\rbuttonc.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Rbutton.pch"
+	$(CPP) @<<
+  $(CPP_SWITCHES) $(SOURCE)
+<<
 
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Release"
 
-DEP_CPP_RBUTTON=\
-	".\RButton.h"\
-	".\rbuttonc.h"\
-	".\rbuttonp.h"\
-	{$(INCLUDE)}"Dosdefs.h"\
-	{$(INCLUDE)}"Rdialog.h"\
-	{$(INCLUDE)}"Rsheets.h"\
-	{$(INCLUDE)}"Sheetdef.h"\
-	{$(INCLUDE)}"Stdafx.h"\
-	
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "_UNICODE" /Fp"$(INTDIR)\Rbutton.pch" /YX"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
-"$(INTDIR)\rbuttonc.obj" : $(SOURCE) $(DEP_CPP_RBUTTON) "$(INTDIR)"\
- "$(INTDIR)\Rbutton.pch"
+"$(INTDIR)\rbuttonc.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) @<<
+  $(CPP_SWITCHES) $(SOURCE)
+<<
 
 
 !ENDIF 
@@ -748,66 +612,26 @@ SOURCE=.\rbuttonp.cpp
 
 !IF  "$(CFG)" == "RButton - Win32 Release"
 
-DEP_CPP_RBUTTONP=\
-	".\RButton.h"\
-	".\rbuttonp.h"\
-	{$(INCLUDE)}"Dosdefs.h"\
-	{$(INCLUDE)}"Rdialog.h"\
-	{$(INCLUDE)}"Rsheets.h"\
-	{$(INCLUDE)}"Sheetdef.h"\
-	{$(INCLUDE)}"Stdafx.h"\
-	
-
-"$(INTDIR)\rbuttonp.obj" : $(SOURCE) $(DEP_CPP_RBUTTONP) "$(INTDIR)"\
- "$(INTDIR)\Rbutton.pch"
-
-
 !ELSEIF  "$(CFG)" == "RButton - Win32 Debug"
-
-DEP_CPP_RBUTTONP=\
-	".\RButton.h"\
-	".\rbuttonp.h"\
-	{$(INCLUDE)}"Dosdefs.h"\
-	{$(INCLUDE)}"Rdialog.h"\
-	{$(INCLUDE)}"Rsheets.h"\
-	{$(INCLUDE)}"Sheetdef.h"\
-	{$(INCLUDE)}"Stdafx.h"\
-	
-
-"$(INTDIR)\rbuttonp.obj"	"$(INTDIR)\rbuttonp.sbr" : $(SOURCE)\
- $(DEP_CPP_RBUTTONP) "$(INTDIR)"
-
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Debug"
 
-DEP_CPP_RBUTTONP=\
-	".\RButton.h"\
-	".\rbuttonp.h"\
-	{$(INCLUDE)}"Dosdefs.h"\
-	{$(INCLUDE)}"Rdialog.h"\
-	{$(INCLUDE)}"Rsheets.h"\
-	{$(INCLUDE)}"Sheetdef.h"\
-	{$(INCLUDE)}"Stdafx.h"\
-	
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "_UNICODE" /Fp"$(INTDIR)\Rbutton.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
-"$(INTDIR)\rbuttonp.obj" : $(SOURCE) $(DEP_CPP_RBUTTONP) "$(INTDIR)"\
- "$(INTDIR)\Rbutton.pch"
+"$(INTDIR)\rbuttonp.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Rbutton.pch"
+	$(CPP) @<<
+  $(CPP_SWITCHES) $(SOURCE)
+<<
 
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Release"
 
-DEP_CPP_RBUTTONP=\
-	".\RButton.h"\
-	".\rbuttonp.h"\
-	{$(INCLUDE)}"Dosdefs.h"\
-	{$(INCLUDE)}"Rdialog.h"\
-	{$(INCLUDE)}"Rsheets.h"\
-	{$(INCLUDE)}"Sheetdef.h"\
-	{$(INCLUDE)}"Stdafx.h"\
-	
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "_UNICODE" /Fp"$(INTDIR)\Rbutton.pch" /YX"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
-"$(INTDIR)\rbuttonp.obj" : $(SOURCE) $(DEP_CPP_RBUTTONP) "$(INTDIR)"\
- "$(INTDIR)\Rbutton.pch"
+"$(INTDIR)\rbuttonp.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) @<<
+  $(CPP_SWITCHES) $(SOURCE)
+<<
 
 
 !ENDIF 
@@ -816,23 +640,31 @@ SOURCE=.\RButton.lic
 
 !IF  "$(CFG)" == "RButton - Win32 Release"
 
-OutDir=\mig\Release\exe
+OutDir=\bob\Release\exe
 ProjDir=.
 TargetName=Rbutton
 InputPath=.\RButton.lic
 
-"$(OutDir)\$(TargetName).lic"	 : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+"..\..\Release\exe\Rbutton.lic" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	<<tempfile.bat 
+	@echo off 
 	copy "$(ProjDir)\$(TargetName).lic" "$(OutDir)"
+<< 
+	
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Debug"
 
-OutDir=\mig\Debug\exe
+OutDir=\bob\Debug\exe
 ProjDir=.
 TargetName=Rbutton
 InputPath=.\RButton.lic
 
-"$(OutDir)\$(TargetName).lic"	 : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+"..\..\Debug\exe\Rbutton.lic" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	<<tempfile.bat 
+	@echo off 
 	copy "$(ProjDir)\$(TargetName).lic" "$(OutDir)"
+<< 
+	
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Debug"
 
@@ -841,8 +673,12 @@ ProjDir=.
 TargetName=Rbutton
 InputPath=.\RButton.lic
 
-"$(OutDir)\$(TargetName).lic"	 : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+"$(INTDIR)\Rbutton.lic" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	<<tempfile.bat 
+	@echo off 
 	copy "$(ProjDir)\$(TargetName).lic" "$(OutDir)"
+<< 
+	
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Release"
 
@@ -851,8 +687,12 @@ ProjDir=.
 TargetName=Rbutton
 InputPath=.\RButton.lic
 
-"$(OutDir)\$(TargetName).lic"	 : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+"$(INTDIR)\Rbutton.lic" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	<<tempfile.bat 
+	@echo off 
 	copy "$(ProjDir)\$(TargetName).lic" "$(OutDir)"
+<< 
+	
 
 !ENDIF 
 

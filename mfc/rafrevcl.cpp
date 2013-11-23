@@ -150,12 +150,13 @@ BOOL RAFReviewClaims::OnInitDialog()
 	int totalsorties = MMC.thisweekreview.raf[0].sorties+ MMC.thisweekreview.raf[1].sorties;
 	rlistbox->AddString(CSprintf("%i",totalsorties),3);
 
-
+	{
 	for (int i = 0; i< 2; i++)
 	{
 		rlistbox->AddString("",1);
 		rlistbox->AddString("",2);
 		rlistbox->AddString("",3);
+	}
 	}
 	int totalspitkills = 0;
 	int totalhurrkills = 0;

@@ -152,7 +152,7 @@
 extern "C" {
 #endif  // #ifdef __cplusplus
 
-#if (_MSC_VER >= 1000) && !defined(__midl) && defined(_PREFAST_)
+#if !defined(__midl) && defined(_PREFAST_)
 
 
 // [in]

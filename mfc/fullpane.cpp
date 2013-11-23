@@ -284,7 +284,7 @@ Bool RFullPanelDial::QuickViewInit()
 	int initind=0;
 
 
-
+	{
 	for (int wave=0;wave<8;wave++)
 		for (int grp=0;grp<3;grp++)
 //DeadCode AMM 10Aug00 			if (CSQuick1::quickdef.line[0][wave][grp].flights)
@@ -294,7 +294,7 @@ Bool RFullPanelDial::QuickViewInit()
 				ilun[initind][1]=grp;
 				initind++;
 			}
-
+	}
 
 	int	ilch[8][2]={{0}};
 	int initindch=0;

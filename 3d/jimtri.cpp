@@ -489,8 +489,10 @@ int genTri2(UByte pntCnt,PntDef* pntArray,UByte* orgPolyDesc,UByte*& tL)
 	{
 	UByte* src=orgPolyDesc;
 	UByte* trg=localpoly;
+	{
 	for (int i=pntCnt;--i>=0;)
 		*trg++=*src++;
+	}
 	src=orgPolyDesc;
 	for (int i=pntCnt;--i>=0;)
 		*trg++=*src++;

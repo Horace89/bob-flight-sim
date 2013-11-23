@@ -2613,16 +2613,17 @@ void LandScape::ScrollTileGrid(SLong dx,SLong dz)
 //DeadCode JON 18Jul00 		dz--;
 		TileElement* ptmp=tileCacheGrid;
 		TileElement* ptmp2=tileCacheGrid;
-
+		{
 		for ( int i = wholeAreaSize;i;i--,ptmp2++ )
 		{
 			if ( ptmp2->textHandle!=HTEXTNULL )
 				g_lpLib3d->FreeLandscapeTexture( ptmp2->textHandle.textureHandle );
 		}
-
+		}
+		{
 		for (int i = ((wholeAreaSize-1)*wholeAreaSize);i;i--,ptmp++,ptmp2++ )
 			*ptmp=*ptmp2;
-
+		}
 		for (int i = wholeAreaSize;i;i--,ptmp++ )
 			ptmp->reset();
 		dz--;
@@ -2632,11 +2633,15 @@ void LandScape::ScrollTileGrid(SLong dx,SLong dz)
 	{
 		//scroll data down (north) 'cos we're moving south
 		TileElement* ptmp=tileCacheGrid+GRID_SIZE-1,*ptmp2=ptmp-wholeAreaSize;
+		{
 		for (SLong r=wholeAreaSize-1;r>=0;r--)	
 			if (ptmp[-r].textHandle!=HTEXTNULL)
 				g_lpLib3d->FreeLandscapeTexture( ptmp[-r].textHandle.textureHandle );
+		}
+		{
 		for (SLong r=GRID_SIZE-wholeAreaSize;r--;)
 			*ptmp--=*ptmp2--;
+		}
 		for (SLong r=wholeAreaSize;r--;ptmp--)
 			ptmp->reset();
 		dz++;
@@ -4215,7 +4220,7 @@ bool LandScape::FillDataGrid(SLong ox,SLong oz)
 	TileElement* cTile = tileCacheGrid;
 
 	SLong wholeAreaSize=_wholeAreaSizeMIN;
-
+	{
 	for (int row=0;row<wholeAreaSize;row++)
 	{
 		ix=ox;
@@ -4252,7 +4257,7 @@ bool LandScape::FillDataGrid(SLong ox,SLong oz)
 		}
 		oz+=_blockWidth;
 	}
-
+	}
 	dataBlock=pDataBlocks;
 	for (int row=wholeAreaSize*wholeAreaSize;row>0;row--)
 	{
@@ -10565,8 +10570,10 @@ void LandScape::DoubleRez(UWord *oriPts,UWord scale,UWord*& newPts)
 {
 	if (!newPts) newPts=new UWord[TILE_WH*TILE_WH];
 	Zoom00(oriPts,newPts,scale);
+	{
 	for (int i=2;i<TILE_WH-1;i+=2)
 		Zoom01(oriPts+(i>>1),newPts+i,scale);
+	}
 	for (int i=2;i<TILE_WH-1;i+=2)
 	{
 		Zoom02(oriPts+(i>>1)*TILE_WH,newPts+i*TILE_WH,scale);

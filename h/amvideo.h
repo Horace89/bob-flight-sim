@@ -51,6 +51,8 @@ typedef LONGLONG REFERENCE_TIME;
 #undef INTERFACE
 #define INTERFACE IDirectDrawVideo
 
+#include <sal.h>
+
 DECLARE_INTERFACE_(IDirectDrawVideo, IUnknown)
 {
     // IUnknown methods

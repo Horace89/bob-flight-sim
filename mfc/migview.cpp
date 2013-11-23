@@ -1737,6 +1737,7 @@ void CMIGView::PlotAirfields(CDC* pDC)
 	CPen pen (PS_SOLID,1,RGB(255,255,255));
 	CPen* oldpen=pDC->SelectObject(&pen);
 	UByte	pr=100,pg=0,pb=0;
+	{
 	for (int i=0;Node_Data.sectorlist[i].uid;i++)
 	{
 		CPen pen2 (PS_SOLID,1,RGB(pr,pg,pb));
@@ -1758,7 +1759,7 @@ void CMIGView::PlotAirfields(CDC* pDC)
 		}
 		pDC->SelectObject(&pen);
 	}
-
+	}
 	for (int i=1;Node_Data.gruppe[i].squadron;i++)
 	{
 		CPen pen2 (PS_SOLID,1,RGB(pr,pg,pb));

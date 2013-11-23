@@ -125,8 +125,10 @@ BOOL CCommsDeathMatchAc::OnInitDialog()
 	
 	if	(_DPlay.GameType == DPlay::DEATHMATCH)
 	{
+		{
 		for (char i = 0; i < PT_BRIT_NONFLY;i++)
 			combo->AddString(RESLIST(SPIT_A,i));
+		}
 		for (char i = PT_GER_FLYABLE; i < PT_GER_NONFLY;i++)
 			combo->AddString(RESLIST(SPIT_A,i));
 

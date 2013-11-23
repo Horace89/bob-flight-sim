@@ -441,10 +441,12 @@ void	PackageList::SaveBin(Profile* profile,BOStream&file)
 
 	int	targets[10];
 	int	subtargets[10];
+	{
 	for (int i=1;i<10;i++)
 	{
 		targets[i]=Reorder(profile->packagetarget[i].SGT);
 		subtargets[i]=profile->packagetarget[i].band+profile->packagetarget[i].bandoff;
+	}
 	}
 	file<<CSprintf(line2out,
 		targets[1],subtargets[1],	targets[2],subtargets[2],
@@ -456,6 +458,7 @@ void	PackageList::SaveBin(Profile* profile,BOStream&file)
 
 //DeadCode JIM 20Oct00 	int loopcount=0;	//increase for any fixed fields....
 	int maxsq=profile->squadlist;
+	{
 	for (int i=0;i<maxsq;i++)
 	{
 		Profile::Squad squadbuff=profile->squadlist[i];					//JIM 29Oct00
@@ -500,10 +503,12 @@ void	PackageList::SaveBin(Profile* profile,BOStream&file)
 //DeadCode CRAIG 30Oct100 				);
 //DeadCode CRAIG 30Oct100
 	}
+	}
 	if (maxsq==1)
 	{
 		file<<CSprintf(lollyout,profile->squadlist.AcBitsFirstSquad());
 	}
+	{
 	for (int i=0;i<numraids;i++)
 	{
 		file<<"Rd: ";
@@ -532,6 +537,7 @@ void	PackageList::SaveBin(Profile* profile,BOStream&file)
 //DeadCode CRAIG 30Oct100 		profile->raidnumentries[i].prevpositions[1].X,profile->raidnumentries[i].prevpositions[1].Y,profile->raidnumentries[i].prevpositions[1].Z,
 //DeadCode CRAIG 30Oct100 		profile->raidnumentries[i].prevpositions[2].X,profile->raidnumentries[i].prevpositions[2].Y,profile->raidnumentries[i].prevpositions[2].Z,
 //DeadCode CRAIG 30Oct100 		profile->raidnumentries[i].prevpositions[3].X,profile->raidnumentries[i].prevpositions[3].Y,profile->raidnumentries[i].prevpositions[3].Z);
+	}
 	}
 	file<<C 26 <<C 0;
 	if (profile->wpsused)

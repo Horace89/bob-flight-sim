@@ -965,7 +965,7 @@ INSTANCEAI(CallBreak, ItemPtr)
 
 	if(breaker)
 		return(false);
-
+	{
 	for(AirStrucPtr nf = caller->FindFormpos0(); (nf) && (!breaker); nf = nf->fly.nextflight)
 		for(AirStrucPtr f = nf; (f) && (!breaker); f = f->Follower())
 			if(		(f != caller)
@@ -979,7 +979,7 @@ INSTANCEAI(CallBreak, ItemPtr)
 						+ FP(f->ai.attacker->vel_y) * FP(f->World.Y - f->ai.attacker->World.Y)
 						+ FP(f->ai.attacker->vel_z) * FP(f->World.Z - f->ai.attacker->World.Z) > 0)	)
 				breaker = f;
-
+	}
 	if(breaker)
 	{
 		caller->BreakCallReaction(breaker, breaker->ai.attacker);
@@ -1719,11 +1719,11 @@ WayPointPtr WayPoint::FindWP(WPNames name)
 {
 	if((!this) || (wpname == name))
 		return(this);
-
+	{
 	for(WayPointPtr newwp = this; newwp; newwp = newwp->next)
 		if(newwp->wpname == name)
 			return(newwp);
-
+	}
 	for(WayPointPtr newwp = this; newwp; newwp = newwp->prev)
 		if(newwp->wpname == name)
 			return(newwp);

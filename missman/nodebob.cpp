@@ -6351,8 +6351,10 @@ CON		NodeData::NodeData()
 
 void	NodeData::ClearTargetTable()
 {
+	{
 	for (int i=0;i<SUBTABLESIZE;i++)
 		delete[] TargetPointers[i];
+	}
 	for (int i=0;i<SUBTABLESIZE;i++)
 		TargetPointers[i]=NULL;
 }

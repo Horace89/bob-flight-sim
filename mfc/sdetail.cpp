@@ -203,11 +203,13 @@ BOOL CSDetail::OnInitDialog()
 	combo=GETDLGITEM(IDC_CBO_DISPLAYDRIVERS);
 
 	selected = 0;
+	{
 	for (int i=0;i<uiDrivers.numDrivers;i++)
 	{
 		if (uiDrivers.driver[i].hDriver==Save_Data.hDriver)
 			selected=i;
 		combo->AddString((LPCTSTR)uiDrivers.driver[i].name);
+	}
 	}
 	combo->SetIndex(selected);
 

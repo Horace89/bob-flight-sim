@@ -151,9 +151,11 @@ BOOL LWReviewClaims::OnInitDialog()
 
 	int totalsorties = 0;
 	int totalbmbsorties = 0;
+	{
 	for (int i = 2; i< 6; i++)
 	{
 		totalbmbsorties += MMC.thisweekreview.lw[i].sorties;
+	}
 	}
 
 	//bombers
@@ -169,13 +171,14 @@ BOOL LWReviewClaims::OnInitDialog()
 
 	rlistbox->AddString(CSprintf("%i",totalsorties),4);
 
-
+	{
 	for (int i = 0; i< 2; i++)
 	{
 		rlistbox->AddString("",1);
 		rlistbox->AddString("",2);
 		rlistbox->AddString("",3);
 		rlistbox->AddString("",4);
+	}
 	}
 	int totalme109kills = 0;
 	int totalme110kills = 0;

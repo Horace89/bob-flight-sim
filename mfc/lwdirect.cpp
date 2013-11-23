@@ -1475,7 +1475,7 @@ int	LWDirectivesResults::FillOneDirectivesLine(LWDirectivesResults* dr,int i, in
 	bool me110bombing = false;
 	Profile::BetterRule br = Profile::BR_NONE;
     int actype;
-	for (int actype = PT_JU87; actype < PT_VEHICLES;actype++)
+	for ( actype = PT_JU87; actype < PT_VEHICLES;actype++)
 	{
 		gr = dr->tempdir.targetlines[i][actype]* dr->LWGrAvail[actype -  PT_GER_FLYABLE]+truncingfix;
 		if (gr >= 1.0)

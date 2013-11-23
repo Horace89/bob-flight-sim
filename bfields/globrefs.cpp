@@ -260,14 +260,17 @@ void	Persons2::ResetGlobrefPackVars()	//After FindNextBf
 }
 void	Persons2::ClearGlobrefStaticVars()	//InitSetPiece
 {
+	{
 	for (int i=SGR_WPP_TakeOff;i<=SGR_WPP_Msg9;i++)
 		Persons2::SetLoc(i,0);
+	}
 	for (int i=E_first_Static;i<E_static_END;i++)
 		names[i]=0;
 
 }
 void	Persons2::ClearGlobrefGlobalVars()	//When safe generally
 {
+	{
 	for (int i=0;i<8;i++)
 	{
 		GR_Scram_Alt[i]=0,
@@ -275,10 +278,15 @@ void	Persons2::ClearGlobrefGlobalVars()	//When safe generally
 		GR_Scram_Skill[i]=0,
 		GR_Scram_Squad[i]=0;
 	}
+	}
+	{
 	for (int i=0;i<MAX_PACK_TARG;i++)
 		GR_Pack_Target[i]=0;
+	}
+	{
 	for (int i=0;i<=PT_GER_NONFLY;i++)
 		GR_Pack_Sq_Used[i]=0;
+	}
 	for (int i=E_first_Global;i<E_global_END;i++)
 		names[i]=0;
 }

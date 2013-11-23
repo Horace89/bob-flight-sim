@@ -394,8 +394,10 @@ bool	FormationItem::PlayerSequenceAudible(FileNum f)
 //------------------------------------------------------------------------------
 void	ArtInt::CleanUp()
 {
+	{
 	for (int i=0;i<ACARRAYSIZE;i++)
 		ACArray[i]=NULL;
+	}
 	gunstimer=0;
 	exittimer=0;
 
@@ -2017,9 +2019,11 @@ void ArtInt::MakeMemberList(AirStrucPtr ac)
 			}
 
 	bool slotsavailable = false;
+	{
 	for(SWord i = 0; (i < MEMBERLISTSIZE) && (!slotsavailable); i++)
 		if(Dist2List[i] != 0)
 			slotsavailable = true;
+	}
 
 	if(slotsavailable)
 	{
@@ -3174,6 +3178,7 @@ void	AirStruc::BreakForm()
 	}
 
 //SORT OUT EVERYONE ELSE
+	{
 	for(int i = 0; i < ArtInt::ACARRAYSIZE; i++)
 		if(ArtInt::ACArray[i])
 		{
@@ -3196,7 +3201,7 @@ void	AirStruc::BreakForm()
 						ac->ai.unfriendly = NULL;
 				}
 		}
-
+	}
 //SORT OUT ACARRAY
 	for(int i = 0; i < ArtInt::ACARRAYSIZE; i++)
 		if(ArtInt::ACArray[i])
@@ -3285,7 +3290,7 @@ void AirStruc::SAGBreakForm()
 		DoAllSAGChecks();													//CSB 1Aug00
 		return;
 	}
-
+	{
 	for(int i = 0; i < ArtInt::ACARRAYSIZE; i++)
 		if(ArtInt::ACArray[i])
 		{
@@ -3319,7 +3324,7 @@ void AirStruc::SAGBreakForm()
 					if(f->ai.unfriendly == this)
 						f->ai.unfriendly = NULL;
 		}
-
+	}
 	ai.unfriendly = NULL;
 	for(int i = 0; i < 4; i++)
 		ai.spottedunfriendly[i] = NULL;

@@ -861,8 +861,10 @@ int i;
 		fprintf(debFile,"Colour: %d ",*pDrw++);
 		int edges=*pDrw++;
 		fprintf(debFile,"Edges: %d EdgeList: ",edges);
+		{
 		for (int j=0;j<edges;j++){
 		 	fprintf(debFile,"%d ",*pDrw++);
+		}
 		}
 		fprintf(debFile,"DirList: ");
 		for (int j=0;j<edges;j++){
@@ -2501,6 +2503,7 @@ inline void CDecompressData::_UnpackIntData(UByte* pSrc,const ULong rez, const U
 //TEMPCODE JON 6/5/00 #pragma message ( __HERE__ "remove debugs" )
 //TEMPCODE JON 6/5/00 	int debugC = 0;
 //TEMPCODE JON 6/5/00 	static int debugTest =-1;
+	{
 	for (int i=0;i<ddhSrc.noOfPolys;i++)
 	{
 //TEMPCODE JON 6/5/00 		debugC++;
@@ -2608,7 +2611,7 @@ inline void CDecompressData::_UnpackIntData(UByte* pSrc,const ULong rez, const U
 		//move the src pointer on to the next poly definition
 		pSrc+=(polyEdges*2)+((polyEdges+7)>>3);
 	}
-
+}
 //DEADCODE JON 6/2/00 	for (i=0;i<ddhSrc.noOfPolys;i++)
 //DEADCODE JON 6/2/00 	{
 //DEADCODE JON 6/2/00 //TEMPCODE JON 6/2/00 		debugC++;
@@ -2694,6 +2697,7 @@ inline void CDecompressData::_UnpackIntData(UByte* pSrc,const ULong rez, const U
 	ddhDst.totalTris=globalTriCount;	//for HW execute buffer fill test
 	ddhDst.lineOffset=ULong(pDst)-ULong(pDataStart);
 	UByte *lineDB = pDst; // needed later for cliff and tree work.
+	{
 	for (int i=0;i<ddhSrc.noOfLines;i++)
 	{
 		UByte* abortLinePtr=pDst;
@@ -2748,6 +2752,7 @@ inline void CDecompressData::_UnpackIntData(UByte* pSrc,const ULong rez, const U
 		}
 		//move the src pointer on to the next line definition
 		pSrc+=(lineEdges*2)+((lineEdges+7)>>3);
+	}
 	}
 
 	if ( onlyTexture )
@@ -3143,16 +3148,18 @@ inline void CDecompressData::DeRezEdges(	ULong edgeCnt,EdgeDef* ped,
 		} // end of loop tru all 
 	} else
 	{
+		{
 		for (int i=0;i<edgeCnt;i++)
 		{
 			EdgeDef& ed=ped[i];
 			*(usageTbl+ed.startPoint)=0xFF;
 			*(usageTbl+ed.endPoint)=0xFF;
 		} // end of loop tru all 
-
+		}
 		// now we know which points are mandatory, we can keep every n'th point.
 		int dropcounter = 0;
 		UByte* tabPos = usageTbl;
+		{
 		for (int i=0; i<256; i++, tabPos++ )
 		{
 			if ( (!tabPos) && (dropcounter++ == rez) )
@@ -3161,7 +3168,7 @@ inline void CDecompressData::DeRezEdges(	ULong edgeCnt,EdgeDef* ped,
 				dropcounter = 0;
 			}
 		}
-
+		}
 		// now we know which ones we are keeping we can go through and build up the list
 		for (int i=0;i<edgeCnt;i++)
 		{
@@ -3281,6 +3288,7 @@ void CDecompressData::MakeIntermediateData()
 	//copy over the point data
 	PointDef* ppd=(PointDef*)pDst;
 	PointList* ppl=(PointList*)pointdec;
+	{
 	for (int i=0;i<aph.vertexCount;i++){
 	 	PointDef& pd=*ppd++;
 		PointList& pl=*ppl++;
@@ -3289,6 +3297,7 @@ void CDecompressData::MakeIntermediateData()
 		pd.alt=UWord(pl.alt);
 		pd.shadeVal=pl.shadeVal;
 		pointFlags[i]=0;
+	}
 	}
 
 	//Find out which points are edge points and which are junction points
@@ -3309,7 +3318,9 @@ void CDecompressData::MakeIntermediateData()
 	aph.edgePointsStart=ULong(pDst)-ULong(&aph);
 
 	//Copy back the edge point data
+	{
 	for (int i=0;i<edgePointLen;i++) *pDst++=edgePoints[i];
+	}
 
 	aph.polyDataStart=ULong(pDst)-ULong(&aph);
 
@@ -3319,7 +3330,9 @@ void CDecompressData::MakeIntermediateData()
 	ddh.noOfLines=globalLineCount;
 
 	//Copy back the new draw data
+	{
 	for (int i=0;i<polyStreamLen;i++) *pDst++=newPolyStream[i];
+	}
 	for (int i=0;i<lineStreamLen;i++) *pDst++=newLineStream[i];
 
 	aph.MakeChecksum();		//CHECKSUM!!!
@@ -3471,8 +3484,9 @@ void CDecompressData::InsertEdgeDefs(	UByte pntCnt,UByte* poly,
 
 	//Clear direction flags for use later...
 	UByte dirFlags[MAX_NUM_EDGES];
+	{
 	for (UWord i=0;i<MAX_NUM_EDGES/32;i++) *(ULong*)(dirFlags+(i<<2))=0L;
-
+	}
 	//find the first junction point in this poly def
 	UWord i;
 	for (i=0;i<pntCnt;i++){
@@ -3489,7 +3503,8 @@ void CDecompressData::InsertEdgeDefs(	UByte pntCnt,UByte* poly,
 
 	UByte* insertEdgeCountHere=ppd++;
 	UByte  edgeCounter=0;
-
+	
+	{
 	for (UByte j=(i+1)%pntCnt;j!=i;j=(j+1)%pntCnt)
 	{
 		jEnd=j;
@@ -3509,6 +3524,8 @@ void CDecompressData::InsertEdgeDefs(	UByte pntCnt,UByte* poly,
 		}
 		else localPoly[localPolyLen++]=poly[j];
 	}
+	}
+
 	bool dirFlipped;
 	UWord edgeIndex=AddEdge(poly[jStart],poly[i],localPolyLen,localPoly,pep,dirFlipped);
 //DEADCODE JON 3/23/00 	*ppd++=UByte(edgeIndex);
@@ -3542,7 +3559,9 @@ void CDecompressData::InsertEdgeDefs2(	UByte pntCnt,UByte* line,
 
 	//Clear direction flags for use later...
 	UByte dirFlags[MAX_NUM_EDGES];
+	{
 	for (UWord i=0;i<MAX_NUM_EDGES/32;i++) *(ULong*)(dirFlags+(i<<2))=0L;
+	}
 
 	//first and last points on the line must be junction points
 	//or this isn't going to work
@@ -3560,6 +3579,7 @@ void CDecompressData::InsertEdgeDefs2(	UByte pntCnt,UByte* line,
 	UByte* insertEdgeCountHere=pld++;
 	UByte  edgeCounter=0;
 
+	{
 	for (UByte j=1;j<pntCnt;j++){
 		jEnd=j;
 		UByte point=line[jEnd];
@@ -3577,6 +3597,7 @@ void CDecompressData::InsertEdgeDefs2(	UByte pntCnt,UByte* line,
 			jStart=jEnd;
 		}
 		else localLine[localLineLen++]=line[j];
+	}
 	}
 
 	//fill in the edge count for this line
@@ -5260,7 +5281,9 @@ void CRectangularCache::BuildNorthRequests()
 			newSeek.firstSkipIndex=skipCnt;
 			newSeek.numBlocks=numBlocks;
 			SByte** pbptrs=newSeek.blockPtrs;
+			{
 			for (int j=0;j<numBlocks;j++) *pbptrs++=*pLocalDest++;
+			}
 
 			AddSeekRequest(&newSeek);
 
@@ -5341,10 +5364,12 @@ void CRectangularCache::BuildEastRequests()
 			newSeek.firstSkipIndex=skipCnt;
 			newSeek.numBlocks=numBlocks;
 			SByte** pbptrs=newSeek.blockPtrs;
+			{
 			for (int j=0;j<numBlocks;j++)
 			{
 				*pbptrs++=*pLocalDest;
 				pLocalDest+=CENTER_WH;
+			}
 			}
 			numBlocks=CENTER_WH-numBlocks;
 			info=pEast[index+1];
@@ -5489,7 +5514,9 @@ void CRectangularCache::StillGoingNorth()
 		newSeek.firstSkipIndex=skipCnt;
 		newSeek.numBlocks=numBlocks;
 		SByte** pbptrs=newSeek.blockPtrs;
+		{
 		for (int j=0;j<numBlocks;j++) *pbptrs++=*pDest++;
+		}
 
 		AddSeekRequest(&newSeek);
 
@@ -5568,11 +5595,14 @@ void CRectangularCache::StillGoingEast()
 		newSeek.firstSkipIndex=skipCnt;
 		newSeek.numBlocks=numBlocks;
 		SByte** pbptrs=newSeek.blockPtrs;
+		{
 		for (int j=0;j<numBlocks;j++)
 		{
 			*pbptrs++=*pDest;
 			pDest+=CENTER_WH;
 		}
+		}
+
 		AddSeekRequest(&newSeek);
 
 		numBlocks=CENTER_WH-numBlocks;
@@ -5648,7 +5678,9 @@ void CRectangularCache::StillGoingSouth()
 		newSeek.firstSkipIndex=skipCnt;
 		newSeek.numBlocks=numBlocks;
 		SByte** pbptrs=newSeek.blockPtrs;
+		{
 		for (int j=0;j<numBlocks;j++) *pbptrs++=*pDest++;
+		}
 
 		AddSeekRequest(&newSeek);
 
@@ -5726,10 +5758,12 @@ void CRectangularCache::StillGoingWest()
 		newSeek.firstSkipIndex=skipCnt;
 		newSeek.numBlocks=numBlocks;
 		SByte** pbptrs=newSeek.blockPtrs;
+		{
 		for (int j=0;j<numBlocks;j++)
 		{
 			*pbptrs++=*pDest;
 			pDest+=CENTER_WH;
+		}
 		}
 		AddSeekRequest(&newSeek);
 

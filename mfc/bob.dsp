@@ -659,7 +659,7 @@ SOURCE=..\3D\3dcode.cpp
 
 !IF  "$(CFG)" == "BOB - Win32 Release"
 
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX
 
 !ELSEIF  "$(CFG)" == "BOB - Win32 Debug"
 
@@ -688,7 +688,7 @@ SOURCE=..\3D\3dcode.cpp
 !ELSEIF  "$(CFG)" == "BOB - Win32 Release No Debug"
 
 # PROP BASE Exclude_From_Build 1
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
 
@@ -699,7 +699,7 @@ SOURCE=..\3D\3dcom.cpp
 
 !IF  "$(CFG)" == "BOB - Win32 Release"
 
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX
 
 !ELSEIF  "$(CFG)" == "BOB - Win32 Debug"
 
@@ -728,7 +728,7 @@ SOURCE=..\3D\3dcom.cpp
 !ELSEIF  "$(CFG)" == "BOB - Win32 Release No Debug"
 
 # PROP BASE Exclude_From_Build 1
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
 
@@ -791,7 +791,7 @@ SOURCE=..\3d\Anmcntrl.cpp
 
 !IF  "$(CFG)" == "BOB - Win32 Release"
 
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX
 
 !ELSEIF  "$(CFG)" == "BOB - Win32 Debug"
 
@@ -819,7 +819,7 @@ SOURCE=..\3d\Anmcntrl.cpp
 !ELSEIF  "$(CFG)" == "BOB - Win32 Release No Debug"
 
 # PROP BASE Exclude_From_Build 1
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
 
@@ -830,7 +830,7 @@ SOURCE=..\3d\Anmradio.cpp
 
 !IF  "$(CFG)" == "BOB - Win32 Release"
 
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX
 
 !ELSEIF  "$(CFG)" == "BOB - Win32 Debug"
 
@@ -859,7 +859,7 @@ SOURCE=..\3d\Anmradio.cpp
 !ELSEIF  "$(CFG)" == "BOB - Win32 Release No Debug"
 
 # PROP BASE Exclude_From_Build 1
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
 
@@ -870,7 +870,7 @@ SOURCE=..\3D\Btree.cpp
 
 !IF  "$(CFG)" == "BOB - Win32 Release"
 
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX
 
 !ELSEIF  "$(CFG)" == "BOB - Win32 Debug"
 
@@ -899,7 +899,7 @@ SOURCE=..\3D\Btree.cpp
 !ELSEIF  "$(CFG)" == "BOB - Win32 Release No Debug"
 
 # PROP BASE Exclude_From_Build 1
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
 
@@ -910,7 +910,7 @@ SOURCE=..\3D\Collided.cpp
 
 !IF  "$(CFG)" == "BOB - Win32 Release"
 
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX
 
 !ELSEIF  "$(CFG)" == "BOB - Win32 Debug"
 
@@ -939,7 +939,7 @@ SOURCE=..\3D\Collided.cpp
 !ELSEIF  "$(CFG)" == "BOB - Win32 Release No Debug"
 
 # PROP BASE Exclude_From_Build 1
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
 
@@ -990,7 +990,7 @@ SOURCE=..\3D\Imagemap.cpp
 
 !IF  "$(CFG)" == "BOB - Win32 Release"
 
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX
 
 !ELSEIF  "$(CFG)" == "BOB - Win32 Debug"
 
@@ -1019,7 +1019,7 @@ SOURCE=..\3D\Imagemap.cpp
 !ELSEIF  "$(CFG)" == "BOB - Win32 Release No Debug"
 
 # PROP BASE Exclude_From_Build 1
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
 
@@ -1030,7 +1030,7 @@ SOURCE=..\3d\Impact.cpp
 
 !IF  "$(CFG)" == "BOB - Win32 Release"
 
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX
 
 !ELSEIF  "$(CFG)" == "BOB - Win32 Debug"
 
@@ -1059,7 +1059,7 @@ SOURCE=..\3d\Impact.cpp
 !ELSEIF  "$(CFG)" == "BOB - Win32 Release No Debug"
 
 # PROP BASE Exclude_From_Build 1
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
 
@@ -1153,7 +1153,7 @@ SOURCE=..\3D\Landscap.cpp
 
 !IF  "$(CFG)" == "BOB - Win32 Release"
 
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX
 
 !ELSEIF  "$(CFG)" == "BOB - Win32 Debug"
 
@@ -1182,7 +1182,7 @@ SOURCE=..\3D\Landscap.cpp
 !ELSEIF  "$(CFG)" == "BOB - Win32 Release No Debug"
 
 # PROP BASE Exclude_From_Build 1
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
 
@@ -1193,7 +1193,7 @@ SOURCE=..\3D\Lstream.cpp
 
 !IF  "$(CFG)" == "BOB - Win32 Release"
 
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX
 
 !ELSEIF  "$(CFG)" == "BOB - Win32 Debug"
 
@@ -1222,7 +1222,7 @@ SOURCE=..\3D\Lstream.cpp
 !ELSEIF  "$(CFG)" == "BOB - Win32 Release No Debug"
 
 # PROP BASE Exclude_From_Build 1
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
 
@@ -1233,7 +1233,7 @@ SOURCE=..\3D\Migland.cpp
 
 !IF  "$(CFG)" == "BOB - Win32 Release"
 
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX
 
 !ELSEIF  "$(CFG)" == "BOB - Win32 Debug"
 
@@ -1262,7 +1262,7 @@ SOURCE=..\3D\Migland.cpp
 !ELSEIF  "$(CFG)" == "BOB - Win32 Release No Debug"
 
 # PROP BASE Exclude_From_Build 1
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
 
@@ -1369,7 +1369,7 @@ SOURCE=..\3D\Shapes.cpp
 
 !IF  "$(CFG)" == "BOB - Win32 Release"
 
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX
 
 !ELSEIF  "$(CFG)" == "BOB - Win32 Debug"
 
@@ -1398,7 +1398,7 @@ SOURCE=..\3D\Shapes.cpp
 !ELSEIF  "$(CFG)" == "BOB - Win32 Release No Debug"
 
 # PROP BASE Exclude_From_Build 1
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
 
@@ -1409,7 +1409,7 @@ SOURCE=..\3D\Shpbld.cpp
 
 !IF  "$(CFG)" == "BOB - Win32 Release"
 
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX
 
 !ELSEIF  "$(CFG)" == "BOB - Win32 Debug"
 
@@ -1438,7 +1438,7 @@ SOURCE=..\3D\Shpbld.cpp
 !ELSEIF  "$(CFG)" == "BOB - Win32 Release No Debug"
 
 # PROP BASE Exclude_From_Build 1
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
 
@@ -1535,7 +1535,7 @@ SOURCE=..\3D\Transite.cpp
 
 !IF  "$(CFG)" == "BOB - Win32 Release"
 
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX
 
 !ELSEIF  "$(CFG)" == "BOB - Win32 Debug"
 
@@ -1564,7 +1564,7 @@ SOURCE=..\3D\Transite.cpp
 !ELSEIF  "$(CFG)" == "BOB - Win32 Release No Debug"
 
 # PROP BASE Exclude_From_Build 1
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
 
@@ -1668,7 +1668,7 @@ SOURCE=..\3D\World.cpp
 
 !IF  "$(CFG)" == "BOB - Win32 Release"
 
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX
 
 !ELSEIF  "$(CFG)" == "BOB - Win32 Debug"
 
@@ -1698,7 +1698,7 @@ SOURCE=..\3D\World.cpp
 !ELSEIF  "$(CFG)" == "BOB - Win32 Release No Debug"
 
 # PROP BASE Exclude_From_Build 1
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
 
@@ -3142,7 +3142,7 @@ SOURCE=..\GENERAL\Winerror.cpp
 !ELSEIF  "$(CFG)" == "BOB - Win32 Release No Debug"
 
 # PROP BASE Exclude_From_Build 1
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
 
@@ -3901,7 +3901,7 @@ SOURCE=..\MATH\Matrix.cpp
 
 !IF  "$(CFG)" == "BOB - Win32 Release"
 
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX
 
 !ELSEIF  "$(CFG)" == "BOB - Win32 Debug"
 
@@ -3930,7 +3930,7 @@ SOURCE=..\MATH\Matrix.cpp
 !ELSEIF  "$(CFG)" == "BOB - Win32 Release No Debug"
 
 # PROP BASE Exclude_From_Build 1
-# PROP Exclude_From_Build 1
+# SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
 
@@ -16884,9 +16884,23 @@ SOURCE=..\..\backup\history.lst
 # End Source File
 # End Target
 # End Project
+# Section BOB : {5363BA22-D90A-11D1-A1F0-0080C8582DE4}
+# 	2:21:DefaultSinkHeaderFile:rradio.h
+# 	2:16:DefaultSinkClass:CRRadio
+# End Section
 # Section BOB : {461A1FE3-B81B-11D1-A1F0-444553540000}
 # 	2:21:DefaultSinkHeaderFile:redtbt.h
 # 	2:16:DefaultSinkClass:CREdtBt
+# End Section
+# Section BOB : {499E2BE4-AC32-11D1-A1F0-444553540000}
+# 	2:5:Class:CREdit
+# 	2:10:HeaderFile:redit.h
+# 	2:8:ImplFile:redit.cpp
+# End Section
+# Section BOB : {505AEE44-6A66-11D1-A1F0-444553540000}
+# 	2:5:Class:CRScrlBar
+# 	2:10:HeaderFile:rscrlbar.h
+# 	2:8:ImplFile:rscrlbar.cpp
 # End Section
 # Section BOB : {C42BAC3D-CA3C-11D1-A1F0-444553540000}
 # 	2:21:DefaultSinkHeaderFile:rstatic.h
@@ -16901,33 +16915,28 @@ SOURCE=..\..\backup\history.lst
 # 	2:10:HeaderFile:rcombo.h
 # 	2:8:ImplFile:rcombo.cpp
 # End Section
-# Section BOB : {C3270E66-6D6B-11D1-A1F0-444553540000}
-# 	2:21:DefaultSinkHeaderFile:rspinbut.h
-# 	2:16:DefaultSinkClass:CRSpinBut
-# End Section
 # Section BOB : {78918646-A917-11D1-A1F0-444553540000}
 # 	2:21:DefaultSinkHeaderFile:rbutton.h
 # 	2:16:DefaultSinkClass:CRButton
+# End Section
+# Section BOB : {C3270E66-6D6B-11D1-A1F0-444553540000}
+# 	2:21:DefaultSinkHeaderFile:rspinbut.h
+# 	2:16:DefaultSinkClass:CRSpinBut
 # End Section
 # Section BOB : {7EBC74E3-0F3C-11D2-A1F0-0080C8582DE4}
 # 	2:5:Class:CRRadio
 # 	2:10:HeaderFile:rradio.h
 # 	2:8:ImplFile:rradio.cpp
 # End Section
-# Section BOB : {461A1FE1-B81B-11D1-A1F0-444553540000}
-# 	2:5:Class:CREdtBt
-# 	2:10:HeaderFile:redtbt.h
-# 	2:8:ImplFile:redtbt.cpp
-# End Section
 # Section BOB : {008F23E7-9243-11D1-A1F0-444553540000}
 # 	2:5:Class:CRTitle
 # 	2:10:HeaderFile:rtitle.h
 # 	2:8:ImplFile:rtitle.cpp
 # End Section
-# Section BOB : {4A1E1984-8B31-11D1-A1F0-444553540000}
-# 	2:5:Class:CRTabs
-# 	2:10:HeaderFile:rtabs.h
-# 	2:8:ImplFile:rtabs.cpp
+# Section BOB : {461A1FE1-B81B-11D1-A1F0-444553540000}
+# 	2:5:Class:CREdtBt
+# 	2:10:HeaderFile:redtbt.h
+# 	2:8:ImplFile:redtbt.cpp
 # End Section
 # Section BOB : {C42BAC3B-CA3C-11D1-A1F0-444553540000}
 # 	2:5:Class:CRStatic
@@ -16942,10 +16951,10 @@ SOURCE=..\..\backup\history.lst
 # 	2:21:DefaultSinkHeaderFile:redit.h
 # 	2:16:DefaultSinkClass:CREdit
 # End Section
-# Section BOB : {78918644-A917-11D1-A1F0-444553540000}
-# 	2:5:Class:CRButton
-# 	2:10:HeaderFile:rbutton.h
-# 	2:8:ImplFile:rbutton.cpp
+# Section BOB : {4A1E1984-8B31-11D1-A1F0-444553540000}
+# 	2:5:Class:CRTabs
+# 	2:10:HeaderFile:rtabs.h
+# 	2:8:ImplFile:rtabs.cpp
 # End Section
 # Section BOB : {C3270E64-6D6B-11D1-A1F0-444553540000}
 # 	2:5:Class:CRSpinBut
@@ -16956,6 +16965,11 @@ SOURCE=..\..\backup\history.lst
 # 	2:21:DefaultSinkHeaderFile:rlistbox.h
 # 	2:16:DefaultSinkClass:CRListBox
 # End Section
+# Section BOB : {78918644-A917-11D1-A1F0-444553540000}
+# 	2:5:Class:CRButton
+# 	2:10:HeaderFile:rbutton.h
+# 	2:8:ImplFile:rbutton.cpp
+# End Section
 # Section BOB : {90B5EDA6-666F-11D1-A1F0-444553540000}
 # 	2:5:Class:CRListBox
 # 	2:10:HeaderFile:rlistbox.h
@@ -16964,18 +16978,4 @@ SOURCE=..\..\backup\history.lst
 # Section BOB : {737CB0C9-B42B-11D1-A1F0-444553540000}
 # 	2:21:DefaultSinkHeaderFile:rcombo.h
 # 	2:16:DefaultSinkClass:CRCombo
-# End Section
-# Section BOB : {499E2BE4-AC32-11D1-A1F0-444553540000}
-# 	2:5:Class:CREdit
-# 	2:10:HeaderFile:redit.h
-# 	2:8:ImplFile:redit.cpp
-# End Section
-# Section BOB : {505AEE44-6A66-11D1-A1F0-444553540000}
-# 	2:5:Class:CRScrlBar
-# 	2:10:HeaderFile:rscrlbar.h
-# 	2:8:ImplFile:rscrlbar.cpp
-# End Section
-# Section BOB : {5363BA22-D90A-11D1-A1F0-0080C8582DE4}
-# 	2:21:DefaultSinkHeaderFile:rradio.h
-# 	2:16:DefaultSinkClass:CRRadio
 # End Section

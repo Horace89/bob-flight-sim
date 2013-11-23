@@ -3555,9 +3555,10 @@ void	PackageList::SetTaskData()
 	Todays_Packages.taskdata.detached.squadnum = 0;
 
 	 Todays_Packages.taskdata.attackmethod = pk.attackmethod;
-
+	{
 	for (int j = 0; j < STRIKEOPTIONS;j++)
 	   Todays_Packages.taskdata.strikeactypes[j] = NOTDEFINED;
+	}
 	for (int j = 0; j < ESCORTOPTIONS;j++)
 	   Todays_Packages.taskdata.escortactypes[j] = NOTDEFINED;
 	int i=0, gruppe, actype;
@@ -5763,9 +5764,12 @@ AttackMethodField	Profile::ReorderPackage(AttackMethodField am)
 	order.nextgoodsquad=0;
 	for (int trg=0;trg<MAX_TARGETS;trg++)
 	{
+		{
 		for (int find=order.nextgoodsquad;find<order.maxsquad;find++)
 			if (squadlist[order.back[find]].method<AM_DETACHED && squadlist[order.back[find]].targetindex==trg)
 				order.WrapUp(find);
+		}
+		{
 		for (int find=order.nextgoodsquad;find<order.maxsquad;find++)
 			if ((squadlist[order.back[find]].method&AM_GROUPMASK)==AM_ATTACHED && (squadlist[order.back[find]].submethod&SM_DOSTRAFFEGROUND))
 			{	//need to find out what attached to and if it is a bomber going for this target then WrapUp()
@@ -5779,6 +5783,7 @@ AttackMethodField	Profile::ReorderPackage(AttackMethodField am)
 					order.WrapUp(find);
 				}
 			}
+		}
 		if (trg==0)
 		for (int esctype=AM_DETACHED;esctype<AM_ATTACHED;esctype++)
 			for (int find=order.nextgoodsquad;find<order.maxsquad;find++)
@@ -5789,12 +5794,15 @@ AttackMethodField	Profile::ReorderPackage(AttackMethodField am)
 				}
 
 	}
+	{
 	for (int find=order.nextgoodsquad;find<order.maxsquad;find++)
 		if ((squadlist[order.back[find]].method&AM_GROUPMASK)==AM_ATTACHED && !(squadlist[order.back[find]].submethod&SM_DOSTRAFFEGROUND))
 		{
 			squadlist[order.back[find]].targetindex=-1;
 			order.WrapUp(find);
 		}
+	}
+
 	for (int esctype=AM_DETACHED;esctype<AM_ATTACHED;esctype++)
 		for (int find=order.nextgoodsquad;find<order.maxsquad;find++)
 			if (squadlist[order.back[find]].method==esctype)
@@ -5816,8 +5824,10 @@ AttackMethodField	Profile::ReorderPackage(AttackMethodField am)
 	assert(order.nextgoodsquad==order.maxsquad);
 	//OK.. so now we have a new ordering.. how to apply it?
 	{	Profile::Squad* sqlist=new Profile::Squad[order.maxsquad];
+	{
 		for (int find=0;find<order.maxsquad;find++)
 			sqlist[find]=squadlist[order.back[find]];
+	}
 		for (int find=0;find<order.maxsquad;find++)
 			squadlist[find]=sqlist[find];
 		delete sqlist;
@@ -5852,6 +5862,7 @@ int	Profile::RecostRaidList()
 	MAKEFIELD(Targets,0,15);
 	TargetsField	targetsusedbits={0};
 	bool	returnescortused=false;
+	{
 	for (int i=0,max=squadlist;i<max;i++)
 	{
 		switch (squadlist[i].method&AM_GROUPMASK)
@@ -5870,6 +5881,7 @@ int	Profile::RecostRaidList()
 			returnescortused=true;
 		break;
 		}
+	}
 	}
 	int totalraids=targetsusedbits.Count()+farescorts.Count()+nearescortused+returnescortused;
 	RaidNumEntry* rne2=new RaidNumEntry[totalraids+1];

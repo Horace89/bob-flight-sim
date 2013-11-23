@@ -97,6 +97,7 @@ private:
 		//
 		// not very efficient but only done once
 		//
+		{
 		for (SLong x=0;x<=256;x++)
 		{
 			R3DVALUE square=R3DVALUE(x);
@@ -104,6 +105,7 @@ private:
 			square+=65536.0f;
 			square=FastSqrt(square);
 			tableCode2[x]=(SWord)square;
+		}
 		}
 		for (SLong x=0;x<256;x++)
 			for (SLong z=0;z<256;z++)

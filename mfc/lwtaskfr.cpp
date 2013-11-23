@@ -324,13 +324,13 @@ void LWTaskFighter::Refresh()
 		GETDLGITEM(IDC_RSTATICCTRL05)->SetString(RESSTRING(BELOW));
 	}
 
-
+	{
 		for (int i=1; i< PackageList::MAX_METHODS-1;i++)
 		{
 			CRButton* b = GETDLGITEM(IDC_TICK1+i-1);
 			b->SetPressed(amtype->attackmethods[i]);
 		}
-
+	}
 
 
 	

@@ -134,8 +134,10 @@ Grid_Bit::Grid_Bit()
 {
 	long *t = &header[0][0]; // the start of header
 	// basic constructor - set all values to 0 and all headers to run consecutivley up..
+	{
 	for ( int i = 0; i< 10*10; i++ )
 		*t++ = i;
+	}
 	for ( int i = 0; i < (10*10*8/4); i++ ) // wipe
 		*t++ = 0;
 }
@@ -185,6 +187,7 @@ bool Grid_Bit::save( char *filename )
 	// first build a temporary header...
 	long temp[10*10];
 	long *hdSt = &header[0][0];
+	{
 	for ( int i = 0; i<10*10; i++ )
 		for ( int j = 0; j<=i; j++ )
 			if ( compareBlock( i, j ) )
@@ -192,9 +195,10 @@ bool Grid_Bit::save( char *filename )
 				temp[i] = j;
 				break;
 			}
-
+	}
 	long newHd[10*10];
 	int nextFree = 0;
+	{
 	for ( int i = 0; i<10*10; i++ )
 		if ( temp[i] < hdSt[i] )
 		{
@@ -202,7 +206,7 @@ bool Grid_Bit::save( char *filename )
 		} else {
 			newHd[i] = nextFree++;
 		}
-
+	}
 	// now write out the header.
 	fwrite( newHd, 4, 10*10, fp );
 
@@ -224,8 +228,10 @@ Grid_Byte::Grid_Byte()
 {
 	long *t = &header[0][0]; // the start of header
 	// basic constructor - set all values to 0 and all headers to run consecutivley up..
+	{
 	for ( int i = 0; i< 80*80; i++ )
 		*t++ = i;
+	}
 	for ( int i = 0; i < (80*80*8*8/4); i++ )
 		*t++ = 0;
 }
@@ -309,6 +315,7 @@ bool Grid_Byte::save( char *filename )
 	// first build a temporary header...
 	long temp[80*80];
 	long *hdSt = &header[0][0];
+	{
 	for ( int i = 0; i<80*80; i++ )
 		for ( int j = 0; j<=i; j++ )
 			if ( compareBlock( i, j ) )
@@ -316,9 +323,10 @@ bool Grid_Byte::save( char *filename )
 				temp[i] = j;
 				break;
 			}
-
+	}
 	long newHd[80*80];
 	int nextFree = 0;
+	{
 	for ( int i = 0; i<80*80; i++ )
 		if ( temp[i] < hdSt[i] )
 		{
@@ -326,7 +334,7 @@ bool Grid_Byte::save( char *filename )
 		} else {
 			newHd[i] = nextFree++;
 		}
-
+	}
 	// now write out the header.
 	fwrite( newHd, 4, 80*80, fp );
 
@@ -348,8 +356,10 @@ Grid_Word::Grid_Word()
 {
 	long *t = &header[0][0]; // the start of header
 	// basic constructor - set all values to 0 and all headers to run consecutivley up..
+	{
 	for ( int i = 0; i< 80*80; i++ )
 		*t++ = i;
+	}
 	for ( int i = 0; i < (80*80*8*8/2); i++ )
 		*t++ = 0;
 }
@@ -390,6 +400,7 @@ bool Grid_Word::save( char *filename )
 	// first build a temporary header...
 	long temp[80*80];
 	long *hdSt = &header[0][0];
+	{
 	for ( int i = 0; i<80*80; i++ )
 		for ( int j = 0; j<=i; j++ )
 			if ( compareBlock( i, j ) )
@@ -397,9 +408,10 @@ bool Grid_Word::save( char *filename )
 				temp[i] = j;
 				break;
 			}
-
+	}
 	long newHd[80*80];
 	int nextFree = 0;
+	{
 	for ( int i = 0; i<80*80; i++ )
 		if ( temp[i] < hdSt[i] )
 		{
@@ -407,7 +419,7 @@ bool Grid_Word::save( char *filename )
 		} else {
 			newHd[i] = nextFree++;
 		}
-
+	}
 	// now write out the header.
 	fwrite( newHd, 4, 80*80, fp );
 
@@ -428,8 +440,10 @@ Grid_Long::Grid_Long()
 {
 	long *t = &header[0][0]; // the start of header
 	// basic constructor - set all values to 0 and all headers to run consecutivley up..
+	{
 	for ( int i = 0; i< 80*80; i++ )
 		*t++ = i;
+	}
 	for ( int i = 0; i < (80*80*8*8); i++ )
 		*t++ = 0;
 }
@@ -490,6 +504,7 @@ bool Grid_Long::save( char *filename )
 	// first build a temporary header...
 	long temp[80*80];
 	long *hdSt = &header[0][0];
+	{
 	for ( int i = 0; i<80*80; i++ )
 		for ( int j = 0; j<=i; j++ )
 			if ( compareBlock( i, j ) )
@@ -497,9 +512,10 @@ bool Grid_Long::save( char *filename )
 				temp[i] = j;
 				break;
 			}
-
+	}
 	long newHd[80*80];
 	int nextFree = 0;
+	{
 	for ( int i = 0; i<80*80; i++ )
 		if ( temp[i] < hdSt[i] )
 		{
@@ -507,7 +523,7 @@ bool Grid_Long::save( char *filename )
 		} else {
 			newHd[i] = nextFree++;
 		}
-
+	}
 	// now write out the header.
 	fwrite( newHd, 4, 80*80, fp );
 
@@ -663,7 +679,7 @@ void	Grid_Base::CloseGridFiles()
 		}
 		gridfiles[GF_CLOUDLAYER0+i].CloseFile();
 	}
-
+	{
 	for ( int i=0;i<GF_TABLESIZE;i++)
 	{
 		if ( gridfiles[i].getdata() != NULL )
@@ -673,7 +689,7 @@ void	Grid_Base::CloseGridFiles()
 			gridfiles[i].ReallyCloseFile();
 		}
 	}
-
+	}
 }
 
 #endif

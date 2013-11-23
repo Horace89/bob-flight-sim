@@ -3136,8 +3136,10 @@ Bool	Persons3::anyoutstanding()
 void Persons3::InitGamePiece()
 {
 //DEADCODE DAW 12/05/99 	File_Man.DiscardDirList(FIL_RUNTIMEPACK0);
+	{
 	for (int i=0;i<LOADEDBFS;i++)
 		loadedBF[i]=FIL_NULL;
+	}
 
 	if (_Replay.Playback)
 	{
@@ -3152,8 +3154,11 @@ void Persons3::InitGamePiece()
 		Pack_PlayerPos=MMC.playeracnum;
 	}
 
+	{
 	for (int i=0;i<MAXCALLNAMES;i++)
 		callsignnamecount[i]=1;
+	}
+
     ClearGlobrefStaticVars();
 //DEADCODE DAW 08/03/00 	while (eventloglist)
 //DEADCODE DAW 08/03/00 	{

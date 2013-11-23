@@ -204,6 +204,19 @@ SOURCE="$(InputPath)"
 # Begin Source File
 
 SOURCE=.\all.cpp
+
+!IF  "$(CFG)" == "RButton - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "RButton - Win32 Debug"
+
+!ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Debug"
+
+!ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Release"
+
+# ADD CPP /YX"stdafx.h"
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
@@ -221,6 +234,8 @@ SOURCE=.\getfile.cpp
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Debug"
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Release"
+
+# ADD CPP /YX"stdafx.h"
 
 !ENDIF 
 
@@ -242,6 +257,8 @@ SOURCE=..\Mfc\getresrc.cpp
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Release"
 
+# ADD CPP /YX"stdafx.h"
+
 !ENDIF 
 
 # End Source File
@@ -261,6 +278,8 @@ SOURCE=..\Mfc\Getshadw.cpp
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Release"
 
+# ADD CPP /YX"stdafx.h"
+
 !ENDIF 
 
 # End Source File
@@ -279,6 +298,8 @@ SOURCE=.\RButton.cpp
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Debug"
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Release"
+
+# ADD CPP /YX"stdafx.h"
 
 !ENDIF 
 
@@ -311,6 +332,8 @@ SOURCE=.\rbuttonc.cpp
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Release"
 
+# ADD CPP /YX"stdafx.h"
+
 !ENDIF 
 
 # End Source File
@@ -329,6 +352,8 @@ SOURCE=.\rbuttonp.cpp
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Debug"
 
 !ELSEIF  "$(CFG)" == "RButton - Win32 Unicode Release"
+
+# ADD CPP /YX"stdafx.h"
 
 !ENDIF 
 

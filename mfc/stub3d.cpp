@@ -532,10 +532,10 @@ Inst3d::Inst3d()
 
 	if(Persons2::PlayerSeenAC->fly.expandedsag)
 		Persons2::PlayerSeenAC->PreExpandSags(Persons_2.baseSAGshape + 1);
-
+	{
 	for(int i=0; i < Art_Int.ACARRAYSIZE * 2; i++)	//CSB 06/07/99	
  		Art_Int.VisibleCheck();
-
+	}
 	for(int i = 0; i < 10 * AaaMainList::SUBLISTSIZE; i++)								//CSB 14Aug00
 		(*Three_Dee.livelist).sleeplist.Event();									//CSB 14Aug00
 

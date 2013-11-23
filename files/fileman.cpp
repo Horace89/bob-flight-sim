@@ -102,7 +102,11 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include	"world.h"
 //#include	"main.h"
 #include	"Mytime.h"
-//#include	<new.h>
+
+#if     _MSC_VER < 1300
+#include	<new.h>
+#endif
+
 #include 	"imagemap.h"
 #include	"Shapes.h"
 #include	"lstream.h"

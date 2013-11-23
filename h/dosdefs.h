@@ -50,6 +50,10 @@ typedef long LONG;
 typedef _W64 long LONG_PTR;
 */
 //x0r TODO typedef long LONG_PTR; 
+#if     _MSC_VER < 1300
+//typedef _W64 long LONG_PTR;
+typedef long LONG_PTR;
+#endif
 
 //#include <stdint.h>
 //typedef int64_t __int64;
@@ -162,7 +166,8 @@ const double M_PI = 3.141592653589793238462;
 #pragma warning	690	2				// Fix against "condition is always true"
 #endif
 #ifdef __MSVC__
-//#define nullptr NULL
+
+#if     _MSC_VER >= 1300
 #ifndef nullptr
 const                        // this is a const object...
 class {
@@ -176,6 +181,9 @@ public:
 private:
   void operator&() const;    // whose address can't be taken
 } nullptr = {};              // and whose name is nullptr
+#endif
+#else
+#define nullptr NULL
 #endif
 
 //HAPPY TO LOSE THESE

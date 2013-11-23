@@ -75,7 +75,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #undef	HtmlHelp
 #undef	HtmlHelpA
 #undef	HtmlHelpU
-#include	"htmlhelp.h"		//for HTML help
+//x0r #include	"htmlhelp.h"		//for HTML help
 
 
 #include "MainFrm.h"
@@ -1039,7 +1039,7 @@ void CMainFrame::WinHelp(DWORD dwData, UINT nCmd)
 
 	TRACE3("WinHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n",
 		pApp->m_pszHelpFilePath, dwData, nCmd);
-
+/*x0r disable help
 //Command equates are different between WinHelp and HTMLHelp. Why?
 	switch (nCmd)
 	{
@@ -1053,7 +1053,7 @@ void CMainFrame::WinHelp(DWORD dwData, UINT nCmd)
 	// finally, run the Windows Help engine
 //DeadCode RJS 03May100 	if (!HtmlHelp(pWnd->m_hWnd, CString(pApp->m_pszHelpFilePath)+"::/asset.htm", nCmd, 0))
 //DEADCODE DAW 15/05/00 	if (!HtmlHelp(NULL, pApp->m_pszHelpFilePath, nCmd, dwData&0xffff))
-/*x0r disable help	if (!HtmlHelp(pWnd->m_hWnd, pApp->m_pszHelpFilePath, nCmd, dwData&0xffff))
+	if (!HtmlHelp(pWnd->m_hWnd, pApp->m_pszHelpFilePath, nCmd, dwData&0xffff))
 	{
 		dwData=IDD_RAFCOMMANDBRIEFING;
 		if (!HtmlHelp(pWnd->m_hWnd, pApp->m_pszHelpFilePath, nCmd, dwData&0xffff))
@@ -1177,7 +1177,7 @@ void CMainFrame::OnActivateApp(BOOL bActive, HTASK hTask)
 void CMainFrame::OnActivateApp(BOOL bActive, DWORD hTask) 
 #endif
 {
-	CFrameWnd::OnActivateApp(bActive, hTask);
+	CFrameWnd::OnActivateApp(bActive,  hTask);
 //DeadCode DAW 22Jun99 	TRACE2("Activate Ap %i ==>%08x\n",bActive,hTask);
 	
 	// TODO: Add your message handler code here

@@ -591,14 +591,14 @@ Bool	Analogue::Initialise(int HWNDw,int HINSTANCEi,AllowAliasing mousemode,Allow
 
 	return TRUE;
 }
-
-CString	LoadResString(int resnum)
+/*
+static CString	LoadResString(int resnum)
 {
 	CString s;
 	s.LoadString(resnum);
 	return s;
 };
-
+*/
 void	Analogue::ZeroForces()
 {
 	FFpush.Set(0,0,0);			 //zero them all

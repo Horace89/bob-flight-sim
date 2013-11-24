@@ -261,15 +261,13 @@ struct VTabBox:HTabBox
 const CRect RECT_MIN = CRect(0,0,50,20);
 const CRect RECT_MAX = CRect(0,0,0x7FFF,0x7FFF);
 
-CString	LoadResString(int resnum);
-/*
-CString	LoadResString(int resnum)
+inline CString	LoadResString(int resnum)
 {
 	CString s;
 	s.LoadString(resnum);
 	return s;
 };
-*/
+
 struct	RString
 {
 	int	resnum;

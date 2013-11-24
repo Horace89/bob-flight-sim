@@ -218,7 +218,7 @@ FullScreen RFullPanelDial::title=
 		{IDS_CREDITSTITLE,&credits},
 		{IDS_TITLE7,NULL,&RFullPanelDial::ConfirmExit},
 #ifndef NDEBUG
-		{IDS_HOTSHOT,&quickmissionflight,SetUpHotShot}
+		{IDS_HOTSHOT,&quickmissionflight,&RFullPanelDial::SetUpHotShot}
 #else
 		{IDS_WEBSITE,NULL,&RFullPanelDial::JumpToWebSite}
 #endif
@@ -604,10 +604,10 @@ FullScreen RFullPanelDial::visitorsbook=
 	},
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_QUICKMISSION1,&readyroomhostmatch, SelectReadyRoom},
+		{IDS_QUICKMISSION1,&readyroomhostmatch, &RFullPanelDial::SelectReadyRoom},
 //		{IDS_CONTINUE,&visitorsbook},
 	},
-	VisitorsBookInit
+	&RFullPanelDial::VisitorsBookInit
 };
 
 //DeadCode JIM 12Oct00 FullScreen RFullPanelDial::singlefrag=
@@ -682,11 +682,11 @@ FullScreen RFullPanelDial::commsfrag=
 	},
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_QUICKMISSION1,&readyroomhostmatch, SelectReadyRoom},
-		{IDS_FLY,&quickmissionflight, FragFly}
+		{IDS_QUICKMISSION1,&readyroomhostmatch, &RFullPanelDial::SelectReadyRoom},
+		{IDS_FLY,&quickmissionflight, &RFullPanelDial::FragFly}
 	},
 //DEADCODE AMM 14/01/00 	FragInit
-	BoBFragInit
+	&RFullPanelDial::BoBFragInit
 };
 
 FullScreen RFullPanelDial::radio=
@@ -715,14 +715,14 @@ FullScreen RFullPanelDial::radio=
 	},
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_CONTINUE,&readyroomhostmatch, SelectReadyRoomFromRadio},
-		{IDS_RESETMSG,&radio, ResetMessages},
+		{IDS_CONTINUE,&readyroomhostmatch, &RFullPanelDial::SelectReadyRoomFromRadio},
+		{IDS_RESETMSG,&radio, &RFullPanelDial::ResetMessages},
 //DeadCode AMM 17Nov98 		{IDS_QUICKMISSION1,&selectsession},
 //DeadCode AMM 17Nov98 		{IDS_LOADGAME,&quickmission},
 //DeadCode AMM 17Nov98 		{IDS_SCAMPAIGNSELECT7,&campaignselect},
 //DeadCode AMM 17Nov98 		{IDS_VISITORS,&visitorsbook},
 	},
-	RadioInit
+	&RFullPanelDial::RadioInit
 };
 
 FullScreen RFullPanelDial::paintshop=
@@ -762,11 +762,11 @@ FullScreen RFullPanelDial::paintshop=
 	},
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_CONTINUE,&readyroomhostmatch, SelectReadyRoom},
+		{IDS_CONTINUE,&readyroomhostmatch, &RFullPanelDial::SelectReadyRoom},
 //DEADCODE RDH 27/01/00 		{IDS_VARIANTS,&variants,SelectRRVariants},
 //DeadCode DAW 27Jun99 		{IDS_VARIANTS,&variants},
 	},
-	PaintShopInit
+	&RFullPanelDial::PaintShopInit
 };
 
 //FullScreen RFullPanelDial::readyroom=
@@ -836,58 +836,58 @@ FullScreen RFullPanelDial::readyroomhostmatch=
 	READYROOMLAYOUT,
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_TITLE7,&title,CleanUpComms},
+		{IDS_TITLE7,&title,&RFullPanelDial::CleanUpComms},
 //		{IDS_FRAG,&commsfrag},
-		{IDS_FLY,&quickmissionflight,CommsSelectFly},
+		{IDS_FLY,&quickmissionflight,&RFullPanelDial::CommsSelectFly},
 		{IDS_VISITORS,&visitorsbook},
 		{IDS_SETUP,&radio},
 //DEADCODE RDH 27/01/00 		{IDS_PAINTSHOP,&paintshop},
 		{IDS_CPS_PREFS,&options3d},
 	},
-	ReadyRoomInit
+	&RFullPanelDial::ReadyRoomInit
 };
 FullScreen RFullPanelDial::readyroomguestmatch=
 {
 	READYROOMLAYOUT,
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_TITLE7,&title,CleanUpComms},
+		{IDS_TITLE7,&title,&RFullPanelDial::CleanUpComms},
 //		{IDS_FRAG,&commsfrag},
-		{IDS_FLY,&quickmissionflight,CanGuestJoin},	// to simulate selecting fly
+		{IDS_FLY,&quickmissionflight,&RFullPanelDial::CanGuestJoin},	// to simulate selecting fly
 		{IDS_SETUP,&radio},
 //DEADCODE RDH 27/01/00 		{IDS_PAINTSHOP,&paintshop},
 		{IDS_CPS_PREFS,&options3d},
 	},
-	ReadyRoomInit
+	&RFullPanelDial::ReadyRoomInit
 };
 FullScreen RFullPanelDial::readyroomhostmatchred=
 {
 	READYROOMLAYOUT,
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_TITLE7,&title,CleanUpComms},
+		{IDS_TITLE7,&title,&RFullPanelDial::CleanUpComms},
 //		{IDS_FRAG,&commsfrag},
-		{IDS_FLY,&quickmissionflight,CommsSelectFly},
+		{IDS_FLY,&quickmissionflight,&RFullPanelDial::CommsSelectFly},
 		{IDS_VISITORS,&visitorsbook},
 		{IDS_SETUP,&radio},
 //DEADCODE RDH 27/01/00 		{IDS_PAINTSHOP,&paintshop},
 		{IDS_CPS_PREFS,&options3d},
 	},
-	ReadyRoomInit
+	&RFullPanelDial::ReadyRoomInit
 };
 FullScreen RFullPanelDial::readyroomguestmatchred=
 {
 	READYROOMLAYOUT,
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_TITLE7,&title,CleanUpComms},
+		{IDS_TITLE7,&title,&RFullPanelDial::CleanUpComms},
 //		{IDS_FRAG,&commsfrag},
-		{IDS_FLY,&quickmissionflight,CanGuestJoin},				//DAW 27Jun99
+		{IDS_FLY,&quickmissionflight,&RFullPanelDial::CanGuestJoin},				//DAW 27Jun99
 		{IDS_SETUP,&radio},
 //DEADCODE RDH 27/01/00 		{IDS_PAINTSHOP,&paintshop},
 		{IDS_CPS_PREFS,&options3d},
 	},
-	ReadyRoomInit
+	&RFullPanelDial::ReadyRoomInit
 };
 
 FullScreen RFullPanelDial::readyroomhostqmission=
@@ -895,7 +895,7 @@ FullScreen RFullPanelDial::readyroomhostqmission=
 	READYROOMLAYOUT,
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_TITLE7,&title,CleanUpComms},
+		{IDS_TITLE7,&title,&RFullPanelDial::CleanUpComms},
 		{IDS_FRAG,&commsfrag},
 //		{IDS_FLY,&quickmission,CommsSelectFly},
 		{IDS_VISITORS,&visitorsbook},
@@ -904,28 +904,28 @@ FullScreen RFullPanelDial::readyroomhostqmission=
 		{IDS_EDITMISSION,&commsquick},
 		{IDS_CPS_PREFS,&options3d},
 	},
-	ReadyRoomInit
+	&RFullPanelDial::ReadyRoomInit
 };
 FullScreen RFullPanelDial::readyroomguestqmission=
 {
 	READYROOMLAYOUT,
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_TITLE7,&title,CleanUpComms},
+		{IDS_TITLE7,&title,&RFullPanelDial::CleanUpComms},
 		{IDS_FRAG,&commsfrag},
 		{IDS_SETUP,&radio},
 //DEADCODE RDH 27/01/00 		{IDS_PAINTSHOP,&paintshop},
 		{IDS_VIEWMISSION,&quickview},
 		{IDS_CPS_PREFS,&options3d},
 	},
-	ReadyRoomInit
+	&RFullPanelDial::ReadyRoomInit
 };
 FullScreen RFullPanelDial::readyroomhostqmissionred=
 {
 	READYROOMLAYOUT,
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_TITLE7,&title,CleanUpComms},
+		{IDS_TITLE7,&title,&RFullPanelDial::CleanUpComms},
 		{IDS_FRAG,&commsfrag},
 //		{IDS_FLY,&quickmission,CommsSelectFly},
 		{IDS_VISITORS,&visitorsbook},
@@ -933,20 +933,20 @@ FullScreen RFullPanelDial::readyroomhostqmissionred=
 		{IDS_EDITMISSION,&commsquick},
 		{IDS_CPS_PREFS,&options3d},
 	},
-	ReadyRoomInit
+	&RFullPanelDial::ReadyRoomInit
 };
 FullScreen RFullPanelDial::readyroomguestqmissionred=
 {
 	READYROOMLAYOUT,
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_TITLE7,&title,CleanUpComms},
+		{IDS_TITLE7,&title,&RFullPanelDial::CleanUpComms},
 		{IDS_FRAG,&commsfrag},
 		{IDS_RADIO,&radio},
 		{IDS_VIEWMISSION,&quickview},
 		{IDS_CPS_PREFS,&options3d},
 	},
-	ReadyRoomInit
+	&RFullPanelDial::ReadyRoomInit
 };
 
 
@@ -955,7 +955,7 @@ FullScreen RFullPanelDial::readyroomhostcampaign=
 	READYROOMLAYOUT,
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_TITLE7,&title,CleanUpComms},
+		{IDS_TITLE7,&title,&RFullPanelDial::CleanUpComms},
 		{IDS_FRAG,&commsfrag},
 //		{IDS_FLY,&quickmission,CommsSelectFly},
 		{IDS_VISITORS,&visitorsbook},
@@ -965,21 +965,21 @@ FullScreen RFullPanelDial::readyroomhostcampaign=
 		{IDS_CPS_PREFS,&options3d},
 
 	},
-	ReadyRoomInit
+	&RFullPanelDial::ReadyRoomInit
 };
 FullScreen RFullPanelDial::readyroomguestcampaign=
 {
 	READYROOMLAYOUT,
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_TITLE7,&title,CleanUpComms},
+		{IDS_TITLE7,&title,&RFullPanelDial::CleanUpComms},
 		{IDS_FRAG,&commsfrag},
 		{IDS_SETUP,&radio},
 //DeadCode AMM 04Jan99 		{IDS_MAP,&paintshop},
 //DeadCode AMM 18Feb99 		{IDS_MAP,&paintshop,ReturnToMap},
 		{IDS_CPS_PREFS,&options3d},
 	},
-	ReadyRoomInit
+	&RFullPanelDial::ReadyRoomInit
 };
 
 FullScreen RFullPanelDial::readyroomhostcampaignred=
@@ -987,26 +987,26 @@ FullScreen RFullPanelDial::readyroomhostcampaignred=
 	READYROOMLAYOUT,
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_TITLE7,&title,CleanUpComms},
+		{IDS_TITLE7,&title,&RFullPanelDial::CleanUpComms},
 		{IDS_FRAG,&commsfrag},
 		{IDS_VISITORS,&visitorsbook},
 		{IDS_RADIO,&radio},
 		{IDS_CPS_PREFS,&options3d},
 
 	},
-	ReadyRoomInit
+	&RFullPanelDial::ReadyRoomInit
 };
 FullScreen RFullPanelDial::readyroomguestcampaignred=
 {
 	READYROOMLAYOUT,
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_TITLE7,&title,CleanUpComms},
+		{IDS_TITLE7,&title,&RFullPanelDial::CleanUpComms},
 		{IDS_FRAG,&commsfrag},
 		{IDS_RADIO,&radio},
 		{IDS_CPS_PREFS,&options3d},
 	},
-	ReadyRoomInit
+	&RFullPanelDial::ReadyRoomInit
 };
 
 
@@ -1054,7 +1054,7 @@ FullScreen RFullPanelDial::campaignselect=
 //DEADCODE RDH 26/10/99 		{IDS_OBJECTIVES,NULL,StartCampObjectives},
 		{IDS_BEGIN,&campaignentername},
 	},
-	CampaignSelectInit
+	&RFullPanelDial::CampaignSelectInit
 };
 
 FullScreen RFullPanelDial::campaignentername=
@@ -1096,12 +1096,12 @@ FullScreen RFullPanelDial::campaignentername=
 	FullScreen::Align::HORIZ,
 	{
 		{IDS_BACK,&title},
-		{IDS_BEGIN,NULL,LaunchMapFirstTime},
+		{IDS_BEGIN,NULL,&RFullPanelDial::LaunchMapFirstTime},
 		{0,&campaignselect},
 		{0,&gametype},
 		{0,&singleplayer},
 	},
-	CampaignEnterNameInit
+	&RFullPanelDial::CampaignEnterNameInit
 };
 
 FullScreen RFullPanelDial::enddayreview=
@@ -1143,13 +1143,13 @@ FullScreen RFullPanelDial::enddayreview=
 	FullScreen::Align::HORIZ,
 	{
 #ifndef BOB_PREVIEW_VER
-		{IDS_CONTINUE,NULL,ReturnToMapAfterReview},
+		{IDS_CONTINUE,NULL,&RFullPanelDial::ReturnToMapAfterReview},
 #else
 		{IDS_CONTINUE,&title},
 		{IDS_DISABLEDEMO,&title},
 #endif
 	},
-	EndDayReviewInit
+	&RFullPanelDial::EndDayReviewInit
 };
 FullScreen RFullPanelDial::lastdayreview=
 {
@@ -1191,7 +1191,7 @@ FullScreen RFullPanelDial::lastdayreview=
 	{
 		{IDS_CONTINUE,&title},
 	},
-	EndDayReviewInit
+	&RFullPanelDial::EndDayReviewInit
 };
 
 FullScreen RFullPanelDial::campover=
@@ -1234,7 +1234,7 @@ FullScreen RFullPanelDial::campover=
 	{
 		{IDS_BACK,&title},
 	},
-	CampaignOverInit
+	&RFullPanelDial::CampaignOverInit
 };
 #define  MAPSPECIALLAYOUT									   \
 	{															\
@@ -1277,9 +1277,9 @@ FullScreen RFullPanelDial::mapspecials=
 	MAPSPECIALLAYOUT,
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_CONTINUE,NULL,LaunchMapIfAlive},
+		{IDS_CONTINUE,NULL,&RFullPanelDial::LaunchMapIfAlive},
 	},
-	MapSpecialsInit
+	&RFullPanelDial::MapSpecialsInit
 };
 
 FullScreen RFullPanelDial::deadpilot=
@@ -1287,18 +1287,18 @@ FullScreen RFullPanelDial::deadpilot=
 	MAPSPECIALLAYOUT,
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_TITLE7,&singleplayer,CleanUpComms},  //AMM 16/05/99
-		{IDS_CONTINUE,NULL,ContinueAlthoughDead},
-		{IDS_LOADGAME,NULL,ReloadBecauseDead},
+		{IDS_TITLE7,&singleplayer,&RFullPanelDial::CleanUpComms},  //AMM 16/05/99
+		{IDS_CONTINUE,NULL,&RFullPanelDial::ContinueAlthoughDead},
+		{IDS_LOADGAME,NULL,&RFullPanelDial::ReloadBecauseDead},
 	},
-	DeadPilotInit
+	&RFullPanelDial::DeadPilotInit
 };
 FullScreen RFullPanelDial::specialdebrief=
 {
 	MAPSPECIALLAYOUT,
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_CONTINUE,NULL,ContinueAfterSpecialDebrief},
+		{IDS_CONTINUE,NULL,&RFullPanelDial::ContinueAfterSpecialDebrief},
 	},
 };
 
@@ -1331,9 +1331,9 @@ FullScreen RFullPanelDial::quickview=
 	},
 	FullScreen::Align::HORIZ,
 	{
-		{IDS_READYROOM,&readyroomhostmatch, SelectReadyRoom}
+		{IDS_READYROOM,&readyroomhostmatch, &RFullPanelDial::SelectReadyRoom}
 	},
-	QuickViewInit
+	&RFullPanelDial::QuickViewInit
 };
 
 

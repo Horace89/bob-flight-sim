@@ -97,14 +97,12 @@ ItemBasePtr WorldStuff::pMapItemHead;
 ///////////////////////////////////////////////
 extern CString		CSprintf(const char* format,...);
 
-CString	LoadResString(int resnum);
-/*
+static CString	LoadResString(int resnum)
 {
 	CString s;
 	s.LoadString(resnum);
 	return s;
 };
-*/
 
 //////////////////////////////////////////////////////////////////////
 //

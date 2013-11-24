@@ -1836,7 +1836,7 @@ void	LWDirectivesResults::FillTargetLists(LWDirectivesResults* dr)
 	}else
 		dr->reconntrg[3] =5;
 
-	i = 0;
+	int i = 0;
 	while 	(i < LWDirectivesResults::MAX_TARGETS)
 	{
 		dr->trgarray[0].target[i++].target = (UniqueID)IllegalBAND;

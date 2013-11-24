@@ -104,14 +104,13 @@ SaveData	Save_Data;
 DeadStream	Dead_Stream={0};
 char	date[]="Rowan Savegame: " __DATE__ ;
 char	date2[]="Rowan Savegame: " __DATE__ ;
-CString	LoadResString(int resnum);
-/*
+static CString	LoadResString(int resnum)
 {
 	CString s;
 	s.LoadString(resnum);
 	return s;
 };
-*/
+
 extern void GetDriverAndMode(int&,int&,int&,int&);
 //DEADCODE PD 03/12/99 extern void Configure(bool,HWND);
 #include	"..\mfc\resource.h"

@@ -6598,14 +6598,13 @@ PlaneTypeSelect	Squadron::AcType()
 {
 	SUBCALL(AcType())
 }
-CString	LoadResString(int resnum);
-/*
+static CString	LoadResString(int resnum)
 {
 	CString s;
 	s.LoadString(resnum);
 	return s;
 };
-*/
+
 CString Squadron::CallName()
 {
 	if (squadron<SQ_LW_START)

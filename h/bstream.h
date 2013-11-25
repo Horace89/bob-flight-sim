@@ -34,7 +34,8 @@ class	BIStream:public	ifstream
 {
 public:
 CON	BIStream(char* fname): ifstream()	{open(fname,ios::in+ios::binary);}
- /*   BIStream &operator >> (           char * __b )	{return (read(__b,strlen(__b)));}
+    
+    BIStream &operator >> (           char * __b )	{return (read(__b,strlen(__b)));}
     BIStream &operator >> (           char & __b )	{return (read(&__b));}
     BIStream &operator >> (           bool & __b )	{return (read((char*)&__b));}
     BIStream &operator >> (    signed char & __b )	{return (read(&__b));}
@@ -45,7 +46,7 @@ CON	BIStream(char* fname): ifstream()	{open(fname,ios::in+ios::binary);}
     BIStream &operator >> (   unsigned int & __b )	{return (read(&__b));}
     BIStream &operator >> (    signed long & __b )	{return (read(&__b));}
     BIStream &operator >> (  unsigned long & __b )	{return (read(&__b));}
-*/
+
 	BIStream &read(           char * __b ,int times=1)	{return (BIStream&)(istream::read(__b,times));}
 	BIStream &read(           char * __b ,char* __e)	{return (BIStream&)(istream::read(__b,(int)(__e-__b)));}
 	BIStream &read(    signed char * __b ,int times=1)	{return (BIStream&)(read((char*)__b,times));}
@@ -89,7 +90,7 @@ else
 			ios::trunc);
 				}
 
-/*    BOStream &operator << (const    CString& __b );//	{return (write(__b,strlen(__b)));}
+    BOStream &operator << (const    CString& __b );//	{return (write(__b,strlen(__b)));}
     BOStream &operator << (const           char * __b )	{return (write(__b,strlen(__b)));}
     BOStream &operator << (const           char & __b )	{return (write(&__b));}
 	BOStream &operator << (const           bool & __b )	{return (write((char*)&__b));}
@@ -101,7 +102,7 @@ else
     BOStream &operator << (const   unsigned int & __b )	{return (write(&__b));}
     BOStream &operator << (const    signed long & __b )	{return (write(&__b));}
     BOStream &operator << (const  unsigned long & __b )	{return (write(&__b));}
-*/
+
 	BOStream &write(const           char * __b ,int times=1)	{return (BOStream&)(ostream::write(__b,times));}
 	BOStream &write(const           char * __b ,char* __e)	{return (BOStream&)(ostream::write(__b,(int)(__e-__b)));}
 	BOStream &write(const    signed char * __b ,int times=1)	{return (BOStream&)(write((char*)__b,times));}

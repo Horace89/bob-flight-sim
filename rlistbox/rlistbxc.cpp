@@ -1108,7 +1108,9 @@ short CRListBoxCtrl::GetCount()
 
 void CRListBoxCtrl::AddString(LPCTSTR text,short index) 
 {
-	char* buffer=new char[strlen(text)+1]; // include terminating null character
+	size_t sz=strlen(text);
+	if (!sz) return;
+	char* buffer=new char[sz+1]; // include terminating null character
 	strcpy(buffer,text);
 	if (m_HorizontalOption)  //TempCode JW 04Nov98 	
 	{
@@ -1133,13 +1135,16 @@ void CRListBoxCtrl::AddString(LPCTSTR text,short index)
 		}
 	}	
 	else
-	{
-		CList<char*,char*>* list=m_list.GetAt(m_list.FindIndex(index));
+	{   
+		POSITION pos=m_list.FindIndex(index);
+		if(pos){
+		CList<char*,char*>* list=m_list.GetAt(pos);
 		ASSERT(list->IsEmpty() || !m_isPictureList.GetAt(m_isPictureList.FindIndex(index)));
 		list->AddTail(buffer);
 		while (list->GetCount()>m_rowColourList.GetCount())
-		{
+		  {
 			m_rowColourList.AddTail(TranslateColor(GetForeColor()));
+		  }
 		}
 	}
 	// remember to delete it
@@ -1525,8 +1530,11 @@ void CRListBoxCtrl::OnLButtonDown(UINT nFlags, CPoint point)
 		if (m_iColSel>count) m_iColSel=count;
 		if (m_iColSel<0) m_iColSel=0;
 		m_iRowSel=(point.y+m_lVertScrollPos)/tm.tmHeight;
-		count=m_list.GetAt(m_list.FindIndex(m_iColSel))->GetCount()-1;
+		POSITION pos=m_list.FindIndex(m_iColSel);
+		if (pos){
+		count=m_list.GetAt(pos)->GetCount()-1;
 		if (m_iRowSel>count) m_iRowSel=count;
+		}
 		if (m_iRowSel<0) m_iRowSel=0;
 		if (m_iOldColSel!=m_iColSel || m_iOldRowSel!=m_iRowSel) InvalidateControl();
 		pdc->SelectObject(pOldFont);
@@ -1569,8 +1577,11 @@ void CRListBoxCtrl::OnLButtonUp(UINT nFlags, CPoint point)
 			if (m_iColSel>count) m_iColSel=count;
 			if (m_iColSel<0) m_iColSel=0;
 			m_iRowSel=(point.y+m_lVertScrollPos)/tm.tmHeight;
-			count=m_list.GetAt(m_list.FindIndex(m_iColSel))->GetCount()-1;
+			POSITION pos=m_list.FindIndex(m_iColSel);
+			if(pos){
+			count=m_list.GetAt(pos)->GetCount()-1;
 			if (m_iRowSel>count) m_iRowSel=count;
+			}
 			if (m_iRowSel<0) m_iRowSel=0;
 			if (m_iOldColSel!=m_iColSel || m_iOldRowSel!=m_iRowSel) InvalidateControl();
 			pdc->SelectObject(pOldFont);
@@ -1790,8 +1801,11 @@ void CRListBoxCtrl::OnMouseMove(UINT nFlags, CPoint point)
 			if (m_iColSel>count) m_iColSel=count;
 			if (m_iColSel<0) m_iColSel=0;
 			m_iRowSel=(point.y+m_lVertScrollPos)/tm.tmHeight;
-			count=m_list.GetAt(m_list.FindIndex(m_iColSel))->GetCount()-1;
+POSITION pos=m_list.FindIndex(m_iColSel);
+if (pos){
+			count=m_list.GetAt(pos)->GetCount()-1;
 			if (m_iRowSel>count) m_iRowSel=count;
+}	
 			if (m_iRowSel<0) m_iRowSel=0;
 			if (m_iOldColSel!=m_iColSel || m_iOldRowSel!=m_iRowSel) InvalidateControl();
 			pdc->SelectObject(pOldFont);

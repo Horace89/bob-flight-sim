@@ -150,7 +150,7 @@ char	namedirdir[2048]={'D','I','R','.','D','I','R',0,	 		0,0,0,0,0,0,0,0,
 
 
 int	(*fileman::MemFailPFU) (unsigned)=NULL;
-int	interlocker=0;
+CLock	interlocker;
 #ifdef	__MSVC__
 //inline	int	LockExchange(int* loc,int newval=0)
 //{
@@ -947,7 +947,7 @@ string	fileman::namenumberedfile(FileNum	MyFile)
 	string		dirlister=(string)	fb.getdata();
 
 //DeadCode DAW 25Feb97 	INT3();
-    assert(dirlister);
+//    assert(dirlister);
 	if (!dirlister || dirlister[0]==0)										//DAW 25Feb97
 		return("//");
 	bobassert(  (dirlister[0]) ,"Not expecting concatenated directory here!" );
@@ -1203,12 +1203,7 @@ FILE*	filehandle;
 	if (BLOCKCHILD) //RDH 08/07/99
 		return; //RDH 08/07/99
 
-	if (processlock)
-	{ //x0r freeze here
-//		(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'M';
-		while(LockExchange(&interlocker,1))
-			Sleep(20);
-	}
+LOCK_SCOPE(interlocker);
 
 	if ((fileblockdata=link->makelink(MyFile,offset,blocksize,link))==NULL)
 	{
@@ -1217,11 +1212,8 @@ FILE*	filehandle;
 		if (di==RAMCACHEHANDLEDIR)
 		{
 			bobassert(blocksize!=0 && blocksize!=0x7fffffff,": Must set a size for RAM blocks");
-			if (processlock)
-			{
-//				(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'m';
-				LockExchange(&interlocker,0);
-			}
+
+
 			link->datasize=blocksize;
 			bobassert(blocksize,"Must provide data size for RAMBUFFER");
 			bobassert(MyTrans,"Must provide translate fn for RAMBUFFER");
@@ -1232,11 +1224,7 @@ FILE*	filehandle;
 		{
 			if (FILEMAN.direntries[di].openfile.number==MyFile)
 			{
-				if (processlock)
-				{
-//					(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'m';
-					LockExchange(&interlocker,0);
-				}
+
 				filehandle=FILEMAN.direntries[di].openfile.handle;
 				link->datasize=blocksize;
 				FILEMAN.seekfilepos(filehandle,offset);
@@ -1258,14 +1246,13 @@ FILE*	filehandle;
 				else
 				{
 					filehandle=	FILEMAN.fileman::opennumberedfile(MyFile);
-					if (processlock)
-					{
-//						(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'m';
-						LockExchange(&interlocker,0);
-					}
+
 // x0r code start
 					if (!filehandle)
-                                             {FILEMAN.fileloadedthisframe=FALSE;link->deletedirchain(MyFile);link->datasize=0;return;}
+                                             {
+												 FILEMAN.fileloadedthisframe=FALSE;link->deletedirchain(MyFile);link->datasize=0;
+			
+														return;}
 // x0r code end
 					FILEMAN.fileloadedthisframe=TRUE;
 					link->datasize=		FILEMAN.getfilesize(filehandle);
@@ -1350,17 +1337,14 @@ FILE*	filehandle;
 			}
 		link->fileblockdata=fileblockdata;
 	}
-	else
-		if (processlock)
-		{
-//			(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'m';
-			LockExchange(&interlocker,0);
-		}
+
 #ifndef	NDEBUG
 	if (link)
 		robtotalfilememused += link->datasize;
 #endif
 	assert(fileblockdata);
+		
+
 }
 ////////////////////////////////////////////////////////
 //	I sometimes need to make a block of data look like a fileblock
@@ -1393,7 +1377,7 @@ FILE*	filehandle;
 	link=srcblockptr->link;
 	srcblockptr->link=NULL;
 	fileblockdata=srcblockptr->fileblockdata;
-	assert(fileblockdata);
+//	assert(fileblockdata);
 	srcblockptr->fileblockdata=NULL;
 	delete srcblockptr;
 }
@@ -1796,10 +1780,10 @@ CON	dirlist::dirlist(FileNum d):
 //	FILEMAN.pathname[FILEMAN.filenameindex]=0;
 
 //	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'D';
-	while(LockExchange(&interlocker,1))
-		Sleep(20);
+LOCK_SCOPE(interlocker);
+
 	makedirlist(FILEMAN.makedirectoryname(::dirnum(d)),"*.*");
-	LockExchange(&interlocker,0);	//NOT GOOD ENOUGH!!!
+
 //	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'d';
 }
 
@@ -1812,10 +1796,9 @@ CON	dirlist::dirlist(FileNum d,char* w):
 //	FILEMAN.pathname[FILEMAN.filenameindex]=0;
 
 //	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'L';
-	while(LockExchange(&interlocker,1))
-		Sleep(20);
+LOCK_SCOPE(interlocker);
+
 	makedirlist(FILEMAN.makedirectoryname(::dirnum(d)),w);
-	LockExchange(&interlocker,0);	//NOT GOOD ENOUGH!!!
 //	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'l';
 }
 
@@ -2081,20 +2064,19 @@ return	(fb.getsize()>>4);
 int		FileMan::filesindir(FileNum dirnum)
 {
 //	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'F';
-	while(LockExchange(&interlocker,1))
-		Sleep(20);
+LOCK_SCOPE(interlocker);
 	int rv=fileman::filesindir(dirnum);
-	LockExchange(&interlocker,0);
+
 //	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'f';
 	return rv;
 }
 Bool	FileMan::existnumberedfile(FileNum filenum)
 {
 //	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'E';
-	while(LockExchange(&interlocker,1))
-		Sleep(20);
+LOCK_SCOPE(interlocker);
+
 	Bool rv=fileman::existnumberedfile(filenum);
-	LockExchange(&interlocker,0);
+
 //	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'e';
 	return rv;
 }
@@ -2110,10 +2092,9 @@ ULong	FileMan::seekfilepos(FILE* openhandle,ULong offset)
 FILE*	FileMan::opennumberedfile(FileNum filenum)
 {
 //	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'O';
-	while(LockExchange(&interlocker,1))
-		Sleep(20);
+LOCK_SCOPE(interlocker);
+
 	FILE*	rv=fileman::opennumberedfile(filenum);
-	LockExchange(&interlocker,0);
 //	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'o';
 	return rv;
 }
@@ -2137,42 +2118,38 @@ char*	FileMan::makedirectoryname(dirindex	reqdir)
 string	FileMan::namenumberedfile(FileNum f)
 {	//requires external unlocking of access, or string copy operation
 //	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'N';
-	while(LockExchange(&interlocker,1))
-		Sleep(20);
+LOCK_SCOPE(interlocker);
+
 	string rv=fileman::namenumberedfile(f);
-	LockExchange(&interlocker,0);	//NOT GOOD ENOUGH!!!
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'n';
+
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'n';
 	return rv;
 }
 
 void FileMan::flushcachedfiles()
 {
-	while(LockExchange(&interlocker,1))
-		Sleep(20);
+LOCK_SCOPE(interlocker);
 	fileman::flushcachedfiles();
-	LockExchange(&interlocker,0);
 }
 
 string	FileMan::namenumberedfile(FileNum f, string sss)
 {	//requires external unlocking of access, or string copy operation
 
 //	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'S';
-	while(LockExchange(&interlocker,1))
-		Sleep(20);
+LOCK_SCOPE(interlocker);
 	string rv=fileman::namenumberedfile(f);
 	strcpy(sss,rv);
-	LockExchange(&interlocker,0);	//NOT GOOD ENOUGH!!!
+
 //	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'s';
 	return sss;
 }
 string	FileMan::namenumberedfilelessfail(FileNum f)
 {	//requires external unlocking of access, or string copy operation
 //	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'X';
-	while(LockExchange(&interlocker,1))
-		Sleep(20);
+LOCK_SCOPE(interlocker);
 	string rv=fileman::namenumberedfilelessfail(f);
-	LockExchange(&interlocker,0);	//NOT GOOD ENOUGH!!!
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'x';
+
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'x';
 	return rv;
 }
 void	FileMan::InitFileSystem()
@@ -2182,35 +2159,29 @@ void	FileMan::InitFileSystem()
 
 void FileMan::SetupAreaFiles(FileNum* fn)
 {
-	while(LockExchange(&interlocker,1))
-		Sleep(20);
+LOCK_SCOPE(interlocker);
 	fileman::SetupAreaFiles(fn);
-	LockExchange(&interlocker,0);	//NOT GOOD ENOUGH!!!
 }
 
 void FileMan::CloseAreaFiles()
 {
-	while(LockExchange(&interlocker,1))
-		Sleep(20);
+LOCK_SCOPE(interlocker);
 	fileman::CloseAreaFiles();
-	LockExchange(&interlocker,0);	//NOT GOOD ENOUGH!!!
 }
 
 void* FileMan::loadCDfile(FileNum a,SLong b,SLong c,Bool skipread)
 {
-	while(LockExchange(&interlocker,1))
-		Sleep(20);
+LOCK_SCOPE(interlocker);
 	void* retval=fileman::loadCDfile(a,b,c,skipread);
-	LockExchange(&interlocker,0);	//NOT GOOD ENOUGH!!!
+
 	return retval;
 }
 
 void FileMan::pingCD()
 {
-	while(LockExchange(&interlocker,1))
-		Sleep(20);
+LOCK_SCOPE(interlocker);
 	fileman::pingCD();
-	LockExchange(&interlocker,0);	//NOT GOOD ENOUGH!!!
+
 }
 
 SLong	FileMan::getTotalMem()

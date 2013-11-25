@@ -24,8 +24,9 @@ DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
 LicenseFile=C:\Program Files (x86)\Bob Source\SRC\LIC.TXT
 InfoBeforeFile=D:\BOB\debug\exe\Demo Readme.txt
-InfoAfterFile=D:\BOB\debug\exe\readme.txt
+#InfoAfterFile=D:\BOB\debug\exe\readme.txt
 OutputBaseFilename=setup
+OutputDir=D:\BOB
 Compression=lzma2
 SolidCompression=yes
 
@@ -40,8 +41,9 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 [Files]
 Source: "D:\BOB\debug\exe\bob.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\BOB\debug\exe\*.ocx"; DestDir: {app}; Flags: ignoreversion regserver 32bit
-Source: "D:\BOB\debug\exe\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "D:\BOB\debug\exe\*"; Excludes: "*.pdb,*.bsc,*.ilk,*.lib,*.exp,*.lic,*.tlb,*.pcx,*.err,*.bfi"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+Source: "vcredist_x86.exe"; DestDir: {tmp}; Flags: deleteafterinstall
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
@@ -50,5 +52,6 @@ Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: 
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: quicklaunchicon
 
 [Run]
+Filename: "{tmp}\vcredist_x86.exe";
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 

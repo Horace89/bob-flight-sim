@@ -302,9 +302,8 @@ public:
 
 
 }
-/* x0r !!!
+
 BOStream& BOStream::operator<<(const CString& s)
 {
 	return operator << ((const char*)s);
 }
-*/

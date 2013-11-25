@@ -24,7 +24,57 @@
 //#include	"stdafx.h"
 //#include	<afxmt.h>
 
-inline	int	LockExchange(int* loc,int newval=0)
+///////////////////////////////
+class CLock
+{
+public:
+    CLock()
+    {
+        InitializeCriticalSection(&m_CriticalSection);
+    }
+    ~CLock()
+    {
+        DeleteCriticalSection(&m_CriticalSection);
+    }
+    void Acquire()
+    {
+        EnterCriticalSection(&m_CriticalSection);
+    }
+    void Release()
+    {
+        LeaveCriticalSection(&m_CriticalSection);
+    }
+private:
+    CLock(const CLock&);    // disabling copy constructor
+    CRITICAL_SECTION m_CriticalSection;
+};
+ 
+
+// Using RAII to make unlocking cleaner and safer
+class mCAutoLock
+{
+public:
+    mCAutoLock(CLock& lock)
+        : m_Lock(lock)
+    {
+        m_Lock.Acquire();
+    }
+    ~mCAutoLock()
+    {
+        m_Lock.Release();
+    }
+private:
+    CLock &m_Lock;
+};
+ 
+#define CONCAT_MACRO1(var_name, counter) var_name##counter
+#define CONCAT_MACRO2(var_name, counter) CONCAT_MACRO1(var_name, counter)
+#define CONCAT_COUNTER(var_name) CONCAT_MACRO2(var_name, __COUNTER__)
+// automatic name generation for the __auto_lock stack object
+#define LOCK_SCOPE(var) mCAutoLock CONCAT_COUNTER(__auto_lock)(var)
+///////////////////////////////
+
+inline	int	LockExchange(volatile int* loc,int newval=0)
 {
 	int rv;
     #ifndef    __BCPLUSPLUS__

@@ -235,7 +235,7 @@ Bool RFullPanelDial::QuickMissionRed()
 				initindch++;
 			}
 	DialBox*	ND=NULL;
-
+//x0r bug somethere here
 	LaunchDial(1,
 		&DialList(DialBox(FIL_NULL,new QuickMissionPanel),			
 			DialList ( DialBox(FIL_NULL,new EmptyChildWindow, EDGES_NOSCROLLBARS_NODRAGGING),

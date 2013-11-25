@@ -166,7 +166,7 @@ const double M_PI = 3.141592653589793238462;
 #pragma warning	690	2				// Fix against "condition is always true"
 #endif
 #ifdef __MSVC__
-/*
+
 #if     _MSC_VER >= 1300
 #ifndef nullptr
 const                        // this is a const object...
@@ -185,7 +185,7 @@ private:
 #else
 #define nullptr NULL
 #endif
-*/
+
 //HAPPY TO LOSE THESE
 //4097 class synonym;
 //4510 union constructor;

@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{349f0a56-40fb-4c3e-9321-bb6739d54c3a}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{efdee2fc-a154-4901-8fb2-376c4a9c6274}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{1278d328-e59a-45cd-8f47-cfd1703b737c}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;cnt;rtf;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="all.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getfile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Mfc\getresrc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Mfc\Getshadw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rbuttonc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rbuttonp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RButton.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="RButton.odl">
+      <Filter>Source Files</Filter>
+    </Midl>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="RButton.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MinFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rbuttonc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rbuttonp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Res\Bye1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\close1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\helpdown.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\helpup.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Rbuttonc.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\tick.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Tickup.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="RButton.lic" />
+  </ItemGroup>
+</Project>

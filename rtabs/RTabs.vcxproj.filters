@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{904ddc4d-0e0a-4a9a-9258-ed6271fbc03a}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{0bff55e5-8b18-4eee-bb3e-0d5a5761474d}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{8bc05a16-9934-4cc0-880b-3224c48b0b79}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;cnt;rtf;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Mfc\Getshadw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RTabs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RTabsCtl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RTabsPpg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RTabs.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="RTabs.odl">
+      <Filter>Source Files</Filter>
+    </Midl>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="RTabs.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RTabs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RTabsCtl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RTabsPpg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Hilite.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ico00001.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="icon1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="icon2.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RTabsCtl.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sticker.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="StickerU.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="tab1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Unhilite.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="RTabs.lic" />
+  </ItemGroup>
+</Project>

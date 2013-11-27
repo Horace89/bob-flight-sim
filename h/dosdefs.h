@@ -11,7 +11,7 @@
 #ifndef	dosdefs_Included
 #define	dosdefs_Included
 
-#include <stddef.h>
+#include <cstddef>
 
 #ifdef _AFXDLL
  #include <afxwin.h>

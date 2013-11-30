@@ -4,8 +4,6 @@
 // produce the type library (RListBox.tlb) that will become a resource in
 // RListBox.ocx.
 
-#include <olectl.h>
-#include <idispids.h>
 
 [ uuid(90B5EDA5-666F-11d6-A1F0-444553540000), version(1.7),
   helpfile("RListBox.hlp"),
@@ -13,6 +11,8 @@
   control ]
 library RLISTBOXLib
 {
+#include <olectl.h>
+#include <idispids.h>
 	importlib(STDOLE_TLB);
 	importlib(STDTYPE_TLB);
 

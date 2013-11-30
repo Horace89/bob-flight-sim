@@ -280,3 +280,5 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //DeadCode RDH 27Oct96 	return((accelaccum<time_diff)?TRUE:FALSE);
 //DeadCode RDH 27Oct96 }
 //DeadCode RDH 27Oct96 
+
+TimerCode Timer_Code;

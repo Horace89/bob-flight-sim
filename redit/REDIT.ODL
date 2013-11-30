@@ -4,8 +4,6 @@
 // produce the type library (REdit.tlb) that will become a resource in
 // REdit.ocx.
 
-#include <olectl.h>
-#include <idispids.h>
 
 [ uuid(499E2BE3-AC32-11d6-A1F0-444553540000), version(1.0),
   helpfile("REdit.hlp"),
@@ -13,6 +11,8 @@
   control ]
 library REDITLib
 {
+#include <olectl.h>
+#include <idispids.h>
 	importlib(STDOLE_TLB);
 	importlib(STDTYPE_TLB);
 

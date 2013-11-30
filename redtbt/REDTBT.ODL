@@ -4,8 +4,6 @@
 // produce the type library (REdtBt.tlb) that will become a resource in
 // REdtBt.ocx.
 
-#include <olectl.h>
-#include <idispids.h>
 
 [ uuid(461A1FE0-B81B-11d6-A1F0-444553540000), version(1.0),
   helpfile("REdtBt.hlp"),
@@ -13,6 +11,8 @@
   control ]
 library REDTBTLib
 {
+#include <olectl.h>
+#include <idispids.h>
 	importlib(STDOLE_TLB);
 	importlib(STDTYPE_TLB);
 

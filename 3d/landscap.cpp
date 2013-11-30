@@ -7410,7 +7410,7 @@ void LandScape::InfiniteStrip( const ANGLES pitch, const ANGLES roll)
 	double fvy=double(viewer_y)/double(CEILING_ALT);
 //DeadCode JON 20Oct00 	double fvy2=fvy*fvy;
 
-	DoPointStruc* ptr=Shape.newco;
+	DoPointStruc* ptr = shape::newco;
 
 	double fvr=double(view_dist*0.999999);
 //DeadCode JON 5Oct00 	{

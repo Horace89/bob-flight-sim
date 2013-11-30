@@ -167,7 +167,7 @@ const double M_PI = 3.141592653589793238462;
 #endif
 #ifdef __MSVC__
 
-#if     _MSC_VER >= 1300
+#if   ( _MSC_VER >= 1300 && _MSC_VER < 1700 )
 #ifndef nullptr
 const                        // this is a const object...
 class {

@@ -78,4 +78,5 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //#include "..\HARDWARE\Win3d.cpp"
 #include "..\HARDWARE\messengn.cpp"
 //#include "..\HARDWARE\config.cpp"
+#include "..\HARDWARE\wintime.cpp"
 

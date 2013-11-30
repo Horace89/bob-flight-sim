@@ -4,8 +4,6 @@
 // produce the type library (RButton.tlb) that will become a resource in
 // RButton.ocx.
 
-#include <olectl.h>
-#include <idispids.h>
 
 [ uuid(78918643-A917-11d6-A1F0-444553540000), version(1.3),
   helpfile("RButton.hlp"),
@@ -13,6 +11,9 @@
   control ]
 library RBUTTONLib
 {
+#include <olectl.h>
+#include <idispids.h>
+	
 	importlib(STDOLE_TLB);
 	importlib(STDTYPE_TLB);
 

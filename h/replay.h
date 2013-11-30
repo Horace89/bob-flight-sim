@@ -16,6 +16,7 @@
 #include	"savegame.h"
 #include	"cbuffer.h"
 #include	"sky.h"
+#include	"mytime.h"
 class  Engine;
 typedef class  Engine ENGINE, *PENGINE, **PPENGINE;
 class Ctrl ;
@@ -45,12 +46,12 @@ enum {REPLAYSUPERHEADENDID=(('D'<<24)+('N'<<16)+('E'<<8)+'S')};
 // bullets and missiles get 10 secs, bombs 1 min
 // this value is in frames
 
-#define MISSILEDELAY	(100/TimerCode.FRAMETIME)*10
-#define	BULLETDELAY		(100/TimerCode.FRAMETIME)*10
-#define BOMBDELAY		(100/TimerCode.FRAMETIME)*60
+#define MISSILEDELAY (100 /Timer_Code.FRAMETIME) * 10
+#define BULLETDELAY (100 / Timer_Code.FRAMETIME) * 10
+#define BOMBDELAY (100 / Timer_Code.FRAMETIME) * 60
 
 
-#define	POSBSIZE		5
+const long	POSBSIZE = 5;
 
 typedef struct _basic_packet REPLAYPACKET;
 typedef struct _basic_packet* LPREPLAYPACKET;

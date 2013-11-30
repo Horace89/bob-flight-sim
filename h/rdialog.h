@@ -92,15 +92,15 @@ protected:
 
 };
 
-struct DialBox:DialMake
+struct DialBox: public DialMake
 {
 	RDialog*	dial;
 	const	DialBox*	diallist[10];
 	DialBox(FileNum artnum,RDialog*	newdial,const Edges& e=*(Edges*)NULL):
 	DialMake(&e,artnum)
 	{dial=newdial;diallist[0]=NULL;diallist[1]=(DialBox*)0x12345678;}
-protected:
-	DialBox(DialBox& d):DialMake(d.edges,d.art){dial=d.dial;}
+//x0r protected:
+	DialBox(const DialBox& d):DialMake(d.edges,d.art){dial=d.dial;}
 	DialBox()	{dial=NULL; edges=NULL; art=FIL_NULL;}
 };
 

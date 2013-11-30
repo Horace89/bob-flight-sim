@@ -460,12 +460,14 @@ enum	Times
 class TimerCode
 {
 public:
-	enum
-	{
-		FRAMETIME = 4
-	};
+
+	TimerCode()
+		:FRAMETIME(4)
+	{}
+
+	long		FRAMETIME;
 };
 
-extern TimerCode Timer_Code;
+extern class TimerCode Timer_Code;
 
 #endif

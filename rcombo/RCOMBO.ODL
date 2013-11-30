@@ -4,8 +4,6 @@
 // produce the type library (RCombo.tlb) that will become a resource in
 // RCombo.ocx.
 
-#include <olectl.h>
-#include <idispids.h>
 
 [ uuid(737CB0C6-B42B-11d6-A1F0-444553540000), version(1.1),
   helpfile("RCombo.hlp"),
@@ -13,6 +11,8 @@
   control ]
 library RCOMBOLib
 {
+#include <olectl.h>
+#include <idispids.h>
 	importlib(STDOLE_TLB);
 	importlib(STDTYPE_TLB);
 

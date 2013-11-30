@@ -4,8 +4,6 @@
 // produce the type library (RTabs.tlb) that will become a resource in
 // RTabs.ocx.
 
-#include <olectl.h>
-#include <idispids.h>
 
 [ uuid(4A1E1983-8B31-11d6-A1F0-444553540000), version(1.0),
   helpfile("RTabs.hlp"),
@@ -13,6 +11,8 @@
   control ]
 library RTABSLib
 {
+#include <olectl.h>
+#include <idispids.h>
 	importlib(STDOLE_TLB);
 	importlib(STDTYPE_TLB);
 

@@ -16237,7 +16237,7 @@ void	TransientItem::BombPitch()
 		SWord	fakeangle = timeleft*950;
 		Math_Lib.high_sin_cos((Angles)fakeangle, sin_ang, cos_ang);
 
-		Float deltapitch = -1000.0 * Float(TimerCode.FRAMETIME) * sin_ang;
+		Float deltapitch = -1000.0 * Float(Timer_Code.FRAMETIME) * sin_ang;
 		deltapitch *= (1.0 - (Float(timeleft) * 0.002));
 		pitch += SWord(deltapitch);
 

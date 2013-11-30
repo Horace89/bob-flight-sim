@@ -25736,7 +25736,7 @@ void	shape::GroupMemberInherit(ItemBasePtr launcher, ShapeNum toShape, ShapeNum 
 	sdptr2->sx=MAXHORI>>4;
 	sdptr2->sz=MAXHORI>>4;
 	sdptr2->sy=MAXVERT>>4;
-	sdptr2->Size=SQRT_MH2_MH2_MV2;
+	sdptr2->Size=SQRT_MH2_MH2_MV2; //truncation!!!
 
 	if ((SHAPESTUFF.GetShapeScale(sdptr2) == SHP_GRP)	)
 	{

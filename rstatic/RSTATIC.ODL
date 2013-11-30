@@ -4,8 +4,6 @@
 // produce the type library (RStatic.tlb) that will become a resource in
 // RStatic.ocx.
 
-#include <olectl.h>
-#include <idispids.h>
 
 [ uuid(C42BAC3A-CA3C-11d6-A1F0-444553540000), version(1.1),
   helpfile("RStatic.hlp"),
@@ -13,6 +11,8 @@
   control ]
 library RSTATICLib
 {
+#include <olectl.h>
+#include <idispids.h>
 	importlib(STDOLE_TLB);
 	importlib(STDTYPE_TLB);
 

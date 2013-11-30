@@ -1733,7 +1733,7 @@ void CALLBACK Mast3d::StaticTimeProc(UINT uID, UINT uMsg, DWORD dwUser, DWORD dw
 {
 
 #ifdef DO_TIMER_DIAGS
-	QueryPerformanceCounter(&timerBufferIn[timerBufferI]);
+//x0r 	QueryPerformanceCounter(&timerBufferIn[timerBufferI]);
 #endif
 
 //DEADCODE JIM 21/06/00 	Mono_Text.Print(UByteP("t"));
@@ -1764,8 +1764,8 @@ void CALLBACK Mast3d::StaticTimeProc(UINT uID, UINT uMsg, DWORD dwUser, DWORD dw
 	insidetimer = FALSE;
 
 #ifdef DO_TIMER_DIAGS
-	QueryPerformanceCounter(&timerBufferOut[timerBufferI++]);
-	timerBufferI%=gameSettings.m_dwTimerBufferSize;
+/* x0r	QueryPerformanceCounter(&timerBufferOut[timerBufferI++]);
+	timerBufferI%=gameSettings.m_dwTimerBufferSize; */
 #endif
 
 }

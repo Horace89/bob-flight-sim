@@ -593,7 +593,7 @@ void	ManualPilot::MainManualPilot()
 //tmp fix should not be running acm on player ac in final version//RDH 20Aug96
 		if(controlmode == MANUAL)
 		{
-			if((Persons2::PlayerGhostAC->timeofday & 0x07ff == 0) && (Persons2::PlayerGhostAC->slowdownleader))
+			if(((Persons2::PlayerGhostAC->timeofday) & 0x07ff == 0) && (Persons2::PlayerGhostAC->slowdownleader))
 			{
 				Persons2::PlayerGhostAC->slowdownleader = FALSE;		  //JIM 22/03/99
 				AirStrucPtr found = NULL;
@@ -867,7 +867,7 @@ Bool	ManualPilot::DeathSequenceOverride(ItemPtr	itm, int	newmovecode,bool commsc
 		if(!player->fly.expandedsag)
 		{
 			bool enemyleft = false;
-			for(AirStrucPtr ac = AirStrucPtr(mobileitem.ACList); (ac) && (!enemyleft); ac = AirStrucPtr(ac->nextmobile))
+			for(AirStrucPtr ac = AirStrucPtr(mobileitem::ACList); (ac) && (!enemyleft); ac = AirStrucPtr(ac->nextmobile))
 				if((ac->nationality != player->nationality) && (!ac->Status.deadtime))
 					if(player->Distance3DSquared(&ac->World) < FP(2 * VISIBLERANGE) * FP(2 * VISIBLERANGE))
 						enemyleft = true;

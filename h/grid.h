@@ -31,8 +31,8 @@ public:
 	inline long getWorld( ULong x, ULong y ) { return get( (x>>WORLDSPACEMOD)+64, (y>>WORLDSPACEMOD)+64 ); }
 	virtual long get( int x, int y ) = 0;		// pure virtual
 	inline long getFlip( int x, int y ) { return get( x, 639 - y ); } // get the upside down version...
-	virtual bool save( char* filename ) = 0;	// pure virtual
-	virtual bool load( char* filename ) = 0;	// pure virtual - loads one back in again
+	virtual bool save(const char* filename ) = 0;	// pure virtual
+	virtual bool load(const char* filename) = 0;	// pure virtual - loads one back in again
 	virtual long type( void ) = 0;				// pure virtual - return the type
 
 	static void makeGridAt( void* &dataarea, ULong& datasize ); // the second parameter is ignored...
@@ -124,8 +124,8 @@ public:
 	Grid_Bit( int fake ) {}					//fake constructor for inline inplacement
 
 	virtual long get( int x, int y );
-	virtual bool save( char* filename );
-	virtual bool load( char* filename ) { return false; } // not implemented - only use the general load method.
+	virtual bool save(const char* filename);
+	virtual bool load(const char* filename) { return false; } // not implemented - only use the general load method.
 	virtual long type( void ) { return TYPE_BIT; }
 
 	void set( int x, int y, bool v );
@@ -146,8 +146,8 @@ public:
 	Grid_Byte( int fake ) {}					//fake constructor for inline inplacement
 
 	virtual long get( int x, int y );
-	virtual bool save( char* filename );
-	virtual bool load( char* filename );// { return false; } // not implemented - only use the general load method.
+	virtual bool save(const char* filename);
+	virtual bool load(const char* filename );// { return false; } // not implemented - only use the general load method.
 	virtual long type( void ) { return TYPE_BYTE; }
 
 	void set( int x, int y, UByte v );
@@ -166,8 +166,8 @@ public:
 	Grid_Word( int fake ) {}					//fake constructor for inline inplacement
 
 	virtual long get( int x, int y );
-	virtual bool save( char* filename );
-	virtual bool load( char* filename ) { return false; } // not implemented - only use the general load method.
+	virtual bool save(const char* filename );
+	virtual bool load(const char* filename) { return false; } // not implemented - only use the general load method.
 	virtual long type( void ) { return TYPE_WORD; }
 
 	void set( int x, int y, UWord v );
@@ -188,8 +188,8 @@ public:
 
 	virtual long get( int x, int y );
 	
-	virtual bool save( char* filename );
-	virtual bool load( char* filename ) { return false; } // not implemented - only use the general load method.
+	virtual bool save(const char* filename);
+	virtual bool load(const char* filename) { return false; } // not implemented - only use the general load method.
 	virtual long type( void ) { return TYPE_LONG; }
 
 	void set( int x, int y, long v );
@@ -207,7 +207,7 @@ public:
 
 
 // loads a grid of unspecified type- do NOT modify the returned object in any way...
-Grid_Base* loadGrid( char* filename );
+Grid_Base* loadGrid(const char* filename);
 //void makeGridAt( void* &dataarea, ULong& datasize ); // the second parameter is ignored...
 //void makeGridAt( void* dataarea );
 

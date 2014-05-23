@@ -174,7 +174,7 @@ long Grid_Bit::get( int x, int y )
 	return (long)BITTEST( row, y&63 );
 }
 
-bool Grid_Bit::save( char *filename )
+bool Grid_Bit::save(const char *filename )
 {
 	FILE* fp;
 	if((fp=fopen(filename,"wb"))==NULL){
@@ -188,15 +188,20 @@ bool Grid_Bit::save( char *filename )
 	long temp[10*10];
 	long *hdSt = &header[0][0];
 	{
-	for ( int i = 0; i<10*10; i++ )
-		for ( int j = 0; j<=i; j++ )
-			if ( compareBlock( i, j ) )
+		for (int i = 0; i < 10 * 10; i++)
+		{
+			temp[i] = 0;
+			for (int j = 0; j <= i; j++)
+			if (compareBlock(i, j))
 			{
 				temp[i] = j;
 				break;
 			}
+		}
 	}
 	long newHd[10*10];
+	for (int i = 0; i<10 * 10; i++)
+		newHd[i] = 0;
 	int nextFree = 0;
 	{
 	for ( int i = 0; i<10*10; i++ )
@@ -269,7 +274,7 @@ long Grid_Byte::get( int x, int y )
 	return (long) data[ header[x>>3][y>>3] ][x&7][y&7];
 }
 
-bool Grid_Byte::load( char *filename )
+bool Grid_Byte::load(const char *filename )
 {
 	FILE* fp;
 	if((fp=fopen(filename,"rb"))==NULL){
@@ -282,7 +287,7 @@ bool Grid_Byte::load( char *filename )
 		{fclose(fp);return false;}
 
 	// load into a temporary header
-	long temp[80*80];
+	long* temp = new long[80*80];
 	fread( temp, 4, 80*80, fp );
 
 	// now load the data
@@ -297,12 +302,12 @@ bool Grid_Byte::load( char *filename )
 	{
 		copyBlock( temp[i], i );
 	}
-
+	delete[]  temp;
     fclose(fp);
 	return true;
 }
 
-bool Grid_Byte::save( char *filename )
+bool Grid_Byte::save(const char *filename )
 {
 	FILE* fp;
 	if((fp=fopen(filename,"wb"))==NULL){
@@ -313,18 +318,23 @@ bool Grid_Byte::save( char *filename )
 	fwrite( &type, 4, 1, fp );
 
 	// first build a temporary header...
-	long temp[80*80];
+	long* temp = new long[80 * 80];
 	long *hdSt = &header[0][0];
 	{
-	for ( int i = 0; i<80*80; i++ )
-		for ( int j = 0; j<=i; j++ )
-			if ( compareBlock( i, j ) )
+		for (int i = 0; i < 80 * 80; i++)
+		{
+			temp[i] = 0;
+			for (int j = 0; j <= i; j++)
+			if (compareBlock(i, j))
 			{
 				temp[i] = j;
 				break;
 			}
+		}
 	}
-	long newHd[80*80];
+	long* newHd = new long[80 * 80];
+	for (int i = 0; i<80 * 80; i++)
+		newHd[i] = 0;
 	int nextFree = 0;
 	{
 	for ( int i = 0; i<80*80; i++ )
@@ -343,6 +353,8 @@ bool Grid_Byte::save( char *filename )
 		if ( temp[i] >= hdSt[i] )
 			fwrite( data[ hdSt[i] ], 1, 8*8, fp );			// write out this block (first time seen)
 
+	delete[]  newHd;
+	delete[]  temp;
 	fclose(fp);
 
 	return true; // we have been sucessfull...
@@ -387,7 +399,7 @@ long Grid_Word::get( int x, int y )
 	return (long) data[ header[x>>3][y>>3] ][x&7][y&7];
 }
 
-bool Grid_Word::save( char *filename )
+bool Grid_Word::save(const char *filename )
 {
 	FILE* fp;
 	if((fp=fopen(filename,"wb"))==NULL){
@@ -398,18 +410,23 @@ bool Grid_Word::save( char *filename )
 	fwrite( &type, 4, 1, fp );
 
 	// first build a temporary header...
-	long temp[80*80];
+	long* temp = new long[80 * 80];
 	long *hdSt = &header[0][0];
 	{
-	for ( int i = 0; i<80*80; i++ )
-		for ( int j = 0; j<=i; j++ )
-			if ( compareBlock( i, j ) )
+		for (int i = 0; i < 80 * 80; i++)
+		{
+			temp[i] = 0;
+			for (int j = 0; j <= i; j++)
+			if (compareBlock(i, j))
 			{
 				temp[i] = j;
 				break;
 			}
+		}
 	}
-	long newHd[80*80];
+	long* newHd = new long[80 * 80];
+	for (int i = 0; i<80 * 80; i++)
+		newHd[i] = 0;
 	int nextFree = 0;
 	{
 	for ( int i = 0; i<80*80; i++ )
@@ -428,6 +445,8 @@ bool Grid_Word::save( char *filename )
 		if ( temp[i] >= hdSt[i] )
 			fwrite( data[ hdSt[i] ], 2, 8*8, fp );			// write out this block (first time seen)
 
+		delete[] newHd;
+		delete[] temp;
 	fclose(fp);
 
 	return true; // we have been sucessfull...
@@ -491,7 +510,7 @@ long Grid_Long::get( int x, int y )
 	return data[ header[x>>3][y>>3] ][x&7][y&7];
 }
 
-bool Grid_Long::save( char *filename )
+bool Grid_Long::save(const char *filename )
 {
 	FILE* fp;
 	if((fp=fopen(filename,"wb"))==NULL){
@@ -502,18 +521,24 @@ bool Grid_Long::save( char *filename )
 	fwrite( &type, 4, 1, fp );
 
 	// first build a temporary header...
-	long temp[80*80];
+	long* temp = new long[80 * 80];
 	long *hdSt = &header[0][0];
 	{
-	for ( int i = 0; i<80*80; i++ )
-		for ( int j = 0; j<=i; j++ )
-			if ( compareBlock( i, j ) )
+		for (int i = 0; i < 80 * 80; i++)
+		{
+
+			temp[i] = 0;
+			for (int j = 0; j <= i; j++)
+			if (compareBlock(i, j))
 			{
 				temp[i] = j;
 				break;
 			}
+		}
 	}
-	long newHd[80*80];
+	long* newHd = new long[80 * 80];
+	for (int i = 0; i<80 * 80; i++)
+		newHd[i] = 0;
 	int nextFree = 0;
 	{
 	for ( int i = 0; i<80*80; i++ )
@@ -531,7 +556,8 @@ bool Grid_Long::save( char *filename )
 	for ( int i = 0; i<80*80; i++ )
 		if ( temp[i] >= hdSt[i] )
 			fwrite( data[ hdSt[i] ], 4, 8*8, fp );			// write out this block (first time seen)
-
+		delete[] newHd;
+		delete[] temp;
 	fclose(fp);
 
 	return true; // we have been sucessfull...
@@ -541,7 +567,7 @@ bool Grid_Long::save( char *filename )
 
 ////////////////////////////////////////////////////////////////////////////////////
 // loads a grid of unspecified type- do NOT modify the returned object in any way...
-Grid_Base* loadGrid( char* filename )
+Grid_Base* loadGrid(const char* filename )
 {
 	FILE* fp;
 	if((fp=fopen(filename,"rb"))==NULL){

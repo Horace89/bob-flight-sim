@@ -298,7 +298,7 @@ void CRStaticCtrl::OnDraw(
 	// if we are drawing a transparent bitmap we need to use an offscreenDC
 	// to prevent flicker.  But this slows down drawing so only do so if
 	// we really have to
-	CWnd* parent;
+	CWnd* parent=NULL;
 	if (m_hWnd) parent=GetParent();
 	if (m_PictureFileNum && m_hWnd)
 	{

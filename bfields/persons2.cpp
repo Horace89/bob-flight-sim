@@ -1816,7 +1816,7 @@ bool	Persons2::DeleteBFItems(FileNum bfieldtoremove)
 		if (pItem[u])
 		{
 			info_base *p=*pItem[u];
-			if (p->bfieldindex==i)
+			if (p && p->bfieldindex==i)
 			{
 				pItem[u]=NULL;
 				delete	p;

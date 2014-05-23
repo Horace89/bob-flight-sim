@@ -468,6 +468,7 @@ void	EnumCtrl::readconstfromfile(ifstream& f)
 		int j=0;
 		while (ch>=' ' && ch!='}' && ch!=',')
 			wordbuff[j++]=ch=f.get();
+		if (j == 0) j = 1;
 		wordbuff[j-1]=0;
 		i=Translate(wordbuff);
 	}
@@ -550,13 +551,14 @@ void	EnumCtrl::readenumfromfile(ifstream& f)
 				int j=0;
 				while (ch>=' ' && ch!=')' && ch!='}' && ch!=',')
 					wordbuff[j++]=ch=f.get();
+				if (j == 0) j = 1; 
 	  			wordbuff[j-1]=0;
 				i=Translate(wordbuff);
 			}
 		}
 		else
 			i++;
-		if (*(UWord*)wordbuff!=*(UWord*)"UI"		//discard UI_nnn: auto-generated entries to fix references
+		if (wordbuff[0] != 'U' || wordbuff[1] != 'I'		//discard UI_nnn: auto-generated entries to fix references
 		||	wordbuff[2]!='_'
 		||	wordbuff[3]<'0' || wordbuff[3]>'9')
 			Add(i,wordbuff);

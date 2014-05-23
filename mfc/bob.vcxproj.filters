@@ -2346,9 +2346,6 @@
     <ClInclude Include="Radio.h">
       <Filter>Header Files\R</Filter>
     </ClInclude>
-    <ClInclude Include="..\H\Radiocht.h">
-      <Filter>Header Files\R</Filter>
-    </ClInclude>
     <ClInclude Include="Rafcombt.h">
       <Filter>Header Files\R</Filter>
     </ClInclude>
@@ -3222,6 +3219,9 @@
     <ClInclude Include="resource.h">
       <Filter>Resource Files\Source</Filter>
     </ClInclude>
+    <ClInclude Include="..\H\radio.ht.h">
+      <Filter>Header Files\New Headers Trap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\H\Enumbits.m">
@@ -3317,12 +3317,6 @@
     <None Include="..\bfields\battle.inc">
       <Filter>Utilities\associated files</Filter>
     </None>
-    <None Include="..\bfieldsA.fil">
-      <Filter>Utilities\associated files</Filter>
-    </None>
-    <None Include="..\bfieldsM.fil">
-      <Filter>Utilities\associated files</Filter>
-    </None>
     <None Include="..\Bfields\Initial.typ">
       <Filter>Utilities\associated files</Filter>
     </None>
@@ -3344,9 +3338,6 @@
     <None Include="..\Bfields\Paths.bfi">
       <Filter>Utilities\associated files</Filter>
     </None>
-    <None Include="..\Roots.dir">
-      <Filter>Utilities\associated files</Filter>
-    </None>
     <None Include="..\Mycmds\Rowanu.dsm">
       <Filter>Utilities\associated files</Filter>
     </None>
@@ -3357,6 +3348,9 @@
       <Filter>Utilities\associated files</Filter>
     </None>
     <None Include="..\..\backup\history.lst" />
+    <None Include="...bfieldsa.fil" />
+    <None Include="...bfieldsm.fil" />
+    <None Include="...roots.dir" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Res\icon1.ico">
@@ -3491,14 +3485,12 @@
     <CustomBuild Include="..\Bfields\Battle.src">
       <Filter>Utilities\Utility programs generate 1 target</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\Master.fil">
-      <Filter>Utilities\Utility programs generate 1 target</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\Mycmds\Rowanx.dsm">
       <Filter>Utilities\Utility programs generate 1 target</Filter>
     </CustomBuild>
     <CustomBuild Include="..\..\Debug\exe\Ukeylist.exe">
       <Filter>Utilities\Utility programs generate 1 target</Filter>
     </CustomBuild>
+    <CustomBuild Include="...master.fil" />
   </ItemGroup>
 </Project>

@@ -82,6 +82,7 @@
     <OutDir>\bob\Debug\exe\</OutDir>
     <IntDir>\bob\Debug\Rtabs\</IntDir>
     <LinkIncremental>true</LinkIncremental>
+    <TargetExt>.ocx</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>\BOB\Release\exe\</OutDir>
@@ -220,6 +221,8 @@ echo regsvr32 exec. time &gt; $(OutDir)regsvr32.trg
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

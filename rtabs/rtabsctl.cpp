@@ -785,8 +785,8 @@ void CRTabsCtrl::SetSetShadow(short nNewValue)
 CWnd* CRTabsCtrl::SelectTabBody(long tab) 
 {
 	int total=m_windowList.GetCount();
-	CWnd* currentWindow;
-	CWnd* pWnd;
+	CWnd* currentWindow=NULL;
+	CWnd* pWnd = NULL;
 	POSITION position=m_windowList.GetHeadPosition();
 	for (int x=0;x<total;x++)
 	{

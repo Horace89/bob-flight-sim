@@ -539,7 +539,7 @@ RDialog*	RDialog::AddChildren(const DialBox*const* diallist,int X2flag,CRect& re
 
 	progressind++;
 	progress[progressind]='X';
-	for (int i=0;diallist[i];i++)
+	for (int i=0;i < 10 && diallist[i];i++)
 	{
 		progress[progressind]=i;
 		dial=diallist[i]->dial;
@@ -709,7 +709,7 @@ void	RDialog::AddChildren(const DialBox*const* diallist,DialMake::ChildType chil
 			tabControl->SetHorzAlign(FALSE);
 		//delete tabControl;
 	}
-	for (int i=0;diallist[i];i++)
+	for (int i=0;i < 10 && diallist[i];i++)
 	{
 		RDialog* dial=diallist[i]->dial;
 		if (dial==NULL)	dial = new RDEmptyP;

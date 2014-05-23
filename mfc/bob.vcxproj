@@ -72,6 +72,7 @@
     <PlatformToolset>v120</PlatformToolset>
     <UseOfMfc>Dynamic</UseOfMfc>
     <UseOfAtl>false</UseOfAtl>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -167,8 +168,8 @@
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
       <PreprocessKeepComments>false</PreprocessKeepComments>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <BasicRuntimeChecks>UninitializedLocalUsageCheck</BasicRuntimeChecks>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <StructMemberAlignment>1Byte</StructMemberAlignment>
@@ -184,6 +185,8 @@
       <TreatWarningAsError>false</TreatWarningAsError>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <MinimalRebuild>true</MinimalRebuild>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -203,6 +206,8 @@
       <ProgramDatabaseFile>\BOB\demodeb\exe/bob.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <AssemblyDebug>true</AssemblyDebug>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -219,7 +224,7 @@
       <HeaderFileName />
     </Midl>
     <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Full</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>\BOB\src\h;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -234,6 +239,11 @@
       <BrowseInformation>true</BrowseInformation>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <MinimalRebuild>true</MinimalRebuild>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -256,6 +266,8 @@
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <TargetMachine>MachineX86</TargetMachine>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -387,7 +399,10 @@
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <ExceptionHandling>false</ExceptionHandling>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <BasicRuntimeChecks>UninitializedLocalUsageCheck</BasicRuntimeChecks>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -408,6 +423,7 @@
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <TurnOffAssemblyGeneration>false</TurnOffAssemblyGeneration>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -553,7 +569,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\3D\3dcom.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -565,7 +581,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\3D\_3D.CPP">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -587,6 +603,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">
       </PrecompiledHeader>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">BOB_3D;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\3d\Anmcntrl.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -597,7 +614,7 @@
       </PrecompiledHeader>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\3d\Anmradio.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -609,7 +626,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\3D\Btree.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -621,7 +638,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\3D\Collided.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -633,7 +650,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\3d\Decomp.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -660,7 +677,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\3d\Impact.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -671,7 +688,7 @@
       </PrecompiledHeader>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\3D\Jimcol.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -685,6 +702,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">
       </PrecompiledHeader>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\3d\Jimtri.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -711,7 +729,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\3D\Lstream.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -723,7 +741,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\3D\Migland.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -735,7 +753,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\3D\Overlay.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -750,6 +768,7 @@
       </PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">
       </PrecompiledHeader>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\3D\particle.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -781,7 +800,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\3D\Shpbld.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -793,7 +812,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\3d\Smktrls.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -806,6 +825,7 @@
       </PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">
       </PrecompiledHeader>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\3d\Tilemake.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -820,6 +840,7 @@
       </PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">
       </PrecompiledHeader>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\3D\Transite.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -831,7 +852,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\3D\Viewsel.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -846,6 +867,7 @@
       </PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">
       </PrecompiledHeader>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\3d\Weappak.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -860,6 +882,7 @@
       </PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">
       </PrecompiledHeader>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\3D\World.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -871,7 +894,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\AI\_AI.CPP">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">BOB_AI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1237,7 +1260,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\HARDWARE\_HARD.CPP">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">BOB_HARDWARE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1450,7 +1473,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\MISSMAN\_MISS.CPP">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">BOB_MISSMAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1921,10 +1944,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="_MFC.CPP">
+    <ClCompile Include="_mfc.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="_MFCPRVW.cpp">
+    <ClCompile Include="_mfcprvw.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -1932,7 +1955,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="CntrItem.cpp">
+    <ClCompile Include="cntritem.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -1941,7 +1964,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Fullpsys.cpp">
+    <ClCompile Include="fullpsys.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -1955,7 +1978,7 @@
       </PrecompiledHeader>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Hintbox.cpp">
+    <ClCompile Include="hintbox.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -1973,7 +1996,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Listbx.cpp">
+    <ClCompile Include="listbx.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -1982,7 +2005,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="MainFrm.cpp">
+    <ClCompile Include="mainfrm.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -1991,7 +2014,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="MapDlg.cpp">
+    <ClCompile Include="mapdlg.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2000,7 +2023,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="MIG.cpp">
+    <ClCompile Include="mig.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2009,7 +2032,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="MIGDoc.cpp">
+    <ClCompile Include="migdoc.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2018,7 +2041,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="MIGView.cpp">
+    <ClCompile Include="migview.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2041,7 +2064,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">
       </PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="MTChild.cpp">
+    <ClCompile Include="mtchild.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2050,7 +2073,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="RDEmptyD.cpp">
+    <ClCompile Include="rdemptyd.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2059,7 +2082,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="RDEmptyP.cpp">
+    <ClCompile Include="rdemptyp.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2077,7 +2100,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rdialmsg.cpp">
+    <ClCompile Include="rdialmsg.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2085,16 +2108,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="RDialog.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="Rdlgbar.cpp">
+    <ClCompile Include="rdialog.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2103,7 +2117,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rmdldlg.cpp">
+    <ClCompile Include="rdlgbar.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2112,7 +2126,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="RowTasks.cpp">
+    <ClCompile Include="rmdldlg.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2121,7 +2135,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rtestsh1.cpp">
+    <ClCompile Include="rowtasks.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2130,7 +2144,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rtoolbar.cpp">
+    <ClCompile Include="rtestsh1.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2139,7 +2153,16 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Stub3d.cpp">
+    <ClCompile Include="rtoolbar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="stub3d.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">
       </PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">
@@ -2148,7 +2171,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">
       </PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Uiicons.cpp">
+    <ClCompile Include="uiicons.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </PrecompiledHeader>
@@ -2160,7 +2183,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="_AFX.CPP" />
+    <ClCompile Include="_afx.cpp" />
     <ClCompile Include="afxstub.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
@@ -2206,7 +2229,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="RComboX.cpp">
+    <ClCompile Include="rcombox.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2251,7 +2274,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rradio.cpp">
+    <ClCompile Include="rradio.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2269,7 +2292,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rspinbut.cpp">
+    <ClCompile Include="rspinbut.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2315,7 +2338,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="_tool.cpp" />
-    <ClCompile Include="Dbrftlbr.cpp">
+    <ClCompile Include="dbrftlbr.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2324,7 +2347,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Maintbar.cpp">
+    <ClCompile Include="maintbar.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2333,7 +2356,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="MapFltrs.cpp">
+    <ClCompile Include="mapfltrs.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2342,7 +2365,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Msctlbr.cpp">
+    <ClCompile Include="msctlbr.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2351,7 +2374,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Scalebar.cpp">
+    <ClCompile Include="scalebar.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2360,7 +2383,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Statbar.cpp">
+    <ClCompile Include="statbar.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2377,7 +2400,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Teletype.cpp">
+    <ClCompile Include="teletype.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2385,7 +2408,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Titlebar.cpp">
+    <ClCompile Include="titlebar.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2394,7 +2417,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Credits.cpp">
+    <ClCompile Include="credits.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2406,7 +2429,7 @@
     <ClCompile Include="_full.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="_FULLPRV.cpp">
+    <ClCompile Include="_fullprv.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2414,16 +2437,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Fpconfig.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="Fplayout.cpp">
+    <ClCompile Include="fpconfig.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2432,7 +2446,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Fullpane.cpp">
+    <ClCompile Include="fplayout.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2441,7 +2455,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Campback.cpp">
+    <ClCompile Include="fullpane.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2450,7 +2464,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Campname.cpp">
+    <ClCompile Include="campback.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2459,7 +2473,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Enddayrl.cpp">
+    <ClCompile Include="campname.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2468,7 +2482,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Enddayrv.cpp">
+    <ClCompile Include="enddayrl.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2477,7 +2491,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Enddybmp.cpp">
+    <ClCompile Include="enddayrv.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2486,7 +2500,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Gameselt.cpp">
+    <ClCompile Include="enddybmp.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2495,7 +2509,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Sidesel.cpp">
+    <ClCompile Include="gameselt.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2504,7 +2518,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Apilot.cpp">
+    <ClCompile Include="sidesel.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2513,7 +2527,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Scamp.cpp">
+    <ClCompile Include="apilot.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2522,7 +2536,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Scontrol.cpp">
+    <ClCompile Include="scamp.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2531,7 +2545,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Sdetail.cpp">
+    <ClCompile Include="scontrol.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2540,7 +2554,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Sflight.cpp">
+    <ClCompile Include="sdetail.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2549,7 +2563,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Sgame.cpp">
+    <ClCompile Include="sflight.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2558,7 +2572,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Smission.cpp">
+    <ClCompile Include="sgame.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2567,7 +2581,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Ssound.cpp">
+    <ClCompile Include="smission.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2576,7 +2590,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Sviewer.cpp">
+    <ClCompile Include="ssound.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2585,7 +2599,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Twodpref.cpp">
+    <ClCompile Include="sviewer.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2594,7 +2608,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Commchat.cpp">
+    <ClCompile Include="twodpref.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2603,7 +2617,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Commsac.cpp">
+    <ClCompile Include="commchat.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2612,7 +2626,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Commspnt.cpp">
+    <ClCompile Include="commsac.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2621,7 +2635,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Currembl.cpp">
+    <ClCompile Include="commspnt.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2630,7 +2644,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Radcomms.cpp">
+    <ClCompile Include="currembl.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2639,7 +2653,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Radio.cpp">
+    <ClCompile Include="radcomms.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2648,7 +2662,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Ready.cpp">
+    <ClCompile Include="radio.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2657,7 +2671,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Service.cpp">
+    <ClCompile Include="ready.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2666,7 +2680,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Session.cpp">
+    <ClCompile Include="service.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2675,7 +2689,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Sqview.cpp">
+    <ClCompile Include="session.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2684,7 +2698,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Sreplay.cpp">
+    <ClCompile Include="sqview.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2693,7 +2707,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Visitors.cpp">
+    <ClCompile Include="sreplay.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2702,7 +2716,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Vwqlist.cpp">
+    <ClCompile Include="visitors.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2711,7 +2725,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Bobfrag.cpp">
+    <ClCompile Include="vwqlist.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2720,7 +2734,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Quickpar.cpp">
+    <ClCompile Include="bobfrag.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2729,7 +2743,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Squick1.cpp">
+    <ClCompile Include="quickpar.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2738,7 +2752,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Squick2.cpp">
+    <ClCompile Include="squick1.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2747,7 +2761,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Squickp.cpp">
+    <ClCompile Include="squick2.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2756,7 +2770,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Squickun.cpp">
+    <ClCompile Include="squickp.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2765,19 +2779,28 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="_LW.cpp">
+    <ClCompile Include="squickun.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Preview1Day|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="_lw.cpp">
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">false</PreprocessToFile>
       <PreprocessSuppressLineNumbers Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">false</PreprocessSuppressLineNumbers>
     </ClCompile>
-    <ClCompile Include="_RAF.cpp">
+    <ClCompile Include="_raf.cpp">
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">false</PreprocessToFile>
       <PreprocessSuppressLineNumbers Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">false</PreprocessSuppressLineNumbers>
     </ClCompile>
-    <ClCompile Include="_sA.cpp">
+    <ClCompile Include="_sa.cpp">
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">false</PreprocessToFile>
       <PreprocessSuppressLineNumbers Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">false</PreprocessSuppressLineNumbers>
     </ClCompile>
-    <ClCompile Include="Acalloc.cpp">
+    <ClCompile Include="acalloc.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2786,7 +2809,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Acunit.cpp">
+    <ClCompile Include="acunit.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2795,7 +2818,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Acunitrf.cpp">
+    <ClCompile Include="acunitrf.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2804,7 +2827,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Afdetl.cpp">
+    <ClCompile Include="afdetl.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2813,7 +2836,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Afdossr.cpp">
+    <ClCompile Include="afdossr.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2821,7 +2844,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Author.cpp">
+    <ClCompile Include="author.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2830,7 +2853,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Baseslft.cpp">
+    <ClCompile Include="baseslft.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2839,7 +2862,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Clock.cpp">
+    <ClCompile Include="clock.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2848,7 +2871,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Cntrlacl.cpp">
+    <ClCompile Include="cntrlacl.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2857,7 +2880,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Cntrlfly.cpp">
+    <ClCompile Include="cntrlfly.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2866,7 +2889,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Cntrltop.cpp">
+    <ClCompile Include="cntrltop.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2875,7 +2898,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Damage.cpp">
+    <ClCompile Include="damage.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2884,7 +2907,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Dirnores.cpp">
+    <ClCompile Include="dirnores.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2893,7 +2916,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Dirrsult.cpp">
+    <ClCompile Include="dirrsult.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2902,7 +2925,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Dosbut.cpp">
+    <ClCompile Include="dosbut.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2911,7 +2934,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Dossdetl.cpp">
+    <ClCompile Include="dossdetl.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2920,7 +2943,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Dossierb.cpp">
+    <ClCompile Include="dossierb.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2929,7 +2952,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Filing.cpp">
+    <ClCompile Include="filing.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2938,7 +2961,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Geschwdr.cpp">
+    <ClCompile Include="geschwdr.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2947,7 +2970,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Grpgesch.cpp">
+    <ClCompile Include="grpgesch.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2956,7 +2979,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Gwadlist.cpp">
+    <ClCompile Include="gwadlist.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2965,7 +2988,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Hostiles.cpp">
+    <ClCompile Include="hostiles.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2974,7 +2997,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Intelmsg.cpp">
+    <ClCompile Include="intelmsg.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2983,7 +3006,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Intoff.cpp">
+    <ClCompile Include="intoff.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -2992,7 +3015,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Load.cpp">
+    <ClCompile Include="load.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3001,7 +3024,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Locker.cpp">
+    <ClCompile Include="locker.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3010,7 +3033,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Luftflot.cpp">
+    <ClCompile Include="luftflot.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3019,7 +3042,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Lwdiary.cpp">
+    <ClCompile Include="lwdiary.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3028,7 +3051,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Lwdiaryd.cpp">
+    <ClCompile Include="lwdiaryd.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3037,7 +3060,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Lwdiaryl.cpp">
+    <ClCompile Include="lwdiaryl.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3046,7 +3069,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Lwdirect.cpp">
+    <ClCompile Include="lwdirect.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3055,7 +3078,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Lwmssfr.cpp">
+    <ClCompile Include="lwmssfr.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3064,7 +3087,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Lwrevac.cpp">
+    <ClCompile Include="lwrevac.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3073,7 +3096,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Lwrevcl.cpp">
+    <ClCompile Include="lwrevcl.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3082,7 +3105,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Lwreven.cpp">
+    <ClCompile Include="lwreven.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3091,7 +3114,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Lwrevst.cpp">
+    <ClCompile Include="lwrevst.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3100,7 +3123,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Lwrevtp.cpp">
+    <ClCompile Include="lwrevtp.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3109,7 +3132,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Lwroutea.cpp">
+    <ClCompile Include="lwroutea.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3118,7 +3141,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Lwroutem.cpp">
+    <ClCompile Include="lwroutem.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3127,7 +3150,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Lwroutet.cpp">
+    <ClCompile Include="lwroutet.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3136,7 +3159,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Lwtaskac.cpp">
+    <ClCompile Include="lwtaskac.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3145,7 +3168,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Lwtaskfr.cpp">
+    <ClCompile Include="lwtaskfr.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3154,7 +3177,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Lwtasksm.cpp">
+    <ClCompile Include="lwtasksm.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3163,7 +3186,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Lwtasktp.cpp">
+    <ClCompile Include="lwtasktp.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3172,7 +3195,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Mapfltlw.cpp">
+    <ClCompile Include="mapfltlw.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3181,7 +3204,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Mfraids.cpp">
+    <ClCompile Include="mfraids.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3190,7 +3213,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Mftarget.cpp">
+    <ClCompile Include="mftarget.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3199,7 +3222,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Mftop.cpp">
+    <ClCompile Include="mftop.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3208,7 +3231,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Phsdscr.cpp">
+    <ClCompile Include="phsdscr.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3217,7 +3240,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Pltlogbk.cpp">
+    <ClCompile Include="pltlogbk.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3226,7 +3249,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rafcombt.cpp">
+    <ClCompile Include="rafcombt.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3235,7 +3258,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rafdiary.cpp">
+    <ClCompile Include="rafdiary.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3244,7 +3267,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rafdir.cpp">
+    <ClCompile Include="rafdir.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3253,7 +3276,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rafdrres.cpp">
+    <ClCompile Include="rafdrres.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3262,7 +3285,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rafdryd.cpp">
+    <ClCompile Include="rafdryd.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3271,7 +3294,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rafdryl.cpp">
+    <ClCompile Include="rafdryl.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3280,7 +3303,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rafmssfr.cpp">
+    <ClCompile Include="rafmssfr.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3289,7 +3312,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rafrevac.cpp">
+    <ClCompile Include="rafrevac.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3298,7 +3321,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rafrevas.cpp">
+    <ClCompile Include="rafrevas.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3307,7 +3330,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rafrevcl.cpp">
+    <ClCompile Include="rafrevcl.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3316,7 +3339,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rafreven.cpp">
+    <ClCompile Include="rafreven.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3325,7 +3348,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rafrevst.cpp">
+    <ClCompile Include="rafrevst.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3334,7 +3357,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rafrevtp.cpp">
+    <ClCompile Include="rafrevtp.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3343,7 +3366,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rafroutt.cpp">
+    <ClCompile Include="rafroutt.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3352,7 +3375,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rafsqlst.cpp">
+    <ClCompile Include="rafsqlst.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3361,7 +3384,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Raftaskf.cpp">
+    <ClCompile Include="raftaskf.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3370,7 +3393,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Raftasks.cpp">
+    <ClCompile Include="raftasks.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3379,7 +3402,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Raftaskt.cpp">
+    <ClCompile Include="raftaskt.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3388,7 +3411,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Rdempty.cpp">
+    <ClCompile Include="rdempty.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3397,7 +3420,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Seltrg.cpp">
+    <ClCompile Include="seltrg.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3406,7 +3429,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Squaddtl.cpp">
+    <ClCompile Include="squaddtl.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3415,7 +3438,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Supply.cpp">
+    <ClCompile Include="supply.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3424,7 +3447,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Thumnail.cpp">
+    <ClCompile Include="thumnail.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3433,7 +3456,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Tlbrcntl.cpp">
+    <ClCompile Include="tlbrcntl.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3442,7 +3465,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Tooff.cpp">
+    <ClCompile Include="tooff.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3451,7 +3474,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Totesect.cpp">
+    <ClCompile Include="totesect.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3460,7 +3483,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Totetop.cpp">
+    <ClCompile Include="totetop.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3469,7 +3492,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Weather.cpp">
+    <ClCompile Include="weather.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3478,7 +3501,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Wpdialog.cpp">
+    <ClCompile Include="wpdialog.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3487,7 +3510,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Zoomlevl.cpp">
+    <ClCompile Include="zoomlevl.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3508,7 +3531,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\H\000tools.h" />
-    <CustomBuild Include="Afxauto.h">
+    <CustomBuild Include="afxauto.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -3517,10 +3540,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
-    <ClInclude Include="BoBFrag.h" />
-    <ClInclude Include="CommChat.h" />
-    <ClInclude Include="Geschwdr.h" />
-    <ClInclude Include="LuftFlot.h" />
+    <ClInclude Include="bobfrag.h" />
+    <ClInclude Include="commchat.h" />
+    <ClInclude Include="geschwdr.h" />
+    <ClInclude Include="luftflot.h" />
     <ClInclude Include="..\H\3dcode.h" />
     <ClInclude Include="..\H\3dcom.h" />
     <ClInclude Include="..\H\3ddefs.h" />
@@ -3529,14 +3552,14 @@
     <ClInclude Include="..\H\Ac_view.h" />
     <ClInclude Include="..\H\acalloc.h" />
     <ClInclude Include="..\H\Acmmodel.h" />
-    <ClInclude Include="Acunit.h" />
-    <ClInclude Include="..\H\Acunit.h" />
-    <ClInclude Include="..\H\Acunitrf.h" />
+    <ClInclude Include="acunit.h" />
+    <ClInclude Include="..\H\acunit.h" />
+    <ClInclude Include="..\H\acunitrf.h" />
     <ClInclude Include="..\H\Aerodev.h" />
-    <ClInclude Include="Afdetl.h" />
-    <ClInclude Include="..\H\Afdetl.h" />
-    <ClInclude Include="Afdossr.h" />
-    <ClInclude Include="..\H\Afdossr.h" />
+    <ClInclude Include="afdetl.h" />
+    <ClInclude Include="..\H\afdetl.h" />
+    <ClInclude Include="afdossr.h" />
+    <ClInclude Include="..\H\afdossr.h" />
     <ClInclude Include="..\H\Afields.h" />
     <ClInclude Include="..\H\Aggrgtor.h" />
     <ClInclude Include="..\H\Ai.h" />
@@ -3545,30 +3568,30 @@
     <ClInclude Include="..\H\Animdata.h" />
     <ClInclude Include="..\H\Animmove.h" />
     <ClInclude Include="..\H\Anmradio.h" />
-    <ClInclude Include="..\H\Apilot.h" />
+    <ClInclude Include="..\H\apilot.h" />
     <ClInclude Include="..\H\Areatype.h" />
-    <ClInclude Include="..\H\Army.h" />
-    <ClInclude Include="..\H\Army_dos.h" />
+    <ClInclude Include="..\H\army.h" />
+    <ClInclude Include="..\H\army_dos.h" />
     <ClInclude Include="..\H\Armydetl.h" />
-    <ClInclude Include="..\H\Armyrqst.h" />
-    <ClInclude Include="..\H\Author.h" />
-    <ClInclude Include="AC_view.h" />
-    <ClInclude Include="Acunitrf.h" />
-    <ClInclude Include="AFields.h" />
-    <ClInclude Include="Apilot.h" />
-    <ClInclude Include="Army.h" />
-    <ClInclude Include="Army_dos.h" />
-    <ClInclude Include="ArmyDetl.h" />
-    <ClInclude Include="Armyrqst.h" />
-    <ClInclude Include="Author.h" />
-    <ClInclude Include="..\H\Bases.h" />
-    <ClInclude Include="Baseslft.h" />
-    <ClInclude Include="..\H\Baseslft.h" />
-    <ClInclude Include="..\H\Basest.h" />
+    <ClInclude Include="..\H\armyrqst.h" />
+    <ClInclude Include="..\H\author.h" />
+    <ClInclude Include="ac_view.h" />
+    <ClInclude Include="acunitrf.h" />
+    <ClInclude Include="afields.h" />
+    <ClInclude Include="apilot.h" />
+    <ClInclude Include="army.h" />
+    <ClInclude Include="army_dos.h" />
+    <ClInclude Include="armydetl.h" />
+    <ClInclude Include="armyrqst.h" />
+    <ClInclude Include="author.h" />
+    <ClInclude Include="..\H\bases.h" />
+    <ClInclude Include="baseslft.h" />
+    <ClInclude Include="..\H\baseslft.h" />
+    <ClInclude Include="..\H\basest.h" />
     <ClInclude Include="C:\Program Files\Microsoft Visual Studio\Vc98\Include\Basetsd.h" />
     <ClInclude Include="..\..\Program Files\Microsoft Visual Studio\Vc98\Include\Basetsd.h" />
     <ClInclude Include="..\H\Batnode.h" />
-    <ClInclude Include="..\H\Battdetl.h" />
+    <ClInclude Include="..\H\battdetl.h" />
     <ClInclude Include="..\H\Bfcommon.h" />
     <ClInclude Include="..\H\Bfenum.h" />
     <ClInclude Include="..\H\Bfnumber.h" />
@@ -3579,76 +3602,76 @@
     <ClInclude Include="..\H\Briefing.h" />
     <ClInclude Include="..\H\Bstream.h" />
     <ClInclude Include="..\H\Btree.h" />
-    <ClInclude Include="..\H\Butonbar.h" />
-    <ClInclude Include="Bases.h" />
-    <ClInclude Include="Basest.h" />
-    <ClInclude Include="Battdetl.h" />
-    <ClInclude Include="Butonbar.h" />
-    <ClInclude Include="..\H\Campback.h" />
-    <ClInclude Include="..\H\Camplist.h" />
-    <ClInclude Include="Campname.h" />
-    <ClInclude Include="..\H\Campname.h" />
-    <ClInclude Include="..\H\Campwar.h" />
-    <ClInclude Include="..\H\Career.h" />
+    <ClInclude Include="..\H\butonbar.h" />
+    <ClInclude Include="bases.h" />
+    <ClInclude Include="basest.h" />
+    <ClInclude Include="battdetl.h" />
+    <ClInclude Include="butonbar.h" />
+    <ClInclude Include="..\H\campback.h" />
+    <ClInclude Include="..\H\camplist.h" />
+    <ClInclude Include="campname.h" />
+    <ClInclude Include="..\H\campname.h" />
+    <ClInclude Include="..\H\campwar.h" />
+    <ClInclude Include="..\H\career.h" />
     <ClInclude Include="..\H\Cbuffer.h" />
-    <ClInclude Include="..\H\Chain.h" />
-    <ClInclude Include="..\H\Choke.h" />
+    <ClInclude Include="..\H\chain.h" />
+    <ClInclude Include="..\H\choke.h" />
     <ClInclude Include="..\H\Chsquad.h" />
-    <ClInclude Include="Clock.h" />
-    <ClInclude Include="..\H\Clock.h" />
-    <ClInclude Include="..\H\Cmbtview.h" />
+    <ClInclude Include="clock.h" />
+    <ClInclude Include="..\H\clock.h" />
+    <ClInclude Include="..\H\cmbtview.h" />
     <ClInclude Include="..\H\Cntritem.h" />
-    <ClInclude Include="Cntrlacl.h" />
-    <ClInclude Include="..\H\Cntrlacl.h" />
-    <ClInclude Include="Cntrlfly.h" />
-    <ClInclude Include="..\H\Cntrlfly.h" />
-    <ClInclude Include="..\H\Cntrltop.h" />
-    <ClInclude Include="Cntrltop.h" />
+    <ClInclude Include="cntrlacl.h" />
+    <ClInclude Include="..\H\cntrlacl.h" />
+    <ClInclude Include="cntrlfly.h" />
+    <ClInclude Include="..\H\cntrlfly.h" />
+    <ClInclude Include="..\H\cntrltop.h" />
+    <ClInclude Include="cntrltop.h" />
     <ClInclude Include="..\H\Collided.h" />
-    <ClInclude Include="..\H\Comit_e.h" />
+    <ClInclude Include="..\H\comit_e.h" />
     <ClInclude Include="..\H\Commchat.h" />
     <ClInclude Include="..\H\Comms.h" />
-    <ClInclude Include="..\H\Commsac.h" />
-    <ClInclude Include="..\H\Commspnt.h" />
+    <ClInclude Include="..\H\commsac.h" />
+    <ClInclude Include="..\H\commspnt.h" />
     <ClInclude Include="..\H\Config.h" />
     <ClInclude Include="..\H\Contlist.h" />
-    <ClInclude Include="..\H\Credits.h" />
-    <ClInclude Include="Credits.h" />
+    <ClInclude Include="..\H\credits.h" />
+    <ClInclude Include="credits.h" />
     <ClInclude Include="..\H\Cstring.h" />
     <ClInclude Include="..\H\Ctimeout.h" />
     <ClInclude Include="..\H\Ctrl.h" />
-    <ClInclude Include="..\H\Currembl.h" />
+    <ClInclude Include="..\H\currembl.h" />
     <ClInclude Include="..\H\Curves.h" />
     <ClInclude Include="..\H\Custbb.h" />
-    <ClInclude Include="Campback.h" />
-    <ClInclude Include="Camplist.h" />
-    <ClInclude Include="Campwar.h" />
-    <ClInclude Include="Career.h" />
-    <ClInclude Include="Chain.h" />
-    <ClInclude Include="Choke.h" />
-    <ClInclude Include="ChSquad.h" />
-    <ClInclude Include="Cmbtview.h" />
-    <ClInclude Include="Comit_e.h" />
-    <ClInclude Include="Commsac.h" />
-    <ClInclude Include="Commspnt.h" />
-    <ClInclude Include="Currembl.h" />
+    <ClInclude Include="campback.h" />
+    <ClInclude Include="camplist.h" />
+    <ClInclude Include="campwar.h" />
+    <ClInclude Include="career.h" />
+    <ClInclude Include="chain.h" />
+    <ClInclude Include="choke.h" />
+    <ClInclude Include="chsquad.h" />
+    <ClInclude Include="cmbtview.h" />
+    <ClInclude Include="comit_e.h" />
+    <ClInclude Include="commsac.h" />
+    <ClInclude Include="commspnt.h" />
+    <ClInclude Include="currembl.h" />
     <ClInclude Include="..\H\D3dmacs.h" />
-    <ClInclude Include="..\H\Damage.h" />
-    <ClInclude Include="..\H\Dbrftlbr.h" />
-    <ClInclude Include="Debrief.h" />
-    <ClInclude Include="..\H\Debrief.h" />
+    <ClInclude Include="..\H\damage.h" />
+    <ClInclude Include="..\H\dbrftlbr.h" />
+    <ClInclude Include="debrief.h" />
+    <ClInclude Include="..\H\debrief.h" />
     <ClInclude Include="..\H\Digdrvr.h" />
     <ClInclude Include="..\H\Dinput.h" />
-    <ClInclude Include="..\H\Directs.h" />
-    <ClInclude Include="..\H\Directs1.h" />
-    <ClInclude Include="..\H\Directs2.h" />
-    <ClInclude Include="Dirnores.h" />
-    <ClInclude Include="..\H\Dirnores.h" />
-    <ClInclude Include="Dirrsult.h" />
-    <ClInclude Include="..\H\Dirrsult.h" />
+    <ClInclude Include="..\H\directs.h" />
+    <ClInclude Include="..\H\directs1.h" />
+    <ClInclude Include="..\H\directs2.h" />
+    <ClInclude Include="dirnores.h" />
+    <ClInclude Include="..\H\dirnores.h" />
+    <ClInclude Include="dirrsult.h" />
+    <ClInclude Include="..\H\dirrsult.h" />
     <ClInclude Include="..\H\Dis.h" />
-    <ClInclude Include="..\H\Dis_note.h" />
-    <ClInclude Include="Dis_note.h" />
+    <ClInclude Include="..\H\dis_note.h" />
+    <ClInclude Include="dis_note.h" />
     <ClInclude Include="..\H\Disnotes.h" />
     <ClInclude Include="..\H\Display.h" />
     <ClInclude Include="..\H\Dls1.h" />
@@ -3658,97 +3681,97 @@
     <ClInclude Include="..\H\Dmusici.h" />
     <ClInclude Include="..\H\Dosbut.h" />
     <ClInclude Include="..\H\Dosdefs.h" />
-    <ClInclude Include="Dossdetl.h" />
-    <ClInclude Include="..\H\Dossdetl.h" />
-    <ClInclude Include="..\H\Dossier.h" />
-    <ClInclude Include="Dossierb.h" />
-    <ClInclude Include="..\H\Dossierb.h" />
+    <ClInclude Include="dossdetl.h" />
+    <ClInclude Include="..\H\dossdetl.h" />
+    <ClInclude Include="..\H\dossier.h" />
+    <ClInclude Include="dossierb.h" />
+    <ClInclude Include="..\H\dossierb.h" />
     <ClInclude Include="..\H\Dplobby.h" />
-    <ClInclude Include="Damage.h" />
-    <ClInclude Include="Dbrftlbr.h" />
-    <ClInclude Include="Directs.h" />
-    <ClInclude Include="Directs1.h" />
-    <ClInclude Include="Directs2.h" />
-    <ClInclude Include="DIS.h" />
+    <ClInclude Include="damage.h" />
+    <ClInclude Include="dbrftlbr.h" />
+    <ClInclude Include="directs.h" />
+    <ClInclude Include="directs1.h" />
+    <ClInclude Include="directs2.h" />
+    <ClInclude Include="dis.h" />
     <ClInclude Include="disnotes.h" />
-    <ClInclude Include="DosBut.h" />
-    <ClInclude Include="Dossier.h" />
+    <ClInclude Include="dosbut.h" />
+    <ClInclude Include="dossier.h" />
     <ClInclude Include="..\H\Elmt.h" />
-    <ClInclude Include="Enddayrl.h" />
-    <ClInclude Include="..\H\Enddayrl.h" />
-    <ClInclude Include="..\H\Enddayrv.h" />
-    <ClInclude Include="Enddayrv.h" />
-    <ClInclude Include="Enddybmp.h" />
-    <ClInclude Include="..\H\Enddybmp.h" />
+    <ClInclude Include="enddayrl.h" />
+    <ClInclude Include="..\H\enddayrl.h" />
+    <ClInclude Include="..\H\enddayrv.h" />
+    <ClInclude Include="enddayrv.h" />
+    <ClInclude Include="enddybmp.h" />
+    <ClInclude Include="..\H\enddybmp.h" />
     <ClInclude Include="..\H\Engine.h" />
     <ClInclude Include="..\H\Fastmath.h" />
     <ClInclude Include="..\H\Fileman.h" />
-    <ClInclude Include="Filing.h" />
-    <ClInclude Include="..\H\Filing.h" />
-    <ClInclude Include="Filters.h" />
-    <ClInclude Include="..\H\Filters.h" />
+    <ClInclude Include="filing.h" />
+    <ClInclude Include="..\H\filing.h" />
+    <ClInclude Include="filters.h" />
+    <ClInclude Include="..\H\filters.h" />
     <ClInclude Include="..\H\flt_task.h" />
-    <ClInclude Include="Flt_Task.h" />
+    <ClInclude Include="flt_task.h" />
     <ClInclude Include="..\H\Flyinit.h" />
     <ClInclude Include="..\H\Flymodel.h" />
-    <ClInclude Include="Font.h" />
-    <ClInclude Include="..\H\Font.h" />
+    <ClInclude Include="font.h" />
+    <ClInclude Include="..\H\font.h" />
     <ClInclude Include="..\H\Fontlist.h" />
     <ClInclude Include="..\H\Fonts.h" />
-    <ClInclude Include="Footage.h" />
-    <ClInclude Include="..\H\Footage.h" />
-    <ClInclude Include="Frag.h" />
-    <ClInclude Include="..\H\Frag.h" />
-    <ClInclude Include="FragPilt.h" />
+    <ClInclude Include="footage.h" />
+    <ClInclude Include="..\H\footage.h" />
+    <ClInclude Include="frag.h" />
+    <ClInclude Include="..\H\frag.h" />
+    <ClInclude Include="fragpilt.h" />
     <ClInclude Include="..\H\Fragpilt.h" />
     <ClInclude Include="..\H\Frmap2.h" />
     <ClInclude Include="..\H\Frmap2sk.h" />
     <ClInclude Include="..\H\Frmap3.h" />
     <ClInclude Include="..\H\Frmap3sk.h" />
     <ClInclude Include="..\H\Frontmap.h" />
-    <ClInclude Include="Fullpane.h" />
-    <ClInclude Include="..\H\Fullpane.h" />
-    <ClInclude Include="Gameselt.h" />
-    <ClInclude Include="..\H\Gameselt.h" />
+    <ClInclude Include="fullpane.h" />
+    <ClInclude Include="..\H\fullpane.h" />
+    <ClInclude Include="gameselt.h" />
+    <ClInclude Include="..\H\gameselt.h" />
     <ClInclude Include="..\H\Gameset.h" />
     <ClInclude Include="..\H\Gear.h" />
-    <ClInclude Include="..\H\General.h" />
-    <ClInclude Include="General.h" />
-    <ClInclude Include="..\H\Geschwdr.h" />
+    <ClInclude Include="..\H\general.h" />
+    <ClInclude Include="general.h" />
+    <ClInclude Include="..\H\geschwdr.h" />
     <ClInclude Include="..\H\Getset.h" />
     <ClInclude Include="..\H\Globdefs.h" />
     <ClInclude Include="..\H\globrefs.h" />
     <ClInclude Include="..\H\Grid.h" />
-    <ClInclude Include="Grndview.h" />
-    <ClInclude Include="..\H\Grndview.h" />
+    <ClInclude Include="grndview.h" />
+    <ClInclude Include="..\H\grndview.h" />
     <ClInclude Include="..\H\Groupitt.h" />
-    <ClInclude Include="Grpgesch.h" />
-    <ClInclude Include="..\H\Grpgesch.h" />
-    <ClInclude Include="Gwadlist.h" />
-    <ClInclude Include="..\H\Gwadlist.h" />
+    <ClInclude Include="grpgesch.h" />
+    <ClInclude Include="..\H\grpgesch.h" />
+    <ClInclude Include="gwadlist.h" />
+    <ClInclude Include="..\H\gwadlist.h" />
     <ClInclude Include="acalloc.h" />
     <ClInclude Include="..\H\Hardpasm.h" />
     <ClInclude Include="..\H\Hdata.h" />
     <ClInclude Include="..\H\Hdata2.h" />
-    <ClInclude Include="..\H\Hintbox.h" />
-    <ClInclude Include="Hintbox.h" />
-    <ClInclude Include="..\Rbutton\Hintbox.h" />
-    <ClInclude Include="Hostiles.h" />
-    <ClInclude Include="..\H\Hostiles.h" />
+    <ClInclude Include="..\H\hintbox.h" />
+    <ClInclude Include="hintbox.h" />
+    <ClInclude Include="..\Rbutton\hintbox.h" />
+    <ClInclude Include="hostiles.h" />
+    <ClInclude Include="..\H\hostiles.h" />
     <ClInclude Include="..\H\Hotkeys.h" />
     <ClInclude Include="..\H\Htmlhelp.h" />
     <ClInclude Include="..\H\Imagemap.h" />
     <ClInclude Include="..\H\Impact.h" />
     <ClInclude Include="..\H\Infoitem.h" />
     <ClInclude Include="..\H\Intcock.h" />
-    <ClInclude Include="..\H\Intelmsg.h" />
-    <ClInclude Include="Intelmsg.h" />
-    <ClInclude Include="Intoff.h" />
-    <ClInclude Include="..\H\Intoff.h" />
+    <ClInclude Include="..\H\intelmsg.h" />
+    <ClInclude Include="intelmsg.h" />
+    <ClInclude Include="intoff.h" />
+    <ClInclude Include="..\H\intoff.h" />
     <ClInclude Include="..\H\Inttest.h" />
-    <ClInclude Include="JoyConfg.h" />
+    <ClInclude Include="joyconfg.h" />
     <ClInclude Include="..\H\Joyconfg.h" />
-    <ClInclude Include="JoyError.h" />
+    <ClInclude Include="joyerror.h" />
     <ClInclude Include="..\H\Joyerror.h" />
     <ClInclude Include="..\H\Keymaps.h" />
     <ClInclude Include="..\H\Keytest.h" />
@@ -3759,77 +3782,77 @@
     <ClInclude Include="..\Lib3D\Lib3D.h" />
     <ClInclude Include="..\H\Libdefs.h" />
     <ClInclude Include="..\H\Link.h" />
-    <ClInclude Include="Listbx.h" />
-    <ClInclude Include="..\H\Listbx.h" />
+    <ClInclude Include="listbx.h" />
+    <ClInclude Include="..\H\listbx.h" />
     <ClInclude Include="..\H\Lnchrdat.h" />
-    <ClInclude Include="Load.h" />
-    <ClInclude Include="..\H\Load.h" />
-    <ClInclude Include="..\H\Loadprof.h" />
-    <ClInclude Include="Loadprof.h" />
-    <ClInclude Include="Locker.h" />
-    <ClInclude Include="..\H\Locker.h" />
-    <ClInclude Include="Lstmsnlg.h" />
-    <ClInclude Include="..\H\Lstmsnlg.h" />
+    <ClInclude Include="load.h" />
+    <ClInclude Include="..\H\load.h" />
+    <ClInclude Include="..\H\loadprof.h" />
+    <ClInclude Include="loadprof.h" />
+    <ClInclude Include="locker.h" />
+    <ClInclude Include="..\H\locker.h" />
+    <ClInclude Include="lstmsnlg.h" />
+    <ClInclude Include="..\H\lstmsnlg.h" />
     <ClInclude Include="..\H\Lstream.h" />
     <ClInclude Include="..\H\Luftflot.h" />
-    <ClInclude Include="..\H\Lwdiary.h" />
-    <ClInclude Include="Lwdiary.h" />
-    <ClInclude Include="Lwdiaryd.h" />
-    <ClInclude Include="..\H\Lwdiaryd.h" />
-    <ClInclude Include="Lwdiaryl.h" />
-    <ClInclude Include="..\H\Lwdiaryl.h" />
-    <ClInclude Include="..\H\Lwdirect.h" />
-    <ClInclude Include="Lwdirect.h" />
-    <ClInclude Include="Lwmssfr.h" />
-    <ClInclude Include="..\H\Lwmssfr.h" />
-    <ClInclude Include="Lwrevac.h" />
-    <ClInclude Include="..\H\Lwrevac.h" />
-    <ClInclude Include="Lwrevcl.h" />
-    <ClInclude Include="..\H\Lwrevcl.h" />
-    <ClInclude Include="..\H\Lwreven.h" />
-    <ClInclude Include="Lwreven.h" />
-    <ClInclude Include="Lwrevst.h" />
-    <ClInclude Include="..\H\Lwrevst.h" />
-    <ClInclude Include="Lwrevtp.h" />
-    <ClInclude Include="..\H\Lwrevtp.h" />
-    <ClInclude Include="..\H\Lwroutea.h" />
-    <ClInclude Include="Lwroutea.h" />
-    <ClInclude Include="Lwroutem.h" />
-    <ClInclude Include="..\H\Lwroutem.h" />
-    <ClInclude Include="Lwroutet.h" />
-    <ClInclude Include="..\H\Lwroutet.h" />
-    <ClInclude Include="Lwtaskac.h" />
-    <ClInclude Include="..\H\Lwtaskac.h" />
-    <ClInclude Include="..\H\Lwtaskfr.h" />
-    <ClInclude Include="Lwtaskfr.h" />
-    <ClInclude Include="Lwtasksm.h" />
-    <ClInclude Include="..\H\Lwtasksm.h" />
-    <ClInclude Include="Lwtasktp.h" />
-    <ClInclude Include="..\H\Lwtasktp.h" />
+    <ClInclude Include="..\H\lwdiary.h" />
+    <ClInclude Include="lwdiary.h" />
+    <ClInclude Include="lwdiaryd.h" />
+    <ClInclude Include="..\H\lwdiaryd.h" />
+    <ClInclude Include="lwdiaryl.h" />
+    <ClInclude Include="..\H\lwdiaryl.h" />
+    <ClInclude Include="..\H\lwdirect.h" />
+    <ClInclude Include="lwdirect.h" />
+    <ClInclude Include="lwmssfr.h" />
+    <ClInclude Include="..\H\lwmssfr.h" />
+    <ClInclude Include="lwrevac.h" />
+    <ClInclude Include="..\H\lwrevac.h" />
+    <ClInclude Include="lwrevcl.h" />
+    <ClInclude Include="..\H\lwrevcl.h" />
+    <ClInclude Include="..\H\lwreven.h" />
+    <ClInclude Include="lwreven.h" />
+    <ClInclude Include="lwrevst.h" />
+    <ClInclude Include="..\H\lwrevst.h" />
+    <ClInclude Include="lwrevtp.h" />
+    <ClInclude Include="..\H\lwrevtp.h" />
+    <ClInclude Include="..\H\lwroutea.h" />
+    <ClInclude Include="lwroutea.h" />
+    <ClInclude Include="lwroutem.h" />
+    <ClInclude Include="..\H\lwroutem.h" />
+    <ClInclude Include="lwroutet.h" />
+    <ClInclude Include="..\H\lwroutet.h" />
+    <ClInclude Include="lwtaskac.h" />
+    <ClInclude Include="..\H\lwtaskac.h" />
+    <ClInclude Include="..\H\lwtaskfr.h" />
+    <ClInclude Include="lwtaskfr.h" />
+    <ClInclude Include="lwtasksm.h" />
+    <ClInclude Include="..\H\lwtasksm.h" />
+    <ClInclude Include="lwtasktp.h" />
+    <ClInclude Include="..\H\lwtasktp.h" />
     <ClInclude Include="..\H\Mainfrm.h" />
     <ClInclude Include="..\H\maintbar.h" />
     <ClInclude Include="..\H\Makebf.h" />
     <ClInclude Include="..\H\MapDlg.h" />
     <ClInclude Include="..\H\Mapedge.h" />
-    <ClInclude Include="..\H\Mapfltlw.h" />
-    <ClInclude Include="Mapfltlw.h" />
+    <ClInclude Include="..\H\mapfltlw.h" />
+    <ClInclude Include="mapfltlw.h" />
     <ClInclude Include="..\H\Mapfltrs.h" />
     <ClInclude Include="..\H\Mapsfx.h" />
     <ClInclude Include="..\H\Mathasm.h" />
     <ClInclude Include="..\H\Matrix.h" />
     <ClInclude Include="..\H\Messages.h" />
     <ClInclude Include="..\H\Messengn.h" />
-    <ClInclude Include="Mfraids.h" />
-    <ClInclude Include="..\H\Mfraids.h" />
-    <ClInclude Include="Mftarget.h" />
-    <ClInclude Include="..\H\Mftarget.h" />
-    <ClInclude Include="..\H\Mftop.h" />
-    <ClInclude Include="Mftop.h" />
+    <ClInclude Include="mfraids.h" />
+    <ClInclude Include="..\H\mfraids.h" />
+    <ClInclude Include="mftarget.h" />
+    <ClInclude Include="..\H\mftarget.h" />
+    <ClInclude Include="..\H\mftop.h" />
+    <ClInclude Include="mftop.h" />
     <ClInclude Include="..\H\Migland.h" />
     <ClInclude Include="..\H\Miles.h" />
     <ClInclude Include="..\H\Milesxtr.h" />
-    <ClInclude Include="..\H\Misn_log.h" />
-    <ClInclude Include="..\H\Misntext.h" />
+    <ClInclude Include="..\H\misn_log.h" />
+    <ClInclude Include="..\H\misntext.h" />
     <ClInclude Include="..\H\missfldr.h" />
     <ClInclude Include="..\H\Missman2.h" />
     <ClInclude Include="..\H\Misssub.h" />
@@ -3841,23 +3864,23 @@
     <ClInclude Include="..\H\Monotxt.h" />
     <ClInclude Include="..\H\Mouse.h" />
     <ClInclude Include="..\H\Movement.h" />
-    <ClInclude Include="MResult.h" />
+    <ClInclude Include="mresult.h" />
     <ClInclude Include="..\H\Mresult.h" />
     <ClInclude Include="..\H\Mscdex.h" />
-    <ClInclude Include="..\H\Msctlbr.h" />
+    <ClInclude Include="..\H\msctlbr.h" />
     <ClInclude Include="..\H\Msn_ctrl.h" />
-    <ClInclude Include="..\H\Msndebrf.h" />
-    <ClInclude Include="Msndebrf.h" />
+    <ClInclude Include="..\H\msndebrf.h" />
+    <ClInclude Include="msndebrf.h" />
     <ClInclude Include="..\H\Mssw.h" />
     <ClInclude Include="..\H\Mtchild.h" />
     <ClInclude Include="..\H\Music.h" />
-    <ClInclude Include="Maintbar.h" />
-    <ClInclude Include="MapFltrs.h" />
-    <ClInclude Include="Misn_log.h" />
-    <ClInclude Include="Misntext.h" />
-    <ClInclude Include="Missfldr.h" />
-    <ClInclude Include="Msctlbr.h" />
-    <ClInclude Include="MTChild.h" />
+    <ClInclude Include="maintbar.h" />
+    <ClInclude Include="mapfltrs.h" />
+    <ClInclude Include="misn_log.h" />
+    <ClInclude Include="misntext.h" />
+    <ClInclude Include="missfldr.h" />
+    <ClInclude Include="msctlbr.h" />
+    <ClInclude Include="mtchild.h" />
     <ClInclude Include="..\H\Myangles.h" />
     <ClInclude Include="..\H\Myerror.h" />
     <ClInclude Include="..\H\Mymath.h" />
@@ -3870,90 +3893,90 @@
     <ClInclude Include="..\H\Migview.h" />
     <ClInclude Include="..\H\Node.h" />
     <ClInclude Include="..\h\nodebob.h" />
-    <ClInclude Include="Nose_art.h" />
-    <ClInclude Include="..\H\Nose_art.h" />
-    <ClInclude Include="Notes.h" />
-    <ClInclude Include="..\H\Notes.h" />
+    <ClInclude Include="nose_art.h" />
+    <ClInclude Include="..\H\nose_art.h" />
+    <ClInclude Include="notes.h" />
+    <ClInclude Include="..\H\notes.h" />
     <ClInclude Include="..\H\Overlay.h" />
-    <ClInclude Include="Overview.h" />
-    <ClInclude Include="..\H\Overview.h" />
+    <ClInclude Include="overview.h" />
+    <ClInclude Include="..\H\overview.h" />
     <ClInclude Include="..\H\package.h" />
-    <ClInclude Include="Paint.h" />
-    <ClInclude Include="..\H\Paint.h" />
+    <ClInclude Include="paint.h" />
+    <ClInclude Include="..\H\paint.h" />
     <ClInclude Include="..\H\Palette.h" />
-    <ClInclude Include="Payload.h" />
-    <ClInclude Include="..\H\Payload.h" />
+    <ClInclude Include="payload.h" />
+    <ClInclude Include="..\H\payload.h" />
     <ClInclude Include="..\H\Personal.h" />
     <ClInclude Include="personal.h" />
     <ClInclude Include="..\H\Persons2.h" />
-    <ClInclude Include="Phsdscr.h" />
-    <ClInclude Include="..\H\Phsdscr.h" />
+    <ClInclude Include="phsdscr.h" />
+    <ClInclude Include="..\H\phsdscr.h" />
     <ClInclude Include="picture.h" />
     <ClInclude Include="..\H\Picture.h" />
-    <ClInclude Include="..\H\Pilots.h" />
-    <ClInclude Include="Pilots.h" />
+    <ClInclude Include="..\H\pilots.h" />
+    <ClInclude Include="pilots.h" />
     <ClInclude Include="..\H\Planetyp.h" />
-    <ClInclude Include="Pltlogbk.h" />
-    <ClInclude Include="..\H\Pltlogbk.h" />
-    <ClInclude Include="Plyr_log.h" />
-    <ClInclude Include="..\H\Plyr_log.h" />
+    <ClInclude Include="pltlogbk.h" />
+    <ClInclude Include="..\H\pltlogbk.h" />
+    <ClInclude Include="plyr_log.h" />
+    <ClInclude Include="..\H\plyr_log.h" />
     <ClInclude Include="..\H\Polygon.h" />
     <ClInclude Include="..\H\Prof.h" />
-    <ClInclude Include="Prof_lib.h" />
-    <ClInclude Include="..\H\Prof_lib.h" />
-    <ClInclude Include="Profile.h" />
+    <ClInclude Include="prof_lib.h" />
+    <ClInclude Include="..\H\prof_lib.h" />
+    <ClInclude Include="profile.h" />
     <ClInclude Include="..\H\profile.h" />
-    <ClInclude Include="Quickpar.h" />
-    <ClInclude Include="..\H\Quickpar.h" />
-    <ClInclude Include="Quikmisn.h" />
-    <ClInclude Include="..\H\Quikmisn.h" />
+    <ClInclude Include="quickpar.h" />
+    <ClInclude Include="..\H\quickpar.h" />
+    <ClInclude Include="quikmisn.h" />
+    <ClInclude Include="..\H\quikmisn.h" />
     <ClInclude Include="..\H\rad.h" />
-    <ClInclude Include="Radcomms.h" />
-    <ClInclude Include="..\H\Radcomms.h" />
+    <ClInclude Include="radcomms.h" />
+    <ClInclude Include="..\H\radcomms.h" />
     <ClInclude Include="..\H\Raddef.h" />
-    <ClInclude Include="..\H\Radio.h" />
-    <ClInclude Include="Radio.h" />
-    <ClInclude Include="..\H\Radiocht.h" />
-    <ClInclude Include="Rafcombt.h" />
-    <ClInclude Include="..\H\Rafcombt.h" />
-    <ClInclude Include="Rafdiary.h" />
-    <ClInclude Include="..\H\Rafdiary.h" />
+    <ClInclude Include="..\H\radio.h" />
+    <ClInclude Include="radio.h" />
+    <ClInclude Include="..\H\radio.ht.h" />
+    <ClInclude Include="rafcombt.h" />
+    <ClInclude Include="..\H\rafcombt.h" />
+    <ClInclude Include="rafdiary.h" />
+    <ClInclude Include="..\H\rafdiary.h" />
     <ClInclude Include="..\H\rafdir.h" />
-    <ClInclude Include="Rafdir.h" />
-    <ClInclude Include="Rafdrres.h" />
-    <ClInclude Include="..\H\Rafdrres.h" />
-    <ClInclude Include="Rafdryd.h" />
-    <ClInclude Include="..\H\Rafdryd.h" />
-    <ClInclude Include="Rafdryl.h" />
-    <ClInclude Include="..\H\Rafdryl.h" />
-    <ClInclude Include="..\H\Rafmssfr.h" />
-    <ClInclude Include="Rafmssfr.h" />
-    <ClInclude Include="Rafrevac.h" />
-    <ClInclude Include="..\H\Rafrevac.h" />
-    <ClInclude Include="Rafrevas.h" />
-    <ClInclude Include="..\H\Rafrevas.h" />
-    <ClInclude Include="..\H\Rafrevcl.h" />
-    <ClInclude Include="Rafrevcl.h" />
-    <ClInclude Include="Rafreven.h" />
-    <ClInclude Include="..\H\Rafreven.h" />
-    <ClInclude Include="Rafrevst.h" />
-    <ClInclude Include="..\H\Rafrevst.h" />
-    <ClInclude Include="Rafrevtp.h" />
-    <ClInclude Include="..\H\Rafrevtp.h" />
-    <ClInclude Include="..\H\Rafrouta.h" />
-    <ClInclude Include="Rafrouta.h" />
-    <ClInclude Include="Rafroutm.h" />
-    <ClInclude Include="..\H\Rafroutm.h" />
-    <ClInclude Include="Rafroutt.h" />
-    <ClInclude Include="..\H\Rafroutt.h" />
-    <ClInclude Include="..\H\Rafsqlst.h" />
-    <ClInclude Include="Rafsqlst.h" />
-    <ClInclude Include="Raftaskf.h" />
-    <ClInclude Include="..\H\Raftaskf.h" />
-    <ClInclude Include="Raftasks.h" />
-    <ClInclude Include="..\H\Raftasks.h" />
-    <ClInclude Include="Raftaskt.h" />
-    <ClInclude Include="..\H\Raftaskt.h" />
+    <ClInclude Include="rafdir.h" />
+    <ClInclude Include="rafdrres.h" />
+    <ClInclude Include="..\H\rafdrres.h" />
+    <ClInclude Include="rafdryd.h" />
+    <ClInclude Include="..\H\rafdryd.h" />
+    <ClInclude Include="rafdryl.h" />
+    <ClInclude Include="..\H\rafdryl.h" />
+    <ClInclude Include="..\H\rafmssfr.h" />
+    <ClInclude Include="rafmssfr.h" />
+    <ClInclude Include="rafrevac.h" />
+    <ClInclude Include="..\H\rafrevac.h" />
+    <ClInclude Include="rafrevas.h" />
+    <ClInclude Include="..\H\rafrevas.h" />
+    <ClInclude Include="..\H\rafrevcl.h" />
+    <ClInclude Include="rafrevcl.h" />
+    <ClInclude Include="rafreven.h" />
+    <ClInclude Include="..\H\rafreven.h" />
+    <ClInclude Include="rafrevst.h" />
+    <ClInclude Include="..\H\rafrevst.h" />
+    <ClInclude Include="rafrevtp.h" />
+    <ClInclude Include="..\H\rafrevtp.h" />
+    <ClInclude Include="..\H\rafrouta.h" />
+    <ClInclude Include="rafrouta.h" />
+    <ClInclude Include="rafroutm.h" />
+    <ClInclude Include="..\H\rafroutm.h" />
+    <ClInclude Include="rafroutt.h" />
+    <ClInclude Include="..\H\rafroutt.h" />
+    <ClInclude Include="..\H\rafsqlst.h" />
+    <ClInclude Include="rafsqlst.h" />
+    <ClInclude Include="raftaskf.h" />
+    <ClInclude Include="..\H\raftaskf.h" />
+    <ClInclude Include="raftasks.h" />
+    <ClInclude Include="..\H\raftasks.h" />
+    <ClInclude Include="raftaskt.h" />
+    <ClInclude Include="..\H\raftaskt.h" />
     <ClInclude Include="..\H\Ranges.h" />
     <ClInclude Include="rbutton.h" />
     <ClInclude Include="..\H\Rbutton.h" />
@@ -3962,159 +3985,159 @@
     <ClInclude Include="..\H\Rchatxtr.h" />
     <ClInclude Include="..\H\Rcombo.h" />
     <ClInclude Include="rcombo.h" />
-    <ClInclude Include="RComboX.h" />
-    <ClInclude Include="..\H\RComboX.h" />
-    <ClInclude Include="Rcstmbtn.h" />
-    <ClInclude Include="..\H\Rcstmbtn.h" />
+    <ClInclude Include="rcombox.h" />
+    <ClInclude Include="..\H\rcombox.h" />
+    <ClInclude Include="rcstmbtn.h" />
+    <ClInclude Include="..\H\rcstmbtn.h" />
     <ClInclude Include="..\H\Rdempty.h" />
     <ClInclude Include="..\H\Rdemptyd.h" />
-    <ClInclude Include="RDEmptyD.h" />
-    <ClInclude Include="RDEmptyP.h" />
+    <ClInclude Include="rdemptyd.h" />
+    <ClInclude Include="rdemptyp.h" />
     <ClInclude Include="..\H\Rdemptyp.h" />
     <ClInclude Include="..\H\Rdialmsg.h" />
     <ClInclude Include="..\H\Rdialog.h" />
     <ClInclude Include="..\H\rdlgbar.h" />
-    <ClInclude Include="..\H\Ready.h" />
-    <ClInclude Include="Ready.h" />
-    <ClInclude Include="Redit.h" />
+    <ClInclude Include="..\H\ready.h" />
+    <ClInclude Include="ready.h" />
+    <ClInclude Include="redit.h" />
     <ClInclude Include="..\H\redit.h" />
-    <ClInclude Include="Redtbt.h" />
+    <ClInclude Include="redtbt.h" />
     <ClInclude Include="..\H\redtbt.h" />
     <ClInclude Include="..\H\Replay.h" />
     <ClInclude Include="..\H\Rip_list.h" />
-    <ClInclude Include="RIP_List.h" />
+    <ClInclude Include="rip_list.h" />
     <ClInclude Include="rjoycfg.h" />
     <ClInclude Include="..\H\Rjoycfg.h" />
     <ClInclude Include="rlistbox.h" />
     <ClInclude Include="..\H\rlistbox.h" />
     <ClInclude Include="..\rlistbox\rlistbxc.h" />
-    <ClInclude Include="..\H\Rmdldlg.h" />
-    <ClInclude Include="Rmdldlg.h" />
-    <ClInclude Include="Route.h" />
-    <ClInclude Include="..\H\Route.h" />
-    <ClInclude Include="RowTasks.h" />
+    <ClInclude Include="..\H\rmdldlg.h" />
+    <ClInclude Include="rmdldlg.h" />
+    <ClInclude Include="route.h" />
+    <ClInclude Include="..\H\route.h" />
+    <ClInclude Include="rowtasks.h" />
     <ClInclude Include="..\H\Rowtasks.h" />
-    <ClInclude Include="..\H\Rradio.h" />
-    <ClInclude Include="Rradio.h" />
+    <ClInclude Include="..\H\rradio.h" />
+    <ClInclude Include="rradio.h" />
     <ClInclude Include="rscrlbar.h" />
     <ClInclude Include="..\H\Rscrlbar.h" />
     <ClInclude Include="..\H\Rsheets.h" />
-    <ClInclude Include="Rspinbut.h" />
-    <ClInclude Include="..\H\Rspinbut.h" />
-    <ClInclude Include="..\H\Rspltbar.h" />
-    <ClInclude Include="Rspltbar.h" />
+    <ClInclude Include="rspinbut.h" />
+    <ClInclude Include="..\H\rspinbut.h" />
+    <ClInclude Include="..\H\rspltbar.h" />
+    <ClInclude Include="rspltbar.h" />
     <ClInclude Include="rstatic.h" />
     <ClInclude Include="..\H\Rstatic.h" />
-    <ClInclude Include="Rtabs.h" />
-    <ClInclude Include="..\H\Rtabs.h" />
+    <ClInclude Include="rtabs.h" />
+    <ClInclude Include="..\H\rtabs.h" />
     <ClInclude Include="..\H\Rtest1.h" />
     <ClInclude Include="..\H\Rtestsh1.h" />
-    <ClInclude Include="Rtickbox.h" />
-    <ClInclude Include="..\H\Rtickbox.h" />
+    <ClInclude Include="rtickbox.h" />
+    <ClInclude Include="..\H\rtickbox.h" />
     <ClInclude Include="..\H\Rtitle.h" />
-    <ClInclude Include="Rtoolbar.h" />
-    <ClInclude Include="..\H\Rtoolbar.h" />
+    <ClInclude Include="rtoolbar.h" />
+    <ClInclude Include="..\H\rtoolbar.h" />
     <ClInclude Include="..\H\Sagmove.h" />
-    <ClInclude Include="..\H\Sairclms.h" />
+    <ClInclude Include="..\H\sairclms.h" />
     <ClInclude Include="..\H\Sample.h" />
     <ClInclude Include="..\H\Savegame.h" />
-    <ClInclude Include="..\H\Saveprof.h" />
-    <ClInclude Include="..\H\Saverep.h" />
-    <ClInclude Include="..\H\Scalebar.h" />
-    <ClInclude Include="..\H\Scamp.h" />
-    <ClInclude Include="..\H\Scontrol.h" />
+    <ClInclude Include="..\H\saveprof.h" />
+    <ClInclude Include="..\H\saverep.h" />
+    <ClInclude Include="..\H\scalebar.h" />
+    <ClInclude Include="..\H\scamp.h" />
+    <ClInclude Include="..\H\scontrol.h" />
     <ClInclude Include="..\H\Screenxy.h" />
-    <ClInclude Include="..\H\Sdetail.h" />
-    <ClInclude Include="..\H\Selects.h" />
-    <ClInclude Include="Seltrg.h" />
-    <ClInclude Include="..\H\Seltrg.h" />
+    <ClInclude Include="..\H\sdetail.h" />
+    <ClInclude Include="..\H\selects.h" />
+    <ClInclude Include="seltrg.h" />
+    <ClInclude Include="..\H\seltrg.h" />
     <ClInclude Include="..\H\Service.h" />
     <ClInclude Include="..\H\Session.h" />
-    <ClInclude Include="..\H\Sflight.h" />
-    <ClInclude Include="Sflight.h" />
+    <ClInclude Include="..\H\sflight.h" />
+    <ClInclude Include="sflight.h" />
     <ClInclude Include="..\H\Sfman.h" />
     <ClInclude Include="..\H\Sg2combo.h" />
-    <ClInclude Include="..\H\Sgame.h" />
-    <ClInclude Include="..\H\Sgrdclms.h" />
+    <ClInclude Include="..\H\sgame.h" />
+    <ClInclude Include="..\H\sgrdclms.h" />
     <ClInclude Include="..\H\Shapenam.h" />
     <ClInclude Include="..\H\Shapes.h" />
     <ClInclude Include="..\H\Shpbld.h" />
     <ClInclude Include="..\H\Shpinstr.h" />
     <ClInclude Include="..\H\Shpweap.h" />
-    <ClInclude Include="Sidesel.h" />
-    <ClInclude Include="..\H\Sidesel.h" />
+    <ClInclude Include="sidesel.h" />
+    <ClInclude Include="..\H\sidesel.h" />
     <ClInclude Include="..\H\Sky.h" />
     <ClInclude Include="..\H\Smack.h" />
-    <ClInclude Include="Smission.h" />
-    <ClInclude Include="..\H\Smission.h" />
-    <ClInclude Include="..\H\Smkdlg.h" />
+    <ClInclude Include="smission.h" />
+    <ClInclude Include="..\H\smission.h" />
+    <ClInclude Include="..\H\smkdlg.h" />
     <ClInclude Include="..\H\Smktrls.h" />
     <ClInclude Include="..\H\Sndfonts.h" />
     <ClInclude Include="..\H\Sound.h" />
     <ClInclude Include="..\H\Speed.h" />
     <ClInclude Include="..\H\Sqddiary.h" />
-    <ClInclude Include="..\H\Sqdnlb.h" />
-    <ClInclude Include="..\H\Sqdnlbut.h" />
-    <ClInclude Include="..\H\Sqdnlist.h" />
-    <ClInclude Include="..\H\Squaddtl.h" />
-    <ClInclude Include="Squaddtl.h" />
-    <ClInclude Include="..\H\Squads.h" />
+    <ClInclude Include="..\H\sqdnlb.h" />
+    <ClInclude Include="..\H\sqdnlbut.h" />
+    <ClInclude Include="..\H\sqdnlist.h" />
+    <ClInclude Include="..\H\squaddtl.h" />
+    <ClInclude Include="squaddtl.h" />
+    <ClInclude Include="..\H\squads.h" />
     <ClInclude Include="..\h\SQUICK1.H" />
-    <ClInclude Include="..\H\Squick2.h" />
-    <ClInclude Include="..\H\Squickp.h" />
-    <ClInclude Include="..\H\Squickun.h" />
-    <ClInclude Include="..\H\Sqview.h" />
-    <ClInclude Include="..\H\Sreplay.h" />
-    <ClInclude Include="Sreplay.h" />
-    <ClInclude Include="..\H\Ssound.h" />
+    <ClInclude Include="..\H\squick2.h" />
+    <ClInclude Include="..\H\squickp.h" />
+    <ClInclude Include="..\H\squickun.h" />
+    <ClInclude Include="..\H\sqview.h" />
+    <ClInclude Include="..\H\sreplay.h" />
+    <ClInclude Include="sreplay.h" />
+    <ClInclude Include="..\H\ssound.h" />
     <ClInclude Include="..\H\Stack.h" />
-    <ClInclude Include="Statbar.h" />
-    <ClInclude Include="..\H\Statbar.h" />
+    <ClInclude Include="statbar.h" />
+    <ClInclude Include="..\H\statbar.h" />
     <ClInclude Include="..\H\Stdafx.h" />
-    <ClInclude Include="..\H\Stitle.h" />
-    <ClInclude Include="Stores.h" />
-    <ClInclude Include="..\H\Strike.h" />
+    <ClInclude Include="..\H\stitle.h" />
+    <ClInclude Include="stores.h" />
+    <ClInclude Include="..\H\strike.h" />
     <ClInclude Include="..\H\Stub3d.h" />
-    <ClInclude Include="..\H\Supply.h" />
-    <ClInclude Include="..\H\Sviewer.h" />
+    <ClInclude Include="..\H\supply.h" />
+    <ClInclude Include="..\H\sviewer.h" />
     <ClInclude Include="..\H\Sw_error.hpp" />
     <ClInclude Include="..\H\Sw_force.h" />
     <ClInclude Include="..\H\Sw_guid.hpp" />
     <ClInclude Include="..\H\sysbox.h" />
-    <ClInclude Include="Sairclms.h" />
-    <ClInclude Include="Saveprof.h" />
-    <ClInclude Include="Saverep.h" />
-    <ClInclude Include="Scalebar.h" />
-    <ClInclude Include="Scamp.h" />
-    <ClInclude Include="Scontrol.h" />
-    <ClInclude Include="Sdetail.h" />
-    <ClInclude Include="Selects.h" />
+    <ClInclude Include="sairclms.h" />
+    <ClInclude Include="saveprof.h" />
+    <ClInclude Include="saverep.h" />
+    <ClInclude Include="scalebar.h" />
+    <ClInclude Include="scamp.h" />
+    <ClInclude Include="scontrol.h" />
+    <ClInclude Include="sdetail.h" />
+    <ClInclude Include="selects.h" />
     <ClInclude Include="service.h" />
     <ClInclude Include="session.h" />
-    <ClInclude Include="Sgame.h" />
-    <ClInclude Include="Sgrdclms.h" />
-    <ClInclude Include="Smkdlg.h" />
-    <ClInclude Include="Sqdnlb.h" />
-    <ClInclude Include="Sqdnlbut.h" />
-    <ClInclude Include="Sqdnlist.h" />
-    <ClInclude Include="Squads.h" />
-    <ClInclude Include="Squick1.h" />
-    <ClInclude Include="Squick2.h" />
-    <ClInclude Include="Squickp.h" />
-    <ClInclude Include="Squickun.h" />
-    <ClInclude Include="Sqview.h" />
-    <ClInclude Include="Ssound.h" />
-    <ClInclude Include="Stitle.h" />
-    <ClInclude Include="Strike.h" />
-    <ClInclude Include="Supply.h" />
-    <ClInclude Include="Sviewer.h" />
+    <ClInclude Include="sgame.h" />
+    <ClInclude Include="sgrdclms.h" />
+    <ClInclude Include="smkdlg.h" />
+    <ClInclude Include="sqdnlb.h" />
+    <ClInclude Include="sqdnlbut.h" />
+    <ClInclude Include="sqdnlist.h" />
+    <ClInclude Include="squads.h" />
+    <ClInclude Include="squick1.h" />
+    <ClInclude Include="squick2.h" />
+    <ClInclude Include="squickp.h" />
+    <ClInclude Include="squickun.h" />
+    <ClInclude Include="sqview.h" />
+    <ClInclude Include="ssound.h" />
+    <ClInclude Include="stitle.h" />
+    <ClInclude Include="strike.h" />
+    <ClInclude Include="supply.h" />
+    <ClInclude Include="sviewer.h" />
     <ClInclude Include="..\H\Targets.h" />
-    <ClInclude Include="Task.h" />
-    <ClInclude Include="..\H\Task.h" />
-    <ClInclude Include="Tasktabs.h" />
-    <ClInclude Include="..\H\Tasktabs.h" />
-    <ClInclude Include="Teletype.h" />
-    <ClInclude Include="..\H\Teletype.h" />
+    <ClInclude Include="task.h" />
+    <ClInclude Include="..\H\task.h" />
+    <ClInclude Include="tasktabs.h" />
+    <ClInclude Include="..\H\tasktabs.h" />
+    <ClInclude Include="teletype.h" />
+    <ClInclude Include="..\H\teletype.h" />
     <ClInclude Include="..\H\Text.h" />
     <ClInclude Include="..\H\Textfixd.h" />
     <ClInclude Include="..\H\Textref.h" />
@@ -4122,47 +4145,47 @@
     <ClInclude Include="..\H\Tga.h" />
     <ClInclude Include="..\H\thumnail.h" />
     <ClInclude Include="..\H\Tilemake.h" />
-    <ClInclude Include="Title.h" />
-    <ClInclude Include="..\H\Title.h" />
-    <ClInclude Include="..\H\Titlebar.h" />
-    <ClInclude Include="Titlebar.h" />
-    <ClInclude Include="Tlbrcntl.h" />
-    <ClInclude Include="..\H\Tlbrcntl.h" />
-    <ClInclude Include="Tooff.h" />
-    <ClInclude Include="..\H\Tooff.h" />
-    <ClInclude Include="Totesect.h" />
-    <ClInclude Include="..\H\Totesect.h" />
-    <ClInclude Include="..\H\Totetop.h" />
-    <ClInclude Include="Totetop.h" />
-    <ClInclude Include="Traffic.h" />
-    <ClInclude Include="..\H\Traffic.h" />
+    <ClInclude Include="title.h" />
+    <ClInclude Include="..\H\title.h" />
+    <ClInclude Include="..\H\titlebar.h" />
+    <ClInclude Include="titlebar.h" />
+    <ClInclude Include="tlbrcntl.h" />
+    <ClInclude Include="..\H\tlbrcntl.h" />
+    <ClInclude Include="tooff.h" />
+    <ClInclude Include="..\H\tooff.h" />
+    <ClInclude Include="totesect.h" />
+    <ClInclude Include="..\H\totesect.h" />
+    <ClInclude Include="..\H\totetop.h" />
+    <ClInclude Include="totetop.h" />
+    <ClInclude Include="traffic.h" />
+    <ClInclude Include="..\H\traffic.h" />
     <ClInclude Include="..\H\Transite.h" />
     <ClInclude Include="..\H\Transxtr.h" />
     <ClInclude Include="..\H\Tstatic.h" />
-    <ClInclude Include="Twodpref.h" />
-    <ClInclude Include="..\H\Twodpref.h" />
+    <ClInclude Include="twodpref.h" />
+    <ClInclude Include="..\H\twodpref.h" />
     <ClInclude Include="..\H\Ui.h" />
     <ClInclude Include="..\H\Uiicons.h" />
     <ClInclude Include="..\H\Uniqueid.h" />
-    <ClInclude Include="Userinst.h" />
-    <ClInclude Include="..\H\Userinst.h" />
-    <ClInclude Include="Variants.h" />
-    <ClInclude Include="..\H\Variants.h" />
+    <ClInclude Include="userinst.h" />
+    <ClInclude Include="..\H\userinst.h" />
+    <ClInclude Include="variants.h" />
+    <ClInclude Include="..\H\variants.h" />
     <ClInclude Include="..\H\Vector.h" />
     <ClInclude Include="..\H\Vertex.h" />
     <ClInclude Include="..\H\Viewsel.h" />
-    <ClInclude Include="..\H\Visitors.h" />
-    <ClInclude Include="Visitors.h" />
+    <ClInclude Include="..\H\visitors.h" />
+    <ClInclude Include="visitors.h" />
     <ClInclude Include="..\H\Volscale.h" />
-    <ClInclude Include="Vwqlist.h" />
-    <ClInclude Include="..\H\Vwqlist.h" />
+    <ClInclude Include="vwqlist.h" />
+    <ClInclude Include="..\H\vwqlist.h" />
     <ClInclude Include="..\H\Wail.h" />
     <ClInclude Include="..\H\Wave.h" />
-    <ClInclude Include="..\H\Waveins.h" />
+    <ClInclude Include="..\H\waveins.h" />
     <ClInclude Include="..\H\WaveTabs.h" />
-    <ClInclude Include="..\H\Weapons.h" />
+    <ClInclude Include="..\H\weapons.h" />
     <ClInclude Include="..\H\Weappak.h" />
-    <ClInclude Include="..\H\Weather.h" />
+    <ClInclude Include="..\H\weather.h" />
     <ClInclude Include="..\H\Win3d.h" />
     <ClInclude Include="..\H\Winfile.h" />
     <ClInclude Include="..\H\Winmain.h" />
@@ -4171,23 +4194,23 @@
     <ClInclude Include="..\H\Worldinc.h" />
     <ClInclude Include="..\H\Wpaaa.h" />
     <ClInclude Include="..\H\Wpair.h" />
-    <ClInclude Include="WPBut.h" />
+    <ClInclude Include="wpbut.h" />
     <ClInclude Include="..\H\Wpbut.h" />
-    <ClInclude Include="..\H\Wpdetail.h" />
-    <ClInclude Include="Wpdialog.h" />
-    <ClInclude Include="..\H\Wpdialog.h" />
+    <ClInclude Include="..\H\wpdetail.h" />
+    <ClInclude Include="wpdialog.h" />
+    <ClInclude Include="..\H\wpdialog.h" />
     <ClInclude Include="..\H\Wpground.h" />
     <ClInclude Include="..\H\wpshare.h" />
-    <ClInclude Include="Waveins.h" />
-    <ClInclude Include="Weapons.h" />
-    <ClInclude Include="Weather.h" />
-    <ClInclude Include="WPaaa.h" />
-    <ClInclude Include="WPAir.h" />
-    <ClInclude Include="Wpdetail.h" />
-    <ClInclude Include="WPGround.h" />
-    <ClInclude Include="WPShare.h" />
-    <ClInclude Include="Zoomlevl.h" />
-    <ClInclude Include="..\H\Zoomlevl.h" />
+    <ClInclude Include="waveins.h" />
+    <ClInclude Include="weapons.h" />
+    <ClInclude Include="weather.h" />
+    <ClInclude Include="wpaaa.h" />
+    <ClInclude Include="wpair.h" />
+    <ClInclude Include="wpdetail.h" />
+    <ClInclude Include="wpground.h" />
+    <ClInclude Include="wpshare.h" />
+    <ClInclude Include="zoomlevl.h" />
+    <ClInclude Include="..\H\zoomlevl.h" />
     <ClInclude Include="..\H\_3d.h" />
     <ClInclude Include="..\H\_ai.h" />
     <ClInclude Include="..\H\_airc.h" />
@@ -4301,12 +4324,12 @@
     <None Include="..\H\Textenum.g" />
     <None Include="..\H\Uidvals.g" />
     <None Include="..\H\iconlst2.g" />
-    <None Include="Resource.hm" />
+    <None Include="resource.hm" />
     <None Include="Res\Mig.rc2" />
-    <None Include="Arrow.cur" />
-    <None Include="Arrowcop.cur" />
-    <None Include="Nodrop.cur" />
-    <CustomBuild Include="BOB.reg">
+    <None Include="arrow.cur" />
+    <None Include="arrowcop.cur" />
+    <None Include="nodrop.cur" />
+    <CustomBuild Include="bob.reg">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
@@ -4329,7 +4352,7 @@ call $(ProjectDir)makehelp.bat
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
-    <CustomBuild Include="MakeHelp.bat">
+    <CustomBuild Include="makehelp.bat">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
@@ -4388,7 +4411,7 @@ wait
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
-    <CustomBuild Include="..\Master.fil">
+    <CustomBuild Include="...master.fil">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Making file-lists</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">start /w  ..\fmake2
 echo.&gt;$(IntDir)fmake.dep
@@ -4410,7 +4433,7 @@ echo.&gt;$(IntDir)fmake.dep
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">..\bfieldsa.fil;..\roots.dir;..\;\BOB\src\bfieldsm.fil;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(IntDir)fmake.dep;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\Mycmds\Rowanx.dsm">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(FullPath) %(RootDir)%(Directory)rowanu.dsm
@@ -4447,8 +4470,8 @@ echo Function myname():myname="%25initials%25":End                              
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
     <None Include="..\bfields\battle.inc" />
-    <None Include="..\bfieldsA.fil" />
-    <None Include="..\bfieldsM.fil" />
+    <None Include="...bfieldsa.fil" />
+    <None Include="...bfieldsm.fil" />
     <None Include="..\Bfields\Initial.typ" />
     <None Include="..\..\game\Keyboard\keyb3d.bin" />
     <None Include="..\Bfields\Mainmig.bfi" />
@@ -4456,7 +4479,7 @@ echo Function myname():myname="%25initials%25":End                              
     <None Include="..\Mycmds\Makeall.bat" />
     <None Include="..\..\debug\exe\makebf.exe" />
     <None Include="..\Bfields\Paths.bfi" />
-    <None Include="..\Roots.dir" />
+    <None Include="...roots.dir" />
     <None Include="..\Mycmds\Rowanu.dsm" />
     <None Include="..\Mycmds\rowanu.flg" />
     <None Include="..\Bfields\Scramble.inc" />
@@ -4557,11 +4580,11 @@ echo Function myname():myname="%25initials%25":End                              
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="BOB.rc">
+    <ResourceCompile Include="bob.rc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release No Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ResourceCompile>
-    <ResourceCompile Include="Release.rc">
+    <ResourceCompile Include="release.rc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoRelease|Win32'">true</ExcludedFromBuild>
@@ -4570,7 +4593,7 @@ echo Function myname():myname="%25initials%25":End                              
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="ReadMe.txt">
+    <CustomBuild Include="readme.txt">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DemoDebug|Win32'">true</ExcludedFromBuild>
     </CustomBuild>

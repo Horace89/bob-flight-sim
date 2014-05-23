@@ -73,10 +73,9 @@ public:
 	typedef	HideEdgeControl::EdgeCtrl	Edge;
 	typedef	HideEdgeControl	EDGE;
 
+	Edge	l, t, r, b;
 
-	Edge	l,t,r,b;
-
-	Edges	(Edge ll=EDGE::ALIGN_MIN,Edge tt=EDGE::ALIGN_MIN,Edge rr=EDGE::ALIGN_MIN,Edge bb=EDGE::ALIGN_MIN)
+	Edges(Edge ll = EDGE::ALIGN_MIN, Edge tt = EDGE::ALIGN_MIN, Edge rr = EDGE::ALIGN_MIN, Edge bb = EDGE::ALIGN_MIN)
 	{l=ll;t=tt;r=rr;b=bb;}
 };
 
@@ -88,20 +87,41 @@ struct	DialMake
 protected:
 	DialMake(const Edges *e,FileNum artnum)
 	{	art=artnum;childtype=NONE;edges=e;	}
-	DialMake()	{}
+private:
+	explicit DialMake();
 
 };
 
 struct DialBox: public DialMake
 {
-	RDialog*	dial;
-	const	DialBox*	diallist[10];
 	DialBox(FileNum artnum,RDialog*	newdial,const Edges& e=*(Edges*)NULL):
 	DialMake(&e,artnum)
-	{dial=newdial;diallist[0]=NULL;diallist[1]=(DialBox*)0x12345678;}
-//x0r protected:
-	DialBox(const DialBox& d):DialMake(d.edges,d.art){dial=d.dial;}
-	DialBox()	{dial=NULL; edges=NULL; art=FIL_NULL;}
+	{
+		dial = newdial; for (int i = 0; i < 10; i++) diallist[i] = nullptr;
+	}
+ //x0r protected:
+	 DialBox(const DialBox& d)
+		 :DialMake(nullptr, FIL_NULL)
+	 {
+		 if (&d != NULL){
+			 edges = d.edges;
+
+			 art = d.art;
+			 dial = d.dial;
+			 for (int i = 0; i < 10; i++) diallist[i] = d.diallist[i];
+		 }
+		 else
+		 {
+			 dial = nullptr; for (int i = 0; i < 10; i++) diallist[i] = nullptr;
+		 }
+	 }
+	 //DialBox():DialMake(nullptr, FIL_NULL) { dial = nullptr; for (int i = 0; i < 10; i++) diallist[i] = nullptr; }
+	 const	DialBox*	diallist[10];
+	 RDialog*	dial;
+private:
+	explicit DialBox();
+	
+//friend class RDialog; // temporary perversion
 };
 
 struct DialList:DialBox
@@ -130,6 +150,7 @@ struct DialList:DialBox
 		childtype=CLUMP;
 	}
 //x0r protected:
+	
 	DialList(const DialBox& d0,
 			const DialBox& d1,
 			const DialBox& d2,
@@ -138,6 +159,7 @@ struct DialList:DialBox
 			const DialBox& d5,
 			const DialBox& d6,
 			const DialBox& d7)
+			:DialBox(FIL_NULL, nullptr)
 	{
 		diallist[0]=&d0;
 		diallist[1]=&d1;
@@ -151,6 +173,7 @@ struct DialList:DialBox
 		diallist[9]=NULL;
 		childtype=CLUMP;
 	}
+	
 };
 
 
@@ -178,6 +201,7 @@ struct	IdEntry
 struct	IdList
 {
 	const IdEntry*	list[10];
+
 	IdList(	const IdEntry& e0,
 			const IdEntry& e1=*(IdEntry*)NULL,
 			const IdEntry& e2=*(IdEntry*)NULL,
@@ -192,6 +216,8 @@ struct	IdList
 		list[0]=&e0;list[1]=&e1;list[2]=&e2;list[3]=&e3;list[4]=&e4;
 		list[5]=&e5;list[6]=&e6;list[7]=&e7;list[8]=&e8;list[9]=&e9;
 	}
+private:
+	explicit IdList();
 };
 
 

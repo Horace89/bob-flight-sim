@@ -3197,7 +3197,7 @@ void COverlay::ProcessUIScreen()
 #ifdef _SHOWFRAMETIME
 	{
 		SWord posx = 10, posy = 10;
-		char frameTimeStr[15];
+		char frameTimeStr[64];
 //DEADCODE JON 5/11/00 		sprintf( frameTimeStr, "%3.2f fps\n", 100.f/float( pvp->RealDrawFrameTime() ) );
 		sprintf( frameTimeStr, "%3.2f fps\n", 1000.f/float( pvp->getFrameTimeMSecs() ) );
 		static ULong tottime = 0;
@@ -3209,7 +3209,7 @@ void COverlay::ProcessUIScreen()
 #ifdef _SHOW_FREE_RAM
 	{
 		SWord posx = 10, posy = 22;
-		char tmpStr[15];
+		char tmpStr[64];
 		ULong curFree= g_lpLib3d->GetFreeVideoMemory();
 		sprintf( tmpStr, "%i Bytes\n", curFree );
 		PrintAt2( posx, posy, tmpStr );

@@ -212,8 +212,8 @@ Bool RFullPanelDial::QuickMissionBlue()
 				(initind>3)?DialBox(FIL_NULL,new CSQuickLine(0,ilun[3][0],ilun[3][1]),EDGES_NOSCROLLBARS_NODRAGGING):ND,
 				(initind>4)?DialBox(FIL_NULL,new CSQuickLine(0,ilun[4][0],ilun[4][1]),EDGES_NOSCROLLBARS_NODRAGGING):ND,
 				(initind>5)?DialBox(FIL_NULL,new CSQuickLine(0,ilun[5][0],ilun[5][1]),EDGES_NOSCROLLBARS_NODRAGGING):ND,
-				(initind>6)?DialBox(FIL_NULL,new CSQuickLine(0,ilun[6][0],ilun[6][1]),EDGES_NOSCROLLBARS_NODRAGGING):ND//,
-//				(initind>7)?DialBox(FIL_NULL,new CSQuickLine(0,ilun[7][0],ilun[7][1]),EDGES_NOSCROLLBARS_NODRAGGING):ND
+				(initind>6)?DialBox(FIL_NULL,new CSQuickLine(0,ilun[6][0],ilun[6][1]),EDGES_NOSCROLLBARS_NODRAGGING):ND,
+				(initind>7)?DialBox(FIL_NULL,new CSQuickLine(0,ilun[7][0],ilun[7][1]),EDGES_NOSCROLLBARS_NODRAGGING):ND
 
 			)));
 			
@@ -234,19 +234,19 @@ Bool RFullPanelDial::QuickMissionRed()
 				ilch[initindch][1]=grp;
 				initindch++;
 			}
-	DialBox*	ND=NULL;
-//x0r bug somethere here
+	const DialBox&	ND = *(DialBox*)NULL;
+
 	LaunchDial(1,
 		&DialList(DialBox(FIL_NULL,new QuickMissionPanel),			
 			DialList ( DialBox(FIL_NULL,new EmptyChildWindow, EDGES_NOSCROLLBARS_NODRAGGING),
-				(initindch>0)?DialBox(FIL_NULL,new CSQuickLine(1,ilch[0][0],ilch[0][1]),EDGES_NOSCROLLBARS_NODRAGGING):*ND,
-				(initindch>1)?DialBox(FIL_NULL,new CSQuickLine(1,ilch[1][0],ilch[1][1]),EDGES_NOSCROLLBARS_NODRAGGING):*ND,
-				(initindch>2)?DialBox(FIL_NULL,new CSQuickLine(1,ilch[2][0],ilch[2][1]),EDGES_NOSCROLLBARS_NODRAGGING):*ND,
-				(initindch>3)?DialBox(FIL_NULL,new CSQuickLine(1,ilch[3][0],ilch[3][1]),EDGES_NOSCROLLBARS_NODRAGGING):*ND,
-				(initindch>4)?DialBox(FIL_NULL,new CSQuickLine(1,ilch[4][0],ilch[4][1]),EDGES_NOSCROLLBARS_NODRAGGING):*ND,
-				(initindch>5)?DialBox(FIL_NULL,new CSQuickLine(1,ilch[5][0],ilch[5][1]),EDGES_NOSCROLLBARS_NODRAGGING):*ND,
-				(initindch>6)?DialBox(FIL_NULL,new CSQuickLine(1,ilch[6][0],ilch[6][1]),EDGES_NOSCROLLBARS_NODRAGGING):*ND//,
-//				(initindch>7)?DialBox(FIL_NULL,new CSQuickLine(1,ilch[7][0],ilch[7][1]),EDGES_NOSCROLLBARS_NODRAGGING):*ND
+				(initindch>0)?DialBox(FIL_NULL,new CSQuickLine(1,ilch[0][0],ilch[0][1]),EDGES_NOSCROLLBARS_NODRAGGING):ND,
+				(initindch>1)?DialBox(FIL_NULL,new CSQuickLine(1,ilch[1][0],ilch[1][1]),EDGES_NOSCROLLBARS_NODRAGGING):ND,
+				(initindch>2)?DialBox(FIL_NULL,new CSQuickLine(1,ilch[2][0],ilch[2][1]),EDGES_NOSCROLLBARS_NODRAGGING):ND,
+				(initindch>3)?DialBox(FIL_NULL,new CSQuickLine(1,ilch[3][0],ilch[3][1]),EDGES_NOSCROLLBARS_NODRAGGING):ND,
+				(initindch>4)?DialBox(FIL_NULL,new CSQuickLine(1,ilch[4][0],ilch[4][1]),EDGES_NOSCROLLBARS_NODRAGGING):ND,
+				(initindch>5)?DialBox(FIL_NULL,new CSQuickLine(1,ilch[5][0],ilch[5][1]),EDGES_NOSCROLLBARS_NODRAGGING):ND,
+				(initindch>6)?DialBox(FIL_NULL,new CSQuickLine(1,ilch[6][0],ilch[6][1]),EDGES_NOSCROLLBARS_NODRAGGING):ND,
+				(initindch>7)?DialBox(FIL_NULL,new CSQuickLine(1,ilch[7][0],ilch[7][1]),EDGES_NOSCROLLBARS_NODRAGGING):ND
 				)));
 			
 	return TRUE;

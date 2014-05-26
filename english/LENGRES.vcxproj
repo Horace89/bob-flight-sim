@@ -41,9 +41,10 @@
     <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>.\..\..\debug\english\</OutDir>
+    <OutDir>.\..\..\debug\exe\english\text\</OutDir>
     <IntDir>.\..\..\debug\english\</IntDir>
     <LinkIncremental>true</LinkIncremental>
+    <TargetName>boblang</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>.\..\..\release\english\</OutDir>
@@ -80,7 +81,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\..\debug\english/boblang.dll</OutputFile>
+      <OutputFile>$(TargetDir)\boblang.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>

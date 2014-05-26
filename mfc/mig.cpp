@@ -388,7 +388,7 @@ BOOL CMIGApp::InitInstance()
 //			RDialog::borderwidth=*(int*)buff/15;
 //		RDialog::borderwidth=2-RDialog::borderwidth;
 		RegCloseKey(k);
-		RegOpenKeyEx( 
+/*x0r		RegOpenKeyEx( 
 				HKEY_CURRENT_CONFIG,
 				"Display\\Settings",
 				0, KEY_ALL_ACCESS, &k);
@@ -399,6 +399,12 @@ BOOL CMIGApp::InitInstance()
 		else
 			RDialog::fontdpi=*(int*)buff;
 		RegCloseKey(k);
+*/
+HDC screen = GetDC(0);
+int dpiX = GetDeviceCaps (screen, LOGPIXELSX);
+//int dpiY = GetDeviceCaps (screen, LOGPIXELSY);
+ReleaseDC (0, screen);
+                        RDialog::fontdpi=dpiX;
 	}															//RJS 08Sep98
 
 

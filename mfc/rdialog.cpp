@@ -97,7 +97,7 @@ static char THIS_FILE[] = __FILE__;
 int		RDialog::actscrw=0,
 		RDialog::actscrh=0,
 		RDialog::borderwidth=-1,
-		RDialog::fontdpi=0;
+		RDialog::fontdpi=96;
 RMdlDlg* RDialog::m_pMessageBox=NULL;
 bool		RDialog::messageboxopen=false;
 CHintBox* RDialog::m_pHintBox=NULL;
@@ -606,6 +606,7 @@ RDialog*	RDialog::AddChildren(const DialBox*const* diallist,int X2flag,CRect& re
 //				posn.bottom=posn.top+dial->viewsize.Height();
 //			}
 		}
+
 		dial->RECT_NORMAL=posn;
 
 		if (posn.top==usedy)
@@ -2629,7 +2630,6 @@ void RDialog::UpdateTitle()
 
 int	ScaleTranslate(int input,bool isy)
 {
-	/*return(input);*/ //x0r
 	int	high=511,low=0,mid=256,currval=scalinglookup[mid][isy][1];
 	if (input>scalinglookup[high][isy][1])
 	{

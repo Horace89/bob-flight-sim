@@ -356,7 +356,7 @@ void	ACMAirStruc::SimpleTurningFight()
 			SWord	reqdeltahdg,reqdeltahdg_sign;
 			UWord	reqdeltahdg_pos;
 			SWord	reqdeltapitch,reqdeltapitch_sign;
-			UWord	reqdeltapitch_pos;
+			UWord	reqdeltapitch_pos=0; //x0r
 
 			if (!ai.unfriendly)
 				return;
@@ -646,7 +646,7 @@ void	ACMAirStruc::SimpleTurnFightSub(ANGLES	HdgIntercept, Bool sitbehindtarget, 
 	SWord	reqdeltahdg,reqdeltahdg_sign;
 	UWord	reqdeltahdg_pos;
 	SWord	reqdeltapitch,reqdeltapitch_sign;
-	UWord	reqdeltapitch_pos;
+	UWord	reqdeltapitch_pos=0; //x0r
 	FP desiredturn;
 	SLong		time;
 
@@ -3696,7 +3696,7 @@ void	ACMAirStruc::SimpleWeldedWingMan()
 					SWord	reqdeltahdg,reqdeltahdg_sign;
 					UWord	reqdeltahdg_pos;
 					SWord	reqdeltapitch,reqdeltapitch_sign;
-					UWord	reqdeltapitch_pos;
+					UWord	reqdeltapitch_pos=0; //x0r
 
 					target = leader->World; 									//JIM 02Aug96
 					target.Y +=	60 * ai.morale;//FT_500;		Top Moral gives 500 ft

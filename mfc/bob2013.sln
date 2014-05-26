@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BOB", "bob.vcxproj", "{05E4016A-F9CD-4E54-8C06-7ACFBEDF9658}"
 EndProject
@@ -46,6 +46,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RStatic", "..\rstatic\RStatic.vcxproj", "{5027C1D5-921F-4E44-9416-B145C0DC022C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RTabs", "..\rtabs\RTabs.vcxproj", "{86567A17-FE24-4DA8-91B9-A676817939F0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "keyboard", "..\extra\keyboard\KEYBOARD.vcxproj", "{9B39E648-8CEB-4732-842A-09E74FF2F774}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -456,6 +458,24 @@ Global
 		{86567A17-FE24-4DA8-91B9-A676817939F0}.Unicode Debug|Win32.Build.0 = Unicode Debug|Win32
 		{86567A17-FE24-4DA8-91B9-A676817939F0}.Unicode Release|Win32.ActiveCfg = Unicode Release|Win32
 		{86567A17-FE24-4DA8-91B9-A676817939F0}.Unicode Release|Win32.Build.0 = Unicode Release|Win32
+		{9B39E648-8CEB-4732-842A-09E74FF2F774}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9B39E648-8CEB-4732-842A-09E74FF2F774}.Debug|Win32.Build.0 = Debug|Win32
+		{9B39E648-8CEB-4732-842A-09E74FF2F774}.DemoDebug|Win32.ActiveCfg = Debug|Win32
+		{9B39E648-8CEB-4732-842A-09E74FF2F774}.DemoDebug|Win32.Build.0 = Debug|Win32
+		{9B39E648-8CEB-4732-842A-09E74FF2F774}.DemoRelease|Win32.ActiveCfg = Release|Win32
+		{9B39E648-8CEB-4732-842A-09E74FF2F774}.DemoRelease|Win32.Build.0 = Release|Win32
+		{9B39E648-8CEB-4732-842A-09E74FF2F774}.Preview1Day|Win32.ActiveCfg = Release|Win32
+		{9B39E648-8CEB-4732-842A-09E74FF2F774}.Preview1Day|Win32.Build.0 = Release|Win32
+		{9B39E648-8CEB-4732-842A-09E74FF2F774}.Profile|Win32.ActiveCfg = Release|Win32
+		{9B39E648-8CEB-4732-842A-09E74FF2F774}.Profile|Win32.Build.0 = Release|Win32
+		{9B39E648-8CEB-4732-842A-09E74FF2F774}.Release No Debug|Win32.ActiveCfg = Release|Win32
+		{9B39E648-8CEB-4732-842A-09E74FF2F774}.Release No Debug|Win32.Build.0 = Release|Win32
+		{9B39E648-8CEB-4732-842A-09E74FF2F774}.Release|Win32.ActiveCfg = Release|Win32
+		{9B39E648-8CEB-4732-842A-09E74FF2F774}.Release|Win32.Build.0 = Release|Win32
+		{9B39E648-8CEB-4732-842A-09E74FF2F774}.Unicode Debug|Win32.ActiveCfg = Debug|Win32
+		{9B39E648-8CEB-4732-842A-09E74FF2F774}.Unicode Debug|Win32.Build.0 = Debug|Win32
+		{9B39E648-8CEB-4732-842A-09E74FF2F774}.Unicode Release|Win32.ActiveCfg = Release|Win32
+		{9B39E648-8CEB-4732-842A-09E74FF2F774}.Unicode Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

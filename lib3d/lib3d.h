@@ -2482,7 +2482,7 @@ private:
     {
         UByte *c = (UByte*)(&col);
         UByte *l = (UByte*)(&lightCol);
-        c[4] = alpha;
+        c[3] = alpha;
         c[2] = ModulateByte( c[2], l[2] ); // red
         c[1] = ModulateByte( c[1], l[1] ); // green
         c[0] = ModulateByte( c[0], l[0] ); // blue

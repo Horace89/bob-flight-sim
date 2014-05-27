@@ -378,9 +378,9 @@ void	PackageList::FixupAircraft(int packnum)
 	{for (int i=0,m=pack[packnum].squadlist;i<m;i++)
 	{
 		info_airgrpPtr a=Persons2::ConvertPtrUID(pack[packnum].squadlist[i].instance);
+		bobassert(a," Just loaded. What's going on?");
 		a->knownposition=a->World;
 		a->knowntime=a->lasttime=MMC.currtime;
-		bobassert(a," Just loaded. What's going on?");
 		a->package=&pack[packnum];
 		if (a->wpref)
 		{

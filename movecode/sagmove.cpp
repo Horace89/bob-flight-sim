@@ -5337,14 +5337,14 @@ AirStrucPtr AirStruc::ActivateACFromSag(GroupItterator& gi)
 			}
 	}
 
+	//GOT AN AIRCRAFT  //ok...	let's fill the thing in:
+	if (currac)
+	{
 #ifndef NDEBUG																				//CSB 10Aug00
 	if((currac->uniqueID.count < RealAcBAND) || (currac->uniqueID.count >= RealAcBANDEND))	//CSB 10Aug00
 		INT3;																				//CSB 10Aug00
 #endif																						//CSB 10Aug00
 
-	//GOT AN AIRCRAFT  //ok...	let's fill the thing in:
-	if (currac)
-	{
 		currworld->RemoveFromWorld(currac);							//CSB 9Aug00
 		Persons3::SagExpansionCounter::totalexpanded++;
 		currac->classtype=classtype;

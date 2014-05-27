@@ -92,7 +92,6 @@ inline bool IsWidenedCrossing( UByte at, int pointcount ) // note any wide poly 
 				(1UL<<(RA_CROSSING4)) |
 				(1UL<<(RA_RIVAROADJUNCT)) |
 				(1UL<<(RA_RIVBROADJUNCT)) |
-				(1UL<<(RA_RIVAROADJUNCT)) |
 				(1UL<<(RA_RIVMINRAILJUNCT)) |
 				(1UL<<(RA_RIVMAJRAILJUNCT));
 	return ( (at_shift&at_shift_mask) != 0 );
@@ -165,8 +164,13 @@ inline RaiseFlag PreCalcRaise( const long viewer_y, SLong &hedgeHeight )//, SLon
 			{
 				hedgeHeight = HEDGE_HEIGHT;
 //DeadCode JON 4Oct00 				cliffHeight = CLIFF_HEIGHT;
-				for ( int i=0; i<FULLHTOFFSET; i++ )
-					memcpy( &RaiseLookUp[i].rot0Alt,&RaiseLookUp[i+FULLHTOFFSET].rot0Alt,sizeof( SLong )*4 );
+				for (int i = 0; i < FULLHTOFFSET; i++)
+				{
+					RaiseLookUp[i].rot0Alt = RaiseLookUp[i + FULLHTOFFSET].rot0Alt;
+					RaiseLookUp[i].rot1Alt = RaiseLookUp[i + FULLHTOFFSET].rot1Alt;
+					RaiseLookUp[i].rot2Alt = RaiseLookUp[i + FULLHTOFFSET].rot2Alt;
+					RaiseLookUp[i].rot3Alt = RaiseLookUp[i + FULLHTOFFSET].rot3Alt;
+				}
 //DeadCode JON 20Sep00 					RaiseLookUp[i]=RaiseLookUp[i+FULLHTOFFSET];
 			}
 			break;

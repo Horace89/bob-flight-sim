@@ -20,7 +20,7 @@ enum	{	E_first_Global=(int)E_static_END,
 
 #define	endglobal						\
 	E_global_END};						\
-static	ULong	names[E_global_END]={0};
+static	ULong	names[E_global_END+1]={0};
 
 #endif
 
@@ -41,10 +41,10 @@ ULongRefBadTechniqueDoNotUse
 #define	entry(name)	name=names[E_##name],
 
 #define	endstatic						\
-		LAST_STATIC=names[E_static_END];
+		LAST_STATIC=names[E_static_END+1];
 
 #define	endglobal						\
-		LAST_GLOBAL=names[E_global_END];
+		LAST_GLOBAL=names[E_global_END+1];
 
 #endif
 

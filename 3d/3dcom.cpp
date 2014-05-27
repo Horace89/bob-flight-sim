@@ -11044,7 +11044,7 @@ void shape::dodigitdial(UByte *& instr_ptr)
 #endif
 	}
 #endif
-	delete digits;
+	delete [] digits;
 
 	instr_ptr += sizeof(DODIGITDIAL);
 }
@@ -13749,7 +13749,7 @@ void	shape::dosetzbias(UByteP&	instr_ptr)
 
 //DeadCode DAW 07May99 		IsSubShape = oldsubstat;
 
-		delete subco;												//RJS 02Dec97
+		delete [] subco;												//RJS 02Dec97
 	}
 	light_matrix=bupMatrix;						//PD 8May98
 }
@@ -22109,7 +22109,7 @@ void	shape::FixUpColLog()
 
 //DeadCode RJS 20Oct00 		ItemPtr	hitterscorer=Persons2::PlayerSeenAC;
 
-		if (ColLog[index].send)									//AMM 31Aug98
+		if (ColLog[index].send && ColLog[index].theShooter)									//AMM 31Aug98
 		{
 
 // pass in the hitter here as well.....RJS 11Mar99
@@ -22125,7 +22125,7 @@ void	shape::FixUpColLog()
 			{
 // collision with another AC, send a kill launcher if its a comms AC
 
-				if (ColLog[index].theShooter)
+//				if (ColLog[index].theShooter)
 				{
 					if (ColLog[index].theShooter->uniqueID.commsmove)
 					{

@@ -1265,7 +1265,7 @@ void CMIGView::Zoom(CPoint screenpoint,bool redrawscalebar)
 	m_size.cx=256*4*m_zoom-5;
 	m_size.cy=256*4*m_zoom-5;
 
-	if (rect.bottom>m_size.cy&&rect.bottom>m_size.cy)
+	if (rect.right>m_size.cx&&rect.bottom>m_size.cy)
 	{//min zoom for full screen map
 		double m_zoom1 = m_oldzoom * rect.bottom/oldsizecy;
 		double m_zoom2 = m_oldzoom * rect.right/oldsizecx;

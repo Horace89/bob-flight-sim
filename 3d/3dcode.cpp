@@ -1585,7 +1585,7 @@ void ThreeDee::Add_PeripheralVision(const ItemPtr	ac, const D3DVECTOR& pos)
 				||	(sy <= 1.)									//RJS 19Sep00
 				||	(sy >= float(SHAPE.vd_height))	))					//RJS 13Oct00
 		{
-			bool		isLW;											//RJS 6Sep00
+			bool		isLW=false;											//RJS 6Sep00
 			if (_DPlay.Implemented && _DPlay.GameType==DPlay::TEAMPLAY)
 			{
 				switch (AirStrucPtr(ac)->classtype->planetext)

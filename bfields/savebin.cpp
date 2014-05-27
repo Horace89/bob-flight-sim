@@ -302,7 +302,7 @@ int	Profile::DecodePackage(string packstr,bool decodeprimary)
 	else
 		raidnumentries=NULL;
 
-	for (int r=0;r<numraids;r++)
+	for (int r=0;raidnumentries && r<numraids;r++)
 	{
 		assert(*(int*)packstr==*(int*)"Rd: ");							//JIM 29Oct00
 		packstr+=4;

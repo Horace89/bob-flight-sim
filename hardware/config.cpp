@@ -61,7 +61,7 @@ questions about this file may be asked at bob@rowansoftware.com a
 better place to ask is http://www.simhq.com/ or even :-
 http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum=Battle+of+Britain&number=40&DaysPrune=20&LastLogin=
 */
-
+/*
 //------------------------------------------------------------------------------
 //Filename       config.cpp
 //System         
@@ -922,3 +922,4 @@ void Configure(bool fFullConfig,HWND hWnd)
 		}
 	}
 }
+*/

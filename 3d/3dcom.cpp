@@ -194,7 +194,7 @@ const float	MIN_SAMP_DIST_SQUARED = MIN_SAMP_DIST*MIN_SAMP_DIST;	//RJS 6Nov00
 static	int	poopy = 0;
 
 static	void*	poopitem;
-
+/*
 #ifdef	__WATCOMC__
 	extern	"C" SLong ASM_GetFadeColour(SLong, SLong );			//PD 10May96
 #else
@@ -224,6 +224,7 @@ inline	SLong ASM_GetFadeColour(SLong a, SLong b)
 #pragma warning (default:4035)
 #endif
 #endif
+*/
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //				      EXTERNAL REFERENCES
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -825,8 +826,8 @@ shape::~shape()
 	delete []SphereTreeTable;									//RJS 09Jul98
 	pTrailItm = NULL;											//RJS 02Sep98
 }
-
-inline double ARCCOS(double x,double pi)
+/*
+double oldARCCOS(double x,double pi)
 {
 	double temp=(1.-x*x)/(x*x);
 	bool xneg=x<0?true:false;
@@ -839,6 +840,11 @@ inline double ARCCOS(double x,double pi)
 	}
 	if (xneg) temp=pi-temp;
 	return temp;
+}
+*/
+inline double ARCCOS(double x,double pi)
+{
+	return acos(x);
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -857,13 +863,13 @@ inline double ARCCOS(double x,double pi)
 //------------------------------------------------------------------------------
 void calcSpecular(Float& specDot,Float& lightDot,SLong& specular,SLong& specFlip)
 {
-	double pi;
-	_asm
+	const double pi=M_PI;
+/*	_asm
 	{
 		fldpi;
 		fstp pi;
 	}
-
+	*/
 	double spa=ARCCOS(specDot,pi);
 	double lia=ARCCOS(lightDot,pi);
 
@@ -5216,12 +5222,13 @@ SWord shape::plainPolyLight(DoPointStruc** pDp)
 	n[2]=a[0]*b[1]-a[1]*b[0];
 	//normalise vector
 	double mag=n[0]*n[0]+n[1]*n[1]+n[2]*n[2];
-	_asm 
+/*	_asm 
 	{
 	fld mag;
 	fsqrt
 	fstp mag
-	}
+	}*/
+	mag=sqrt(mag);
 	n[0]/=-mag; n[1]/=-mag; n[2]/=-mag;
 	//dot product normal with light vector
 	mag=Float(32385)*(n[0]*ViewLightVector.ni.f+
@@ -22814,6 +22821,8 @@ WeapAnimData* shape::DirectWeaponLauncher(	itemptr	itm,
 		if (thislaunch)
 		{
 			SLong	noGuns = thislaunch->noChildren;
+				if (weapon == NULL)
+					_Error.EmitSysErr(__FILE__":Weapon launcher index out of range!");
 			SLong	gunno = weapon->currGun;
 
 			if (	(thislaunch->lnchrtype < LT_CONTACT)
@@ -23021,7 +23030,7 @@ void	shape::FixUpGroupCol()
 //Returns
 //
 //------------------------------------------------------------------------------
-void ppTan(ANGLES ang,Float& tanAng)
+/*void ppTan(ANGLES ang,Float& tanAng)
 {
 	int iang=ang;
 	_asm
@@ -23042,7 +23051,7 @@ void ppTan(ANGLES ang,Float& tanAng)
 	add esp,4;
 	}
 }
-
+*/
 void	shape::SetDistScale()
 {
 //DeadCode RJS 20Mar00 	DistScale = _matrix.FoV * (Float(640)/Float(winmode_w));
@@ -23052,7 +23061,8 @@ void	shape::SetDistScale()
 	Float	aspectRatio;
 
 	Angles viewConeAngle=Angles(UWord(Save_Data.fieldOfView)>>1);
-	ppTan(viewConeAngle,FoV);
+	//ppTan(viewConeAngle,FoV);
+	fpTan(viewConeAngle, FoV);
 //DEADCODE RJS 3/21/00 	DistScale*=.5;
 
 	View_Point->perspective_FoV = DistScale = FoV;

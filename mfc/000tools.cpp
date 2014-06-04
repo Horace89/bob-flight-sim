@@ -91,7 +91,9 @@ typedef LPCSTR LPCTSTR;
 void AFX_CDECL AfxTrace(LPCTSTR lpszFormat, ...);
 #ifdef _DEBUG
 
-#define TRACE0(sz)              ::AfxTrace(_T("%s"), _T(sz))
+//#define TRACE0(sz)              ::AfxTrace(_T("%s"), _T(sz))
+#undef TRACE0
+#define TRACE0(sz)              {std::cout << sz << std::endl;}
 
 #include "dosdefs.h"
 #undef	new   

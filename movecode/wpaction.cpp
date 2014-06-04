@@ -121,8 +121,8 @@ WayPoint*	WayPoint::NextWP(UniqueID uniqueID)
 		breakif (!waypoint->skipover);
 		breakif (uniqueID<=waypoint->skipover && uniqueID>=waypoint->skipunder);
 	}
-	if (!waypoint)
-		waypoint=waypoint;
+	assert(waypoint);
+		
 	return waypoint;
 }
 WayPoint*	WayPoint::NextWP(MobileItemPtr owner)

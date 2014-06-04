@@ -258,14 +258,16 @@ ANGLES GetRequiredRoll(rotitem& srcItem,COORDS3D trg, Float& pitch, Float& hdg)
 	x.f/=z.f;
 	hdg = x.f;
 	y.f/=z.f;
+	/* x0r
 	_asm {
 		fld x.f;
 		fld y.f;
 		fpatan;
 		fstp x.f;
-	}
+	}*/ 
+	x.f = atan2(x.f, y.f);
 	//x.f is required angle in radians
-	x.f=Float(32768)*x.f/FPIE;
+	x.f=Float(32768.0)*x.f/FPIE;
 	pitch = y.f;
 	return (Angles)(UWord)x.f;
 }
@@ -3037,12 +3039,12 @@ void	ACMAirStruc::HeadOnOffset ( )
 
 			SWord	reqdeltahdg = hdg - desiredhdg;
 		 	SWord reqroll = FindRequiredRoll (reqdeltahdg,CombatReqBankData);
-			if  (		(reqroll >> ANGLES_30Deg)
-					&&	(reqroll << ANGLES_180Deg)
+			if  (		(reqroll > ANGLES_30Deg)
+					&&	(reqroll < ANGLES_180Deg)
 				)
 				reqroll = ANGLES_30Deg;
-			if  (		(reqroll << ANGLES_330Deg)
-					&&	(reqroll >> ANGLES_180Deg)
+			if  (		(reqroll < ANGLES_330Deg)
+					&&	(reqroll > ANGLES_180Deg)
 				)
 				reqroll = ANGLES_330Deg;
 
@@ -7171,7 +7173,7 @@ void	ACMAirStruc::TurnFightPhase1(ANGLES	HdgIntercept, Bool sitbehindtarget, ANG
 			{
 				if	(	(delta << ANGLES_60Deg)
 						&&	(Range > DANGERRANGE)
-						&&	(reqdeltapitch_pos << ANGLES_15Deg)
+						&&	(reqdeltapitch_pos < ANGLES_15Deg)
 						&&	(ai.manoeuvre != MANOEUVRE_DIVEANDZOOM)
 					)
 				{

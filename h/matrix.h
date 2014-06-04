@@ -157,6 +157,18 @@ inline void transformNC(FPMATRIX_PTR T, DoPointStruc* dp)
 
 		};
 
+SLong oldASMTransform(MATRIX_PTR a,SLong& b,SLong& c,SLong& d);
+SLong ASMTransform(MATRIX_PTR a, SLong& b, SLong& c, SLong& d);
+
+void fpSin_Cos(const ANGLES angle, Float& sin_ang, Float& cos_ang);
+void oldfpSin_Cos(const ANGLES angle, Float& sin_ang, Float& cos_ang);
+
+
+SWord oldGetScale(SLong x,SLong y,SLong z);
+SWord GetScale(SLong x,SLong y,SLong z);
+
+void fpTan(ANGLES ang, Float& tanAng);
+
 extern	matrix	_matrix;
 
 #endif

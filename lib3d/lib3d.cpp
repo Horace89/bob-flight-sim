@@ -758,12 +758,13 @@ inline UWord calcMWordRot( SWord shift )
 inline ULong __fastcall  MagicRotate(UByte shift, ULong val )
 {
     ULong rv;
-#ifdef __GNUC__
+//#ifdef __GNUC__
     shift &= 0x1f;
     if (!shift) return(val);
 
     return (val << shift) | (val >> (32 - shift));
-#else
+/*#else
+	
     __asm
     {
         mov edx, val
@@ -774,18 +775,18 @@ inline ULong __fastcall  MagicRotate(UByte shift, ULong val )
         mov rv, edx
     }
     return rv;
+	return __ROL__(val, shift);
+
 #endif
+	*/
 }
 
-#pragma warning(disable:4035)  // don't tell me there is no return value
 ULong __fastcall	MaskAndRot(ULong value,UByte sh1,UByte sh2,UByte sh3,ULong mask1,ULong mask2,ULong mask3)
 {
-#ifdef __GNUC__
     return ((MagicRotate(sh1,value)&mask1) |
             (MagicRotate(sh2,value)&mask2) |
             (MagicRotate(sh3,value)&mask3));
-#else
-    __asm
+/*    __asm
     {
         mov	edx,value
         mov	eax,edx
@@ -802,9 +803,8 @@ ULong __fastcall	MaskAndRot(ULong value,UByte sh1,UByte sh2,UByte sh3,ULong mask
         and	edx,mask3
         or	eax,edx
     }
-#endif
+*/
 }
-#pragma warning(default:4035) // turn the message back on then.
 
 #define _DOINLINE inline
 //#pragma optimize( "", off )
@@ -2444,12 +2444,17 @@ HRESULT Lib3D::RestoreDisplayMode()
 //------------------------------------------------------------------------------
 HRESULT Lib3D::ScreenSwap()
 {
-    if (pDDSP7==NULL)
-        INT3;
-    if (flags&F_WINDOWED)
-        lastError=pDDSP7->Blt(&windowRect,pDDSB7,NULL,DDBLT_WAIT,NULL);
-    else
-        lastError=pDDSP7->Flip(NULL,DDFLIP_WAIT);
+	if (pDDSP7 == NULL)
+	{
+		INT3;
+	}
+	else
+	{
+		if (flags&F_WINDOWED)
+			lastError = pDDSP7->Blt(&windowRect, pDDSB7, NULL, DDBLT_WAIT, NULL);
+		else
+			lastError = pDDSP7->Flip(NULL, DDFLIP_WAIT);
+	}
 
     if (lastError!=DD_OK)
         CloseDown();
@@ -13918,6 +13923,11 @@ void Lib3D::FillFogTable(D3DVALUE fStart,D3DVALUE fEnd)
 //------------------------------------------------------------------------------
 void Lib3D::EnableFogging(bool fEnable)
 {
+	if (!pD3DDEV7)
+	{
+		INT3;
+		return;
+	}
 //DeadCode JON 24Jul00 	HRESULT hr;
 //DeadCode JON 24Jul00 #ifndef _FORCE_SW_FOG_ // try for hardware fog
 //DeadCode JON 24Jul00 	if (fEnable && (selectedDevice.dpcTriCaps.dwRasterCaps&D3DPRASTERCAPS_FOGTABLE)!=0)
@@ -14722,12 +14732,12 @@ HRESULT Lib3D::TestPoly(const HMATERIAL& hMat)
 #define	CPUSUPP_MCA		0x00004000
 #define	CPUSUPP_CMOV	0x00008000
 #define	CPUSUPP_MMX		0x00800000
-
+/*
 #define cpuid _asm _emit 0x0f _asm _emit 0xa2
 #define wrmsr _asm _emit 0x0f _asm _emit 0x30
 #define rdtsc _asm _emit 0x0f _asm _emit 0x31
 #define rdmsr _asm _emit 0x0f _asm _emit 0x32
-
+*/
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		CpuInfo
 //Author		Paul.

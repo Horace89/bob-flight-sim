@@ -82,8 +82,8 @@ public:
 	ANGLES	arcsin(SWord);
 //DeadCode JON 30Aug00 	ANGLES   arccos(SWord);
 
-	ANGLES	high_arc_sin(SWord );								//PD 23May96
-	ANGLES	high_arc_cos(SWord );								//PD 23May96
+//	ANGLES	high_arc_sin(SWord );								//PD 23May96
+//	ANGLES	high_arc_cos(SWord );								//PD 23May96
 
 	ANGLES	ATan256(int index0to256)	{return Angles(matan[index0to256]);}
 	SWord	tan(ANGLES);
@@ -108,7 +108,7 @@ static Float	DistanceSquared(Float x,Float y)						{return (x*x+y*y);}
 static Float	DistanceSquared(Float x,Float y,Float z)				{return (x*x+y*y+z*z);}
 static Float	DistanceSquared(Float x,Float y,Float z,Float w)		{return (x*x+y*y+z*z+w*w);}
 #ifndef __BCPLUSPLUS__
-static inline	double	SquareRoot(double d)	{return SQUARE_ROOT(d);}
+static inline	double	SquareRoot(double d)	{return sqrt(d);}
 #endif
 void	HighIntercept (SLong deltax,SLong deltay,SLong deltaz,
 				SLong &Range,SWord &HdgIntercept,SWord &PitchIntercept);		//RDH 01Dec95
@@ -178,19 +178,7 @@ inline	Angles	operator + (ANGLES a,RndVal b)	{return (Angles)((SWord)a+(SWord)b)
 
 extern	MathLib	Math_Lib;										//PD 29Nov95
 #ifndef	__BCPLUSPLUS__
-inline Float FPATan(Float opp,Float adj)
-{
-	Float	ans;
-	_asm
-	{
-		fld		opp
-		fld		adj
-		fpatan
-		fstp	ans
-	}
-	return ans;
-}
-
+/*
 inline Float FPACos(Float x)	//returns arccos(x) in radians
 {
 	Float ans;
@@ -211,10 +199,23 @@ inline Float FPACos(Float x)	//returns arccos(x) in radians
 
 	return ans;
 }
+*/
+inline Float FPATan(Float opp, Float adj)
+{
+/*	Float	ans;
+	_asm
+	{
+		fld		opp
+			fld		adj
+			fpatan
+			fstp	ans
+	}
+	return ans;*/
+//		return atan2(adj, opp);
+		return atan2(opp, adj);
+}
 
 #endif
-
-
 
 #endif
 

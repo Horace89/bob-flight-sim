@@ -1164,7 +1164,7 @@ struct	weap_ctl			//o??s6C
 //
 //need to store AnimWeaponPack for ac to reset rockets etc
 	LASTFIELD(		int,Weapons,11,15)					//AMM 07Apr99
-	SByte	weapontype;						//o64s01		//LT_ byte	//RJS 08Dec99
+	UByte	weapontype;						//o64s01		//LT_ byte	//RJS 08Dec99
 	UByte	shpweapindex;					//o65s01		//Index is basically aircraft type...
 	SWord		weapforce;					//o66s02					//RJS 16Sep98
 //DeadCode RJS 15Nov99 	TransientItem*	currentbullet;			//o68s04					//RJS 29Mar99

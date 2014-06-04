@@ -27,7 +27,7 @@
 //Externals
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-
+/*
 #ifdef __WATCOMC__
 extern	void	ASM_OutDxAx(UWord,UWord);
 #pragma	aux	ASM_OutDxAx	=		\
@@ -434,17 +434,17 @@ struct	DPMIregs2
 	union	{	ULong	eax;	SLong	Eax;	UWord	ax;	SWord	Ax;	Ubytereg	a;	Sbytereg	A;};
 	enum	Flags
 		{
-    		CF	= 0x0001,	/* carry */
-    		PF	= 0x0004,	/* parity */
-    		AF	= 0x0010,	/* auxiliary carry */
-    		ZF	= 0x0040,	/* zero */
-    		SF	= 0x0080,	/* sign */
-    		TF	= 0x0100,	/* trace */
-    		IF	= 0x0200,	/* interrupt */
-    		DF	= 0x0400,	/* direction */
-    		OF	= 0x0800,	/* overflow */
-    		IOPL=0x3000,	/* overflow */
-    		NT	= 0x4000	/* overflow */
+    		CF	= 0x0001,	// carry 
+    		PF	= 0x0004,	// parity
+    		AF	= 0x0010,	// auxiliary carry 
+    		ZF	= 0x0040,	// zero 
+    		SF	= 0x0080,	// sign 
+    		TF	= 0x0100,	// trace 
+    		IF	= 0x0200,	// interrupt 
+    		DF	= 0x0400,	// direction 
+    		OF	= 0x0800,	// overflow 
+    		IOPL=0x3000,	// overflow 
+    		NT	= 0x4000	// overflow 
 		}	flags;
 	UWord	es,ds,fs,gs,ip,cs,sp,ss;
 };
@@ -459,17 +459,17 @@ struct	DPMIregs
 	enum	Flags
 		{
 			CLEAR=0,
-    		CF	= 0x0001,	/* carry */
-    		PF	= 0x0004,	/* parity */
-    		AF	= 0x0010,	/* auxiliary carry */
-    		ZF	= 0x0040,	/* zero */
-    		SF	= 0x0080,	/* sign */
-    		TF	= 0x0100,	/* trace */
-    		IF	= 0x0200,	/* interrupt */
-    		DF	= 0x0400,	/* direction */
-    		OF	= 0x0800,	/* overflow */
-    		IOPL=0x3000,	/* overflow */
-    		NT	= 0x4000,	/* overflow */
+    		CF	= 0x0001,	// carry 
+    		PF	= 0x0004,	// parity 
+    		AF	= 0x0010,	// auxiliary carry 
+    		ZF	= 0x0040,	// zero 
+    		SF	= 0x0080,	// sign 
+    		TF	= 0x0100,	// trace 
+    		IF	= 0x0200,	// interrupt 
+    		DF	= 0x0400,	// direction 
+    		OF	= 0x0800,	// overflow 
+    		IOPL=0x3000,	// overflow 
+    		NT	= 0x4000,	// overflow 
 		}	flags;
 	DPMIseg	s;
 };
@@ -748,7 +748,7 @@ extern	Bool	ASM_DEXint31(DPMIregs*	registers);
 		mov retval,al; \
 	} \
 	return (Bool)retval;
-*/
+
 inline	Bool	ASM_DEXint10(DPMIregs*	registers)
 {
 //		ASM_DEXtop
@@ -772,7 +772,7 @@ inline	Bool	ASM_DEXint31(DPMIregs*	registers)
 }
 #endif
 #endif
-
+*/
 #include	"MathAsm.h"
 
 #endif

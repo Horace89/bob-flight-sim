@@ -31,6 +31,86 @@
 
 #define	DEFAULT_MATHASM 0
 #include "cmath"
+#pragma warning(disable:4800)
+
+#ifdef __GNUC__
+
+#define inline __INTRIN_INLINE
+__INTRIN_INLINE unsigned char _BitScanForward(unsigned long * const Index, const unsigned long Mask)
+{
+	__asm__("bsfl %[Mask], %[Index]" : [Index] "=r" (*Index) : [Mask] "mr" (Mask));
+	return Mask ? 1 : 0;
+}
+
+__INTRIN_INLINE unsigned char _BitScanReverse(unsigned long * const Index, const unsigned long Mask)
+{
+	__asm__("bsrl %[Mask], %[Index]" : [Index] "=r" (*Index) : [Mask] "mr" (Mask));
+	return Mask ? 1 : 0;
+}
+
+/* NOTE: again, the bizarre implementation follows Visual C++ */
+__INTRIN_INLINE unsigned char _bittest(const long * const a, const long b)
+{
+	unsigned char retval;
+
+	if (__builtin_constant_p(b))
+		__asm__("bt %[b], %[a]; setb %b[retval]" : [retval] "=q" (retval) : [a] "mr" (*(a + (b / 32))), [b] "Ir" (b % 32));
+	else
+		__asm__("bt %[b], %[a]; setb %b[retval]" : [retval] "=q" (retval) : [a] "m" (*a), [b] "r" (b));
+
+	return retval;
+}
+
+#ifdef _M_AMD64
+__INTRIN_INLINE unsigned char _bittest64(const __int64 * const a, const __int64 b)
+{
+	unsigned char retval;
+
+	if (__builtin_constant_p(b))
+		__asm__("bt %[b], %[a]; setb %b[retval]" : [retval] "=q" (retval) : [a] "mr" (*(a + (b / 64))), [b] "Ir" (b % 64));
+	else
+		__asm__("bt %[b], %[a]; setb %b[retval]" : [retval] "=q" (retval) : [a] "m" (*a), [b] "r" (b));
+
+	return retval;
+}
+#endif
+
+__INTRIN_INLINE unsigned char _bittestandcomplement(long * const a, const long b)
+{
+	unsigned char retval;
+
+	if (__builtin_constant_p(b))
+		__asm__("btc %[b], %[a]; setb %b[retval]" : [a] "+mr" (*(a + (b / 32))), [retval] "=q" (retval) : [b] "Ir" (b % 32));
+	else
+		__asm__("btc %[b], %[a]; setb %b[retval]" : [a] "+m" (*a), [retval] "=q" (retval) : [b] "r" (b));
+
+	return retval;
+}
+
+__INTRIN_INLINE unsigned char _bittestandreset(long * const a, const long b)
+{
+	unsigned char retval;
+
+	if (__builtin_constant_p(b))
+		__asm__("btr %[b], %[a]; setb %b[retval]" : [a] "+mr" (*(a + (b / 32))), [retval] "=q" (retval) : [b] "Ir" (b % 32));
+	else
+		__asm__("btr %[b], %[a]; setb %b[retval]" : [a] "+m" (*a), [retval] "=q" (retval) : [b] "r" (b));
+
+	return retval;
+}
+
+__INTRIN_INLINE unsigned char _bittestandset(long * const a, const long b)
+{
+	unsigned char retval;
+
+	if (__builtin_constant_p(b))
+		__asm__("bts %[b], %[a]; setb %b[retval]" : [a] "+mr" (*(a + (b / 32))), [retval] "=q" (retval) : [b] "Ir" (b % 32));
+	else
+		__asm__("bts %[b], %[a]; setb %b[retval]" : [a] "+m" (*a), [retval] "=q" (retval) : [b] "r" (b));
+
+	return retval;
+}
+#endif
 
 #pragma warning(disable:4035)
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -47,7 +127,7 @@
 //Returns		false=0/true
 //
 //------------------------------------------------------------------------------
-
+/*
 #ifdef __WATCOMC__
 extern	Bool	BITRESET(void*,ULong);
 #pragma	aux		BITRESET		=		\
@@ -58,7 +138,7 @@ extern	Bool	BITRESET(void*,ULong);
 		value	[al]
 #else
 #ifdef __MSVC__
-
+		*/
 //-----------------------------------------------------------------------------
 // Procedure    BITRESET
 // Author       Paul
@@ -88,8 +168,8 @@ extern	Bool	BITRESET(void*,ULong);
 //DEADCODE RDH 20/05/99 	}
 //DEADCODE RDH 20/05/99 	return (Bool)retval;
 
-
-inline  bool __fastcall	BITRESET(void* num1,ULong num2)
+/*
+inline bool __fastcall	oldBITRESET(void * num1,ULong num2)
 {
 	_asm 
 	{
@@ -98,13 +178,19 @@ inline  bool __fastcall	BITRESET(void* num1,ULong num2)
 		btr	ds:[ecx],edx
 		setc	al
 	}
-
 }
+*/
+inline  bool __fastcall	BITRESET(void * num1,ULong num2)
+{ 
+	return (bool) _bittestandreset((SLong *)num1, num2);
+}
+/*
 #else
 extern	Bool	BITRESET(void*,ULong);
 #endif
 #endif
-
+*/
+/*
 #ifdef __WATCOMC__
 extern	ULong	BITRESETI(ULong,ULong);
 #pragma	aux		BITRESETI		=		\
@@ -139,7 +225,7 @@ inline ULong __fastcall BITRESETI(ULong num1,ULong num2)
 
 #endif
 #endif
-
+*/
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		BTS
@@ -155,6 +241,7 @@ inline ULong __fastcall BITRESETI(ULong num1,ULong num2)
 //Returns		false=0/true
 //
 //------------------------------------------------------------------------------
+/*
 #ifdef __WATCOMC__
 extern	Bool	BITSET(void*,ULong);
 #pragma	aux		BITSET		=			\
@@ -166,7 +253,7 @@ extern	Bool	BITSET(void*,ULong);
 
 #else
 #ifdef __MSVC__
-
+*/
 //-----------------------------------------------------------------------------
 // Procedure    BITSET
 // Author       Paul
@@ -179,21 +266,29 @@ extern	Bool	BITSET(void*,ULong);
 // Returns
 //
 //-----------------------------------------------------------------------------
-inline bool __fastcall BITSET(void* num1,ULong num2)
+/*
+inline bool __fastcall oldBITSET(void* num1,ULong num2)
 {
 	_asm
 	{
-		mov	ecx,num1
-		mov	edx,num2
-		bts	ds:[ecx],edx
-		setc	al
+		mov	ecx, num1
+			mov	edx, num2
+			bts	ds : [ecx], edx
+			setc	al
+	}
 }
+*/
+inline bool __fastcall BITSET(void* num1,ULong num2)
+{
+	return (bool)_bittestandset((long *)num1, num2);
 }
+/*
 #else
 extern	Bool	BITSET(void*,ULong);
 #endif
 #endif
-
+*/
+/*
 #ifdef __WATCOMC__
 extern	ULong	BITSETI(ULong,ULong);
 #pragma	aux		BITSETI		=		\
@@ -229,7 +324,7 @@ inline ULong __fastcall BITSETI(ULong num1, ULong num2)
 
 #endif
 #endif
-
+*/
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		BT
@@ -246,7 +341,7 @@ inline ULong __fastcall BITSETI(ULong num1, ULong num2)
 //
 //------------------------------------------------------------------------------
 
-
+/*
 #ifdef __WATCOMC__
 extern	Bool	BITTEST(const void*,ULong);
 #pragma	aux		BITTEST		=			\
@@ -258,7 +353,7 @@ extern	Bool	BITTEST(const void*,ULong);
 
 #else
 #ifdef __MSVC__
-
+		*/
 //-----------------------------------------------------------------------------
 // Procedure    BITTEST
 // Author       Paul
@@ -273,19 +368,23 @@ extern	Bool	BITTEST(const void*,ULong);
 //-----------------------------------------------------------------------------
 inline bool __fastcall BITTEST(const void* num1,ULong num2)
 {
+	return _bittest((long *)num1, num2);
+	/*
 	_asm
 	{
 		mov	ecx,num1
 		mov	edx,num2
 		bt	ds:[ecx],edx
 		setc	al
+}*/
 }
-}
+/*
 #else
 extern	Bool	BITTEST(const void*,ULong);
 #endif
 #endif
-
+*/
+/*
 #ifdef __WATCOMC__
 extern	Bool	BITTESTI(int,ULong);
 #pragma	aux		BITTESTI		=			\
@@ -323,6 +422,7 @@ inline bool __fastcall BITTESTI(int num1,ULong num2)
 
 #endif
 #endif
+*/
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		BTC
 //Author		Jim Taylor
@@ -337,7 +437,7 @@ inline bool __fastcall BITTESTI(int num1,ULong num2)
 //Returns		false=0/true - old value
 //
 //------------------------------------------------------------------------------
-
+/*
 #ifdef __WATCOMC__
 extern	Bool	BITCOMP(void*,ULong);
 #pragma	aux		BITCOMP		=			\
@@ -348,7 +448,7 @@ extern	Bool	BITCOMP(void*,ULong);
 		value	[al]
 #else
 #ifdef __MSVC__
-
+		*/
 //-----------------------------------------------------------------------------
 // Procedure    BITCOMP
 // Author       Paul
@@ -363,20 +463,24 @@ extern	Bool	BITCOMP(void*,ULong);
 //-----------------------------------------------------------------------------
 inline bool __fastcall BITCOMP(void* num1,ULong num2)
 {
+	return _bittestandcomplement((long*)num1, num2);
+	/*
 	_asm
 	{
 		mov	ecx,num1
 		mov	edx,num2
 		btc	ds:[ecx],edx
 		setc	al
-	}
+	}*/
 
 }
+/*
 #else
 extern	Bool	BITCOMP(void*,ULong);
 #endif
 #endif
-
+*/
+/*
 #ifdef __WATCOMC__
 extern	ULong	BITCOMPI(ULong,ULong);
 #pragma	aux		BITCOMPI		=		\
@@ -412,7 +516,7 @@ inline ULong __fastcall BITCOMPI(ULong num1,ULong num2)
 
 #endif
 #endif
-
+*/
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		BSF/BSR
 //Author		Jim Taylor
@@ -455,7 +559,7 @@ inline ULong __fastcall BITCOMPI(ULong num1,ULong num2)
 //Returns		bit number or errcode
 //
 //------------------------------------------------------------------------------
-
+/*
 #ifdef __WATCOMC__
 extern	ULong	BITSCANLOWEST(ULong bits,ULong errcode);
 #pragma	aux		BITSCANLOWEST	=		\
@@ -490,7 +594,8 @@ inline ULong __fastcall BITSCANLOWEST(ULong bits,ULong errcode=0)
 
 #endif
 #endif
-
+*/
+/*
 #ifdef __WATCOMC__
 extern	ULong	BITSCANHIGHEST(ULong bits,ULong errcode);
 #pragma	aux		BITSCANHIGHEST	=		\
@@ -525,6 +630,7 @@ inline ULong __fastcall BITSCANHIGHEST(ULong bits,ULong errcode=0)
 
 #endif
 #endif
+*/
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		MUL[SH/DIV][SIN/UNS]
 //Author		Jim Taylor
@@ -540,7 +646,7 @@ inline ULong __fastcall BITSCANHIGHEST(ULong bits,ULong errcode=0)
 //Returns
 //
 //------------------------------------------------------------------------------
-
+/*
 #ifdef __WATCOMC__
 extern	ULong MULSHUNS (ULong,ULong,UByte);
 #pragma	aux	MULSHUNS		=			\
@@ -582,7 +688,7 @@ inline ULong __fastcall MULSHUNS (ULong num1, ULong num2, UByte num3)
 
 #endif
 #endif
-
+*/
 #ifdef __WATCOMC__
 extern	SLong	MULSHSIN (SLong,SLong,UByte);
 #pragma	aux	MULSHSIN		=		\
@@ -607,8 +713,9 @@ extern	SLong	MULSHSIN (SLong,SLong,UByte);
 //
 //-----------------------------------------------------------------------------
 inline SLong __fastcall MULSHSIN (SLong num1, SLong num2, UByte num3)
-{
-    _asm
+{// x0r  TODO not tested should be ok
+	return (unsigned __int64)(num1 * (signed __int64)num2) >> num3;
+/*    _asm
     {
 		mov		ecx,num1
 		mov		eax,num2
@@ -619,13 +726,13 @@ inline SLong __fastcall MULSHSIN (SLong num1, SLong num2, UByte num3)
 		shrd	eax,edx,cl
 		pop		edx
 		pop		ecx
-}
+}*/
 }
 #else
 extern	SLong	MULSHSIN (SLong,SLong,UByte);
 #endif
 #endif
-
+/*
 #ifdef __WATCOMC__
 extern	ULong SHDIVUNS (ULong,UByte,ULong);
 #pragma	aux	SHDIVUNS		=			\
@@ -641,7 +748,7 @@ extern	ULong SHDIVUNS (ULong,UByte,ULong);
 		value	[eax]
 #else
 #ifdef __MSVC__
-
+		*/
 //-----------------------------------------------------------------------------
 // Procedure    SHDIVUNS
 // Author       Paul
@@ -659,7 +766,8 @@ extern	ULong SHDIVUNS (ULong,UByte,ULong);
 //-----------------------------------------------------------------------------
 inline ULong SHDIVUNS (ULong num1, UByte num2, ULong num3)
 {
-    _asm
+	return (((unsigned __int64)num1 << num2) / num3);
+/*		_asm
     {
 		push	ecx
 		push	edx
@@ -673,12 +781,13 @@ inline ULong SHDIVUNS (ULong num1, UByte num2, ULong num3)
 		div		num3
 		pop		edx
 		pop		ecx
-    }
+    }*/
 }
-
+/*
 #endif
 #endif
-
+*/
+/*
 #ifdef __WATCOMC__
 extern	ULong SHDIVSIN (SLong,UByte,ULong);
 #pragma	aux	SHDIVSIN		=			\
@@ -694,7 +803,7 @@ extern	ULong SHDIVSIN (SLong,UByte,ULong);
 		value	[eax]
 #else
 #ifdef __MSVC__
-
+		*/
 //-----------------------------------------------------------------------------
 // Procedure    SHDIVSIN
 // Author       Paul
@@ -709,7 +818,8 @@ extern	ULong SHDIVSIN (SLong,UByte,ULong);
 //-----------------------------------------------------------------------------
 inline ULong SHDIVSIN (SLong num1,UByte num2,ULong num3)
 {
-    _asm
+	return (((signed __int64)num1 << num2) / num3);
+/*    _asm
     {
 		push	ecx
 		push	edx
@@ -723,13 +833,15 @@ inline ULong SHDIVSIN (SLong num1,UByte num2,ULong num3)
 		idiv	num3
 		pop		edx
 		pop		ecx
+}*/
 }
-}
+/*
 #else
 extern	ULong SHDIVSIN (SLong,UByte,ULong);
 #endif
 #endif
-
+*/
+/*
 #ifdef __WATCOMC__
 extern	ULong	MULDIVUNS (ULong,ULong,ULong);
 #pragma	aux	MULDIVUNS		=		\
@@ -771,7 +883,7 @@ inline ULong MULDIVUNS (ULong num1, ULong num2, ULong num3)
 
 #endif
 #endif
-
+*/
 extern	SLong	MULDIVSIN (SLong,SLong,SLong);
 #ifdef __WATCOMC__
 #pragma	aux	MULDIVSIN		=		\
@@ -798,6 +910,8 @@ extern	SLong	MULDIVSIN (SLong,SLong,SLong);
 inline SLong MULDIVSIN (SLong num1,SLong num2,SLong num3)
 //static SLong MULDIVSIN (SLong num1,SLong num2,SLong num3)
 {
+	return num2 * (signed __int64)num1 / num3;
+	/*
     _asm
     {
 		push	edx
@@ -809,12 +923,12 @@ inline SLong MULDIVSIN (SLong num1,SLong num2,SLong num3)
 		idiv	ecx
 		pop		ecx
 		pop		edx
-}
+}*/
 }
 #endif
 #endif
 ////////////////////////////////////////////////////////////
-
+/*
 extern	SWord	mathlib_w_getsign(SWord);
 #ifdef __WATCOMC__
 #pragma	aux	mathlib_w_getsign=	\
@@ -824,7 +938,7 @@ extern	SWord	mathlib_w_getsign(SWord);
 		value	[dx]
 #else
 #ifdef __MSVC__
-
+		*/
 //-----------------------------------------------------------------------------
 // Procedure    mathlib_w_getsign
 // Author       Paul
@@ -838,17 +952,18 @@ extern	SWord	mathlib_w_getsign(SWord);
 //
 //-----------------------------------------------------------------------------
 inline SWord mathlib_w_getsign(SWord num)
-{																	  //RDH 20/05/99
-    _asm
+{
+	return (num >= 0 ? 0 : -1);															  //RDH 20/05/99
+/*    _asm
     {
 		mov		ax,num
 		sar		ax,15
-    }
+    }*/
 }
 
-#endif
-#endif
-
+//#endif
+//#endif
+/*
 #ifdef __WATCOMC__
 extern	SWord	mathlib_w_applysign(SWord,SWord);
 #pragma aux	mathlib_w_applysign=	\
@@ -859,7 +974,7 @@ extern	SWord	mathlib_w_applysign(SWord,SWord);
 		value	[ax]
 #else
 #ifdef __MSVC__
-
+		*/
 //-----------------------------------------------------------------------------
 // Procedure    mathlib_w_applysign
 // Author       Paul
@@ -874,20 +989,23 @@ extern	SWord	mathlib_w_applysign(SWord,SWord);
 //-----------------------------------------------------------------------------
 inline SWord _fastcall mathlib_w_applysign(SWord num1,SWord num2)
 {
+	return (num2 ^  num1) - num2;
+	/*
     _asm
     {
 		mov		ax,num1
 		mov		dx,num2
 		xor		ax,dx
 		sub		ax,dx
-    }
+    }*/
 }
-#else
+/*#else
 extern	SWord	mathlib_w_applysign(SWord,SWord);
 #endif
 
 #endif
-
+*/
+/*
 extern	SLong	mathlib_l_getsign(SLong);
 #ifdef __WATCOMC__
 #pragma	aux	mathlib_l_getsign=	\
@@ -897,7 +1015,7 @@ extern	SLong	mathlib_l_getsign(SLong);
 		value	[edx]
 #else
 #ifdef __MSVC__
-
+		*/
 //-----------------------------------------------------------------------------
 // Procedure    mathlib_l_getsign
 // Author       Paul
@@ -912,17 +1030,19 @@ extern	SLong	mathlib_l_getsign(SLong);
 //-----------------------------------------------------------------------------
 inline SLong mathlib_l_getsign(SLong num)
 {
+	return (num >= 0 ? 0 : -1);															  //RDH 20/05/99
+	/*
 	SLong	retval;
     _asm
     {
 		mov		eax,num
 		sar		eax,31
-    }
+    }*/
 }
 
-#endif
-#endif
-
+//#endif
+//#endif
+/*
 #ifdef __WATCOMC__
 extern	SLong	mathlib_l_applysign(SLong,SLong);
 #pragma aux	mathlib_l_applysign=	\
@@ -933,7 +1053,7 @@ extern	SLong	mathlib_l_applysign(SLong,SLong);
 		value	[eax]
 #else
 #ifdef __MSVC__
-
+		*/
 //-----------------------------------------------------------------------------
 // Procedure    mathlib_l_applysign
 // Author       Paul
@@ -948,64 +1068,93 @@ extern	SLong	mathlib_l_applysign(SLong,SLong);
 //-----------------------------------------------------------------------------
 inline SLong __fastcall mathlib_l_applysign(SLong num1,SLong num2)
 {
-    _asm
+	return (num2 ^  num1) - num2;
+/*    _asm
     {
 		mov		Eax,num1
 		mov		Edx,num2
 		xor		Eax,Edx
 		sub		Eax,Edx
-    }
+    }*/
 }
-#else
+/*#else
 extern	SLong	mathlib_l_applysign(SLong,SLong);
 #endif
 
 #endif
+*/
 
-#ifdef __WATCOMC__
-#else
 #ifdef __MSVC__
+#include <float.h>
 inline void SETPREC(int p)
 {
-	UWord v;
-	_asm {
-		fstcw v;
-	};
-		v &=0xf0ff;
-		v|=p<<8;
-	_asm {
-		fldcw v;
-	};
+  unsigned int v;
+  v = _controlfp(0, 0); // store old vlaue
+		v &=0xfffCffff;
+		v|=p<<16;
+
+		_controlfp(v, _MCW_PC);
 }
+
 inline int GETPREC()
 {
-	UWord v;
-	_asm {
-		fstcw v;
-	};
-	return ((v&0x0f00)>>8);
+  unsigned int v = _controlfp(0, 0); // store old vlaue
+	return ((v>>16)&3);
 }
 
 inline UWord GETFPCW()
 {
-	UWord v;
-	_asm {
-		fstcw v;
-	}
+  unsigned int v = _controlfp(0, 0);
 	return v;
 }
 
 inline void SETFPCW(UWord w)
 {
-	UWord v=w;
-	_asm {
-		fldcw v;
-	}
+}
+#endif
+
+#ifdef __GNUC__
+#include <fpu_control.h>
+inline void SETPREC(int p)
+{
+ 
+ fpu_control_t fpu_oldcw,precision=0;
+
+if (p==0) precision=_FPU_SINGLE;
+else if (p==2) precision=_FPU_DOUBLE;
+else if (p==3) precision=_FPU_EXTENDED;
+
+ _FPU_GETCW(fpu_oldcw); // store old cw
+ fpu_cw = (fpu_oldcw & ~_FPU_EXTENDED & ~_FPU_DOUBLE & ~_FPU_SINGLE) | precision;
+ _FPU_SETCW(fpu_oldcw);
+
+}
+inline int GETPREC()
+{
+ int p=0;
+ fpu_control_t fpu_cw;
+ _FPU_GETCW(fpu_cw); // store cw
+
+if (fpu_cw & _FPU_SINGLE) p=0;
+if (fpu_cw & _FPU_DOUBLE) p=2;
+if (fpu_cw & _FPU_EXTENDED) p=3;
+
+	return p;
 }
 
-#endif
+inline UWord GETFPCW()
+{
+	fpu_control_t fpu_cw;
+	_FPU_GETCW(fpu_cw); // store cw
+	return fpu_cw;
+}
+
+inline void SETFPCW(UWord w)
+{
+}
 #endif
 
+/*
 #ifdef __WATCOMC__
 extern	void repmovsd(void* s,void* d,int len);
 #pragma aux repmovsd="rep movsd" parm [esi][edi][ecx]
@@ -1024,8 +1173,8 @@ inline void repmovsd(void *s,void *d,int len)
 
 #endif
 #endif
-
-
+*/
+/*
 #ifdef __MSVC__
 inline double SQUARE_ROOT(double w)
 {
@@ -1040,6 +1189,7 @@ _asm	{
 #endif
 
 #pragma warning(default:4035)
-
+*/
 //if included:
+#pragma warning(default:4800)
 #endif

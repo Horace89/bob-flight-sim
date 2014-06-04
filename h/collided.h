@@ -135,4 +135,13 @@ class	Collide
 
 extern	Collide	_Collide;
 
+typedef	struct
+{
+	double	a, b, c, d;
+}
+Coeffs, *CoeffsP;
+
+SLong GroundHeight(SLong& x, SLong& z, Coeffs& coeff);
+SLong oldGroundHeight(SLong& x, SLong& z, Coeffs& coeff);
+
 #endif

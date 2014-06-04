@@ -125,7 +125,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include	"messengn.h"													//RJS 29Sep00
 #include	<Vfw.h>
 
-int strnicmp(const char *s1, const char *s2, size_t n)
+int mystrnicmp(const char *s1, const char *s2, size_t n)
 {
 
   if (n == 0)
@@ -164,35 +164,35 @@ MTC	operator ++(MTC& m)
 int		boffcount;
 static SoundBase Blank={FALSE};												//RJS 05Dec96
 Sound _Miles;													//RJS 05Nov99
-CON Sound::Sound() {SoundBase::operator=(Blank);trySoundFonts=false;directoryOffset=0;volumeDesktop=VOL_NOTSET;usingSmacker = false;}
+ Sound::Sound() {SoundBase::operator=(Blank);trySoundFonts=false;directoryOffset=0;volumeDesktop=VOL_NOTSET;usingSmacker = false;}
 
 
- 		SequenceStruct	Sound::tune[Sound::MAXTUNES];
- 		MusicRequest	Sound::request;
-		SampleLibrary	Sound::wavetable;
-		SampleRec*		Sound::thesample;						//MS 23Sep98
-		PlayingRec*		Sound::soundqueue;						//RJS 28Sep00
-		StatusRec		Sound::status;
-		SampleRequest	Sound::soundtoplay;
-		HTIMER			Sound::timer;
-		EnginePlayInfo	Sound::EngineSound;						//RJS 21Oct97
-		Bool			Sound::canplaynothing;					//RJS 21May98
-		Bool			Sound::critical;						//RJS 21May98
-		Bool			Sound::inprefs;							//RJS 21May98
-		Bool			Sound::onground;						//RJS 21May98
-		Bool			Sound::musicstopped;					//RJS 21May98
-		int				Sound::damagelevel;						//RJS 21May98
-		int				Sound::delindex;						//RJS 21May98
-		int				Sound::thesmackervol;					//RJS 21May98
-		FileNum			Sound::currentengine;					//RJS 21May98
-		int				Sound::bouncecount;						//RJS 21May98
-		SLong			Sound::MAXSAMPLES_LOADED;				//MS 23Sep98
-		SampleRec*		Sound::themusicsample;					//RJS 14Apr99
-		SLong			Sound::percvolscale;					//RJS 29Jun99
-		PercRec			Sound::percussionLog;					//RJS 18Aug99
-		Sound::HSampRate		Sound::CUR_SAMP_VAL;					//RJS 14Jun00
-		float			Sound::sampRateScale;					//RJS 14Jun00
-		int				Sound::directoryOffset;							//RJS 14Jun00
+ 		SequenceStruct	SoundBase::tune[Sound::MAXTUNES];
+		MusicRequest	SoundBase::request;
+		SampleLibrary	SoundBase::wavetable;
+		SampleRec*		SoundBase::thesample;						//MS 23Sep98
+		PlayingRec*		SoundBase::soundqueue;						//RJS 28Sep00
+		StatusRec		SoundBase::status;
+		SampleRequest	SoundBase::soundtoplay;
+		HTIMER			SoundBase::timer;
+		EnginePlayInfo	SoundBase::EngineSound;						//RJS 21Oct97
+		Bool			SoundBase::canplaynothing;					//RJS 21May98
+		Bool			SoundBase::critical;						//RJS 21May98
+		Bool			SoundBase::inprefs;							//RJS 21May98
+		Bool			SoundBase::onground;						//RJS 21May98
+		Bool			SoundBase::musicstopped;					//RJS 21May98
+		int				SoundBase::damagelevel;						//RJS 21May98
+		int				SoundBase::delindex;						//RJS 21May98
+		int				SoundBase::thesmackervol;					//RJS 21May98
+		FileNum			SoundBase::currentengine;					//RJS 21May98
+		int				SoundBase::bouncecount;						//RJS 21May98
+		SLong			SoundBase::MAXSAMPLES_LOADED;				//MS 23Sep98
+		SampleRec*		SoundBase::themusicsample;					//RJS 14Apr99
+		SLong			SoundBase::percvolscale;					//RJS 29Jun99
+		PercRec			SoundBase::percussionLog;					//RJS 18Aug99
+		Sound::HSampRate		SoundBase::CUR_SAMP_VAL;					//RJS 14Jun00
+		float			SoundBase::sampRateScale;					//RJS 14Jun00
+		int				SoundBase::directoryOffset;							//RJS 14Jun00
 
 
 
@@ -1624,7 +1624,7 @@ SampleRec*	Sound::LoadSample(FileNum	thefile, Bool inUI)
 						header2 = (FMT*) header1->data;
 
 						count = 0;											//RJS 24Nov96
-						while (strnicmp(header2->FMT_string,"fmt ",4))
+						while (mystrnicmp(header2->FMT_string,"fmt ",4))
     					{
     						header2 = (FMT *) ((BYTE *) header2 +
 			      					header2->chunk_size + 8 + (header2->chunk_size & 1));
@@ -1643,7 +1643,7 @@ SampleRec*	Sound::LoadSample(FileNum	thefile, Bool inUI)
 						}
 
 						header3 = (DATA*) header1->data;
-						while (strnicmp(header3->DATA_string,"data",4))
+						while (mystrnicmp(header3->DATA_string,"data",4))
 	  					{
     						header3 = (DATA *) ((char *) header3 +
 			      					header3->chunk_size + 8 + (header3->chunk_size & 1));
@@ -5266,7 +5266,7 @@ Bool	Sound::PreLoadMusicSamples()
 							header2 = (FMT*) header1->data;
 
 							count = 0;
-							while (strnicmp(header2->FMT_string,"fmt ",4))
+							while (mystrnicmp(header2->FMT_string,"fmt ",4))
     						{
     							header2 = (FMT *) ((BYTE *) header2 +
 			      						header2->chunk_size + 8 + (header2->chunk_size & 1));
@@ -5282,7 +5282,7 @@ Bool	Sound::PreLoadMusicSamples()
 								SamplePtr->samplerate = header2->data.wf.nSamplesPerSec;
 
 							header3 = (DATA*) header1->data;
-							while (strnicmp(header3->DATA_string,"data",4))
+							while (mystrnicmp(header3->DATA_string,"data",4))
 	  						{
     							header3 = (DATA *) ((char *) header3 +
 			      						header3->chunk_size + 8 + (header3->chunk_size & 1));

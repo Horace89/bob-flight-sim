@@ -87,6 +87,9 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include "overlay.h"
 #include "files.g"
 
+#include <cstdio>
+#include <iostream>
+
 #ifdef _DEBUG
 //#define new DEBUG_NEW
 #ifndef	THIS_FILE_DEFINED
@@ -274,8 +277,8 @@ int	LoadFontNamesAndGetCharset()
 	int	rv=0;
 	for (int c=0;loadtest[c]>='0' && loadtest[c]<='9';c++)
 		rv=rv*10+loadtest[c]-'0';
-	for (int i=0;i<5;i++)
-		Fontnames[i]=Fontcstrings[i]=RESSTRING(FONT1_ARIAL+i);
+	for (int i = 0; i < 5; i++)
+		Fontnames[i] = Fontcstrings[i] = RESSTRING(FONT1_ARIAL + i);
 	return rv;
 }
 void ReleaseFontNames()
@@ -342,12 +345,209 @@ void CreatePointFont(CDC* pdc,int ind, int point,Fonts fontname,int flags,int ch
 	}
 }
 
+#ifdef TESTS
+#include <UnitTest++.h>
+
+/*
+#include <matrix.h>
+TEST(TestASMTransform)
+{
+	struct	matrix_ m = { -3333, 4444, -5555,
+		11111, -2222, 3333
+		- 6666, 7777, -8888 };
+	SLong a = -2147373648; SLong b = 2147373648; SLong c = -2147373648;
+	SLong f = oldASMTransform(&m, a,b,c);
+	SLong aa = -2147373648; SLong bb = 2147373648; SLong cc = -2147373648;
+	SLong s = ASMTransform(&m, aa, bb, cc);
+	std::cout << a << b << c << f << std::endl;
+	std::cout << aa << bb << cc << s << std::endl;
+	CHECK(f == s && a == aa && b == bb && c == cc);
+}
+*/
+/*
+TEST(TestGetScale)
+{
+	SWord a = oldGetScale(-3333333, 4444444, -5555555);
+	SWord b =    GetScale(-3333333, 4444444, -5555555);
+		std::cout << "scale " << a << std::endl;
+
+	CHECK(a == b);
+}
+*/
+
+/*
+TEST(sincos)
+{
+	double 	ave_heading=1.5, ave_pitch=1.5;
+	double 	sin_pitch, cos_pitch,
+		sin_heading, cos_heading;
+
+	_asm
+	{
+		fld ave_pitch;
+		fsincos;
+		fstp cos_pitch;
+		fstp sin_pitch;
+	}
+	
+	sin_heading = sin(ave_heading);
+	cos_heading = cos(ave_heading);
+	CHECK(sin_heading == sin_pitch && cos_pitch == cos_heading);
+
+}
+*/
+/*
+#include "3dcom.h"
+TEST(ArcCos)
+{
+	const double pi = M_PI;
+	double x[] = { 0, 1.0, -1.0, 5.0, 999999.0 };
+	for (int i = 0; i < sizeof(x) / sizeof(double); ++i)
+	{
+	
+	double a = oldARCCOS(x[i], M_PI);
+	double b = ARCCOS(x[i], M_PI);
+
+	std::cout << "results " << a << " ,"<<b<< std::endl;
+
+	CHECK(a == b);
+    }
+}
+*/
+/*
+#include <cstdlib>     // srand, rand 
+#include <ctime>  
+#include "collided.h"
+TEST(GroundHeight)
+{
+	// initialize random seed: 
+	srand(time(NULL));
+
+	for (int i = 0; i < 1000; ++i)
+	{
+		SLong x = rand()- 16000;
+		SLong z = rand() - 16000;
+		Coeffs coeff;
+		coeff.a = (rand() - 16000.0)/10.0;
+		coeff.b = (rand() - 16000.0) / 10.0;
+		coeff.c = (rand() - 16000.0) / 10.0;
+		coeff.d = (rand() - 16000.0) / 10.0;
+		SLong a = oldGroundHeight(x, z, coeff);
+		SLong b = GroundHeight(x, z, coeff);
+
+		std::cout << "results " << a << " ," << b << std::endl;
+
+		CHECK_CLOSE(a, b, 1);
+	}
+}
+*/
+/*
+#include <Fastmath.h>
+
+TEST(Round)
+{
+	SLong a,b,c,d,e,f; 
+	SLong aa, bb, cc, dd,ee,ff;
+	R3DVALUE f1 = 2.3;
+	R3DVALUE f2 = 3.8;
+	R3DVALUE f3 = 5.5;
+	R3DVALUE f4 = -2.3;
+	R3DVALUE f5 = -4.7;
+	R3DVALUE f6 = -5.5;
+	
+	fastMath.FloatToInt(&a, f1);
+	fastMath.FloatToInt(&b, f2);
+	fastMath.FloatToInt(&c, f3); // -44
+	fastMath.FloatToInt(&d, f4);//-45
+	fastMath.FloatToInt(&e, f5);
+	fastMath.FloatToInt(&f, f6);
+	aa = round(f1);
+	bb = round(f2);
+	cc = round(f3); //-45
+	dd = round(f4);//-44
+	ee = round(f5);
+	ff = round(f6);
+
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << c << std::endl;
+	std::cout << d << std::endl;
+	std::cout << e << std::endl;
+	std::cout << f << std::endl;
+
+	CHECK(a==aa);
+	CHECK(b == bb);
+	CHECK(c == cc);
+	CHECK(d == dd);
+	CHECK(e == ee);
+	CHECK(f== ff);
+
+}
+*/
+/*
+TEST(sincos2)
+{
+	Float msin, mcos;
+	Float msin2, mcos2;
+	ANGLES a(ANGLES_186Deg);
+	oldfpSin_Cos(a, msin, mcos);
+	fpSin_Cos(a, msin2, mcos2);
+	CHECK(msin == msin2 && mcos == mcos2);
+
+}
+*/
+/*
+#include "Mathasm.h"
+TEST(BitTest)
+{
+	char s[] = "               ";
+	BITRESET(s, 74);
+	CHECK(!BITTEST(s, 74));
+	std::cout << s[9] << std::endl;
+	BITSET(s, 74);
+	std::cout << s[9] << std::endl;
+	CHECK(BITTEST(s, 74));
+
+	oldBITRESET(s, 74);
+	CHECK(!BITTEST(s, 74));
+	std::cout << s[9] << std::endl;
+	oldBITSET(s, 74);
+	std::cout << s[9] << std::endl;
+	CHECK(BITTEST(s, 74));
+
+
+	long i=0;
+	CHECK(!BITTEST(&i, 18));
+	BITSET(&i, 18);
+	CHECK(BITTEST(&i, 18));
+
+	i = 0;
+	i |= 1 << 20;
+	CHECK(BITTEST(&i, 20));
+
+}
+*/
+#endif
 
 BOOL CMIGApp::InitInstance()
 {
+#ifndef	NDEBUG
+	AllocConsole();
+	freopen("CONIN$", "r", stdin);
+	freopen("CONOUT$", "w", stdout);
+	freopen("CONOUT$", "w", stderr);
+#endif
 
-//	AllocConsole();
-//DeadCode JIM 20Oct00 	INT		sysnames[]={COLOR_SCROLLBAR,COLOR_3DDKSHADOW};
+#ifdef TESTS
+	TRACE0("Start!");
+
+	std::cout << "Started" << std::endl;
+
+	UnitTest::RunAllTests();
+	std::getchar();
+	return(true);
+#endif
+	//DeadCode JIM 20Oct00 	INT		sysnames[]={COLOR_SCROLLBAR,COLOR_3DDKSHADOW};
 //DeadCode JIM 20Oct00 	DWORD	sysvals[]={0x0000ff00,0x00ff0000};
 //	SetSysColors(2,sysnames,sysvals);
 
@@ -551,6 +751,7 @@ int CMIGApp::ExitInstance()
 
 	return CWinApp::ExitInstance();
 }
+
 CMIGApp::~CMIGApp()
 {
 
@@ -559,6 +760,9 @@ CMIGApp::~CMIGApp()
         FreeLibrary(resourceInst);
 	// TODO: add construction code here,
 	// Place all significant initialization in InitInstance
+#ifndef	NDEBUG
+	std::getchar(); //Show console and wait for a key press
+#endif
 }
 /////////////////////////////////////////////////////////////////////////////
 // CAboutDlg dialog used for App About
@@ -570,6 +774,7 @@ CMIGApp::~CMIGApp()
 int CMIGApp::Run() 
 {	
 	TRACE0("MessageLoop starting...\n");
+
 	// TODO: Add your specialized code here and/or call the base class
 ///	Master_3d.Init(m_hInstance,m_pMainWnd->m_hWnd);
 	for (int i=0;i<Master_3d.NUM_EVENTS;i++)
@@ -710,6 +915,7 @@ int CMIGApp::Run()
 	}
 
 	ASSERT(FALSE);  // not reachable
+
 }
 
 

@@ -74,8 +74,20 @@ private:
 #define LOCK_SCOPE(var) mCAutoLock CONCAT_COUNTER(__auto_lock)(var)
 ///////////////////////////////
 
-inline	int	LockExchange(volatile int* loc,int newval=0)
+#ifdef __GNUC__
+inline long _InterlockedExchange(volatile long * const Target, const long Value)
 {
+	/* NOTE: __sync_lock_test_and_set would be an acquire barrier, so we force a full barrier */
+	__sync_synchronize();
+	return __sync_lock_test_and_set(Target, Value);
+}
+
+#endif
+
+inline	long LockExchange(volatile long* loc,long newval=0)
+{
+return _InterlockedExchange(loc, newval);
+/*
 	int rv;
     #ifndef    __BCPLUSPLUS__
 	_asm	{	mov		eax,newval
@@ -87,6 +99,7 @@ inline	int	LockExchange(volatile int* loc,int newval=0)
     rv=0; 
     #endif
 	return	rv;
+*/
 }
 #define STUB3d_defined
 
@@ -220,7 +233,7 @@ class	Inst3d
 	static	KeyMap3d*	commonkeymaps;
 	WorldRef	world;
 	LiveList*	livelist;
-	int		blocktick,blockticks;
+	long		blocktick,blockticks;
 	void	BlockTick(Bool setit);
 	bool	mapview;
 	int		timeofday;

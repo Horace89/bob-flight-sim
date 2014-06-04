@@ -100,12 +100,8 @@ const	UWord ACUPSIDEDOWNMAX= UWord(ANGLES_180Deg) + UWord(ANGLES_80Deg);	//CSB 2
 
 Collide	_Collide;
 
-typedef	struct
-{
-	double	a,b,c,d;
-}
-Coeffs,*CoeffsP;
 
+/*
 extern	SLong	GroundHeight(SLong& x, SLong& z, Coeffs& coeff);
 #ifdef __WATCOMC__
 #pragma	aux		GroundHeight =			\
@@ -126,7 +122,9 @@ parm	[eax] [edx] [ebx]				\
 value	[eax]
 #endif
 #ifdef __MSVC__
-SLong GroundHeight(SLong& x, SLong& z, Coeffs& coeff)
+*/
+/*
+SLong oldGroundHeight(SLong& x, SLong& z, Coeffs& coeff)
 {
 	SLong	retval;
 	_asm 
@@ -159,8 +157,13 @@ SLong GroundHeight(SLong& x, SLong& z, Coeffs& coeff)
 	}
 	return retval;
 }
+*/
+SLong GroundHeight(SLong& x, SLong& z, Coeffs& coeff)
+{
+	return -((coeff.a * x + coeff.c * (double)z) / coeff.b);
+}
 
-#endif
+//#endif
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		SetWorld

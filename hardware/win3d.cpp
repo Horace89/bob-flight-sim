@@ -13159,7 +13159,7 @@ void direct_3d::NearAddTileVerticesX2(struct _DirectDraw* pDirectD,
 
 	D3DVALUE fMinTexelCoord,fMaxTexelCoord;
 
-	fMinTexelCoord=.5/D3DVALUE(pVrt->dwWidth);
+	fMinTexelCoord=(pVrt?(.5/D3DVALUE(pVrt->dwWidth)):0);
 	fMaxTexelCoord=1.-fMinTexelCoord;
 	
 	UByte* pdrawdata=pdd;
@@ -13375,7 +13375,7 @@ void direct_3d::CNearAddTileVerticesX2(	struct _DirectDraw* pDirectD,
 
 	D3DVALUE fMinTexelCoord,fMaxTexelCoord;
 
-	fMinTexelCoord=.5/D3DVALUE(pVrt->dwWidth);
+	fMinTexelCoord=(pVrt?(.5/D3DVALUE(pVrt->dwWidth)):0);
 	fMaxTexelCoord=1.-fMinTexelCoord;
 	
 	UByte* pdrawdata=pdd;

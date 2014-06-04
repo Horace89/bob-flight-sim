@@ -1140,7 +1140,7 @@ void	fileman::closefile(FILE*	filehandle)
 }
 
 static	Bool	gotnewfix=FALSE;
-
+/*
 #ifdef __WATCOMC__
 	extern	SLong eip();
 	#pragma aux eip="call next" "next: pop eax" value [eax]
@@ -1160,6 +1160,7 @@ inline SLong eip()
 
 #endif
 #endif
+
 #ifdef __WATCOMC__
 	extern	SLong* esp();
 	#pragma aux esp="mov eax,esp" value [eax]
@@ -1178,6 +1179,7 @@ inline SLong* esp()
 
 #endif
 #endif
+*/
 //
 // Implementation for the fileblock task next!
 //
@@ -1256,11 +1258,11 @@ LOCK_SCOPE(interlocker);
 // x0r code end
 					FILEMAN.fileloadedthisframe=TRUE;
 					link->datasize=		FILEMAN.getfilesize(filehandle);
-					if (!link->datasize)
-						filehandle=filehandle;
-					if (!blocksize)
-						filehandle=filehandle;
+					assert (link->datasize);
+					assert (blocksize);
 
+					
+					
 					if (link->datasize>blocksize)
 					{
 						if (FILEMAN.direntries[di].openfile.number!=INVALIDFILENUM)
@@ -1273,8 +1275,8 @@ LOCK_SCOPE(interlocker);
 						if (offset>link->datasize)
 							_Error.EmitSysErr("Index past end of file");
 						link->datasize=blocksize;
-						if (!link->datasize)
-							filehandle=filehandle;
+						assert(link->datasize);
+
 						if (offset)
 								FILEMAN.seekfilepos(filehandle,offset);
 					}
@@ -1282,14 +1284,14 @@ LOCK_SCOPE(interlocker);
 						bobassert((offset==0),"Can only use offset if buffer smaller than file!");
 				}
 			}
-            #if	defined(__WATCOMC__) || defined (__MSVC__)
+ /*           #if	defined(__WATCOMC__) || defined (__MSVC__)
 			#ifndef NDEBUG
 			SLong b4=eip();
 
 //		    if (link->datasize==259)
 //				b4=b4;
 			#endif
-            #endif
+            #endif*/
 			if (File_Man.errhandle)
 				fprintf(File_Man.errhandle,"-%8i/%8i + %8i\n",File_Man.totalfilesysmemused,File_Man.totalfilesysmem,link->datasize);
 			FILEMAN.MakeRoomFor(link->datasize);
@@ -1315,8 +1317,8 @@ LOCK_SCOPE(interlocker);
 			}
 			#endif
             #endif   */
-			if (!FILEMAN.readfileblock(filehandle,fileblockdata,link->datasize))
-				filehandle=filehandle;
+			assert(FILEMAN.readfileblock(filehandle,fileblockdata,link->datasize));
+				
 			if (FILEMAN.direntries[di].openfile.number!=MyFile)
 				FILEMAN.closefile(filehandle);
 		}

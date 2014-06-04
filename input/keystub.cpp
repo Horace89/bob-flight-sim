@@ -104,6 +104,7 @@ keytests	Key_Tests;
 //Returns		None!
 //
 //------------------------------------------------------------------------------
+/*
 extern	void	DLWRITE(void*,ULong);
 #ifdef __WATCOMC__
 #pragma	aux		DLWRITE			=	\
@@ -123,7 +124,7 @@ inline	void	DLWRITE(void* num1,ULong num2)
 
 #endif
 #endif
-
+*/
 	keytests::keytests()
 {	
 int	i;

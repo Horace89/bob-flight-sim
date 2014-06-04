@@ -193,7 +193,7 @@ private:
 //4725 inaccurate pentium;
 //4201 nameless struct
 //4200 zero-sized array
-#pragma warning( disable : 4097 4510 4610 4725 4201 4200 4482)
+// // // #pragma warning( disable : 4097 4510 4610 4725 4201 4200 4482)
 //4244 math truncation
 //4103 alignment changed!
 //4305 math truncation
@@ -278,7 +278,7 @@ typedef	enum	Bool	{BOOL_TRUE=1,BOOL_FALSE=0,BOOL_Align=255} Bool;
 #define	TRUEST	BOOL_TRUE
 #define	FALSE	BOOL_FALSE
 */
-typedef	enum	Bool	{BOOL_TRUE=1,BOOL_FALSE=0,BOOL_Align=255,TRUE=BOOL_TRUE,TRUEST=BOOL_TRUE,FALSE=BOOL_FALSE};
+typedef	enum	Bool	{BOOL_TRUE=1,BOOL_FALSE=0,BOOL_Align=255,TRUE=BOOL_TRUE,FALSE=BOOL_FALSE};
 
 //DeadCode DAW 30Jun96 enum	Bool	{TRUE=1,FALSE=0,BOOL_Align=255};
 

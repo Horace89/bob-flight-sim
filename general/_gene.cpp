@@ -63,6 +63,6 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 */
 
 #include "_GENE.h"
-#include "..\GENERAL\Malloc.cpp"
+//#include "..\GENERAL\Malloc.cpp"
 #include "..\GENERAL\Static.cpp"
 //#include "..\GENERAL\Winerror.cpp"

@@ -67,9 +67,11 @@ private:
 
 	R3DVALUE fpSqrt(R3DVALUE num) const
 	{
-    	__asm	fld 	num;
+    	/*__asm	fld 	num;
 		__asm	fsqrt;
 		__asm	fstp	num;
+		*/
+		num = sqrt(num);
 		return num;
 	}
 
@@ -186,10 +188,13 @@ public:
 	//
 	inline void FloatToInt(SLong *int_pointer,R3DVALUE f) const
 	{
+		/*
 	 	__asm	fld		f;
 		__asm	mov		edx,int_pointer;
 		__asm	frndint;
 		__asm	fistp	dword ptr [edx];
+		*/
+		*int_pointer = round(f);
 	}
 	//
 	// Fast outcode calc

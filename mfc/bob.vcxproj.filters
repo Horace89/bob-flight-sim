@@ -8,9 +8,6 @@
     <Filter Include="Source Files\tool dependency compiled first">
       <UniqueIdentifier>{de0c9a99-99b9-4575-a08d-1f8869d74b62}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\assembler">
-      <UniqueIdentifier>{d2831a56-b893-46c6-807e-0886d371e734}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\3D">
       <UniqueIdentifier>{73581ab8-6ae2-4548-90e6-c242ed783ae5}</UniqueIdentifier>
     </Filter>
@@ -268,9 +265,6 @@
     <ClCompile Include="..\3D\Collided.cpp">
       <Filter>Source Files\3D</Filter>
     </ClCompile>
-    <ClCompile Include="..\3d\Decomp.cpp">
-      <Filter>Source Files\3D</Filter>
-    </ClCompile>
     <ClCompile Include="..\3D\Imagemap.cpp">
       <Filter>Source Files\3D</Filter>
     </ClCompile>
@@ -280,22 +274,13 @@
     <ClCompile Include="..\3D\Jimcol.cpp">
       <Filter>Source Files\3D</Filter>
     </ClCompile>
-    <ClCompile Include="..\3d\Jimtri.cpp">
-      <Filter>Source Files\3D</Filter>
-    </ClCompile>
     <ClCompile Include="..\3D\Landscap.cpp">
-      <Filter>Source Files\3D</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3D\Lstream.cpp">
       <Filter>Source Files\3D</Filter>
     </ClCompile>
     <ClCompile Include="..\3D\Migland.cpp">
       <Filter>Source Files\3D</Filter>
     </ClCompile>
     <ClCompile Include="..\3D\Overlay.cpp">
-      <Filter>Source Files\3D</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3D\particle.cpp">
       <Filter>Source Files\3D</Filter>
     </ClCompile>
     <ClCompile Include="..\3D\Shapes.cpp">
@@ -403,9 +388,6 @@
     <ClCompile Include="..\FILES\Fileman.cpp">
       <Filter>Source Files\FILES</Filter>
     </ClCompile>
-    <ClCompile Include="..\FILES\Loadlib.cpp">
-      <Filter>Source Files\FILES</Filter>
-    </ClCompile>
     <ClCompile Include="..\FILES\Loadlist.cpp">
       <Filter>Source Files\FILES</Filter>
     </ClCompile>
@@ -413,9 +395,6 @@
       <Filter>Source Files\FILES</Filter>
     </ClCompile>
     <ClCompile Include="..\GENERAL\_GENE.CPP">
-      <Filter>Source Files\GENERAL</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GENERAL\Malloc.cpp">
       <Filter>Source Files\GENERAL</Filter>
     </ClCompile>
     <ClCompile Include="..\GENERAL\Static.cpp">
@@ -427,16 +406,7 @@
     <ClCompile Include="..\HARDWARE\_HARD.CPP">
       <Filter>Source Files\HARDWARE</Filter>
     </ClCompile>
-    <ClCompile Include="..\Hardware\Config.cpp">
-      <Filter>Source Files\HARDWARE</Filter>
-    </ClCompile>
-    <ClCompile Include="..\HARDWARE\Ddrwinit.cpp">
-      <Filter>Source Files\HARDWARE</Filter>
-    </ClCompile>
     <ClCompile Include="..\Hardware\Digdrvr.cpp">
-      <Filter>Source Files\HARDWARE</Filter>
-    </ClCompile>
-    <ClCompile Include="..\HARDWARE\Hardpub.cpp">
       <Filter>Source Files\HARDWARE</Filter>
     </ClCompile>
     <ClCompile Include="..\HARDWARE\Hardwin.cpp">
@@ -460,9 +430,6 @@
     <ClCompile Include="..\Hardware\Sound.cpp">
       <Filter>Source Files\HARDWARE</Filter>
     </ClCompile>
-    <ClCompile Include="..\HARDWARE\Win3d.cpp">
-      <Filter>Source Files\HARDWARE</Filter>
-    </ClCompile>
     <ClCompile Include="..\INPUT\_INPU.CPP">
       <Filter>Source Files\INPUT</Filter>
     </ClCompile>
@@ -484,34 +451,16 @@
     <ClCompile Include="..\MISSMAN\Formatn.cpp">
       <Filter>Source Files\MISSMAN</Filter>
     </ClCompile>
-    <ClCompile Include="..\MISSMAN\Intrmiss.cpp">
-      <Filter>Source Files\MISSMAN</Filter>
-    </ClCompile>
     <ClCompile Include="..\MISSMAN\Missinit.cpp">
-      <Filter>Source Files\MISSMAN</Filter>
-    </ClCompile>
-    <ClCompile Include="..\MISSMAN\Node.cpp">
       <Filter>Source Files\MISSMAN</Filter>
     </ClCompile>
     <ClCompile Include="..\Missman\nodebob.cpp">
       <Filter>Source Files\MISSMAN</Filter>
     </ClCompile>
-    <ClCompile Include="..\Missman\Noderev.cpp">
-      <Filter>Source Files\MISSMAN</Filter>
-    </ClCompile>
-    <ClCompile Include="..\MISSMAN\Onemiss.cpp">
-      <Filter>Source Files\MISSMAN</Filter>
-    </ClCompile>
     <ClCompile Include="..\MISSMAN\packages.cpp">
       <Filter>Source Files\MISSMAN</Filter>
     </ClCompile>
-    <ClCompile Include="..\MISSMAN\Peacmiss.cpp">
-      <Filter>Source Files\MISSMAN</Filter>
-    </ClCompile>
     <ClCompile Include="..\MISSMAN\Savegame.cpp">
-      <Filter>Source Files\MISSMAN</Filter>
-    </ClCompile>
-    <ClCompile Include="..\MISSMAN\So51miss.cpp">
       <Filter>Source Files\MISSMAN</Filter>
     </ClCompile>
     <ClCompile Include="..\Missman\Sqddiary.cpp">
@@ -536,9 +485,6 @@
       <Filter>Source Files\MODEL</Filter>
     </ClCompile>
     <ClCompile Include="..\MODEL\Aerodev.cpp">
-      <Filter>Source Files\MODEL</Filter>
-    </ClCompile>
-    <ClCompile Include="..\MODEL\Cdat.cpp">
       <Filter>Source Files\MODEL</Filter>
     </ClCompile>
     <ClCompile Include="..\MODEL\Ctrl.cpp">
@@ -746,9 +692,6 @@
       <Filter>Source Files\AFXSTUB</Filter>
     </ClCompile>
     <ClCompile Include="_tool.cpp">
-      <Filter>Source Files\TOOL BARS</Filter>
-    </ClCompile>
-    <ClCompile Include="Dbrftlbr.cpp">
       <Filter>Source Files\TOOL BARS</Filter>
     </ClCompile>
     <ClCompile Include="Maintbar.cpp">
@@ -3048,9 +2991,6 @@
     <ClInclude Include="..\H\Variants.h">
       <Filter>Header Files\V</Filter>
     </ClInclude>
-    <ClInclude Include="..\H\Vector.h">
-      <Filter>Header Files\V</Filter>
-    </ClInclude>
     <ClInclude Include="..\H\Vertex.h">
       <Filter>Header Files\V</Filter>
     </ClInclude>
@@ -3380,15 +3320,6 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="..\Graphics\Grafpasm.asm">
-      <Filter>Source Files\assembler</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\3d\Lstrasm.asm">
-      <Filter>Source Files\assembler</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\Math\Matrasm.asm">
-      <Filter>Source Files\assembler</Filter>
-    </CustomBuild>
     <CustomBuild Include="Afxauto.h">
       <Filter>Source Files\AFXSTUB</Filter>
     </CustomBuild>

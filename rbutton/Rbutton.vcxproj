@@ -88,6 +88,7 @@
     <OutDir>\bob\Debug\exe\</OutDir>
     <IntDir>\bob\Debug\rbutton\</IntDir>
     <LinkIncremental>true</LinkIncremental>
+    <TargetExt>.ocx</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <CustomBuildStep>

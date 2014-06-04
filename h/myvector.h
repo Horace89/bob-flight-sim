@@ -15,13 +15,15 @@
 
 #define	DEFAULT_VECTOR 0
 
-class	sdlong;
+//class	sdlong;
+typedef __int64 sdlong;
 class	vector;
 
-typedef	class	sdlong	SDLong, *SDLongP;
+//typedef	class	sdlong	SDLong, *SDLongP;
+typedef	sdlong	SDLong, *SDLongP;
 typedef	class	vector	Vector,	*VectorP;
 
-
+/*
 extern	SLong	LMulDiv(SLong, SLong, SLong);
 #ifdef	__WATCOMC__
 
@@ -35,10 +37,11 @@ extern	SLong	LMulDiv(SLong, SLong, SLong);
 
 #else
 #ifdef	__MSVC__
-
+*/
 inline SLong LMulDiv( SLong num, SLong num2, SLong num3 )
 {
-	SLong	retval;
+	return(num * num2 / num3);
+	/*SLong	retval;
    __asm
    {
 	mov		eax,num;
@@ -48,13 +51,13 @@ inline SLong LMulDiv( SLong num, SLong num2, SLong num3 )
 	idiv	ecx;
 	mov		retval,eax
    }
-   /* Return with result in EAX */
-   return retval;
+   // Return with result in EAX 
+   return retval;*/
 }
 
-#endif
-#endif
-
+//#endif
+//#endif
+/*
 extern	SLong	MakeSign(SLong );
 #ifdef __WATCOMC__
 #pragma	aux		MakeSign =	\
@@ -64,10 +67,11 @@ extern	SLong	MakeSign(SLong );
 				value	[edx]
 #else
 #ifdef __MSVC__
-
+*/
 inline SLong MakeSign(SLong num)
 {
-	SLong retval;
+	return(num >= 0 ? 0 : -1);
+	/*SLong retval;
 	__asm
 	{
 		mov		eax,num;
@@ -75,12 +79,12 @@ inline SLong MakeSign(SLong num)
 		sar		edx,0x1F;
 		mov		retval,edx;
 	}
-	return retval;
+	return retval;*/
 }
 
-#endif
-#endif
-
+//#endif
+//#endif
+/*
 extern	void	SDLongAdd(sdlong&, sdlong& );
 #ifdef __WATCOMC__
 #pragma	aux		SDLongAdd = \
@@ -288,7 +292,7 @@ extern	void	SDLongAbs(sdlong&);
 //	This ver uses shld
 //	I have never tried shld above 32 bits
 //	It should work ok
-/*
+//
 //				"mov	eax,[esi]"	\
 //				"mov	edx,[esi+4]"\
 //				shld	edx,eax,count
@@ -298,7 +302,7 @@ extern	void	SDLongAbs(sdlong&);
 //
 //
 //
-*/
+//
 #else
 #ifdef __MSVC__
 
@@ -344,7 +348,7 @@ extern	void	SDLongSHL(sdlong&,SLong );
 //	You may have to write a cleverer wrapper
 //	which simply moves high to low and subtracts 32 first.
 //
-/*
+//
 //				"mov	eax,[esi]"	\
 //				"mov	edx,[esi+4]"\
 //				shrd	eax,edx,count
@@ -352,7 +356,7 @@ extern	void	SDLongSHL(sdlong&,SLong );
 //				"mov	[esi]	,eax"	\
 //				"mov	[esi+4]	,edx"\
 //
-*/
+//
 //
 //
 #else
@@ -503,9 +507,9 @@ inline	Bool	SDLong2Long(sdlong& num)
 }
 #endif
 #endif
+*/
 
-
-
+/* x0r
 class	sdlong
 {
 	public:
@@ -879,6 +883,8 @@ inline	sdlong	operator/(sdlong a,sdlong b)
 	return	div;
 }
 
+x0r
+*/ 
 //--------------------------------------------------
 //--------------------------------------------------
 

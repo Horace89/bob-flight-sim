@@ -3436,7 +3436,8 @@ Bool ACMAirStruc::TargetClosureGreaterThan(SLong dvel)
 	tvx = AirStrucPtr(ai.unfriendly)->vel_x;
 	tvy = AirStrucPtr(ai.unfriendly)->vel_y;
 	tvz = AirStrucPtr(ai.unfriendly)->vel_z;
-	
+	Range = Distance3D(&World, &ai.unfriendly->World); //x0r added with line not sure. since Range can be 0 sometimes.
+
 	SLong closure = ((sx - tx) * (tvx - svx) + (sy - ty) * (tvy - svy) +  (sz - tz) * (tvz - svz)) / Range;
 
 //DEADCODE CSB 08/11/99 	SLong	closure;

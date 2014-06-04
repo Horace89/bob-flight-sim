@@ -10,6 +10,7 @@
 //				That would mean dirtily using far pointers, probably.
 //
 //------------------------------------------------------------------------------
+/*
 #ifndef	VECTOR_Included
 #define	VECTOR_Included
 
@@ -53,7 +54,7 @@ inline SLong LMulDiv( SLong num, SLong num2, SLong num3 )
 	idiv	ecx;
 	mov		retval,eax
    }
-   /* Return with result in EAX */
+   // Return with result in EAX 
    return retval;
 }
 
@@ -1191,3 +1192,4 @@ const vector ORIGIN = vector(0,0,0);
 
 #endif
 
+*/

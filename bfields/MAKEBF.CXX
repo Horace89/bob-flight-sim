@@ -72,6 +72,7 @@
 #include <cstdio>
 #include <cstdarg>
 #include <cstdlib>
+#include <iostream>
 
 void* __cdecl operator new(unsigned int nSize,const char* FileName, int nLine)
 { return operator new (nSize);}
@@ -207,7 +208,8 @@ void	EmitSysErrBFM(char* fmt,...)
 		getchar();
 	else
 	{
-		FILE* fil=fopen(Flag_On_SysErr,"w");
+		std::cout << "Writing to " << Flag_On_SysErr<< std::endl;
+		FILE* fil = fopen(Flag_On_SysErr, "w");
 		fprintf(fil,"..\\%s(%i):",linesplits[linesplits],linesplits+linesplits);
 		vfprintf(fil,fmt,marker);
 		fprintf(fil,"\n");
@@ -369,6 +371,7 @@ struct	TokenName:public	TokenInit
 	string	TokenText();
 	TokenName()
 	{
+		srcfline=0;
 		tokencode=T_unknown;
 		instance=NULL;
 	}
@@ -855,7 +858,8 @@ struct	FNameInst:public	DataInst
 {
 	TokenName*	filenumtext;
 	DataInst*	filenumber;
-	FNameInst()	{};
+	FNameInst()	{filenumtext=NULL;
+		filenumber=NULL;};
 	DataInst&	operator=(DataInst &src)
 	{	return(NoValInst&) (DataInst::operator =(src));}
 	void	SaveTxt(ufile	ofile,int depth);
@@ -1014,7 +1018,7 @@ DataInst&	operator=(DataInst &src)
 					Assert(tmplink&&"memory!");
 
 					strcpy(wordbuff,"UI_");
-					sprintf(buffer,"%l",newuidcount);
+					sprintf(buffer,"%l",newuidcount); //TODO it should be %i?
 					strcat(wordbuff,buffer);
 
 					findspelling(wordbuff,newtoken);
@@ -1719,7 +1723,8 @@ file	readfile(char*	name)
 //	currsrcfline=1;
 //	if (currsrcfname==MaxFileCount)
 //		EmitSysErr("Max input files exceeded (%i)!",MaxFileCount);
-	file	myfile=fopen(name,"rt");
+	std::cout << "Trying to open file: " << name << std::endl;
+	file	myfile = fopen(name, "rt");
 	if (myfile==NULL)
 	{
 		if (	*(int*)name==*(int*)"BFIE"
@@ -1728,19 +1733,25 @@ file	readfile(char*	name)
 			char buff[100];
 			strcpy(buff,Battle_Dirs[110].dirname);
 			strcat(buff,name+7);
-			myfile=fopen(buff,"rt");
+			std::cout << "Trying to open file: " << buff << std::endl;
+			myfile = fopen(buff, "rt");
 			if (myfile==NULL)
-				if (*(int*)buff==*(int*)"..\\g")
-					myfile=fopen(buff+8,"rt");
-
+				if (*(int*)buff == *(int*)"..\\g")
+				{
+				  std::cout << "Trying to open file: " << buff + 8 << std::endl;
+				  myfile = fopen(buff + 8, "rt");
+				}
 			linesplits.Push(name);
 		}
 		if (myfile==NULL)
 			EmitSysErr("Error opening file %s!",name);
 
 	}
-	else
-		linesplits.Push(name);
+		else
+		{
+			std::cout << "Reading file: " << name << std::endl;
+			linesplits.Push(name);
+		}
 	return(myfile);
 }
 
@@ -1790,6 +1801,8 @@ ufile	writefile(char*	name,char mode,char* dirname)
 	ufile	myfile=fopen(filebuff,mode);
 	if (myfile==NULL)
 		EmitSysErr("Error opening file! %s",filebuff);
+	std::cout << "Writing file: " << filebuff << std::endl;
+
 	return(myfile);
 }
 //------------------------------------------------------------------------------
@@ -2650,7 +2663,7 @@ int			lastval=0;
 						newword->instance=new ChainInst(tokencode);	Assert(newword->instance&&"memory!");
 						newword->instance->tokentext=newword;
 						((ChainInst*) newword->instance)->dataref=tokenname->instance;
-						if (tokenname->instance->tokencode!=T_int)
+						if (tokenname->instance->tokencode != T_int && tokenname->instance->tokencode != T_nint)
 							lastval=((IntegerInst*) ((ChainInst*)tokenname->instance)->dataref)->value;
 						else
 							lastval=((IntegerInst*) tokenname->instance)->value;
@@ -3237,6 +3250,8 @@ file	ifile=readfile(name);
 ufile	globfile=fopen("h\\bfrefs.g",'w');
      if (!globfile) 
          EmitSysErr("Can't open h\bfrefs.g");
+	 std::cout << "Writing to file: h\\bfrefs.g" << std::endl;
+
 	fprintf(globfile,"GlobalRef	BFieldGlobalTable[]=	{\n");
 	findspelling(ifile,tokenname);
 	if (tokenname->tokencode!=T_brktopen)
@@ -6406,6 +6421,7 @@ DataInst*	toplevel_fname(TokenName*&evalue,TokenName	*pvalue)
 void	OpenDirFiles()
 {
 	char outname[]="bfieldsA.fil";
+	std::cout << "Trying to open dir files bfieldsA.fil" << std::endl;
 	for (int i=0;i<256;i++)
 		if (Battle_Dirs[i].dirname)
 		{
@@ -7389,6 +7405,7 @@ int	main(int	argc,char*	argv[])
 	}
 	else
 	{
+		std::cout << "Generating h\\uidvals.g" << std::endl;
 		UIDlistfile=fopen("h\\uidvals.g",'w');
 		fprintf(UIDlistfile,"//----------------------------------------\n");
 		fprintf(UIDlistfile,"//Filename:	h\\uidvals.g\n");

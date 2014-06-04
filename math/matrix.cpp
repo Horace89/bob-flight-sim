@@ -78,13 +78,20 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 	#include	"Matrix.h"
 	#include 	"mymath.h"										//RDH 30Oct95
-	#include	"vector.h"										//PD 12Apr96
+	#include	"myvector.h"										//PD 12Apr96
 	#include	"vertex.h"										//PD 12Apr96
 	#include	"Enumbits.m"
 	#include	"polygon.h"
 
 	class	matrix	_matrix;
 
+#ifdef __GNUC__
+	inline unsigned char _BitScanReverse(unsigned long * const Index, const unsigned long Mask)
+	{
+		__asm__("bsrl %[Mask], %[Index]" : [Index] "=r" (*Index) : [Mask] "mr" (Mask));
+		return Mask ? 1 : 0;
+	}
+#endif
 
 //	MATRIX ELEMENTS
 //  ---------------
@@ -99,14 +106,16 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //	L23       CH.CR.SP  - SH.SR
 //	L33       CP.CH
 
-
+	/*
 #ifdef	__WATCOMC__
 extern	"C"	SLong ASMTransform(MATRIX_PTR,SLong&,SLong&,SLong&);
 #else
 #ifdef	__MSVC__
 extern	"C" void XASMTransform(void);
 #pragma warning (disable:4035)
-inline SLong ASMTransform(MATRIX_PTR a,SLong& b,SLong& c,SLong& d)
+
+
+SLong oldASMTransform(MATRIX_PTR a,SLong& b,SLong& c,SLong& d)
 {
 	_asm
 	{
@@ -117,12 +126,91 @@ inline SLong ASMTransform(MATRIX_PTR a,SLong& b,SLong& c,SLong& d)
 		mov		ecx,d
 		call	XASMTransform
 		pop		ecx
-	}
+     }
 }
 #pragma warning (default:4035)
 #endif
 #endif
+*/
+	typedef  __int64 int64_t;
+	typedef  unsigned __int64 uint64_t;
+typedef __int16 _WORD;
 
+
+SLong ASMTransform(MATRIX_PTR m, SLong& x, SLong& y, SLong& z)
+{ //x0r tested
+	int _EAX;
+	unsigned long _ECX;
+
+	int LocalX; // weak
+	int LocalY; // weak
+	int LocalZ; // weak
+	int ScaleFactor; // weak
+	__int64 BodyX; // weak
+	__int64 BodyY; // weak
+	__int64 BodyZ; // weak
+
+	LocalX = x;
+	LocalY = y;
+	LocalZ = z;
+
+#define SAR(a)  ((((a) >> 31) ^ (a)) - ((a) >> 31)) 
+
+	_EAX = SAR(x)
+		| SAR(y)
+		| SAR(z);
+	if (_EAX < 32767)
+	{
+		ScaleFactor = 0;
+	}
+	else
+	{
+		_BitScanReverse(&_ECX, _EAX);
+/*		__asm { mov eax, _EAX
+		bsr     ecx, eax
+			mov _ECX, ecx}*/
+		_ECX -= 14;
+		LocalY >>= _ECX;
+		LocalX >>= _ECX;
+		LocalZ >>= _ECX;
+		ScaleFactor = _ECX;
+	}
+	BodyX = 2 * (LocalX * m->L11
+		+ LocalY * m->L12
+        + LocalZ * m->L13);
+
+	BodyY = 2 * (LocalX * m->L21
+		+ LocalY * m->L22
+	    + LocalZ * m->L23);
+
+	BodyZ = 2 * (LocalX * m->L31
+		+ LocalY * m->L32
+		+ LocalZ * m->L33);
+			
+	_EAX = SAR(BodyX >> 32)
+		| SAR(BodyY >> 32)
+		| SAR(BodyZ >> 32);
+	if ((unsigned int)_EAX > 0x7FFF)
+	{
+		_BitScanReverse(&_ECX, _EAX);
+/*		__asm { mov eax, _EAX
+		bsr     ecx, eax
+			mov _ECX, ecx}*/
+		_ECX -= 14;
+		ScaleFactor += _ECX;
+		BodyX >>= (_ECX & 0x1F);
+		BodyY >>= (_ECX & 0x1F);
+		BodyZ >>= (_ECX & 0x1F);
+	}
+
+
+	x = BodyX & 0xffffffff;
+	y = BodyY & 0xffffffff;
+	z = BodyZ & 0xffffffff;
+	return ScaleFactor;
+}
+
+/*
 #ifdef	__WATCOMC__
 extern	"C" Bool ASMDoBigXProd(SLong,SLong,SLong,SLong);		//PD 27Nov96
 #else
@@ -213,7 +301,8 @@ inline 	void ASMBody2Screen(SLong& num1,SLong& num2,SLong& num3,SLong& num4,SLon
 
 #endif
 #endif
-
+*/
+/*
 //Use maths coprocessor sincos function - converts Rowan degrees
 //to radians first
 //
@@ -236,7 +325,7 @@ parm	[eax] [edx] [ebx]					\
 modify	[eax]
 #else
 #ifdef __MSVC__
-inline	void fpSin_Cos(ANGLES angle, Float& sin_ang, Float& cos_ang)
+void oldfpSin_Cos(const ANGLES angle, Float& sin_ang, Float& cos_ang)
 {
 	int	iang = angle;
     __asm
@@ -258,8 +347,21 @@ inline	void fpSin_Cos(ANGLES angle, Float& sin_ang, Float& cos_ang)
 		add		esp,4;
     }
 }
+*/
 
-inline void fpTan(ANGLES ang,Float& tanAng)
+void fpSin_Cos(const ANGLES angle, Float& sin_ang, Float& cos_ang)
+{
+	unsigned __int16 v3;
+	double v6;
+
+	v3 = angle;
+	v6 = M_PI * (double)v3 / (double)32768.0;
+	cos_ang = cos(v6);
+	sin_ang = sin(v6);
+}
+
+/*
+void oldfpTan(ANGLES ang,Float& tanAng)
 {
 	int iang=ang;
 	_asm
@@ -280,9 +382,20 @@ inline void fpTan(ANGLES ang,Float& tanAng)
 	add esp,4;
 	}
 }
+*/
 
-#endif
-#endif
+void fpTan(ANGLES ang, Float& tanAng)
+{
+	__int16 v3=ang;
+	double v6 = M_PI * (double)v3 / (double)32768.0;
+
+	tanAng = sin(v6)
+		/ cos(v6);
+
+}
+
+//#endif
+//#endif
 
 //DeadCode PD 13Oct98 fpmatrix_ matrix::IDENTITY={1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0};
 
@@ -660,7 +773,7 @@ void matrix::inverse(ANGLES heading, ANGLES pitch, ANGLES roll, MATRIX_PTR matri
 //TempCode PD 4Mar98
 //TempCode PD 4Mar98 	z = tz>>1;
 //TempCode PD 4Mar98 }
-
+/*
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		transform_y
 //LastModified:	PD 13Mar96
@@ -717,7 +830,7 @@ inline  SLong TestOFlowY(SLong a)
 
 #endif
 #endif
-
+*/
 //TempCode PD 4Mar98 void matrix::transform_y(	MATRIX_PTR T, SLong y, SWord scale,
 //TempCode PD 4Mar98 							SLong& rtx, SLong& rty, SLong& rtz)
 //TempCode PD 4Mar98 {
@@ -910,6 +1023,7 @@ void matrix::multiply(MATRIX_PTR t,MATRIX_PTR sip)
 //Returns	
 //
 //------------------------------------------------------------------------------
+/*
 //extern SWord GetScale(SLong x,SLong y,SLong z);
 #ifdef __WATCOMC__
 #pragma aux GetScale =							\
@@ -937,7 +1051,7 @@ void matrix::multiply(MATRIX_PTR t,MATRIX_PTR sip)
 			value 	[ax]
 #else
 #ifdef __MSVC__
-SWord GetScale(SLong x,SLong y,SLong z)
+SWord oldGetScale(SLong x,SLong y,SLong z)
 {
 	SWord	retval;
     __asm
@@ -968,9 +1082,30 @@ SWord GetScale(SLong x,SLong y,SLong z)
     }
     return retval;
 }
+*/
+SWord GetScale(SLong x, SLong y, SLong z)
+{//x0r tested
+	__int16 result; // eax@1
+	unsigned long _EAX;
+	int _ECX;
+	bool _CF;
 
-#endif
-#endif
+	_ECX = SAR(x) | SAR(y) | SAR(z);
+
+	_BitScanReverse(&_EAX, _ECX);
+/*	__asm { mov ecx, _ECX
+		bsr     eax, ecx
+	    mov _EAX, eax}*/
+
+	_CF = _EAX < 14;
+	result = _EAX - 14;
+	if (_CF)
+		result = 0;
+	return result;
+}
+
+//#endif
+//#endif
 UWord matrix::scaleto16bit(SLong& x, SLong& y, SLong& z)
 {
 	SWord	ret_val;

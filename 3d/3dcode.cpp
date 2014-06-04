@@ -3072,14 +3072,14 @@ Bool	ThreeDee::IsPaused()
 void ThreeDee::ConstructNormalData()
 {
 	NormalData* pNormal=normalDataPtr;
-	double PI;
-
+	const double PI=M_PI;
+	/*
 	_asm
 	{
 	fldpi;
 	fstp PI;
 	}
-
+	*/
 	int x,y;
 
 	double TOP=(3.5/360)*2*PI;
@@ -3113,7 +3113,8 @@ void ThreeDee::ConstructNormalData()
 
 			ave_pitch=(pitch+nextpitch)/2;
 			ave_heading=(heading+nextheading)/2;
-
+			
+			/*
 			_asm
 			{
 			fld ave_pitch;
@@ -3125,6 +3126,11 @@ void ThreeDee::ConstructNormalData()
 			fstp cos_heading;
 			fstp sin_heading;
 			}
+			*/
+			cos_pitch = cos(ave_pitch);
+			sin_pitch = sin(ave_pitch);
+			cos_heading = cos(ave_heading);
+			sin_heading = sin(ave_heading);
 
 			norm.dvY=cos_pitch;
 			norm.dvX=-sin_pitch*cos_heading;
@@ -3135,12 +3141,14 @@ void ThreeDee::ConstructNormalData()
 				currentpoint++;
 
 				double mag=1/(norm.dvX*norm.dvX+norm.dvY*norm.dvY+norm.dvZ*norm.dvZ);
-				_asm
+/*				_asm
 				{
 				fld mag;
 				fsqrt;
 				fstp mag;
-				}
+				}*/
+				mag = sqrt(mag);
+
 				norm.dvX*=mag;
 				norm.dvY*=mag;
 				norm.dvZ*=-mag;								//JON 13Sep00 changed the sign for bob

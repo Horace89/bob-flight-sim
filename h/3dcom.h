@@ -841,4 +841,7 @@ class	shape
 
 	extern	class	shape	SHAPE;
 
+double oldARCCOS(double x,double pi);
+double ARCCOS(double x,double pi);
+
 #endif

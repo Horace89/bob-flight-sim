@@ -708,7 +708,7 @@ void MathLib::high_sin_cos(ANGLES ang, Float& sin_ang, Float& cos_ang)
 //DeadCode JIM 20Oct00 	}															//RJS 17Nov97
 //DeadCode JIM 20Oct00 	return(ang);
 //DeadCode JIM 20Oct00 }
-
+/*
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		high_arc_cos
 //Author		Paul.
@@ -730,7 +730,7 @@ ANGLES MathLib::high_arc_cos(SWord ca)
 	cosang=Float(ca)/Float(ANGLES_FRACT);
 	cosang*=cosang;
 	oneminuscosang=1.-cosang;
-	cosang=oneminuscosang/cosang;
+	cosang = oneminuscosang / cosang;
 	_asm {
 			fld cosang;
 			fsqrt;
@@ -772,7 +772,7 @@ ANGLES MathLib::high_arc_sin(SWord sa)
 	int intang(sinang);
 	return sa<0?(Angles)-intang:(Angles)intang;
 }
-
+*/
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure	arccos
 //------------------------------------------------------------------------------
@@ -1206,7 +1206,7 @@ SWord MathLib::tan(ANGLES ang)
 //------------------------------------------------------------------------------
 ULong MathLib::distance3d(SLong ddx, SLong dy, SLong dz)
 {
-_asm	{
+/*_asm	{
 			FILD	ddx
 			FMUL	ST,ST(0)
 			FILD	dy
@@ -1219,6 +1219,9 @@ _asm	{
 			FISTP	ddx
 		}
 		return	ddx;
+		*/
+	return sqrt((double)ddx * (double)ddx + (double)dy * (double)dy + (double)dz * (double)dz);
+
 
 /*	SLong	absdx,absdy,absdz,temp;
 

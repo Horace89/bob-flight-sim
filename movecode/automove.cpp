@@ -11248,12 +11248,13 @@ void	AirStruc::SetMaccaVels()
 	maxpoo += zz*zz;
 
 	double mag = (double) maxpoo;
-	_asm
+/*	_asm
 	{
 		fld mag;
 		fsqrt;
 		fstp mag;
-	}
+	}*/
+	mag = sqrt(mag);
 
 	maxpoo = 1.0 / mag;
 

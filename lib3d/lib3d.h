@@ -196,7 +196,7 @@ enum ClipCode
 	static __int64 fini##name;\
 	static double average##name;\
 	static int count##name=0;
-
+/*
 #define TIMER_ON(name)\
 	_asm push eax _asm push edx _asm push ebx;\
 	_asm lea ebx,start##name;\
@@ -214,7 +214,7 @@ enum ClipCode
 	count##name++;\
 	average##name=double(fini##name)/double(count##name);\
 	if ((frames)==count##name) _asm int 3;
-
+*/
 //DEFINE_TIMER(textureBlt);
 
 #define DISCARD_POLYGON(p1)	AllocDiscard((char*)(p1));
@@ -2119,7 +2119,7 @@ private:
     inline ULong SetToTopBit( ULong i )
     {
 //#ifdef __GNUC__
-        return( (i & (1<<31))!=0?-1:0  );
+        return( (i & (1<<31) )?-1:0  );
         /*#else
         		__asm
         		{
@@ -2287,7 +2287,7 @@ private:
     inline void FloatToInt(SLong *int_pointer,D3DVALUE f) const
     {
 //#ifdef __GNUC__
-        *int_pointer=ceil(f/*+0.5*/);
+        *int_pointer=round(f);
         /*#else
         	 	__asm	fld		f;
         		__asm	mov		edx,int_pointer;

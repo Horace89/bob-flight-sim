@@ -1202,8 +1202,8 @@ int	main(int argc,char** argv)
 	FILE* f=fopen(argv[1],"wb");
       if (!f) return 1;
 	fwrite(CSQuick1::quickmissions,i+1,sizeof(QuickDef),f);
-	fwrite(lookupspace,sizeof(lookupspace),4,f);
-	fwrite(extrastrings,1,sizeof(extrastrings),f);
+	fwrite(lookupspace,sizeof(int),sizeof(lookupspace),f);
+	fwrite(extrastrings,sizeof(char),sizeof(extrastrings),f);
 	fclose(f);
 	return 0;
 	}

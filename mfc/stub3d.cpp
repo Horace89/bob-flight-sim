@@ -1807,7 +1807,7 @@ void Mast3d::TimeProc(UINT uID, UINT uMsg, DWORD dw1, DWORD dw2 )
 //DEADCODE AMM 24/11/99 				currinst->viewedwin->timeSinceLastMove+=2;
 				currinst->viewedwin->timeSinceLastMove+=Timer_Code.FRAMETIME; //AMM 24/11/99
 
-			int bt=1;
+			long bt=1;
 			bt+=LockExchange(&inst->blockticks);
 			bt=LockExchange(&inst->blockticks,bt);
 			while (bt)
@@ -2328,7 +2328,7 @@ void	Inst3d::BlockTick(Bool setit)
 	{
 	if (setit)
 	{
-		int bt=LockExchange(&blocktick,1);
+		long bt=LockExchange(&blocktick,1);
 		while (bt==1)
 		{
 			Sleep(0);												  //JIM 21/12/98
@@ -2339,7 +2339,7 @@ void	Inst3d::BlockTick(Bool setit)
 	else
 	{
 		howcamehere=0;
-		int bt=LockExchange(&blockticks,0);
+		long bt=LockExchange(&blockticks,0);
 		do{
 			while (bt--)
 			{

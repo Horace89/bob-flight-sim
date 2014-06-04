@@ -108,27 +108,22 @@ class MonoText Mono_Text;
 //------------------------------------------------------------------------------
 void MonoText::ClsMono()
 {
-/*
 #ifndef NDEBUG													//DAW 13Nov96
-	UWord	temp;
 
-	UWord* scradr = (UWord* )MonoStartAddr;
+	HANDLE screen = GetStdHandle(STD_OUTPUT_HANDLE);
+COORD pos = {0, 0};
+DWORD written;
+CONSOLE_SCREEN_BUFFER_INFO screen_attr;
+unsigned size;
 
-	cx = cy = 0;
+GetConsoleScreenBufferInfo(screen, &screen_attr);
 
-	for (int row = 0;row<MonoScreenWidth;row++)
-	{
-		for (int column = 0;column<MonoScreenHeight;column++)
-		{
-			temp = *scradr;
+size = screen_attr.dwSize.X * screen_attr.dwSize.Y;
 
-			temp = (temp & 0xFF00) + ' ';
+FillConsoleOutputCharacter( screen,' ', size, pos, &written);
+SetConsoleCursorPosition(screen, pos);
 
-			*scradr++ = temp;
-		}
-	}
 #endif
-*/
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -165,35 +160,43 @@ void MonoText::SetCursor(SLong rx,SLong ry)
 void MonoText::Print(UByte* text,SLong length)
 {
 #ifndef NDEBUG													//DAW 13Nov96
-	UWord  temp;
+	char str[1024];
+	memcpy(&str, text, length);
+	str[length] = '\0';
 
 	UByte  chr;
 
-	UWord* scradr = (UWord* )MonoStartAddr;
+	COORD pos = { cx, cy };
+	HANDLE hConsole_c = GetStdHandle(STD_OUTPUT_HANDLE);
+	DWORD len = strlen((const char *)str);
+	DWORD dwBytesWritten = 0;
+	WriteConsoleOutputCharacter(hConsole_c, (const char *)str, len, pos, &dwBytesWritten);
+	CloseHandle(hConsole_c);
 
-	scradr += (cy * MonoScreenWidth) + cx;
-
-	while (length--)
+	int i = 0;
+	while (str[i])
 	{
-		chr = *text++;
+		chr = str[i++];
 
-		temp = 0xFF00 & *scradr;
+		if (chr == '\n')	//newline
+		{
+			cx = 0;
+			cy++;
 
-		temp += 0x00FF & (UWord )chr;
+		}
+		else
+		{
 
-		*scradr++ = temp;
+			cx++;
 
-		cx++;
+			if (cx >= MonoScreenWidth)
+			{
+				cx = 0;
+				cy++;
+			}
 
-		if (cx>=MonoScreenWidth) break;
+		}
 	}
-
-	cx = 0;
-
-	cy++;
-
-	if (cy>=MonoScreenHeight)
-		cy = 0;
 #endif
 }
 
@@ -209,38 +212,32 @@ void MonoText::Print(UByte* text,SLong length)
 //Returns	
 //
 //------------------------------------------------------------------------------
-void MonoText::TextOutMono(UByte* string)
+void MonoText::TextOutMono(UByte* str)
 {
-/*
+
 #ifndef NDEBUG													//DAW 13Nov96
-	UWord  temp;
 
 	UByte  chr;
 
-	UWord* scradr = (UWord* )MonoStartAddr;
+	COORD pos = { cx, cy };
+	HANDLE hConsole_c = GetStdHandle(STD_OUTPUT_HANDLE);
+	DWORD len = strlen((const char *)str);
+	DWORD dwBytesWritten = 0;
+	WriteConsoleOutputCharacter(hConsole_c, (const char *)str, len, pos, &dwBytesWritten);
+	CloseHandle(hConsole_c);
 
-	scradr += (cy * MonoScreenWidth) + cx;
-
-	while (*string)
+	while (*str)
 	{
-		chr = *string++;
+		chr = *str++;
 
 		if (chr=='\n')	//newline
 		{
 			cx = 0;
 			cy++;
 
-			if (cy>=MonoScreenHeight)	ClsMono();
-
-			scradr = (UWord* )MonoStartAddr + (cy * MonoScreenWidth) + cx;
 		}
 		else
 		{
-			temp = 0xFF00 & *scradr;
-
-			temp += 0x00FF & (UWord )chr;
-
-			*scradr++ = temp;
 
 			cx++;
 
@@ -248,17 +245,11 @@ void MonoText::TextOutMono(UByte* string)
 			{
 				cx = 0;
 				cy++;
-				if (cy>=MonoScreenHeight)
-				{
-					ClsMono();
-
-					scradr = (UWord* )MonoStartAddr;
-				}
 			}
+
 		}
 	}
 #endif
-*/
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴

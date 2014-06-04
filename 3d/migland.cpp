@@ -345,6 +345,7 @@ const double PI = 3.141592654;
 // Author       Paul
 // Date         15/01/98
 //-----------------------------------------------------------------------------
+/*
 CDataBlock::CDataBlock(CCacheBlock* pCacheBlk,ULong dlen,UByte* pData)
 {
 	pCacheBlock=pCacheBlk;
@@ -373,6 +374,16 @@ CDataBlock::CDataBlock(CCacheBlock* pCacheBlk,ULong dlen,UByte* pData)
 	pop		edi
 	pop		esi
 	}
+}
+*/
+CDataBlock::CDataBlock(CCacheBlock* pCacheBlk, ULong dlen, UByte* pData)
+{
+	pCacheBlock = pCacheBlk;
+	pCacheBlock->pData = this;
+	dataLen = dlen;
+
+	UByte*	pDataDest = &pDataStart;
+	memcpy((UByte*)pDataDest, (UByte*)pData, dlen);
 }
 
 //-----------------------------------------------------------------------------
@@ -416,6 +427,7 @@ void* CDataBlock::operator new(size_t sz,ULong dataLen)
 // Author       Paul
 // Date         15/01/98
 //-----------------------------------------------------------------------------
+/*
 CPrimaryDB::CPrimaryDB(CPrimaryCB* pCacheBlk,ULong dlen,UByte* pData)
 {
 	pCacheBlock=pCacheBlk;
@@ -445,6 +457,17 @@ CPrimaryDB::CPrimaryDB(CPrimaryCB* pCacheBlk,ULong dlen,UByte* pData)
 	pop		esi
 	}
 }
+*/
+CPrimaryDB::CPrimaryDB(CPrimaryCB* pCacheBlk, ULong dlen, UByte* pData)
+{
+	pCacheBlock = pCacheBlk;
+	pCacheBlock->pData = this;
+	dataLen = dlen;
+
+	UByte*	pDataDest = &pDataStart;
+	memcpy((UByte*)pDataDest, (UByte*)pData, dlen);
+}
+
 
 //-----------------------------------------------------------------------------
 // Procedure    CPrimaryDB::~CPrimaryDB
@@ -557,12 +580,13 @@ void CDecompressData::CalculateNVecs(	PointDef* pntArray,UByte* polyDesc,
 			a.k=(b.i*c.j)-(b.j*c.i);
 
 			Float mag=(a.i*a.i)+(a.j*a.j)+(a.k*a.k);
-			_asm
+			/*_asm
 			{
 				fld mag;
 				fsqrt;
 				fstp mag;
-			}
+			}*/
+			mag = sqrt(mag);
 			if (mag!=0.)
 			{
 				a.i/=mag; a.j/=mag; a.k/=mag;
@@ -591,13 +615,14 @@ void CDecompressData::CalculateNVecs(	PointDef* pntArray,UByte* polyDesc,
 			Float mag=	(fanPointNormal.ni*fanPointNormal.ni)+
 						(fanPointNormal.nj*fanPointNormal.nj)+
 						(fanPointNormal.nk*fanPointNormal.nk);
-			_asm
+			/*_asm
 			{
-				fld mag;
-				fsqrt;
-				fstp mag;
-			}
-			fanPointNormal.ni/=mag;
+			fld mag;
+			fsqrt;
+			fstp mag;
+			}*/
+			mag = sqrt(mag);
+			fanPointNormal.ni /= mag;
 			fanPointNormal.nj/=mag;
 			fanPointNormal.nk/=mag;
 		}
@@ -3790,13 +3815,14 @@ inline void CDecompressData::SetLVector(SLong li,SLong lj,SLong lk)
 	wLk=double(lk);
 	//normalise
 	double mag=wLi*wLi+wLj*wLj+wLk*wLk;
-	_asm
+	/*_asm
 	{
-		fld mag;
-		fsqrt;
-		fstp mag;
-	}
-	wLi/=mag;
+	fld mag;
+	fsqrt;
+	fstp mag;
+	}*/
+	mag = sqrt(mag);
+	wLi /= mag;
 	wLj/=mag;
 	wLk/=mag;
 }
@@ -3817,13 +3843,14 @@ void CDecompressData::AverageNormals(SLong pntCnt,PointDef* pntArray,UByte* renu
 		if (n.count!=1){
 			//re-normalise the averaged vector...
 			Float mag=n.ni*n.ni+n.nj*n.nj+n.nk*n.nk;
-			_asm
+			/*_asm
 			{
-				fld mag;
-				fsqrt;
-				fstp mag;
-			}
-			n.ni/=mag;
+			fld mag;
+			fsqrt;
+			fstp mag;
+			}*/
+			mag = sqrt(mag);
+			n.ni /= mag;
 			n.nj/=mag;
 			n.nk/=mag;
 		}
@@ -4870,10 +4897,10 @@ void CRectangularCache::AddSeekRequest(SeekStrucP pNewSeek)
 #if !defined(NDEBUG)
 	for (int i=pNewSeek->numBlocks-1;i>=0;i--)
 		if (pNewSeek->blockPtrs[i]==NULL)
-			_asm {int 3}
+			INT3
 #endif
 	if (pNewSeek->numBlocks+pNewSeek->firstSkipIndex>64)
-		_asm {int 3}
+		INT3
 
 	if (masterseeklist==NULL)
 	{
@@ -5860,7 +5887,7 @@ CRectangularCache::WhichWay CRectangularCache::GetDirectionFlags2()
 	COORDS3D lcoords;
 
 	lcoords=fselitemp->World;
-	xindex=(lcoords.X>>8+(int)XZ_COL_SCALE) - (bufferbase.X>>8+(int)XZ_COL_SCALE);
+	xindex=(lcoords.X>>8+(int)XZ_COL_SCALE) - (bufferbase.X>>8+(int)XZ_COL_SCALE);  // TODO set prentesis properly
 	zindex=(bufferbase.Z>>8+(int)XZ_COL_SCALE) - (lcoords.Z>>8+(int)XZ_COL_SCALE);
 
 	if (zindex<=MIN_BOUND)	return(WW_north);

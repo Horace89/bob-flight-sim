@@ -200,48 +200,55 @@ parm	[eax] [ebx] [ecx]			\
 
 inline FP FSqrt(FP n)
 {
-	_asm
+	return sqrt(n);
+/*	_asm
 	{
 		fld		n
 		fsqrt
 		fstp	n
 	}
-	return n;
+	return n;*/
 }
 
 inline FP FSin(FP n)
 {
-	_asm
+	return sin(n);
+/*	_asm
 	{
 		fld		n
 		fsin
 		fstp	n
 	}
-	return n;
+	return n;*/
 }
 inline FP FCos(FP n)
 {
-	_asm
+	return cos(n);
+/*	_asm
 	{
 		fld		n
 		fcos
 		fstp	n
 	}
-	return n;
+	return n;*/
 }
-/*inline FP FPATan(FP opp,FP adj)
+/*
+inline FP FPATan(FP opp,FP adj)
 {
-	FP	ans;
-	_asm
-	{
-		fld		opp
-		fld		adj
-		fpatan
-		fstp	ans
-	}
-	return ans;
-}*/
-inline FP FXPowerY(FP x,FP y)
+	Float	ans;
+_asm
+{
+fld		opp
+fld		adj
+fpatan
+fstp	ans
+}
+return ans;
+return atan2(opp, adj);
+}
+*/
+/*
+inline FP FXPowerY(FP x, FP y)
 {
 	FP	ans;
 	_asm
@@ -256,7 +263,7 @@ inline FP FXPowerY(FP x,FP y)
 	}
 	return ans;
 }
-
+*/
 #endif
 #endif
 

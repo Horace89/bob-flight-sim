@@ -7333,6 +7333,7 @@ static int hStep;
 
 #include "hdata2.h"
 
+/*
 inline void fpTan(ANGLES ang,Float& tanAng)
 {
 	int iang=ang;
@@ -7354,6 +7355,7 @@ inline void fpTan(ANGLES ang,Float& tanAng)
 	add esp,4;
 	}
 }
+*/
 
 //DEADCODE JON 5/24/00 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //DEADCODE JON 5/24/00 //Procedure		GStrip
@@ -9566,7 +9568,7 @@ void LandScape::PrintDebugs()
 	sprintf((char*)block,"alt %dm ",(viewer_y/100));
 	Mono_Text.PrintAt(0,4,block);		//print viewer altitude (meters)
 */}
-
+/*
 inline void fpSinCos(ANGLES ang,Float& sinAng,Float& cosAng)
 {
 	int iang=ang;
@@ -9589,7 +9591,7 @@ inline void fpSinCos(ANGLES ang,Float& sinAng,Float& cosAng)
 	add esp,4;
 	}
 }
-
+*/
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		DoCloudLayer
 //Author		Paul.

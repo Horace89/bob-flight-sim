@@ -2409,7 +2409,7 @@ void	View3d::DoneFrame()
 
 void	AggTracer(char* str)
 {
-//	TRACE0(str);
+	TRACING(str);
 }
 
 bool ViewPoint::Accel()

@@ -6,18 +6,18 @@
 	 Please see the document licence.doc for the full licence agreement
 
 2. LICENCE
- 2.1
- 	Subject to the provisions of this Agreement we now grant to you the
+ 2.1 	
+ 	Subject to the provisions of this Agreement we now grant to you the 
  	following rights in respect of the Source Code:
-  2.1.1
-  	the non-exclusive right to Exploit  the Source Code and Executable
-  	Code on any medium; and
-  2.1.2
+  2.1.1 
+  	the non-exclusive right to Exploit  the Source Code and Executable 
+  	Code on any medium; and 
+  2.1.2 
   	the non-exclusive right to create and distribute Derivative Works.
- 2.2
+ 2.2 	
  	Subject to the provisions of this Agreement we now grant you the
 	following rights in respect of the Object Code:
-  2.2.1
+  2.2.1 
 	the non-exclusive right to Exploit the Object Code on the same
 	terms and conditions set out in clause 3, provided that any
 	distribution is done so on the terms of this Agreement and is
@@ -25,35 +25,35 @@
 	applicable).
 
 3. GENERAL OBLIGATIONS
- 3.1
+ 3.1 
  	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1
+  3.1.1 
 	that when you distribute the Source Code or Executable Code or
 	any Derivative Works to Recipients you will also include the
 	terms of this Agreement;
-  3.1.2
+  3.1.2 
 	that when you make the Source Code, Executable Code or any
 	Derivative Works ("Materials") available to download, you will
 	ensure that Recipients must accept the terms of this Agreement
 	before being allowed to download such Materials;
-  3.1.3
+  3.1.3 
 	that by Exploiting the Source Code or Executable Code you may
 	not impose any further restrictions on a Recipient's subsequent
 	Exploitation of the Source Code or Executable Code other than
 	those contained in the terms and conditions of this Agreement;
-  3.1.4
+  3.1.4 
 	not (and not to allow any third party) to profit or make any
 	charge for the Source Code, or Executable Code, any
 	Exploitation of the Source Code or Executable Code, or for any
 	Derivative Works;
-  3.1.5
-	not to place any restrictions on the operability of the Source
+  3.1.5 
+	not to place any restrictions on the operability of the Source 
 	Code;
-  3.1.6
+  3.1.6 
 	to attach prominent notices to any Derivative Works stating
 	that you have changed the Source Code or Executable Code and to
 	include the details anddate of such change; and
-  3.1.7
+  3.1.7 
   	not to Exploit the Source Code or Executable Code otherwise than
 	as expressly permitted by  this Agreement.
 
@@ -74,7 +74,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 ////////////////////////////////////////////////////
 // Managing the package list.
 //
-//
+//	 
 //	 SetPredictedPointFromETA
 //
 
@@ -90,7 +90,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include	"ranges.h"
 #include "winmove.h"
 #include "comms.h"
-#include "planetyp.h"
+#include "planetyp.h" 
 #include "nodebob.h"
 
 #include "..\mfc\resource.h"
@@ -100,7 +100,6 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include "package.h"
 #include "bitfield.h"
 #include <cassert>
-
 BITABLE(Profile::BetterRule);
 ADDORABLE(Profile::BetterRule);
 NOTABLE(Profile::BetterRule,Profile::BR_WIDESTPOSSIBLE);
@@ -324,7 +323,7 @@ void		Profile::DeleteSquadAt(int index)
 				sq->totestatus=PS_AT_5;
 			sq->usedacbits=0;
 
-
+			
 		}
 		else
 		{
@@ -337,7 +336,7 @@ void		Profile::DeleteSquadAt(int index)
 			if (index==0)
 			{
 				BritSquadron*	sq=Node_Data[squadnum];
-				sq->usedacbits&=~squadlist.AcBitsFirstSquad();
+				sq->usedacbits&=~squadlist.AcBitsFirstSquad(); 
 			}
 			else
 			{	INT3;}
@@ -351,7 +350,7 @@ void		Profile::DeleteSquadAt(int index)
 		info_waypoint* wp=Persons2::ConvertPtrUID(*wpref);
 		if (wp->applygroup.Evaluate()==index)
 		{	//fix pointer to this wp to point to next & then delete this wp
-			Persons2::delUID(*wpref);
+			Persons2::delUID(*wpref);		
 			*wpref=wp->nextwp;
 			info_waypoint* wpnext=Persons2::ConvertPtrUID(*wpref);
 			if (wpnext)													//JIM 6Nov00
@@ -366,7 +365,7 @@ void		Profile::DeleteSquadAt(int index)
 //DeadCode JIM 20Oct00 	int	maxsq=squadlist;
 	for (int i2=index,mi2=squadlist.Max()-1;i2<mi2;i2++)
 		SwapNeighborSquadsAt(i2);
-	//Try to save squadlist space?
+	//Try to save squadlist space? 
 	//No, but switch to other system when down to 1 squad
 	squadlist.pointer->numsquadrons--;
 	if (squadlist.Max()==1)
@@ -375,7 +374,7 @@ void		Profile::DeleteSquadAt(int index)
 		newlist->squadronsizeentry=1;
 			newlist[0][0]=squadlist[0];
 		newlist->numsquadrons=1;
-		newlist->acnumfirst=0;
+		newlist->acnumfirst=0; 
 		SquadList::squadsizes[squadlist.pointer->squadronsizeentry].remove(squadlist.pointer);
 		squadlist.pointer=newlist;
 		squadlist.SetAcBitsFirstSquad(0xfff);
@@ -488,7 +487,7 @@ void	PackageList::UpDatePackageTimes()
 //DEADCODE DAW 24/11/99 			}
 //DEADCODE DAW 24/11/99 			SetWaveTimes(p, i, targettime);
 //DEADCODE DAW 24/11/99 		}
-//DEADCODE DAW 24/11/99
+//DEADCODE DAW 24/11/99 
 //DEADCODE DAW 24/11/99 		p++;
 //DEADCODE DAW 24/11/99 	}
 }
@@ -496,7 +495,7 @@ void	PackageList::UpDatePackageTimes()
 //DEADCODE DAW 24/11/99 {
 //DEADCODE DAW 24/11/99 //DEADCODE DAW 24/11/99 	Todays_Packages[p][w].targettime = targettime;
 //DEADCODE DAW 24/11/99 	Todays_Packages[p].CalcWPTimes(w);
-//DEADCODE DAW 24/11/99
+//DEADCODE DAW 24/11/99 
 //DEADCODE DAW 24/11/99 }
 
 //DeadCode JIM 25Oct00 bool	PackageList::PackageHasBeenEdited()
@@ -504,7 +503,7 @@ void	PackageList::UpDatePackageTimes()
 //DeadCode JIM 25Oct00 	int p=0;
 //DeadCode JIM 25Oct00 	while (p<Profile::MAX_PACKS && pack[p].route)
 //DeadCode JIM 25Oct00 	{
-//DeadCode JIM 25Oct00 		if (pack[p].edited)
+//DeadCode JIM 25Oct00 		if (pack[p].edited) 
 //DeadCode JIM 25Oct00 			return (true);
 //DeadCode JIM 25Oct00 		p++;
 //DeadCode JIM 25Oct00 	}
@@ -534,7 +533,7 @@ Gruppen*	NodeData::FindNearestGruppen(UniqueID closepoint,WaderName wname,int mi
 {	//Always called with WN_BETTERRULE...
 	Coords3D	loc=Persons2::ConvertPtrUID(closepoint)->World;
 	struct	TypeOrWaderTest
-	{
+	{	
 		int	comparitor;
 		virtual bool operator()(Gruppen*)=0;
 	};
@@ -599,7 +598,7 @@ Gruppen*	NodeData::FindNearestGruppen(UniqueID closepoint,WaderName wname,int mi
 							if (range0<range2)
 								bestrange=range2;
 							else
-								bestrange=range0;
+								bestrange=range0; 
 						if (Node_Data.geschwader[grupp->wadernum].aircrafttype==PT_ME109)
 							bestrange+=rangeaddto109s;
 						squadron=grupp;
@@ -613,7 +612,7 @@ Gruppen*	NodeData::FindNearestGruppen(UniqueID closepoint,WaderName wname,int mi
 			{
 				if (test(grupp))
 				if (	grupp[0].acavail>=mingruppac		&&!grupp[0].Busy()
-					&&	grupp[0].wadernum==grupp[1].wadernum
+					&&	grupp[0].wadernum==grupp[1].wadernum 
 					&&	grupp[1].acavail>=mingruppac		&&!grupp[1].Busy()
 					)
 				{
@@ -685,17 +684,17 @@ Gruppen*	NodeData::FindNearestGruppen(UniqueID closepoint,WaderName wname,int mi
 
 static int Times_Per_Tote[]=
 {
-	SECSPERHR,		 //PS_SPARE,
-	SECSPERHR,		 //PS_ORDER_30,
-	30*SECSPERMIN,	 //PS_AT_30,
-	20*SECSPERMIN,	 //PS_ORDER_5,
-	5*SECSPERMIN,	 //PS_AT_5,
-	4*SECSPERMIN,	 //PS_ORDER_2,
+	SECSPERHR,		 //PS_SPARE,     
+	SECSPERHR,		 //PS_ORDER_30,	
+	30*SECSPERMIN,	 //PS_AT_30,	    
+	20*SECSPERMIN,	 //PS_ORDER_5,	
+	5*SECSPERMIN,	 //PS_AT_5,		
+	4*SECSPERMIN,	 //PS_ORDER_2,	
 	2*SECSPERMIN,	 //PS_AT_2,
 	0,
 	0,
-	20*SECSPERMIN,	 //PS_ORDER_5,
-	4*SECSPERMIN,	 //PS_ORDER_2,
+	20*SECSPERMIN,	 //PS_ORDER_5,	
+	4*SECSPERMIN,	 //PS_ORDER_2,	
 	1*SECSPERMIN,	 //PS_AT_2,
 };
 
@@ -703,9 +702,9 @@ static	int	Ranges_Per_Tote[]=
 {		//using 3 miles per minute as guess...
 		MILES1000,	//PS_SPARE,
 		MILES1000,	//PS_ORDER_30,	//was off-base
-		MILES100,	//PS_AT_30,
+		MILES100,	//PS_AT_30,	
 		MILES100,	//PS_ORDER_5,	//was at 30
-		MILES15,	//PS_AT_5,
+		MILES15,	//PS_AT_5,		
 		MILES10,	//PS_ORDER_2,	//was at 5
 		0,				//PS_AT_2,		//no disadvantage
 		MILES20,		//planning
@@ -764,7 +763,7 @@ BritSquadron*	NodeData::FindNearestBritSquad(UniqueID closepoint,int minavailac,
 /*CSB*/			FP deltadist = 100.0 * loc.Y / 10.0;	//target travelling at 100m/s.  Interceptor climbing at 15m/s
 /*CSB*/			loc.X += trgvelx * deltadist;
 /*CSB*/			loc.Z += trgvelz * deltadist;
-
+					
 				Coords3D w;
 				if (info_airgrpPtr(*i)->wpref)
 					w=Persons2::ConvertPtrUID(info_airgrpPtr(*i)->wpref)->World;
@@ -827,7 +826,7 @@ BritSquadron*	NodeData::FindNearestBritSquad(UniqueID closepoint,int minavailac,
 					else
 						if ((testsectaf=TargetFighterFieldPtr(Node_Data[brsq->homeairfield])->getsectoruid())==firstsector)
 						{
-
+			
 							Coords3D loc2=Persons2::ConvertPtrUID(brsq->homeairfield)->World;
 							int range=Math_Lib.distance3d(loc.X-loc2.X,0,loc.Z-loc2.Z)+Ranges_Per_Tote[brsq->totestatus];
 							if (groupmatch>GM_SAMESECT || range<bestrangefound)
@@ -862,7 +861,7 @@ BritSquadron*	NodeData::FindNearestBritSquad(UniqueID closepoint,int minavailac,
 		if (minavailac==-1)
 			minavailac=12;
 		if (br & Profile::BR_B_LEADOPTNL)
-		{	//ok... don't need a full squad... How many do I want?
+		{	//ok... don't need a full squad... How many do I want? 
 			//check if that many non-flying bits are available
 			//max 12 bits set. Generate mask for num ac available (up to 20)
 			for (BritSquadron*	brsq=Node_Data.squadron;brsq->squadron;brsq++)
@@ -992,7 +991,7 @@ BritSquadron*	NodeData::FindNearestBritSquad(UniqueID closepoint,int minavailac,
 		if (bestsq)
 			return bestsq;
 	}
-	//Fall through to this code that simply selects nearest full squad
+	//Fall through to this code that simply selects nearest full squad	
 
 	BritSquadron*	squadron=NULL;
 	int			bestrange=0x7fffffff;
@@ -1082,7 +1081,7 @@ int PackageList::FindPackage()
 // Date:		13/01/00
 // Author:		JIM
 //
-//Description:
+//Description: 
 //
 //////////////////////////////////////////////////////////////////////
 int	PackageList::GetSquadACCountFromGrupp(int requested,int available,int duty)
@@ -1198,7 +1197,7 @@ int	Todays_Packages_NewPackage(UniqueID targ,Directives::LW::Miss& missiondesc,U
 {
 	//missiondesc numbers:
 	//Bombers: +ve number means num of a/c, -ve number is staffel
-	//Fighter: if Gruppe is true then means number of gruppe else
+	//Fighter: if Gruppe is true then means number of gruppe else 
 	//			+ve number means num of a/c, -ve number is staffel
 	//
 	int attfighters, detfighters, retfighters;
@@ -1246,7 +1245,7 @@ int	Todays_Packages_NewPackage(UniqueID targ,Directives::LW::Miss& missiondesc,U
 		retsq = - retfighters;
 	else
 		retsq = retfighters/12;
-
+	
 
 	int reqsq;
 	reqsq =  bmbsq + attsq  + detsq + retsq;
@@ -1351,11 +1350,10 @@ void	Profile::ShareSecondaries(int secondaries)
 	if (attackmethod<AM_LWPACKS)
 		return;															//JIM 19Oct00
 	int	bombers=0;
-	int sq,max;
-	for (sq=0,max=squadlist;sq<max;sq++)
+	for (int sq=0,max=squadlist;sq<max;sq++)
 		if ((squadlist[sq].method&AM_GROUPMASK)==AM_LWPACKS)
 			bombers++;
-	sq=0;
+	int sq=0;
 	while ((squadlist[sq].method&AM_GROUPMASK)!=AM_LWPACKS)
 		sq++;
 	for (int sec=0;secondaries;secondaries--,sec++)
@@ -1396,8 +1394,8 @@ int PackageList::NewPackage(UniqueID targ,Nationality nat, Profile::AttackMethod
 	TargetNoDetail*	targp=Node_Data[targ];
 	UniqueID dogleg=targ;
 	if (	nat!=NAT_RAF
-		&&	targp
-		&&	targp->truedefenses&targp->TSS_TargetGroup
+		&&	targp 
+		&&	targp->truedefenses&targp->TSS_TargetGroup 
 		&& TargetGroupPtr(targp)->doglegs[0]
 		)
 		dogleg=TargetGroupPtr(targp)->doglegs[0];
@@ -1444,7 +1442,7 @@ int PackageList::NewPackage(UniqueID targ,Nationality nat, Profile::AttackMethod
 
 //DEADCODE ROD 17/12/99 	pack[p].duty=(DutyType)duty;
 	pack[p].packagestatus=Profile::PS_PLANNED;
-//DEADCODE  23/02/00 	pack[p].primarytargetETA = MMC.currtime + (int)HR01;
+//DEADCODE  23/02/00 	pack[p].primarytargetETA = MMC.currtime + (int)HR01; 
 	pack[p].packagetarget[0]=targ;				//TEMP FIX!!!! No target info available
 	pack[p].doglegloc=dogleg;
 //DeadCode JIM 3Jul00 	pack[p].packagetakeoff=squad->homeairfield;
@@ -1470,7 +1468,7 @@ int PackageList::NewPackage(UniqueID targ,Nationality nat, Profile::AttackMethod
 //DEADCODE JIM 27/01/00 	}
 //DEADCODE JIM 27/01/00 	else
 //DEADCODE JIM 27/01/00 		GruppenPtr(*squad)->periodsuntilready=-1;	//busy for 1 period. No message on return.
-//DEADCODE JIM 27/01/00
+//DEADCODE JIM 27/01/00 
 //DEADCODE JIM 27/01/00 	pack[p][0].method=duty;
 
 //DEADCODE JIM 27/01/00 	a->duty=duty;
@@ -1622,7 +1620,7 @@ int	Profile::AddNumerousSquadrons(int initialbombers,Profile::AttackMethod duty,
 			sq=AddSquadron(initialbombers,duty,0,sq);
 		else
 			sq=AddSquadron(initialbombers,duty,0,br);
-		if (!sq)
+		if (!sq) 
 			return 0;
 		//Ok.. got 1 squadron...
 		SquadUsedUpInBetterRules(br,actypecounts,sq);
@@ -1718,7 +1716,7 @@ int	Profile::AddNumerousSquadrons(int initialbombers,Profile::AttackMethod duty,
 						if (gr->periodsuntilready || gr->acavail<acpergrupp)
 							allocatebombers-=30;
 					}
-
+					
 				}
 				totalbombers-=allocatebombers;
 				if (totalbombers>0)
@@ -1765,7 +1763,7 @@ SquadNum	Profile::AddSquadron(int numac,Profile::AttackMethod duty,int targnum,B
 	}
 	SquadNum sn;
 	{	//no squad supplied... go looking!
-		sn=PackageList::FindSquad(duty,doglegloc,packagetarget[targnum],numac,br,after);
+		sn=PackageList::FindSquad(duty,doglegloc,packagetarget[targnum],numac,br,after);	
 	}
 	return	Profile::AddSquadron(numac,duty,targnum,sn);
 }
@@ -1877,7 +1875,7 @@ SquadNum	Profile::AddSquadron(int numac,Profile::AttackMethod duty,int targnum,S
 	FormationTypeIndex	flightform,interform=FTI_SAME;
 	if		(duty>=AM_ATTACHED)
 				flightform=FTW_FINGER+FTS_ASTERN;
-	else if	(duty>=AM_DETACHED || duty==AM_DECOYPATROL)
+	else if	(duty>=AM_DETACHED || duty==AM_DECOYPATROL)			
 				flightform=FTW_SCWARM+FTS_VIC;
 	else if	(duty>=AM_LWPACKS)
 		if (numac%5==0)													//CSB 28Jun00
@@ -1890,7 +1888,7 @@ SquadNum	Profile::AddSquadron(int numac,Profile::AttackMethod duty,int targnum,S
 	if (duty<AM_ATTACHED)
 	{	//need to find out if prev staffel is same gruppen (may not be a previous)
 		//if not, start a new count
-		int		inccount =- (newsquad - (int)squadlist!=0);
+		int		inccount= -(subb(newsquad,squadlist)!=0);
 		if (inccount<0)
 		{
 			Squad* possparent=newsquad-1;
@@ -1922,10 +1920,10 @@ SquadNum	Profile::AddSquadron(int numac,Profile::AttackMethod duty,int targnum,S
 		{
 			Squad* possparent=newsquad-1;
 			FormationTypeIndex pft=FormationTypeIndex(possparent->formtype);
-			if ((pft&FORMTYPE_INTERPAIR)==FTIP_LEFTBACK)			//box 4 leader
+			if (pft&FORMTYPE_INTERPAIR==FTIP_LEFTBACK)			//box 4 leader
 				interform=(pft%FORMTYPE_INTERPAIR)+FTIP_ASTERN;	//box 4 second
 			else
-			if ((pft&FORMTYPE_INTERPAIR)==FTIP_ASTERN)			//box 4 second
+			if (pft&FORMTYPE_INTERPAIR==FTIP_ASTERN)			//box 4 second
 				interform=(pft%FORMTYPE_INTERPAIR)+FTIP_LEFT;	//box 4 third
 			else
 				interform=FormationTypeIndex(pft^FORMTYPE_INTERCHILD);	//lead=true,2nd=false,3rd=true
@@ -1933,10 +1931,10 @@ SquadNum	Profile::AddSquadron(int numac,Profile::AttackMethod duty,int targnum,S
 	}
 	else
 	{	//need to find escortee & set same position number
-		bobassert(newsquad - (int)squadlist,"Not attached to anything");
+		bobassert(subb(newsquad,squadlist),"Not attached to anything");
 		Squad* possparent=NULL;
 		int inccount=0;
-		for (possparent=newsquad-1;possparent-(int)squadlist;possparent--)
+		for (possparent=newsquad-1;subb(possparent,squadlist);possparent--)
 			if ((possparent->method&-8)==(newsquad->method&-8))
 				inccount++;
 		if ((duty&7)==0)
@@ -1952,7 +1950,7 @@ SquadNum	Profile::AddSquadron(int numac,Profile::AttackMethod duty,int targnum,S
 	a->movecode=AUTOSAG_WAITTAKEOFF;
 	newsquad->takeofftime=MMC.currtime+5*SECSPERMIN+sn*5;
 	newsquad->SetStatus(Profile::PS_PLANNED);
-	route=MakeWayPoints(targnum,(int)newsquad- (int)squadlist,duty,sn);
+	route=MakeWayPoints(targnum,subb(newsquad,squadlist),duty,sn);
 
 	return sn;
 }
@@ -1973,7 +1971,7 @@ AttackMethodField		Profile::FixCloseEscortPositions(AttackMethod escorttype,Atta
 			totalescort++;
 
 	if (totalescort+totalmain==0)
-		return	amf;
+		return	amf;	
 	int	bitsneeded=(totalescort+totalmain-1)/totalmain;
 	if (bitsneeded>6)
 	{	//all those above the 6 need turning into free escort!
@@ -2013,7 +2011,7 @@ AttackMethodField		Profile::FixCloseEscortPositions(AttackMethod escorttype,Atta
 	Squad*	fightersquad=&squadlist[0];
 //DeadCode JIM 20Oct00 	Squad*	lastsquad=NULL;
 	forever	//goes around twice First time up to midway, then to end with 1 less fighter
-	{
+	{	
 		while(currbombercounter<atfullcount)
 		{
 			//find bomber squad
@@ -2100,7 +2098,7 @@ AttackMethodField	Profile::FixIndipendentPositions(AttackMethod flyingmethod,Att
 	}
 //count aircraft in gruppen
 //divide by options set count
-//If > 16
+//If > 16 
 //	set more bits (assert only for detached)
 //apply by rounded up times
 //	//
@@ -2113,7 +2111,7 @@ AttackMethodField	Profile::FixIndipendentPositions(AttackMethod flyingmethod,Att
 	}		}
 
 	int	flperbit=17;
-	if (totalbits)
+	if (totalbits)	
 		flperbit=totalmain/totalbits;
 	while (flperbit>16)
 	{
@@ -2175,10 +2173,10 @@ AttackMethodField	Profile::FixIndipendentPositions(AttackMethod flyingmethod,Att
 			squadlist[sqnum].FormType()=FormationTypeIndex(newlayout+newescform+wingsquad);
 			squadlist[sqnum].method=AttackMethod(am);
 			for (	sqnum++;
-					sqnum<squadlistMax	&&	squadlist[sqnum].squadnum==previd;
+					sqnum<squadlistMax	&&	squadlist[sqnum].squadnum==previd;	
 					sqnum++
 				)
-			{
+			{  	
 				switch (newescform)
 				{
 				case	FTIP_GRUPII:	newescform=FTIP_GRUPIII;	break;
@@ -2186,7 +2184,7 @@ AttackMethodField	Profile::FixIndipendentPositions(AttackMethod flyingmethod,Att
 
 				case	FTIP_AHEAD:		newescform=FTIP_ASTERN;		break;	//4-way series if leader set to ahead
 				case	FTIP_ASTERN:	newescform=FTIP_LEFT;		break;	//3-way series M-L-R if leader set to astern
-				case	FTIP_LEFT:		newescform=FTIP_LEFTBACK;	break;
+				case	FTIP_LEFT:		newescform=FTIP_LEFTBACK;	break;	
 				case	FTIP_LEFTBACK:	newescform=FTIP_AHEAD;		break;	//Also Right. Set as leader to get M-F-B
 
 				case	FTIP_ABOVE:		newescform=FTIP_BELOW;		break;
@@ -2257,7 +2255,7 @@ UniqueID	Profile::AddAttackWP(int targetnum,Profile::AttackMethod duty,int alt)
 			{
 			case	AM_INTERCEPT:	act=wpengagetargetno;alt=METRES500;	break;
 			case	AM_RECON:		act=wpreccyno;			break;
-			default:				act=wpbombno;			break;
+			default:				act=wpbombno;			break;	
 			}
 			UniqueID	tof,tol,ipf,ipl,ldf,ldl;
 			GetKeyMainWPs(tof,tol,ipf,ipl,ldf,ldl);
@@ -2267,7 +2265,7 @@ UniqueID	Profile::AddAttackWP(int targetnum,Profile::AttackMethod duty,int alt)
 			w->range=METRES7000;
 			wpsused++;
 
-
+	
 		}
 	break;
 	default:
@@ -2304,7 +2302,7 @@ UniqueID	Profile::MakePrimaryRoute(int Y)
 	//	H:	primary home-base
 	//	T:	target
 	//	E:	egress
-	//These are the globrefs
+	//These are the globrefs 
 		//Pack_Takeoff
 		//Pack_Target
 		//Pack_Regroup
@@ -2416,7 +2414,7 @@ UniqueID	Profile::MakeInterceptWP(SavedGlobrefs a,SavedGlobrefs b,int percent,	U
 bool	Profile::GetKeyMainWPs(UniqueID& firsttakeoff,UniqueID &takeoffarea,UniqueID& targetarea,UniqueID& regrouparea,UniqueID& landingarea,UniqueID& lastlanding)
 {	//if there are no target waypoints then sets TARGET as all 4 and returns false
 	UniqueID u=route;
-	if (!u)
+	if (!u) 
 		return false;
 	info_waypoint* w=*Persons2::ConvertPtrUID(u);
 	if (w->applygroup.Evaluate()==ENABLE_COMPLEX_VAL)
@@ -2436,7 +2434,7 @@ bool	Profile::GetKeyMainWPs(UniqueID& firsttakeoff,UniqueID &takeoffarea,UniqueI
 	while(w->uid.Evaluate()!=-SGR_WPP_IP)// &&	w->uid.Evaluate()!=-SGR_WPP_IP)
 		w=*Persons2::ConvertPtrUID(u=w->nextwp);
 	targetarea=u;
-
+	
 	do{
 		u=w->NextWP(-1);
 		w=*Persons2::ConvertPtrUID(u);
@@ -2457,7 +2455,7 @@ bool	Profile::GetKeyMainWPs(UniqueID& firsttakeoff,UniqueID &takeoffarea,UniqueI
 				lastlanding=u;
 		w=*Persons2::ConvertPtrUID(u=w->nextwp);
 	}
-
+		
 	return true;
 
 
@@ -2478,7 +2476,7 @@ bool	Profile::GetKeyMainWPs(UniqueID& firsttakeoff,UniqueID &takeoffarea,UniqueI
 //DEADCODE DAW 14/03/00 	while(w->uid.Evaluate()!=-SGR_WPP_Egress)
 //DEADCODE DAW 14/03/00 	{
 //DEADCODE DAW 14/03/00 		if (w->wpact.Evaluate()!=GOT_UNDEFINED_VAL)
-//DEADCODE DAW 14/03/00 			if(		w->wpact.Evaluate()==wpstoploopchkno
+//DEADCODE DAW 14/03/00 			if(		w->wpact.Evaluate()==wpstoploopchkno 
 //DEADCODE DAW 14/03/00 				||	w->wpact.Evaluate()==wpsecondaryno)
 //DEADCODE DAW 14/03/00 				if (firstendpatrol)
 //DEADCODE DAW 14/03/00 					lastendpatrol=u;
@@ -2517,7 +2515,7 @@ UniqueID	Profile::FindSquadWpBetween(UniqueID wp1,UniqueID wp2,int group)
 //DEADCODE DAW 25/11/99 				if (elt==-1 || w->applyelt.Evaluate()==GOT_UNDEFINED_VAL
 //DEADCODE DAW 25/11/99 					||	elt==w->applyelt.Evaluate())
 					return(u);
-		if (u==wp2)
+		if (u==wp2)	
 			return(UID_Null);
 		w=*Persons2::ConvertPtrUID(u=w->nextwp);
 	}
@@ -2537,7 +2535,7 @@ UniqueID	Profile::FindTargetWpBetween(UniqueID wp1,UniqueID wp2,SavedGlobrefs ta
 //DEADCODE DAW 25/11/99 				if (elt==-1 || w->applyelt.Evaluate()==GOT_UNDEFINED_VAL
 //DEADCODE DAW 25/11/99 					||	elt==w->applyelt.Evaluate())
 					return(u);
-		if (u==wp2)
+		if (u==wp2)	
 			return(UID_Null);
 		w=*Persons2::ConvertPtrUID(u=w->nextwp);
 	}
@@ -2559,7 +2557,7 @@ UniqueID	Profile::FindSquadWpAfter(UniqueID wp1,UniqueID wp2,int group)
 //DEADCODE DAW 25/11/99 				if (elt==-1 || w->applyelt.Evaluate()==GOT_UNDEFINED_VAL
 //DEADCODE DAW 25/11/99 					||	elt==w->applyelt.Evaluate())
 					return(u);
-		if (u==wp2)
+		if (u==wp2)	
 			return(UID_Null);
 		w=*Persons2::ConvertPtrUID(u=w->nextwp);
 	}
@@ -2580,7 +2578,7 @@ UniqueID	Profile::FindTargetWpAfter(UniqueID wp1,UniqueID wp2,SavedGlobrefs targ
 //DEADCODE DAW 25/11/99 				if (elt==-1 || w->applyelt.Evaluate()==GOT_UNDEFINED_VAL
 //DEADCODE DAW 25/11/99 					||	elt==w->applyelt.Evaluate())
 					return(u);
-		if (u==wp2)
+		if (u==wp2)	
 			return(UID_Null);
 		w=*Persons2::ConvertPtrUID(u=w->nextwp);
 	}
@@ -2654,7 +2652,7 @@ UniqueID	Profile::InsertWpBetween(UniqueID&wp1,UniqueID&wp2,SavedGlobrefs target
 		w->uid=-setgr;
 	w->applygroup=group;
 	w->applywave=wave;
-//mesh the new waypoint in:
+//mesh the new waypoint in:	
 	UniqueID	pu;
 	pu=wp1;
 	if (wp1==NULL)
@@ -2714,9 +2712,9 @@ int	Profile::CalcRoutePositionsAndTime(int preferredtime,SavedGlobrefs faketo,bo
 //DeadCode MS 28Oct100 	if (preferredtime > primarytargetETA)
 	if (UniqueID(packagetarget[0])<SagBANDEND || preferredtime > primarytargetETA)
 	{
-		int delta=primarytargetETA-preferredtime;
+		int delta=primarytargetETA-preferredtime; 
 		absrvtime-=delta;
-		primarytargetETA -=delta;
+		primarytargetETA -=delta; 
 	}
 	else
 		if (preferredtime)
@@ -2746,7 +2744,7 @@ int	Profile::CalcRoutePositionsAndTime(int preferredtime,SavedGlobrefs faketo,bo
 	int fuel;														//rdh 17Jul00
 	SquadNum sq;
 	if ((sq=CalcFuel(UID_NULL, fuel, fuel,false))!=SQ_ZERO)
-		if (	!Todays_Packages.squelchfuelwarning
+		if (	!Todays_Packages.squelchfuelwarning 
 			&& (Todays_Packages.localplayer==NAT_RAF)==(attackmethod<AM_LWPACKS)
 			)
 		Todays_Packages.MessageBoxFuelWarning(sq);
@@ -2867,16 +2865,16 @@ void	Profile::SetGlobRefsForRoute(UniqueID wpuidstart)
 			wpuid=w->nextwp;
 		}
 	}while (donesome);
-	if (failedsome)
-		_Error.EmitSysErr("Couldn't fix up recursive waypoints after %i passes",passes);
+	if (failedsome)	
+		_Error.EmitSysErr("Couldn't fix up recursive waypoints after %i passes",passes); 
 }
 
 //TEMPCODE RDH 03/03/00 Float		Profile::InterceptDistance(Coords3D& interceptor,Coords3D& targetstart,Coords3D& targetend,int	interceptorspeed,int targetspeed)
 //TEMPCODE RDH 03/03/00 {
-//TEMPCODE RDH 03/03/00
-//TEMPCODE RDH 03/03/00
+//TEMPCODE RDH 03/03/00 
+//TEMPCODE RDH 03/03/00 
 //TEMPCODE RDH 03/03/00 }
-//TEMPCODE RDH 03/03/00
+//TEMPCODE RDH 03/03/00 
 
 //////////////////////////////////////////////////////////////////////
 //
@@ -2896,7 +2894,7 @@ bool	Profile::SetPredictedPointFromETA(SavedGlobrefs faketo,bool recalcfromETA)
 	//
 	//
 	info_itemSPtr p=Persons2::ConvertPtrUID(packagetarget[0]);
-	if (p->Status.size>=MOBILESIZE)
+	if (p->Status.size>=MOBILESIZE) 
 		if (recalcfromETA || p->Status.size<AIRSTRUCSIZE)
 		{	//Convoys. Faketo is effectively a boolean, but now the convoys only travel a few miles in 1 hour, anyway!
 			int	ptetadelta=0;
@@ -2959,7 +2957,7 @@ bool	Profile::SetPredictedPointFromETA(SavedGlobrefs faketo,bool recalcfromETA)
 				{	//gone past fake point and expected to find it. Go back to start condition
 
 
-
+					
 					startpos=g->World;
 					starttime=MMC.currtime;
 					w=Persons2::ConvertPtrUID(g->wpref);
@@ -2985,14 +2983,14 @@ bool	Profile::SetPredictedPointFromETA(SavedGlobrefs faketo,bool recalcfromETA)
 				estloc.Z+=dist*ch;
 				//now need to find est point waypoint
 				UniqueID wu=route;
-				info_waypointPtr wp=NULL;
+				info_waypointPtr wp=NULL; 
 				while (wu)
 				{
 					wp=Persons2::ConvertPtrUID(wu);
 					breakif(wp->uid.Evaluate()==-SGR_WPP_EstPoint);
 					wu=wp->nextwp;
 				}
-				assert(wu && wp && wp->uid.Evaluate()==-SGR_WPP_EstPoint);
+				assert(wu && wp && wp->uid.Evaluate() == -SGR_WPP_EstPoint);
 				sh=Math_Lib.DistanceSquared(estloc.X-wp->World.X,estloc.Z-wp->World.Z);
 				wp->World.X=estloc.X;
 				wp->World.Z=estloc.Z;
@@ -3006,7 +3004,7 @@ bool	Profile::SetPredictedPointFromETA(SavedGlobrefs faketo,bool recalcfromETA)
 		}
 		else
 		{	//it is an aircraft we are intercepting
-
+			
 			int	sqnum=-10,trgnum=-10;
 			info_grndgrpPtr g=*p;
 			UniqueID wu=g->wpref;
@@ -3020,7 +3018,7 @@ bool	Profile::SetPredictedPointFromETA(SavedGlobrefs faketo,bool recalcfromETA)
 					wu=(Todays_Packages[p].route);
 				if (Todays_Packages[p][s].takeofftime>starttime)
 					starttime=Todays_Packages[p][s].takeofftime;
-
+				
 			}}
 			UniqueID buwu=wu;
 			info_waypointPtr w=Persons2::ConvertPtrUID(wu);
@@ -3049,7 +3047,7 @@ bool	Profile::SetPredictedPointFromETA(SavedGlobrefs faketo,bool recalcfromETA)
 							eta=localstarttime+d/vel;
 						}
 						localstarttime=eta;
-
+						
 						wu=w2->NextWP(sqnum,trgnum);
 						if (w2->uid.Evaluate()==-faketo)
 						{
@@ -3064,7 +3062,7 @@ bool	Profile::SetPredictedPointFromETA(SavedGlobrefs faketo,bool recalcfromETA)
 					if (!wu)	//Cludge number 38: If already past the faketo then need to triangulate!
 						faketo=SGR_Pack_BlankZero;
 				//Cludge number 37 (but who is counting?):
-				//If we are using faketo to generate to intercept
+				//If we are using faketo to generate to intercept 
 				//then we should offer the position and ETA of the fake as a first guess
 				//
 				//
@@ -3073,7 +3071,7 @@ bool	Profile::SetPredictedPointFromETA(SavedGlobrefs faketo,bool recalcfromETA)
 					intercepttime=starttime;
 				}
 				if (!faketo)
-				{
+				{	
 					wu=buwu;
 					w=Persons2::ConvertPtrUID(wu);
 					starttime=bustarttime;
@@ -3097,7 +3095,7 @@ bool	Profile::SetPredictedPointFromETA(SavedGlobrefs faketo,bool recalcfromETA)
 						interceptorstartpos=Persons2::ConvertPtrUID(squadlist[0].Squadron().homeairfield).World;
 					ANGLES directheading,directpitch;
 					SLong interceptorrange;
-
+					
 					Math_Lib.HighIntercept(startpos.X-interceptorstartpos.X,startpos.Y-interceptorstartpos.Y,startpos.Z-interceptorstartpos.Z,interceptorrange,directheading,directpitch);
 					directpitch=directpitch+directpitch;	//meeting half-way
 					int	interceptorvel=interceptoritem->GetCruiseAt(interceptorstartpos,directpitch);
@@ -3109,14 +3107,14 @@ bool	Profile::SetPredictedPointFromETA(SavedGlobrefs faketo,bool recalcfromETA)
 					interceptorrange*=c*targetvel/(Float(targetvel)+interceptorvel);
 					if(interceptorrange<0)
 						interceptorrange=-interceptorrange;
-					//Apply that up route selected
+					//Apply that up route selected 
 					Float ratio=Float(interceptorrange)/d;
 					startpos.X+=(w->World.X-startpos.X)*ratio;
 					startpos.Z+=(w->World.Z-startpos.Z)*ratio;
 					intercepttime=starttime+interceptorrange/targetvel;
 				}
 				UniqueID wu=route;
-				info_waypointPtr wp=NULL;
+				info_waypointPtr wp=NULL; 
 				while (wu)
 				{
 					wp=Persons2::ConvertPtrUID(wu);
@@ -3205,7 +3203,7 @@ int Profile::CalcFuel(struct COORDS3D * last,const struct COORDS3D * wp,int lead
 	Float FuelUsageRate;
 //DEADCODE  21/02/00 	Float reldensity;
 	FuelUsageRate = 0.75*1.3;		//1.3*0.75		1.3 fudge factor, 0.75 is throttle setting for cruise
-
+	
 	int type=(esctype);
 	ClassPtr actype;
 	actype = Plane_Type_Translate[type][0];
@@ -3223,7 +3221,7 @@ int Profile::CalcFuel(struct COORDS3D * last,const struct COORDS3D * wp,int lead
 	else if (deltaY < -10000)
 		  FuelUsageRate = 0.1;
 	else
-		FuelUsageRate = 0.75;
+		FuelUsageRate = 0.75; 
 
 	if(actype->version == 2)
 		FuelUsageRate *= 0.65;
@@ -3262,7 +3260,7 @@ int Profile::CalcHoriAndClimbTime(const struct COORDS3D * last,const struct COOR
 	actype = Plane_Type_Translate[type][0];
 
 	UWord p = (UWord) (actype->bestclimbpitch.a);
-
+	
 	p *= (9000 - StoresDrag) / 9000;
 	p -= StoresDrag / 10;
 
@@ -3287,12 +3285,12 @@ int Profile::CalcHoriAndClimbTime(const struct COORDS3D * last,const struct COOR
 		climbdist = dist;
 		horidist = 0;
 	}
-
+	
 	//assume descent time is same as for climb
 	climbtime = (100 * climbdist) / (actype->bestclimbvel);
 
 //DeadCode CSB 16/06/99		horitime = horidist / (actype->cruisevel * 10);		//  cm and mm/cs
-
+	
 	int ResCruiseVel = actype->cruisevel;
 
 //DEADCODE CSB 10/01/00 	if((actype->visible == F51) || (actype->visible == YAK9))
@@ -3311,14 +3309,14 @@ int Profile::CalcHoriAndClimbTime(const struct COORDS3D * last,const struct COOR
 //DeadCode CSB 18/06/99		ResCruiseVel -= (715 * StoresDrag) / 1000;
 
 	SLong MaxAlt = wp->Y;
-	if(last->Y > wp->Y)
+	if(last->Y > wp->Y) 
 		MaxAlt = last->Y;
 
 	if((Save_Data.flightdifficulty [FD_WINDEFFECTS]))// && (MaxAlt > 1036333))		// 34,000 ft	//CSB 28Jun00
 	{
 		SLong wx, wy, wz;
 		MMC.Sky.GetWind(MaxAlt, wx, wy, wz);
-
+		
 		FP WindComp = 0;
 		if(dist)
 			WindComp = ((FP)x * (FP)wx + (FP)z * (FP)wz) / (FP)dist;
@@ -3326,7 +3324,7 @@ int Profile::CalcHoriAndClimbTime(const struct COORDS3D * last,const struct COOR
 	}
 
 
-	horitime = (100 * horidist) / (ResCruiseVel);
+	horitime = (100 * horidist) / (ResCruiseVel);		
 
 	if(last->Y == 0)													//CSB 5Jul00
 		climbtime += 120;												//CSB 5Jul00
@@ -3341,7 +3339,7 @@ int Profile::CalcHoriAndClimbTime(const struct COORDS3D * last,const struct COOR
 
 int Profile::ValidateTime(CString* buffer, int packnum, int wavenum)
 {
-
+	
 	int time = 0;
 //DEADCODE DAW 29/01/00 		if  (	(buffer->GetLength() > 0 )
 //DEADCODE DAW 29/01/00 			&&				(buffer->GetLength() < 6 )			)
@@ -3351,7 +3349,7 @@ int Profile::ValidateTime(CString* buffer, int packnum, int wavenum)
 //DEADCODE DAW 29/01/00 			char*	hr = buff;
 //DEADCODE DAW 29/01/00 			char*	cnt = hr;
 //DEADCODE DAW 29/01/00 			char*	min;
-//DEADCODE DAW 29/01/00
+//DEADCODE DAW 29/01/00 
 //DEADCODE DAW 29/01/00 			while ( (*cnt >= 48) && (*cnt <= 57))
 //DEADCODE DAW 29/01/00 				*cnt++;
 //DEADCODE DAW 29/01/00 			*cnt++ = 0;
@@ -3360,7 +3358,7 @@ int Profile::ValidateTime(CString* buffer, int packnum, int wavenum)
 //DEADCODE DAW 29/01/00 				*cnt++;
 //DEADCODE DAW 29/01/00 			*cnt++ = 0;
 //DEADCODE DAW 29/01/00 			time = atoi(min) + 60 * atoi(hr);
-//DEADCODE DAW 29/01/00
+//DEADCODE DAW 29/01/00 
 //DEADCODE DAW 29/01/00 			int currtime;
 //DEADCODE DAW 29/01/00 			if (MMC.debrief.currperiod == 0)
 //DEADCODE DAW 29/01/00 				currtime = MORNINGPERIODSTART/60;
@@ -3372,7 +3370,7 @@ int Profile::ValidateTime(CString* buffer, int packnum, int wavenum)
 //DEADCODE DAW 29/01/00 				time = currtime;
 //DEADCODE DAW 29/01/00 			if (time > (currtime + (HR02 + MIN30+ MIN5)/60))
 //DEADCODE DAW 29/01/00 				 time = (currtime + (HR02 + MIN30+ MIN5)/60);
-//DEADCODE DAW 29/01/00
+//DEADCODE DAW 29/01/00 
 //DEADCODE DAW 29/01/00 		}
 		return(time);
 
@@ -3383,16 +3381,16 @@ int Profile::ValidateTime(CString* buffer, int packnum, int wavenum)
 // Date:		24/07/00
 // Author:		JIM
 //
-//Description: 	This routine can modify the input field last.Y
+//Description: 	This routine can modify the input field last.Y 
 //				to indicate the actual altitude of the aircraft going through the waypoint
 //////////////////////////////////////////////////////////////////////
-int Profile::CalcTime(struct COORDS3D * last,const struct COORDS3D * wp,int type, int esctype, SWord StoresDrag)	//CSB 18/06/99
+int Profile::CalcTime(struct COORDS3D * last,const struct COORDS3D * wp,int type, int esctype, SWord StoresDrag)	//CSB 18/06/99	
 
 {
 	//if not patrol then add 5 minutes around target
-	//patrol is handled retrospectively when fuel at end is known
+	//patrol is handled retrospectively when fuel at end is known 
 	SLong horitime, climbtime;
-	int newY= CalcHoriAndClimbTime(last, wp, horitime, climbtime, type, esctype, StoresDrag);					//CSB 18/06/99
+	int newY= CalcHoriAndClimbTime(last, wp, horitime, climbtime, type, esctype, StoresDrag);					//CSB 18/06/99	
 	last->Y=newY;
 
 	int time = horitime+climbtime;
@@ -3416,10 +3414,10 @@ int Profile::CalcTime(struct COORDS3D * last,const struct COORDS3D * wp,int type
 //	If bomber,	mingrupp = 30 (equated)
 //	If fighter,	mingrupp = 36
 //	If input value is <3 staffel convert to a/c
-//
+//	
 //	For each gruppe
 //		If	gruppe is interesting type
-//		And	gruppe is not busy
+//		And	gruppe is not busy	
 //		And	reconn matches
 //			If gruppe has < mingrupp a/c
 //			{
@@ -3437,7 +3435,7 @@ bool PackageList::AcAvailable(AMType* amtype,int actype, int actype2,int& acnum,
 	//this function is used for two purposes!
 	//in one we just want the free aircraft available
 	//in another we want the free plus those already committed to the package
-	int	mingruppeac=Gruppen::MIN_GRUPPEAC;// = 30,MIN_GRUPPEFIGHTERS
+	int	mingruppeac=Gruppen::MIN_GRUPPEAC;// = 30,MIN_GRUPPEFIGHTERS	
 	if (actype2==FIGHTER)
 		mingruppeac=Gruppen::MIN_GRUPPEFIGHTERS;
 	if (includecommitted && (amtype->acnum>0 || amtype->squadnum!=0))
@@ -3519,7 +3517,7 @@ bool PackageList::AcAvailable(AMType* amtype,int actype, int actype2,int& acnum,
 	{
 		if ((acnum > amtype->acnum) ||  (squadnum > 0))
 			avail = true;
-	}else
+	}else 
 		if (squadnum >= amtype->squadnum)
 			avail = true;
 
@@ -3555,10 +3553,9 @@ void	PackageList::SetTaskData()
 	Todays_Packages.taskdata.detached.squadnum = 0;
 
 	 Todays_Packages.taskdata.attackmethod = pk.attackmethod;
-	{
+
 	for (int j = 0; j < STRIKEOPTIONS;j++)
 	   Todays_Packages.taskdata.strikeactypes[j] = NOTDEFINED;
-	}
 	for (int j = 0; j < ESCORTOPTIONS;j++)
 	   Todays_Packages.taskdata.escortactypes[j] = NOTDEFINED;
 	int i=0, gruppe, actype;
@@ -3682,7 +3679,7 @@ void	PackageList::SetTaskData()
 						Todays_Packages.taskdata.escortactypes[0] = MIXED;
 				}
 
-
+				
 				if ((pk[i].method - Profile::AM_ATTACHED)	 < MAX_METHODS)
 					Todays_Packages.taskdata.attached.attackmethods[pk[i].method - Profile::AM_ATTACHED] = true;
 				//attachedgruppe  = pk[i].squadnum;
@@ -3726,7 +3723,7 @@ void	PackageList::SetTaskData()
 
 				if ((pk[i].method - Profile::AM_DETACHED)	 < MAX_METHODS)
 					Todays_Packages.taskdata.detached.attackmethods[pk[i].method - Profile::AM_DETACHED] = true;
-
+			
 		}
 		i++;
 	}
@@ -3744,7 +3741,7 @@ void	PackageList::SetTaskData()
 		{
 			if(AcAvailable(&Todays_Packages.taskdata.strike, MIXED, NOTDEFINED,acnum, squadnum, false))
 				Todays_Packages.taskdata.strikeactypes[i++] = MIXED;
-		}
+		}		
 
 	if (	(Todays_Packages.taskdata.strikeactypes[0] != PT_DO17)
 		&&	(AcAvailable(&Todays_Packages.taskdata.strike, PT_DO17, PT_DO17,acnum, squadnum, false))
@@ -3771,8 +3768,8 @@ void	PackageList::SetTaskData()
 		)
 		Todays_Packages.taskdata.strikeactypes[i++]	= PT_ME110;
 //escort options
-	AcAvailable(&Todays_Packages.taskdata.strike, Todays_Packages.taskdata.strikeactypes[0],
-				Todays_Packages.taskdata.strikeactypes[0], acnum, squadnum, true);
+	AcAvailable(&Todays_Packages.taskdata.strike, Todays_Packages.taskdata.strikeactypes[0], 
+				Todays_Packages.taskdata.strikeactypes[0], acnum, squadnum, true); 
 
 	Todays_Packages.taskdata.strike.maxac = acnum;
 	Todays_Packages.taskdata.strike.maxsquad = squadnum;
@@ -3780,16 +3777,16 @@ void	PackageList::SetTaskData()
 //DEADCODE DAW 07/04/00 			&&	(Todays_Packages.taskdata.escortactypes[0] != PT_ME109)
 //DEADCODE DAW 07/04/00 		)
 //DEADCODE DAW 07/04/00 		Todays_Packages.taskdata.escortactypes[i++]	= PT_ME109;
-//DEADCODE DAW 07/04/00
+//DEADCODE DAW 07/04/00 
 //DEADCODE DAW 07/04/00 	if (		(AcAvailable(&Todays_Packages.taskdata.strike, PT_ME110, PT_ME110,acnum, squadnum, false))
 //DEADCODE DAW 07/04/00 			&&	(Todays_Packages.taskdata.escortactypes[0] != PT_ME110)
 //DEADCODE DAW 07/04/00 		)
 //DEADCODE DAW 07/04/00 		Todays_Packages.taskdata.escortactypes[i++]	= PT_ME110;
-//DEADCODE DAW 07/04/00
+//DEADCODE DAW 07/04/00 
 
 
 
-//DEADCODE RDH 07/04/00 //using these attached fields for general purpose
+//DEADCODE RDH 07/04/00 //using these attached fields for general purpose 
 //DEADCODE RDH 07/04/00 	int escorttype = Todays_Packages.taskdata.escortactypes[0];
 //DEADCODE RDH 07/04/00 	if (escorttype == -1)
 //DEADCODE RDH 07/04/00 			escorttype = PT_ME109;
@@ -3797,7 +3794,7 @@ void	PackageList::SetTaskData()
 	//work out the total fighter figures
 	int fighters = 0;
 	int fightersquads = 0;
-
+		
 	if (Todays_Packages.taskdata.returned.acnum <= 0)
 	{
 		fightersquads +=Todays_Packages.taskdata.returned.squadnum;
@@ -3826,7 +3823,7 @@ void	PackageList::SetTaskData()
 
 	Todays_Packages.taskdata.totalfighter.squadnum = fightersquads;
 	Todays_Packages.taskdata.totalfighter.acnum = fighters;
-	Todays_Packages.taskdata.totalfighter.realacnum =
+	Todays_Packages.taskdata.totalfighter.realacnum = 
 		Todays_Packages.taskdata.returned.realacnum +
 		Todays_Packages.taskdata.attached.realacnum +
 		Todays_Packages.taskdata.detached.realacnum;
@@ -3848,9 +3845,9 @@ void	PackageList::SetTaskData()
 		if (AcAvailable(&Todays_Packages.taskdata.totalfighter, PT_ME110,	FIGHTER, acnum, squadnum, false))
 			Todays_Packages.taskdata.escortactypes[i++] = PT_ME110;   //this mixed is mix with current fighter type and will always succeed.
 
+	
 
-
-//using these attached fields for general purpose
+//using these attached fields for general purpose 
 	int escorttype = Todays_Packages.taskdata.escortactypes[0];
 //DeadCode JIM 15Oct00 	int escorttype2 = Todays_Packages.taskdata.escortactypes[0];
 	if ((escorttype == -1))
@@ -3860,7 +3857,7 @@ void	PackageList::SetTaskData()
 //DeadCode JIM 15Oct00 			escorttype2 = PT_ME110;
 //DeadCode JIM 15Oct00 	}
 
-	AcAvailable(&Todays_Packages.taskdata.totalfighter, escorttype,
+	AcAvailable(&Todays_Packages.taskdata.totalfighter, escorttype, 
 		FIGHTER, acnum, squadnum, true);
 	Todays_Packages.taskdata.attached.maxac = acnum;
 	Todays_Packages.taskdata.attached.maxsquad = squadnum;
@@ -3869,7 +3866,7 @@ void	PackageList::SetTaskData()
 
 //DEADCODE RDH 02/04/00 	 Todays_Packages.taskdata.attackmethod = pk.attackmethod - Profile::AM_DIVEBOMB;
 	 Todays_Packages.taskdata.attackmethod = pk.attackmethod;
-
+		
 }
 
 
@@ -3974,7 +3971,7 @@ bool	Profile::IncreaseSubSquadronToSquadron(Profile::AttackMethod attackmethod)
 	}
 	//sqnum now contains the number of squadrons of the required type
 	//if number  == 1 then need to make it up to a full sq
-
+	
 	if (sqnum ==1)
 	{
 
@@ -4098,7 +4095,7 @@ void	PackageList::SetRAFTaskData()
 	Todays_Packages.taskdata.attached.maxac = acnum;
 	Todays_Packages.taskdata.attached.maxsquad = squadnum;
 
-
+		
 }
 
 
@@ -4135,7 +4132,7 @@ void	PackageList::ClearPack(int p)
 //DeadCode JIM 25Oct00 	pack[p].redo = false;
 //DeadCode JIM 25Oct00 	pack[p].edited = false;
 	pack[p].flags=0;
-	pack[p].packagetakeoff = UID_NULL;
+	pack[p].packagetakeoff = UID_NULL;							
 	pack[p].packagetarget[0] = UID_NULL;
 	pack[p].packagetarget[1] = UID_NULL;
 	pack[p].packagetarget[2] = UID_NULL;
@@ -4207,7 +4204,7 @@ int Profile::FindEarliestPrimaryTargetETA(int& absrvtime, int& slowestsq)
 	int targettime = 0, slowestrvtoeta = 0;
 	int rvtime = 0;
 	int lastrvtime = 0;
-
+	
 	while (i < squadlist)
 	{
 		CalcWPRelTimes(i, targettime, rvtime);		//these are relative to take-off at midnight
@@ -4284,7 +4281,7 @@ int	Profile::Squad::FixTakeOffTime(int absrvtime,int rvtime)
 //DeadCode CSB 2Aug00 		AirStruc::GenWaypointOffsetSub(formtype,wos,(method&AM_GROUPMASK)==AM_ATTACHED);
 //DeadCode CSB 2Aug00 		int waypointdelta=wos.deltatime/100; //+ve means arrive early	//JIM 25Jul00
 //DeadCode CSB 2Aug00 		takeofftime = absrvtime - rvtime-waypointdelta;	//JIM 24Jul00
-//DeadCode CSB 2Aug00
+//DeadCode CSB 2Aug00 
 //DeadCode CSB 2Aug00 		UniqueID wpuid = takeoffwp;
 //DeadCode CSB 2Aug00 		info_waypoint* wp=*Persons2::ConvertPtrUID(wpuid);
 //DeadCode CSB 2Aug00 		wp->etas = takeofftime;	//etas;				//CSB 26Jul00
@@ -4348,7 +4345,7 @@ void Profile::CalcWPRelTimes(int sqnum, int& targettime, int& rvtime)
 		next=wp->World;
 		if (wp->nextwp)
 			next.Y+=deltawpalt;
-		dtime=Profile::CalcTime(&last,&next,actype,actype,StoresDrag);			//CSB 18/06/99
+		dtime=Profile::CalcTime(&last,&next,actype,actype,StoresDrag);			//CSB 18/06/99	
 
 		wp->etas = lasttime + dtime;
 		if 	(wpuid == ipf)
@@ -4378,7 +4375,7 @@ int Profile::CalcWPAbsTimes(int absrvtime, int slowestsq)
 	info_waypointPtr wp,ipwp,egwp,trgwp=NULL,estwp;
 //			case	AM_INTERCEPT:	act=wpengagetargetno;	break;
 //			case	AM_RECON:		act=wpreccyno;			break;
-//			default:				act=wpbombno;			break;
+//			default:				act=wpbombno;			break;	
 	for (wp=Persons2::ConvertPtrUID(ref);ref!=ldarea;wp=Persons2::ConvertPtrUID(ref=wp->nextwp))
 	{
 		if (wp->applywave==0 &&	wp->uid==-SGR_WPC_Target)
@@ -4429,7 +4426,7 @@ int Profile::CalcWPAbsTimes(int absrvtime, int slowestsq)
 					bodywps++;
 					wp=Persons2::ConvertPtrUID(ref=wp->nextwp);
 					lasttime=wp->etas;
-					towp->etas= wp->etas;	//+ve is from fighter RV  x0r ???
+					towp->etas=wp->etas;	//+ve is from fighter RV
 				}
 				bool quitloop=false;
 				for (wp=Persons2::ConvertPtrUID(ref=wp->nextwp);!quitloop;wp=Persons2::ConvertPtrUID(ref=wp->nextwp))
@@ -4505,7 +4502,7 @@ int Profile::CalcWPAbsTimes(int absrvtime, int slowestsq)
 		wp->etas=currtime;
 	}
 	currtime=currtime+wpdeltas[bodywps++];	//do IP
-	wp->etas=currtime;
+	wp->etas=currtime;							
 	int	targettimes[15]={0};					//do target area
 	int	iptime=currtime;
 	for (wp=Persons2::ConvertPtrUID(ref=wp->nextwp);ref!=regroupuid;wp=Persons2::ConvertPtrUID(ref=wp->nextwp))
@@ -4605,7 +4602,7 @@ bool	Profile::Remove109ReturnWP()
 		wp=Persons2::ConvertPtrUID(udogleg=wp->nextwp);
 	UniqueID	uIP=udogleg,ureturn=UID_NULL,preureturn=UID_NULL;
 	while(wp->uid.Evaluate()!=-SGR_WPP_IP)
-	{
+	{	
 //		On map screen, World X,Y,Z is absolute!
 //		if (wp->target.Evaluate()!=ENABLE_COMPLEX_VAL)
 //			lastpos+=(Persons2::ConvertPtrUID(UniqueID(wp->target.Evaluate())).World;
@@ -4643,7 +4640,7 @@ bool	Profile::Insert109ReturnWP(int reqdistcm)
 	int distdogip=0;
 	UniqueID	uIP=udogleg,ureturn=UID_NULL,preureturn=UID_NULL;
 	while(wp->uid.Evaluate()!=-SGR_WPP_IP)
-	{
+	{	
 		Coords3D	lastpos=wp->World;
 //		On map screen, World X,Y,Z is absolute!
 //		if (wp->target.Evaluate()!=ENABLE_COMPLEX_VAL)
@@ -4792,7 +4789,7 @@ bool	Profile::RemoveOverExtendedFlights()
 	return badones!=0;
 }
 
-SquadNum Profile::CalcFuel(UniqueID uid, int& strikereqfueltime, int& escortreqfueltime,bool usetargets)
+SquadNum Profile::CalcFuel(UniqueID uid, int& strikereqfueltime, int& escortreqfueltime,bool usetargets)	
 {//returns one squad that failed  if there is NOT sufficient fuel for route
  //for allsquads. Don't consider returing escort though
  //reqfueltime returns remaining flying time at specified uid
@@ -4811,7 +4808,7 @@ SquadNum Profile::CalcFuel(UniqueID uid, int& strikereqfueltime, int& escortreqf
 		if (usetargets)
 			targnum=squadlist[i].targetindex;
 
-		if  (		!CalcFuel(i,targnum, uid, reqfueltime, fueltime)
+		if  (		!CalcFuel(i,targnum, uid, reqfueltime, fueltime)	
 			)
 		{
 			if (squadlist[i].method < AM_ESCORTTYPES)
@@ -4841,7 +4838,7 @@ SquadNum Profile::CalcFuel(UniqueID uid, int& strikereqfueltime, int& escortreqf
 //DeadCode RDH 28Jun00 				if (strikereqfueltime < 0)
 //DeadCode RDH 28Jun00 					strikereqfueltime = 0;
 			}
-		}else
+		}else	
 		{
 			if 	(		(reqfueltime != -1)
 					&&
@@ -4879,7 +4876,7 @@ SquadNum Profile::CalcFuel(UniqueID uid, int& strikereqfueltime, int& escortreqf
 					lowestreqfueltime = fueltime;
 					lowestsq = i;
 				}
-//DeadCode JIM 24Oct00 				squadlist[i].targetindex = ti;
+//DeadCode JIM 24Oct00 				squadlist[i].targetindex = ti; 
 			}
 			i++;
 		}
@@ -4912,8 +4909,8 @@ bool Profile::CalcFuel(int sqnum, UniqueID uid, int& reqfueltime, int& fueltime)
 {
 	return CalcFuel(sqnum,squadlist[sqnum].targetindex,uid,reqfueltime,fueltime);
 }
-
-bool Profile::CalcFuel(int sqnum, int trgnum, UniqueID uid, int& reqfueltime, int& fueltime)
+	
+bool Profile::CalcFuel(int sqnum, int trgnum, UniqueID uid, int& reqfueltime, int& fueltime)	
 {//returns true if there is sufficient fuel for route
  //reqfueltime returns remaining flying time at specified uid
 //DeadCode RDH 30Jun00 		UniqueID wpuid = route;
@@ -4942,7 +4939,7 @@ bool Profile::CalcFuel(int sqnum, int trgnum, UniqueID uid, int& reqfueltime, in
 	int reqfuel = fuel;
 	int orgfuel = reqfuel;
 
-	fuel = fuel - 1000000;//allowance for take-off and landing
+	fuel = fuel - 1000000;//allowance for take-off and landing	
 
 	UniqueID wpuid = squadlist[sqnum].takeoffwp;
   	if (wpuid == uid)
@@ -4967,10 +4964,10 @@ bool Profile::CalcFuel(int sqnum, int trgnum, UniqueID uid, int& reqfueltime, in
 		if (wp->uid==-SGR_WPC_Target && squadlist[sqnum].targetindex==0)
 		{
 			faketarget.Y=wp->World.Y;
- 			fuel -=Profile::CalcFuel(&last, &faketarget, type, type, StoresDrag);			//CSB 18/06/99
+ 			fuel -=Profile::CalcFuel(&last, &faketarget, type, type, StoresDrag);			//CSB 18/06/99			
 		}
 		else
- 			fuel -=Profile::CalcFuel(&last, &wp->World, type, type, StoresDrag);			//CSB 18/06/99
+ 			fuel -=Profile::CalcFuel(&last, &wp->World, type, type, StoresDrag);			//CSB 18/06/99			
  		if (wpuid == uid)
 			reqfuel = fuel;
 
@@ -4995,7 +4992,7 @@ bool Profile::CalcFuel(int sqnum, int trgnum, UniqueID uid, int& reqfueltime, in
 
 //DeadCode RDH 28Jun00 	if (fueltime < 0)
 //DeadCode RDH 28Jun00 		fueltime = 0;
-//DeadCode RDH 28Jun00
+//DeadCode RDH 28Jun00 
 	if (fueltime > 0)
 		return (true);
 	else
@@ -5015,7 +5012,7 @@ bool Profile::CalcFuel(int sqnum, int trgnum, UniqueID uid, int& reqfueltime, in
 //				//If time is negative then this squad couldn't do the run 'straight'
 //
 //////////////////////////////////////////////////////////////////////
-Float Profile::Calc109FuelShortCut(int sqnum)
+Float Profile::Calc109FuelShortCut(int sqnum)	
 {
 
 //DeadCode JIM 20Oct00 	int i=0;
@@ -5038,7 +5035,7 @@ Float Profile::Calc109FuelShortCut(int sqnum)
 	if (type==PT_ME109 &&  Save_Data.flightdifficulty[FD_109FUEL])
 		fuel*=1.75;														//JIM 24Jul00
 
-	fuel = fuel - 1000000;//allowance for take-off and landing
+	fuel = fuel - 1000000;//allowance for take-off and landing	
 
 	UniqueID wpuid = squadlist[sqnum].takeoffwp;
  	info_waypoint* wp=*Persons2::ConvertPtrUID(wpuid);
@@ -5059,9 +5056,9 @@ Float Profile::Calc109FuelShortCut(int sqnum)
 			wp=*Persons2::ConvertPtrUID(wpuid);
 		}
 
+		
 
-
- 		fuel -=Profile::CalcFuel(&last, &wp->World, escortee, type, StoresDrag);			//CSB 18/06/99
+ 		fuel -=Profile::CalcFuel(&last, &wp->World, escortee, type, StoresDrag);			//CSB 18/06/99			
 
 		last.X=wp->World.X;
 		last.Z=wp->World.Z;
@@ -5075,7 +5072,7 @@ Float Profile::Calc109FuelShortCut(int sqnum)
 				escortee=type;
 				wpuid = wp->NextWP(sqnum,-9);
 				if (wpuid)
-					wp=*Persons2::ConvertPtrUID(wpuid);
+					wp=*Persons2::ConvertPtrUID(wpuid);		
 			}while (wpuid && wp->uid!=-SGR_WPP_BombDisperse && wp->uid!=-SGR_WPP_EscDisperse);
 			else
 				wpuid = wp->NextWP(sqnum,-9);
@@ -5084,7 +5081,7 @@ Float Profile::Calc109FuelShortCut(int sqnum)
 //DeadCode RDH 16Aug00 		}while	(		(wp->uid < -SGR_WPP_DogLeg)
 //DeadCode RDH 16Aug00 					&&	(wp->uid > -SGR_WPP_EscDisperse)
 //DeadCode RDH 16Aug00 				);
-//DeadCode RDH 16Aug00
+//DeadCode RDH 16Aug00 
 	}
 
 
@@ -5143,7 +5140,7 @@ bool Profile::GetPackageFromWP(UniqueID req_wpuid,int& pack,int& squad,int& targ
 // Date:		01/03/00
 // Author:		CSB
 //
-//Description:
+//Description: 
 //
 //////////////////////////////////////////////////////////////////////
 UniqueID	Profile::Squad::SetSquad(SquadNum newsquadnum)
@@ -5196,7 +5193,7 @@ UniqueID	Profile::Squad::SetSquad(SquadNum newsquadnum)
 // Author:		JIM
 //
 //Description:	Returns a string description of a waypoint
-//				At this stage I don't have wpname set up,
+//				At this stage I don't have wpname set up, 
 //				but I can use setuid in an equivalent manner.
 //
 //////////////////////////////////////////////////////////////////////
@@ -5239,7 +5236,7 @@ int Profile::WPType(UniqueID u)
 				else
 				switch (uid)
 				{
-					case	SGR_WPC_TakeOff:	text=IDS_WP_TAKEOFF;	break;
+					case	SGR_WPC_TakeOff:	text=IDS_WP_TAKEOFF;	break;	
 					case	SGR_WPC_Target:		text=IDS_WP_TARGET;		break;
 					case	SGR_WPC_PatrolS:	text=IDS_WP_PATROLSTART;break;
 					case	SGR_WPC_PatrolE:	text=IDS_WP_PATROLEND;	break;
@@ -5272,7 +5269,7 @@ int	 PackageList::UsedWaypoints()
 	for (int packnum=0;packnum<Profile::MAX_PACKS;packnum++)
 		rv+=pack[packnum].wpsused;
 	return rv;
-}
+} 
 
 bool	PackageList::CanAddMoreWaypoints(int	packnum)
 {
@@ -5449,7 +5446,7 @@ void	Profile::SquadComplete(int sqline)
 				ag->leader=ENABLE_COMPLEX_VAL;
 		}
 }
-
+	
 bool	PackageList::GetSquadEntry(SquadNum s,int&pk,int&sq)
 {
 	for (int i=0;i<Profile::MAX_PACKS;i++)
@@ -5639,7 +5636,7 @@ bool	Profile::SquadListRef::AllMainInStatus(PackageStatus s)
 //
 //////////////////////////////////////////////////////////////////////
 void	Profile::FixPackageStatus()
-{	//go through each status
+{	//go through each status 
 	if (squadlist[0].status<=PS_ACTIVE_MIN && squadlist.AllInStatus(squadlist[0].status))
 		packagestatus=squadlist[0].status;
 	else
@@ -5720,7 +5717,7 @@ Squadron&	Profile::Squad::Squadron()
 //				Then come any loose escorts, which should be grouped by escort type
 //				Then come the return cover.
 //
-//Enhancements:	We may wish to separate a LW package when playing on the LW side so that
+//Enhancements:	We may wish to separate a LW package when playing on the LW side so that 
 //				the distinct groups can be distinguished.
 //
 //////////////////////////////////////////////////////////////////////
@@ -5737,7 +5734,7 @@ AttackMethodField	Profile::ReorderPackage(AttackMethodField am)
 	am=FixCloseEscortPositions(Profile::AM_RETURNESCORT,am);
 	//now do some reordering...
 	//first, assume no reordering...
-
+	
 	struct Order
 	{
 		UByte	fore[MAX_SQUADS],back[MAX_SQUADS];
@@ -5860,7 +5857,7 @@ int	Profile::RecostRaidList()
 //DEADCODE JIM 21/06/00 	enum	Targets	{};
 
 	MAKEFIELD(Targets,0,15);
-	TargetsField	targetsusedbits={0};
+	TargetsField	targetsusedbits={0};	
 	bool	returnescortused=false;
 	{
 	for (int i=0,max=squadlist;i<max;i++)
@@ -5869,7 +5866,7 @@ int	Profile::RecostRaidList()
 		{
 		case AM_RAF:
 		case AM_LWPACKS:
-			targetsusedbits|=Targets(squadlist[i].targetindex);
+			targetsusedbits|=Targets(squadlist[i].targetindex);	
 		break;
 		case AM_DETACHED:
 			farescorts|=squadlist[i].method;
@@ -6071,7 +6068,7 @@ UniqueID	Profile::FixTakeOffUID()
 		if (packagetakeoff)
 			currentbaseflags=Node_Data[packagetakeoff].truedefenses;
 		if (currentbaseflags==Target::DEF_LW_SE)
-			return packagetakeoff;	  //If already have SE just return it
+			return packagetakeoff;	  //If already have SE just return it 
 
 		if (bombersum&Target::DEF_LW_SE)
 			flagsum=Target::DEF_LW_SE;
@@ -6101,7 +6098,7 @@ UniqueID	Profile::FixTakeOffUID()
 bool Profile::UnitIsFighter(int j, bool me110isbomber)
 {
 	Squadron* sq  = Node_Data[Node_Data.gruppe[j].squadron];
-	PlaneTypeSelect actype = sq->AcType();
+	PlaneTypeSelect actype = sq->AcType(); 
 	if  (		(actype == PT_ME109)
 			||	((actype == PT_ME110)	&&	(!me110isbomber))
 		)
@@ -6113,7 +6110,7 @@ bool Profile::UnitIsFighter(int j, bool me110isbomber)
 bool Profile::UnitIsBomber(int j, bool me110isbomber)
 {
 	Squadron* sq  = Node_Data[Node_Data.gruppe[j].squadron];
-	PlaneTypeSelect actype = sq->AcType();
+	PlaneTypeSelect actype = sq->AcType(); 
 	if  (		(actype == PT_JU88)
 			||	((actype == PT_ME110)	&&	(me110isbomber))
 			||	(actype == PT_DO17)
@@ -6137,7 +6134,7 @@ bool Profile::UnitIsBomber(int j, bool me110isbomber)
 //DeadCode JIM 14Nov00 			)
 //DeadCode JIM 14Nov00 				&&	(!sq->Busy())
 //DeadCode JIM 14Nov00 				&&	(sq->acavail >= Gruppen::MIN_GRUPPEAC)
-//DeadCode JIM 14Nov00
+//DeadCode JIM 14Nov00 
 //DeadCode JIM 14Nov00 		)
 //DeadCode JIM 14Nov00 		avail = true;
 //DeadCode JIM 14Nov00 	return (avail);
@@ -6245,7 +6242,7 @@ int Profile::FirstSquadNotofMethod(Profile::AttackMethod attackmethod)
 }
 
 
-void Profile::CompleteSquadron(Profile::AttackMethod attackmethod)
+void Profile::CompleteSquadron(Profile::AttackMethod attackmethod)	
 {
 	int i = FirstSquadofMethod((Profile::AttackMethod)attackmethod);
 	if (i < squadlist)
@@ -6260,7 +6257,7 @@ void Profile::CompleteSquadron(Profile::AttackMethod attackmethod)
 	}
 
 }
-void Profile::CompleteGroup(Profile::AttackMethod attackmethod, int currsquads)
+void Profile::CompleteGroup(Profile::AttackMethod attackmethod, int currsquads)	
 {
 	int i = FirstSquadofMethod((Profile::AttackMethod)attackmethod);
 	if (i < squadlist)
@@ -6494,11 +6491,11 @@ Profile::BetterRule	 Profile::RAFFindBetterRule()
 // Date:		31/03/00
 // Author:		JIM
 //
-//Description:
+//Description: 
 //
 //////////////////////////////////////////////////////////////////////
 void	Profile::ReassignTo(UniqueID newtarget,bool immediate)
-{
+{	
 
 	//Ignoring non-immediate case for now...
 	packagetarget[0]=newtarget;
@@ -6511,7 +6508,7 @@ void	Profile::ReassignTo(UniqueID newtarget,bool immediate)
 			ip=uw;
 		if (wp->uid.Evaluate()==-SGR_WPP_Egress)
 			eg=uw;
-		if (ip==NULL)
+		if (ip==NULL)	
 			revec=uw;
 		uw=wp->nextwp;
 	}
@@ -6616,7 +6613,7 @@ void	Profile::ReassignTo(UniqueID newtarget,bool immediate)
 // Date:		31/03/00
 // Author:		JIM
 //
-//Description:
+//Description: 
 //
 //////////////////////////////////////////////////////////////////////
 void	Profile::ReturnHome()
@@ -6695,7 +6692,7 @@ char*	PackageList::RaidFormatString(int packnum, int raid)
 //DEADCODE RDH 24/05/00 //DEADCODE RDH 12/05/00 	   sqplanned += pk[i++].squadnum;
 //DEADCODE RDH 24/05/00 //DEADCODE RDH 12/05/00 	}
 //DEADCODE RDH 24/05/00 	return (sqplanned);
-//DEADCODE RDH 24/05/00
+//DEADCODE RDH 24/05/00 
 //DEADCODE RDH 24/05/00 }
 int	PackageList::SquadronsPlanned(int nationality)
 {
@@ -6841,7 +6838,7 @@ bool PackageList::ThousandAcRaid(int& escortratio2)
 	bool thousandac = false;
 	escortratio2 = false;
 	int pack=0;
-
+	
 	while (pack < Profile::MAX_PACKS)
 	{
 		if (Todays_Packages.pack[pack].packagestatus!=Profile::PS_SPARE)
@@ -6911,7 +6908,7 @@ void	Profile::ChangeStrikeAcType(int actype)
 			break;
 		}
 	}
-	int grpreq, acreq=0;
+	int grpreq, acreq=0; 
 	if (	(Todays_Packages.taskdata.strike.acnum >=0)	||	(Todays_Packages.taskdata.strike.squadnum <3))
 	{
 		grpreq = 0;
@@ -6936,7 +6933,7 @@ void	Profile::ChangeStrikeAcType(int actype)
 	AttackMethodField	am=ScanAttackMethods();
 	ReorderPackage(am);
 	CalcRoutePositionsAndTime(primarytargetETA);
-
+	
 }
 AttackMethodField	Profile::ScanAttackMethods()
 {
@@ -6964,7 +6961,7 @@ void	Profile::SquadSetFormType::operator =(FormationTypeIndex newval)
 // Date:		30/10/00
 // Author:		JIM
 //
-//Description:	Either creates handlers for packages that have not been detected yet or
+//Description:	Either creates handlers for packages that have not been detected yet or 
 //				estimates when those packages may become visible
 //////////////////////////////////////////////////////////////////////
 int	PackageList::HandleLaterEvents()
@@ -7010,9 +7007,9 @@ int	PackageList::HandleLaterEvents()
 					{
 						Coords3D pickpoint=wpprev->World,pickpoint2=wp->World;
 						float range=Math_Lib.DistanceSquared(pickpoint.X-pickpoint2.X,pickpoint.Z-pickpoint2.Z);
-						if (	ETA!=wp->etas.Evaluate()
-							&&	wpprev->uid!=-SGR_WPP_IP
-							&&	!Node_Data.GroundVisible(wpprev,&unseen)
+						if (	ETA!=wp->etas.Evaluate() 
+							&&	wpprev->uid!=-SGR_WPP_IP 
+							&&	!Node_Data.GroundVisible(wpprev,&unseen) 
 							&&	unseen!=IllegalBAND
 							)
 						{

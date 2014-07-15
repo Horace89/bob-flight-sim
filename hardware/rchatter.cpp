@@ -6742,7 +6742,7 @@ void	RadioChatter::ProcessVoice(const MESSAGE_STRUC&	msg)
 VoiceType	RadioChatter::GetVoice(const ScriptTables&	theScript, const VoiceType& theVoice)
 {
 	VoiceType	newVoice = theVoice;
-        	fileblock	*theblock;
+        	fileblock	*theblock=nullptr;
 
 	if (newVoice != VOICE_SILENT)										//RJS 26Oct00
 	{

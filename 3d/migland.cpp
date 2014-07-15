@@ -5887,8 +5887,8 @@ CRectangularCache::WhichWay CRectangularCache::GetDirectionFlags2()
 	COORDS3D lcoords;
 
 	lcoords=fselitemp->World;
-	xindex=(lcoords.X>>8+(int)XZ_COL_SCALE) - (bufferbase.X>>8+(int)XZ_COL_SCALE);  // TODO set prentesis properly
-	zindex=(bufferbase.Z>>8+(int)XZ_COL_SCALE) - (lcoords.Z>>8+(int)XZ_COL_SCALE);
+	xindex=(lcoords.X>>(8+(int)XZ_COL_SCALE)) - (bufferbase.X>>(8+(int)XZ_COL_SCALE));  // TODO set prentesis properly
+	zindex=(bufferbase.Z>>(8+(int)XZ_COL_SCALE)) - (lcoords.Z>>(8+(int)XZ_COL_SCALE));
 
 	if (zindex<=MIN_BOUND)	return(WW_north);
 	if (zindex>=MAX_BOUND)	return(WW_south);

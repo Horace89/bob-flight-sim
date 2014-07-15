@@ -2989,48 +2989,48 @@ HRESULT Lib3D::End3DScene()
 //------------------------------------------------------------------------------
 HRESULT Lib3D::EndScene()
 {
-    pD3DDEV7->SetRenderState(D3DRENDERSTATE_FOGCOLOR,gFogColour);
+	pD3DDEV7->SetRenderState(D3DRENDERSTATE_FOGCOLOR, gFogColour);
 
 #ifndef NO_HARD_TNL
-    if ((flags&Flags(F_TNL+F_TNL_EMULATION))!=0)
-    {
-        if (texturedPolys!=NULL)	RenderTLPolyList(texturedPolys);
-        if (transparentPolys!=NULL)	RenderTransTLPolyList(transparentPolys);
-    }
-    else
+	if ((flags&Flags(F_TNL+F_TNL_EMULATION))!=0)
+	{
+		if (texturedPolys!=NULL)	RenderTLPolyList(texturedPolys);
+		if (transparentPolys!=NULL)	RenderTransTLPolyList(transparentPolys);
+	}
+	else
 #endif
-    {
-        InlineSetCurrentMaterial( hLastMaterial, IS_PLAIN );
-        if (lineList!=NULL)
-            RenderLineList(lineList);
-        if (pointList!=NULL)
-            RenderPointList(pointList);
-        if (plainPolys!=NULL)
-        {
-            RenderPlainPolyList(plainPolys);
-        }
-//DeadCode JON 21Aug00 		for ( int i=NUM_Z_LAYERS-1; i>=0; i-- )
-//DeadCode JON 21Aug00 		for ( int i=0; i<NUM_Z_LAYERS; i++ )
-//DeadCode JON 21Aug00 		{
-//DeadCode JON 21Aug00 			if (texturedPolys[i]!=NULL)
-//DeadCode JON 21Aug00 				RenderPolyList(texturedPolys[i]);
-//DeadCode JON 21Aug00 		}
-        if (texturedPolys!=NULL)
-            RenderPolyList(texturedPolys);
-        if (transparentPolys!=NULL)
-            RenderTPolyList(transparentPolys);
-    }
-//TempCode JON 18Sep00 	if (aliasLineList!=NULL)
-//TempCode JON 18Sep00 	{
-//TempCode JON 18Sep00 		InlineSetCurrentMaterial( hLastMaterial, IS_PLAIN );
-//TempCode JON 18Sep00 		pD3DDEV7->SetRenderState(D3DRENDERSTATE_EDGEANTIALIAS,TRUE);
-//TempCode JON 18Sep00 		RenderLineList(aliasLineList);
-//TempCode JON 18Sep00 //DeadCode JON 23Aug00 		pD3DDEV7->SetRenderState(D3DRENDERSTATE_EDGEANTIALIAS,FALSE);
-//TempCode JON 18Sep00 	}
-//	if (transparentPolys!=NULL)	RenderTPolyList(transparentPolys);
+	{
+		InlineSetCurrentMaterial(hLastMaterial, IS_PLAIN);
+		if (lineList != NULL)
+			RenderLineList(lineList);
+		if (pointList != NULL)
+			RenderPointList(pointList);
+		if (plainPolys != NULL)
+		{
+			RenderPlainPolyList(plainPolys);
+		}
+		//DeadCode JON 21Aug00 		for ( int i=NUM_Z_LAYERS-1; i>=0; i-- )
+		//DeadCode JON 21Aug00 		for ( int i=0; i<NUM_Z_LAYERS; i++ )
+		//DeadCode JON 21Aug00 		{
+		//DeadCode JON 21Aug00 			if (texturedPolys[i]!=NULL)
+		//DeadCode JON 21Aug00 				RenderPolyList(texturedPolys[i]);
+		//DeadCode JON 21Aug00 		}
+		if (texturedPolys != NULL)
+			RenderPolyList(texturedPolys);
+		if (transparentPolys != NULL)
+			RenderTPolyList(transparentPolys);
+	}
+	//TempCode JON 18Sep00 	if (aliasLineList!=NULL)
+	//TempCode JON 18Sep00 	{
+	//TempCode JON 18Sep00 		InlineSetCurrentMaterial( hLastMaterial, IS_PLAIN );
+	//TempCode JON 18Sep00 		pD3DDEV7->SetRenderState(D3DRENDERSTATE_EDGEANTIALIAS,TRUE);
+	//TempCode JON 18Sep00 		RenderLineList(aliasLineList);
+	//TempCode JON 18Sep00 //DeadCode JON 23Aug00 		pD3DDEV7->SetRenderState(D3DRENDERSTATE_EDGEANTIALIAS,FALSE);
+	//TempCode JON 18Sep00 	}
+	//	if (transparentPolys!=NULL)	RenderTPolyList(transparentPolys);
 
-    if ((lastError=pD3DDEV7->EndScene())!=D3D_OK)
-        CloseDown();
+	if ((lastError = pD3DDEV7->EndScene()) != D3D_OK)
+			  CloseDown();
 
     flags=Flags(flags&~F_INSCENE);
     return lastError;
@@ -5113,7 +5113,7 @@ inline HRESULT Lib3D::CopyMapToSurface( MAPDESC *pMapDesc,LPDIRECTDRAWSURFACE7 &
 
     scaledW=pMapDesc->w;
     scaledH=pMapDesc->h;
-    scaleX=scaleY = 0;
+	scaleX = scaleY = 0;
     while ( scaledW > ddsd.dwWidth )
     {
         scaledW>>=1;
@@ -5407,7 +5407,7 @@ inline HRESULT Lib3D::_CreateTextureMap(MAPDESC *pMapDesc,LPDIRECTDRAWSURFACE7 &
 
     scaledW=pMapDesc->w;
     scaledH=pMapDesc->h;
-
+	//assert(scaledW != 512); //x0r
     if (scaledW!=scaledH &&
             (selectedDevice.dpcTriCaps.dwTextureCaps&D3DPTEXTURECAPS_SQUAREONLY)!=0)
     {
@@ -5680,7 +5680,7 @@ inline HRESULT Lib3D::_CreateTextureMap(MAPDESC *pMapDesc,LPDIRECTDRAWSURFACE7 &
     ddsd.ddpfPixelFormat=*pTargetFmt;
     ddsd.ddsCaps.dwCaps=DDSCAPS_TEXTURE|DDSCAPS_COMPLEX|DDSCAPS_MIPMAP;
 
-    SLong mipMapCount;
+	SLong mipMapCount;
     if (textureBlending==HINT_TRILINEAR && !isMasked )
     {
         mipMapCount=5;
@@ -5688,20 +5688,20 @@ inline HRESULT Lib3D::_CreateTextureMap(MAPDESC *pMapDesc,LPDIRECTDRAWSURFACE7 &
         {
             for (ULong sw=scaledW; sw!=256; sw>>=1,mipMapCount++)
             {
-                /* calc the number of extra mipmap levels */
+                // calc the number of extra mipmap levels 
             }
         }
-        else if (scaledW<256 && !isDither)
+        else  if (scaledW<256 && !isDither)
         {
             for (ULong sw=scaledW; sw!=256; sw<<=1,mipMapCount--)
             {
-                /* calc the number of mipmap levels not required */
+                // calc the number of mipmap levels not required
             }
             if ( mipMapCount <= 0 )
                 mipMapCount = 1;
         }
     }
-    else
+    else 
         mipMapCount=1;
 
     ddsd.ddsCaps.dwCaps2=DDSCAPS2_D3DTEXTUREMANAGE;

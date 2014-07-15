@@ -219,6 +219,8 @@ static	char String [2048];												//RJS 8Nov00
 		fclose(fp);
 	}
 #endif
+	
+	TRACING(String);
 
 //TEMP	DestroyWindow ( _Main.hWnd );
 // xor #ifndef NDEBUG

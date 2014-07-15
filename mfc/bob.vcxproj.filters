@@ -206,19 +206,6 @@
       <UniqueIdentifier>{49f29ae5-dda9-47cb-86ec-a128d4e638bc}</UniqueIdentifier>
       <Extensions>.bmp</Extensions>
     </Filter>
-    <Filter Include="Help Files">
-      <UniqueIdentifier>{f0312bb6-6c09-4d1d-b43a-6301c8c95840}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Help Files\Source">
-      <UniqueIdentifier>{37abde1d-080c-438e-b5fd-464118fa92d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Help Files\RTF">
-      <UniqueIdentifier>{b19fba51-04d9-4da9-b57f-e3f6d7828b4f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Help Files\BMP %28help%29">
-      <UniqueIdentifier>{f1bb9972-c124-4aed-a9ab-14b3ba383187}</UniqueIdentifier>
-      <Extensions>.bmp</Extensions>
-    </Filter>
     <Filter Include="Utilities">
       <UniqueIdentifier>{fffebaf9-96f3-43bf-b53b-27dcae663001}</UniqueIdentifier>
     </Filter>
@@ -235,6 +222,19 @@
     </Filter>
     <Filter Include="Removed stuff">
       <UniqueIdentifier>{7ae139f3-e835-4f8e-acea-937de0aee216}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Help Files">
+      <UniqueIdentifier>{f0312bb6-6c09-4d1d-b43a-6301c8c95840}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Help Files\Source">
+      <UniqueIdentifier>{37abde1d-080c-438e-b5fd-464118fa92d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Help Files\RTF">
+      <UniqueIdentifier>{b19fba51-04d9-4da9-b57f-e3f6d7828b4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Help Files\BMP %28help%29">
+      <UniqueIdentifier>{f1bb9972-c124-4aed-a9ab-14b3ba383187}</UniqueIdentifier>
+      <Extensions>.bmp</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1095,6 +1095,9 @@
     </ClCompile>
     <ClCompile Include="..\Bfields\Makebf.cxx">
       <Filter>Utilities\associated files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3d\loadpcx.cpp">
+      <Filter>Source Files\3D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3162,6 +3165,9 @@
     <ClInclude Include="..\H\radio.ht.h">
       <Filter>Header Files\New Headers Trap</Filter>
     </ClInclude>
+    <ClInclude Include="..\h\loadpcx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\H\Enumbits.m">
@@ -3324,91 +3330,91 @@
       <Filter>Source Files\AFXSTUB</Filter>
     </CustomBuild>
     <CustomBuild Include="BOB.reg">
-      <Filter>Help Files</Filter>
+      <Filter>Resource Files\Help Files</Filter>
     </CustomBuild>
     <CustomBuild Include="ReadMe.txt">
-      <Filter>Help Files</Filter>
+      <Filter>Resource Files\Help Files</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\BOB.cnt">
-      <Filter>Help Files\Source</Filter>
+      <Filter>Resource Files\Help Files\Source</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\BOB.hpj">
-      <Filter>Help Files\Source</Filter>
+      <Filter>Resource Files\Help Files\Source</Filter>
     </CustomBuild>
     <CustomBuild Include="MakeHelp.bat">
-      <Filter>Help Files\Source</Filter>
+      <Filter>Resource Files\Help Files\Source</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\AfxCore.rtf">
-      <Filter>Help Files\RTF</Filter>
+      <Filter>Resource Files\Help Files\RTF</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\AfxOleCl.rtf">
-      <Filter>Help Files\RTF</Filter>
+      <Filter>Resource Files\Help Files\RTF</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\AppExit.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\Bullet.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\CurArw2.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\CurArw4.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\CurHelp.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\EditCopy.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\EditCut.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\EditPast.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\EditUndo.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\FileNew.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\FileOpen.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\FilePrnt.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\FileSave.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\HlpSBar.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\HlpTBar.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\RecFirst.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\RecLast.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\RecNext.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\RecPrev.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\Scmax.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\ScMenu.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="hlp\Scmin.bmp">
-      <Filter>Help Files\BMP %28help%29</Filter>
+      <Filter>Resource Files\Help Files\BMP %28help%29</Filter>
     </CustomBuild>
     <CustomBuild Include="..\..\debug\obj\fmake.dep">
       <Filter>Utilities\Add all targets as dependencies of fmake.dep</Filter>

@@ -13,6 +13,8 @@
 
 #include <cstddef>
 
+#define DIRECTINPUT_VERSION 0x0700
+
 #ifdef _AFXDLL
  #include <afxwin.h>
 #else
@@ -41,6 +43,14 @@
 
 #endif
 
+//#ifndef NDEBUG 
+  #include <iostream>
+  #define TRACING(x) std::clog<< x << std::endl;
+/*
+#else
+  #define TRACING(x)
+#endif	
+*/
 
 /*
 typedef long LONG;
@@ -332,6 +342,7 @@ const int	PIXEL640 	=40;											//RDH 18Jan96
 
 //cludge for fact that Paul encoded yards instead of metres in map scaling!
 const double MAPSCALE = 1.1;
+#include <cassert>
 #define INT3 {assert(false);}
 /*
 #ifdef	__WATCOMC__
@@ -422,7 +433,7 @@ const double MAPSCALE = 1.1;
 
 typedef	struct	COORDS3D
 {	SLong	X,Y,Z;
-	COORDS3D&	operator = (const COORDS3D& src)	{X=src.X;Y=src.Y;Z=src.Z;return(*this);}
+//x0r	COORDS3D&	operator = (const COORDS3D& src)	{X=src.X;Y=src.Y;Z=src.Z;return(*this);}
 } Coords3D;
 
 

@@ -978,7 +978,7 @@ void RDialog::AttachRelevantSplitterBars()
 		{
 			splitter->SetTopLeftWindow((long)this);
 		}
-		else TRACE0("Failed to find the left edge of an unused vertical splitter bar\n");
+		else TRACING("Failed to find the left edge of an unused vertical splitter bar\n");
 		//delete splitter;
 	}
 	seperation=INT_MAX;
@@ -1009,7 +1009,7 @@ void RDialog::AttachRelevantSplitterBars()
 		{
 			splitter->SetBottomRightWindow((long)this);
 		}
-		else TRACE0("Failed to find the top edge of an unused vertical splitter bar\n");
+		else TRACING("Failed to find the top edge of an unused vertical splitter bar\n");
 		//delete splitter;
 	}
 	seperation=INT_MAX;
@@ -1040,7 +1040,7 @@ void RDialog::AttachRelevantSplitterBars()
 		{
 			splitter->SetBottomRightWindow((long)this);
 		}
-		else TRACE0("Failed to find the right edge of an unused vertical splitter bar\n");
+		else TRACING("Failed to find the right edge of an unused vertical splitter bar\n");
 		//delete splitter;
 	}
 	seperation=INT_MAX;
@@ -1070,7 +1070,7 @@ void RDialog::AttachRelevantSplitterBars()
 		{
 			splitter->SetTopLeftWindow((long)this);
 		}
-		else TRACE0("Failed to find the bottom edge of an unused vertical splitter bar\n");
+		else TRACING("Failed to find the bottom edge of an unused vertical splitter bar\n");
 		//delete splitter;
 	}
 }
@@ -1082,7 +1082,7 @@ void RDialog::AttachTabToTabControl(const struct IdEntry *const list)
 	tabControl=(CRTabs*)parent->GetDlgItem(IDJ_TABCTRL);
 	if (tabControl==NULL)
 	{
-		TRACE0("No tab control exists\n");
+		TRACING("No tab control exists\n");
 		return; // no tab control exists
 	}
 //	ASSERT_KINDOF(CRTabs,tabControl);
@@ -1406,7 +1406,7 @@ void RDialog::OnMouseMove(UINT nFlags, CPoint p)
 //	m_bChangeCursor=TRUE;
 	if (!parent) 
 	{
-		TRACE0("ERROR: Base sheet is visible!");
+		TRACING("ERROR: Base sheet is visible!");
 		return;
 	}
 //	TRACE0("Processing Mousemove\n");

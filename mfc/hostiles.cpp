@@ -184,7 +184,7 @@ void	HostilesList::FindPackages()
 			{
 				int i=0;
 				UWord oldraidline = 0;
-				UWord raidline;
+				UWord raidline=0;//x0r
 				int targetnum = 0;
 				UniqueID detectedflight=UID_NULL;
 				int firstsq;

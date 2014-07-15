@@ -92,8 +92,8 @@ void AFX_CDECL AfxTrace(LPCTSTR lpszFormat, ...);
 #ifdef _DEBUG
 
 //#define TRACE0(sz)              ::AfxTrace(_T("%s"), _T(sz))
-#undef TRACE0
-#define TRACE0(sz)              {std::cout << sz << std::endl;}
+//#undef TRACE0
+//#define TRACE0(sz)              {std::cout << sz << std::endl;}
 
 #include "dosdefs.h"
 #undef	new   
@@ -109,9 +109,9 @@ struct silly
 	{
 //TempCode JIM 18Aug00 		_CrtSetAllocHook (YourAllocHook);
 
-		TRACE0("Constructing static objects...\n");
+		TRACING("Constructing static objects...\n");
 	}
-	~silly(){TRACE0("Finished destructing static objects...\n");}
+	~silly(){TRACING("Finished destructing static objects...\n");}
 } SillySillySilly;
 #endif
 

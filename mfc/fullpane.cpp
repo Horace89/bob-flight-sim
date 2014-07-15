@@ -1096,7 +1096,7 @@ Bool RFullPanelDial::PaintShopInit()
 	return TRUE;
 }
 
-#endif	#ifndef BOB_DEMO_VER
+#endif	//#ifndef BOB_DEMO_VER
 
 Bool RFullPanelDial::ReplayLoad(FullScreen*&fs)
 {

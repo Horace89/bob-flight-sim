@@ -770,6 +770,7 @@ void CMapDlg::OnMouseMove(UINT nFlags, CPoint point)
 		}
 	}
 	CDialog::OnMouseMove(nFlags, point);
+	ReleaseDC(pDC);
 }
 
 void CMapDlg::OnLButtonUp(UINT nFlags, CPoint point) 
@@ -835,6 +836,7 @@ void	PackageList::InvalidateIcon(UniqueID acuid)
 		CDC* pDC=RDialog::m_pView->GetDC();
 		RDialog::m_pView->ScreenXY(w,px,py,-RDialog::m_pView->m_scrollpoint.x,-RDialog::m_pView->m_scrollpoint.y);
 		RDialog::m_pView->m_mapdlg.InvalidateIconText(pDC,px,py,acuid);
+		RDialog::m_pView->ReleaseDC(pDC);
 	}
 }
 
@@ -1126,7 +1128,7 @@ void CMapDlg::InvalidateMobiles(bool isnewposition,bool clocking)
 				doing_item+=0x80000;
 				InvalidateIconText(pDC,px,py,UniqueID(m_hintid));
 				doing_item=0;
-
+				ReleaseDC(pDC);
 			}
 		}
 	}
@@ -1198,6 +1200,7 @@ bool	CMapDlg::InvalidateAnotherItem()
 					{
 						CDC* pDC=GetDC();
 						InvalidateIconText(pDC,px,py,UniqueID(m_hintid));
+						ReleaseDC(pDC);
 					}
 					ResetKnownPosition(p,UniqueID(i));
 					RDialog::m_pView->ScreenXY(p,px,py);
@@ -1207,6 +1210,7 @@ bool	CMapDlg::InvalidateAnotherItem()
 					{
 						CDC* pDC=GetDC();
 						InvalidateIconText(pDC,px,py,UniqueID(m_hintid));
+						ReleaseDC(pDC);
 					}
 					RefreshTargettingWaypoints(UniqueID(i));
 					p->knownicon=ICON_NO_ICON;

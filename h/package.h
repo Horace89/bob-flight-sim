@@ -521,10 +521,16 @@ public:
 	void	SaveAirItemBin(Profile::Squad* squad,UniqueID route,BOStream&file);
 //DeadCode MS 28Oct00 		bool	StopFighting(int squadline,info_airgrp* a,bool forcehome=false); //returns true if destroyed
 };
-inline int	operator-(const Profile::Squad* entry,Profile::SquadListRef& base)
+/* inline int	operator-(const Profile::Squad* entry,Profile::SquadListRef& base)
 {
 	int rv=entry-&base[0];
 //	assert(rv>0 && rv<base.Max());
+	return rv;
+}*/
+inline int	subb(const Profile::Squad* entry, Profile::SquadListRef& base)
+{
+	int rv = entry - &base[0];
+	//	assert(rv>0 && rv<base.Max());
 	return rv;
 }
 struct	PackageList

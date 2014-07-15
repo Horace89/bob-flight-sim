@@ -5,62 +5,62 @@
 
 	 Please see the document licence.doc for the full licence agreement
 
-2. LICENCE
- 2.1
- 	Subject to the provisions of this Agreement we now grant to you the
- 	following rights in respect of the Source Code:
-  2.1.1
-  	the non-exclusive right to Exploit  the Source Code and Executable
-  	Code on any medium; and
-  2.1.2
-  	the non-exclusive right to create and distribute Derivative Works.
- 2.2
- 	Subject to the provisions of this Agreement we now grant you the
-	following rights in respect of the Object Code:
-  2.2.1
-	the non-exclusive right to Exploit the Object Code on the same
-	terms and conditions set out in clause 3, provided that any
-	distribution is done so on the terms of this Agreement and is
-	accompanied by the Source Code and Executable Code (as
-	applicable).
+	 2. LICENCE
+	 2.1
+	 Subject to the provisions of this Agreement we now grant to you the
+	 following rights in respect of the Source Code:
+	 2.1.1
+	 the non-exclusive right to Exploit  the Source Code and Executable
+	 Code on any medium; and
+	 2.1.2
+	 the non-exclusive right to create and distribute Derivative Works.
+	 2.2
+	 Subject to the provisions of this Agreement we now grant you the
+	 following rights in respect of the Object Code:
+	 2.2.1
+	 the non-exclusive right to Exploit the Object Code on the same
+	 terms and conditions set out in clause 3, provided that any
+	 distribution is done so on the terms of this Agreement and is
+	 accompanied by the Source Code and Executable Code (as
+	 applicable).
 
-3. GENERAL OBLIGATIONS
- 3.1
- 	In consideration of the licence granted in clause 2.1 you now agree:
-  3.1.1
-	that when you distribute the Source Code or Executable Code or
-	any Derivative Works to Recipients you will also include the
-	terms of this Agreement;
-  3.1.2
-	that when you make the Source Code, Executable Code or any
-	Derivative Works ("Materials") available to download, you will
-	ensure that Recipients must accept the terms of this Agreement
-	before being allowed to download such Materials;
-  3.1.3
-	that by Exploiting the Source Code or Executable Code you may
-	not impose any further restrictions on a Recipient's subsequent
-	Exploitation of the Source Code or Executable Code other than
-	those contained in the terms and conditions of this Agreement;
-  3.1.4
-	not (and not to allow any third party) to profit or make any
-	charge for the Source Code, or Executable Code, any
-	Exploitation of the Source Code or Executable Code, or for any
-	Derivative Works;
-  3.1.5
-	not to place any restrictions on the operability of the Source
-	Code;
-  3.1.6
-	to attach prominent notices to any Derivative Works stating
-	that you have changed the Source Code or Executable Code and to
-	include the details anddate of such change; and
-  3.1.7
-  	not to Exploit the Source Code or Executable Code otherwise than
-	as expressly permitted by  this Agreement.
+	 3. GENERAL OBLIGATIONS
+	 3.1
+	 In consideration of the licence granted in clause 2.1 you now agree:
+	 3.1.1
+	 that when you distribute the Source Code or Executable Code or
+	 any Derivative Works to Recipients you will also include the
+	 terms of this Agreement;
+	 3.1.2
+	 that when you make the Source Code, Executable Code or any
+	 Derivative Works ("Materials") available to download, you will
+	 ensure that Recipients must accept the terms of this Agreement
+	 before being allowed to download such Materials;
+	 3.1.3
+	 that by Exploiting the Source Code or Executable Code you may
+	 not impose any further restrictions on a Recipient's subsequent
+	 Exploitation of the Source Code or Executable Code other than
+	 those contained in the terms and conditions of this Agreement;
+	 3.1.4
+	 not (and not to allow any third party) to profit or make any
+	 charge for the Source Code, or Executable Code, any
+	 Exploitation of the Source Code or Executable Code, or for any
+	 Derivative Works;
+	 3.1.5
+	 not to place any restrictions on the operability of the Source
+	 Code;
+	 3.1.6
+	 to attach prominent notices to any Derivative Works stating
+	 that you have changed the Source Code or Executable Code and to
+	 include the details anddate of such change; and
+	 3.1.7
+	 not to Exploit the Source Code or Executable Code otherwise than
+	 as expressly permitted by  this Agreement.
 
-questions about this file may be asked at bob@rowansoftware.com a
-better place to ask is http://www.simhq.com/ or even :-
-http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum=Battle+of+Britain&number=40&DaysPrune=20&LastLogin=
-*/
+	 questions about this file may be asked at bob@rowansoftware.com a
+	 better place to ask is http://www.simhq.com/ or even :-
+	 http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum=Battle+of+Britain&number=40&DaysPrune=20&LastLogin=
+	 */
 
 //------------------------------------------------------------------------------
 //Filename       fileman.cpp
@@ -134,22 +134,23 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 #include <WinBase.h>
 #endif
 
-UByte	stuffed=0;
+UByte	stuffed = 0;
 
 
 extern Error _Error;
 extern class MathLib	Math_Lib;								//PD 29Nov95
+
 //
 // Lets write some code!
 //
 //
 //char	namedirdir[]="DIR.DIR";
-char	namedirdir[2048]={'D','I','R','.','D','I','R',0,	 		0,0,0,0,0,0,0,0,
-						'R','O','O','T','S','.','D','I','R',	0,0,0,0,0,0,0};
+char	namedirdir[2048] = { 'D', 'I', 'R', '.', 'D', 'I', 'R', 0, 0, 0, 0, 0, 0, 0, 0, 0,
+'R', 'O', 'O', 'T', 'S', '.', 'D', 'I', 'R', 0, 0, 0, 0, 0, 0, 0 };
 
 
 
-int	(*fileman::MemFailPFU) (unsigned)=NULL;
+int(*fileman::MemFailPFU) (unsigned) = NULL;
 CLock	interlocker;
 #ifdef	__MSVC__
 //inline	int	LockExchange(int* loc,int newval=0)
@@ -171,7 +172,7 @@ CLock	interlocker;
 FileMan	File_Man;
 
 #ifndef	NDEBUG
-	static int robtotalfilememused = 0;
+static int robtotalfilememused = 0;
 #endif
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -191,28 +192,28 @@ struct	CDOpenFile
 {int i;};
 CON	fileman::fileman()
 {
-	currdirnum=RAMCACHEHANDLEDIR;
-	currfilenum=INVALIDFILENUM;
-	currfileblock=NULL;
-	currfilesize=0;
-	currfilehandle=NULL;
-	nestcount=0;
-	allfreedfiles=NULL;
-//	pathname[83];
-//	filenameindex=70;
-	pathnameindex=0;
-	pathnameptr=pathname;
-	filrootblock=NULL;
-	dirrootblock=NULL;
-//	direntries[MAXDIRENTRIES];
-//	makerootdirlist();
-//DeadCode JIM 24Oct96 	makerootdirlist();
+	currdirnum = RAMCACHEHANDLEDIR;
+	currfilenum = INVALIDFILENUM;
+	currfileblock = NULL;
+	currfilesize = 0;
+	currfilehandle = NULL;
+	nestcount = 0;
+	allfreedfiles = NULL;
+	//	pathname[83];
+	//	filenameindex=70;
+	pathnameindex = 0;
+	pathnameptr = pathname;
+	filrootblock = NULL;
+	dirrootblock = NULL;
+	//	direntries[MAXDIRENTRIES];
+	//	makerootdirlist();
+	//DeadCode JIM 24Oct96 	makerootdirlist();
 #ifdef	__MSVC__
- 	MemFailPFU=_set_new_handler(MyMemFailPFU);
+	MemFailPFU = _set_new_handler(MyMemFailPFU);
 #endif
 
-	cdfiles=new CDOpenFile[MAXCDFILEENTRIES];
-	cdfile=new CDCurrOpenFile;
+	cdfiles = new CDOpenFile[MAXCDFILEENTRIES];
+	cdfile = new CDCurrOpenFile;
 
 }
 
@@ -231,11 +232,11 @@ CON	fileman::fileman()
 DES	fileman::~fileman()
 {
 #ifdef	__MSVC__
-	MemFailPFU=_set_new_handler(MemFailPFU);
+	MemFailPFU = _set_new_handler(MemFailPFU);
 #endif
-	delete []dirrootblock;
+	delete[]dirrootblock;
 	fileblocklink::deletelink(0x7fffffff);
-//TempCode PD 08Oct98 	ExitCDFS();
+	//TempCode PD 08Oct98 	ExitCDFS();
 	delete[]cdfiles;
 	delete cdfile;
 }
@@ -246,31 +247,31 @@ DES	fileman::~fileman()
 //
 string	dupandrepointtxt(string&	srcandtrg)
 {
-string
-	newtrg=new char [strlen(srcandtrg)+1];
-	strcpy(newtrg,srcandtrg);
-	return(srcandtrg=newtrg);
+	string
+		newtrg = new char[strlen(srcandtrg) + 1];
+	strcpy(newtrg, srcandtrg);
+	return(srcandtrg = newtrg);
 }
 
 #define RUNTIME 200
-void	fileman::fakedir(FileNum thisdir,char* dirname)
+void	fileman::fakedir(FileNum thisdir, char* dirname)
 {
-	strncpy((string)dirfakeblock+RUNTIME,dirname,1000);
-	direntries[dirnum(thisdir)].driverfile=RCH_DIRBASE;
-	direntries[dirnum(thisdir)].parentdir=RAMCACHEHANDLEDIR;
-	direntries[dirnum(thisdir)].dirnameind=(DirNameInd) RUNTIME;
-	currdirnum=
-		assumefakedir=255;
+	strncpy((string)dirfakeblock + RUNTIME, dirname, 1000);
+	direntries[dirnum(thisdir)].driverfile = RCH_DIRBASE;
+	direntries[dirnum(thisdir)].parentdir = RAMCACHEHANDLEDIR;
+	direntries[dirnum(thisdir)].dirnameind = (DirNameInd)RUNTIME;
+	currdirnum =
+		assumefakedir = 255;
 	fileblocklink::deletedirchain(thisdir);
 }
 
-FileNum	fileman::fakefile(FileNum thisdir,const char* filename)
+FileNum	fileman::fakefile(FileNum thisdir, const char* filename)
 {	//returns file number to use for fake (always dir+2 at present)
-//DeadCode DAW 20Nov98 #pragma message ("fileman::fakefile - string copy causes memory overwrite")
-	strncpy(namedirdir+fakefileoffset,filename,80);
-	assumefakedir=dirnum(thisdir);
+	//DeadCode DAW 20Nov98 #pragma message ("fileman::fakefile - string copy causes memory overwrite")
+	strncpy(namedirdir + fakefileoffset, filename, 80);
+	assumefakedir = dirnum(thisdir);
 	fileblocklink::deletedirchain(thisdir);
-	return FileNum(+dirnum(dirnum(thisdir))+ +fakefileindex);
+	return FileNum(+dirnum(dirnum(thisdir)) + +fakefileindex);
 }
 
 
@@ -283,95 +284,95 @@ FileNum	fileman::fakefile(FileNum thisdir,const char* filename)
 //If that is found then it is loaded, otherwise, I stick with these paths.
 //
 //
-void	nochange(void*	&,ULong&)	{};
+void	nochange(void*	&, ULong&)	{};
 
 void	fileman::makerootdirlist()
 {
-	assumefakedir=255;
+	assumefakedir = 255;
 
 
-//DeadCode JIM 21Sep95 char	here[]=".",
-//DeadCode JIM 21Sep95 		exedir[80],
-//DeadCode JIM 21Sep95 		cddir[80],
-//DeadCode JIM 21Sep95 		paramdir[80];
+	//DeadCode JIM 21Sep95 char	here[]=".",
+	//DeadCode JIM 21Sep95 		exedir[80],
+	//DeadCode JIM 21Sep95 		cddir[80],
+	//DeadCode JIM 21Sep95 		paramdir[80];
 
-static char	worker[1250];
-		dirfakeblock=worker;
-//	First, find some hardware locations
-const int	HERE=0,EXE=2,CD=70,PARAM=135;
-		worker[0]='.';worker[1]=0;
-		Getexedirectory(&worker[EXE]);		//Directory containing executable
-		GetCDdirectory(&worker[CD]);		//hardware CD drive location
-		GetParamDir(&worker[PARAM]);		//Command-line parameter
+	static char	worker[1250];
+	dirfakeblock = worker;
+	//	First, find some hardware locations
+	const int	HERE = 0, EXE = 2, CD = 70, PARAM = 135;
+	worker[0] = '.'; worker[1] = 0;
+	Getexedirectory(&worker[EXE]);		//Directory containing executable
+	GetCDdirectory(&worker[CD]);		//hardware CD drive location
+	GetParamDir(&worker[PARAM]);		//Command-line parameter
 
-//Now shoehorn them into the system
-		direntries[0].driverfile=RCH_DIRBASE;
-		direntries[0].parentdir=RAMCACHEHANDLEDIR;
-		direntries[0].dirnameind=(DirNameInd) HERE;
+	//Now shoehorn them into the system
+	direntries[0].driverfile = RCH_DIRBASE;
+	direntries[0].parentdir = RAMCACHEHANDLEDIR;
+	direntries[0].dirnameind = (DirNameInd)HERE;
 
-		direntries[1].driverfile=RCH_DIRBASE;
-		direntries[1].parentdir=RAMCACHEHANDLEDIR;
-		direntries[1].dirnameind=(DirNameInd) EXE;
+	direntries[1].driverfile = RCH_DIRBASE;
+	direntries[1].parentdir = RAMCACHEHANDLEDIR;
+	direntries[1].dirnameind = (DirNameInd)EXE;
 
-		direntries[2].driverfile=RCH_DIRBASE;
-		direntries[2].parentdir=RAMCACHEHANDLEDIR;
-		direntries[2].dirnameind=(DirNameInd) CD;
+	direntries[2].driverfile = RCH_DIRBASE;
+	direntries[2].parentdir = RAMCACHEHANDLEDIR;
+	direntries[2].dirnameind = (DirNameInd)CD;
 
-		direntries[3].driverfile=RCH_DIRBASE;
-		direntries[3].parentdir=RAMCACHEHANDLEDIR;
-		direntries[3].dirnameind=(DirNameInd) PARAM;
+	direntries[3].driverfile = RCH_DIRBASE;
+	direntries[3].parentdir = RAMCACHEHANDLEDIR;
+	direntries[3].dirnameind = (DirNameInd)PARAM;
 
-//Now, find a ROOT.DIR file and load it
-		fileblockptr filrootblock=NULL;
-		nestcount++;	//FORCES USE OF FAKE FILE-LIST
-		if	(existnumberedfile(FIL_HEREROOTDIR))
-			filrootblock=loaddirlist(FIL_HEREROOTDIR);
+	//Now, find a ROOT.DIR file and load it
+	fileblockptr filrootblock = NULL;
+	nestcount++;	//FORCES USE OF FAKE FILE-LIST
+	if (existnumberedfile(FIL_HEREROOTDIR))
+		filrootblock = loaddirlist(FIL_HEREROOTDIR);
+	else
+		if ((worker[EXE])
+			&& (existnumberedfile(FIL_EXEROOTDIR)))
+			filrootblock = loaddirlist(FIL_EXEROOTDIR);
 		else
-		if	(	(worker[EXE])
-			&&	(existnumberedfile(FIL_EXEROOTDIR)))
-			filrootblock=loaddirlist(FIL_EXEROOTDIR);
-		else
-		if	(	(worker[CD])
-			&&	(existnumberedfile(FIL_CDROMROOTDIR)))
-			filrootblock=loaddirlist(FIL_CDROMROOTDIR);
-		else
-		if	(	(worker[PARAM])
-			&&	(existnumberedfile(FIL_PARAMROOTDIR)))
-			filrootblock=loaddirlist(FIL_PARAMROOTDIR);
-		else
-			_Error.ReallyEmitSysErr("Can't find ROOTS.DIR");
-		nestcount--;	//FORCES LOADING OF REAL FILE_LIST
+			if ((worker[CD])
+				&& (existnumberedfile(FIL_CDROMROOTDIR)))
+				filrootblock = loaddirlist(FIL_CDROMROOTDIR);
+			else
+				if ((worker[PARAM])
+					&& (existnumberedfile(FIL_PARAMROOTDIR)))
+					filrootblock = loaddirlist(FIL_PARAMROOTDIR);
+				else
+					_Error.ReallyEmitSysErr("Can't find ROOTS.DIR");
+	nestcount--;	//FORCES LOADING OF REAL FILE_LIST
 
-//fixy stuff:
-		filrootblock->link->datasize=0;
-		filrootblock->link->fileblockdata=NULL;
-		dirrootblock=filrootblock->fileblockdata;								//JIM 01Apr96
-		delete filrootblock;
+	//fixy stuff:
+	filrootblock->link->datasize = 0;
+	filrootblock->link->fileblockdata = NULL;
+	dirrootblock = filrootblock->fileblockdata;								//JIM 01Apr96
+	delete filrootblock;
 
-//If the ROOT.DIR didn't effect these names then copy into static memory.
-//already permanent. Just flag the illegal ones...
+	//If the ROOT.DIR didn't effect these names then copy into static memory.
+	//already permanent. Just flag the illegal ones...
 
-		if ((direntries[1].driverfile==RCH_DIRBASE)	&& (worker[EXE]==0))
-			direntries[1].driverfile=INVALIDFILENUM;
-		if ((direntries[2].driverfile==RCH_DIRBASE)	&& (worker[CD]==0))
-			direntries[2].driverfile=INVALIDFILENUM;
-		if ((direntries[3].driverfile==RCH_DIRBASE)	&& (worker[PARAM]==0))
-			direntries[3].driverfile=INVALIDFILENUM;
+	if ((direntries[1].driverfile == RCH_DIRBASE) && (worker[EXE] == 0))
+		direntries[1].driverfile = INVALIDFILENUM;
+	if ((direntries[2].driverfile == RCH_DIRBASE) && (worker[CD] == 0))
+		direntries[2].driverfile = INVALIDFILENUM;
+	if ((direntries[3].driverfile == RCH_DIRBASE) && (worker[PARAM] == 0))
+		direntries[3].driverfile = INVALIDFILENUM;
 }
 
 void	fileman::Getexedirectory(string	exedir)
 {
-	exedir[0]=0;
+	exedir[0] = 0;
 }
 
 void	fileman::GetCDdirectory(string	cddir)
 {
-//	CDSetup(cddir);												//PD 30Oct96
+	//	CDSetup(cddir);												//PD 30Oct96
 }
 
 void	fileman::GetParamDir(string		paramdir)
 {
-	paramdir[0]=0;
+	paramdir[0] = 0;
 }
 
 //Defines link between res and directory names
@@ -393,128 +394,128 @@ void	fileman::GetParamDir(string		paramdir)
 //
 //
 
-void	fileman::translatedirlist(void*	&dataarea,ULong&	datalengthin)
+void	fileman::translatedirlist(void*	&dataarea, ULong&	datalengthin)
 {
-//DeadCode JIM 07Sep95 ULong	outputpos=0;
-string	datascan=	(string)dataarea,
-		outptr=		(string)dataarea;
-int		outind=0;
-ULong	datalength=datalengthin;
+	//DeadCode JIM 07Sep95 ULong	outputpos=0;
+	string	datascan = (string)dataarea,
+		outptr = (string)dataarea;
+	int		outind = 0;
+	ULong	datalength = datalengthin;
 
-dirindex	dirnum,parentnum;
-ULong	mathret;
-	while ((datalength>0) && (	(*datascan<'0')	  ||	(*datascan>'9')))
+	dirindex	dirnum, parentnum;
+	ULong	mathret;
+	while ((datalength > 0) && ((*datascan<'0') || (*datascan>'9')))
 	{
 		datascan++;
 		datalength--;
 	}
 
-//For every line in the file:
-	while (datalength>0)
+	//For every line in the file:
+	while (datalength > 0)
 	{
 
-//First read in the line:
+		//First read in the line:
 		//get first number field
-		mathret=Math_Lib.a2iend(datascan,datalength);
-		if (mathret>255)
-			_Error.EmitSysErr("Dir num %i too high!",mathret);
-		dirnum=(dirindex) mathret;
-		while ((datalength>0) && (*datascan<=' '))
+		mathret = Math_Lib.a2iend(datascan, datalength);
+		if (mathret > 255)
+			_Error.EmitSysErr("Dir num %i too high!", mathret);
+		dirnum = (dirindex)mathret;
+		while ((datalength > 0) && (*datascan <= ' '))
 		{
 			datascan++;
 			datalength--;
 		}
 		//if second field is numeric then read that
-		if ((*datascan<='9')&&(*datascan>='0'))
+		if ((*datascan <= '9') && (*datascan >= '0'))
 		{
-			mathret=Math_Lib.a2iend(datascan,datalength);
-			if (mathret>255)
-				_Error.EmitSysErr("Dir num %i too high!",mathret);
-			parentnum=(dirindex) mathret;
-			if (parentnum==dirnum)
-				parentnum=RAMCACHEHANDLEDIR;
-			while ((datalength>0) && (*datascan<=' '))
+			mathret = Math_Lib.a2iend(datascan, datalength);
+			if (mathret > 255)
+				_Error.EmitSysErr("Dir num %i too high!", mathret);
+			parentnum = (dirindex)mathret;
+			if (parentnum == dirnum)
+				parentnum = RAMCACHEHANDLEDIR;
+			while ((datalength > 0) && (*datascan <= ' '))
 			{
 				datascan++;
 				datalength--;
 			}
 		}
 		else
-			parentnum=RAMCACHEHANDLEDIR;
+			parentnum = RAMCACHEHANDLEDIR;
 		//copy the text field which is the directory name
-int		pathstart=outind;
-		if ((datalength>0) && datascan[0]=='"')
+		int		pathstart = outind;
+		if ((datalength > 0) && datascan[0] == '"')
 			do{
-				outptr[outind++]=*++datascan;
-				datalength--;
-			}while ((datalength>1) && datascan[1]!='"');
+			outptr[outind++] = *++datascan;
+			datalength--;
+			} while ((datalength > 1) && datascan[1] != '"');
 		else
-			while ((datalength>0) && (*datascan>' '))
+			while ((datalength > 0) && (*datascan > ' '))
 			{
-				outptr[outind++]=*(datascan++);
-				datalength--;
+			outptr[outind++] = *(datascan++);
+			datalength--;
 			}
-		outptr[outind++]=0;
+		outptr[outind++] = 0;
 		//skip to end of line
-		while ((datalength>0) && (*datascan!='\n'))
+		while ((datalength > 0) && (*datascan != '\n'))
 		{
 			datascan++;
 			datalength--;
 		}
 		//skip to useful data on next line, assuming we haven't run out!
-		while ((datalength>0) && (*datascan<'0'))
+		while ((datalength > 0) && (*datascan < '0'))
 		{
 			datascan++;
 			datalength--;
 		}
 
-//Ok.. now process the info collected.
-//First perform sanity checks
-		if (parentnum==RAMCACHEHANDLEDIR)
+		//Ok.. now process the info collected.
+		//First perform sanity checks
+		if (parentnum == RAMCACHEHANDLEDIR)
 		{
-			if (dirnum>16)
+			if (dirnum > 16)
 				_Error.EmitSysErr("Base directory over 16");
 		}
 		else
 		{
-			if (FILEMAN.direntries[parentnum].driverfile==INVALIDFILENUM)
+			if (FILEMAN.direntries[parentnum].driverfile == INVALIDFILENUM)
 				_Error.EmitSysErr("parent directory number not yet loaded");
-//TempCode DAW 17Jun96 			if (	(FILEMAN.direntries[dirnum].driverfile!=INVALIDFILENUM)
-//TempCode DAW 17Jun96 				&&	(FILEMAN.direntries[dirnum].driverfile!=RCH_DIRBASE))
-//TempCode DAW 17Jun96 				_Error.EmitSysErr("directory number reused. Multi-res not yet supported");
-			if (	(outptr[pathstart]=='\\')
-				||	(outptr[pathstart+1]==':'))
+			//TempCode DAW 17Jun96 			if (	(FILEMAN.direntries[dirnum].driverfile!=INVALIDFILENUM)
+			//TempCode DAW 17Jun96 				&&	(FILEMAN.direntries[dirnum].driverfile!=RCH_DIRBASE))
+			//TempCode DAW 17Jun96 				_Error.EmitSysErr("directory number reused. Multi-res not yet supported");
+			if ((outptr[pathstart] == '\\')
+				|| (outptr[pathstart + 1] == ':'))
 				_Error.EmitSysErr("Non-base directory starts with root path");
 
 		}
-//Now add fix for alias directories - modify pointer to NULL &!!DONT delete text DONT!!
-		if 	(	(outptr[pathstart]=='.')  &&	(outptr[pathstart+1]==0))
+		//Now add fix for alias directories - modify pointer to NULL &!!DONT delete text DONT!!
+		if ((outptr[pathstart] == '.') && (outptr[pathstart + 1] == 0))
 		{
-//DeadCode JIM 21Sep95 			outind=pathstart;
-			pathstart=fileman::ALIASDIRIND;
+			//DeadCode JIM 21Sep95 			outind=pathstart;
+			pathstart = fileman::ALIASDIRIND;
 		}
 
-//Ok.. now lets insert the entry...
-//Oops... my plan is to later move this data area!
-//Ok.. the plan:
-// Initially store in the dirlist with temp pointers, then move the data block,
-// then scan the direntries for references to this file, and offset them to the new buffer!
+		//Ok.. now lets insert the entry...
+		//Oops... my plan is to later move this data area!
+		//Ok.. the plan:
+		// Initially store in the dirlist with temp pointers, then move the data block,
+		// then scan the direntries for references to this file, and offset them to the new buffer!
 
-		FILEMAN.direntries[dirnum].driverfile=FILEMAN.currfilenum;	//semi dirty
-		FILEMAN.direntries[dirnum].dirnameind=(fileman::DirNameInd) pathstart;
-		FILEMAN.direntries[dirnum].parentdir=parentnum;
+		FILEMAN.direntries[dirnum].driverfile = FILEMAN.currfilenum;	//semi dirty
+		FILEMAN.direntries[dirnum].dirnameind = (fileman::DirNameInd) pathstart;
+		FILEMAN.direntries[dirnum].parentdir = parentnum;
 
-//Thats it for this reading loop
+		//Thats it for this reading loop
 	}
 
 
-//At this point, we want to make a copy from dataarea to outptr
-//For all the direntries referencing the .DIR file num
-//and not null name ptr then we can patch the name pointer
-//Finally return a pointer to the new area in order to delete the old area.
-//
-//Well.. for now I am going to ignore that and keep hold of the existing area, which wastes a little memory.
-//This job must be finished properly, but this saves dev. time.
+	//At this point, we want to make a copy from dataarea to outptr
+	//For all the direntries referencing the .DIR file num
+	//and not null name ptr then we can patch the name pointer
+	//Finally return a pointer to the new area in order to delete the old area.
+	//
+	//Well.. for now I am going to ignore that and keep hold of the existing area, which wastes a little memory.
+	//This job must be finished properly, but this saves dev. time.
 
 }
 //////////////////////////////////////////////////////////
@@ -526,98 +527,98 @@ int		pathstart=outind;
 //
 //////////////////////////////////////////////////////////
 
-void	retranslatedirlist(void*	&dataarea,ULong&	datalengthin)
+void	retranslatedirlist(void*	&dataarea, ULong&	datalengthin)
 {
-//DeadCode JIM 07Sep95 ULong	outputpos=0;
-string	datascan=	(char*)dataarea,
-		outptr=		(char*)dataarea;
-int		outind=0,
-		datalength=datalengthin;
+	//DeadCode JIM 07Sep95 ULong	outputpos=0;
+	string	datascan = (char*)dataarea,
+		outptr = (char*)dataarea;
+	int		outind = 0,
+		datalength = datalengthin;
 
-//DeadCode JIM 06Nov95 dirindex	dirnum;
-//Skip leading garbage...
-	while ((datalength>0) &&( (*datascan<'0')	  ||	(*datascan>'9') ))
+	//DeadCode JIM 06Nov95 dirindex	dirnum;
+	//Skip leading garbage...
+	while ((datalength > 0) && ((*datascan<'0') || (*datascan>'9')))
 	{
 		datascan++;
 		datalength--;
 	}
-//For every line in the file:
-	while (datalength>0)
+	//For every line in the file:
+	while (datalength > 0)
 	{
 
-//First read in the line:
+		//First read in the line:
 		//get first number field
-		while ((datalength>0) && (*datascan>='0') &&	(*datascan<='9'))
+		while ((datalength > 0) && (*datascan >= '0') && (*datascan <= '9'))
 		{
 			datascan++;
 			datalength--;
 		}
 		//find second
-		while ((datalength>0) && (*datascan<=' '))
+		while ((datalength > 0) && (*datascan <= ' '))
 		{
 			datascan++;
 			datalength--;
 		}
 
 		//if second field is numeric then read that
-		if ((datalength>0) && (*datascan<='9')&&(*datascan>='0'))
+		if ((datalength > 0) && (*datascan <= '9') && (*datascan >= '0'))
 		{
-			while ((datalength>0) &&(*datascan>='0') &&	(*datascan<='9'))
+			while ((datalength > 0) && (*datascan >= '0') && (*datascan <= '9'))
 			{
 				datascan++;
 				datalength--;
 			}
 			//find 3rd field
-			while ((datalength>0) && (*datascan<=' '))
+			while ((datalength > 0) && (*datascan <= ' '))
 			{
 				datascan++;
 				datalength--;
 			}
 		}
 		//copy the text field which is the directory name
-		if ((datalength>0) && datascan[0]=='"')
+		if ((datalength > 0) && datascan[0] == '"')
 			do{
-				outptr[outind++]=*++datascan;
-				datalength--;
-			}while ((datalength>1) && datascan[1]!='"');
+			outptr[outind++] = *++datascan;
+			datalength--;
+			} while ((datalength > 1) && datascan[1] != '"');
 		else
-			while ((datalength>0) && (*datascan>' '))
+			while ((datalength > 0) && (*datascan > ' '))
 			{
-				outptr[outind++]=*(datascan++);
-				datalength--;
+			outptr[outind++] = *(datascan++);
+			datalength--;
 			}
-		outptr[outind++]=0;
+		outptr[outind++] = 0;
 		//skip to end of line
-		while ((datalength>0) && (*datascan!='\n'))
+		while ((datalength > 0) && (*datascan != '\n'))
 		{
 			datascan++;
 			datalength--;
 		}
 		//skip to useful data on next line, assuming we haven't run out!
-		while ((datalength>0) &&	(*datascan<'0'))
+		while ((datalength > 0) && (*datascan < '0'))
 		{
 			datascan++;
 			datalength--;
 		}
 
-//Ok.. now process the info collected.
-//First perform sanity checks - not needed on reload
-//Now add fix for alias directories - modify pointer to NULL & delete text
-//DeadCode JIM 21Sep95 	This is difficult so I have stopped doing it ever!
-//DeadCode JIM 21Sep95 		if 	(*((uword*) &outptr[outind-2])==*((uword*) "."))
-//DeadCode JIM 21Sep95 			outind-=2;
+		//Ok.. now process the info collected.
+		//First perform sanity checks - not needed on reload
+		//Now add fix for alias directories - modify pointer to NULL & delete text
+		//DeadCode JIM 21Sep95 	This is difficult so I have stopped doing it ever!
+		//DeadCode JIM 21Sep95 		if 	(*((uword*) &outptr[outind-2])==*((uword*) "."))
+		//DeadCode JIM 21Sep95 			outind-=2;
 
-//Thats it for this reading loop
-		}
+		//Thats it for this reading loop
+	}
 
 
-//At this point, we want to make a copy from dataarea to outptr
-//For all the direntries referencing the .DIR file num
-//and not null name ptr then we can patch the name pointer
-//Finally return a pointer to the new area in order to delete the old area.
-//
-//Well.. for now I am going to ignore that and keep hold of the existing area, wasting a little space.
-//This job must be finished properly, but this saves dev. time.
+	//At this point, we want to make a copy from dataarea to outptr
+	//For all the direntries referencing the .DIR file num
+	//and not null name ptr then we can patch the name pointer
+	//Finally return a pointer to the new area in order to delete the old area.
+	//
+	//Well.. for now I am going to ignore that and keep hold of the existing area, wasting a little space.
+	//This job must be finished properly, but this saves dev. time.
 
 }
 
@@ -625,7 +626,7 @@ int		outind=0,
 //////////////////////////////////////////////////////////
 fileblockptr	fileman::loaddirlist(FileNum	filenum)
 {
-	return(new fileblock (filenum,translatedirlist));
+	return(new fileblock(filenum, translatedirlist));
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -645,117 +646,119 @@ fileblockptr	fileman::loaddirlist(FileNum	filenum)
 //	differently (yuck!)
 //
 //////////////////////////////////////////////////////////////////////
-const	int PATHSTEPCHARS	=	128;
+const	int PATHSTEPCHARS = 128;
 
-void	fileman::makedirectoryname(dirindex	reqdir,int	pathend)
+void	fileman::makedirectoryname(dirindex	reqdir, int	pathend)
 {
 	//Optimisation: if we go for the same dirnum again, don't reload!
-	if (reqdir!=currdirnum)
+	if (reqdir != currdirnum)
 	{
 		//If a nesting,
 		//then
-			//Allocate the directory patch
-			//copy the name to a local buffer, and count the characters (add '\')
-			//free patch
-			//Recursively call makedirectoryname
-			//copy local buffer to path space (add '\')
+		//Allocate the directory patch
+		//copy the name to a local buffer, and count the characters (add '\')
+		//free patch
+		//Recursively call makedirectoryname
+		//copy local buffer to path space (add '\')
 		//else
-			//Assume memory never freed
-			//count the characters
-			//copy name to path space, (add '\')
+		//Assume memory never freed
+		//count the characters
+		//copy name to path space, (add '\')
 
 		//If a nesting,
-		if	(direntries[reqdir].parentdir!=RAMCACHEHANDLEDIR)
-		//then
+		if (direntries[reqdir].parentdir != RAMCACHEHANDLEDIR)
+			//then
 			//Extra test for 'alias' directories...
-			if (direntries[reqdir].dirnameind!=ALIASDIRIND)		//PD 05Oct95
+			if (direntries[reqdir].dirnameind != ALIASDIRIND)		//PD 05Oct95
 			{
-				//Allocate the directory patch and fix up a pointer to the right text
-char			tmpstr[PATHSTEPCHARS];
-string			trgpos=tmpstr;
-int				strsize=1;
-				{
-					if (direntries[reqdir].driverfile==INVALIDFILENUM)
-						_Error.EmitSysErr("Directory %02x not known!",reqdir);
+			//Allocate the directory patch and fix up a pointer to the right text
+			char			tmpstr[PATHSTEPCHARS];
+			string			trgpos = tmpstr;
+			int				strsize = 1;
+			{
+				if (direntries[reqdir].driverfile == INVALIDFILENUM)
+					_Error.EmitSysErr("Directory %02x not known!", reqdir);
 
 
-fileblock		fbp(direntries[reqdir].driverfile,retranslatedirlist,2048,0,false);
+				fileblock		fbp(direntries[reqdir].driverfile, retranslatedirlist, 2048, 0, false);
 				//copy the name to a local buffer, and count the characters (add '\')
-string			srcpos=&((string) getdata(fbp))[direntries[reqdir].dirnameind];
+				string			srcpos = &((string)getdata(fbp))[direntries[reqdir].dirnameind];
 				{
-					int	strsize=1;
-					string	cmppos=srcpos;
+					int	strsize = 1;
+					string	cmppos = srcpos;
 					while (*(cmppos++))	strsize++;
-					if (strsize>=PATHSTEPCHARS)
+					if (strsize >= PATHSTEPCHARS)
 						_Error.EmitSysErr("Path step too big: (%s)> %i",
-										srcpos,PATHSTEPCHARS);
+						srcpos, PATHSTEPCHARS);
 				}
 
-				while ((*(trgpos++)=*(srcpos++))!=0)	strsize++;
+				while ((*(trgpos++) = *(srcpos++)) != 0)	strsize++;
+				TRACING("debug_dirs:" << srcpos);
 				//free patch
 				//delete fbp;	//it is a local var!
-				}
-				//Recursively call makedirectoryname
-				pathend=pathend-strsize;
-				if (pathend<0)
-					_Error.ReallyEmitSysErr("Pathname limit exceeded!");
-				makedirectoryname(direntries[reqdir].parentdir,pathend);
-				//copy local buffer to path space (add '\')
-string			srcpos=tmpstr;
-				trgpos=&pathname[pathend];
-				while (--strsize!=0)	*(trgpos++)=*(srcpos++);
-				*trgpos='\\';
+			}
+			//Recursively call makedirectoryname
+			pathend = pathend - strsize;
+			if (pathend < 0)
+				_Error.ReallyEmitSysErr("Pathname limit exceeded!");
+			makedirectoryname(direntries[reqdir].parentdir, pathend);
+			//copy local buffer to path space (add '\')
+			string			srcpos = tmpstr;
+			trgpos = &pathname[pathend];
+			while (--strsize != 0)	*(trgpos++) = *(srcpos++);
+			*trgpos = '\\';
 			}
 			else	 // 'alias' directory just recurse on but without stack size!
-				makedirectoryname(direntries[reqdir].parentdir,pathend);
+				makedirectoryname(direntries[reqdir].parentdir, pathend);
 		else
 		{	//Assume memory never freed
 			//count the characters
-fileblock	tmp((direntries[reqdir].driverfile==RCH_DIRBASE)
-								?	dirfakeblock
-								:	dirrootblock);
+			fileblock	tmp((direntries[reqdir].driverfile == RCH_DIRBASE)
+				? dirfakeblock
+				: dirrootblock);
 
-string		srcpos=&((string) getdata(tmp))[direntries[reqdir].dirnameind];
-int			strsize=strlen(srcpos);
+			string		srcpos = &((string)getdata(tmp))[direntries[reqdir].dirnameind];
+			assert(srcpos);
+			int			strsize = strlen(srcpos);
 			//copy name to path space, (add '\' if required)
-			if ((direntries[reqdir].dirnameind!=ALIASDIRIND))
+			if ((direntries[reqdir].dirnameind != ALIASDIRIND))
 			{													//DAW 03Oct96
-				if (	(strsize!=0)		//(add '\' if required)
-		   		&&(srcpos[strsize-1]!='\\')
-		   		&&(srcpos[strsize-1]!=':')
-		   		)
+				if ((strsize != 0)		//(add '\' if required)
+					&& (srcpos[strsize - 1] != '\\')
+					&& (srcpos[strsize - 1] != ':')
+					)
 				{				// Backslash required
-					pathnameindex=pathend-(strsize+1);
-	string			trgpos=&pathname[pathnameindex];
-					pathnameptr=trgpos;
-					while (strsize--)	*(trgpos++)=*(srcpos++);
-					*trgpos='\\';
+					pathnameindex = pathend - (strsize + 1);
+					string			trgpos = &pathname[pathnameindex];
+					pathnameptr = trgpos;
+					while (strsize--)	*(trgpos++) = *(srcpos++);
+					*trgpos = '\\';
 				}
 				else
 				{				// Backslash not required
-					pathnameindex=pathend-(strsize);
-	string			trgpos=&pathname[pathnameindex];
-					pathnameptr=trgpos;
-					while (strsize--)	*(trgpos++)=*(srcpos++);
+					pathnameindex = pathend - (strsize);
+					string			trgpos = &pathname[pathnameindex];
+					pathnameptr = trgpos;
+					while (strsize--)	*(trgpos++) = *(srcpos++);
 				}
 			}
 			else
 			{
-				pathnameindex=pathend;							//DAW 03Oct96
-			 	pathnameptr=&pathname[pathnameindex];
+				pathnameindex = pathend;							//DAW 03Oct96
+				pathnameptr = &pathname[pathnameindex];
 			}
 		}
-		currdirnum=reqdir;	//Only at this point is the dir name known
+		currdirnum = reqdir;	//Only at this point is the dir name known
 	}
 	else
 	{
-			//New Bits
-string		srcpos=&pathname[pathnameindex];
-int			strsize = int(filenameindex)- int(pathnameindex);
-			pathend-=strsize;
-string		trgpos=pathnameptr=&pathname[pathend];
-			pathnameindex=pathend;
-			while (strsize--)	*(trgpos++)=*(srcpos++);
+		//New Bits
+		string		srcpos = &pathname[pathnameindex];
+		int			strsize = int(filenameindex) - int(pathnameindex);
+		pathend -= strsize;
+		string		trgpos = pathnameptr = &pathname[pathend];
+		pathnameindex = pathend;
+		while (strsize--)	*(trgpos++) = *(srcpos++);
 	}
 }
 
@@ -770,67 +773,67 @@ string		trgpos=pathnameptr=&pathname[pathend];
 // I also later want support for 'missing' DIR.DIR files that are
 // actually user-filled directories - like videos.
 //
-void	fixmanualdirnum(void*	&srcdata,ULong& srcsize)
+void	fixmanualdirnum(void*	&srcdata, ULong& srcsize)
 {
-string	srcchar=(string)	srcdata;
-//If area is zero length then need to build list by wildcard
-	bobassert 	(srcsize , "=0=wildcard - not implemented");
-//If first byte is zero then it is a concatenated directory
+	string	srcchar = (string)srcdata;
+	//If area is zero length then need to build list by wildcard
+	bobassert(srcsize, "=0=wildcard - not implemented");
+	//If first byte is zero then it is a concatenated directory
 	//else
-//Old_Code DAW 24Feb97 	assert	((srcchar[0])&&("=0=concatenated - not implemented"));
-	if (srcchar[0]==0)			//Concatinated Dir.dir files
+	//Old_Code DAW 24Feb97 	assert	((srcchar[0])&&("=0=concatenated - not implemented"));
+	if (srcchar[0] == 0)			//Concatinated Dir.dir files
 	{							//Don't do anything yet
-////		INT3;
+		////		INT3;
 	}
-//File-name is max. 12 characters.
-//If loc'n 12 is non-zero then list is manually edited
+	//File-name is max. 12 characters.
+	//If loc'n 12 is non-zero then list is manually edited
 	//else
-	if	(srcchar[12])
+	if (srcchar[12])
 	{
 		//work to do to organize the file
 		//1) count the entries
 		//2) allocate a second buffer 16*entries
 		//3) copy the entries
-int		entries=0;
-ULong	indexer=0;
-		while (srcchar[indexer]<=' ')	indexer++;
-		while (indexer<srcsize)
+		int		entries = 0;
+		ULong	indexer = 0;
+		while (srcchar[indexer] <= ' ')	indexer++;
+		while (indexer < srcsize)
 		{
 			entries++;
-			while 	(srcchar[indexer]>' ')	indexer++;
-			while 	(	(srcchar[indexer]<=' ')
-					 &&	(indexer<srcsize)
-					)
+			while (srcchar[indexer] > ' ')	indexer++;
+			while ((srcchar[indexer] <= ' ')
+				&& (indexer < srcsize)
+				)
 				indexer++;
 		}
-		indexer=entries*16;
+		indexer = entries * 16;
 
-//Allocate: Temporary cheat.. not changing data areas, so wasting a little space. File must be oversize enough to accomodate 16 bytes per filename
-		bobassert(indexer<=srcsize,"Storing back at present!");
-string	outchar=srcchar;
-//DeadCode JIM 20Oct00 void*		outstart=srcdata;
+		//Allocate: Temporary cheat.. not changing data areas, so wasting a little space. File must be oversize enough to accomodate 16 bytes per filename
+		bobassert(indexer <= srcsize, "Storing back at present!");
+		string	outchar = srcchar;
+		//DeadCode JIM 20Oct00 void*		outstart=srcdata;
 
-//Copy the entries
-		indexer=0;
-		while(entries--)
+		//Copy the entries
+		indexer = 0;
+		while (entries--)
 		{
-			while (srcchar[indexer]<=' ')	indexer++;
-int			count=16;
-			while 	(srcchar[indexer]>' ')
+			while (srcchar[indexer] <= ' ')	indexer++;
+			int			count = 16;
+			while (srcchar[indexer] > ' ')
 			{
-				*(outchar++)=srcchar[indexer++];
+				*(outchar++) = srcchar[indexer++];
 				count--;
 			}
 			while (count--)
-				*(outchar++)=0;
+				*(outchar++) = 0;
 		}
-//DeadCode JIM 21Sep95 //Return the result
-//DeadCode JIM 21Sep95 		return(outstart);
+		//DeadCode JIM 21Sep95 //Return the result
+		//DeadCode JIM 21Sep95 		return(outstart);
 	}
-//DeadCode JIM 21Sep95 	//else
-//DeadCode JIM 21Sep95 	{
-//DeadCode JIM 21Sep95 		return(srcdata);
-//DeadCode JIM 21Sep95 	}
+	//DeadCode JIM 21Sep95 	//else
+	//DeadCode JIM 21Sep95 	{
+	//DeadCode JIM 21Sep95 		return(srcdata);
+	//DeadCode JIM 21Sep95 	}
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -839,10 +842,10 @@ int			count=16;
 //////////////////////////////////////////////////////////////////////
 fileblockptr	fileman::readfilelist(dirindex	reqdir)
 {
-fileblockptr	dfblock;
-//DeadCode JIM 21Sep95 dirindex
-//DeadCode JIM 21Sep95 	reqdir= dirnum(MyFile);
-	makedirectoryname(reqdir,filenameindex);
+	fileblockptr	dfblock;
+	//DeadCode JIM 21Sep95 dirindex
+	//DeadCode JIM 21Sep95 	reqdir= dirnum(MyFile);
+	makedirectoryname(reqdir, filenameindex);
 	//At this point I want to load 'dir.dir'
 	//This would be:
 	// new fileblock (deqdir<<DIRNUMSH,fixmanualdirnum,16*256,0)
@@ -853,16 +856,16 @@ fileblockptr	dfblock;
 	//Ok.. so if the filenameslist is NOT DIR.DIR
 	//We load it and fix it
 	//Otherwise, we have the filename ready for recurse from default DIR.DIR
-	if (nestcount==0 && reqdir!=assumefakedir)
-		{
+	if (nestcount == 0 && reqdir != assumefakedir)
+	{
 		nestcount++;
-		dfblock=new fileblock
-					(dirnum(reqdir),fixmanualdirnum,16L*256,0L,false);
+		dfblock = new fileblock
+			(dirnum(reqdir), fixmanualdirnum, 16L * 256, 0L, false);
 		nestcount--;
 		//Ok.. that should have loaded the dir file this time!
-		}
+	}
 	else
-		dfblock=new fileblock (namedirdir);
+		dfblock = new fileblock(namedirdir);
 	return (dfblock);
 }
 
@@ -882,53 +885,53 @@ fileblockptr	dfblock;
 //------------------------------------------------------------------------------
 string	fileman::namenumberedfilelessfail(FileNum	MyFile)
 {
-    if (direntries[dirnum(MyFile)].driverfile==INVALIDFILENUM)
-    	return NULL;
-	int		fnum=((int)MyFile & (int)FILENUMMASK)<<4;
-	fileblockptr	fbp=NULL;
-	if (fnum==0)
+	if (direntries[dirnum(MyFile)].driverfile == INVALIDFILENUM)
+		return NULL;
+	int		fnum = ((int)MyFile & (int)FILENUMMASK) << 4;
+	fileblockptr	fbp = NULL;
+	if (fnum == 0)
 	{
-		makedirectoryname(dirnum(MyFile),filenameindex);
-		fbp= new fileblock (namedirdir);
+		makedirectoryname(dirnum(MyFile), filenameindex);
+		fbp = new fileblock(namedirdir);
 	}
 	else
-		fbp=readfilelist(dirnum(MyFile));
-	fileblock fb=fbp;
-	currfilenum=MyFile;
-	string		dirlister=(string)	fb.getdata();
+		fbp = readfilelist(dirnum(MyFile));
+	fileblock fb = fbp;
+	currfilenum = MyFile;
+	string		dirlister = (string)fb.getdata();
 
-//DeadCode DAW 25Feb97 	INT3();
-    assert(dirlister);
-	if (dirlister==NULL)										//DAW 25Feb97
+	//DeadCode DAW 25Feb97 	INT3();
+	assert(dirlister);
+	if (dirlister == NULL)										//DAW 25Feb97
 		return("//");
 
-	if (dirlister[0]==NULL)										//DAW 25Feb97
+	if (dirlister[0] == NULL)										//DAW 25Feb97
 		return("//");
-	bobassert(  (dirlister[0]) , "Not expecting concatenated directory here!" );
-	bobassert(  (dirlister[12]==0),
-		  "Not expecting hand built file-list here!"
-		 );
+	bobassert((dirlister[0]), "Not expecting concatenated directory here!");
+	bobassert((dirlister[12] == 0),
+		"Not expecting hand built file-list here!"
+		);
 
-	if (fb.getsize() && (fnum>fb.getsize()))
-    {
-    	pathname[filenameindex]=0;
-    }
-    else
-    {
-		if (dirnum(MyFile)==assumefakedir && (int(MyFile)&255)==fakefileindex)
+	if (fb.getsize() && (fnum > fb.getsize()))
+	{
+		pathname[filenameindex] = 0;
+	}
+	else
+	{
+		if (dirnum(MyFile) == assumefakedir && (int(MyFile) & 255) == fakefileindex)
 		{	//fake long file name potential
-			memcpy(namedirdir+fakefileoffset-filenameindex,pathname,filenameindex);
-			return	namedirdir+fakefileoffset-filenameindex+(pathnameptr-pathname);
+			memcpy(namedirdir + fakefileoffset - filenameindex, pathname, filenameindex);
+			return	namedirdir + fakefileoffset - filenameindex + (pathnameptr - pathname);
 		}
 		else
 		{
-			((ULong*) (&pathname[filenameindex]))[0]=((ULong*) (&dirlister[fnum]))[0];
-			((ULong*) (&pathname[filenameindex]))[1]=((ULong*) (&dirlister[fnum]))[1];
-			((ULong*) (&pathname[filenameindex]))[2]=((ULong*) (&dirlister[fnum]))[2];
-			((ULong*) (&pathname[filenameindex]))[3]=0L;
+			((ULong*)(&pathname[filenameindex]))[0] = ((ULong*)(&dirlister[fnum]))[0];
+			((ULong*)(&pathname[filenameindex]))[1] = ((ULong*)(&dirlister[fnum]))[1];
+			((ULong*)(&pathname[filenameindex]))[2] = ((ULong*)(&dirlister[fnum]))[2];
+			((ULong*)(&pathname[filenameindex]))[3] = 0L;
 			return	pathnameptr;
 		}
-    }
+	}
 
 
 	return	pathnameptr;
@@ -940,50 +943,89 @@ void fileman::flushcachedfiles()
 	fileblocklink::deletelink(-1);
 }
 
+void replace_extention(string &path, string from, string to)
+{
+	string s = path;
+
+	while (*s) {
+		*s = tolower(*s);
+		++s;
+	}
+	string i = nullptr;
+	char path2[256] = { 0 };
+	strcpy(path2, path);
+	if ((i = strstr(path2, from)) != nullptr)
+	{
+		*i = '\0';
+		strcat(path2, to);
+
+		FILE* retval = fopen(path2, "rb");
+		if (retval != NULL)
+		{
+			strcpy(path, path2);
+			TRACING("Existing: " << path);
+			fclose(retval);
+		}
+		else
+		{
+			TRACING("Not existing: " << path2);
+		}
+
+	}
+}
 string	fileman::namenumberedfile(FileNum	MyFile)
 {
-	fileblock	fb=readfilelist(dirnum(MyFile));
-	currfilenum=MyFile;
-	string		dirlister=(string)	fb.getdata();
+	fileblock	fb = readfilelist(dirnum(MyFile));
+	currfilenum = MyFile;
+	string		dirlister = (string)fb.getdata();
 
-//DeadCode DAW 25Feb97 	INT3();
-//    assert(dirlister);
-	if (!dirlister || dirlister[0]==0)										//DAW 25Feb97
+	//DeadCode DAW 25Feb97 	INT3();
+	//    assert(dirlister);
+	if (!dirlister || dirlister[0] == 0)										//DAW 25Feb97
 		return("//");
-	bobassert(  (dirlister[0]) ,"Not expecting concatenated directory here!" );
-	bobassert(  (dirlister[12]==0),"Not expecting hand built file-list here!");
-	currfilenum=MyFile;
+	bobassert((dirlister[0]), "Not expecting concatenated directory here!");
+	bobassert((dirlister[12] == 0), "Not expecting hand built file-list here!");
+	currfilenum = MyFile;
 
-	int		fnum=((int)MyFile & (int)FILENUMMASK)<<4;
+	int		fnum = ((int)MyFile & (int)FILENUMMASK) << 4;
 
-	if (fb.getsize() && (fnum>fb.getsize()))
-		{//x0r revert return("//");
+	if (fb.getsize() && (fnum > fb.getsize()))
+	{//x0r revert return("//");
 		_Error.EmitSysErr("File number (%04X) past end of Dir.Dir file!",MyFile);}
-	if (dirnum(MyFile)==assumefakedir && (int(MyFile)&255)==fakefileindex)
+	if (dirnum(MyFile) == assumefakedir && (int(MyFile) & 255) == fakefileindex)
 	{	//fake long file name potential
-		memcpy(namedirdir+fakefileoffset-filenameindex,pathname,filenameindex);
+		memcpy(namedirdir + fakefileoffset - filenameindex, pathname, filenameindex);
 		if (errhandle)
 		{
-			fputs(namedirdir+fakefileoffset-filenameindex+(pathnameptr-pathname),errhandle);
-			fputc('\n',errhandle);
+			fputs(namedirdir + fakefileoffset - filenameindex + (pathnameptr - pathname), errhandle);
+			fputc('\n', errhandle);
 		}
-		return	namedirdir+fakefileoffset-filenameindex+(pathnameptr-pathname);
+		string mypath = namedirdir + fakefileoffset - filenameindex + (pathnameptr - pathname);
+		TRACING("File: " << MyFile << " name: " << mypath);
+//		replace_extention(mypath,".x8",".pcx");
+		TRACING("~File: " << MyFile << " name: " << mypath);
+		return	mypath;
 	}
 	else
 	{
-		((ULong*) (&pathname[filenameindex]))[0]=((ULong*) (&dirlister[fnum]))[0];
-		((ULong*) (&pathname[filenameindex]))[1]=((ULong*) (&dirlister[fnum]))[1];
-		((ULong*) (&pathname[filenameindex]))[2]=((ULong*) (&dirlister[fnum]))[2];
-		((ULong*) (&pathname[filenameindex]))[3]=0L;
-	//delete fb;
+		strncpy(&pathname[filenameindex], &dirlister[fnum], 13);
+		/*
+		((ULong*)(&pathname[filenameindex]))[0] = ((ULong*)(&dirlister[fnum]))[0];
+		((ULong*)(&pathname[filenameindex]))[1] = ((ULong*)(&dirlister[fnum]))[1];
+		((ULong*)(&pathname[filenameindex]))[2] = ((ULong*)(&dirlister[fnum]))[2];
+		((ULong*)(&pathname[filenameindex]))[3] = 0L;
+*/
+		//delete fb;
 
 		if (errhandle)
 		{
-			fputs(pathnameptr,errhandle);
-			fputc('\n',errhandle);
+			fputs(pathnameptr, errhandle);
+			fputc('\n', errhandle);
 		}
 
-
+		TRACING("File: " << MyFile << " name: " << pathnameptr);
+//		replace_extention(pathnameptr, ".x8", ".pcx");
+		TRACING("~File: " << MyFile << " name: " << pathnameptr);
 		return(pathnameptr);
 	}
 }
@@ -991,72 +1033,73 @@ string	fileman::namenumberedfile(FileNum	MyFile)
 //////////////////////////////////////////////////////////////////////
 FILE*	fileman::easyopennumberedfile(FileNum	MyFile)
 {
-string	name=namenumberedfile(MyFile);
-		FILE* rv=fopen(name,"rb");
-		return(rv);
+	string	name = namenumberedfile(MyFile);
+	TRACING("Opening: " << name);
+	FILE* rv = fopen(name, "rb");
+	return(rv);
 
 }
-bool	BLOCKCHILD=false;
+bool	BLOCKCHILD = false;
 //////////////////////////////////////////////////////////////////////
 FILE*	fileman::opennumberedfile(FileNum	MyFile)
 {
-FILE*	retval=easyopennumberedfile(MyFile);
-//xor	while (!retval)
+	FILE*	retval = easyopennumberedfile(MyFile);
+	//xor	while (!retval)
 	if (!retval)
 	{
-    char* path=pathnameptr;
-    if (dirnum(MyFile)==assumefakedir && ((int)MyFile&255)==fakefileindex)
-    	path=namedirdir+fakefileoffset-filenameindex+(pathnameptr-pathname);
-    #ifdef __MSVC__
-    	CString tstring;
-		char* n=pathnameptr;
+		char* path = pathnameptr;
+		if (dirnum(MyFile) == assumefakedir && ((int)MyFile & 255) == fakefileindex)
+			path = namedirdir + fakefileoffset - filenameindex + (pathnameptr - pathname);
+#ifdef __MSVC__
+		CString tstring;
+		char* n = pathnameptr;
 		char buffer[1000];
-		strcpy(buffer,pathnameptr);
-//DeadCode AMM 09Jul99 		int level=LockExchange(&interlocker,0);
-		char* fname=buffer;									  //JIM 21/12/98
-		if (dirnum(MyFile)==assumefakedir && (MyFile&255)==fakefileindex)		  //JIM 21/12/98
-			fname=namedirdir+fakefileoffset-filenameindex+(pathnameptr-pathname); //JIM 21/12/98
+		strcpy(buffer, pathnameptr);
+		//DeadCode AMM 09Jul99 		int level=LockExchange(&interlocker,0);
+		char* fname = buffer;									  //JIM 21/12/98
+		if (dirnum(MyFile) == assumefakedir && (MyFile & 255) == fakefileindex)		  //JIM 21/12/98
+			fname = namedirdir + fakefileoffset - filenameindex + (pathnameptr - pathname); //JIM 21/12/98
 
-//DEADCODE RDH 20/05/99 		if(MessageBox(Master_3d.winst,"Please insert correct media for above file",fname,MB_RETRYCANCEL)
-//DEADCODE RDH 20/05/99 			==IDCANCEL)
-		BLOCKCHILD=true;
+		//DEADCODE RDH 20/05/99 		if(MessageBox(Master_3d.winst,"Please insert correct media for above file",fname,MB_RETRYCANCEL)
+		//DEADCODE RDH 20/05/99 			==IDCANCEL)
+		BLOCKCHILD = true;
 		tstring.LoadString(IDS_INSERTCD);
-//			HWND upperwnd=HWND_BOTTOM;
-//			::SetWindowPos(m_hWnd,upperwnd,0,0,0,0,SWP_NOACTIVATE+SWP_NOMOVE+SWP_NOSIZE);
-                tstring+=(CString)" "+(CString)fname;
+		//			HWND upperwnd=HWND_BOTTOM;
+		//			::SetWindowPos(m_hWnd,upperwnd,0,0,0,0,SWP_NOACTIVATE+SWP_NOMOVE+SWP_NOSIZE);
+		tstring += (CString)" " + (CString)fname;
 
 		if (!retval && errhandle)
 		{
-			fputs("File not found: ",errhandle);
-			fputs(fname,errhandle);
-			fputc('\n',errhandle);
+			fputs("File not found: ", errhandle);
+			fputs(fname, errhandle);
+			fputc('\n', errhandle);
 		}
-/*
-		if(MessageBox(NULL,String,fname,MB_RETRYCANCEL|MB_SYSTEMMODAL|MB_TOPMOST|MB_SETFOREGROUND|MB_ICONHAND)
-			==IDCANCEL)
-		{
+		/*
+				if(MessageBox(NULL,String,fname,MB_RETRYCANCEL|MB_SYSTEMMODAL|MB_TOPMOST|MB_SETFOREGROUND|MB_ICONHAND)
+				==IDCANCEL)
+				{
 				tstring.LoadString(IDS_FILENOTEXIST);
 
 				_Error.ReallyEmitSysErr(tstring,
-							 MyFile,pathnameptr);
-		}
-*/
-//DeadCode AMM 09Jul99 		while (LockExchange(&interlocker,1))
-//DeadCode AMM 09Jul99 		{Sleep(0);}
-		pathnameptr=n;
-		strcpy(pathnameptr,buffer);
-    #else
-/*
-				_Error.ReallyEmitSysErr("File not found: %04x=%s",
-							 MyFile,path);
-*/
-	#endif
-		BLOCKCHILD=false;
-		retval=easyopennumberedfile(MyFile);
-//		if (retval)
-//			InvalidateRect(NULL,NULL,NULL);
+				MyFile,pathnameptr);
+				}
+				*/
+		//DeadCode AMM 09Jul99 		while (LockExchange(&interlocker,1))
+		//DeadCode AMM 09Jul99 		{Sleep(0);}
+		pathnameptr = n;
+		strcpy(pathnameptr, buffer);
+#else
+		/*
+						_Error.ReallyEmitSysErr("File not found: %04x=%s",
+						MyFile,path);
+						*/
+#endif
+		BLOCKCHILD = false;
+		retval = easyopennumberedfile(MyFile);
+		//		if (retval)
+		//			InvalidateRect(NULL,NULL,NULL);
 	}
-		return(retval);
+	return(retval);
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -1073,113 +1116,118 @@ FILE*	retval=easyopennumberedfile(MyFile);
 //------------------------------------------------------------------------------
 Bool	fileman::IsConcatinatedFile(FileNum	MyFile)
 {
-	Bool	retval=FALSE;
-//	if (!strcmp(namenumberedfile(MyFile),"//"))
-  //		retval=TRUE;
+	Bool	retval = FALSE;
+	//	if (!strcmp(namenumberedfile(MyFile),"//"))
+	//		retval=TRUE;
 	return(retval);
 }
 
 //////////////////////////////////////////////////////////////////////
 Bool	fileman::existnumberedfile(FileNum	MyFile)
 {
-	for (fileblocklink	**search=&FILEMAN.direntries[dirnum(MyFile)].freedfiles;
+	for (fileblocklink	**search = &FILEMAN.direntries[dirnum(MyFile)].freedfiles;
 		*search;
-		search=&search[0]->dir.next
+		search = &search[0]->dir.next
 		)
-		if (search[0]->filenum==MyFile)
+		if (search[0]->filenum == MyFile)
 			return TRUE;
-		string	name=namenumberedfilelessfail(MyFile);
-		if (name==NULL || name[0]==0 || name[1]==0)
-			return(FALSE);
-		//else
-			FILE* retval=fopen(name,"rb");
-		if (retval==NULL)
-			return(FALSE);
-		//else
-			closefile(retval);
-			return(TRUE);
+	string	name = namenumberedfilelessfail(MyFile);
+	if (name == NULL || name[0] == 0 || name[1] == 0)
+		return(FALSE);
+	//else
+	FILE* retval = fopen(name, "rb");
+	if (retval == NULL)
+	{
+		TRACING("Not existing: " << name);
+		return(FALSE);
+	}
+	//else
+	closefile(retval);
+	return(TRUE);
 }
 
 //////////////////////////////////////////////////////////////////////
 ULong	fileman::getfilesize(FILE*	filehandle)
 {
-ULong 	oldpos=(ULong)	ftell(filehandle);
-		fseek(filehandle,0,SEEK_END);
-ULong 	returnval=(ULong)	ftell(filehandle);
-		fseek(filehandle,oldpos,SEEK_SET);
-		return(returnval);
+	ULong 	oldpos = (ULong)ftell(filehandle);
+	fseek(filehandle, 0, SEEK_END);
+	ULong 	returnval = (ULong)ftell(filehandle);
+	fseek(filehandle, oldpos, SEEK_SET);
+	TRACING("File size: " << returnval);
+	return(returnval);
 };
 //////////////////////////////////////////////////////////////////////
-ULong	fileman::seekfilepos(FILE*	filehandle,ULong	offset)
+ULong	fileman::seekfilepos(FILE*	filehandle, ULong	offset)
 {
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'(';
-	fseek(filehandle,offset,SEEK_SET);
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+')';
-	return((ULong) ftell(filehandle));
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'(';
+	TRACING("Trying to move to: " << offset);
+	fseek(filehandle, offset, SEEK_SET);
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+')';
+	return((ULong)ftell(filehandle));
 };
 //////////////////////////////////////////////////////////////////////
 ULong	fileman::readfileblock(
-				FILE*	filehandle,		//Opened using an open function
-				void*	fileblockdata,	//data area to fill
-				ULong	datasize		//ammount to load
-						)			//returns ammount actually loaded
+	FILE*	filehandle,		//Opened using an open function
+	void*	fileblockdata,	//data area to fill
+	ULong	datasize		//ammount to load
+	)			//returns ammount actually loaded
 {
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'[';
-	ULong rv=(fread(fileblockdata,1,datasize,filehandle));
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+']';
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'[';
+	ULong rv = (fread(fileblockdata, 1, datasize, filehandle));
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+']';
 
 	return rv;
 }
 //////////////////////////////////////////////////////////////////////
 void	fileman::closefile(FILE*	filehandle)
 {
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'{';
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'{';
 	fclose(filehandle);
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'}';
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'}';
 
 }
 
-static	Bool	gotnewfix=FALSE;
+static	Bool	gotnewfix = FALSE;
 /*
 #ifdef __WATCOMC__
 	extern	SLong eip();
 	#pragma aux eip="call next" "next: pop eax" value [eax]
-#else
-#ifdef __MSVC__
-inline SLong eip()
-{
+	#else
+	#ifdef __MSVC__
+	inline SLong eip()
+	{
 	SLong	retval;
-    __asm
-    {
-		call next;
-		next: pop eax;
-		mov retval,eax;
-    }
-    return retval;
-}
+	__asm
+	{
+	call next;
+	next: pop eax;
+	mov retval,eax;
+	}
+	return retval;
+	}
 
-#endif
-#endif
+	#endif
+	#endif
 
-#ifdef __WATCOMC__
+	#ifdef __WATCOMC__
 	extern	SLong* esp();
 	#pragma aux esp="mov eax,esp" value [eax]
-#else
-#ifdef __MSVC__
-inline SLong* esp()
-{
+	#else
+	#ifdef __MSVC__
+	inline SLong* esp()
+	{
 	SLong*	retval;
-    __asm
-    {
-		mov eax,esp;
-		mov retval,eax;
-    }
-    return retval;
-}
+	__asm
+	{
+	mov eax,esp;
+	mov retval,eax;
+	}
+	return retval;
+	}
 
-#endif
-#endif
-*/
+	#endif
+	#endif
+	*/
 //
 // Implementation for the fileblock task next!
 //
@@ -1192,152 +1240,152 @@ inline SLong* esp()
 //	The NEW overload for
 //
 void	fileblock::makefileblock
-		(FileNum	MyFile,		//R	//file number (if dir=-1 then no file)
-		filetrans*	MyTrans,	//O	//translation routine if area reallocated
-		ULong	blocksize,		//O	//max size to load/translate
-		ULong	offset,			//O	//offset into file
-		bool	processlock)	//X //process locking always enabled externally
+(FileNum	MyFile,		//R	//file number (if dir=-1 then no file)
+filetrans*	MyTrans,	//O	//translation routine if area reallocated
+ULong	blocksize,		//O	//max size to load/translate
+ULong	offset,			//O	//offset into file
+bool	processlock)	//X //process locking always enabled externally
 {
 
-FILE*	filehandle;
-	link=NULL;
-	fileblockdata=NULL;
+	FILE*	filehandle;
+	link = NULL;
+	fileblockdata = NULL;
 	if (BLOCKCHILD) //RDH 08/07/99
 		return; //RDH 08/07/99
 
-LOCK_SCOPE(interlocker);
+	LOCK_SCOPE(interlocker);
 
-	if ((fileblockdata=link->makelink(MyFile,offset,blocksize,link))==NULL)
+	if ((fileblockdata = link->makelink(MyFile, offset, blocksize, link)) == NULL)
 	{
-		dirindex di=dirnum(MyFile);
+		dirindex di = dirnum(MyFile);
 
-		if (di==RAMCACHEHANDLEDIR)
+		if (di == RAMCACHEHANDLEDIR)
 		{
-			bobassert(blocksize!=0 && blocksize!=0x7fffffff,": Must set a size for RAM blocks");
+			bobassert(blocksize != 0 && blocksize != 0x7fffffff, ": Must set a size for RAM blocks");
 
 
-			link->datasize=blocksize;
-			bobassert(blocksize,"Must provide data size for RAMBUFFER");
-			bobassert(MyTrans,"Must provide translate fn for RAMBUFFER");
+			link->datasize = blocksize;
+			bobassert(blocksize, "Must provide data size for RAMBUFFER");
+			bobassert(MyTrans, "Must provide translate fn for RAMBUFFER");
 			FILEMAN.MakeRoomFor(blocksize);
-			fileblockdata = new voidbigblock [blocksize];
+			fileblockdata = new voidbigblock[blocksize];
 		}
 		else
 		{
-			if (FILEMAN.direntries[di].openfile.number==MyFile)
+			if (FILEMAN.direntries[di].openfile.number == MyFile)
 			{
 
-				filehandle=FILEMAN.direntries[di].openfile.handle;
-				link->datasize=blocksize;
-				FILEMAN.seekfilepos(filehandle,offset);
-				FILEMAN.direntries[di].openfile.currfileindex=offset+blocksize;
-				bobassert(FILEMAN.direntries[di].openfile.currfileindex<=FILEMAN.direntries[di].openfile.maxfilesize,"Past end of file");
+				filehandle = FILEMAN.direntries[di].openfile.handle;
+				link->datasize = blocksize;
+				FILEMAN.seekfilepos(filehandle, offset);
+				FILEMAN.direntries[di].openfile.currfileindex = offset + blocksize;
+				bobassert(FILEMAN.direntries[di].openfile.currfileindex <= FILEMAN.direntries[di].openfile.maxfilesize, "Past end of file");
 			}
 			else
 			{
-				if (FILEMAN.IsConcatinatedFile(MyFile)==TRUE)
+				if (FILEMAN.IsConcatinatedFile(MyFile) == TRUE)
 				{
-				   filehandle=NULL;
+					filehandle = NULL;
 #ifdef __WATCOMC__
-	INT3();
+					INT3();
 #endif
 #ifdef __MSVC__
-	INT3;
+					INT3;
 #endif
 				}
 				else
 				{
-					filehandle=	FILEMAN.fileman::opennumberedfile(MyFile);
+					filehandle = FILEMAN.fileman::opennumberedfile(MyFile);
 
-// x0r code start
+					// x0r code start
 					if (!filehandle)
-                                             {
-												 FILEMAN.fileloadedthisframe=FALSE;link->deletedirchain(MyFile);link->datasize=0;
-			
-														return;}
-// x0r code end
-					FILEMAN.fileloadedthisframe=TRUE;
-					link->datasize=		FILEMAN.getfilesize(filehandle);
-					assert (link->datasize);
-					assert (blocksize);
-
-					
-					
-					if (link->datasize>blocksize)
 					{
-						if (FILEMAN.direntries[di].openfile.number!=INVALIDFILENUM)
-							FILEMAN.closefile(FILEMAN.direntries[di].openfile.handle);
-						FILEMAN.direntries[di].openfile.number=MyFile;
-						FILEMAN.direntries[di].openfile.handle=filehandle;
-						FILEMAN.direntries[di].openfile.maxfilesize=link->datasize;
-						FILEMAN.direntries[di].openfile.currfileindex=offset+blocksize;
+						FILEMAN.fileloadedthisframe = FALSE; link->deletedirchain(MyFile); link->datasize = 0;
 
-						if (offset>link->datasize)
+														return;}
+					// x0r code end
+					FILEMAN.fileloadedthisframe = TRUE;
+					link->datasize = FILEMAN.getfilesize(filehandle);
+					assert(link->datasize);
+					assert(blocksize);
+
+
+
+					if (link->datasize > blocksize)
+					{
+						if (FILEMAN.direntries[di].openfile.number != INVALIDFILENUM)
+							FILEMAN.closefile(FILEMAN.direntries[di].openfile.handle);
+						FILEMAN.direntries[di].openfile.number = MyFile;
+						FILEMAN.direntries[di].openfile.handle = filehandle;
+						FILEMAN.direntries[di].openfile.maxfilesize = link->datasize;
+						FILEMAN.direntries[di].openfile.currfileindex = offset + blocksize;
+
+						if (offset > link->datasize)
 							_Error.EmitSysErr("Index past end of file");
-						link->datasize=blocksize;
+						link->datasize = blocksize;
 						assert(link->datasize);
 
 						if (offset)
-								FILEMAN.seekfilepos(filehandle,offset);
+							FILEMAN.seekfilepos(filehandle, offset);
 					}
 					else
-						bobassert((offset==0),"Can only use offset if buffer smaller than file!");
+						bobassert((offset == 0), "Can only use offset if buffer smaller than file!");
 				}
 			}
- /*           #if	defined(__WATCOMC__) || defined (__MSVC__)
-			#ifndef NDEBUG
-			SLong b4=eip();
+			/*           #if	defined(__WATCOMC__) || defined (__MSVC__)
+					   #ifndef NDEBUG
+					   SLong b4=eip();
 
-//		    if (link->datasize==259)
-//				b4=b4;
-			#endif
-            #endif*/
+					   //		    if (link->datasize==259)
+					   //				b4=b4;
+					   #endif
+					   #endif*/
 			if (File_Man.errhandle)
-				fprintf(File_Man.errhandle,"-%8i/%8i + %8i\n",File_Man.totalfilesysmemused,File_Man.totalfilesysmem,link->datasize);
+				fprintf(File_Man.errhandle, "-%8i/%8i + %8i\n", File_Man.totalfilesysmemused, File_Man.totalfilesysmem, link->datasize);
 			FILEMAN.MakeRoomFor(link->datasize);
 #if !defined(NDEBUG) && !defined(__BCPLUSPLUS__)
 #undef new
-			if ((fileblockdata = new(__HERE__ ": -data for file num:",MyFile) voidbigblock [link->datasize])==NULL)
+			if ((fileblockdata = new(__HERE__ ": -data for file num:", MyFile) voidbigblock[link->datasize]) == NULL)
 #define new DEBUG_NEW
 #else
 			if ((fileblockdata = new voidbigblock [link->datasize])==NULL)
 #endif
 				_Error.EmitSysErr("Failed to allocate memory for file load "
-									"(file %x, size %d)",
-									MyFile,link->datasize);
-   /*         #if	defined(__WATCOMC__) || defined (__MSVC__)
-			#ifndef NDEBUG
-			SLong ft=eip();
-			if (	*((SLong*)fileblockdata-3) >=b4
-				&&	*((SLong*)fileblockdata-3) <=ft
-				)
-			{
-				*((SLong*)fileblockdata-3)=esp()[18];
-				gotnewfix=TRUE;
-			}
-			#endif
-            #endif   */
-			assert(FILEMAN.readfileblock(filehandle,fileblockdata,link->datasize));
-				
-			if (FILEMAN.direntries[di].openfile.number!=MyFile)
+				"(file %x, size %d)",
+				MyFile, link->datasize);
+			/*         #if	defined(__WATCOMC__) || defined (__MSVC__)
+					 #ifndef NDEBUG
+					 SLong ft=eip();
+					 if (	*((SLong*)fileblockdata-3) >=b4
+					 &&	*((SLong*)fileblockdata-3) <=ft
+					 )
+					 {
+					 *((SLong*)fileblockdata-3)=esp()[18];
+					 gotnewfix=TRUE;
+					 }
+					 #endif
+					 #endif   */
+			assert(FILEMAN.readfileblock(filehandle, fileblockdata, link->datasize));
+
+			if (FILEMAN.direntries[di].openfile.number != MyFile)
 				FILEMAN.closefile(filehandle);
 		}
 
 
-	//TempCode JIM 01Apr96 	nextinfile=NULL;
-	//TempCode JIM 01Apr96 	heapmanagelink=NULL;
+		//TempCode JIM 01Apr96 	nextinfile=NULL;
+		//TempCode JIM 01Apr96 	heapmanagelink=NULL;
 		if (MyTrans)
-			{
-			voidbigblock*	oldfbd=(voidbigblock*) fileblockdata;
-			ULong	oldds=link->datasize;
-			MyTrans(fileblockdata,link->datasize);
-			if (oldfbd!=(voidbigblock*) fileblockdata)
+		{
+			voidbigblock*	oldfbd = (voidbigblock*)fileblockdata;
+			ULong	oldds = link->datasize;
+			MyTrans(fileblockdata, link->datasize);
+			if (oldfbd != (voidbigblock*)fileblockdata)
 			{
 				FILEMAN.MakeRoomFor(-int(oldds));
-				delete [] oldfbd;
+				delete[] oldfbd;
 			}
-			}
-		link->fileblockdata=fileblockdata;
+		}
+		link->fileblockdata = fileblockdata;
 	}
 
 #ifndef	NDEBUG
@@ -1345,7 +1393,7 @@ LOCK_SCOPE(interlocker);
 		robtotalfilememused += link->datasize;
 #endif
 	assert(fileblockdata);
-		
+
 
 }
 ////////////////////////////////////////////////////////
@@ -1356,10 +1404,10 @@ LOCK_SCOPE(interlocker);
 //	This will be because the size is zero.
 //
 ////////////////////////////////////////////////////////
-	fileblock::fileblock(void*	dataarea)
+fileblock::fileblock(void*	dataarea)
 {
-	link=NULL;
-	fileblockdata=dataarea;
+	link = NULL;
+	fileblockdata = dataarea;
 	assert(fileblockdata);
 }
 
@@ -1374,13 +1422,13 @@ LOCK_SCOPE(interlocker);
 //	heapmanagelink=NULL;
 //}
 
-	fileblock::fileblock(const fileblockptr srcblockptr)
+fileblock::fileblock(const fileblockptr srcblockptr)
 {
-	link=srcblockptr->link;
-	srcblockptr->link=NULL;
-	fileblockdata=srcblockptr->fileblockdata;
-//	assert(fileblockdata);
-	srcblockptr->fileblockdata=NULL;
+	link = srcblockptr->link;
+	srcblockptr->link = NULL;
+	fileblockdata = srcblockptr->fileblockdata;
+	//	assert(fileblockdata);
+	srcblockptr->fileblockdata = NULL;
 	delete srcblockptr;
 }
 
@@ -1410,30 +1458,30 @@ DES	fileblock::~fileblock()
 	fileblocklink::deletelink(-2); //release nearly 4GB
 
 #endif
-//DeadCode JIM 01Apr96 	if ((fileblockdata)&&(datasize))
+	//DeadCode JIM 01Apr96 	if ((fileblockdata)&&(datasize))
 	{
-//TempCode JIM 29Mar96 		dirindex reqdir=dirnum(filenum);
-//TempCode JIM 29Mar96 		//find in old list
-//TempCode JIM 29Mar96 		fileblockptr *search=&FILEMAN.direntries[reqdir].openfiles;
-//TempCode JIM 29Mar96 		while (*search)
-//TempCode JIM 29Mar96 		{
-//TempCode JIM 29Mar96 			breakif(search[0]->nextindir==this);
-//TempCode JIM 29Mar96 			search=&search[0]->nextindir;
-//TempCode JIM 29Mar96 		}
-//TempCode JIM 29Mar96 //		assert(search&&"deleted unknown area???!!!");
-//TempCode JIM 29Mar96 		search[0]->nextindir=nextindir;
-//TempCode JIM 29Mar96
-//TempCode JIM 29Mar96 		search=&FILEMAN.direntries[reqdir].freedfiles;
-//TempCode JIM 29Mar96 		while (*search)
-//TempCode JIM 29Mar96 		{
-//TempCode JIM 29Mar96 			breakif(search[0]->filenum&FILENUMMASK>=filenum&FILENUMMASK);
-//TempCode JIM 29Mar96 			search=&search[0]->nextindir;
-//TempCode JIM 29Mar96 		}
-//TempCode JIM 29Mar96 		fileblockptr newfb=new fileblock (*this);
-//TempCode JIM 29Mar96 		newfb->nextindir=search;
-//TempCode JIM 29Mar96 		search = newfb;
+		//TempCode JIM 29Mar96 		dirindex reqdir=dirnum(filenum);
+		//TempCode JIM 29Mar96 		//find in old list
+		//TempCode JIM 29Mar96 		fileblockptr *search=&FILEMAN.direntries[reqdir].openfiles;
+		//TempCode JIM 29Mar96 		while (*search)
+		//TempCode JIM 29Mar96 		{
+		//TempCode JIM 29Mar96 			breakif(search[0]->nextindir==this);
+		//TempCode JIM 29Mar96 			search=&search[0]->nextindir;
+		//TempCode JIM 29Mar96 		}
+		//TempCode JIM 29Mar96 //		assert(search&&"deleted unknown area???!!!");
+		//TempCode JIM 29Mar96 		search[0]->nextindir=nextindir;
+		//TempCode JIM 29Mar96
+		//TempCode JIM 29Mar96 		search=&FILEMAN.direntries[reqdir].freedfiles;
+		//TempCode JIM 29Mar96 		while (*search)
+		//TempCode JIM 29Mar96 		{
+		//TempCode JIM 29Mar96 			breakif(search[0]->filenum&FILENUMMASK>=filenum&FILENUMMASK);
+		//TempCode JIM 29Mar96 			search=&search[0]->nextindir;
+		//TempCode JIM 29Mar96 		}
+		//TempCode JIM 29Mar96 		fileblockptr newfb=new fileblock (*this);
+		//TempCode JIM 29Mar96 		newfb->nextindir=search;
+		//TempCode JIM 29Mar96 		search = newfb;
 
-//DeadCode JIM 01Apr96 		delete []	(voidbigblock*)	fileblockdata;
+		//DeadCode JIM 01Apr96 		delete []	(voidbigblock*)	fileblockdata;
 	}
 }
 
@@ -1450,18 +1498,18 @@ DES	fileblock::~fileblock()
 //Returns
 //
 //------------------------------------------------------------------------------
-Bool	fileman::loadednumberedfile(FileNum filenum,int offset)
+Bool	fileman::loadednumberedfile(FileNum filenum, int offset)
 {
-//DeadCode JIM 20Oct00 int	filehandle=-1;
-dirindex reqdir=dirnum(filenum);
-fileblocklink	**search=&direntries[reqdir].freedfiles;
-fileblocklink	*s2;
+	//DeadCode JIM 20Oct00 int	filehandle=-1;
+	dirindex reqdir = dirnum(filenum);
+	fileblocklink	**search = &direntries[reqdir].freedfiles;
+	fileblocklink	*s2;
 	while (*search)
 	{
-		if (search[0]->filenum==filenum)
-			if (search[0]->fileoffset==offset)
+		if (search[0]->filenum == filenum)
+			if (search[0]->fileoffset == offset)
 				return(TRUE);
-		search=&search[0]->dir.next;
+		search = &search[0]->dir.next;
 	}
 	return	FALSE;
 }
@@ -1477,61 +1525,61 @@ fileblocklink	*s2;
 //Returns
 //
 //------------------------------------------------------------------------------
-void*	fileblocklink::makelink(FileNum filenum,ULong fileoffset,ULong size,fileblocklink*&link)
+void*	fileblocklink::makelink(FileNum filenum, ULong fileoffset, ULong size, fileblocklink*&link)
 {
-int	filehandle=-1;
-dirindex reqdir=dirnum(filenum);
-fileblocklink	**search=&FILEMAN.direntries[reqdir].freedfiles;
-fileblocklink	*s2;
+	int	filehandle = -1;
+	dirindex reqdir = dirnum(filenum);
+	fileblocklink	**search = &FILEMAN.direntries[reqdir].freedfiles;
+	fileblocklink	*s2;
 	while (*search)
 	{
-		if (search[0]->filenum==filenum)
-			if (search[0]->fileoffset==fileoffset)
+		if (search[0]->filenum == filenum)
+			if (search[0]->fileoffset == fileoffset)
 			{	//as good as found a match if not asked for all.
-				bobassert(	(fileoffset==0 || search[0]->datasize==size)
-						,"Indexed part of file with different size!");
-				link=s2=*search;
-				//remove from free list,
-//DeadCode JIM 20Oct00 				fileblocklink **tmp = &FILEMAN.allfreedfiles;
-				s2->dir.remove(s2);
-				s2->heap.remove(s2);
-				//insert in active lists
-				s2->dir.insert(s2,FILEMAN.direntries[reqdir].openfiles);
-				s2->heap.insert(s2,FILEMAN.allactivefiles);
-				#ifndef NDEBUG
-					if (gotnewfix)
-						*((ULong*)s2->fileblockdata-3)&=0x0fffffff;
-				#endif
-				return(s2->fileblockdata);
+			bobassert((fileoffset == 0 || search[0]->datasize == size)
+				, "Indexed part of file with different size!");
+			link = s2 = *search;
+			//remove from free list,
+			//DeadCode JIM 20Oct00 				fileblocklink **tmp = &FILEMAN.allfreedfiles;
+			s2->dir.remove(s2);
+			s2->heap.remove(s2);
+			//insert in active lists
+			s2->dir.insert(s2, FILEMAN.direntries[reqdir].openfiles);
+			s2->heap.insert(s2, FILEMAN.allactivefiles);
+#ifndef NDEBUG
+			if (gotnewfix)
+				*((ULong*)s2->fileblockdata - 3) &= 0x0fffffff;
+#endif
+			return(s2->fileblockdata);
 			}
 			else
 			{
-				filehandle=search[0]->filehandle;
+				filehandle = search[0]->filehandle;
 			}
-		search=&search[0]->dir.next;
+		search = &search[0]->dir.next;
 	}
-	s2=FILEMAN.direntries[reqdir].openfiles;
+	s2 = FILEMAN.direntries[reqdir].openfiles;
 	while (s2)
 	{
-		if (s2->filenum==filenum)
-			_Error.ReallyEmitSysErr("Opened file block (%x) again without closing!",filenum);
-		s2=s2->dir.next;
+		if (s2->filenum == filenum)
+			_Error.ReallyEmitSysErr("Opened file block (%x) again without closing!", filenum);
+		s2 = s2->dir.next;
 	}
 
 #if !defined(NDEBUG) && !defined(__BCPLUSPLUS__)
 #undef new
-	link=s2=new(__HERE__ ": -fileblock",filenum) fileblocklink;
+	link = s2 = new(__HERE__ ": -fileblock", filenum) fileblocklink;
 #define new DEBUG_NEW
 #else
 	link=s2=new fileblocklink;
 #endif
-	link->filenum=filenum;
-	link->fileoffset=fileoffset;
-	link->fileblockdata=NULL;
-	link->filehandle=filehandle;
+	link->filenum = filenum;
+	link->fileoffset = fileoffset;
+	link->fileblockdata = NULL;
+	link->filehandle = filehandle;
 	//insert in active lists
-	s2->dir.insert(s2,FILEMAN.direntries[reqdir].openfiles);
-	s2->heap.insert(s2,FILEMAN.allactivefiles);
+	s2->dir.insert(s2, FILEMAN.direntries[reqdir].openfiles);
+	s2->heap.insert(s2, FILEMAN.allactivefiles);
 	return(NULL);
 
 }
@@ -1558,23 +1606,23 @@ Bool	fileblocklink::breaklink()
 
 		if (fileblockdata)
 		{
-			#ifndef NDEBUG
-				if (gotnewfix)
-					*((ULong*)fileblockdata-3)|=0x80000000;
-			#endif
+#ifndef NDEBUG
+			if (gotnewfix)
+				*((ULong*)fileblockdata - 3) |= 0x80000000;
+#endif
 			//insert in freed lists:
 			//First, the directory list:
-			fileblocklink	**search=&FILEMAN.direntries[dirnum(filenum)].freedfiles;
-			while (*search && search[0]->filenum<=filenum)
-				search=& search[0]->dir.next;
-			dir.insert(this,*search);
+			fileblocklink	**search = &FILEMAN.direntries[dirnum(filenum)].freedfiles;
+			while (*search && search[0]->filenum <= filenum)
+				search = &search[0]->dir.next;
+			dir.insert(this, *search);
 
 			//Next, the full list
-//DeadCode JIM 20Oct00 			fileblocklink **tmp = &FILEMAN.allfreedfiles;
-			search = & FILEMAN.allfreedfiles;
-			while (*search && search[0]->datasize<=datasize+500)
-				search=& search[0]->heap.next;
-			heap.insert(this,*search);
+			//DeadCode JIM 20Oct00 			fileblocklink **tmp = &FILEMAN.allfreedfiles;
+			search = &FILEMAN.allfreedfiles;
+			while (*search && search[0]->datasize <= datasize + 500)
+				search = &search[0]->heap.next;
+			heap.insert(this, *search);
 			return(TRUE);
 		}
 		else
@@ -1585,18 +1633,18 @@ Bool	fileblocklink::breaklink()
 
 void	fileblocklink::deletedirchain(FileNum fnum)
 {
-dirindex reqdir=dirnum(fnum);
-fileblocklink	*s2;
-fileblocklink	*search=FILEMAN.direntries[reqdir].freedfiles;
+	dirindex reqdir = dirnum(fnum);
+	fileblocklink	*s2;
+	fileblocklink	*search = FILEMAN.direntries[reqdir].freedfiles;
 	while (search)
 	{
-		s2=search;
+		s2 = search;
 		s2->dir.remove(s2);
 		s2->heap.remove(s2);
-		delete [] (voidbigblock*) s2->fileblockdata;
+		delete[](voidbigblock*) s2->fileblockdata;
 		FILEMAN.MakeRoomFor(-int(s2->datasize));
 		delete s2;
-		search=FILEMAN.direntries[reqdir].freedfiles;
+		search = FILEMAN.direntries[reqdir].freedfiles;
 	};
 }
 
@@ -1616,8 +1664,8 @@ Bool	fileblocklink::deletelink(ULong size)
 {
 	//find a bigger link to free
 	fileblocklink	*s2 = FILEMAN.allfreedfiles;
-		while (s2 && s2->datasize<size)
-			s2=s2->heap.next;
+	while (s2 && s2->datasize < size)
+		s2 = s2->heap.next;
 
 	if (s2)
 	{	//delete the one bigger element
@@ -1625,16 +1673,16 @@ Bool	fileblocklink::deletelink(ULong size)
 		s2->dir.remove(s2);
 		s2->heap.remove(s2);
 		//do something with file handles
-		delete [] (voidbigblock*) s2->fileblockdata;
+		delete[](voidbigblock*) s2->fileblockdata;
 		FILEMAN.MakeRoomFor(-int(s2->datasize));
 		delete s2;
 		return(TRUE);
 	}
 
-//TempCode PD 16Jan98 	if (LandStream.DeleteDisplayCache(TRUE))									//PD 01Aug96
-//TempCode PD 16Jan98 		return(TRUE);
+	//TempCode PD 16Jan98 	if (LandStream.DeleteDisplayCache(TRUE))									//PD 01Aug96
+	//TempCode PD 16Jan98 		return(TRUE);
 
-	if (size!=(ULong)-2)		//don't free system reources if doing forced purges of file system
+	if (size != (ULong)-2)		//don't free system reources if doing forced purges of file system
 	{
 		if (!FILEMAN.allfreedfiles)
 		{
@@ -1643,7 +1691,7 @@ Bool	fileblocklink::deletelink(ULong size)
 
 		if (!FILEMAN.allfreedfiles)
 		{
- 			Image_Map.UnLoadImageMapPtrs();								//PD 29Nov95
+			Image_Map.UnLoadImageMapPtrs();								//PD 29Nov95
 		}
 	}
 	if (FILEMAN.allfreedfiles)
@@ -1652,13 +1700,13 @@ Bool	fileblocklink::deletelink(ULong size)
 		while (s2)
 		{
 			s2->dir.remove(s2);									//JIM 10Apr96
-//DeadCode JIM 10Apr96 			s2->heap.remove(s2);			//JIM 10Apr96
- 			FILEMAN.allfreedfiles=s2->heap.next;
+			//DeadCode JIM 10Apr96 			s2->heap.remove(s2);			//JIM 10Apr96
+			FILEMAN.allfreedfiles = s2->heap.next;
 			//do something with file handles
-			delete [] (voidbigblock*) s2->fileblockdata;
+			delete[](voidbigblock*) s2->fileblockdata;
 			FILEMAN.MakeRoomFor(-int(s2->datasize));
 			delete s2;
-			s2=FILEMAN.allfreedfiles;
+			s2 = FILEMAN.allfreedfiles;
 		}
 		return(TRUE);
 	}
@@ -1667,27 +1715,27 @@ Bool	fileblocklink::deletelink(ULong size)
 }
 void	fileman::MakeRoomFor(int delta)
 {
-	if (totalfilesysmemused>totalfilesysmem)
-    	totalfilesysmemused+=delta;
-    else
-    {
-    	totalfilesysmemused+=delta;
-	    #ifndef	__BCPLUSPLUS__
-		if (totalfilesysmemused>totalfilesysmem)
+	if (totalfilesysmemused > totalfilesysmem)
+		totalfilesysmemused += delta;
+	else
+	{
+		totalfilesysmemused += delta;
+#ifndef	__BCPLUSPLUS__
+		if (totalfilesysmemused > totalfilesysmem)
 		{
 			if (File_Man.errhandle)
-				fprintf(File_Man.errhandle,"#%8i/%8i + %8i\n",File_Man.totalfilesysmemused,File_Man.totalfilesysmem,delta);
+				fprintf(File_Man.errhandle, "#%8i/%8i + %8i\n", File_Man.totalfilesysmemused, File_Man.totalfilesysmem, delta);
 
-			if (totalfilesysmem==5000000)
+			if (totalfilesysmem == 5000000)
 				fileblocklink::deletelink(totalfilesysmem);
 			else
 				fileblocklink::deletelink(delta);
 
 			if (File_Man.errhandle)
-				fprintf(File_Man.errhandle,"@%8i/%8i + %8i\n",File_Man.totalfilesysmemused,File_Man.totalfilesysmem,delta);
+				fprintf(File_Man.errhandle, "@%8i/%8i + %8i\n", File_Man.totalfilesysmemused, File_Man.totalfilesysmem, delta);
 		}
-	    #endif
-    }
+#endif
+	}
 }
 ////////////////////////////////////////////////////////
 //DeadCode JIM 21Sep95 ULong	fileblock::getsize()
@@ -1698,11 +1746,11 @@ void	fileman::MakeRoomFor(int delta)
 //DeadCode JIM 21Sep95 	{return(fileblockdata);}
 
 ////////////////////////////////////////////////////////
-	fileman::dirfileentry::dirfileentry()
+fileman::dirfileentry::dirfileentry()
 {
-	driverfile=INVALIDFILENUM;
-	freedfiles=NULL;
-	openfiles=NULL;
+	driverfile = INVALIDFILENUM;
+	freedfiles = NULL;
+	openfiles = NULL;
 
 }
 
@@ -1727,7 +1775,7 @@ void	fileman::MakeRoomFor(int delta)
 //
 
 
-Bool	fileman::quitonfailalloc=TRUE;
+Bool	fileman::quitonfailalloc = TRUE;
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
 //Procedure		MyMemFailPFU
 //Author		Jim Taylor
@@ -1747,13 +1795,13 @@ int	fileman::MyMemFailPFU(unsigned s)
 		if (MemFailPFU(s))
 			return(TRUE);
 
-//	_asm { int 3 }
+	//	_asm { int 3 }
 
 	if (fileblocklink::deletelink(s))
 		return(TRUE);
 	if (quitonfailalloc)
 		_Error.ReallyEmitSysErr("Memory request failed for %ibytes (%2iM%4iK%4iB)",
-			s,s/(1024*1024),(s/1024)%1024,s%1024);
+		s, s / (1024 * 1024), (s / 1024) % 1024, s % 1024);
 	return(FALSE);
 }
 
@@ -1773,72 +1821,72 @@ int	fileman::MyMemFailPFU(unsigned s)
 //Returns
 //
 //------------------------------------------------------------------------------
-CON	dirlist::dirlist(FileNum d):
-	dirnum(d)
+CON	dirlist::dirlist(FileNum d) :
+dirnum(d)
 {
-	ownfilelist=FALSE;
-	pathname=NULL;
-//	FILEMAN.makedirectoryname(::dirnum(d),FILEMAN.filenameindex);
-//	FILEMAN.pathname[FILEMAN.filenameindex]=0;
+	ownfilelist = FALSE;
+	pathname = NULL;
+	//	FILEMAN.makedirectoryname(::dirnum(d),FILEMAN.filenameindex);
+	//	FILEMAN.pathname[FILEMAN.filenameindex]=0;
 
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'D';
-LOCK_SCOPE(interlocker);
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'D';
+	LOCK_SCOPE(interlocker);
 
-	makedirlist(FILEMAN.makedirectoryname(::dirnum(d)),"*.*");
+	makedirlist(FILEMAN.makedirectoryname(::dirnum(d)), "*.*");
 
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'d';
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'d';
 }
 
-CON	dirlist::dirlist(FileNum d,char* w):
-	dirnum(d)
+CON	dirlist::dirlist(FileNum d, char* w) :
+dirnum(d)
 {
-	pathname=NULL;
-	ownfilelist=FALSE;
-//	FILEMAN.makedirectoryname(::dirnum(d),FILEMAN.filenameindex);
-//	FILEMAN.pathname[FILEMAN.filenameindex]=0;
+	pathname = NULL;
+	ownfilelist = FALSE;
+	//	FILEMAN.makedirectoryname(::dirnum(d),FILEMAN.filenameindex);
+	//	FILEMAN.pathname[FILEMAN.filenameindex]=0;
 
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'L';
-LOCK_SCOPE(interlocker);
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'L';
+	LOCK_SCOPE(interlocker);
 
-	makedirlist(FILEMAN.makedirectoryname(::dirnum(d)),w);
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'l';
+	makedirlist(FILEMAN.makedirectoryname(::dirnum(d)), w);
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'l';
 }
 
-CON	dirlist::dirlist(char* d,char* w):
-	dirnum(INVALIDFILENUM)
+CON	dirlist::dirlist(char* d, char* w) :
+dirnum(INVALIDFILENUM)
 {
-	pathname=NULL;
-	ownfilelist=FALSE;
-	makedirlist(d,w);
+	pathname = NULL;
+	ownfilelist = FALSE;
+	makedirlist(d, w);
 }
 
 
-void	dirlist::makedirlist(char* p,char* w)
+void	dirlist::makedirlist(char* p, char* w)
 {
 
-	pathlen=strlen(p);
-	pathname=new char [pathlen+(int)FNAMESIZE+2];
+	pathlen = strlen(p);
+	pathname = new char[pathlen + (int)FNAMESIZE + 2];
 
-	wildname=w;
-	ownfilelist=TRUE;
-	w=pathname;
+	wildname = w;
+	ownfilelist = TRUE;
+	w = pathname;
 	if (*p)
 	{
-		while (*p) *w++=*p++;
-		if (*(p-1)!='\\')
+		while (*p) *w++ = *p++;
+		if (*(p - 1) != '\\')
 		{
-			*w++='\\';
+			*w++ = '\\';
 			pathlen++;
 		}
 	}
-	p=wildname;
-	while ((*w++=*p++)!=0);
+	p = wildname;
+	while ((*w++ = *p++) != 0);
 	//allpath is dir name
-	char*	tmpflist= new char [FNAMESIZE*MAXFLIST];
-	int i=0;
-	p=wildname;
-	w=&tmpflist[i*FNAMESIZE];
-	while ((*w++=*p++)!=0);
+	char*	tmpflist = new char[FNAMESIZE*MAXFLIST];
+	int i = 0;
+	p = wildname;
+	w = &tmpflist[i*FNAMESIZE];
+	while ((*w++ = *p++) != 0);
 	i++;
 #ifdef __WATCOMC__
 
@@ -1868,36 +1916,36 @@ void	dirlist::makedirlist(char* p,char* w)
 #ifdef __MSVC__
 
 	WIN32_FIND_DATA results;
-	HANDLE h=FindFirstFile(pathname,&results);
-	while (i<MAXFLIST && h!=INVALID_HANDLE_VALUE)
+	HANDLE h = FindFirstFile(pathname, &results);
+	while (i < MAXFLIST && h != INVALID_HANDLE_VALUE)
 	{
-		p=results.cAlternateFileName; // if long file name converts to short
-		w=&tmpflist[i*FNAMESIZE];
-		while ((*w++=*p++)!=0);
+		p = results.cAlternateFileName; // if long file name converts to short
+		w = &tmpflist[i*FNAMESIZE];
+		while ((*w++ = *p++) != 0);
 		i++;
-		if (!FindNextFile(h,&results)) break;
+		if (!FindNextFile(h, &results)) break;
 	}
 
 #endif
-	numfiles=i;
-	filelist=new char [i*FNAMESIZE];
+	numfiles = i;
+	filelist = new char[i*FNAMESIZE];
 	while (i--)
 	{
-	 	p=&tmpflist[i*FNAMESIZE];
-		w=&filelist[i*FNAMESIZE];
-	 	while ((*w++=*p++)!=0);
+		p = &tmpflist[i*FNAMESIZE];
+		w = &filelist[i*FNAMESIZE];
+		while ((*w++ = *p++) != 0);
 	}
-	delete [] tmpflist;
+	delete[] tmpflist;
 }
 
 
 char*	dirlist::operator+(char *c)
 {
-		char* pn;
-		pn=&pathname[pathlen];
-		for (int i=FNAMESIZE;--i!=0;)
-			*pn++=*c++;
-		return(pathname);
+	char* pn;
+	pn = &pathname[pathlen];
+	for (int i = FNAMESIZE; --i != 0;)
+		*pn++ = *c++;
+	return(pathname);
 }
 
 void dirlist::operator -= (int i)
@@ -1915,11 +1963,11 @@ void dirlist::operator -= (char* s)
 DES	dirlist::~dirlist()
 {
 	if (ownfilelist)
- 		delete [] filelist;
-	filelist=NULL;
+		delete[] filelist;
+	filelist = NULL;
 	delete pathname;
-	pathname=NULL;
-	pathlen=0;
+	pathname = NULL;
+	pathlen = 0;
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -1939,17 +1987,19 @@ void fileman::InitFileSystem()
 
 	//Work out what resources are available for the file system
 #ifdef	_MSC_VER
-//DeadCode CSB 11Sep00 	Mono_Text.Print((UByte*)"Before mem test ");
+	//DeadCode CSB 11Sep00 	Mono_Text.Print((UByte*)"Before mem test ");
 #endif
-	MEMORYSTATUS	memstats={sizeof(MEMORYSTATUS)};
+	MEMORYSTATUS	memstats = { sizeof(MEMORYSTATUS) };
 	GlobalMemoryStatus(&memstats);
-	const size_t blocksize=4096;
+	const size_t blocksize = 4096;
 	typedef	char k4[blocksize];
-	size_t MEMBLOCKSsize=(memstats.dwTotalPhys>20000000)?(memstats.dwTotalPhys/2):5000000;
-	if (MEMBLOCKSsize>(size_t)memstats.dwAvailPhys+(size_t)memstats.dwAvailPageFile)
+/*
+	size_t MEMBLOCKSsize = (memstats.dwTotalPhys > 20000000) ? (memstats.dwTotalPhys / 2) : 5000000;
+	if (MEMBLOCKSsize > (size_t)memstats.dwAvailPhys + (size_t)memstats.dwAvailPageFile)
 		_Error.ReallyEmitSysErr("Not Enough Virtual memory.\nWanted %uK, Got %uK phys and %uK virtual",
-								MEMBLOCKSsize/1024,memstats.dwAvailPhys/1024,memstats.dwAvailPageFile/1024);
-	int totalscore=0;
+		MEMBLOCKSsize / 1024, memstats.dwAvailPhys / 1024, memstats.dwAvailPageFile / 1024);
+		*/
+	int totalscore = 0;
 #ifdef NOMEMTEST
 	const MEMBLOCKS= MEMBLOCKSsize/blocksize-1;
 	k4* lump=new k4[MEMBLOCKS];
@@ -1967,25 +2017,31 @@ void fileman::InitFileSystem()
 	delete []lump;
 #else
 #ifdef	_MSC_VER
-//DeadCode CSB 11Sep00 	Mono_Text.Print((UByte*)"Mem test disabled");
+	//DeadCode CSB 11Sep00 	Mono_Text.Print((UByte*)"Mem test disabled");
 #endif
 #endif
 
 	GlobalMemoryStatus(&memstats);
+/*
 	if (MEMBLOCKSsize>memstats.dwAvailPhys+memstats.dwAvailPageFile)
 		_Error.ReallyEmitSysErr("Not Enough Virtual memory.\nWanted %iK, Got %iK phys and %iK virtual",
 								MEMBLOCKSsize/1024,memstats.dwAvailPhys/1024,memstats.dwAvailPageFile/1024,totalscore);
+*/
+	size_t MEMBLOCKSsize = (memstats.dwAvailPhys*0.75 > 200000000) ? 200000000 : memstats.dwAvailPhys*0.75;
+	if (MEMBLOCKSsize < 64000000)
+		_Error.ReallyEmitSysErr("Not Enough memory.\nWanted 64M, Got %iM phys and %iM virtual",
+		memstats.dwAvailPhys / (1024 * 1024), memstats.dwAvailPageFile / (1024 * 1024));
 #ifdef	_MSC_VER
-//DeadCode CSB 11Sep00 	Mono_Text.Print((UByte*)"After mem test");
+	//DeadCode CSB 11Sep00 	Mono_Text.Print((UByte*)"After mem test");
 #endif
 
-	totalmem=memstats.dwTotalPhys;
-	totalfilesysmem=MEMBLOCKSsize;
-	totalmemused=4000000;
-	totalfilesysmemused=0;
+	totalmem = memstats.dwTotalPhys;
+	totalfilesysmem = MEMBLOCKSsize;
+	totalmemused = 4000000;
+	totalfilesysmemused = 0;
 
 #ifdef	DUMP_USED_FILES
-	errhandle = fopen(DUMP_USED_FILES,"wt");
+	errhandle = fopen(DUMP_USED_FILES, "wt");
 #endif
 
 	//Initialise the file system itself:
@@ -1994,14 +2050,14 @@ void fileman::InitFileSystem()
 	delete loaddirlist(FIL_640resDIR);
 	delete loaddirlist(FIL_soundsDIR);
 	delete loaddirlist(FIL_battleDIR);
-//DeadCode DAW 08Jan97 	delete FILEMAN.loaddirlist(FIL_localsDIR);
+	//DeadCode DAW 08Jan97 	delete FILEMAN.loaddirlist(FIL_localsDIR);
 
 	//set up CD file access
 
-//TempCode PD 08Oct98
-	driveletter='F';	//InitCDFS();
+	//TempCode PD 08Oct98
+	driveletter = 'F';	//InitCDFS();
 
-//	return(TRUE);
+	//	return(TRUE);
 }
 
 //----------Stuff used for the install-----------------
@@ -2019,14 +2075,14 @@ void fileman::InitFileSystem()
 //------------------------------------------------------------------------------
 dirindex fileman::getbasedir(dirindex	d)						//DAW 24Sep96
 {
-	dirindex	n=d;
+	dirindex	n = d;
 
-	while (direntries[n].driverfile!= INVALIDFILENUM
+	while (direntries[n].driverfile != INVALIDFILENUM
 		&& direntries[n].parentdir != RAMCACHEHANDLEDIR)
-		n=direntries[n].parentdir;
-	if (direntries[n].driverfile==INVALIDFILENUM)
+		n = direntries[n].parentdir;
+	if (direntries[n].driverfile == INVALIDFILENUM)
 		return(RAMCACHEHANDLEDIR);
-//DeadCode DAW 25Sep96 	printf("directory src:%i\tdest:%i\n",d,n);
+	//DeadCode DAW 25Sep96 	printf("directory src:%i\tdest:%i\n",d,n);
 	return(n);
 }
 
@@ -2044,11 +2100,11 @@ dirindex fileman::getbasedir(dirindex	d)						//DAW 24Sep96
 //------------------------------------------------------------------------------
 int	fileman::filesindir(FileNum MyFile)
 {
-fileblock	fb=readfilelist(dirnum(MyFile));
-string		dirlister=(string)	fb.getdata();
-			bobassert(  (dirlister[0]) ,"Not expecting concatenated directory here!" );
-			bobassert(  (dirlister[12]==0),"Not expecting hand built file-list here!");
-return	(fb.getsize()>>4);
+	fileblock	fb = readfilelist(dirnum(MyFile));
+	string		dirlister = (string)fb.getdata();
+	bobassert((dirlister[0]), "Not expecting concatenated directory here!");
+	bobassert((dirlister[12] == 0), "Not expecting hand built file-list here!");
+	return	(fb.getsize() >> 4);
 }
 
 
@@ -2065,39 +2121,39 @@ return	(fb.getsize()>>4);
 
 int		FileMan::filesindir(FileNum dirnum)
 {
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'F';
-LOCK_SCOPE(interlocker);
-	int rv=fileman::filesindir(dirnum);
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'F';
+	LOCK_SCOPE(interlocker);
+	int rv = fileman::filesindir(dirnum);
 
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'f';
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'f';
 	return rv;
 }
 Bool	FileMan::existnumberedfile(FileNum filenum)
 {
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'E';
-LOCK_SCOPE(interlocker);
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'E';
+	LOCK_SCOPE(interlocker);
 
-	Bool rv=fileman::existnumberedfile(filenum);
+	Bool rv = fileman::existnumberedfile(filenum);
 
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'e';
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'e';
 	return rv;
 }
-ULong	FileMan::readfileblock(FILE* openhandle,void* dataarea,ULong areasize)
+ULong	FileMan::readfileblock(FILE* openhandle, void* dataarea, ULong areasize)
 {	//handle based- doesn't need locking!
-	return	fileman::readfileblock(openhandle,dataarea,areasize);
+	return	fileman::readfileblock(openhandle, dataarea, areasize);
 }
 
-ULong	FileMan::seekfilepos(FILE* openhandle,ULong offset)
+ULong	FileMan::seekfilepos(FILE* openhandle, ULong offset)
 {
-	return	fileman::seekfilepos(openhandle,offset);
+	return	fileman::seekfilepos(openhandle, offset);
 }
 FILE*	FileMan::opennumberedfile(FileNum filenum)
 {
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'O';
-LOCK_SCOPE(interlocker);
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'O';
+	LOCK_SCOPE(interlocker);
 
-	FILE*	rv=fileman::opennumberedfile(filenum);
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'o';
+	FILE*	rv = fileman::opennumberedfile(filenum);
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'o';
 	return rv;
 }
 
@@ -2114,15 +2170,16 @@ void	FileMan::closefile(FILE* openhandle)
 char*	FileMan::makedirectoryname(dirindex	reqdir)
 {	//requires external unlocking of access, or string copy operation
 	fileman::makedirectoryname(reqdir);
-	pathname[filenameindex]=0;
+	pathname[filenameindex] = 0;
+	TRACING("Dir: " << reqdir << " name: " << pathname);
 	return	pathnameptr;
 }
 string	FileMan::namenumberedfile(FileNum f)
 {	//requires external unlocking of access, or string copy operation
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'N';
-LOCK_SCOPE(interlocker);
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'N';
+	LOCK_SCOPE(interlocker);
 
-	string rv=fileman::namenumberedfile(f);
+	string rv = fileman::namenumberedfile(f);
 
 	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'n';
 	return rv;
@@ -2130,26 +2187,26 @@ LOCK_SCOPE(interlocker);
 
 void FileMan::flushcachedfiles()
 {
-LOCK_SCOPE(interlocker);
+	LOCK_SCOPE(interlocker);
 	fileman::flushcachedfiles();
 }
 
 string	FileMan::namenumberedfile(FileNum f, string sss)
 {	//requires external unlocking of access, or string copy operation
 
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'S';
-LOCK_SCOPE(interlocker);
-	string rv=fileman::namenumberedfile(f);
-	strcpy(sss,rv);
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'S';
+	LOCK_SCOPE(interlocker);
+	string rv = fileman::namenumberedfile(f);
+	strcpy(sss, rv);
 
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'s';
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'s';
 	return sss;
 }
 string	FileMan::namenumberedfilelessfail(FileNum f)
 {	//requires external unlocking of access, or string copy operation
-//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'X';
-LOCK_SCOPE(interlocker);
-	string rv=fileman::namenumberedfilelessfail(f);
+	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'X';
+	LOCK_SCOPE(interlocker);
+	string rv = fileman::namenumberedfilelessfail(f);
 
 	//	(ULONG&)(((UWord*)0xb0000)[stuffed+=1])=0x700+'x';
 	return rv;
@@ -2161,27 +2218,27 @@ void	FileMan::InitFileSystem()
 
 void FileMan::SetupAreaFiles(FileNum* fn)
 {
-LOCK_SCOPE(interlocker);
+	LOCK_SCOPE(interlocker);
 	fileman::SetupAreaFiles(fn);
 }
 
 void FileMan::CloseAreaFiles()
 {
-LOCK_SCOPE(interlocker);
+	LOCK_SCOPE(interlocker);
 	fileman::CloseAreaFiles();
 }
 
-void* FileMan::loadCDfile(FileNum a,SLong b,SLong c,Bool skipread)
+void* FileMan::loadCDfile(FileNum a, SLong b, SLong c, Bool skipread)
 {
-LOCK_SCOPE(interlocker);
-	void* retval=fileman::loadCDfile(a,b,c,skipread);
+	LOCK_SCOPE(interlocker);
+	void* retval = fileman::loadCDfile(a, b, c, skipread);
 
 	return retval;
 }
 
 void FileMan::pingCD()
 {
-LOCK_SCOPE(interlocker);
+	LOCK_SCOPE(interlocker);
 	fileman::pingCD();
 
 }
@@ -2189,8 +2246,8 @@ LOCK_SCOPE(interlocker);
 SLong	FileMan::getTotalMem()
 {
 #ifndef NDEBUG
-	if (totalmem>60*1024*1024 && totalmem<256*1024*1024)		//This is to force low quality SFX on debug machines
-		return 60*1024*1024;
+	if (totalmem > 60 * 1024 * 1024 && totalmem < 256 * 1024 * 1024)		//This is to force low quality SFX on debug machines
+		return 60 * 1024 * 1024;
 #endif
 	return totalmem;
 }
@@ -2212,11 +2269,11 @@ void	FileMan::DebugLog(char* fst, ...)
 		char	tmpstring[255];
 		va_list	marker;
 
-		va_start(marker,fst);
+		va_start(marker, fst);
 
-		_vsnprintf(tmpstring,255,fst,marker);
+		_vsnprintf(tmpstring, 255, fst, marker);
 
-		fprintf(errhandle,"%s\n",tmpstring);
+		fprintf(errhandle, "%s\n", tmpstring);
 	}
 #endif
 }

@@ -20,6 +20,8 @@ extern double	exp( double __x );
 #include "myangles.h"
 
 #include	"mathasm.h"
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>
 
 enum	RndVal	{	RndValMIN=0,
 					RND10PC=6553,
@@ -39,7 +41,7 @@ static	UWord	bval,cval;
 static	SWord	matan[],
 				sincos_table[],
 				tan_table[];
-static	UWord	rndlookup[],
+static	UWord	rndlookup[55],
 				Days_in_Month[];
 //DEADCODE DAW 08/05/00 static	UWord	SqrtLookup[];
 void	sin_cos(ANGLES ang, SWord& sin_ang, SWord& cos_ang);
@@ -53,7 +55,14 @@ public:
 	MathLib ()
 	{
 		rndcount = 0;											//ARM 25Oct96
-//DeadCode AMM 19Oct100 		MaxRndCount = 0;										//ARM 25Oct96
+/* x0r		srand(time(NULL));
+		size_t s = sizeof(rndlookup) / sizeof(UWord);
+		for (size_t i = 0; i < s;i++)
+		{
+			rndlookup[i] = rand() ^ (rand() << 15);
+		}
+*/
+		//DeadCode AMM 19Oct100 		MaxRndCount = 0;										//ARM 25Oct96
 //DEADCODE DAW 08/05/00 		FillFastSqrt();
 	}
 

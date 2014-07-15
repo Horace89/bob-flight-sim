@@ -244,7 +244,7 @@ typedef struct Plane
 
     D3DVALUE SignedDistanceToPlane(D3DVECTOR *v)
     {
-        return A*v->dvX+B*v->dvY+C*v->dvZ+D;
+        return A*v->x+B*v->y+C*v->z+D;
     }
     ULong Inside(D3DVECTOR *v)
     {
@@ -2306,12 +2306,12 @@ private:
     void MakePlane(Plane *p,D3DVECTOR *pos,D3DVECTOR *va,D3DVECTOR *vb)
     {
         D3DVALUE mag;
-        mag=1.f/(FastSqrt(va->dvX*va->dvX+va->dvY*va->dvY+va->dvZ*va->dvZ)*
-                 FastSqrt(vb->dvX*vb->dvX+vb->dvY*vb->dvY+vb->dvZ*vb->dvZ));
-        p->A=mag*(va->dvY*vb->dvZ-va->dvZ*vb->dvY);
-        p->B=mag*(va->dvX*vb->dvZ-va->dvZ*vb->dvX);
-        p->C=mag*(va->dvX*vb->dvY-va->dvY*vb->dvX);
-        p->D=-(p->A*pos->dvX+p->B*pos->dvY+p->C*pos->dvZ);
+        mag=1.f/(FastSqrt(va->x*va->x+va->y*va->y+va->z*va->z)*
+                 FastSqrt(vb->x*vb->x+vb->y*vb->y+vb->z*vb->z));
+        p->A=mag*(va->y*vb->z-va->z*vb->y);
+        p->B=mag*(va->x*vb->z-va->z*vb->x);
+        p->C=mag*(va->x*vb->y-va->y*vb->x);
+        p->D=-(p->A*pos->x+p->B*pos->y+p->C*pos->z);
     };
 
     bool FZero(D3DVALUE f) const
@@ -2829,5 +2829,8 @@ public:
 
 #include "polyvert.h"
 
-DEFINE_GUID(IID_ILib3D,0x11038561, 0x95e1, 0x11d3, 0x87, 0x95, 0x0, 0x40, 0x5, 0x2c, 0x1f, 0x45);
+//#ifdef _INSIDE_LIB3D_
+DEFINE_GUID(IID_ILib3D, 0x11038561, 0x95e1, 0x11d3, 0x87, 0x95, 0x0, 0x40, 0x5, 0x2c, 0x1f, 0x45);
+//#endif
+
 #endif	//LIB3D_Included

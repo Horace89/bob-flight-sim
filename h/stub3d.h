@@ -23,6 +23,7 @@
 #ifndef	STUB3d_defined
 //#include	"stdafx.h"
 //#include	<afxmt.h>
+#include <dinput.h>
 
 ///////////////////////////////
 class CLock
@@ -142,6 +143,7 @@ class	View3d;
 struct	KeyMap3d;
 class	CEvent;
 //DEADCODE PD 03/12/99 class	Display;
+/* xor BAD code
 #ifdef UNICODE
 #define IID_IDirectInputDevice IID_IDirectInputDeviceW
 #define IDirectInputDevice IDirectInputDeviceW
@@ -151,6 +153,7 @@ class	CEvent;
 #define IDirectInputDevice IDirectInputDeviceA
 #define IDirectInputDeviceVtbl IDirectInputDeviceAVtbl
 #endif
+*/
 struct IDirectInputA;
 typedef IDirectInputA *LPDIRECTINPUT;
 typedef struct IDirectInputDevice *LPDIRECTINPUTDEVICE;

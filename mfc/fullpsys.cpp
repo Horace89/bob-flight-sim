@@ -242,11 +242,13 @@ void RFullPanelDial::LaunchSmacker(int dialID,FileNum smackerID)
 {
 	int	X=	m_currentscreen->resolutions[m_currentres].dials[dialID].X;
 	int	Y=	m_currentscreen->resolutions[m_currentres].dials[dialID].Y;
+	TRACING("X=" << X << " Y=" << Y);
 //	if (lastsmacker!=smackerID)	//new video
 //	{
 	pleasestartthissmacker=smackerID;
 		if (smackerID)	//If we have a video to play
 		{
+			TRACING("smackerID=" << smackerID);
 			File_Man.MakeRoomFor(10000000);	//force 10MB to be dumped...
 			File_Man.MakeRoomFor(-10000000);
 			File_Man.DiscardDirList(smackerID);
@@ -287,6 +289,7 @@ void RFullPanelDial::LaunchSmacker(int dialID,FileNum smackerID)
 
 			WCHAR wFile[MAX_PATH];
 		    MultiByteToWideChar( CP_ACP, 0, FILEMAN.namenumberedfile(smackerID), -1, wFile, MAX_PATH );
+			TRACING("wFile=" << wFile);
 
 			HRESULT hr =
 				CoCreateInstance(CLSID_FilterGraph, NULL, CLSCTX_INPROC_SERVER, IID_IGraphBuilder, (void **)&pigb);
@@ -294,6 +297,7 @@ void RFullPanelDial::LaunchSmacker(int dialID,FileNum smackerID)
 			if (SUCCEEDED(hr))
 			{ // Graphbuilder instance
 
+				TRACING("Succeed");
 				// QueryInterface for some basic interfaces
 				pigb->QueryInterface(IID_IMediaControl, (void **)&pimc);
 				pigb->QueryInterface(IID_IMediaEventEx, (void **)&pimex);
@@ -313,7 +317,10 @@ void RFullPanelDial::LaunchSmacker(int dialID,FileNum smackerID)
 				{ // don't bother scaling..
 					pivw->put_Left( X );
 					pivw->put_Top( Y );
-				} else
+					pivw->put_Visible(OATRUE);//x0r
+					pivw->put_FullScreenMode(OATRUE);
+				}
+				else
 				{	
 //DeadCode JON 12Nov00 					RECT grc;
 //DeadCode JON 12Nov00 					grc.left = X;
@@ -328,7 +335,7 @@ void RFullPanelDial::LaunchSmacker(int dialID,FileNum smackerID)
 				// Run the graph if RenderFile succeeded
 				if (!SUCCEEDED(hr))
 					CloseVideo();
-			//	  pimc->Run();
+//				  pimc->Run();
 
 			} // Graphbuilder instance
 

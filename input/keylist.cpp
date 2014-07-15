@@ -86,6 +86,7 @@ typedef	unsigned short	UWord;
 
 //#include	"hardpasm.h"										//ARM 04Jun96
 //const int	TOTALKEYBITFLAGS=768;
+#define DIRECTINPUT_VERSION 0x0700
 
 #define	SPECIAL_KEYMAPS	1
 #include	"keymaps.h"

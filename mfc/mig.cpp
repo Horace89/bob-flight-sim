@@ -530,18 +530,35 @@ TEST(BitTest)
 #endif
 
 BOOL CMIGApp::InitInstance()
-{
-#ifndef	NDEBUG
+{/*
+	freopen("bob.log", "w", stdout);
+	std::cout << "write in file";
+	return 0;
+	*/
+//#ifndef	NDEBUG
+	//freopen("bob.log", "w", stderr);
+//	FILE* log=fopen("bob.log", "w");
+	static std::ofstream log("bob.log", std::ios::out);
+	//_dup2(fileno(stdout), fileno(stderr));
+	//_dup2(fileno(stdout), fileno(log));
+	std::cout.rdbuf(log.rdbuf());
+	std::cerr.rdbuf(log.rdbuf());
+	std::clog.rdbuf(log.rdbuf());
+	//	std::cout << "123" << std::endl << std::flush;
+//	std::cout << "456" << std::endl << std::flush;
+
+//#endif
+
+#ifdef TESTS
 	AllocConsole();
 	freopen("CONIN$", "r", stdin);
 	freopen("CONOUT$", "w", stdout);
 	freopen("CONOUT$", "w", stderr);
 #endif
 
+	TRACING("Started");
+//	fclose(log);
 #ifdef TESTS
-	TRACE0("Start!");
-
-	std::cout << "Started" << std::endl;
 
 	UnitTest::RunAllTests();
 	std::getchar();
@@ -551,7 +568,7 @@ BOOL CMIGApp::InitInstance()
 //DeadCode JIM 20Oct00 	DWORD	sysvals[]={0x0000ff00,0x00ff0000};
 //	SetSysColors(2,sysnames,sysvals);
 
-	TRACE0("InitInstance starting...\n");
+	TRACING("InitInstance starting...\n");
 
 	if (!RDialog::actscrw)										//RJS 08Sep98
 	{	//1st time in read registry...
@@ -773,7 +790,7 @@ CMIGApp::~CMIGApp()
 
 int CMIGApp::Run() 
 {	
-	TRACE0("MessageLoop starting...\n");
+	TRACING("MessageLoop starting...\n");
 
 	// TODO: Add your specialized code here and/or call the base class
 ///	Master_3d.Init(m_hInstance,m_pMainWnd->m_hWnd);
@@ -785,7 +802,7 @@ int CMIGApp::Run()
 	if (m_pMainWnd == NULL && AfxOleGetUserCtrl())
 	{
 		// Not launched /Embedding or /Automation, but has no main window!
-		TRACE0("Warning: m_pMainWnd is NULL in CWinApp::Run - quitting application.\n");
+		TRACING("Warning: m_pMainWnd is NULL in CWinApp::Run - quitting application.\n");
 		AfxPostQuitMessage(0);
 	}
 
@@ -889,7 +906,7 @@ int CMIGApp::Run()
 
 					if (!PumpMessage())
 					{
-						TRACE0("MessageLoop exitting...\n");
+						TRACING("MessageLoop exitting...\n");
 						return ExitInstance();
 					}
 				}

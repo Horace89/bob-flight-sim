@@ -159,6 +159,8 @@ void MonoText::SetCursor(SLong rx,SLong ry)
 //------------------------------------------------------------------------------
 void MonoText::Print(UByte* text,SLong length)
 {
+TRACING(text);
+/*
 #ifndef NDEBUG													//DAW 13Nov96
 	char str[1024];
 	memcpy(&str, text, length);
@@ -198,6 +200,7 @@ void MonoText::Print(UByte* text,SLong length)
 		}
 	}
 #endif
+*/
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
@@ -214,7 +217,8 @@ void MonoText::Print(UByte* text,SLong length)
 //------------------------------------------------------------------------------
 void MonoText::TextOutMono(UByte* str)
 {
-
+TRACING(str);
+/*
 #ifndef NDEBUG													//DAW 13Nov96
 
 	UByte  chr;
@@ -250,6 +254,7 @@ void MonoText::TextOutMono(UByte* str)
 		}
 	}
 #endif
+*/
 }
 
 //컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴

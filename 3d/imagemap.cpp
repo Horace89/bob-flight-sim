@@ -94,6 +94,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 
 #include	<stdio.h>
 #include	"monotxt.h"
+#include	"loadpcx.h"
 
 extern Error _Error;
 //DEADCODE PD 03/12/99 extern SWord winmode_bpp;
@@ -932,7 +933,21 @@ Bool ImageMap::LoadImageMap(SuperMap*	supermap, UWord file_no,Bool is16bit, Bool
 //
 //------------------------------------------------------------------------------
 void	ImageMap_Desc::FixLbmImageMap(fileblock* fblockptr)
-{
+{// fork here for PCX
+	UByte* buffer = (UByteP)fblockptr->getdata();
+
+	w = 0;														//RJS 17May00
+	h = 0;
+	isMasked = 0;												//RJS 26Mar98
+	hTextureMap = 0; //PD 07/12/99
+
+	if (*(UByte*)buffer == 10) //PCX
+	{
+		PCX::ReadPCXFile((const char *)buffer, fblockptr->getsize(),this);
+
+	}
+	else if (*(ULong*)buffer == *(ULong*)"FORM")
+	{
 	struct LbmSearch
 	{
 		IFFHunkSearch bmhd, cmap, alfa, body;
@@ -950,7 +965,6 @@ void	ImageMap_Desc::FixLbmImageMap(fileblock* fblockptr)
 		lbmSearch.alfa.hunkPtr=
 		lbmSearch.body.hunkPtr=NULL;
 
-	UByte* buffer = (UByteP) fblockptr->getdata();
 //DeadCode RJS 20Oct00 	UByte* start=buffer;
 	UByte	*tmp;
 	SWord	picwidth,picheight,picy,picx,x,y;
@@ -960,11 +974,6 @@ void	ImageMap_Desc::FixLbmImageMap(fileblock* fblockptr)
 	picwidth = picheight = 1;
 
 	SearchIFFHunks(searchCount,(IFFHunkSearch*)&lbmSearch,buffer);
-
-	w=0;														//RJS 17May00
-	h=0;
-	isMasked = 0;												//RJS 26Mar98
-	hTextureMap = 0; //PD 07/12/99
 
 	tmp = lbmSearch.bmhd.hunkPtr;
 	if (tmp)
@@ -1056,11 +1065,11 @@ void	ImageMap_Desc::FixLbmImageMap(fileblock* fblockptr)
 			ULong	BytesPerScanLine = picwidth;
 			UByteP	logicalscreenptr = body;
 
-			w=picwidth;
-			h=picheight;
+			w = picwidth;
+			h = picheight;
 
 			int	y, x;
-			for (y=0; y < picheight; y ++)
+			for (y = 0; y < picheight; y++)
 			{
 				UByteP	c = tmp;
 				SLong	width = picwidth;
@@ -1068,25 +1077,25 @@ void	ImageMap_Desc::FixLbmImageMap(fileblock* fblockptr)
 				SLong	minx = 0;
 				SLong	maxx = picwidth - 1;
 
-//		tmp = Graphic::UnpackRow(tmp,picwidth,x,y++,PhysicalMinX,PhysicalMinX+PhysicalWidth-1);
-//
-//		UnpackRow(UByte *c, SLong width, SLong x, SLong y, SLong minx, SLong maxx)
+				//		tmp = Graphic::UnpackRow(tmp,picwidth,x,y++,PhysicalMinX,PhysicalMinX+PhysicalWidth-1);
+				//
+				//		UnpackRow(UByte *c, SLong width, SLong x, SLong y, SLong minx, SLong maxx)
 
-				#define	TRANSFERVALUESIZE	UByte
-				#define	LOADVALUE(x)	TRANSFERVALUE=x
-				#define	COPYVALUE(t,s)	*t++=s
-				#define	return(s)
+#define	TRANSFERVALUESIZE	UByte
+#define	LOADVALUE(x)	TRANSFERVALUE=x
+#define	COPYVALUE(t,s)	*t++=s
+#define	return(s)
 
 				{
-				#include "lbmcpp.h"
+#include "lbmcpp.h"
 
-				tmp = c;
-				#undef	return
+					tmp = c;
+#undef	return
+				}
 			}
 		}
+
 	}
-
-
 	}
 
 

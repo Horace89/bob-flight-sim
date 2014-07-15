@@ -42,7 +42,7 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 Source: "vcredist_x86.exe"; DestDir: {tmp}; Flags: deleteafterinstall
 Source: "D:\BOB\release\exe\bob.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\BOB\release\exe\*.ocx"; DestDir: {app}; Flags: ignoreversion regserver 32bit
-Source: "D:\BOB\release\exe\*"; Excludes: "*.suo,*.jpg,*.pdb,*.bsc,*.ilk,*.lib,*.exp,*.lic,*.tlb,*.pcx,*.err,*.bfi,*.lastcodeanalysissucceeded,Docs\*.bmp"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "D:\BOB\release\exe\*"; Excludes: "*.suo,*.jpg,*.pdb,*.bsc,*.ilk,*.lib,*.exp,*.lic,*.tlb,*.err,*.bfi,*.lastcodeanalysissucceeded,Docs\*.bmp,*.pcx,*.dds"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

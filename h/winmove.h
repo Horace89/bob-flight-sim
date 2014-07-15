@@ -20,15 +20,15 @@
 typedef struct IDirectPlay4			*LPDIRECTPLAY4A;  // directX 6.0
 typedef struct IDirectPlayLobby3	*LPDIRECTPLAYLOBBY3A; // directX 6.0
 
-#define	RNDPACKETSIZE 57 // random list size + 2
+const int	RNDPACKETSIZE = 57; // random list size + 2
 
-#define BUFFERLENGTH		128
-#define HISTBUFFERLENGTH	BUFFERLENGTH*2
+const int	BUFFERLENGTH	=	128;
+const int	HISTBUFFERLENGTH = BUFFERLENGTH * 2;
 
-#define	NUMRADIOMESSAGES 8
+const int	NUMRADIOMESSAGES = 8;
 // actual number displayed is this-1 because need spare entry for new chat
-#define NUMBUFFEREDMESSAGES 11
-#define MAXCOMMSMESSAGESIZE 1064
+const int	 NUMBUFFEREDMESSAGES = 11;
+const int	 MAXCOMMSMESSAGESIZE = 1064;
 
 // packet required for resynch phase, need abs position
 // damage state and score

@@ -102,6 +102,7 @@ http://www.simhq.com/cgi-bin/boards/cgi-bin/forumdisplay.cgi?action=topics&forum
 //DeadCode PD 26Oct95 extern Wrapper	_Wrapper;
 
 Error	_Error;
+char Error::exit_string[2048];
 
 extern		void	TraceChain(int x);
 extern		void	TrackMemUse();
@@ -127,7 +128,8 @@ Error::Error()
 //DeadCode DAW 10Apr96 	#if	DEBUGGING
 //DeadCode DAW 10Apr96 		OpenLog();
 //DeadCode DAW 10Apr96 	#endif
-	exitmsg="";
+	//exitmsg="";
+	exit_string[0] = '\0';
 //DeadCode DAW 19Dec96 	exitmsg="Program exitted normally";							//ARM 17Sep96
 }
 
@@ -185,8 +187,19 @@ Error&	Error::Say( const char * format, ... )
   return *this;
 }
 */
-Error& __cdecl Error::Say(char *txt, ...)
-{exitmsg=txt;return *this;}
+Error& __cdecl Error::Say(const char *txt, ...)
+{
+	va_list	marker;
+
+	va_start(marker, txt);
+	
+	vsprintf(exit_string, txt, marker);
+
+	va_end(marker);
+
+	//exitmsg = txt; 
+	return *this;
+}
 
 //BOOL IsDebuggerPresent(VOID);
 int	Hell_Freezes_Over=0;
@@ -194,7 +207,6 @@ Error& Error::SayAndQuit(const char *fmt, ...)
 {
 
 // This string has to be BIG!!!!!!!
-static	char String [2048];												//RJS 8Nov00
 
 //TempCode ARM 10Dec96 	TraceChain(0);
 //TempCode ARM 10Dec96 	TrackMemUse();
@@ -206,21 +218,24 @@ static	char String [2048];												//RJS 8Nov00
 
 
 //DeadCode AMM 24Aug00 	Master_3d.QuitGame();
+	if (exit_string[0]=='\0')
+		strcpy(exit_string,"Error: Press Retry to debug");
 
-  	vsprintf(String, fmt, marker);
-	if (exitmsg==NULL)
-		exitmsg="Error: Press Retry to debug";
+//        strcpy(exit_string, exitmsg);
+  	vsprintf(exit_string + strlen(exit_string), fmt, marker);
+	
+	va_end(marker);
 
 #ifdef	_TOFILE_
 	FILE*	fp = fopen("boberr.txt","wt");
 	if (fp)
 	{
-		fprintf(fp,"%s\n",String);
+		fprintf(fp,"%s\n",exit_string);
 		fclose(fp);
 	}
 #endif
 	
-	TRACING(String);
+	TRACING(exit_string);
 
 //TEMP	DestroyWindow ( _Main.hWnd );
 // xor #ifndef NDEBUG
@@ -229,16 +244,17 @@ static	char String [2048];												//RJS 8Nov00
 // xor #define MODE	MB_OK+MB_ICONSTOP+MB_APPLMODAL
 // xor #endif
 
-	if (MessageBox(NULL,String,exitmsg,MODE)
+	if (MessageBox(NULL,exit_string,"Error",MODE)
 			==IDRETRY)
 	{
-		INT3;
-		if (Hell_Freezes_Over)
+		_asm {int 3};
+		exit_string[0] = '\0';
+//		if (Hell_Freezes_Over)
 			return *this;
 	}
 //DeadCode RJS 8Nov00 	else
 //DeadCode RJS 8Nov00 		FatalExit(-1);
-	exitmsg=String;
+//	exitmsg=exit_string;
 
 //TempCode ARM 20Jun96 	fprintf(stdout, "\n");
 //TempCode ARM 10Jul96 	assert(FALSE);

@@ -1033,6 +1033,7 @@ string	fileman::namenumberedfile(FileNum	MyFile)
 //////////////////////////////////////////////////////////////////////
 FILE*	fileman::easyopennumberedfile(FileNum	MyFile)
 {
+	TRACING("Will open: " << MyFile);
 	string	name = namenumberedfile(MyFile);
 	TRACING("Opening: " << name);
 	FILE* rv = fopen(name, "rb");
@@ -1365,7 +1366,8 @@ bool	processlock)	//X //process locking always enabled externally
 					 }
 					 #endif
 					 #endif   */
-			assert(FILEMAN.readfileblock(filehandle, fileblockdata, link->datasize));
+			bool read_result=FILEMAN.readfileblock(filehandle, fileblockdata, link->datasize);
+			assert(read_result);
 
 			if (FILEMAN.direntries[di].openfile.number != MyFile)
 				FILEMAN.closefile(filehandle);

@@ -20,13 +20,14 @@ class	 Error
 		FILE	*logfile;										//JIM 01Aug96
 
 	public:
-		char* exitmsg;
-		Error(void );
+		//char* exitmsg;
+		static	char exit_string[2048];												//RJS 8Nov00
+		Error(void);
 		~Error(void );
 
 //DeadCode JIM 02Jul96 		void Error::EmitSysErr(char *, ...);
 		Error& ExitMode();
-Error& Say(char *, ...);
+Error& Say(const char *, ...);
 Error& SayAndQuit(const char *, ...);
 		void Quit();
 //#ifdef __MSVC__
@@ -67,11 +68,11 @@ extern	class Error	_Error;
 
 //#ifdef	__WATCOMC__
 
-#ifdef NDEBUG
+/*#ifdef NDEBUG
  #define EmitSysErr ExitMode().SayAndQuit(__FILE__ "%i ",__LINE__),Error::dummyproc
-#else
- #define EmitSysErr ExitMode().Say(__HERE__ ": \n").SayAndQuit
-#endif
+#else*/
+ #define EmitSysErr ExitMode().Say(__FILE__ ":%d\n",__LINE__).SayAndQuit
+//#endif
 	#define EmitWarning Say
  #define ReallyEmitSysErr  Say
 
